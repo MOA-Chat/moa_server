@@ -465,6 +465,44 @@ export interface Envelope {
   cCompleteSocialSignup?:
     | CCompleteSocialSignup
     | undefined;
+  /** ALBUM (120 ~ 131, 140 ~ 147) */
+  cCreateAlbum?: CCreateAlbum | undefined;
+  sCreateAlbum?: SCreateAlbum | undefined;
+  cGetAlbums?: CGetAlbums | undefined;
+  sGetAlbums?: SGetAlbums | undefined;
+  cAddPhotoToAlbum?: CAddPhotoToAlbum | undefined;
+  sAddPhotoToAlbum?: SAddPhotoToAlbum | undefined;
+  cGetAlbumPhotos?: CGetAlbumPhotos | undefined;
+  sGetAlbumPhotos?: SGetAlbumPhotos | undefined;
+  cAddPhotoComment?: CAddPhotoComment | undefined;
+  sAddPhotoComment?: SAddPhotoComment | undefined;
+  cGetPhotoComments?: CGetPhotoComments | undefined;
+  sGetPhotoComments?: SGetPhotoComments | undefined;
+  cDeleteAlbum?: CDeleteAlbum | undefined;
+  sDeleteAlbum?: SDeleteAlbum | undefined;
+  cDeleteAlbumPhoto?: CDeleteAlbumPhoto | undefined;
+  sDeleteAlbumPhoto?: SDeleteAlbumPhoto | undefined;
+  cMovePhoto?: CMovePhoto | undefined;
+  sMovePhoto?: SMovePhoto | undefined;
+  cDeletePhotoComment?: CDeletePhotoComment | undefined;
+  sDeletePhotoComment?:
+    | SDeletePhotoComment
+    | undefined;
+  /** LOCATION HISTORY (148 ~ 159) */
+  cSavePlace?: CSavePlace | undefined;
+  sSavePlace?: SSavePlace | undefined;
+  cGetPlaces?: CGetPlaces | undefined;
+  sGetPlaces?: SGetPlaces | undefined;
+  cSaveVisit?: CSaveVisit | undefined;
+  sSaveVisit?: SSaveVisit | undefined;
+  cDeletePlace?: CDeletePlace | undefined;
+  sDeletePlace?: SDeletePlace | undefined;
+  cUpdateVisit?: CUpdateVisit | undefined;
+  sUpdateVisit?: SUpdateVisit | undefined;
+  cDeleteVisit?: CDeleteVisit | undefined;
+  sDeleteVisit?:
+    | SDeleteVisit
+    | undefined;
   /** GROUPS (80 ~ 99) */
   cCreateGroup?: CCreateGroup | undefined;
   sCreateGroup?: SCreateGroup | undefined;
@@ -1366,6 +1404,293 @@ export interface CCompleteSocialSignup {
   name: string;
 }
 
+export interface Album {
+  id: string;
+  groupId: string;
+  name: string;
+  coverPhotoUrl: string;
+  createdBy: string;
+  createdAt: number;
+  photoCount: number;
+}
+
+export interface AlbumPhoto {
+  id: string;
+  albumId: string;
+  groupId: string;
+  msgSeq: number;
+  photoUrl: string;
+  thumbnailUrl: string;
+  uploaderId: string;
+  source: string;
+  uploadedAt: number;
+}
+
+export interface PhotoComment {
+  id: string;
+  photoId: string;
+  senderId: string;
+  senderName: string;
+  text: string;
+  createdAt: number;
+}
+
+export interface CCreateAlbum {
+  groupId: string;
+  name: string;
+  createdBy: string;
+}
+
+export interface SCreateAlbum {
+  success: boolean;
+  album: Album | undefined;
+  error: string;
+}
+
+export interface CGetAlbums {
+  groupId: string;
+}
+
+export interface SGetAlbums {
+  albums: Album[];
+}
+
+export interface CAddPhotoToAlbum {
+  albumId: string;
+  groupId: string;
+  msgSeq: number;
+  photoUrl: string;
+  thumbnailUrl: string;
+  uploaderId: string;
+}
+
+export interface SAddPhotoToAlbum {
+  success: boolean;
+  albumId: string;
+  photo: AlbumPhoto | undefined;
+  error: string;
+  album: Album | undefined;
+}
+
+export interface CGetAlbumPhotos {
+  albumId: string;
+  latestFirst: boolean;
+}
+
+export interface SGetAlbumPhotos {
+  albumId: string;
+  photos: AlbumPhoto[];
+}
+
+export interface CDeleteAlbum {
+  albumId: string;
+  userId: string;
+  groupId: string;
+}
+
+export interface SDeleteAlbum {
+  success: boolean;
+  albumId: string;
+  groupId: string;
+  error: string;
+}
+
+export interface CDeleteAlbumPhoto {
+  photoId: string;
+  userId: string;
+  albumId: string;
+  groupId: string;
+}
+
+export interface SDeleteAlbumPhoto {
+  success: boolean;
+  photoId: string;
+  albumId: string;
+  groupId: string;
+  error: string;
+  album: Album | undefined;
+}
+
+export interface CMovePhoto {
+  photoId: string;
+  fromAlbumId: string;
+  toAlbumId: string;
+  groupId: string;
+  userId: string;
+}
+
+export interface SMovePhoto {
+  success: boolean;
+  photoId: string;
+  fromAlbumId: string;
+  toAlbumId: string;
+  groupId: string;
+  error: string;
+  fromAlbum: Album | undefined;
+  toAlbum: Album | undefined;
+}
+
+export interface CAddPhotoComment {
+  photoId: string;
+  senderId: string;
+  senderName: string;
+  text: string;
+  groupId: string;
+}
+
+export interface SAddPhotoComment {
+  success: boolean;
+  comment: PhotoComment | undefined;
+  error: string;
+}
+
+export interface CGetPhotoComments {
+  photoId: string;
+}
+
+export interface SGetPhotoComments {
+  photoId: string;
+  comments: PhotoComment[];
+}
+
+export interface CDeletePhotoComment {
+  commentId: string;
+  userId: string;
+  groupId: string;
+  photoId: string;
+}
+
+export interface SDeletePhotoComment {
+  success: boolean;
+  commentId: string;
+  photoId: string;
+  groupId: string;
+  error: string;
+}
+
+export interface LocationPhoto {
+  id: string;
+  photoUrl: string;
+}
+
+export interface LocationVisitInfo {
+  id: string;
+  userId: string;
+  userName: string;
+  rating: number;
+  review: string;
+  visitedAt: number;
+  photos: LocationPhoto[];
+}
+
+export interface LocationPlaceInfo {
+  id: string;
+  groupId: string;
+  name: string;
+  address: string;
+  category: string;
+  lat: number;
+  lng: number;
+  createdBy: string;
+  createdAt: number;
+  visitCount: number;
+  avgRating: number;
+  recentPhotoUrl: string;
+  visits: LocationVisitInfo[];
+}
+
+export interface CSavePlace {
+  groupId: string;
+  name: string;
+  address: string;
+  category: string;
+  lat: number;
+  lng: number;
+  userId: string;
+  userName: string;
+}
+
+export interface SSavePlace {
+  success: boolean;
+  place: LocationPlaceInfo | undefined;
+  errorCode: number;
+}
+
+export interface CGetPlaces {
+  groupId: string;
+}
+
+export interface SGetPlaces {
+  groupId: string;
+  places: LocationPlaceInfo[];
+}
+
+export interface CSaveVisit {
+  placeId: string;
+  groupId: string;
+  userId: string;
+  userName: string;
+  rating: number;
+  review: string;
+  photoUrls: string[];
+  visitedAt: number;
+}
+
+export interface SSaveVisit {
+  success: boolean;
+  placeId: string;
+  visit: LocationVisitInfo | undefined;
+  place: LocationPlaceInfo | undefined;
+  errorCode: number;
+}
+
+export interface CDeletePlace {
+  placeId: string;
+  groupId: string;
+  userId: string;
+}
+
+export interface SDeletePlace {
+  success: boolean;
+  placeId: string;
+  groupId: string;
+  errorCode: number;
+}
+
+export interface CUpdateVisit {
+  visitId: string;
+  placeId: string;
+  groupId: string;
+  userId: string;
+  rating: number;
+  review: string;
+  photoUrls: string[];
+  visitedAt: number;
+}
+
+export interface SUpdateVisit {
+  success: boolean;
+  visit: LocationVisitInfo | undefined;
+  place: LocationPlaceInfo | undefined;
+  errorCode: number;
+}
+
+export interface CDeleteVisit {
+  visitId: string;
+  placeId: string;
+  groupId: string;
+  userId: string;
+}
+
+export interface SDeleteVisit {
+  success: boolean;
+  visitId: string;
+  placeId: string;
+  groupId: string;
+  placeDeleted: boolean;
+  errorCode: number;
+}
+
 export interface SError {
   errorCode: ErrorCode;
   code: number;
@@ -1466,6 +1791,38 @@ function createBaseEnvelope(): Envelope {
     cSocialLogin: undefined,
     sSocialLogin: undefined,
     cCompleteSocialSignup: undefined,
+    cCreateAlbum: undefined,
+    sCreateAlbum: undefined,
+    cGetAlbums: undefined,
+    sGetAlbums: undefined,
+    cAddPhotoToAlbum: undefined,
+    sAddPhotoToAlbum: undefined,
+    cGetAlbumPhotos: undefined,
+    sGetAlbumPhotos: undefined,
+    cAddPhotoComment: undefined,
+    sAddPhotoComment: undefined,
+    cGetPhotoComments: undefined,
+    sGetPhotoComments: undefined,
+    cDeleteAlbum: undefined,
+    sDeleteAlbum: undefined,
+    cDeleteAlbumPhoto: undefined,
+    sDeleteAlbumPhoto: undefined,
+    cMovePhoto: undefined,
+    sMovePhoto: undefined,
+    cDeletePhotoComment: undefined,
+    sDeletePhotoComment: undefined,
+    cSavePlace: undefined,
+    sSavePlace: undefined,
+    cGetPlaces: undefined,
+    sGetPlaces: undefined,
+    cSaveVisit: undefined,
+    sSaveVisit: undefined,
+    cDeletePlace: undefined,
+    sDeletePlace: undefined,
+    cUpdateVisit: undefined,
+    sUpdateVisit: undefined,
+    cDeleteVisit: undefined,
+    sDeleteVisit: undefined,
     cCreateGroup: undefined,
     sCreateGroup: undefined,
     cGroupList: undefined,
@@ -1751,6 +2108,102 @@ export const Envelope = {
     }
     if (message.cCompleteSocialSignup !== undefined) {
       CCompleteSocialSignup.encode(message.cCompleteSocialSignup, writer.uint32(938).fork()).ldelim();
+    }
+    if (message.cCreateAlbum !== undefined) {
+      CCreateAlbum.encode(message.cCreateAlbum, writer.uint32(962).fork()).ldelim();
+    }
+    if (message.sCreateAlbum !== undefined) {
+      SCreateAlbum.encode(message.sCreateAlbum, writer.uint32(970).fork()).ldelim();
+    }
+    if (message.cGetAlbums !== undefined) {
+      CGetAlbums.encode(message.cGetAlbums, writer.uint32(978).fork()).ldelim();
+    }
+    if (message.sGetAlbums !== undefined) {
+      SGetAlbums.encode(message.sGetAlbums, writer.uint32(986).fork()).ldelim();
+    }
+    if (message.cAddPhotoToAlbum !== undefined) {
+      CAddPhotoToAlbum.encode(message.cAddPhotoToAlbum, writer.uint32(994).fork()).ldelim();
+    }
+    if (message.sAddPhotoToAlbum !== undefined) {
+      SAddPhotoToAlbum.encode(message.sAddPhotoToAlbum, writer.uint32(1002).fork()).ldelim();
+    }
+    if (message.cGetAlbumPhotos !== undefined) {
+      CGetAlbumPhotos.encode(message.cGetAlbumPhotos, writer.uint32(1010).fork()).ldelim();
+    }
+    if (message.sGetAlbumPhotos !== undefined) {
+      SGetAlbumPhotos.encode(message.sGetAlbumPhotos, writer.uint32(1018).fork()).ldelim();
+    }
+    if (message.cAddPhotoComment !== undefined) {
+      CAddPhotoComment.encode(message.cAddPhotoComment, writer.uint32(1026).fork()).ldelim();
+    }
+    if (message.sAddPhotoComment !== undefined) {
+      SAddPhotoComment.encode(message.sAddPhotoComment, writer.uint32(1034).fork()).ldelim();
+    }
+    if (message.cGetPhotoComments !== undefined) {
+      CGetPhotoComments.encode(message.cGetPhotoComments, writer.uint32(1042).fork()).ldelim();
+    }
+    if (message.sGetPhotoComments !== undefined) {
+      SGetPhotoComments.encode(message.sGetPhotoComments, writer.uint32(1050).fork()).ldelim();
+    }
+    if (message.cDeleteAlbum !== undefined) {
+      CDeleteAlbum.encode(message.cDeleteAlbum, writer.uint32(1122).fork()).ldelim();
+    }
+    if (message.sDeleteAlbum !== undefined) {
+      SDeleteAlbum.encode(message.sDeleteAlbum, writer.uint32(1130).fork()).ldelim();
+    }
+    if (message.cDeleteAlbumPhoto !== undefined) {
+      CDeleteAlbumPhoto.encode(message.cDeleteAlbumPhoto, writer.uint32(1138).fork()).ldelim();
+    }
+    if (message.sDeleteAlbumPhoto !== undefined) {
+      SDeleteAlbumPhoto.encode(message.sDeleteAlbumPhoto, writer.uint32(1146).fork()).ldelim();
+    }
+    if (message.cMovePhoto !== undefined) {
+      CMovePhoto.encode(message.cMovePhoto, writer.uint32(1154).fork()).ldelim();
+    }
+    if (message.sMovePhoto !== undefined) {
+      SMovePhoto.encode(message.sMovePhoto, writer.uint32(1162).fork()).ldelim();
+    }
+    if (message.cDeletePhotoComment !== undefined) {
+      CDeletePhotoComment.encode(message.cDeletePhotoComment, writer.uint32(1170).fork()).ldelim();
+    }
+    if (message.sDeletePhotoComment !== undefined) {
+      SDeletePhotoComment.encode(message.sDeletePhotoComment, writer.uint32(1178).fork()).ldelim();
+    }
+    if (message.cSavePlace !== undefined) {
+      CSavePlace.encode(message.cSavePlace, writer.uint32(1186).fork()).ldelim();
+    }
+    if (message.sSavePlace !== undefined) {
+      SSavePlace.encode(message.sSavePlace, writer.uint32(1194).fork()).ldelim();
+    }
+    if (message.cGetPlaces !== undefined) {
+      CGetPlaces.encode(message.cGetPlaces, writer.uint32(1202).fork()).ldelim();
+    }
+    if (message.sGetPlaces !== undefined) {
+      SGetPlaces.encode(message.sGetPlaces, writer.uint32(1210).fork()).ldelim();
+    }
+    if (message.cSaveVisit !== undefined) {
+      CSaveVisit.encode(message.cSaveVisit, writer.uint32(1218).fork()).ldelim();
+    }
+    if (message.sSaveVisit !== undefined) {
+      SSaveVisit.encode(message.sSaveVisit, writer.uint32(1226).fork()).ldelim();
+    }
+    if (message.cDeletePlace !== undefined) {
+      CDeletePlace.encode(message.cDeletePlace, writer.uint32(1234).fork()).ldelim();
+    }
+    if (message.sDeletePlace !== undefined) {
+      SDeletePlace.encode(message.sDeletePlace, writer.uint32(1242).fork()).ldelim();
+    }
+    if (message.cUpdateVisit !== undefined) {
+      CUpdateVisit.encode(message.cUpdateVisit, writer.uint32(1250).fork()).ldelim();
+    }
+    if (message.sUpdateVisit !== undefined) {
+      SUpdateVisit.encode(message.sUpdateVisit, writer.uint32(1258).fork()).ldelim();
+    }
+    if (message.cDeleteVisit !== undefined) {
+      CDeleteVisit.encode(message.cDeleteVisit, writer.uint32(1266).fork()).ldelim();
+    }
+    if (message.sDeleteVisit !== undefined) {
+      SDeleteVisit.encode(message.sDeleteVisit, writer.uint32(1274).fork()).ldelim();
     }
     if (message.cCreateGroup !== undefined) {
       CCreateGroup.encode(message.cCreateGroup, writer.uint32(642).fork()).ldelim();
@@ -2433,6 +2886,230 @@ export const Envelope = {
 
           message.cCompleteSocialSignup = CCompleteSocialSignup.decode(reader, reader.uint32());
           continue;
+        case 120:
+          if (tag !== 962) {
+            break;
+          }
+
+          message.cCreateAlbum = CCreateAlbum.decode(reader, reader.uint32());
+          continue;
+        case 121:
+          if (tag !== 970) {
+            break;
+          }
+
+          message.sCreateAlbum = SCreateAlbum.decode(reader, reader.uint32());
+          continue;
+        case 122:
+          if (tag !== 978) {
+            break;
+          }
+
+          message.cGetAlbums = CGetAlbums.decode(reader, reader.uint32());
+          continue;
+        case 123:
+          if (tag !== 986) {
+            break;
+          }
+
+          message.sGetAlbums = SGetAlbums.decode(reader, reader.uint32());
+          continue;
+        case 124:
+          if (tag !== 994) {
+            break;
+          }
+
+          message.cAddPhotoToAlbum = CAddPhotoToAlbum.decode(reader, reader.uint32());
+          continue;
+        case 125:
+          if (tag !== 1002) {
+            break;
+          }
+
+          message.sAddPhotoToAlbum = SAddPhotoToAlbum.decode(reader, reader.uint32());
+          continue;
+        case 126:
+          if (tag !== 1010) {
+            break;
+          }
+
+          message.cGetAlbumPhotos = CGetAlbumPhotos.decode(reader, reader.uint32());
+          continue;
+        case 127:
+          if (tag !== 1018) {
+            break;
+          }
+
+          message.sGetAlbumPhotos = SGetAlbumPhotos.decode(reader, reader.uint32());
+          continue;
+        case 128:
+          if (tag !== 1026) {
+            break;
+          }
+
+          message.cAddPhotoComment = CAddPhotoComment.decode(reader, reader.uint32());
+          continue;
+        case 129:
+          if (tag !== 1034) {
+            break;
+          }
+
+          message.sAddPhotoComment = SAddPhotoComment.decode(reader, reader.uint32());
+          continue;
+        case 130:
+          if (tag !== 1042) {
+            break;
+          }
+
+          message.cGetPhotoComments = CGetPhotoComments.decode(reader, reader.uint32());
+          continue;
+        case 131:
+          if (tag !== 1050) {
+            break;
+          }
+
+          message.sGetPhotoComments = SGetPhotoComments.decode(reader, reader.uint32());
+          continue;
+        case 140:
+          if (tag !== 1122) {
+            break;
+          }
+
+          message.cDeleteAlbum = CDeleteAlbum.decode(reader, reader.uint32());
+          continue;
+        case 141:
+          if (tag !== 1130) {
+            break;
+          }
+
+          message.sDeleteAlbum = SDeleteAlbum.decode(reader, reader.uint32());
+          continue;
+        case 142:
+          if (tag !== 1138) {
+            break;
+          }
+
+          message.cDeleteAlbumPhoto = CDeleteAlbumPhoto.decode(reader, reader.uint32());
+          continue;
+        case 143:
+          if (tag !== 1146) {
+            break;
+          }
+
+          message.sDeleteAlbumPhoto = SDeleteAlbumPhoto.decode(reader, reader.uint32());
+          continue;
+        case 144:
+          if (tag !== 1154) {
+            break;
+          }
+
+          message.cMovePhoto = CMovePhoto.decode(reader, reader.uint32());
+          continue;
+        case 145:
+          if (tag !== 1162) {
+            break;
+          }
+
+          message.sMovePhoto = SMovePhoto.decode(reader, reader.uint32());
+          continue;
+        case 146:
+          if (tag !== 1170) {
+            break;
+          }
+
+          message.cDeletePhotoComment = CDeletePhotoComment.decode(reader, reader.uint32());
+          continue;
+        case 147:
+          if (tag !== 1178) {
+            break;
+          }
+
+          message.sDeletePhotoComment = SDeletePhotoComment.decode(reader, reader.uint32());
+          continue;
+        case 148:
+          if (tag !== 1186) {
+            break;
+          }
+
+          message.cSavePlace = CSavePlace.decode(reader, reader.uint32());
+          continue;
+        case 149:
+          if (tag !== 1194) {
+            break;
+          }
+
+          message.sSavePlace = SSavePlace.decode(reader, reader.uint32());
+          continue;
+        case 150:
+          if (tag !== 1202) {
+            break;
+          }
+
+          message.cGetPlaces = CGetPlaces.decode(reader, reader.uint32());
+          continue;
+        case 151:
+          if (tag !== 1210) {
+            break;
+          }
+
+          message.sGetPlaces = SGetPlaces.decode(reader, reader.uint32());
+          continue;
+        case 152:
+          if (tag !== 1218) {
+            break;
+          }
+
+          message.cSaveVisit = CSaveVisit.decode(reader, reader.uint32());
+          continue;
+        case 153:
+          if (tag !== 1226) {
+            break;
+          }
+
+          message.sSaveVisit = SSaveVisit.decode(reader, reader.uint32());
+          continue;
+        case 154:
+          if (tag !== 1234) {
+            break;
+          }
+
+          message.cDeletePlace = CDeletePlace.decode(reader, reader.uint32());
+          continue;
+        case 155:
+          if (tag !== 1242) {
+            break;
+          }
+
+          message.sDeletePlace = SDeletePlace.decode(reader, reader.uint32());
+          continue;
+        case 156:
+          if (tag !== 1250) {
+            break;
+          }
+
+          message.cUpdateVisit = CUpdateVisit.decode(reader, reader.uint32());
+          continue;
+        case 157:
+          if (tag !== 1258) {
+            break;
+          }
+
+          message.sUpdateVisit = SUpdateVisit.decode(reader, reader.uint32());
+          continue;
+        case 158:
+          if (tag !== 1266) {
+            break;
+          }
+
+          message.cDeleteVisit = CDeleteVisit.decode(reader, reader.uint32());
+          continue;
+        case 159:
+          if (tag !== 1274) {
+            break;
+          }
+
+          message.sDeleteVisit = SDeleteVisit.decode(reader, reader.uint32());
+          continue;
         case 80:
           if (tag !== 642) {
             break;
@@ -2713,6 +3390,50 @@ export const Envelope = {
       cCompleteSocialSignup: isSet(object.cCompleteSocialSignup)
         ? CCompleteSocialSignup.fromJSON(object.cCompleteSocialSignup)
         : undefined,
+      cCreateAlbum: isSet(object.cCreateAlbum) ? CCreateAlbum.fromJSON(object.cCreateAlbum) : undefined,
+      sCreateAlbum: isSet(object.sCreateAlbum) ? SCreateAlbum.fromJSON(object.sCreateAlbum) : undefined,
+      cGetAlbums: isSet(object.cGetAlbums) ? CGetAlbums.fromJSON(object.cGetAlbums) : undefined,
+      sGetAlbums: isSet(object.sGetAlbums) ? SGetAlbums.fromJSON(object.sGetAlbums) : undefined,
+      cAddPhotoToAlbum: isSet(object.cAddPhotoToAlbum) ? CAddPhotoToAlbum.fromJSON(object.cAddPhotoToAlbum) : undefined,
+      sAddPhotoToAlbum: isSet(object.sAddPhotoToAlbum) ? SAddPhotoToAlbum.fromJSON(object.sAddPhotoToAlbum) : undefined,
+      cGetAlbumPhotos: isSet(object.cGetAlbumPhotos) ? CGetAlbumPhotos.fromJSON(object.cGetAlbumPhotos) : undefined,
+      sGetAlbumPhotos: isSet(object.sGetAlbumPhotos) ? SGetAlbumPhotos.fromJSON(object.sGetAlbumPhotos) : undefined,
+      cAddPhotoComment: isSet(object.cAddPhotoComment) ? CAddPhotoComment.fromJSON(object.cAddPhotoComment) : undefined,
+      sAddPhotoComment: isSet(object.sAddPhotoComment) ? SAddPhotoComment.fromJSON(object.sAddPhotoComment) : undefined,
+      cGetPhotoComments: isSet(object.cGetPhotoComments)
+        ? CGetPhotoComments.fromJSON(object.cGetPhotoComments)
+        : undefined,
+      sGetPhotoComments: isSet(object.sGetPhotoComments)
+        ? SGetPhotoComments.fromJSON(object.sGetPhotoComments)
+        : undefined,
+      cDeleteAlbum: isSet(object.cDeleteAlbum) ? CDeleteAlbum.fromJSON(object.cDeleteAlbum) : undefined,
+      sDeleteAlbum: isSet(object.sDeleteAlbum) ? SDeleteAlbum.fromJSON(object.sDeleteAlbum) : undefined,
+      cDeleteAlbumPhoto: isSet(object.cDeleteAlbumPhoto)
+        ? CDeleteAlbumPhoto.fromJSON(object.cDeleteAlbumPhoto)
+        : undefined,
+      sDeleteAlbumPhoto: isSet(object.sDeleteAlbumPhoto)
+        ? SDeleteAlbumPhoto.fromJSON(object.sDeleteAlbumPhoto)
+        : undefined,
+      cMovePhoto: isSet(object.cMovePhoto) ? CMovePhoto.fromJSON(object.cMovePhoto) : undefined,
+      sMovePhoto: isSet(object.sMovePhoto) ? SMovePhoto.fromJSON(object.sMovePhoto) : undefined,
+      cDeletePhotoComment: isSet(object.cDeletePhotoComment)
+        ? CDeletePhotoComment.fromJSON(object.cDeletePhotoComment)
+        : undefined,
+      sDeletePhotoComment: isSet(object.sDeletePhotoComment)
+        ? SDeletePhotoComment.fromJSON(object.sDeletePhotoComment)
+        : undefined,
+      cSavePlace: isSet(object.cSavePlace) ? CSavePlace.fromJSON(object.cSavePlace) : undefined,
+      sSavePlace: isSet(object.sSavePlace) ? SSavePlace.fromJSON(object.sSavePlace) : undefined,
+      cGetPlaces: isSet(object.cGetPlaces) ? CGetPlaces.fromJSON(object.cGetPlaces) : undefined,
+      sGetPlaces: isSet(object.sGetPlaces) ? SGetPlaces.fromJSON(object.sGetPlaces) : undefined,
+      cSaveVisit: isSet(object.cSaveVisit) ? CSaveVisit.fromJSON(object.cSaveVisit) : undefined,
+      sSaveVisit: isSet(object.sSaveVisit) ? SSaveVisit.fromJSON(object.sSaveVisit) : undefined,
+      cDeletePlace: isSet(object.cDeletePlace) ? CDeletePlace.fromJSON(object.cDeletePlace) : undefined,
+      sDeletePlace: isSet(object.sDeletePlace) ? SDeletePlace.fromJSON(object.sDeletePlace) : undefined,
+      cUpdateVisit: isSet(object.cUpdateVisit) ? CUpdateVisit.fromJSON(object.cUpdateVisit) : undefined,
+      sUpdateVisit: isSet(object.sUpdateVisit) ? SUpdateVisit.fromJSON(object.sUpdateVisit) : undefined,
+      cDeleteVisit: isSet(object.cDeleteVisit) ? CDeleteVisit.fromJSON(object.cDeleteVisit) : undefined,
+      sDeleteVisit: isSet(object.sDeleteVisit) ? SDeleteVisit.fromJSON(object.sDeleteVisit) : undefined,
       cCreateGroup: isSet(object.cCreateGroup) ? CCreateGroup.fromJSON(object.cCreateGroup) : undefined,
       sCreateGroup: isSet(object.sCreateGroup) ? SCreateGroup.fromJSON(object.sCreateGroup) : undefined,
       cGroupList: isSet(object.cGroupList) ? CGroupList.fromJSON(object.cGroupList) : undefined,
@@ -2998,6 +3719,102 @@ export const Envelope = {
     }
     if (message.cCompleteSocialSignup !== undefined) {
       obj.cCompleteSocialSignup = CCompleteSocialSignup.toJSON(message.cCompleteSocialSignup);
+    }
+    if (message.cCreateAlbum !== undefined) {
+      obj.cCreateAlbum = CCreateAlbum.toJSON(message.cCreateAlbum);
+    }
+    if (message.sCreateAlbum !== undefined) {
+      obj.sCreateAlbum = SCreateAlbum.toJSON(message.sCreateAlbum);
+    }
+    if (message.cGetAlbums !== undefined) {
+      obj.cGetAlbums = CGetAlbums.toJSON(message.cGetAlbums);
+    }
+    if (message.sGetAlbums !== undefined) {
+      obj.sGetAlbums = SGetAlbums.toJSON(message.sGetAlbums);
+    }
+    if (message.cAddPhotoToAlbum !== undefined) {
+      obj.cAddPhotoToAlbum = CAddPhotoToAlbum.toJSON(message.cAddPhotoToAlbum);
+    }
+    if (message.sAddPhotoToAlbum !== undefined) {
+      obj.sAddPhotoToAlbum = SAddPhotoToAlbum.toJSON(message.sAddPhotoToAlbum);
+    }
+    if (message.cGetAlbumPhotos !== undefined) {
+      obj.cGetAlbumPhotos = CGetAlbumPhotos.toJSON(message.cGetAlbumPhotos);
+    }
+    if (message.sGetAlbumPhotos !== undefined) {
+      obj.sGetAlbumPhotos = SGetAlbumPhotos.toJSON(message.sGetAlbumPhotos);
+    }
+    if (message.cAddPhotoComment !== undefined) {
+      obj.cAddPhotoComment = CAddPhotoComment.toJSON(message.cAddPhotoComment);
+    }
+    if (message.sAddPhotoComment !== undefined) {
+      obj.sAddPhotoComment = SAddPhotoComment.toJSON(message.sAddPhotoComment);
+    }
+    if (message.cGetPhotoComments !== undefined) {
+      obj.cGetPhotoComments = CGetPhotoComments.toJSON(message.cGetPhotoComments);
+    }
+    if (message.sGetPhotoComments !== undefined) {
+      obj.sGetPhotoComments = SGetPhotoComments.toJSON(message.sGetPhotoComments);
+    }
+    if (message.cDeleteAlbum !== undefined) {
+      obj.cDeleteAlbum = CDeleteAlbum.toJSON(message.cDeleteAlbum);
+    }
+    if (message.sDeleteAlbum !== undefined) {
+      obj.sDeleteAlbum = SDeleteAlbum.toJSON(message.sDeleteAlbum);
+    }
+    if (message.cDeleteAlbumPhoto !== undefined) {
+      obj.cDeleteAlbumPhoto = CDeleteAlbumPhoto.toJSON(message.cDeleteAlbumPhoto);
+    }
+    if (message.sDeleteAlbumPhoto !== undefined) {
+      obj.sDeleteAlbumPhoto = SDeleteAlbumPhoto.toJSON(message.sDeleteAlbumPhoto);
+    }
+    if (message.cMovePhoto !== undefined) {
+      obj.cMovePhoto = CMovePhoto.toJSON(message.cMovePhoto);
+    }
+    if (message.sMovePhoto !== undefined) {
+      obj.sMovePhoto = SMovePhoto.toJSON(message.sMovePhoto);
+    }
+    if (message.cDeletePhotoComment !== undefined) {
+      obj.cDeletePhotoComment = CDeletePhotoComment.toJSON(message.cDeletePhotoComment);
+    }
+    if (message.sDeletePhotoComment !== undefined) {
+      obj.sDeletePhotoComment = SDeletePhotoComment.toJSON(message.sDeletePhotoComment);
+    }
+    if (message.cSavePlace !== undefined) {
+      obj.cSavePlace = CSavePlace.toJSON(message.cSavePlace);
+    }
+    if (message.sSavePlace !== undefined) {
+      obj.sSavePlace = SSavePlace.toJSON(message.sSavePlace);
+    }
+    if (message.cGetPlaces !== undefined) {
+      obj.cGetPlaces = CGetPlaces.toJSON(message.cGetPlaces);
+    }
+    if (message.sGetPlaces !== undefined) {
+      obj.sGetPlaces = SGetPlaces.toJSON(message.sGetPlaces);
+    }
+    if (message.cSaveVisit !== undefined) {
+      obj.cSaveVisit = CSaveVisit.toJSON(message.cSaveVisit);
+    }
+    if (message.sSaveVisit !== undefined) {
+      obj.sSaveVisit = SSaveVisit.toJSON(message.sSaveVisit);
+    }
+    if (message.cDeletePlace !== undefined) {
+      obj.cDeletePlace = CDeletePlace.toJSON(message.cDeletePlace);
+    }
+    if (message.sDeletePlace !== undefined) {
+      obj.sDeletePlace = SDeletePlace.toJSON(message.sDeletePlace);
+    }
+    if (message.cUpdateVisit !== undefined) {
+      obj.cUpdateVisit = CUpdateVisit.toJSON(message.cUpdateVisit);
+    }
+    if (message.sUpdateVisit !== undefined) {
+      obj.sUpdateVisit = SUpdateVisit.toJSON(message.sUpdateVisit);
+    }
+    if (message.cDeleteVisit !== undefined) {
+      obj.cDeleteVisit = CDeleteVisit.toJSON(message.cDeleteVisit);
+    }
+    if (message.sDeleteVisit !== undefined) {
+      obj.sDeleteVisit = SDeleteVisit.toJSON(message.sDeleteVisit);
     }
     if (message.cCreateGroup !== undefined) {
       obj.cCreateGroup = CCreateGroup.toJSON(message.cCreateGroup);
@@ -3319,6 +4136,102 @@ export const Envelope = {
       (object.cCompleteSocialSignup !== undefined && object.cCompleteSocialSignup !== null)
         ? CCompleteSocialSignup.fromPartial(object.cCompleteSocialSignup)
         : undefined;
+    message.cCreateAlbum = (object.cCreateAlbum !== undefined && object.cCreateAlbum !== null)
+      ? CCreateAlbum.fromPartial(object.cCreateAlbum)
+      : undefined;
+    message.sCreateAlbum = (object.sCreateAlbum !== undefined && object.sCreateAlbum !== null)
+      ? SCreateAlbum.fromPartial(object.sCreateAlbum)
+      : undefined;
+    message.cGetAlbums = (object.cGetAlbums !== undefined && object.cGetAlbums !== null)
+      ? CGetAlbums.fromPartial(object.cGetAlbums)
+      : undefined;
+    message.sGetAlbums = (object.sGetAlbums !== undefined && object.sGetAlbums !== null)
+      ? SGetAlbums.fromPartial(object.sGetAlbums)
+      : undefined;
+    message.cAddPhotoToAlbum = (object.cAddPhotoToAlbum !== undefined && object.cAddPhotoToAlbum !== null)
+      ? CAddPhotoToAlbum.fromPartial(object.cAddPhotoToAlbum)
+      : undefined;
+    message.sAddPhotoToAlbum = (object.sAddPhotoToAlbum !== undefined && object.sAddPhotoToAlbum !== null)
+      ? SAddPhotoToAlbum.fromPartial(object.sAddPhotoToAlbum)
+      : undefined;
+    message.cGetAlbumPhotos = (object.cGetAlbumPhotos !== undefined && object.cGetAlbumPhotos !== null)
+      ? CGetAlbumPhotos.fromPartial(object.cGetAlbumPhotos)
+      : undefined;
+    message.sGetAlbumPhotos = (object.sGetAlbumPhotos !== undefined && object.sGetAlbumPhotos !== null)
+      ? SGetAlbumPhotos.fromPartial(object.sGetAlbumPhotos)
+      : undefined;
+    message.cAddPhotoComment = (object.cAddPhotoComment !== undefined && object.cAddPhotoComment !== null)
+      ? CAddPhotoComment.fromPartial(object.cAddPhotoComment)
+      : undefined;
+    message.sAddPhotoComment = (object.sAddPhotoComment !== undefined && object.sAddPhotoComment !== null)
+      ? SAddPhotoComment.fromPartial(object.sAddPhotoComment)
+      : undefined;
+    message.cGetPhotoComments = (object.cGetPhotoComments !== undefined && object.cGetPhotoComments !== null)
+      ? CGetPhotoComments.fromPartial(object.cGetPhotoComments)
+      : undefined;
+    message.sGetPhotoComments = (object.sGetPhotoComments !== undefined && object.sGetPhotoComments !== null)
+      ? SGetPhotoComments.fromPartial(object.sGetPhotoComments)
+      : undefined;
+    message.cDeleteAlbum = (object.cDeleteAlbum !== undefined && object.cDeleteAlbum !== null)
+      ? CDeleteAlbum.fromPartial(object.cDeleteAlbum)
+      : undefined;
+    message.sDeleteAlbum = (object.sDeleteAlbum !== undefined && object.sDeleteAlbum !== null)
+      ? SDeleteAlbum.fromPartial(object.sDeleteAlbum)
+      : undefined;
+    message.cDeleteAlbumPhoto = (object.cDeleteAlbumPhoto !== undefined && object.cDeleteAlbumPhoto !== null)
+      ? CDeleteAlbumPhoto.fromPartial(object.cDeleteAlbumPhoto)
+      : undefined;
+    message.sDeleteAlbumPhoto = (object.sDeleteAlbumPhoto !== undefined && object.sDeleteAlbumPhoto !== null)
+      ? SDeleteAlbumPhoto.fromPartial(object.sDeleteAlbumPhoto)
+      : undefined;
+    message.cMovePhoto = (object.cMovePhoto !== undefined && object.cMovePhoto !== null)
+      ? CMovePhoto.fromPartial(object.cMovePhoto)
+      : undefined;
+    message.sMovePhoto = (object.sMovePhoto !== undefined && object.sMovePhoto !== null)
+      ? SMovePhoto.fromPartial(object.sMovePhoto)
+      : undefined;
+    message.cDeletePhotoComment = (object.cDeletePhotoComment !== undefined && object.cDeletePhotoComment !== null)
+      ? CDeletePhotoComment.fromPartial(object.cDeletePhotoComment)
+      : undefined;
+    message.sDeletePhotoComment = (object.sDeletePhotoComment !== undefined && object.sDeletePhotoComment !== null)
+      ? SDeletePhotoComment.fromPartial(object.sDeletePhotoComment)
+      : undefined;
+    message.cSavePlace = (object.cSavePlace !== undefined && object.cSavePlace !== null)
+      ? CSavePlace.fromPartial(object.cSavePlace)
+      : undefined;
+    message.sSavePlace = (object.sSavePlace !== undefined && object.sSavePlace !== null)
+      ? SSavePlace.fromPartial(object.sSavePlace)
+      : undefined;
+    message.cGetPlaces = (object.cGetPlaces !== undefined && object.cGetPlaces !== null)
+      ? CGetPlaces.fromPartial(object.cGetPlaces)
+      : undefined;
+    message.sGetPlaces = (object.sGetPlaces !== undefined && object.sGetPlaces !== null)
+      ? SGetPlaces.fromPartial(object.sGetPlaces)
+      : undefined;
+    message.cSaveVisit = (object.cSaveVisit !== undefined && object.cSaveVisit !== null)
+      ? CSaveVisit.fromPartial(object.cSaveVisit)
+      : undefined;
+    message.sSaveVisit = (object.sSaveVisit !== undefined && object.sSaveVisit !== null)
+      ? SSaveVisit.fromPartial(object.sSaveVisit)
+      : undefined;
+    message.cDeletePlace = (object.cDeletePlace !== undefined && object.cDeletePlace !== null)
+      ? CDeletePlace.fromPartial(object.cDeletePlace)
+      : undefined;
+    message.sDeletePlace = (object.sDeletePlace !== undefined && object.sDeletePlace !== null)
+      ? SDeletePlace.fromPartial(object.sDeletePlace)
+      : undefined;
+    message.cUpdateVisit = (object.cUpdateVisit !== undefined && object.cUpdateVisit !== null)
+      ? CUpdateVisit.fromPartial(object.cUpdateVisit)
+      : undefined;
+    message.sUpdateVisit = (object.sUpdateVisit !== undefined && object.sUpdateVisit !== null)
+      ? SUpdateVisit.fromPartial(object.sUpdateVisit)
+      : undefined;
+    message.cDeleteVisit = (object.cDeleteVisit !== undefined && object.cDeleteVisit !== null)
+      ? CDeleteVisit.fromPartial(object.cDeleteVisit)
+      : undefined;
+    message.sDeleteVisit = (object.sDeleteVisit !== undefined && object.sDeleteVisit !== null)
+      ? SDeleteVisit.fromPartial(object.sDeleteVisit)
+      : undefined;
     message.cCreateGroup = (object.cCreateGroup !== undefined && object.cCreateGroup !== null)
       ? CCreateGroup.fromPartial(object.cCreateGroup)
       : undefined;
@@ -14040,6 +14953,4326 @@ export const CCompleteSocialSignup = {
     message.idToken = object.idToken ?? "";
     message.userId = object.userId ?? "";
     message.name = object.name ?? "";
+    return message;
+  },
+};
+
+function createBaseAlbum(): Album {
+  return { id: "", groupId: "", name: "", coverPhotoUrl: "", createdBy: "", createdAt: 0, photoCount: 0 };
+}
+
+export const Album = {
+  encode(message: Album, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.id !== "") {
+      writer.uint32(10).string(message.id);
+    }
+    if (message.groupId !== "") {
+      writer.uint32(18).string(message.groupId);
+    }
+    if (message.name !== "") {
+      writer.uint32(26).string(message.name);
+    }
+    if (message.coverPhotoUrl !== "") {
+      writer.uint32(34).string(message.coverPhotoUrl);
+    }
+    if (message.createdBy !== "") {
+      writer.uint32(42).string(message.createdBy);
+    }
+    if (message.createdAt !== 0) {
+      writer.uint32(48).int64(message.createdAt);
+    }
+    if (message.photoCount !== 0) {
+      writer.uint32(56).int32(message.photoCount);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Album {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseAlbum();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.id = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.groupId = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.name = reader.string();
+          continue;
+        case 4:
+          if (tag !== 34) {
+            break;
+          }
+
+          message.coverPhotoUrl = reader.string();
+          continue;
+        case 5:
+          if (tag !== 42) {
+            break;
+          }
+
+          message.createdBy = reader.string();
+          continue;
+        case 6:
+          if (tag !== 48) {
+            break;
+          }
+
+          message.createdAt = longToNumber(reader.int64() as Long);
+          continue;
+        case 7:
+          if (tag !== 56) {
+            break;
+          }
+
+          message.photoCount = reader.int32();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Album {
+    return {
+      id: isSet(object.id) ? globalThis.String(object.id) : "",
+      groupId: isSet(object.groupId) ? globalThis.String(object.groupId) : "",
+      name: isSet(object.name) ? globalThis.String(object.name) : "",
+      coverPhotoUrl: isSet(object.coverPhotoUrl) ? globalThis.String(object.coverPhotoUrl) : "",
+      createdBy: isSet(object.createdBy) ? globalThis.String(object.createdBy) : "",
+      createdAt: isSet(object.createdAt) ? globalThis.Number(object.createdAt) : 0,
+      photoCount: isSet(object.photoCount) ? globalThis.Number(object.photoCount) : 0,
+    };
+  },
+
+  toJSON(message: Album): unknown {
+    const obj: any = {};
+    if (message.id !== "") {
+      obj.id = message.id;
+    }
+    if (message.groupId !== "") {
+      obj.groupId = message.groupId;
+    }
+    if (message.name !== "") {
+      obj.name = message.name;
+    }
+    if (message.coverPhotoUrl !== "") {
+      obj.coverPhotoUrl = message.coverPhotoUrl;
+    }
+    if (message.createdBy !== "") {
+      obj.createdBy = message.createdBy;
+    }
+    if (message.createdAt !== 0) {
+      obj.createdAt = Math.round(message.createdAt);
+    }
+    if (message.photoCount !== 0) {
+      obj.photoCount = Math.round(message.photoCount);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<Album>, I>>(base?: I): Album {
+    return Album.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<Album>, I>>(object: I): Album {
+    const message = createBaseAlbum();
+    message.id = object.id ?? "";
+    message.groupId = object.groupId ?? "";
+    message.name = object.name ?? "";
+    message.coverPhotoUrl = object.coverPhotoUrl ?? "";
+    message.createdBy = object.createdBy ?? "";
+    message.createdAt = object.createdAt ?? 0;
+    message.photoCount = object.photoCount ?? 0;
+    return message;
+  },
+};
+
+function createBaseAlbumPhoto(): AlbumPhoto {
+  return {
+    id: "",
+    albumId: "",
+    groupId: "",
+    msgSeq: 0,
+    photoUrl: "",
+    thumbnailUrl: "",
+    uploaderId: "",
+    source: "",
+    uploadedAt: 0,
+  };
+}
+
+export const AlbumPhoto = {
+  encode(message: AlbumPhoto, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.id !== "") {
+      writer.uint32(10).string(message.id);
+    }
+    if (message.albumId !== "") {
+      writer.uint32(18).string(message.albumId);
+    }
+    if (message.groupId !== "") {
+      writer.uint32(26).string(message.groupId);
+    }
+    if (message.msgSeq !== 0) {
+      writer.uint32(32).int64(message.msgSeq);
+    }
+    if (message.photoUrl !== "") {
+      writer.uint32(42).string(message.photoUrl);
+    }
+    if (message.thumbnailUrl !== "") {
+      writer.uint32(50).string(message.thumbnailUrl);
+    }
+    if (message.uploaderId !== "") {
+      writer.uint32(58).string(message.uploaderId);
+    }
+    if (message.source !== "") {
+      writer.uint32(66).string(message.source);
+    }
+    if (message.uploadedAt !== 0) {
+      writer.uint32(72).int64(message.uploadedAt);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): AlbumPhoto {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseAlbumPhoto();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.id = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.albumId = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.groupId = reader.string();
+          continue;
+        case 4:
+          if (tag !== 32) {
+            break;
+          }
+
+          message.msgSeq = longToNumber(reader.int64() as Long);
+          continue;
+        case 5:
+          if (tag !== 42) {
+            break;
+          }
+
+          message.photoUrl = reader.string();
+          continue;
+        case 6:
+          if (tag !== 50) {
+            break;
+          }
+
+          message.thumbnailUrl = reader.string();
+          continue;
+        case 7:
+          if (tag !== 58) {
+            break;
+          }
+
+          message.uploaderId = reader.string();
+          continue;
+        case 8:
+          if (tag !== 66) {
+            break;
+          }
+
+          message.source = reader.string();
+          continue;
+        case 9:
+          if (tag !== 72) {
+            break;
+          }
+
+          message.uploadedAt = longToNumber(reader.int64() as Long);
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): AlbumPhoto {
+    return {
+      id: isSet(object.id) ? globalThis.String(object.id) : "",
+      albumId: isSet(object.albumId) ? globalThis.String(object.albumId) : "",
+      groupId: isSet(object.groupId) ? globalThis.String(object.groupId) : "",
+      msgSeq: isSet(object.msgSeq) ? globalThis.Number(object.msgSeq) : 0,
+      photoUrl: isSet(object.photoUrl) ? globalThis.String(object.photoUrl) : "",
+      thumbnailUrl: isSet(object.thumbnailUrl) ? globalThis.String(object.thumbnailUrl) : "",
+      uploaderId: isSet(object.uploaderId) ? globalThis.String(object.uploaderId) : "",
+      source: isSet(object.source) ? globalThis.String(object.source) : "",
+      uploadedAt: isSet(object.uploadedAt) ? globalThis.Number(object.uploadedAt) : 0,
+    };
+  },
+
+  toJSON(message: AlbumPhoto): unknown {
+    const obj: any = {};
+    if (message.id !== "") {
+      obj.id = message.id;
+    }
+    if (message.albumId !== "") {
+      obj.albumId = message.albumId;
+    }
+    if (message.groupId !== "") {
+      obj.groupId = message.groupId;
+    }
+    if (message.msgSeq !== 0) {
+      obj.msgSeq = Math.round(message.msgSeq);
+    }
+    if (message.photoUrl !== "") {
+      obj.photoUrl = message.photoUrl;
+    }
+    if (message.thumbnailUrl !== "") {
+      obj.thumbnailUrl = message.thumbnailUrl;
+    }
+    if (message.uploaderId !== "") {
+      obj.uploaderId = message.uploaderId;
+    }
+    if (message.source !== "") {
+      obj.source = message.source;
+    }
+    if (message.uploadedAt !== 0) {
+      obj.uploadedAt = Math.round(message.uploadedAt);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<AlbumPhoto>, I>>(base?: I): AlbumPhoto {
+    return AlbumPhoto.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<AlbumPhoto>, I>>(object: I): AlbumPhoto {
+    const message = createBaseAlbumPhoto();
+    message.id = object.id ?? "";
+    message.albumId = object.albumId ?? "";
+    message.groupId = object.groupId ?? "";
+    message.msgSeq = object.msgSeq ?? 0;
+    message.photoUrl = object.photoUrl ?? "";
+    message.thumbnailUrl = object.thumbnailUrl ?? "";
+    message.uploaderId = object.uploaderId ?? "";
+    message.source = object.source ?? "";
+    message.uploadedAt = object.uploadedAt ?? 0;
+    return message;
+  },
+};
+
+function createBasePhotoComment(): PhotoComment {
+  return { id: "", photoId: "", senderId: "", senderName: "", text: "", createdAt: 0 };
+}
+
+export const PhotoComment = {
+  encode(message: PhotoComment, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.id !== "") {
+      writer.uint32(10).string(message.id);
+    }
+    if (message.photoId !== "") {
+      writer.uint32(18).string(message.photoId);
+    }
+    if (message.senderId !== "") {
+      writer.uint32(26).string(message.senderId);
+    }
+    if (message.senderName !== "") {
+      writer.uint32(34).string(message.senderName);
+    }
+    if (message.text !== "") {
+      writer.uint32(42).string(message.text);
+    }
+    if (message.createdAt !== 0) {
+      writer.uint32(48).int64(message.createdAt);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): PhotoComment {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBasePhotoComment();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.id = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.photoId = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.senderId = reader.string();
+          continue;
+        case 4:
+          if (tag !== 34) {
+            break;
+          }
+
+          message.senderName = reader.string();
+          continue;
+        case 5:
+          if (tag !== 42) {
+            break;
+          }
+
+          message.text = reader.string();
+          continue;
+        case 6:
+          if (tag !== 48) {
+            break;
+          }
+
+          message.createdAt = longToNumber(reader.int64() as Long);
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): PhotoComment {
+    return {
+      id: isSet(object.id) ? globalThis.String(object.id) : "",
+      photoId: isSet(object.photoId) ? globalThis.String(object.photoId) : "",
+      senderId: isSet(object.senderId) ? globalThis.String(object.senderId) : "",
+      senderName: isSet(object.senderName) ? globalThis.String(object.senderName) : "",
+      text: isSet(object.text) ? globalThis.String(object.text) : "",
+      createdAt: isSet(object.createdAt) ? globalThis.Number(object.createdAt) : 0,
+    };
+  },
+
+  toJSON(message: PhotoComment): unknown {
+    const obj: any = {};
+    if (message.id !== "") {
+      obj.id = message.id;
+    }
+    if (message.photoId !== "") {
+      obj.photoId = message.photoId;
+    }
+    if (message.senderId !== "") {
+      obj.senderId = message.senderId;
+    }
+    if (message.senderName !== "") {
+      obj.senderName = message.senderName;
+    }
+    if (message.text !== "") {
+      obj.text = message.text;
+    }
+    if (message.createdAt !== 0) {
+      obj.createdAt = Math.round(message.createdAt);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<PhotoComment>, I>>(base?: I): PhotoComment {
+    return PhotoComment.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<PhotoComment>, I>>(object: I): PhotoComment {
+    const message = createBasePhotoComment();
+    message.id = object.id ?? "";
+    message.photoId = object.photoId ?? "";
+    message.senderId = object.senderId ?? "";
+    message.senderName = object.senderName ?? "";
+    message.text = object.text ?? "";
+    message.createdAt = object.createdAt ?? 0;
+    return message;
+  },
+};
+
+function createBaseCCreateAlbum(): CCreateAlbum {
+  return { groupId: "", name: "", createdBy: "" };
+}
+
+export const CCreateAlbum = {
+  encode(message: CCreateAlbum, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.groupId !== "") {
+      writer.uint32(10).string(message.groupId);
+    }
+    if (message.name !== "") {
+      writer.uint32(18).string(message.name);
+    }
+    if (message.createdBy !== "") {
+      writer.uint32(26).string(message.createdBy);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): CCreateAlbum {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseCCreateAlbum();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.groupId = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.name = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.createdBy = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): CCreateAlbum {
+    return {
+      groupId: isSet(object.groupId) ? globalThis.String(object.groupId) : "",
+      name: isSet(object.name) ? globalThis.String(object.name) : "",
+      createdBy: isSet(object.createdBy) ? globalThis.String(object.createdBy) : "",
+    };
+  },
+
+  toJSON(message: CCreateAlbum): unknown {
+    const obj: any = {};
+    if (message.groupId !== "") {
+      obj.groupId = message.groupId;
+    }
+    if (message.name !== "") {
+      obj.name = message.name;
+    }
+    if (message.createdBy !== "") {
+      obj.createdBy = message.createdBy;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<CCreateAlbum>, I>>(base?: I): CCreateAlbum {
+    return CCreateAlbum.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<CCreateAlbum>, I>>(object: I): CCreateAlbum {
+    const message = createBaseCCreateAlbum();
+    message.groupId = object.groupId ?? "";
+    message.name = object.name ?? "";
+    message.createdBy = object.createdBy ?? "";
+    return message;
+  },
+};
+
+function createBaseSCreateAlbum(): SCreateAlbum {
+  return { success: false, album: undefined, error: "" };
+}
+
+export const SCreateAlbum = {
+  encode(message: SCreateAlbum, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.success !== false) {
+      writer.uint32(8).bool(message.success);
+    }
+    if (message.album !== undefined) {
+      Album.encode(message.album, writer.uint32(18).fork()).ldelim();
+    }
+    if (message.error !== "") {
+      writer.uint32(26).string(message.error);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): SCreateAlbum {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseSCreateAlbum();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+
+          message.success = reader.bool();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.album = Album.decode(reader, reader.uint32());
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.error = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): SCreateAlbum {
+    return {
+      success: isSet(object.success) ? globalThis.Boolean(object.success) : false,
+      album: isSet(object.album) ? Album.fromJSON(object.album) : undefined,
+      error: isSet(object.error) ? globalThis.String(object.error) : "",
+    };
+  },
+
+  toJSON(message: SCreateAlbum): unknown {
+    const obj: any = {};
+    if (message.success !== false) {
+      obj.success = message.success;
+    }
+    if (message.album !== undefined) {
+      obj.album = Album.toJSON(message.album);
+    }
+    if (message.error !== "") {
+      obj.error = message.error;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<SCreateAlbum>, I>>(base?: I): SCreateAlbum {
+    return SCreateAlbum.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<SCreateAlbum>, I>>(object: I): SCreateAlbum {
+    const message = createBaseSCreateAlbum();
+    message.success = object.success ?? false;
+    message.album = (object.album !== undefined && object.album !== null) ? Album.fromPartial(object.album) : undefined;
+    message.error = object.error ?? "";
+    return message;
+  },
+};
+
+function createBaseCGetAlbums(): CGetAlbums {
+  return { groupId: "" };
+}
+
+export const CGetAlbums = {
+  encode(message: CGetAlbums, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.groupId !== "") {
+      writer.uint32(10).string(message.groupId);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): CGetAlbums {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseCGetAlbums();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.groupId = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): CGetAlbums {
+    return { groupId: isSet(object.groupId) ? globalThis.String(object.groupId) : "" };
+  },
+
+  toJSON(message: CGetAlbums): unknown {
+    const obj: any = {};
+    if (message.groupId !== "") {
+      obj.groupId = message.groupId;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<CGetAlbums>, I>>(base?: I): CGetAlbums {
+    return CGetAlbums.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<CGetAlbums>, I>>(object: I): CGetAlbums {
+    const message = createBaseCGetAlbums();
+    message.groupId = object.groupId ?? "";
+    return message;
+  },
+};
+
+function createBaseSGetAlbums(): SGetAlbums {
+  return { albums: [] };
+}
+
+export const SGetAlbums = {
+  encode(message: SGetAlbums, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    for (const v of message.albums) {
+      Album.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): SGetAlbums {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseSGetAlbums();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.albums.push(Album.decode(reader, reader.uint32()));
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): SGetAlbums {
+    return { albums: globalThis.Array.isArray(object?.albums) ? object.albums.map((e: any) => Album.fromJSON(e)) : [] };
+  },
+
+  toJSON(message: SGetAlbums): unknown {
+    const obj: any = {};
+    if (message.albums?.length) {
+      obj.albums = message.albums.map((e) => Album.toJSON(e));
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<SGetAlbums>, I>>(base?: I): SGetAlbums {
+    return SGetAlbums.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<SGetAlbums>, I>>(object: I): SGetAlbums {
+    const message = createBaseSGetAlbums();
+    message.albums = object.albums?.map((e) => Album.fromPartial(e)) || [];
+    return message;
+  },
+};
+
+function createBaseCAddPhotoToAlbum(): CAddPhotoToAlbum {
+  return { albumId: "", groupId: "", msgSeq: 0, photoUrl: "", thumbnailUrl: "", uploaderId: "" };
+}
+
+export const CAddPhotoToAlbum = {
+  encode(message: CAddPhotoToAlbum, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.albumId !== "") {
+      writer.uint32(10).string(message.albumId);
+    }
+    if (message.groupId !== "") {
+      writer.uint32(18).string(message.groupId);
+    }
+    if (message.msgSeq !== 0) {
+      writer.uint32(24).int64(message.msgSeq);
+    }
+    if (message.photoUrl !== "") {
+      writer.uint32(34).string(message.photoUrl);
+    }
+    if (message.thumbnailUrl !== "") {
+      writer.uint32(42).string(message.thumbnailUrl);
+    }
+    if (message.uploaderId !== "") {
+      writer.uint32(50).string(message.uploaderId);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): CAddPhotoToAlbum {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseCAddPhotoToAlbum();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.albumId = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.groupId = reader.string();
+          continue;
+        case 3:
+          if (tag !== 24) {
+            break;
+          }
+
+          message.msgSeq = longToNumber(reader.int64() as Long);
+          continue;
+        case 4:
+          if (tag !== 34) {
+            break;
+          }
+
+          message.photoUrl = reader.string();
+          continue;
+        case 5:
+          if (tag !== 42) {
+            break;
+          }
+
+          message.thumbnailUrl = reader.string();
+          continue;
+        case 6:
+          if (tag !== 50) {
+            break;
+          }
+
+          message.uploaderId = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): CAddPhotoToAlbum {
+    return {
+      albumId: isSet(object.albumId) ? globalThis.String(object.albumId) : "",
+      groupId: isSet(object.groupId) ? globalThis.String(object.groupId) : "",
+      msgSeq: isSet(object.msgSeq) ? globalThis.Number(object.msgSeq) : 0,
+      photoUrl: isSet(object.photoUrl) ? globalThis.String(object.photoUrl) : "",
+      thumbnailUrl: isSet(object.thumbnailUrl) ? globalThis.String(object.thumbnailUrl) : "",
+      uploaderId: isSet(object.uploaderId) ? globalThis.String(object.uploaderId) : "",
+    };
+  },
+
+  toJSON(message: CAddPhotoToAlbum): unknown {
+    const obj: any = {};
+    if (message.albumId !== "") {
+      obj.albumId = message.albumId;
+    }
+    if (message.groupId !== "") {
+      obj.groupId = message.groupId;
+    }
+    if (message.msgSeq !== 0) {
+      obj.msgSeq = Math.round(message.msgSeq);
+    }
+    if (message.photoUrl !== "") {
+      obj.photoUrl = message.photoUrl;
+    }
+    if (message.thumbnailUrl !== "") {
+      obj.thumbnailUrl = message.thumbnailUrl;
+    }
+    if (message.uploaderId !== "") {
+      obj.uploaderId = message.uploaderId;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<CAddPhotoToAlbum>, I>>(base?: I): CAddPhotoToAlbum {
+    return CAddPhotoToAlbum.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<CAddPhotoToAlbum>, I>>(object: I): CAddPhotoToAlbum {
+    const message = createBaseCAddPhotoToAlbum();
+    message.albumId = object.albumId ?? "";
+    message.groupId = object.groupId ?? "";
+    message.msgSeq = object.msgSeq ?? 0;
+    message.photoUrl = object.photoUrl ?? "";
+    message.thumbnailUrl = object.thumbnailUrl ?? "";
+    message.uploaderId = object.uploaderId ?? "";
+    return message;
+  },
+};
+
+function createBaseSAddPhotoToAlbum(): SAddPhotoToAlbum {
+  return { success: false, albumId: "", photo: undefined, error: "", album: undefined };
+}
+
+export const SAddPhotoToAlbum = {
+  encode(message: SAddPhotoToAlbum, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.success !== false) {
+      writer.uint32(8).bool(message.success);
+    }
+    if (message.albumId !== "") {
+      writer.uint32(18).string(message.albumId);
+    }
+    if (message.photo !== undefined) {
+      AlbumPhoto.encode(message.photo, writer.uint32(26).fork()).ldelim();
+    }
+    if (message.error !== "") {
+      writer.uint32(34).string(message.error);
+    }
+    if (message.album !== undefined) {
+      Album.encode(message.album, writer.uint32(42).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): SAddPhotoToAlbum {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseSAddPhotoToAlbum();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+
+          message.success = reader.bool();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.albumId = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.photo = AlbumPhoto.decode(reader, reader.uint32());
+          continue;
+        case 4:
+          if (tag !== 34) {
+            break;
+          }
+
+          message.error = reader.string();
+          continue;
+        case 5:
+          if (tag !== 42) {
+            break;
+          }
+
+          message.album = Album.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): SAddPhotoToAlbum {
+    return {
+      success: isSet(object.success) ? globalThis.Boolean(object.success) : false,
+      albumId: isSet(object.albumId) ? globalThis.String(object.albumId) : "",
+      photo: isSet(object.photo) ? AlbumPhoto.fromJSON(object.photo) : undefined,
+      error: isSet(object.error) ? globalThis.String(object.error) : "",
+      album: isSet(object.album) ? Album.fromJSON(object.album) : undefined,
+    };
+  },
+
+  toJSON(message: SAddPhotoToAlbum): unknown {
+    const obj: any = {};
+    if (message.success !== false) {
+      obj.success = message.success;
+    }
+    if (message.albumId !== "") {
+      obj.albumId = message.albumId;
+    }
+    if (message.photo !== undefined) {
+      obj.photo = AlbumPhoto.toJSON(message.photo);
+    }
+    if (message.error !== "") {
+      obj.error = message.error;
+    }
+    if (message.album !== undefined) {
+      obj.album = Album.toJSON(message.album);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<SAddPhotoToAlbum>, I>>(base?: I): SAddPhotoToAlbum {
+    return SAddPhotoToAlbum.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<SAddPhotoToAlbum>, I>>(object: I): SAddPhotoToAlbum {
+    const message = createBaseSAddPhotoToAlbum();
+    message.success = object.success ?? false;
+    message.albumId = object.albumId ?? "";
+    message.photo = (object.photo !== undefined && object.photo !== null)
+      ? AlbumPhoto.fromPartial(object.photo)
+      : undefined;
+    message.error = object.error ?? "";
+    message.album = (object.album !== undefined && object.album !== null) ? Album.fromPartial(object.album) : undefined;
+    return message;
+  },
+};
+
+function createBaseCGetAlbumPhotos(): CGetAlbumPhotos {
+  return { albumId: "", latestFirst: false };
+}
+
+export const CGetAlbumPhotos = {
+  encode(message: CGetAlbumPhotos, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.albumId !== "") {
+      writer.uint32(10).string(message.albumId);
+    }
+    if (message.latestFirst !== false) {
+      writer.uint32(16).bool(message.latestFirst);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): CGetAlbumPhotos {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseCGetAlbumPhotos();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.albumId = reader.string();
+          continue;
+        case 2:
+          if (tag !== 16) {
+            break;
+          }
+
+          message.latestFirst = reader.bool();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): CGetAlbumPhotos {
+    return {
+      albumId: isSet(object.albumId) ? globalThis.String(object.albumId) : "",
+      latestFirst: isSet(object.latestFirst) ? globalThis.Boolean(object.latestFirst) : false,
+    };
+  },
+
+  toJSON(message: CGetAlbumPhotos): unknown {
+    const obj: any = {};
+    if (message.albumId !== "") {
+      obj.albumId = message.albumId;
+    }
+    if (message.latestFirst !== false) {
+      obj.latestFirst = message.latestFirst;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<CGetAlbumPhotos>, I>>(base?: I): CGetAlbumPhotos {
+    return CGetAlbumPhotos.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<CGetAlbumPhotos>, I>>(object: I): CGetAlbumPhotos {
+    const message = createBaseCGetAlbumPhotos();
+    message.albumId = object.albumId ?? "";
+    message.latestFirst = object.latestFirst ?? false;
+    return message;
+  },
+};
+
+function createBaseSGetAlbumPhotos(): SGetAlbumPhotos {
+  return { albumId: "", photos: [] };
+}
+
+export const SGetAlbumPhotos = {
+  encode(message: SGetAlbumPhotos, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.albumId !== "") {
+      writer.uint32(10).string(message.albumId);
+    }
+    for (const v of message.photos) {
+      AlbumPhoto.encode(v!, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): SGetAlbumPhotos {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseSGetAlbumPhotos();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.albumId = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.photos.push(AlbumPhoto.decode(reader, reader.uint32()));
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): SGetAlbumPhotos {
+    return {
+      albumId: isSet(object.albumId) ? globalThis.String(object.albumId) : "",
+      photos: globalThis.Array.isArray(object?.photos) ? object.photos.map((e: any) => AlbumPhoto.fromJSON(e)) : [],
+    };
+  },
+
+  toJSON(message: SGetAlbumPhotos): unknown {
+    const obj: any = {};
+    if (message.albumId !== "") {
+      obj.albumId = message.albumId;
+    }
+    if (message.photos?.length) {
+      obj.photos = message.photos.map((e) => AlbumPhoto.toJSON(e));
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<SGetAlbumPhotos>, I>>(base?: I): SGetAlbumPhotos {
+    return SGetAlbumPhotos.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<SGetAlbumPhotos>, I>>(object: I): SGetAlbumPhotos {
+    const message = createBaseSGetAlbumPhotos();
+    message.albumId = object.albumId ?? "";
+    message.photos = object.photos?.map((e) => AlbumPhoto.fromPartial(e)) || [];
+    return message;
+  },
+};
+
+function createBaseCDeleteAlbum(): CDeleteAlbum {
+  return { albumId: "", userId: "", groupId: "" };
+}
+
+export const CDeleteAlbum = {
+  encode(message: CDeleteAlbum, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.albumId !== "") {
+      writer.uint32(10).string(message.albumId);
+    }
+    if (message.userId !== "") {
+      writer.uint32(18).string(message.userId);
+    }
+    if (message.groupId !== "") {
+      writer.uint32(26).string(message.groupId);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): CDeleteAlbum {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseCDeleteAlbum();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.albumId = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.userId = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.groupId = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): CDeleteAlbum {
+    return {
+      albumId: isSet(object.albumId) ? globalThis.String(object.albumId) : "",
+      userId: isSet(object.userId) ? globalThis.String(object.userId) : "",
+      groupId: isSet(object.groupId) ? globalThis.String(object.groupId) : "",
+    };
+  },
+
+  toJSON(message: CDeleteAlbum): unknown {
+    const obj: any = {};
+    if (message.albumId !== "") {
+      obj.albumId = message.albumId;
+    }
+    if (message.userId !== "") {
+      obj.userId = message.userId;
+    }
+    if (message.groupId !== "") {
+      obj.groupId = message.groupId;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<CDeleteAlbum>, I>>(base?: I): CDeleteAlbum {
+    return CDeleteAlbum.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<CDeleteAlbum>, I>>(object: I): CDeleteAlbum {
+    const message = createBaseCDeleteAlbum();
+    message.albumId = object.albumId ?? "";
+    message.userId = object.userId ?? "";
+    message.groupId = object.groupId ?? "";
+    return message;
+  },
+};
+
+function createBaseSDeleteAlbum(): SDeleteAlbum {
+  return { success: false, albumId: "", groupId: "", error: "" };
+}
+
+export const SDeleteAlbum = {
+  encode(message: SDeleteAlbum, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.success !== false) {
+      writer.uint32(8).bool(message.success);
+    }
+    if (message.albumId !== "") {
+      writer.uint32(18).string(message.albumId);
+    }
+    if (message.groupId !== "") {
+      writer.uint32(26).string(message.groupId);
+    }
+    if (message.error !== "") {
+      writer.uint32(34).string(message.error);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): SDeleteAlbum {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseSDeleteAlbum();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+
+          message.success = reader.bool();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.albumId = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.groupId = reader.string();
+          continue;
+        case 4:
+          if (tag !== 34) {
+            break;
+          }
+
+          message.error = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): SDeleteAlbum {
+    return {
+      success: isSet(object.success) ? globalThis.Boolean(object.success) : false,
+      albumId: isSet(object.albumId) ? globalThis.String(object.albumId) : "",
+      groupId: isSet(object.groupId) ? globalThis.String(object.groupId) : "",
+      error: isSet(object.error) ? globalThis.String(object.error) : "",
+    };
+  },
+
+  toJSON(message: SDeleteAlbum): unknown {
+    const obj: any = {};
+    if (message.success !== false) {
+      obj.success = message.success;
+    }
+    if (message.albumId !== "") {
+      obj.albumId = message.albumId;
+    }
+    if (message.groupId !== "") {
+      obj.groupId = message.groupId;
+    }
+    if (message.error !== "") {
+      obj.error = message.error;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<SDeleteAlbum>, I>>(base?: I): SDeleteAlbum {
+    return SDeleteAlbum.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<SDeleteAlbum>, I>>(object: I): SDeleteAlbum {
+    const message = createBaseSDeleteAlbum();
+    message.success = object.success ?? false;
+    message.albumId = object.albumId ?? "";
+    message.groupId = object.groupId ?? "";
+    message.error = object.error ?? "";
+    return message;
+  },
+};
+
+function createBaseCDeleteAlbumPhoto(): CDeleteAlbumPhoto {
+  return { photoId: "", userId: "", albumId: "", groupId: "" };
+}
+
+export const CDeleteAlbumPhoto = {
+  encode(message: CDeleteAlbumPhoto, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.photoId !== "") {
+      writer.uint32(10).string(message.photoId);
+    }
+    if (message.userId !== "") {
+      writer.uint32(18).string(message.userId);
+    }
+    if (message.albumId !== "") {
+      writer.uint32(26).string(message.albumId);
+    }
+    if (message.groupId !== "") {
+      writer.uint32(34).string(message.groupId);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): CDeleteAlbumPhoto {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseCDeleteAlbumPhoto();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.photoId = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.userId = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.albumId = reader.string();
+          continue;
+        case 4:
+          if (tag !== 34) {
+            break;
+          }
+
+          message.groupId = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): CDeleteAlbumPhoto {
+    return {
+      photoId: isSet(object.photoId) ? globalThis.String(object.photoId) : "",
+      userId: isSet(object.userId) ? globalThis.String(object.userId) : "",
+      albumId: isSet(object.albumId) ? globalThis.String(object.albumId) : "",
+      groupId: isSet(object.groupId) ? globalThis.String(object.groupId) : "",
+    };
+  },
+
+  toJSON(message: CDeleteAlbumPhoto): unknown {
+    const obj: any = {};
+    if (message.photoId !== "") {
+      obj.photoId = message.photoId;
+    }
+    if (message.userId !== "") {
+      obj.userId = message.userId;
+    }
+    if (message.albumId !== "") {
+      obj.albumId = message.albumId;
+    }
+    if (message.groupId !== "") {
+      obj.groupId = message.groupId;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<CDeleteAlbumPhoto>, I>>(base?: I): CDeleteAlbumPhoto {
+    return CDeleteAlbumPhoto.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<CDeleteAlbumPhoto>, I>>(object: I): CDeleteAlbumPhoto {
+    const message = createBaseCDeleteAlbumPhoto();
+    message.photoId = object.photoId ?? "";
+    message.userId = object.userId ?? "";
+    message.albumId = object.albumId ?? "";
+    message.groupId = object.groupId ?? "";
+    return message;
+  },
+};
+
+function createBaseSDeleteAlbumPhoto(): SDeleteAlbumPhoto {
+  return { success: false, photoId: "", albumId: "", groupId: "", error: "", album: undefined };
+}
+
+export const SDeleteAlbumPhoto = {
+  encode(message: SDeleteAlbumPhoto, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.success !== false) {
+      writer.uint32(8).bool(message.success);
+    }
+    if (message.photoId !== "") {
+      writer.uint32(18).string(message.photoId);
+    }
+    if (message.albumId !== "") {
+      writer.uint32(26).string(message.albumId);
+    }
+    if (message.groupId !== "") {
+      writer.uint32(34).string(message.groupId);
+    }
+    if (message.error !== "") {
+      writer.uint32(42).string(message.error);
+    }
+    if (message.album !== undefined) {
+      Album.encode(message.album, writer.uint32(50).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): SDeleteAlbumPhoto {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseSDeleteAlbumPhoto();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+
+          message.success = reader.bool();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.photoId = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.albumId = reader.string();
+          continue;
+        case 4:
+          if (tag !== 34) {
+            break;
+          }
+
+          message.groupId = reader.string();
+          continue;
+        case 5:
+          if (tag !== 42) {
+            break;
+          }
+
+          message.error = reader.string();
+          continue;
+        case 6:
+          if (tag !== 50) {
+            break;
+          }
+
+          message.album = Album.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): SDeleteAlbumPhoto {
+    return {
+      success: isSet(object.success) ? globalThis.Boolean(object.success) : false,
+      photoId: isSet(object.photoId) ? globalThis.String(object.photoId) : "",
+      albumId: isSet(object.albumId) ? globalThis.String(object.albumId) : "",
+      groupId: isSet(object.groupId) ? globalThis.String(object.groupId) : "",
+      error: isSet(object.error) ? globalThis.String(object.error) : "",
+      album: isSet(object.album) ? Album.fromJSON(object.album) : undefined,
+    };
+  },
+
+  toJSON(message: SDeleteAlbumPhoto): unknown {
+    const obj: any = {};
+    if (message.success !== false) {
+      obj.success = message.success;
+    }
+    if (message.photoId !== "") {
+      obj.photoId = message.photoId;
+    }
+    if (message.albumId !== "") {
+      obj.albumId = message.albumId;
+    }
+    if (message.groupId !== "") {
+      obj.groupId = message.groupId;
+    }
+    if (message.error !== "") {
+      obj.error = message.error;
+    }
+    if (message.album !== undefined) {
+      obj.album = Album.toJSON(message.album);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<SDeleteAlbumPhoto>, I>>(base?: I): SDeleteAlbumPhoto {
+    return SDeleteAlbumPhoto.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<SDeleteAlbumPhoto>, I>>(object: I): SDeleteAlbumPhoto {
+    const message = createBaseSDeleteAlbumPhoto();
+    message.success = object.success ?? false;
+    message.photoId = object.photoId ?? "";
+    message.albumId = object.albumId ?? "";
+    message.groupId = object.groupId ?? "";
+    message.error = object.error ?? "";
+    message.album = (object.album !== undefined && object.album !== null) ? Album.fromPartial(object.album) : undefined;
+    return message;
+  },
+};
+
+function createBaseCMovePhoto(): CMovePhoto {
+  return { photoId: "", fromAlbumId: "", toAlbumId: "", groupId: "", userId: "" };
+}
+
+export const CMovePhoto = {
+  encode(message: CMovePhoto, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.photoId !== "") {
+      writer.uint32(10).string(message.photoId);
+    }
+    if (message.fromAlbumId !== "") {
+      writer.uint32(18).string(message.fromAlbumId);
+    }
+    if (message.toAlbumId !== "") {
+      writer.uint32(26).string(message.toAlbumId);
+    }
+    if (message.groupId !== "") {
+      writer.uint32(34).string(message.groupId);
+    }
+    if (message.userId !== "") {
+      writer.uint32(42).string(message.userId);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): CMovePhoto {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseCMovePhoto();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.photoId = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.fromAlbumId = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.toAlbumId = reader.string();
+          continue;
+        case 4:
+          if (tag !== 34) {
+            break;
+          }
+
+          message.groupId = reader.string();
+          continue;
+        case 5:
+          if (tag !== 42) {
+            break;
+          }
+
+          message.userId = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): CMovePhoto {
+    return {
+      photoId: isSet(object.photoId) ? globalThis.String(object.photoId) : "",
+      fromAlbumId: isSet(object.fromAlbumId) ? globalThis.String(object.fromAlbumId) : "",
+      toAlbumId: isSet(object.toAlbumId) ? globalThis.String(object.toAlbumId) : "",
+      groupId: isSet(object.groupId) ? globalThis.String(object.groupId) : "",
+      userId: isSet(object.userId) ? globalThis.String(object.userId) : "",
+    };
+  },
+
+  toJSON(message: CMovePhoto): unknown {
+    const obj: any = {};
+    if (message.photoId !== "") {
+      obj.photoId = message.photoId;
+    }
+    if (message.fromAlbumId !== "") {
+      obj.fromAlbumId = message.fromAlbumId;
+    }
+    if (message.toAlbumId !== "") {
+      obj.toAlbumId = message.toAlbumId;
+    }
+    if (message.groupId !== "") {
+      obj.groupId = message.groupId;
+    }
+    if (message.userId !== "") {
+      obj.userId = message.userId;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<CMovePhoto>, I>>(base?: I): CMovePhoto {
+    return CMovePhoto.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<CMovePhoto>, I>>(object: I): CMovePhoto {
+    const message = createBaseCMovePhoto();
+    message.photoId = object.photoId ?? "";
+    message.fromAlbumId = object.fromAlbumId ?? "";
+    message.toAlbumId = object.toAlbumId ?? "";
+    message.groupId = object.groupId ?? "";
+    message.userId = object.userId ?? "";
+    return message;
+  },
+};
+
+function createBaseSMovePhoto(): SMovePhoto {
+  return {
+    success: false,
+    photoId: "",
+    fromAlbumId: "",
+    toAlbumId: "",
+    groupId: "",
+    error: "",
+    fromAlbum: undefined,
+    toAlbum: undefined,
+  };
+}
+
+export const SMovePhoto = {
+  encode(message: SMovePhoto, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.success !== false) {
+      writer.uint32(8).bool(message.success);
+    }
+    if (message.photoId !== "") {
+      writer.uint32(18).string(message.photoId);
+    }
+    if (message.fromAlbumId !== "") {
+      writer.uint32(26).string(message.fromAlbumId);
+    }
+    if (message.toAlbumId !== "") {
+      writer.uint32(34).string(message.toAlbumId);
+    }
+    if (message.groupId !== "") {
+      writer.uint32(42).string(message.groupId);
+    }
+    if (message.error !== "") {
+      writer.uint32(50).string(message.error);
+    }
+    if (message.fromAlbum !== undefined) {
+      Album.encode(message.fromAlbum, writer.uint32(58).fork()).ldelim();
+    }
+    if (message.toAlbum !== undefined) {
+      Album.encode(message.toAlbum, writer.uint32(66).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): SMovePhoto {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseSMovePhoto();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+
+          message.success = reader.bool();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.photoId = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.fromAlbumId = reader.string();
+          continue;
+        case 4:
+          if (tag !== 34) {
+            break;
+          }
+
+          message.toAlbumId = reader.string();
+          continue;
+        case 5:
+          if (tag !== 42) {
+            break;
+          }
+
+          message.groupId = reader.string();
+          continue;
+        case 6:
+          if (tag !== 50) {
+            break;
+          }
+
+          message.error = reader.string();
+          continue;
+        case 7:
+          if (tag !== 58) {
+            break;
+          }
+
+          message.fromAlbum = Album.decode(reader, reader.uint32());
+          continue;
+        case 8:
+          if (tag !== 66) {
+            break;
+          }
+
+          message.toAlbum = Album.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): SMovePhoto {
+    return {
+      success: isSet(object.success) ? globalThis.Boolean(object.success) : false,
+      photoId: isSet(object.photoId) ? globalThis.String(object.photoId) : "",
+      fromAlbumId: isSet(object.fromAlbumId) ? globalThis.String(object.fromAlbumId) : "",
+      toAlbumId: isSet(object.toAlbumId) ? globalThis.String(object.toAlbumId) : "",
+      groupId: isSet(object.groupId) ? globalThis.String(object.groupId) : "",
+      error: isSet(object.error) ? globalThis.String(object.error) : "",
+      fromAlbum: isSet(object.fromAlbum) ? Album.fromJSON(object.fromAlbum) : undefined,
+      toAlbum: isSet(object.toAlbum) ? Album.fromJSON(object.toAlbum) : undefined,
+    };
+  },
+
+  toJSON(message: SMovePhoto): unknown {
+    const obj: any = {};
+    if (message.success !== false) {
+      obj.success = message.success;
+    }
+    if (message.photoId !== "") {
+      obj.photoId = message.photoId;
+    }
+    if (message.fromAlbumId !== "") {
+      obj.fromAlbumId = message.fromAlbumId;
+    }
+    if (message.toAlbumId !== "") {
+      obj.toAlbumId = message.toAlbumId;
+    }
+    if (message.groupId !== "") {
+      obj.groupId = message.groupId;
+    }
+    if (message.error !== "") {
+      obj.error = message.error;
+    }
+    if (message.fromAlbum !== undefined) {
+      obj.fromAlbum = Album.toJSON(message.fromAlbum);
+    }
+    if (message.toAlbum !== undefined) {
+      obj.toAlbum = Album.toJSON(message.toAlbum);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<SMovePhoto>, I>>(base?: I): SMovePhoto {
+    return SMovePhoto.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<SMovePhoto>, I>>(object: I): SMovePhoto {
+    const message = createBaseSMovePhoto();
+    message.success = object.success ?? false;
+    message.photoId = object.photoId ?? "";
+    message.fromAlbumId = object.fromAlbumId ?? "";
+    message.toAlbumId = object.toAlbumId ?? "";
+    message.groupId = object.groupId ?? "";
+    message.error = object.error ?? "";
+    message.fromAlbum = (object.fromAlbum !== undefined && object.fromAlbum !== null)
+      ? Album.fromPartial(object.fromAlbum)
+      : undefined;
+    message.toAlbum = (object.toAlbum !== undefined && object.toAlbum !== null)
+      ? Album.fromPartial(object.toAlbum)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseCAddPhotoComment(): CAddPhotoComment {
+  return { photoId: "", senderId: "", senderName: "", text: "", groupId: "" };
+}
+
+export const CAddPhotoComment = {
+  encode(message: CAddPhotoComment, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.photoId !== "") {
+      writer.uint32(10).string(message.photoId);
+    }
+    if (message.senderId !== "") {
+      writer.uint32(18).string(message.senderId);
+    }
+    if (message.senderName !== "") {
+      writer.uint32(26).string(message.senderName);
+    }
+    if (message.text !== "") {
+      writer.uint32(34).string(message.text);
+    }
+    if (message.groupId !== "") {
+      writer.uint32(42).string(message.groupId);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): CAddPhotoComment {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseCAddPhotoComment();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.photoId = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.senderId = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.senderName = reader.string();
+          continue;
+        case 4:
+          if (tag !== 34) {
+            break;
+          }
+
+          message.text = reader.string();
+          continue;
+        case 5:
+          if (tag !== 42) {
+            break;
+          }
+
+          message.groupId = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): CAddPhotoComment {
+    return {
+      photoId: isSet(object.photoId) ? globalThis.String(object.photoId) : "",
+      senderId: isSet(object.senderId) ? globalThis.String(object.senderId) : "",
+      senderName: isSet(object.senderName) ? globalThis.String(object.senderName) : "",
+      text: isSet(object.text) ? globalThis.String(object.text) : "",
+      groupId: isSet(object.groupId) ? globalThis.String(object.groupId) : "",
+    };
+  },
+
+  toJSON(message: CAddPhotoComment): unknown {
+    const obj: any = {};
+    if (message.photoId !== "") {
+      obj.photoId = message.photoId;
+    }
+    if (message.senderId !== "") {
+      obj.senderId = message.senderId;
+    }
+    if (message.senderName !== "") {
+      obj.senderName = message.senderName;
+    }
+    if (message.text !== "") {
+      obj.text = message.text;
+    }
+    if (message.groupId !== "") {
+      obj.groupId = message.groupId;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<CAddPhotoComment>, I>>(base?: I): CAddPhotoComment {
+    return CAddPhotoComment.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<CAddPhotoComment>, I>>(object: I): CAddPhotoComment {
+    const message = createBaseCAddPhotoComment();
+    message.photoId = object.photoId ?? "";
+    message.senderId = object.senderId ?? "";
+    message.senderName = object.senderName ?? "";
+    message.text = object.text ?? "";
+    message.groupId = object.groupId ?? "";
+    return message;
+  },
+};
+
+function createBaseSAddPhotoComment(): SAddPhotoComment {
+  return { success: false, comment: undefined, error: "" };
+}
+
+export const SAddPhotoComment = {
+  encode(message: SAddPhotoComment, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.success !== false) {
+      writer.uint32(8).bool(message.success);
+    }
+    if (message.comment !== undefined) {
+      PhotoComment.encode(message.comment, writer.uint32(18).fork()).ldelim();
+    }
+    if (message.error !== "") {
+      writer.uint32(26).string(message.error);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): SAddPhotoComment {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseSAddPhotoComment();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+
+          message.success = reader.bool();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.comment = PhotoComment.decode(reader, reader.uint32());
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.error = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): SAddPhotoComment {
+    return {
+      success: isSet(object.success) ? globalThis.Boolean(object.success) : false,
+      comment: isSet(object.comment) ? PhotoComment.fromJSON(object.comment) : undefined,
+      error: isSet(object.error) ? globalThis.String(object.error) : "",
+    };
+  },
+
+  toJSON(message: SAddPhotoComment): unknown {
+    const obj: any = {};
+    if (message.success !== false) {
+      obj.success = message.success;
+    }
+    if (message.comment !== undefined) {
+      obj.comment = PhotoComment.toJSON(message.comment);
+    }
+    if (message.error !== "") {
+      obj.error = message.error;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<SAddPhotoComment>, I>>(base?: I): SAddPhotoComment {
+    return SAddPhotoComment.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<SAddPhotoComment>, I>>(object: I): SAddPhotoComment {
+    const message = createBaseSAddPhotoComment();
+    message.success = object.success ?? false;
+    message.comment = (object.comment !== undefined && object.comment !== null)
+      ? PhotoComment.fromPartial(object.comment)
+      : undefined;
+    message.error = object.error ?? "";
+    return message;
+  },
+};
+
+function createBaseCGetPhotoComments(): CGetPhotoComments {
+  return { photoId: "" };
+}
+
+export const CGetPhotoComments = {
+  encode(message: CGetPhotoComments, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.photoId !== "") {
+      writer.uint32(10).string(message.photoId);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): CGetPhotoComments {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseCGetPhotoComments();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.photoId = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): CGetPhotoComments {
+    return { photoId: isSet(object.photoId) ? globalThis.String(object.photoId) : "" };
+  },
+
+  toJSON(message: CGetPhotoComments): unknown {
+    const obj: any = {};
+    if (message.photoId !== "") {
+      obj.photoId = message.photoId;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<CGetPhotoComments>, I>>(base?: I): CGetPhotoComments {
+    return CGetPhotoComments.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<CGetPhotoComments>, I>>(object: I): CGetPhotoComments {
+    const message = createBaseCGetPhotoComments();
+    message.photoId = object.photoId ?? "";
+    return message;
+  },
+};
+
+function createBaseSGetPhotoComments(): SGetPhotoComments {
+  return { photoId: "", comments: [] };
+}
+
+export const SGetPhotoComments = {
+  encode(message: SGetPhotoComments, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.photoId !== "") {
+      writer.uint32(10).string(message.photoId);
+    }
+    for (const v of message.comments) {
+      PhotoComment.encode(v!, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): SGetPhotoComments {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseSGetPhotoComments();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.photoId = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.comments.push(PhotoComment.decode(reader, reader.uint32()));
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): SGetPhotoComments {
+    return {
+      photoId: isSet(object.photoId) ? globalThis.String(object.photoId) : "",
+      comments: globalThis.Array.isArray(object?.comments)
+        ? object.comments.map((e: any) => PhotoComment.fromJSON(e))
+        : [],
+    };
+  },
+
+  toJSON(message: SGetPhotoComments): unknown {
+    const obj: any = {};
+    if (message.photoId !== "") {
+      obj.photoId = message.photoId;
+    }
+    if (message.comments?.length) {
+      obj.comments = message.comments.map((e) => PhotoComment.toJSON(e));
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<SGetPhotoComments>, I>>(base?: I): SGetPhotoComments {
+    return SGetPhotoComments.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<SGetPhotoComments>, I>>(object: I): SGetPhotoComments {
+    const message = createBaseSGetPhotoComments();
+    message.photoId = object.photoId ?? "";
+    message.comments = object.comments?.map((e) => PhotoComment.fromPartial(e)) || [];
+    return message;
+  },
+};
+
+function createBaseCDeletePhotoComment(): CDeletePhotoComment {
+  return { commentId: "", userId: "", groupId: "", photoId: "" };
+}
+
+export const CDeletePhotoComment = {
+  encode(message: CDeletePhotoComment, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.commentId !== "") {
+      writer.uint32(10).string(message.commentId);
+    }
+    if (message.userId !== "") {
+      writer.uint32(18).string(message.userId);
+    }
+    if (message.groupId !== "") {
+      writer.uint32(26).string(message.groupId);
+    }
+    if (message.photoId !== "") {
+      writer.uint32(34).string(message.photoId);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): CDeletePhotoComment {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseCDeletePhotoComment();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.commentId = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.userId = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.groupId = reader.string();
+          continue;
+        case 4:
+          if (tag !== 34) {
+            break;
+          }
+
+          message.photoId = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): CDeletePhotoComment {
+    return {
+      commentId: isSet(object.commentId) ? globalThis.String(object.commentId) : "",
+      userId: isSet(object.userId) ? globalThis.String(object.userId) : "",
+      groupId: isSet(object.groupId) ? globalThis.String(object.groupId) : "",
+      photoId: isSet(object.photoId) ? globalThis.String(object.photoId) : "",
+    };
+  },
+
+  toJSON(message: CDeletePhotoComment): unknown {
+    const obj: any = {};
+    if (message.commentId !== "") {
+      obj.commentId = message.commentId;
+    }
+    if (message.userId !== "") {
+      obj.userId = message.userId;
+    }
+    if (message.groupId !== "") {
+      obj.groupId = message.groupId;
+    }
+    if (message.photoId !== "") {
+      obj.photoId = message.photoId;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<CDeletePhotoComment>, I>>(base?: I): CDeletePhotoComment {
+    return CDeletePhotoComment.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<CDeletePhotoComment>, I>>(object: I): CDeletePhotoComment {
+    const message = createBaseCDeletePhotoComment();
+    message.commentId = object.commentId ?? "";
+    message.userId = object.userId ?? "";
+    message.groupId = object.groupId ?? "";
+    message.photoId = object.photoId ?? "";
+    return message;
+  },
+};
+
+function createBaseSDeletePhotoComment(): SDeletePhotoComment {
+  return { success: false, commentId: "", photoId: "", groupId: "", error: "" };
+}
+
+export const SDeletePhotoComment = {
+  encode(message: SDeletePhotoComment, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.success !== false) {
+      writer.uint32(8).bool(message.success);
+    }
+    if (message.commentId !== "") {
+      writer.uint32(18).string(message.commentId);
+    }
+    if (message.photoId !== "") {
+      writer.uint32(26).string(message.photoId);
+    }
+    if (message.groupId !== "") {
+      writer.uint32(34).string(message.groupId);
+    }
+    if (message.error !== "") {
+      writer.uint32(42).string(message.error);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): SDeletePhotoComment {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseSDeletePhotoComment();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+
+          message.success = reader.bool();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.commentId = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.photoId = reader.string();
+          continue;
+        case 4:
+          if (tag !== 34) {
+            break;
+          }
+
+          message.groupId = reader.string();
+          continue;
+        case 5:
+          if (tag !== 42) {
+            break;
+          }
+
+          message.error = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): SDeletePhotoComment {
+    return {
+      success: isSet(object.success) ? globalThis.Boolean(object.success) : false,
+      commentId: isSet(object.commentId) ? globalThis.String(object.commentId) : "",
+      photoId: isSet(object.photoId) ? globalThis.String(object.photoId) : "",
+      groupId: isSet(object.groupId) ? globalThis.String(object.groupId) : "",
+      error: isSet(object.error) ? globalThis.String(object.error) : "",
+    };
+  },
+
+  toJSON(message: SDeletePhotoComment): unknown {
+    const obj: any = {};
+    if (message.success !== false) {
+      obj.success = message.success;
+    }
+    if (message.commentId !== "") {
+      obj.commentId = message.commentId;
+    }
+    if (message.photoId !== "") {
+      obj.photoId = message.photoId;
+    }
+    if (message.groupId !== "") {
+      obj.groupId = message.groupId;
+    }
+    if (message.error !== "") {
+      obj.error = message.error;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<SDeletePhotoComment>, I>>(base?: I): SDeletePhotoComment {
+    return SDeletePhotoComment.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<SDeletePhotoComment>, I>>(object: I): SDeletePhotoComment {
+    const message = createBaseSDeletePhotoComment();
+    message.success = object.success ?? false;
+    message.commentId = object.commentId ?? "";
+    message.photoId = object.photoId ?? "";
+    message.groupId = object.groupId ?? "";
+    message.error = object.error ?? "";
+    return message;
+  },
+};
+
+function createBaseLocationPhoto(): LocationPhoto {
+  return { id: "", photoUrl: "" };
+}
+
+export const LocationPhoto = {
+  encode(message: LocationPhoto, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.id !== "") {
+      writer.uint32(10).string(message.id);
+    }
+    if (message.photoUrl !== "") {
+      writer.uint32(18).string(message.photoUrl);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): LocationPhoto {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseLocationPhoto();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.id = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.photoUrl = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): LocationPhoto {
+    return {
+      id: isSet(object.id) ? globalThis.String(object.id) : "",
+      photoUrl: isSet(object.photoUrl) ? globalThis.String(object.photoUrl) : "",
+    };
+  },
+
+  toJSON(message: LocationPhoto): unknown {
+    const obj: any = {};
+    if (message.id !== "") {
+      obj.id = message.id;
+    }
+    if (message.photoUrl !== "") {
+      obj.photoUrl = message.photoUrl;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<LocationPhoto>, I>>(base?: I): LocationPhoto {
+    return LocationPhoto.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<LocationPhoto>, I>>(object: I): LocationPhoto {
+    const message = createBaseLocationPhoto();
+    message.id = object.id ?? "";
+    message.photoUrl = object.photoUrl ?? "";
+    return message;
+  },
+};
+
+function createBaseLocationVisitInfo(): LocationVisitInfo {
+  return { id: "", userId: "", userName: "", rating: 0, review: "", visitedAt: 0, photos: [] };
+}
+
+export const LocationVisitInfo = {
+  encode(message: LocationVisitInfo, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.id !== "") {
+      writer.uint32(10).string(message.id);
+    }
+    if (message.userId !== "") {
+      writer.uint32(18).string(message.userId);
+    }
+    if (message.userName !== "") {
+      writer.uint32(26).string(message.userName);
+    }
+    if (message.rating !== 0) {
+      writer.uint32(32).int32(message.rating);
+    }
+    if (message.review !== "") {
+      writer.uint32(42).string(message.review);
+    }
+    if (message.visitedAt !== 0) {
+      writer.uint32(48).int64(message.visitedAt);
+    }
+    for (const v of message.photos) {
+      LocationPhoto.encode(v!, writer.uint32(58).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): LocationVisitInfo {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseLocationVisitInfo();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.id = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.userId = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.userName = reader.string();
+          continue;
+        case 4:
+          if (tag !== 32) {
+            break;
+          }
+
+          message.rating = reader.int32();
+          continue;
+        case 5:
+          if (tag !== 42) {
+            break;
+          }
+
+          message.review = reader.string();
+          continue;
+        case 6:
+          if (tag !== 48) {
+            break;
+          }
+
+          message.visitedAt = longToNumber(reader.int64() as Long);
+          continue;
+        case 7:
+          if (tag !== 58) {
+            break;
+          }
+
+          message.photos.push(LocationPhoto.decode(reader, reader.uint32()));
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): LocationVisitInfo {
+    return {
+      id: isSet(object.id) ? globalThis.String(object.id) : "",
+      userId: isSet(object.userId) ? globalThis.String(object.userId) : "",
+      userName: isSet(object.userName) ? globalThis.String(object.userName) : "",
+      rating: isSet(object.rating) ? globalThis.Number(object.rating) : 0,
+      review: isSet(object.review) ? globalThis.String(object.review) : "",
+      visitedAt: isSet(object.visitedAt) ? globalThis.Number(object.visitedAt) : 0,
+      photos: globalThis.Array.isArray(object?.photos) ? object.photos.map((e: any) => LocationPhoto.fromJSON(e)) : [],
+    };
+  },
+
+  toJSON(message: LocationVisitInfo): unknown {
+    const obj: any = {};
+    if (message.id !== "") {
+      obj.id = message.id;
+    }
+    if (message.userId !== "") {
+      obj.userId = message.userId;
+    }
+    if (message.userName !== "") {
+      obj.userName = message.userName;
+    }
+    if (message.rating !== 0) {
+      obj.rating = Math.round(message.rating);
+    }
+    if (message.review !== "") {
+      obj.review = message.review;
+    }
+    if (message.visitedAt !== 0) {
+      obj.visitedAt = Math.round(message.visitedAt);
+    }
+    if (message.photos?.length) {
+      obj.photos = message.photos.map((e) => LocationPhoto.toJSON(e));
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<LocationVisitInfo>, I>>(base?: I): LocationVisitInfo {
+    return LocationVisitInfo.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<LocationVisitInfo>, I>>(object: I): LocationVisitInfo {
+    const message = createBaseLocationVisitInfo();
+    message.id = object.id ?? "";
+    message.userId = object.userId ?? "";
+    message.userName = object.userName ?? "";
+    message.rating = object.rating ?? 0;
+    message.review = object.review ?? "";
+    message.visitedAt = object.visitedAt ?? 0;
+    message.photos = object.photos?.map((e) => LocationPhoto.fromPartial(e)) || [];
+    return message;
+  },
+};
+
+function createBaseLocationPlaceInfo(): LocationPlaceInfo {
+  return {
+    id: "",
+    groupId: "",
+    name: "",
+    address: "",
+    category: "",
+    lat: 0,
+    lng: 0,
+    createdBy: "",
+    createdAt: 0,
+    visitCount: 0,
+    avgRating: 0,
+    recentPhotoUrl: "",
+    visits: [],
+  };
+}
+
+export const LocationPlaceInfo = {
+  encode(message: LocationPlaceInfo, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.id !== "") {
+      writer.uint32(10).string(message.id);
+    }
+    if (message.groupId !== "") {
+      writer.uint32(18).string(message.groupId);
+    }
+    if (message.name !== "") {
+      writer.uint32(26).string(message.name);
+    }
+    if (message.address !== "") {
+      writer.uint32(34).string(message.address);
+    }
+    if (message.category !== "") {
+      writer.uint32(42).string(message.category);
+    }
+    if (message.lat !== 0) {
+      writer.uint32(49).double(message.lat);
+    }
+    if (message.lng !== 0) {
+      writer.uint32(57).double(message.lng);
+    }
+    if (message.createdBy !== "") {
+      writer.uint32(66).string(message.createdBy);
+    }
+    if (message.createdAt !== 0) {
+      writer.uint32(72).int64(message.createdAt);
+    }
+    if (message.visitCount !== 0) {
+      writer.uint32(80).int32(message.visitCount);
+    }
+    if (message.avgRating !== 0) {
+      writer.uint32(93).float(message.avgRating);
+    }
+    if (message.recentPhotoUrl !== "") {
+      writer.uint32(98).string(message.recentPhotoUrl);
+    }
+    for (const v of message.visits) {
+      LocationVisitInfo.encode(v!, writer.uint32(106).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): LocationPlaceInfo {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseLocationPlaceInfo();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.id = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.groupId = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.name = reader.string();
+          continue;
+        case 4:
+          if (tag !== 34) {
+            break;
+          }
+
+          message.address = reader.string();
+          continue;
+        case 5:
+          if (tag !== 42) {
+            break;
+          }
+
+          message.category = reader.string();
+          continue;
+        case 6:
+          if (tag !== 49) {
+            break;
+          }
+
+          message.lat = reader.double();
+          continue;
+        case 7:
+          if (tag !== 57) {
+            break;
+          }
+
+          message.lng = reader.double();
+          continue;
+        case 8:
+          if (tag !== 66) {
+            break;
+          }
+
+          message.createdBy = reader.string();
+          continue;
+        case 9:
+          if (tag !== 72) {
+            break;
+          }
+
+          message.createdAt = longToNumber(reader.int64() as Long);
+          continue;
+        case 10:
+          if (tag !== 80) {
+            break;
+          }
+
+          message.visitCount = reader.int32();
+          continue;
+        case 11:
+          if (tag !== 93) {
+            break;
+          }
+
+          message.avgRating = reader.float();
+          continue;
+        case 12:
+          if (tag !== 98) {
+            break;
+          }
+
+          message.recentPhotoUrl = reader.string();
+          continue;
+        case 13:
+          if (tag !== 106) {
+            break;
+          }
+
+          message.visits.push(LocationVisitInfo.decode(reader, reader.uint32()));
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): LocationPlaceInfo {
+    return {
+      id: isSet(object.id) ? globalThis.String(object.id) : "",
+      groupId: isSet(object.groupId) ? globalThis.String(object.groupId) : "",
+      name: isSet(object.name) ? globalThis.String(object.name) : "",
+      address: isSet(object.address) ? globalThis.String(object.address) : "",
+      category: isSet(object.category) ? globalThis.String(object.category) : "",
+      lat: isSet(object.lat) ? globalThis.Number(object.lat) : 0,
+      lng: isSet(object.lng) ? globalThis.Number(object.lng) : 0,
+      createdBy: isSet(object.createdBy) ? globalThis.String(object.createdBy) : "",
+      createdAt: isSet(object.createdAt) ? globalThis.Number(object.createdAt) : 0,
+      visitCount: isSet(object.visitCount) ? globalThis.Number(object.visitCount) : 0,
+      avgRating: isSet(object.avgRating) ? globalThis.Number(object.avgRating) : 0,
+      recentPhotoUrl: isSet(object.recentPhotoUrl) ? globalThis.String(object.recentPhotoUrl) : "",
+      visits: globalThis.Array.isArray(object?.visits)
+        ? object.visits.map((e: any) => LocationVisitInfo.fromJSON(e))
+        : [],
+    };
+  },
+
+  toJSON(message: LocationPlaceInfo): unknown {
+    const obj: any = {};
+    if (message.id !== "") {
+      obj.id = message.id;
+    }
+    if (message.groupId !== "") {
+      obj.groupId = message.groupId;
+    }
+    if (message.name !== "") {
+      obj.name = message.name;
+    }
+    if (message.address !== "") {
+      obj.address = message.address;
+    }
+    if (message.category !== "") {
+      obj.category = message.category;
+    }
+    if (message.lat !== 0) {
+      obj.lat = message.lat;
+    }
+    if (message.lng !== 0) {
+      obj.lng = message.lng;
+    }
+    if (message.createdBy !== "") {
+      obj.createdBy = message.createdBy;
+    }
+    if (message.createdAt !== 0) {
+      obj.createdAt = Math.round(message.createdAt);
+    }
+    if (message.visitCount !== 0) {
+      obj.visitCount = Math.round(message.visitCount);
+    }
+    if (message.avgRating !== 0) {
+      obj.avgRating = message.avgRating;
+    }
+    if (message.recentPhotoUrl !== "") {
+      obj.recentPhotoUrl = message.recentPhotoUrl;
+    }
+    if (message.visits?.length) {
+      obj.visits = message.visits.map((e) => LocationVisitInfo.toJSON(e));
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<LocationPlaceInfo>, I>>(base?: I): LocationPlaceInfo {
+    return LocationPlaceInfo.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<LocationPlaceInfo>, I>>(object: I): LocationPlaceInfo {
+    const message = createBaseLocationPlaceInfo();
+    message.id = object.id ?? "";
+    message.groupId = object.groupId ?? "";
+    message.name = object.name ?? "";
+    message.address = object.address ?? "";
+    message.category = object.category ?? "";
+    message.lat = object.lat ?? 0;
+    message.lng = object.lng ?? 0;
+    message.createdBy = object.createdBy ?? "";
+    message.createdAt = object.createdAt ?? 0;
+    message.visitCount = object.visitCount ?? 0;
+    message.avgRating = object.avgRating ?? 0;
+    message.recentPhotoUrl = object.recentPhotoUrl ?? "";
+    message.visits = object.visits?.map((e) => LocationVisitInfo.fromPartial(e)) || [];
+    return message;
+  },
+};
+
+function createBaseCSavePlace(): CSavePlace {
+  return { groupId: "", name: "", address: "", category: "", lat: 0, lng: 0, userId: "", userName: "" };
+}
+
+export const CSavePlace = {
+  encode(message: CSavePlace, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.groupId !== "") {
+      writer.uint32(10).string(message.groupId);
+    }
+    if (message.name !== "") {
+      writer.uint32(18).string(message.name);
+    }
+    if (message.address !== "") {
+      writer.uint32(26).string(message.address);
+    }
+    if (message.category !== "") {
+      writer.uint32(34).string(message.category);
+    }
+    if (message.lat !== 0) {
+      writer.uint32(41).double(message.lat);
+    }
+    if (message.lng !== 0) {
+      writer.uint32(49).double(message.lng);
+    }
+    if (message.userId !== "") {
+      writer.uint32(58).string(message.userId);
+    }
+    if (message.userName !== "") {
+      writer.uint32(66).string(message.userName);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): CSavePlace {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseCSavePlace();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.groupId = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.name = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.address = reader.string();
+          continue;
+        case 4:
+          if (tag !== 34) {
+            break;
+          }
+
+          message.category = reader.string();
+          continue;
+        case 5:
+          if (tag !== 41) {
+            break;
+          }
+
+          message.lat = reader.double();
+          continue;
+        case 6:
+          if (tag !== 49) {
+            break;
+          }
+
+          message.lng = reader.double();
+          continue;
+        case 7:
+          if (tag !== 58) {
+            break;
+          }
+
+          message.userId = reader.string();
+          continue;
+        case 8:
+          if (tag !== 66) {
+            break;
+          }
+
+          message.userName = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): CSavePlace {
+    return {
+      groupId: isSet(object.groupId) ? globalThis.String(object.groupId) : "",
+      name: isSet(object.name) ? globalThis.String(object.name) : "",
+      address: isSet(object.address) ? globalThis.String(object.address) : "",
+      category: isSet(object.category) ? globalThis.String(object.category) : "",
+      lat: isSet(object.lat) ? globalThis.Number(object.lat) : 0,
+      lng: isSet(object.lng) ? globalThis.Number(object.lng) : 0,
+      userId: isSet(object.userId) ? globalThis.String(object.userId) : "",
+      userName: isSet(object.userName) ? globalThis.String(object.userName) : "",
+    };
+  },
+
+  toJSON(message: CSavePlace): unknown {
+    const obj: any = {};
+    if (message.groupId !== "") {
+      obj.groupId = message.groupId;
+    }
+    if (message.name !== "") {
+      obj.name = message.name;
+    }
+    if (message.address !== "") {
+      obj.address = message.address;
+    }
+    if (message.category !== "") {
+      obj.category = message.category;
+    }
+    if (message.lat !== 0) {
+      obj.lat = message.lat;
+    }
+    if (message.lng !== 0) {
+      obj.lng = message.lng;
+    }
+    if (message.userId !== "") {
+      obj.userId = message.userId;
+    }
+    if (message.userName !== "") {
+      obj.userName = message.userName;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<CSavePlace>, I>>(base?: I): CSavePlace {
+    return CSavePlace.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<CSavePlace>, I>>(object: I): CSavePlace {
+    const message = createBaseCSavePlace();
+    message.groupId = object.groupId ?? "";
+    message.name = object.name ?? "";
+    message.address = object.address ?? "";
+    message.category = object.category ?? "";
+    message.lat = object.lat ?? 0;
+    message.lng = object.lng ?? 0;
+    message.userId = object.userId ?? "";
+    message.userName = object.userName ?? "";
+    return message;
+  },
+};
+
+function createBaseSSavePlace(): SSavePlace {
+  return { success: false, place: undefined, errorCode: 0 };
+}
+
+export const SSavePlace = {
+  encode(message: SSavePlace, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.success !== false) {
+      writer.uint32(8).bool(message.success);
+    }
+    if (message.place !== undefined) {
+      LocationPlaceInfo.encode(message.place, writer.uint32(18).fork()).ldelim();
+    }
+    if (message.errorCode !== 0) {
+      writer.uint32(24).int32(message.errorCode);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): SSavePlace {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseSSavePlace();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+
+          message.success = reader.bool();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.place = LocationPlaceInfo.decode(reader, reader.uint32());
+          continue;
+        case 3:
+          if (tag !== 24) {
+            break;
+          }
+
+          message.errorCode = reader.int32();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): SSavePlace {
+    return {
+      success: isSet(object.success) ? globalThis.Boolean(object.success) : false,
+      place: isSet(object.place) ? LocationPlaceInfo.fromJSON(object.place) : undefined,
+      errorCode: isSet(object.errorCode) ? globalThis.Number(object.errorCode) : 0,
+    };
+  },
+
+  toJSON(message: SSavePlace): unknown {
+    const obj: any = {};
+    if (message.success !== false) {
+      obj.success = message.success;
+    }
+    if (message.place !== undefined) {
+      obj.place = LocationPlaceInfo.toJSON(message.place);
+    }
+    if (message.errorCode !== 0) {
+      obj.errorCode = Math.round(message.errorCode);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<SSavePlace>, I>>(base?: I): SSavePlace {
+    return SSavePlace.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<SSavePlace>, I>>(object: I): SSavePlace {
+    const message = createBaseSSavePlace();
+    message.success = object.success ?? false;
+    message.place = (object.place !== undefined && object.place !== null)
+      ? LocationPlaceInfo.fromPartial(object.place)
+      : undefined;
+    message.errorCode = object.errorCode ?? 0;
+    return message;
+  },
+};
+
+function createBaseCGetPlaces(): CGetPlaces {
+  return { groupId: "" };
+}
+
+export const CGetPlaces = {
+  encode(message: CGetPlaces, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.groupId !== "") {
+      writer.uint32(10).string(message.groupId);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): CGetPlaces {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseCGetPlaces();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.groupId = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): CGetPlaces {
+    return { groupId: isSet(object.groupId) ? globalThis.String(object.groupId) : "" };
+  },
+
+  toJSON(message: CGetPlaces): unknown {
+    const obj: any = {};
+    if (message.groupId !== "") {
+      obj.groupId = message.groupId;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<CGetPlaces>, I>>(base?: I): CGetPlaces {
+    return CGetPlaces.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<CGetPlaces>, I>>(object: I): CGetPlaces {
+    const message = createBaseCGetPlaces();
+    message.groupId = object.groupId ?? "";
+    return message;
+  },
+};
+
+function createBaseSGetPlaces(): SGetPlaces {
+  return { groupId: "", places: [] };
+}
+
+export const SGetPlaces = {
+  encode(message: SGetPlaces, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.groupId !== "") {
+      writer.uint32(10).string(message.groupId);
+    }
+    for (const v of message.places) {
+      LocationPlaceInfo.encode(v!, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): SGetPlaces {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseSGetPlaces();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.groupId = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.places.push(LocationPlaceInfo.decode(reader, reader.uint32()));
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): SGetPlaces {
+    return {
+      groupId: isSet(object.groupId) ? globalThis.String(object.groupId) : "",
+      places: globalThis.Array.isArray(object?.places)
+        ? object.places.map((e: any) => LocationPlaceInfo.fromJSON(e))
+        : [],
+    };
+  },
+
+  toJSON(message: SGetPlaces): unknown {
+    const obj: any = {};
+    if (message.groupId !== "") {
+      obj.groupId = message.groupId;
+    }
+    if (message.places?.length) {
+      obj.places = message.places.map((e) => LocationPlaceInfo.toJSON(e));
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<SGetPlaces>, I>>(base?: I): SGetPlaces {
+    return SGetPlaces.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<SGetPlaces>, I>>(object: I): SGetPlaces {
+    const message = createBaseSGetPlaces();
+    message.groupId = object.groupId ?? "";
+    message.places = object.places?.map((e) => LocationPlaceInfo.fromPartial(e)) || [];
+    return message;
+  },
+};
+
+function createBaseCSaveVisit(): CSaveVisit {
+  return { placeId: "", groupId: "", userId: "", userName: "", rating: 0, review: "", photoUrls: [], visitedAt: 0 };
+}
+
+export const CSaveVisit = {
+  encode(message: CSaveVisit, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.placeId !== "") {
+      writer.uint32(10).string(message.placeId);
+    }
+    if (message.groupId !== "") {
+      writer.uint32(18).string(message.groupId);
+    }
+    if (message.userId !== "") {
+      writer.uint32(26).string(message.userId);
+    }
+    if (message.userName !== "") {
+      writer.uint32(34).string(message.userName);
+    }
+    if (message.rating !== 0) {
+      writer.uint32(40).int32(message.rating);
+    }
+    if (message.review !== "") {
+      writer.uint32(50).string(message.review);
+    }
+    for (const v of message.photoUrls) {
+      writer.uint32(58).string(v!);
+    }
+    if (message.visitedAt !== 0) {
+      writer.uint32(64).int64(message.visitedAt);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): CSaveVisit {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseCSaveVisit();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.placeId = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.groupId = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.userId = reader.string();
+          continue;
+        case 4:
+          if (tag !== 34) {
+            break;
+          }
+
+          message.userName = reader.string();
+          continue;
+        case 5:
+          if (tag !== 40) {
+            break;
+          }
+
+          message.rating = reader.int32();
+          continue;
+        case 6:
+          if (tag !== 50) {
+            break;
+          }
+
+          message.review = reader.string();
+          continue;
+        case 7:
+          if (tag !== 58) {
+            break;
+          }
+
+          message.photoUrls.push(reader.string());
+          continue;
+        case 8:
+          if (tag !== 64) {
+            break;
+          }
+
+          message.visitedAt = longToNumber(reader.int64() as Long);
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): CSaveVisit {
+    return {
+      placeId: isSet(object.placeId) ? globalThis.String(object.placeId) : "",
+      groupId: isSet(object.groupId) ? globalThis.String(object.groupId) : "",
+      userId: isSet(object.userId) ? globalThis.String(object.userId) : "",
+      userName: isSet(object.userName) ? globalThis.String(object.userName) : "",
+      rating: isSet(object.rating) ? globalThis.Number(object.rating) : 0,
+      review: isSet(object.review) ? globalThis.String(object.review) : "",
+      photoUrls: globalThis.Array.isArray(object?.photoUrls)
+        ? object.photoUrls.map((e: any) => globalThis.String(e))
+        : [],
+      visitedAt: isSet(object.visitedAt) ? globalThis.Number(object.visitedAt) : 0,
+    };
+  },
+
+  toJSON(message: CSaveVisit): unknown {
+    const obj: any = {};
+    if (message.placeId !== "") {
+      obj.placeId = message.placeId;
+    }
+    if (message.groupId !== "") {
+      obj.groupId = message.groupId;
+    }
+    if (message.userId !== "") {
+      obj.userId = message.userId;
+    }
+    if (message.userName !== "") {
+      obj.userName = message.userName;
+    }
+    if (message.rating !== 0) {
+      obj.rating = Math.round(message.rating);
+    }
+    if (message.review !== "") {
+      obj.review = message.review;
+    }
+    if (message.photoUrls?.length) {
+      obj.photoUrls = message.photoUrls;
+    }
+    if (message.visitedAt !== 0) {
+      obj.visitedAt = Math.round(message.visitedAt);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<CSaveVisit>, I>>(base?: I): CSaveVisit {
+    return CSaveVisit.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<CSaveVisit>, I>>(object: I): CSaveVisit {
+    const message = createBaseCSaveVisit();
+    message.placeId = object.placeId ?? "";
+    message.groupId = object.groupId ?? "";
+    message.userId = object.userId ?? "";
+    message.userName = object.userName ?? "";
+    message.rating = object.rating ?? 0;
+    message.review = object.review ?? "";
+    message.photoUrls = object.photoUrls?.map((e) => e) || [];
+    message.visitedAt = object.visitedAt ?? 0;
+    return message;
+  },
+};
+
+function createBaseSSaveVisit(): SSaveVisit {
+  return { success: false, placeId: "", visit: undefined, place: undefined, errorCode: 0 };
+}
+
+export const SSaveVisit = {
+  encode(message: SSaveVisit, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.success !== false) {
+      writer.uint32(8).bool(message.success);
+    }
+    if (message.placeId !== "") {
+      writer.uint32(18).string(message.placeId);
+    }
+    if (message.visit !== undefined) {
+      LocationVisitInfo.encode(message.visit, writer.uint32(26).fork()).ldelim();
+    }
+    if (message.place !== undefined) {
+      LocationPlaceInfo.encode(message.place, writer.uint32(34).fork()).ldelim();
+    }
+    if (message.errorCode !== 0) {
+      writer.uint32(40).int32(message.errorCode);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): SSaveVisit {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseSSaveVisit();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+
+          message.success = reader.bool();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.placeId = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.visit = LocationVisitInfo.decode(reader, reader.uint32());
+          continue;
+        case 4:
+          if (tag !== 34) {
+            break;
+          }
+
+          message.place = LocationPlaceInfo.decode(reader, reader.uint32());
+          continue;
+        case 5:
+          if (tag !== 40) {
+            break;
+          }
+
+          message.errorCode = reader.int32();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): SSaveVisit {
+    return {
+      success: isSet(object.success) ? globalThis.Boolean(object.success) : false,
+      placeId: isSet(object.placeId) ? globalThis.String(object.placeId) : "",
+      visit: isSet(object.visit) ? LocationVisitInfo.fromJSON(object.visit) : undefined,
+      place: isSet(object.place) ? LocationPlaceInfo.fromJSON(object.place) : undefined,
+      errorCode: isSet(object.errorCode) ? globalThis.Number(object.errorCode) : 0,
+    };
+  },
+
+  toJSON(message: SSaveVisit): unknown {
+    const obj: any = {};
+    if (message.success !== false) {
+      obj.success = message.success;
+    }
+    if (message.placeId !== "") {
+      obj.placeId = message.placeId;
+    }
+    if (message.visit !== undefined) {
+      obj.visit = LocationVisitInfo.toJSON(message.visit);
+    }
+    if (message.place !== undefined) {
+      obj.place = LocationPlaceInfo.toJSON(message.place);
+    }
+    if (message.errorCode !== 0) {
+      obj.errorCode = Math.round(message.errorCode);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<SSaveVisit>, I>>(base?: I): SSaveVisit {
+    return SSaveVisit.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<SSaveVisit>, I>>(object: I): SSaveVisit {
+    const message = createBaseSSaveVisit();
+    message.success = object.success ?? false;
+    message.placeId = object.placeId ?? "";
+    message.visit = (object.visit !== undefined && object.visit !== null)
+      ? LocationVisitInfo.fromPartial(object.visit)
+      : undefined;
+    message.place = (object.place !== undefined && object.place !== null)
+      ? LocationPlaceInfo.fromPartial(object.place)
+      : undefined;
+    message.errorCode = object.errorCode ?? 0;
+    return message;
+  },
+};
+
+function createBaseCDeletePlace(): CDeletePlace {
+  return { placeId: "", groupId: "", userId: "" };
+}
+
+export const CDeletePlace = {
+  encode(message: CDeletePlace, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.placeId !== "") {
+      writer.uint32(10).string(message.placeId);
+    }
+    if (message.groupId !== "") {
+      writer.uint32(18).string(message.groupId);
+    }
+    if (message.userId !== "") {
+      writer.uint32(26).string(message.userId);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): CDeletePlace {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseCDeletePlace();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.placeId = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.groupId = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.userId = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): CDeletePlace {
+    return {
+      placeId: isSet(object.placeId) ? globalThis.String(object.placeId) : "",
+      groupId: isSet(object.groupId) ? globalThis.String(object.groupId) : "",
+      userId: isSet(object.userId) ? globalThis.String(object.userId) : "",
+    };
+  },
+
+  toJSON(message: CDeletePlace): unknown {
+    const obj: any = {};
+    if (message.placeId !== "") {
+      obj.placeId = message.placeId;
+    }
+    if (message.groupId !== "") {
+      obj.groupId = message.groupId;
+    }
+    if (message.userId !== "") {
+      obj.userId = message.userId;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<CDeletePlace>, I>>(base?: I): CDeletePlace {
+    return CDeletePlace.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<CDeletePlace>, I>>(object: I): CDeletePlace {
+    const message = createBaseCDeletePlace();
+    message.placeId = object.placeId ?? "";
+    message.groupId = object.groupId ?? "";
+    message.userId = object.userId ?? "";
+    return message;
+  },
+};
+
+function createBaseSDeletePlace(): SDeletePlace {
+  return { success: false, placeId: "", groupId: "", errorCode: 0 };
+}
+
+export const SDeletePlace = {
+  encode(message: SDeletePlace, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.success !== false) {
+      writer.uint32(8).bool(message.success);
+    }
+    if (message.placeId !== "") {
+      writer.uint32(18).string(message.placeId);
+    }
+    if (message.groupId !== "") {
+      writer.uint32(26).string(message.groupId);
+    }
+    if (message.errorCode !== 0) {
+      writer.uint32(32).int32(message.errorCode);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): SDeletePlace {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseSDeletePlace();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+
+          message.success = reader.bool();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.placeId = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.groupId = reader.string();
+          continue;
+        case 4:
+          if (tag !== 32) {
+            break;
+          }
+
+          message.errorCode = reader.int32();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): SDeletePlace {
+    return {
+      success: isSet(object.success) ? globalThis.Boolean(object.success) : false,
+      placeId: isSet(object.placeId) ? globalThis.String(object.placeId) : "",
+      groupId: isSet(object.groupId) ? globalThis.String(object.groupId) : "",
+      errorCode: isSet(object.errorCode) ? globalThis.Number(object.errorCode) : 0,
+    };
+  },
+
+  toJSON(message: SDeletePlace): unknown {
+    const obj: any = {};
+    if (message.success !== false) {
+      obj.success = message.success;
+    }
+    if (message.placeId !== "") {
+      obj.placeId = message.placeId;
+    }
+    if (message.groupId !== "") {
+      obj.groupId = message.groupId;
+    }
+    if (message.errorCode !== 0) {
+      obj.errorCode = Math.round(message.errorCode);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<SDeletePlace>, I>>(base?: I): SDeletePlace {
+    return SDeletePlace.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<SDeletePlace>, I>>(object: I): SDeletePlace {
+    const message = createBaseSDeletePlace();
+    message.success = object.success ?? false;
+    message.placeId = object.placeId ?? "";
+    message.groupId = object.groupId ?? "";
+    message.errorCode = object.errorCode ?? 0;
+    return message;
+  },
+};
+
+function createBaseCUpdateVisit(): CUpdateVisit {
+  return { visitId: "", placeId: "", groupId: "", userId: "", rating: 0, review: "", photoUrls: [], visitedAt: 0 };
+}
+
+export const CUpdateVisit = {
+  encode(message: CUpdateVisit, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.visitId !== "") {
+      writer.uint32(10).string(message.visitId);
+    }
+    if (message.placeId !== "") {
+      writer.uint32(18).string(message.placeId);
+    }
+    if (message.groupId !== "") {
+      writer.uint32(26).string(message.groupId);
+    }
+    if (message.userId !== "") {
+      writer.uint32(34).string(message.userId);
+    }
+    if (message.rating !== 0) {
+      writer.uint32(40).int32(message.rating);
+    }
+    if (message.review !== "") {
+      writer.uint32(50).string(message.review);
+    }
+    for (const v of message.photoUrls) {
+      writer.uint32(58).string(v!);
+    }
+    if (message.visitedAt !== 0) {
+      writer.uint32(64).int64(message.visitedAt);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): CUpdateVisit {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseCUpdateVisit();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.visitId = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.placeId = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.groupId = reader.string();
+          continue;
+        case 4:
+          if (tag !== 34) {
+            break;
+          }
+
+          message.userId = reader.string();
+          continue;
+        case 5:
+          if (tag !== 40) {
+            break;
+          }
+
+          message.rating = reader.int32();
+          continue;
+        case 6:
+          if (tag !== 50) {
+            break;
+          }
+
+          message.review = reader.string();
+          continue;
+        case 7:
+          if (tag !== 58) {
+            break;
+          }
+
+          message.photoUrls.push(reader.string());
+          continue;
+        case 8:
+          if (tag !== 64) {
+            break;
+          }
+
+          message.visitedAt = longToNumber(reader.int64() as Long);
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): CUpdateVisit {
+    return {
+      visitId: isSet(object.visitId) ? globalThis.String(object.visitId) : "",
+      placeId: isSet(object.placeId) ? globalThis.String(object.placeId) : "",
+      groupId: isSet(object.groupId) ? globalThis.String(object.groupId) : "",
+      userId: isSet(object.userId) ? globalThis.String(object.userId) : "",
+      rating: isSet(object.rating) ? globalThis.Number(object.rating) : 0,
+      review: isSet(object.review) ? globalThis.String(object.review) : "",
+      photoUrls: globalThis.Array.isArray(object?.photoUrls)
+        ? object.photoUrls.map((e: any) => globalThis.String(e))
+        : [],
+      visitedAt: isSet(object.visitedAt) ? globalThis.Number(object.visitedAt) : 0,
+    };
+  },
+
+  toJSON(message: CUpdateVisit): unknown {
+    const obj: any = {};
+    if (message.visitId !== "") {
+      obj.visitId = message.visitId;
+    }
+    if (message.placeId !== "") {
+      obj.placeId = message.placeId;
+    }
+    if (message.groupId !== "") {
+      obj.groupId = message.groupId;
+    }
+    if (message.userId !== "") {
+      obj.userId = message.userId;
+    }
+    if (message.rating !== 0) {
+      obj.rating = Math.round(message.rating);
+    }
+    if (message.review !== "") {
+      obj.review = message.review;
+    }
+    if (message.photoUrls?.length) {
+      obj.photoUrls = message.photoUrls;
+    }
+    if (message.visitedAt !== 0) {
+      obj.visitedAt = Math.round(message.visitedAt);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<CUpdateVisit>, I>>(base?: I): CUpdateVisit {
+    return CUpdateVisit.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<CUpdateVisit>, I>>(object: I): CUpdateVisit {
+    const message = createBaseCUpdateVisit();
+    message.visitId = object.visitId ?? "";
+    message.placeId = object.placeId ?? "";
+    message.groupId = object.groupId ?? "";
+    message.userId = object.userId ?? "";
+    message.rating = object.rating ?? 0;
+    message.review = object.review ?? "";
+    message.photoUrls = object.photoUrls?.map((e) => e) || [];
+    message.visitedAt = object.visitedAt ?? 0;
+    return message;
+  },
+};
+
+function createBaseSUpdateVisit(): SUpdateVisit {
+  return { success: false, visit: undefined, place: undefined, errorCode: 0 };
+}
+
+export const SUpdateVisit = {
+  encode(message: SUpdateVisit, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.success !== false) {
+      writer.uint32(8).bool(message.success);
+    }
+    if (message.visit !== undefined) {
+      LocationVisitInfo.encode(message.visit, writer.uint32(18).fork()).ldelim();
+    }
+    if (message.place !== undefined) {
+      LocationPlaceInfo.encode(message.place, writer.uint32(26).fork()).ldelim();
+    }
+    if (message.errorCode !== 0) {
+      writer.uint32(32).int32(message.errorCode);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): SUpdateVisit {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseSUpdateVisit();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+
+          message.success = reader.bool();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.visit = LocationVisitInfo.decode(reader, reader.uint32());
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.place = LocationPlaceInfo.decode(reader, reader.uint32());
+          continue;
+        case 4:
+          if (tag !== 32) {
+            break;
+          }
+
+          message.errorCode = reader.int32();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): SUpdateVisit {
+    return {
+      success: isSet(object.success) ? globalThis.Boolean(object.success) : false,
+      visit: isSet(object.visit) ? LocationVisitInfo.fromJSON(object.visit) : undefined,
+      place: isSet(object.place) ? LocationPlaceInfo.fromJSON(object.place) : undefined,
+      errorCode: isSet(object.errorCode) ? globalThis.Number(object.errorCode) : 0,
+    };
+  },
+
+  toJSON(message: SUpdateVisit): unknown {
+    const obj: any = {};
+    if (message.success !== false) {
+      obj.success = message.success;
+    }
+    if (message.visit !== undefined) {
+      obj.visit = LocationVisitInfo.toJSON(message.visit);
+    }
+    if (message.place !== undefined) {
+      obj.place = LocationPlaceInfo.toJSON(message.place);
+    }
+    if (message.errorCode !== 0) {
+      obj.errorCode = Math.round(message.errorCode);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<SUpdateVisit>, I>>(base?: I): SUpdateVisit {
+    return SUpdateVisit.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<SUpdateVisit>, I>>(object: I): SUpdateVisit {
+    const message = createBaseSUpdateVisit();
+    message.success = object.success ?? false;
+    message.visit = (object.visit !== undefined && object.visit !== null)
+      ? LocationVisitInfo.fromPartial(object.visit)
+      : undefined;
+    message.place = (object.place !== undefined && object.place !== null)
+      ? LocationPlaceInfo.fromPartial(object.place)
+      : undefined;
+    message.errorCode = object.errorCode ?? 0;
+    return message;
+  },
+};
+
+function createBaseCDeleteVisit(): CDeleteVisit {
+  return { visitId: "", placeId: "", groupId: "", userId: "" };
+}
+
+export const CDeleteVisit = {
+  encode(message: CDeleteVisit, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.visitId !== "") {
+      writer.uint32(10).string(message.visitId);
+    }
+    if (message.placeId !== "") {
+      writer.uint32(18).string(message.placeId);
+    }
+    if (message.groupId !== "") {
+      writer.uint32(26).string(message.groupId);
+    }
+    if (message.userId !== "") {
+      writer.uint32(34).string(message.userId);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): CDeleteVisit {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseCDeleteVisit();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.visitId = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.placeId = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.groupId = reader.string();
+          continue;
+        case 4:
+          if (tag !== 34) {
+            break;
+          }
+
+          message.userId = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): CDeleteVisit {
+    return {
+      visitId: isSet(object.visitId) ? globalThis.String(object.visitId) : "",
+      placeId: isSet(object.placeId) ? globalThis.String(object.placeId) : "",
+      groupId: isSet(object.groupId) ? globalThis.String(object.groupId) : "",
+      userId: isSet(object.userId) ? globalThis.String(object.userId) : "",
+    };
+  },
+
+  toJSON(message: CDeleteVisit): unknown {
+    const obj: any = {};
+    if (message.visitId !== "") {
+      obj.visitId = message.visitId;
+    }
+    if (message.placeId !== "") {
+      obj.placeId = message.placeId;
+    }
+    if (message.groupId !== "") {
+      obj.groupId = message.groupId;
+    }
+    if (message.userId !== "") {
+      obj.userId = message.userId;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<CDeleteVisit>, I>>(base?: I): CDeleteVisit {
+    return CDeleteVisit.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<CDeleteVisit>, I>>(object: I): CDeleteVisit {
+    const message = createBaseCDeleteVisit();
+    message.visitId = object.visitId ?? "";
+    message.placeId = object.placeId ?? "";
+    message.groupId = object.groupId ?? "";
+    message.userId = object.userId ?? "";
+    return message;
+  },
+};
+
+function createBaseSDeleteVisit(): SDeleteVisit {
+  return { success: false, visitId: "", placeId: "", groupId: "", placeDeleted: false, errorCode: 0 };
+}
+
+export const SDeleteVisit = {
+  encode(message: SDeleteVisit, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.success !== false) {
+      writer.uint32(8).bool(message.success);
+    }
+    if (message.visitId !== "") {
+      writer.uint32(18).string(message.visitId);
+    }
+    if (message.placeId !== "") {
+      writer.uint32(26).string(message.placeId);
+    }
+    if (message.groupId !== "") {
+      writer.uint32(34).string(message.groupId);
+    }
+    if (message.placeDeleted !== false) {
+      writer.uint32(40).bool(message.placeDeleted);
+    }
+    if (message.errorCode !== 0) {
+      writer.uint32(48).int32(message.errorCode);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): SDeleteVisit {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseSDeleteVisit();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+
+          message.success = reader.bool();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.visitId = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.placeId = reader.string();
+          continue;
+        case 4:
+          if (tag !== 34) {
+            break;
+          }
+
+          message.groupId = reader.string();
+          continue;
+        case 5:
+          if (tag !== 40) {
+            break;
+          }
+
+          message.placeDeleted = reader.bool();
+          continue;
+        case 6:
+          if (tag !== 48) {
+            break;
+          }
+
+          message.errorCode = reader.int32();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): SDeleteVisit {
+    return {
+      success: isSet(object.success) ? globalThis.Boolean(object.success) : false,
+      visitId: isSet(object.visitId) ? globalThis.String(object.visitId) : "",
+      placeId: isSet(object.placeId) ? globalThis.String(object.placeId) : "",
+      groupId: isSet(object.groupId) ? globalThis.String(object.groupId) : "",
+      placeDeleted: isSet(object.placeDeleted) ? globalThis.Boolean(object.placeDeleted) : false,
+      errorCode: isSet(object.errorCode) ? globalThis.Number(object.errorCode) : 0,
+    };
+  },
+
+  toJSON(message: SDeleteVisit): unknown {
+    const obj: any = {};
+    if (message.success !== false) {
+      obj.success = message.success;
+    }
+    if (message.visitId !== "") {
+      obj.visitId = message.visitId;
+    }
+    if (message.placeId !== "") {
+      obj.placeId = message.placeId;
+    }
+    if (message.groupId !== "") {
+      obj.groupId = message.groupId;
+    }
+    if (message.placeDeleted !== false) {
+      obj.placeDeleted = message.placeDeleted;
+    }
+    if (message.errorCode !== 0) {
+      obj.errorCode = Math.round(message.errorCode);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<SDeleteVisit>, I>>(base?: I): SDeleteVisit {
+    return SDeleteVisit.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<SDeleteVisit>, I>>(object: I): SDeleteVisit {
+    const message = createBaseSDeleteVisit();
+    message.success = object.success ?? false;
+    message.visitId = object.visitId ?? "";
+    message.placeId = object.placeId ?? "";
+    message.groupId = object.groupId ?? "";
+    message.placeDeleted = object.placeDeleted ?? false;
+    message.errorCode = object.errorCode ?? 0;
     return message;
   },
 };

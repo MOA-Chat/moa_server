@@ -6,6 +6,7 @@
 struct FileInfo {
     string fileId;
     string userId;
+    string groupId;           // 그룹 채팅 업로드 시 group_id, 1:1이면 ""
     string originalFilename;
     string gcsBucket;
     string gcsPath;
@@ -34,6 +35,9 @@ public:
     
     // 파일 업로드 상태 업데이트
     static bool UpdateUploadStatus(const string& fileId, const string& status);
+
+    // gcs_path 기준으로 upload_status='completed' + gcs_bucket 업데이트
+    static bool MarkCompletedByGcsPath(const string& gcsPath, const string& gcsBucket);
     
     // 파일 삭제 (메타데이터만 삭제, 실제 파일은 별도 처리)
     static bool DeleteFileMetadata(const string& fileId);

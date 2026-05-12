@@ -198,23 +198,16 @@ bool FileService::HandleUploadFileRequest(sessionPtr& session, uint64 reqId, con
 
         int64 urlExpiresAt = Nowts() + (expiresTime * 1000);
 
-        // ─── 파일 보관 정책 ───
-        // 이메일 미인증 유저: 7일 후 만료 / 인증 유저: 영구 보관
-        int64 fileRetentionExpiresAt = 0; // 0 = 영구 보관
-        if (pkt.upload_type() == Protocol::C_UploadFile_UploadType_DIRECT_CHAT ||
-            pkt.upload_type() == Protocol::C_UploadFile_UploadType_GROUP_CHAT) {
-            cUserInfo userInfo;
-            if (UserRepository::GetUser(userId, userInfo) && !userInfo.isEmailVerified) {
-                fileRetentionExpiresAt = Nowts() + (7LL * 24 * 60 * 60 * 1000); // 7일
-            }
-        }
+        int64 fileRetentionExpiresAt = 0; // 영구 보관
 
         // file_uploads DB에 파일 메타데이터 저장
         FileInfo fi;
         fi.fileId                 = fileId;
         fi.userId                 = userId;
+        fi.groupId                = (pkt.upload_type() == Protocol::C_UploadFile_UploadType_GROUP_CHAT)
+                                    ? pkt.target_id() : "";
         fi.originalFilename       = pkt.filename();
-        fi.gcsBucket              = "";  // CoreGlobal이 설정한 버킷
+        fi.gcsBucket              = _cloudStorage->GetBucketName();
         fi.gcsPath                = path;
         fi.fileSize               = pkt.size();
         fi.mimeType               = pkt.mime_type();

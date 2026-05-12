@@ -1,0 +1,11 @@
+-- 22_convid_migration.sql
+-- GroupDM conv_id 형식 변경: "groupdm:groupId:userA_userB" → "groupId:dm:userA_userB"
+-- 문자열 변환은 C++ MessageRepository::MigrateGroupDMConvIds()에서 처리
+-- 서버 최초 기동 시 해당 함수가 자동 호출됨 (이 파일 직접 실행 불필요)
+--
+-- 확인용 쿼리 (실행 전 대상 건수 파악):
+--   SELECT COUNT(*) FROM conversations        WHERE conv_id LIKE 'groupdm:%';
+--   SELECT COUNT(*) FROM messages             WHERE conv_id LIKE 'groupdm:%';
+--   SELECT COUNT(*) FROM read_status          WHERE conv_id LIKE 'groupdm:%';
+--   SELECT COUNT(*) FROM conversation_participants WHERE conv_id LIKE 'groupdm:%';
+--   SELECT COUNT(*) FROM announcements        WHERE conv_id LIKE 'groupdm:%';

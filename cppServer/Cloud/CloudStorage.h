@@ -42,5 +42,8 @@ public:
     
     // 파일 존재 확인
     virtual bool FileExists(const string& path) = 0;
+
+    // 버킷명 반환
+    virtual string GetBucketName() const = 0;
 };
 

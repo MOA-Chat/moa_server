@@ -65,24 +65,32 @@ std::shared_ptr<spdlog::logger>& Logger::GetAuditLogger()
     return s_auditLogger;
 }
 
-std::shared_ptr<spdlog::logger> Logger::GetConvLogger(const std::string& safeConvId)
+std::shared_ptr<spdlog::logger> Logger::GetConvLogger(const std::string& logKey)
 {
     std::lock_guard<std::mutex> lock(s_convMutex);
 
-    auto it = s_convLoggers.find(safeConvId);
+    auto it = s_convLoggers.find(logKey);
     if (it != s_convLoggers.end()) {
         return it->second;
     }
 
+    // logKey 예: "groupId/chat"  또는  "groupId/dm_userA_userB"
+    // 파일 경로: logs/conversations/groupId/chat_YYYY-MM-DD.log
+    std::string fullPath = "logs/conversations/" + logKey;
+
+    // 부모 디렉토리 자동 생성 (groupId 폴더)
+    std::filesystem::path fsPath(fullPath);
+    std::filesystem::create_directories(fsPath.parent_path());
+
     // 대화방별 daily rotation (365일 보관, 콘솔 출력 없음)
-    std::string path = "logs/conversations/" + safeConvId;
+    std::string path = fullPath;
     auto sink = std::make_shared<spdlog::sinks::daily_file_sink_mt>(path, 0, 0, false, 365);
 
-    auto logger = std::make_shared<spdlog::logger>("conv_" + safeConvId, sink);
+    auto logger = std::make_shared<spdlog::logger>("conv_" + logKey, sink);
     logger->set_pattern("[%Y-%m-%d %H:%M:%S] %v");
     logger->set_level(spdlog::level::info);
     logger->flush_on(spdlog::level::info);
 
-    s_convLoggers[safeConvId] = logger;
+    s_convLoggers[logKey] = logger;
     return logger;
 }

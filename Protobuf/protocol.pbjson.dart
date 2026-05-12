@@ -865,6 +865,294 @@ const Envelope$json = {
       '10': 'cCompleteSocialSignup'
     },
     {
+      '1': 'c_create_album',
+      '3': 120,
+      '4': 1,
+      '5': 11,
+      '6': '.Protocol.C_CreateAlbum',
+      '9': 0,
+      '10': 'cCreateAlbum'
+    },
+    {
+      '1': 's_create_album',
+      '3': 121,
+      '4': 1,
+      '5': 11,
+      '6': '.Protocol.S_CreateAlbum',
+      '9': 0,
+      '10': 'sCreateAlbum'
+    },
+    {
+      '1': 'c_get_albums',
+      '3': 122,
+      '4': 1,
+      '5': 11,
+      '6': '.Protocol.C_GetAlbums',
+      '9': 0,
+      '10': 'cGetAlbums'
+    },
+    {
+      '1': 's_get_albums',
+      '3': 123,
+      '4': 1,
+      '5': 11,
+      '6': '.Protocol.S_GetAlbums',
+      '9': 0,
+      '10': 'sGetAlbums'
+    },
+    {
+      '1': 'c_add_photo_to_album',
+      '3': 124,
+      '4': 1,
+      '5': 11,
+      '6': '.Protocol.C_AddPhotoToAlbum',
+      '9': 0,
+      '10': 'cAddPhotoToAlbum'
+    },
+    {
+      '1': 's_add_photo_to_album',
+      '3': 125,
+      '4': 1,
+      '5': 11,
+      '6': '.Protocol.S_AddPhotoToAlbum',
+      '9': 0,
+      '10': 'sAddPhotoToAlbum'
+    },
+    {
+      '1': 'c_get_album_photos',
+      '3': 126,
+      '4': 1,
+      '5': 11,
+      '6': '.Protocol.C_GetAlbumPhotos',
+      '9': 0,
+      '10': 'cGetAlbumPhotos'
+    },
+    {
+      '1': 's_get_album_photos',
+      '3': 127,
+      '4': 1,
+      '5': 11,
+      '6': '.Protocol.S_GetAlbumPhotos',
+      '9': 0,
+      '10': 'sGetAlbumPhotos'
+    },
+    {
+      '1': 'c_add_photo_comment',
+      '3': 128,
+      '4': 1,
+      '5': 11,
+      '6': '.Protocol.C_AddPhotoComment',
+      '9': 0,
+      '10': 'cAddPhotoComment'
+    },
+    {
+      '1': 's_add_photo_comment',
+      '3': 129,
+      '4': 1,
+      '5': 11,
+      '6': '.Protocol.S_AddPhotoComment',
+      '9': 0,
+      '10': 'sAddPhotoComment'
+    },
+    {
+      '1': 'c_get_photo_comments',
+      '3': 130,
+      '4': 1,
+      '5': 11,
+      '6': '.Protocol.C_GetPhotoComments',
+      '9': 0,
+      '10': 'cGetPhotoComments'
+    },
+    {
+      '1': 's_get_photo_comments',
+      '3': 131,
+      '4': 1,
+      '5': 11,
+      '6': '.Protocol.S_GetPhotoComments',
+      '9': 0,
+      '10': 'sGetPhotoComments'
+    },
+    {
+      '1': 'c_delete_album',
+      '3': 140,
+      '4': 1,
+      '5': 11,
+      '6': '.Protocol.C_DeleteAlbum',
+      '9': 0,
+      '10': 'cDeleteAlbum'
+    },
+    {
+      '1': 's_delete_album',
+      '3': 141,
+      '4': 1,
+      '5': 11,
+      '6': '.Protocol.S_DeleteAlbum',
+      '9': 0,
+      '10': 'sDeleteAlbum'
+    },
+    {
+      '1': 'c_delete_album_photo',
+      '3': 142,
+      '4': 1,
+      '5': 11,
+      '6': '.Protocol.C_DeleteAlbumPhoto',
+      '9': 0,
+      '10': 'cDeleteAlbumPhoto'
+    },
+    {
+      '1': 's_delete_album_photo',
+      '3': 143,
+      '4': 1,
+      '5': 11,
+      '6': '.Protocol.S_DeleteAlbumPhoto',
+      '9': 0,
+      '10': 'sDeleteAlbumPhoto'
+    },
+    {
+      '1': 'c_move_photo',
+      '3': 144,
+      '4': 1,
+      '5': 11,
+      '6': '.Protocol.C_MovePhoto',
+      '9': 0,
+      '10': 'cMovePhoto'
+    },
+    {
+      '1': 's_move_photo',
+      '3': 145,
+      '4': 1,
+      '5': 11,
+      '6': '.Protocol.S_MovePhoto',
+      '9': 0,
+      '10': 'sMovePhoto'
+    },
+    {
+      '1': 'c_delete_photo_comment',
+      '3': 146,
+      '4': 1,
+      '5': 11,
+      '6': '.Protocol.C_DeletePhotoComment',
+      '9': 0,
+      '10': 'cDeletePhotoComment'
+    },
+    {
+      '1': 's_delete_photo_comment',
+      '3': 147,
+      '4': 1,
+      '5': 11,
+      '6': '.Protocol.S_DeletePhotoComment',
+      '9': 0,
+      '10': 'sDeletePhotoComment'
+    },
+    {
+      '1': 'c_save_place',
+      '3': 148,
+      '4': 1,
+      '5': 11,
+      '6': '.Protocol.C_SavePlace',
+      '9': 0,
+      '10': 'cSavePlace'
+    },
+    {
+      '1': 's_save_place',
+      '3': 149,
+      '4': 1,
+      '5': 11,
+      '6': '.Protocol.S_SavePlace',
+      '9': 0,
+      '10': 'sSavePlace'
+    },
+    {
+      '1': 'c_get_places',
+      '3': 150,
+      '4': 1,
+      '5': 11,
+      '6': '.Protocol.C_GetPlaces',
+      '9': 0,
+      '10': 'cGetPlaces'
+    },
+    {
+      '1': 's_get_places',
+      '3': 151,
+      '4': 1,
+      '5': 11,
+      '6': '.Protocol.S_GetPlaces',
+      '9': 0,
+      '10': 'sGetPlaces'
+    },
+    {
+      '1': 'c_save_visit',
+      '3': 152,
+      '4': 1,
+      '5': 11,
+      '6': '.Protocol.C_SaveVisit',
+      '9': 0,
+      '10': 'cSaveVisit'
+    },
+    {
+      '1': 's_save_visit',
+      '3': 153,
+      '4': 1,
+      '5': 11,
+      '6': '.Protocol.S_SaveVisit',
+      '9': 0,
+      '10': 'sSaveVisit'
+    },
+    {
+      '1': 'c_delete_place',
+      '3': 154,
+      '4': 1,
+      '5': 11,
+      '6': '.Protocol.C_DeletePlace',
+      '9': 0,
+      '10': 'cDeletePlace'
+    },
+    {
+      '1': 's_delete_place',
+      '3': 155,
+      '4': 1,
+      '5': 11,
+      '6': '.Protocol.S_DeletePlace',
+      '9': 0,
+      '10': 'sDeletePlace'
+    },
+    {
+      '1': 'c_update_visit',
+      '3': 156,
+      '4': 1,
+      '5': 11,
+      '6': '.Protocol.C_UpdateVisit',
+      '9': 0,
+      '10': 'cUpdateVisit'
+    },
+    {
+      '1': 's_update_visit',
+      '3': 157,
+      '4': 1,
+      '5': 11,
+      '6': '.Protocol.S_UpdateVisit',
+      '9': 0,
+      '10': 'sUpdateVisit'
+    },
+    {
+      '1': 'c_delete_visit',
+      '3': 158,
+      '4': 1,
+      '5': 11,
+      '6': '.Protocol.C_DeleteVisit',
+      '9': 0,
+      '10': 'cDeleteVisit'
+    },
+    {
+      '1': 's_delete_visit',
+      '3': 159,
+      '4': 1,
+      '5': 11,
+      '6': '.Protocol.S_DeleteVisit',
+      '9': 0,
+      '10': 'sDeleteVisit'
+    },
+    {
       '1': 'c_create_group',
       '3': 80,
       '4': 1,
@@ -1180,33 +1468,73 @@ final $typed_data.Uint8List envelopeDescriptor = $convert.base64Decode(
     'aWFsTG9naW5IAFIMY1NvY2lhbExvZ2luEj8KDnNfc29jaWFsX2xvZ2luGHQgASgLMhcuUHJvdG'
     '9jb2wuU19Tb2NpYWxMb2dpbkgAUgxzU29jaWFsTG9naW4SWwoYY19jb21wbGV0ZV9zb2NpYWxf'
     'c2lnbnVwGHUgASgLMiAuUHJvdG9jb2wuQ19Db21wbGV0ZVNvY2lhbFNpZ251cEgAUhVjQ29tcG'
-    'xldGVTb2NpYWxTaWdudXASPwoOY19jcmVhdGVfZ3JvdXAYUCABKAsyFy5Qcm90b2NvbC5DX0Ny'
-    'ZWF0ZUdyb3VwSABSDGNDcmVhdGVHcm91cBI/Cg5zX2NyZWF0ZV9ncm91cBhRIAEoCzIXLlByb3'
-    'RvY29sLlNfQ3JlYXRlR3JvdXBIAFIMc0NyZWF0ZUdyb3VwEjkKDGNfZ3JvdXBfbGlzdBhSIAEo'
-    'CzIVLlByb3RvY29sLkNfR3JvdXBMaXN0SABSCmNHcm91cExpc3QSOQoMc19ncm91cF9saXN0GF'
-    'MgASgLMhUuUHJvdG9jb2wuU19Hcm91cExpc3RIAFIKc0dyb3VwTGlzdBI5CgxjX2pvaW5fZ3Jv'
-    'dXAYVCABKAsyFS5Qcm90b2NvbC5DX0pvaW5Hcm91cEgAUgpjSm9pbkdyb3VwEjkKDHNfam9pbl'
-    '9ncm91cBhVIAEoCzIVLlByb3RvY29sLlNfSm9pbkdyb3VwSABSCnNKb2luR3JvdXASQgoPY19p'
-    'bnZpdGVfZnJpZW5kGFYgASgLMhguUHJvdG9jb2wuQ19JbnZpdGVGcmllbmRIAFINY0ludml0ZU'
-    'ZyaWVuZBJCCg9zX2ludml0ZV9mcmllbmQYVyABKAsyGC5Qcm90b2NvbC5TX0ludml0ZUZyaWVu'
-    'ZEgAUg1zSW52aXRlRnJpZW5kEjwKDWNfbGVhdmVfZ3JvdXAYWCABKAsyFi5Qcm90b2NvbC5DX0'
-    'xlYXZlR3JvdXBIAFILY0xlYXZlR3JvdXASPAoNc19sZWF2ZV9ncm91cBhZIAEoCzIWLlByb3Rv'
-    'Y29sLlNfTGVhdmVHcm91cEgAUgtzTGVhdmVHcm91cBJMChNjX2dyb3VwX21lbWJlcl9saXN0GF'
-    'ogASgLMhsuUHJvdG9jb2wuQ19Hcm91cE1lbWJlckxpc3RIAFIQY0dyb3VwTWVtYmVyTGlzdBJM'
-    'ChNzX2dyb3VwX21lbWJlcl9saXN0GFsgASgLMhsuUHJvdG9jb2wuU19Hcm91cE1lbWJlckxpc3'
-    'RIAFIQc0dyb3VwTWVtYmVyTGlzdBI5CgxjX2dyb3VwX2luZm8YXCABKAsyFS5Qcm90b2NvbC5D'
-    'X0dyb3VwSW5mb0gAUgpjR3JvdXBJbmZvEjkKDHNfZ3JvdXBfaW5mbxhdIAEoCzIVLlByb3RvY2'
-    '9sLlNfR3JvdXBJbmZvSABSCnNHcm91cEluZm8SOQoMY19lZGl0X2dyb3VwGF4gASgLMhUuUHJv'
-    'dG9jb2wuQ19FZGl0R3JvdXBIAFIKY0VkaXRHcm91cBI5CgxzX2VkaXRfZ3JvdXAYXyABKAsyFS'
-    '5Qcm90b2NvbC5TX0VkaXRHcm91cEgAUgpzRWRpdEdyb3VwEjUKCmNfd2l0aGRyYXcYYCABKAsy'
-    'FC5Qcm90b2NvbC5DX1dpdGhkcmF3SABSCWNXaXRoZHJhdxI1CgpzX3dpdGhkcmF3GGEgASgLMh'
-    'QuUHJvdG9jb2wuU19XaXRoZHJhd0gAUglzV2l0aGRyYXcSPwoOY19kZWxldGVfZ3JvdXAYYiAB'
-    'KAsyFy5Qcm90b2NvbC5DX0RlbGV0ZUdyb3VwSABSDGNEZWxldGVHcm91cBI/Cg5zX2RlbGV0ZV'
-    '9ncm91cBhjIAEoCzIXLlByb3RvY29sLlNfRGVsZXRlR3JvdXBIAFIMc0RlbGV0ZUdyb3VwEiwK'
-    'B3NfZXJyb3IYZCABKAsyES5Qcm90b2NvbC5TX0Vycm9ySABSBnNFcnJvchI4CgtjX2hlYXJ0Ym'
-    'VhdBhlIAEoCzIVLlByb3RvY29sLkNfSGVhcnRiZWF0SABSCmNIZWFydGJlYXQSOAoLc19oZWFy'
-    'dGJlYXQYZiABKAsyFS5Qcm90b2NvbC5TX0hlYXJ0YmVhdEgAUgpzSGVhcnRiZWF0QgkKB3BheW'
-    'xvYWQ=');
+    'xldGVTb2NpYWxTaWdudXASPwoOY19jcmVhdGVfYWxidW0YeCABKAsyFy5Qcm90b2NvbC5DX0Ny'
+    'ZWF0ZUFsYnVtSABSDGNDcmVhdGVBbGJ1bRI/Cg5zX2NyZWF0ZV9hbGJ1bRh5IAEoCzIXLlByb3'
+    'RvY29sLlNfQ3JlYXRlQWxidW1IAFIMc0NyZWF0ZUFsYnVtEjkKDGNfZ2V0X2FsYnVtcxh6IAEo'
+    'CzIVLlByb3RvY29sLkNfR2V0QWxidW1zSABSCmNHZXRBbGJ1bXMSOQoMc19nZXRfYWxidW1zGH'
+    'sgASgLMhUuUHJvdG9jb2wuU19HZXRBbGJ1bXNIAFIKc0dldEFsYnVtcxJNChRjX2FkZF9waG90'
+    'b190b19hbGJ1bRh8IAEoCzIbLlByb3RvY29sLkNfQWRkUGhvdG9Ub0FsYnVtSABSEGNBZGRQaG'
+    '90b1RvQWxidW0STQoUc19hZGRfcGhvdG9fdG9fYWxidW0YfSABKAsyGy5Qcm90b2NvbC5TX0Fk'
+    'ZFBob3RvVG9BbGJ1bUgAUhBzQWRkUGhvdG9Ub0FsYnVtEkkKEmNfZ2V0X2FsYnVtX3Bob3Rvcx'
+    'h+IAEoCzIaLlByb3RvY29sLkNfR2V0QWxidW1QaG90b3NIAFIPY0dldEFsYnVtUGhvdG9zEkkK'
+    'EnNfZ2V0X2FsYnVtX3Bob3Rvcxh/IAEoCzIaLlByb3RvY29sLlNfR2V0QWxidW1QaG90b3NIAF'
+    'IPc0dldEFsYnVtUGhvdG9zEk0KE2NfYWRkX3Bob3RvX2NvbW1lbnQYgAEgASgLMhsuUHJvdG9j'
+    'b2wuQ19BZGRQaG90b0NvbW1lbnRIAFIQY0FkZFBob3RvQ29tbWVudBJNChNzX2FkZF9waG90b1'
+    '9jb21tZW50GIEBIAEoCzIbLlByb3RvY29sLlNfQWRkUGhvdG9Db21tZW50SABSEHNBZGRQaG90'
+    'b0NvbW1lbnQSUAoUY19nZXRfcGhvdG9fY29tbWVudHMYggEgASgLMhwuUHJvdG9jb2wuQ19HZX'
+    'RQaG90b0NvbW1lbnRzSABSEWNHZXRQaG90b0NvbW1lbnRzElAKFHNfZ2V0X3Bob3RvX2NvbW1l'
+    'bnRzGIMBIAEoCzIcLlByb3RvY29sLlNfR2V0UGhvdG9Db21tZW50c0gAUhFzR2V0UGhvdG9Db2'
+    '1tZW50cxJACg5jX2RlbGV0ZV9hbGJ1bRiMASABKAsyFy5Qcm90b2NvbC5DX0RlbGV0ZUFsYnVt'
+    'SABSDGNEZWxldGVBbGJ1bRJACg5zX2RlbGV0ZV9hbGJ1bRiNASABKAsyFy5Qcm90b2NvbC5TX0'
+    'RlbGV0ZUFsYnVtSABSDHNEZWxldGVBbGJ1bRJQChRjX2RlbGV0ZV9hbGJ1bV9waG90bxiOASAB'
+    'KAsyHC5Qcm90b2NvbC5DX0RlbGV0ZUFsYnVtUGhvdG9IAFIRY0RlbGV0ZUFsYnVtUGhvdG8SUA'
+    'oUc19kZWxldGVfYWxidW1fcGhvdG8YjwEgASgLMhwuUHJvdG9jb2wuU19EZWxldGVBbGJ1bVBo'
+    'b3RvSABSEXNEZWxldGVBbGJ1bVBob3RvEjoKDGNfbW92ZV9waG90bxiQASABKAsyFS5Qcm90b2'
+    'NvbC5DX01vdmVQaG90b0gAUgpjTW92ZVBob3RvEjoKDHNfbW92ZV9waG90bxiRASABKAsyFS5Q'
+    'cm90b2NvbC5TX01vdmVQaG90b0gAUgpzTW92ZVBob3RvElYKFmNfZGVsZXRlX3Bob3RvX2NvbW'
+    '1lbnQYkgEgASgLMh4uUHJvdG9jb2wuQ19EZWxldGVQaG90b0NvbW1lbnRIAFITY0RlbGV0ZVBo'
+    'b3RvQ29tbWVudBJWChZzX2RlbGV0ZV9waG90b19jb21tZW50GJMBIAEoCzIeLlByb3RvY29sLl'
+    'NfRGVsZXRlUGhvdG9Db21tZW50SABSE3NEZWxldGVQaG90b0NvbW1lbnQSOgoMY19zYXZlX3Bs'
+    'YWNlGJQBIAEoCzIVLlByb3RvY29sLkNfU2F2ZVBsYWNlSABSCmNTYXZlUGxhY2USOgoMc19zYX'
+    'ZlX3BsYWNlGJUBIAEoCzIVLlByb3RvY29sLlNfU2F2ZVBsYWNlSABSCnNTYXZlUGxhY2USOgoM'
+    'Y19nZXRfcGxhY2VzGJYBIAEoCzIVLlByb3RvY29sLkNfR2V0UGxhY2VzSABSCmNHZXRQbGFjZX'
+    'MSOgoMc19nZXRfcGxhY2VzGJcBIAEoCzIVLlByb3RvY29sLlNfR2V0UGxhY2VzSABSCnNHZXRQ'
+    'bGFjZXMSOgoMY19zYXZlX3Zpc2l0GJgBIAEoCzIVLlByb3RvY29sLkNfU2F2ZVZpc2l0SABSCm'
+    'NTYXZlVmlzaXQSOgoMc19zYXZlX3Zpc2l0GJkBIAEoCzIVLlByb3RvY29sLlNfU2F2ZVZpc2l0'
+    'SABSCnNTYXZlVmlzaXQSQAoOY19kZWxldGVfcGxhY2UYmgEgASgLMhcuUHJvdG9jb2wuQ19EZW'
+    'xldGVQbGFjZUgAUgxjRGVsZXRlUGxhY2USQAoOc19kZWxldGVfcGxhY2UYmwEgASgLMhcuUHJv'
+    'dG9jb2wuU19EZWxldGVQbGFjZUgAUgxzRGVsZXRlUGxhY2USQAoOY191cGRhdGVfdmlzaXQYnA'
+    'EgASgLMhcuUHJvdG9jb2wuQ19VcGRhdGVWaXNpdEgAUgxjVXBkYXRlVmlzaXQSQAoOc191cGRh'
+    'dGVfdmlzaXQYnQEgASgLMhcuUHJvdG9jb2wuU19VcGRhdGVWaXNpdEgAUgxzVXBkYXRlVmlzaX'
+    'QSQAoOY19kZWxldGVfdmlzaXQYngEgASgLMhcuUHJvdG9jb2wuQ19EZWxldGVWaXNpdEgAUgxj'
+    'RGVsZXRlVmlzaXQSQAoOc19kZWxldGVfdmlzaXQYnwEgASgLMhcuUHJvdG9jb2wuU19EZWxldG'
+    'VWaXNpdEgAUgxzRGVsZXRlVmlzaXQSPwoOY19jcmVhdGVfZ3JvdXAYUCABKAsyFy5Qcm90b2Nv'
+    'bC5DX0NyZWF0ZUdyb3VwSABSDGNDcmVhdGVHcm91cBI/Cg5zX2NyZWF0ZV9ncm91cBhRIAEoCz'
+    'IXLlByb3RvY29sLlNfQ3JlYXRlR3JvdXBIAFIMc0NyZWF0ZUdyb3VwEjkKDGNfZ3JvdXBfbGlz'
+    'dBhSIAEoCzIVLlByb3RvY29sLkNfR3JvdXBMaXN0SABSCmNHcm91cExpc3QSOQoMc19ncm91cF'
+    '9saXN0GFMgASgLMhUuUHJvdG9jb2wuU19Hcm91cExpc3RIAFIKc0dyb3VwTGlzdBI5CgxjX2pv'
+    'aW5fZ3JvdXAYVCABKAsyFS5Qcm90b2NvbC5DX0pvaW5Hcm91cEgAUgpjSm9pbkdyb3VwEjkKDH'
+    'Nfam9pbl9ncm91cBhVIAEoCzIVLlByb3RvY29sLlNfSm9pbkdyb3VwSABSCnNKb2luR3JvdXAS'
+    'QgoPY19pbnZpdGVfZnJpZW5kGFYgASgLMhguUHJvdG9jb2wuQ19JbnZpdGVGcmllbmRIAFINY0'
+    'ludml0ZUZyaWVuZBJCCg9zX2ludml0ZV9mcmllbmQYVyABKAsyGC5Qcm90b2NvbC5TX0ludml0'
+    'ZUZyaWVuZEgAUg1zSW52aXRlRnJpZW5kEjwKDWNfbGVhdmVfZ3JvdXAYWCABKAsyFi5Qcm90b2'
+    'NvbC5DX0xlYXZlR3JvdXBIAFILY0xlYXZlR3JvdXASPAoNc19sZWF2ZV9ncm91cBhZIAEoCzIW'
+    'LlByb3RvY29sLlNfTGVhdmVHcm91cEgAUgtzTGVhdmVHcm91cBJMChNjX2dyb3VwX21lbWJlcl'
+    '9saXN0GFogASgLMhsuUHJvdG9jb2wuQ19Hcm91cE1lbWJlckxpc3RIAFIQY0dyb3VwTWVtYmVy'
+    'TGlzdBJMChNzX2dyb3VwX21lbWJlcl9saXN0GFsgASgLMhsuUHJvdG9jb2wuU19Hcm91cE1lbW'
+    'Jlckxpc3RIAFIQc0dyb3VwTWVtYmVyTGlzdBI5CgxjX2dyb3VwX2luZm8YXCABKAsyFS5Qcm90'
+    'b2NvbC5DX0dyb3VwSW5mb0gAUgpjR3JvdXBJbmZvEjkKDHNfZ3JvdXBfaW5mbxhdIAEoCzIVLl'
+    'Byb3RvY29sLlNfR3JvdXBJbmZvSABSCnNHcm91cEluZm8SOQoMY19lZGl0X2dyb3VwGF4gASgL'
+    'MhUuUHJvdG9jb2wuQ19FZGl0R3JvdXBIAFIKY0VkaXRHcm91cBI5CgxzX2VkaXRfZ3JvdXAYXy'
+    'ABKAsyFS5Qcm90b2NvbC5TX0VkaXRHcm91cEgAUgpzRWRpdEdyb3VwEjUKCmNfd2l0aGRyYXcY'
+    'YCABKAsyFC5Qcm90b2NvbC5DX1dpdGhkcmF3SABSCWNXaXRoZHJhdxI1CgpzX3dpdGhkcmF3GG'
+    'EgASgLMhQuUHJvdG9jb2wuU19XaXRoZHJhd0gAUglzV2l0aGRyYXcSPwoOY19kZWxldGVfZ3Jv'
+    'dXAYYiABKAsyFy5Qcm90b2NvbC5DX0RlbGV0ZUdyb3VwSABSDGNEZWxldGVHcm91cBI/Cg5zX2'
+    'RlbGV0ZV9ncm91cBhjIAEoCzIXLlByb3RvY29sLlNfRGVsZXRlR3JvdXBIAFIMc0RlbGV0ZUdy'
+    'b3VwEiwKB3NfZXJyb3IYZCABKAsyES5Qcm90b2NvbC5TX0Vycm9ySABSBnNFcnJvchI4CgtjX2'
+    'hlYXJ0YmVhdBhlIAEoCzIVLlByb3RvY29sLkNfSGVhcnRiZWF0SABSCmNIZWFydGJlYXQSOAoL'
+    'c19oZWFydGJlYXQYZiABKAsyFS5Qcm90b2NvbC5TX0hlYXJ0YmVhdEgAUgpzSGVhcnRiZWF0Qg'
+    'kKB3BheWxvYWQ=');
 
 @$core.Deprecated('Use userInfoDescriptor instead')
 const UserInfo$json = {
@@ -3419,6 +3747,806 @@ final $typed_data.Uint8List c_CompleteSocialSignupDescriptor = $convert.base64De
     'ChZDX0NvbXBsZXRlU29jaWFsU2lnbnVwEhoKCHByb3ZpZGVyGAEgASgJUghwcm92aWRlchIZCg'
     'hpZF90b2tlbhgCIAEoCVIHaWRUb2tlbhIXCgd1c2VyX2lkGAMgASgJUgZ1c2VySWQSEgoEbmFt'
     'ZRgEIAEoCVIEbmFtZQ==');
+
+@$core.Deprecated('Use albumDescriptor instead')
+const Album$json = {
+  '1': 'Album',
+  '2': [
+    {'1': 'id', '3': 1, '4': 1, '5': 9, '10': 'id'},
+    {'1': 'group_id', '3': 2, '4': 1, '5': 9, '10': 'groupId'},
+    {'1': 'name', '3': 3, '4': 1, '5': 9, '10': 'name'},
+    {'1': 'cover_photo_url', '3': 4, '4': 1, '5': 9, '10': 'coverPhotoUrl'},
+    {'1': 'created_by', '3': 5, '4': 1, '5': 9, '10': 'createdBy'},
+    {'1': 'created_at', '3': 6, '4': 1, '5': 3, '10': 'createdAt'},
+    {'1': 'photo_count', '3': 7, '4': 1, '5': 5, '10': 'photoCount'},
+  ],
+};
+
+/// Descriptor for `Album`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List albumDescriptor = $convert.base64Decode(
+    'CgVBbGJ1bRIOCgJpZBgBIAEoCVICaWQSGQoIZ3JvdXBfaWQYAiABKAlSB2dyb3VwSWQSEgoEbm'
+    'FtZRgDIAEoCVIEbmFtZRImCg9jb3Zlcl9waG90b191cmwYBCABKAlSDWNvdmVyUGhvdG9VcmwS'
+    'HQoKY3JlYXRlZF9ieRgFIAEoCVIJY3JlYXRlZEJ5Eh0KCmNyZWF0ZWRfYXQYBiABKANSCWNyZW'
+    'F0ZWRBdBIfCgtwaG90b19jb3VudBgHIAEoBVIKcGhvdG9Db3VudA==');
+
+@$core.Deprecated('Use albumPhotoDescriptor instead')
+const AlbumPhoto$json = {
+  '1': 'AlbumPhoto',
+  '2': [
+    {'1': 'id', '3': 1, '4': 1, '5': 9, '10': 'id'},
+    {'1': 'album_id', '3': 2, '4': 1, '5': 9, '10': 'albumId'},
+    {'1': 'group_id', '3': 3, '4': 1, '5': 9, '10': 'groupId'},
+    {'1': 'msg_seq', '3': 4, '4': 1, '5': 3, '10': 'msgSeq'},
+    {'1': 'photo_url', '3': 5, '4': 1, '5': 9, '10': 'photoUrl'},
+    {'1': 'thumbnail_url', '3': 6, '4': 1, '5': 9, '10': 'thumbnailUrl'},
+    {'1': 'uploader_id', '3': 7, '4': 1, '5': 9, '10': 'uploaderId'},
+    {'1': 'source', '3': 8, '4': 1, '5': 9, '10': 'source'},
+    {'1': 'uploaded_at', '3': 9, '4': 1, '5': 3, '10': 'uploadedAt'},
+  ],
+};
+
+/// Descriptor for `AlbumPhoto`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List albumPhotoDescriptor = $convert.base64Decode(
+    'CgpBbGJ1bVBob3RvEg4KAmlkGAEgASgJUgJpZBIZCghhbGJ1bV9pZBgCIAEoCVIHYWxidW1JZB'
+    'IZCghncm91cF9pZBgDIAEoCVIHZ3JvdXBJZBIXCgdtc2dfc2VxGAQgASgDUgZtc2dTZXESGwoJ'
+    'cGhvdG9fdXJsGAUgASgJUghwaG90b1VybBIjCg10aHVtYm5haWxfdXJsGAYgASgJUgx0aHVtYm'
+    '5haWxVcmwSHwoLdXBsb2FkZXJfaWQYByABKAlSCnVwbG9hZGVySWQSFgoGc291cmNlGAggASgJ'
+    'UgZzb3VyY2USHwoLdXBsb2FkZWRfYXQYCSABKANSCnVwbG9hZGVkQXQ=');
+
+@$core.Deprecated('Use photoCommentDescriptor instead')
+const PhotoComment$json = {
+  '1': 'PhotoComment',
+  '2': [
+    {'1': 'id', '3': 1, '4': 1, '5': 9, '10': 'id'},
+    {'1': 'photo_id', '3': 2, '4': 1, '5': 9, '10': 'photoId'},
+    {'1': 'sender_id', '3': 3, '4': 1, '5': 9, '10': 'senderId'},
+    {'1': 'sender_name', '3': 4, '4': 1, '5': 9, '10': 'senderName'},
+    {'1': 'text', '3': 5, '4': 1, '5': 9, '10': 'text'},
+    {'1': 'created_at', '3': 6, '4': 1, '5': 3, '10': 'createdAt'},
+  ],
+};
+
+/// Descriptor for `PhotoComment`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List photoCommentDescriptor = $convert.base64Decode(
+    'CgxQaG90b0NvbW1lbnQSDgoCaWQYASABKAlSAmlkEhkKCHBob3RvX2lkGAIgASgJUgdwaG90b0'
+    'lkEhsKCXNlbmRlcl9pZBgDIAEoCVIIc2VuZGVySWQSHwoLc2VuZGVyX25hbWUYBCABKAlSCnNl'
+    'bmRlck5hbWUSEgoEdGV4dBgFIAEoCVIEdGV4dBIdCgpjcmVhdGVkX2F0GAYgASgDUgljcmVhdG'
+    'VkQXQ=');
+
+@$core.Deprecated('Use c_CreateAlbumDescriptor instead')
+const C_CreateAlbum$json = {
+  '1': 'C_CreateAlbum',
+  '2': [
+    {'1': 'group_id', '3': 1, '4': 1, '5': 9, '10': 'groupId'},
+    {'1': 'name', '3': 2, '4': 1, '5': 9, '10': 'name'},
+    {'1': 'created_by', '3': 3, '4': 1, '5': 9, '10': 'createdBy'},
+  ],
+};
+
+/// Descriptor for `C_CreateAlbum`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List c_CreateAlbumDescriptor = $convert.base64Decode(
+    'Cg1DX0NyZWF0ZUFsYnVtEhkKCGdyb3VwX2lkGAEgASgJUgdncm91cElkEhIKBG5hbWUYAiABKA'
+    'lSBG5hbWUSHQoKY3JlYXRlZF9ieRgDIAEoCVIJY3JlYXRlZEJ5');
+
+@$core.Deprecated('Use s_CreateAlbumDescriptor instead')
+const S_CreateAlbum$json = {
+  '1': 'S_CreateAlbum',
+  '2': [
+    {'1': 'success', '3': 1, '4': 1, '5': 8, '10': 'success'},
+    {
+      '1': 'album',
+      '3': 2,
+      '4': 1,
+      '5': 11,
+      '6': '.Protocol.Album',
+      '10': 'album'
+    },
+    {'1': 'error', '3': 3, '4': 1, '5': 9, '10': 'error'},
+  ],
+};
+
+/// Descriptor for `S_CreateAlbum`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List s_CreateAlbumDescriptor = $convert.base64Decode(
+    'Cg1TX0NyZWF0ZUFsYnVtEhgKB3N1Y2Nlc3MYASABKAhSB3N1Y2Nlc3MSJQoFYWxidW0YAiABKA'
+    'syDy5Qcm90b2NvbC5BbGJ1bVIFYWxidW0SFAoFZXJyb3IYAyABKAlSBWVycm9y');
+
+@$core.Deprecated('Use c_GetAlbumsDescriptor instead')
+const C_GetAlbums$json = {
+  '1': 'C_GetAlbums',
+  '2': [
+    {'1': 'group_id', '3': 1, '4': 1, '5': 9, '10': 'groupId'},
+  ],
+};
+
+/// Descriptor for `C_GetAlbums`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List c_GetAlbumsDescriptor = $convert
+    .base64Decode('CgtDX0dldEFsYnVtcxIZCghncm91cF9pZBgBIAEoCVIHZ3JvdXBJZA==');
+
+@$core.Deprecated('Use s_GetAlbumsDescriptor instead')
+const S_GetAlbums$json = {
+  '1': 'S_GetAlbums',
+  '2': [
+    {
+      '1': 'albums',
+      '3': 1,
+      '4': 3,
+      '5': 11,
+      '6': '.Protocol.Album',
+      '10': 'albums'
+    },
+  ],
+};
+
+/// Descriptor for `S_GetAlbums`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List s_GetAlbumsDescriptor = $convert.base64Decode(
+    'CgtTX0dldEFsYnVtcxInCgZhbGJ1bXMYASADKAsyDy5Qcm90b2NvbC5BbGJ1bVIGYWxidW1z');
+
+@$core.Deprecated('Use c_AddPhotoToAlbumDescriptor instead')
+const C_AddPhotoToAlbum$json = {
+  '1': 'C_AddPhotoToAlbum',
+  '2': [
+    {'1': 'album_id', '3': 1, '4': 1, '5': 9, '10': 'albumId'},
+    {'1': 'group_id', '3': 2, '4': 1, '5': 9, '10': 'groupId'},
+    {'1': 'msg_seq', '3': 3, '4': 1, '5': 3, '10': 'msgSeq'},
+    {'1': 'photo_url', '3': 4, '4': 1, '5': 9, '10': 'photoUrl'},
+    {'1': 'thumbnail_url', '3': 5, '4': 1, '5': 9, '10': 'thumbnailUrl'},
+    {'1': 'uploader_id', '3': 6, '4': 1, '5': 9, '10': 'uploaderId'},
+  ],
+};
+
+/// Descriptor for `C_AddPhotoToAlbum`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List c_AddPhotoToAlbumDescriptor = $convert.base64Decode(
+    'ChFDX0FkZFBob3RvVG9BbGJ1bRIZCghhbGJ1bV9pZBgBIAEoCVIHYWxidW1JZBIZCghncm91cF'
+    '9pZBgCIAEoCVIHZ3JvdXBJZBIXCgdtc2dfc2VxGAMgASgDUgZtc2dTZXESGwoJcGhvdG9fdXJs'
+    'GAQgASgJUghwaG90b1VybBIjCg10aHVtYm5haWxfdXJsGAUgASgJUgx0aHVtYm5haWxVcmwSHw'
+    'oLdXBsb2FkZXJfaWQYBiABKAlSCnVwbG9hZGVySWQ=');
+
+@$core.Deprecated('Use s_AddPhotoToAlbumDescriptor instead')
+const S_AddPhotoToAlbum$json = {
+  '1': 'S_AddPhotoToAlbum',
+  '2': [
+    {'1': 'success', '3': 1, '4': 1, '5': 8, '10': 'success'},
+    {'1': 'album_id', '3': 2, '4': 1, '5': 9, '10': 'albumId'},
+    {
+      '1': 'photo',
+      '3': 3,
+      '4': 1,
+      '5': 11,
+      '6': '.Protocol.AlbumPhoto',
+      '10': 'photo'
+    },
+    {'1': 'error', '3': 4, '4': 1, '5': 9, '10': 'error'},
+    {
+      '1': 'album',
+      '3': 5,
+      '4': 1,
+      '5': 11,
+      '6': '.Protocol.Album',
+      '10': 'album'
+    },
+  ],
+};
+
+/// Descriptor for `S_AddPhotoToAlbum`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List s_AddPhotoToAlbumDescriptor = $convert.base64Decode(
+    'ChFTX0FkZFBob3RvVG9BbGJ1bRIYCgdzdWNjZXNzGAEgASgIUgdzdWNjZXNzEhkKCGFsYnVtX2'
+    'lkGAIgASgJUgdhbGJ1bUlkEioKBXBob3RvGAMgASgLMhQuUHJvdG9jb2wuQWxidW1QaG90b1IF'
+    'cGhvdG8SFAoFZXJyb3IYBCABKAlSBWVycm9yEiUKBWFsYnVtGAUgASgLMg8uUHJvdG9jb2wuQW'
+    'xidW1SBWFsYnVt');
+
+@$core.Deprecated('Use c_GetAlbumPhotosDescriptor instead')
+const C_GetAlbumPhotos$json = {
+  '1': 'C_GetAlbumPhotos',
+  '2': [
+    {'1': 'album_id', '3': 1, '4': 1, '5': 9, '10': 'albumId'},
+    {'1': 'latest_first', '3': 2, '4': 1, '5': 8, '10': 'latestFirst'},
+  ],
+};
+
+/// Descriptor for `C_GetAlbumPhotos`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List c_GetAlbumPhotosDescriptor = $convert.base64Decode(
+    'ChBDX0dldEFsYnVtUGhvdG9zEhkKCGFsYnVtX2lkGAEgASgJUgdhbGJ1bUlkEiEKDGxhdGVzdF'
+    '9maXJzdBgCIAEoCFILbGF0ZXN0Rmlyc3Q=');
+
+@$core.Deprecated('Use s_GetAlbumPhotosDescriptor instead')
+const S_GetAlbumPhotos$json = {
+  '1': 'S_GetAlbumPhotos',
+  '2': [
+    {'1': 'album_id', '3': 1, '4': 1, '5': 9, '10': 'albumId'},
+    {
+      '1': 'photos',
+      '3': 2,
+      '4': 3,
+      '5': 11,
+      '6': '.Protocol.AlbumPhoto',
+      '10': 'photos'
+    },
+  ],
+};
+
+/// Descriptor for `S_GetAlbumPhotos`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List s_GetAlbumPhotosDescriptor = $convert.base64Decode(
+    'ChBTX0dldEFsYnVtUGhvdG9zEhkKCGFsYnVtX2lkGAEgASgJUgdhbGJ1bUlkEiwKBnBob3Rvcx'
+    'gCIAMoCzIULlByb3RvY29sLkFsYnVtUGhvdG9SBnBob3Rvcw==');
+
+@$core.Deprecated('Use c_DeleteAlbumDescriptor instead')
+const C_DeleteAlbum$json = {
+  '1': 'C_DeleteAlbum',
+  '2': [
+    {'1': 'album_id', '3': 1, '4': 1, '5': 9, '10': 'albumId'},
+    {'1': 'user_id', '3': 2, '4': 1, '5': 9, '10': 'userId'},
+    {'1': 'group_id', '3': 3, '4': 1, '5': 9, '10': 'groupId'},
+  ],
+};
+
+/// Descriptor for `C_DeleteAlbum`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List c_DeleteAlbumDescriptor = $convert.base64Decode(
+    'Cg1DX0RlbGV0ZUFsYnVtEhkKCGFsYnVtX2lkGAEgASgJUgdhbGJ1bUlkEhcKB3VzZXJfaWQYAi'
+    'ABKAlSBnVzZXJJZBIZCghncm91cF9pZBgDIAEoCVIHZ3JvdXBJZA==');
+
+@$core.Deprecated('Use s_DeleteAlbumDescriptor instead')
+const S_DeleteAlbum$json = {
+  '1': 'S_DeleteAlbum',
+  '2': [
+    {'1': 'success', '3': 1, '4': 1, '5': 8, '10': 'success'},
+    {'1': 'album_id', '3': 2, '4': 1, '5': 9, '10': 'albumId'},
+    {'1': 'group_id', '3': 3, '4': 1, '5': 9, '10': 'groupId'},
+    {'1': 'error', '3': 4, '4': 1, '5': 9, '10': 'error'},
+  ],
+};
+
+/// Descriptor for `S_DeleteAlbum`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List s_DeleteAlbumDescriptor = $convert.base64Decode(
+    'Cg1TX0RlbGV0ZUFsYnVtEhgKB3N1Y2Nlc3MYASABKAhSB3N1Y2Nlc3MSGQoIYWxidW1faWQYAi'
+    'ABKAlSB2FsYnVtSWQSGQoIZ3JvdXBfaWQYAyABKAlSB2dyb3VwSWQSFAoFZXJyb3IYBCABKAlS'
+    'BWVycm9y');
+
+@$core.Deprecated('Use c_DeleteAlbumPhotoDescriptor instead')
+const C_DeleteAlbumPhoto$json = {
+  '1': 'C_DeleteAlbumPhoto',
+  '2': [
+    {'1': 'photo_id', '3': 1, '4': 1, '5': 9, '10': 'photoId'},
+    {'1': 'user_id', '3': 2, '4': 1, '5': 9, '10': 'userId'},
+    {'1': 'album_id', '3': 3, '4': 1, '5': 9, '10': 'albumId'},
+    {'1': 'group_id', '3': 4, '4': 1, '5': 9, '10': 'groupId'},
+  ],
+};
+
+/// Descriptor for `C_DeleteAlbumPhoto`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List c_DeleteAlbumPhotoDescriptor = $convert.base64Decode(
+    'ChJDX0RlbGV0ZUFsYnVtUGhvdG8SGQoIcGhvdG9faWQYASABKAlSB3Bob3RvSWQSFwoHdXNlcl'
+    '9pZBgCIAEoCVIGdXNlcklkEhkKCGFsYnVtX2lkGAMgASgJUgdhbGJ1bUlkEhkKCGdyb3VwX2lk'
+    'GAQgASgJUgdncm91cElk');
+
+@$core.Deprecated('Use s_DeleteAlbumPhotoDescriptor instead')
+const S_DeleteAlbumPhoto$json = {
+  '1': 'S_DeleteAlbumPhoto',
+  '2': [
+    {'1': 'success', '3': 1, '4': 1, '5': 8, '10': 'success'},
+    {'1': 'photo_id', '3': 2, '4': 1, '5': 9, '10': 'photoId'},
+    {'1': 'album_id', '3': 3, '4': 1, '5': 9, '10': 'albumId'},
+    {'1': 'group_id', '3': 4, '4': 1, '5': 9, '10': 'groupId'},
+    {'1': 'error', '3': 5, '4': 1, '5': 9, '10': 'error'},
+    {
+      '1': 'album',
+      '3': 6,
+      '4': 1,
+      '5': 11,
+      '6': '.Protocol.Album',
+      '10': 'album'
+    },
+  ],
+};
+
+/// Descriptor for `S_DeleteAlbumPhoto`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List s_DeleteAlbumPhotoDescriptor = $convert.base64Decode(
+    'ChJTX0RlbGV0ZUFsYnVtUGhvdG8SGAoHc3VjY2VzcxgBIAEoCFIHc3VjY2VzcxIZCghwaG90b1'
+    '9pZBgCIAEoCVIHcGhvdG9JZBIZCghhbGJ1bV9pZBgDIAEoCVIHYWxidW1JZBIZCghncm91cF9p'
+    'ZBgEIAEoCVIHZ3JvdXBJZBIUCgVlcnJvchgFIAEoCVIFZXJyb3ISJQoFYWxidW0YBiABKAsyDy'
+    '5Qcm90b2NvbC5BbGJ1bVIFYWxidW0=');
+
+@$core.Deprecated('Use c_MovePhotoDescriptor instead')
+const C_MovePhoto$json = {
+  '1': 'C_MovePhoto',
+  '2': [
+    {'1': 'photo_id', '3': 1, '4': 1, '5': 9, '10': 'photoId'},
+    {'1': 'from_album_id', '3': 2, '4': 1, '5': 9, '10': 'fromAlbumId'},
+    {'1': 'to_album_id', '3': 3, '4': 1, '5': 9, '10': 'toAlbumId'},
+    {'1': 'group_id', '3': 4, '4': 1, '5': 9, '10': 'groupId'},
+    {'1': 'user_id', '3': 5, '4': 1, '5': 9, '10': 'userId'},
+  ],
+};
+
+/// Descriptor for `C_MovePhoto`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List c_MovePhotoDescriptor = $convert.base64Decode(
+    'CgtDX01vdmVQaG90bxIZCghwaG90b19pZBgBIAEoCVIHcGhvdG9JZBIiCg1mcm9tX2FsYnVtX2'
+    'lkGAIgASgJUgtmcm9tQWxidW1JZBIeCgt0b19hbGJ1bV9pZBgDIAEoCVIJdG9BbGJ1bUlkEhkK'
+    'CGdyb3VwX2lkGAQgASgJUgdncm91cElkEhcKB3VzZXJfaWQYBSABKAlSBnVzZXJJZA==');
+
+@$core.Deprecated('Use s_MovePhotoDescriptor instead')
+const S_MovePhoto$json = {
+  '1': 'S_MovePhoto',
+  '2': [
+    {'1': 'success', '3': 1, '4': 1, '5': 8, '10': 'success'},
+    {'1': 'photo_id', '3': 2, '4': 1, '5': 9, '10': 'photoId'},
+    {'1': 'from_album_id', '3': 3, '4': 1, '5': 9, '10': 'fromAlbumId'},
+    {'1': 'to_album_id', '3': 4, '4': 1, '5': 9, '10': 'toAlbumId'},
+    {'1': 'group_id', '3': 5, '4': 1, '5': 9, '10': 'groupId'},
+    {'1': 'error', '3': 6, '4': 1, '5': 9, '10': 'error'},
+    {
+      '1': 'from_album',
+      '3': 7,
+      '4': 1,
+      '5': 11,
+      '6': '.Protocol.Album',
+      '10': 'fromAlbum'
+    },
+    {
+      '1': 'to_album',
+      '3': 8,
+      '4': 1,
+      '5': 11,
+      '6': '.Protocol.Album',
+      '10': 'toAlbum'
+    },
+  ],
+};
+
+/// Descriptor for `S_MovePhoto`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List s_MovePhotoDescriptor = $convert.base64Decode(
+    'CgtTX01vdmVQaG90bxIYCgdzdWNjZXNzGAEgASgIUgdzdWNjZXNzEhkKCHBob3RvX2lkGAIgAS'
+    'gJUgdwaG90b0lkEiIKDWZyb21fYWxidW1faWQYAyABKAlSC2Zyb21BbGJ1bUlkEh4KC3RvX2Fs'
+    'YnVtX2lkGAQgASgJUgl0b0FsYnVtSWQSGQoIZ3JvdXBfaWQYBSABKAlSB2dyb3VwSWQSFAoFZX'
+    'Jyb3IYBiABKAlSBWVycm9yEi4KCmZyb21fYWxidW0YByABKAsyDy5Qcm90b2NvbC5BbGJ1bVIJ'
+    'ZnJvbUFsYnVtEioKCHRvX2FsYnVtGAggASgLMg8uUHJvdG9jb2wuQWxidW1SB3RvQWxidW0=');
+
+@$core.Deprecated('Use c_AddPhotoCommentDescriptor instead')
+const C_AddPhotoComment$json = {
+  '1': 'C_AddPhotoComment',
+  '2': [
+    {'1': 'photo_id', '3': 1, '4': 1, '5': 9, '10': 'photoId'},
+    {'1': 'sender_id', '3': 2, '4': 1, '5': 9, '10': 'senderId'},
+    {'1': 'sender_name', '3': 3, '4': 1, '5': 9, '10': 'senderName'},
+    {'1': 'text', '3': 4, '4': 1, '5': 9, '10': 'text'},
+    {'1': 'group_id', '3': 5, '4': 1, '5': 9, '10': 'groupId'},
+  ],
+};
+
+/// Descriptor for `C_AddPhotoComment`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List c_AddPhotoCommentDescriptor = $convert.base64Decode(
+    'ChFDX0FkZFBob3RvQ29tbWVudBIZCghwaG90b19pZBgBIAEoCVIHcGhvdG9JZBIbCglzZW5kZX'
+    'JfaWQYAiABKAlSCHNlbmRlcklkEh8KC3NlbmRlcl9uYW1lGAMgASgJUgpzZW5kZXJOYW1lEhIK'
+    'BHRleHQYBCABKAlSBHRleHQSGQoIZ3JvdXBfaWQYBSABKAlSB2dyb3VwSWQ=');
+
+@$core.Deprecated('Use s_AddPhotoCommentDescriptor instead')
+const S_AddPhotoComment$json = {
+  '1': 'S_AddPhotoComment',
+  '2': [
+    {'1': 'success', '3': 1, '4': 1, '5': 8, '10': 'success'},
+    {
+      '1': 'comment',
+      '3': 2,
+      '4': 1,
+      '5': 11,
+      '6': '.Protocol.PhotoComment',
+      '10': 'comment'
+    },
+    {'1': 'error', '3': 3, '4': 1, '5': 9, '10': 'error'},
+  ],
+};
+
+/// Descriptor for `S_AddPhotoComment`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List s_AddPhotoCommentDescriptor = $convert.base64Decode(
+    'ChFTX0FkZFBob3RvQ29tbWVudBIYCgdzdWNjZXNzGAEgASgIUgdzdWNjZXNzEjAKB2NvbW1lbn'
+    'QYAiABKAsyFi5Qcm90b2NvbC5QaG90b0NvbW1lbnRSB2NvbW1lbnQSFAoFZXJyb3IYAyABKAlS'
+    'BWVycm9y');
+
+@$core.Deprecated('Use c_GetPhotoCommentsDescriptor instead')
+const C_GetPhotoComments$json = {
+  '1': 'C_GetPhotoComments',
+  '2': [
+    {'1': 'photo_id', '3': 1, '4': 1, '5': 9, '10': 'photoId'},
+  ],
+};
+
+/// Descriptor for `C_GetPhotoComments`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List c_GetPhotoCommentsDescriptor =
+    $convert.base64Decode(
+        'ChJDX0dldFBob3RvQ29tbWVudHMSGQoIcGhvdG9faWQYASABKAlSB3Bob3RvSWQ=');
+
+@$core.Deprecated('Use s_GetPhotoCommentsDescriptor instead')
+const S_GetPhotoComments$json = {
+  '1': 'S_GetPhotoComments',
+  '2': [
+    {'1': 'photo_id', '3': 1, '4': 1, '5': 9, '10': 'photoId'},
+    {
+      '1': 'comments',
+      '3': 2,
+      '4': 3,
+      '5': 11,
+      '6': '.Protocol.PhotoComment',
+      '10': 'comments'
+    },
+  ],
+};
+
+/// Descriptor for `S_GetPhotoComments`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List s_GetPhotoCommentsDescriptor = $convert.base64Decode(
+    'ChJTX0dldFBob3RvQ29tbWVudHMSGQoIcGhvdG9faWQYASABKAlSB3Bob3RvSWQSMgoIY29tbW'
+    'VudHMYAiADKAsyFi5Qcm90b2NvbC5QaG90b0NvbW1lbnRSCGNvbW1lbnRz');
+
+@$core.Deprecated('Use c_DeletePhotoCommentDescriptor instead')
+const C_DeletePhotoComment$json = {
+  '1': 'C_DeletePhotoComment',
+  '2': [
+    {'1': 'comment_id', '3': 1, '4': 1, '5': 9, '10': 'commentId'},
+    {'1': 'user_id', '3': 2, '4': 1, '5': 9, '10': 'userId'},
+    {'1': 'group_id', '3': 3, '4': 1, '5': 9, '10': 'groupId'},
+    {'1': 'photo_id', '3': 4, '4': 1, '5': 9, '10': 'photoId'},
+  ],
+};
+
+/// Descriptor for `C_DeletePhotoComment`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List c_DeletePhotoCommentDescriptor = $convert.base64Decode(
+    'ChRDX0RlbGV0ZVBob3RvQ29tbWVudBIdCgpjb21tZW50X2lkGAEgASgJUgljb21tZW50SWQSFw'
+    'oHdXNlcl9pZBgCIAEoCVIGdXNlcklkEhkKCGdyb3VwX2lkGAMgASgJUgdncm91cElkEhkKCHBo'
+    'b3RvX2lkGAQgASgJUgdwaG90b0lk');
+
+@$core.Deprecated('Use s_DeletePhotoCommentDescriptor instead')
+const S_DeletePhotoComment$json = {
+  '1': 'S_DeletePhotoComment',
+  '2': [
+    {'1': 'success', '3': 1, '4': 1, '5': 8, '10': 'success'},
+    {'1': 'comment_id', '3': 2, '4': 1, '5': 9, '10': 'commentId'},
+    {'1': 'photo_id', '3': 3, '4': 1, '5': 9, '10': 'photoId'},
+    {'1': 'group_id', '3': 4, '4': 1, '5': 9, '10': 'groupId'},
+    {'1': 'error', '3': 5, '4': 1, '5': 9, '10': 'error'},
+  ],
+};
+
+/// Descriptor for `S_DeletePhotoComment`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List s_DeletePhotoCommentDescriptor = $convert.base64Decode(
+    'ChRTX0RlbGV0ZVBob3RvQ29tbWVudBIYCgdzdWNjZXNzGAEgASgIUgdzdWNjZXNzEh0KCmNvbW'
+    '1lbnRfaWQYAiABKAlSCWNvbW1lbnRJZBIZCghwaG90b19pZBgDIAEoCVIHcGhvdG9JZBIZCghn'
+    'cm91cF9pZBgEIAEoCVIHZ3JvdXBJZBIUCgVlcnJvchgFIAEoCVIFZXJyb3I=');
+
+@$core.Deprecated('Use locationPhotoDescriptor instead')
+const LocationPhoto$json = {
+  '1': 'LocationPhoto',
+  '2': [
+    {'1': 'id', '3': 1, '4': 1, '5': 9, '10': 'id'},
+    {'1': 'photo_url', '3': 2, '4': 1, '5': 9, '10': 'photoUrl'},
+  ],
+};
+
+/// Descriptor for `LocationPhoto`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List locationPhotoDescriptor = $convert.base64Decode(
+    'Cg1Mb2NhdGlvblBob3RvEg4KAmlkGAEgASgJUgJpZBIbCglwaG90b191cmwYAiABKAlSCHBob3'
+    'RvVXJs');
+
+@$core.Deprecated('Use locationVisitInfoDescriptor instead')
+const LocationVisitInfo$json = {
+  '1': 'LocationVisitInfo',
+  '2': [
+    {'1': 'id', '3': 1, '4': 1, '5': 9, '10': 'id'},
+    {'1': 'user_id', '3': 2, '4': 1, '5': 9, '10': 'userId'},
+    {'1': 'user_name', '3': 3, '4': 1, '5': 9, '10': 'userName'},
+    {'1': 'rating', '3': 4, '4': 1, '5': 5, '10': 'rating'},
+    {'1': 'review', '3': 5, '4': 1, '5': 9, '10': 'review'},
+    {'1': 'visited_at', '3': 6, '4': 1, '5': 3, '10': 'visitedAt'},
+    {
+      '1': 'photos',
+      '3': 7,
+      '4': 3,
+      '5': 11,
+      '6': '.Protocol.LocationPhoto',
+      '10': 'photos'
+    },
+  ],
+};
+
+/// Descriptor for `LocationVisitInfo`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List locationVisitInfoDescriptor = $convert.base64Decode(
+    'ChFMb2NhdGlvblZpc2l0SW5mbxIOCgJpZBgBIAEoCVICaWQSFwoHdXNlcl9pZBgCIAEoCVIGdX'
+    'NlcklkEhsKCXVzZXJfbmFtZRgDIAEoCVIIdXNlck5hbWUSFgoGcmF0aW5nGAQgASgFUgZyYXRp'
+    'bmcSFgoGcmV2aWV3GAUgASgJUgZyZXZpZXcSHQoKdmlzaXRlZF9hdBgGIAEoA1IJdmlzaXRlZE'
+    'F0Ei8KBnBob3RvcxgHIAMoCzIXLlByb3RvY29sLkxvY2F0aW9uUGhvdG9SBnBob3Rvcw==');
+
+@$core.Deprecated('Use locationPlaceInfoDescriptor instead')
+const LocationPlaceInfo$json = {
+  '1': 'LocationPlaceInfo',
+  '2': [
+    {'1': 'id', '3': 1, '4': 1, '5': 9, '10': 'id'},
+    {'1': 'group_id', '3': 2, '4': 1, '5': 9, '10': 'groupId'},
+    {'1': 'name', '3': 3, '4': 1, '5': 9, '10': 'name'},
+    {'1': 'address', '3': 4, '4': 1, '5': 9, '10': 'address'},
+    {'1': 'category', '3': 5, '4': 1, '5': 9, '10': 'category'},
+    {'1': 'lat', '3': 6, '4': 1, '5': 1, '10': 'lat'},
+    {'1': 'lng', '3': 7, '4': 1, '5': 1, '10': 'lng'},
+    {'1': 'created_by', '3': 8, '4': 1, '5': 9, '10': 'createdBy'},
+    {'1': 'created_at', '3': 9, '4': 1, '5': 3, '10': 'createdAt'},
+    {'1': 'visit_count', '3': 10, '4': 1, '5': 5, '10': 'visitCount'},
+    {'1': 'avg_rating', '3': 11, '4': 1, '5': 2, '10': 'avgRating'},
+    {'1': 'recent_photo_url', '3': 12, '4': 1, '5': 9, '10': 'recentPhotoUrl'},
+    {
+      '1': 'visits',
+      '3': 13,
+      '4': 3,
+      '5': 11,
+      '6': '.Protocol.LocationVisitInfo',
+      '10': 'visits'
+    },
+  ],
+};
+
+/// Descriptor for `LocationPlaceInfo`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List locationPlaceInfoDescriptor = $convert.base64Decode(
+    'ChFMb2NhdGlvblBsYWNlSW5mbxIOCgJpZBgBIAEoCVICaWQSGQoIZ3JvdXBfaWQYAiABKAlSB2'
+    'dyb3VwSWQSEgoEbmFtZRgDIAEoCVIEbmFtZRIYCgdhZGRyZXNzGAQgASgJUgdhZGRyZXNzEhoK'
+    'CGNhdGVnb3J5GAUgASgJUghjYXRlZ29yeRIQCgNsYXQYBiABKAFSA2xhdBIQCgNsbmcYByABKA'
+    'FSA2xuZxIdCgpjcmVhdGVkX2J5GAggASgJUgljcmVhdGVkQnkSHQoKY3JlYXRlZF9hdBgJIAEo'
+    'A1IJY3JlYXRlZEF0Eh8KC3Zpc2l0X2NvdW50GAogASgFUgp2aXNpdENvdW50Eh0KCmF2Z19yYX'
+    'RpbmcYCyABKAJSCWF2Z1JhdGluZxIoChByZWNlbnRfcGhvdG9fdXJsGAwgASgJUg5yZWNlbnRQ'
+    'aG90b1VybBIzCgZ2aXNpdHMYDSADKAsyGy5Qcm90b2NvbC5Mb2NhdGlvblZpc2l0SW5mb1IGdm'
+    'lzaXRz');
+
+@$core.Deprecated('Use c_SavePlaceDescriptor instead')
+const C_SavePlace$json = {
+  '1': 'C_SavePlace',
+  '2': [
+    {'1': 'group_id', '3': 1, '4': 1, '5': 9, '10': 'groupId'},
+    {'1': 'name', '3': 2, '4': 1, '5': 9, '10': 'name'},
+    {'1': 'address', '3': 3, '4': 1, '5': 9, '10': 'address'},
+    {'1': 'category', '3': 4, '4': 1, '5': 9, '10': 'category'},
+    {'1': 'lat', '3': 5, '4': 1, '5': 1, '10': 'lat'},
+    {'1': 'lng', '3': 6, '4': 1, '5': 1, '10': 'lng'},
+    {'1': 'user_id', '3': 7, '4': 1, '5': 9, '10': 'userId'},
+    {'1': 'user_name', '3': 8, '4': 1, '5': 9, '10': 'userName'},
+  ],
+};
+
+/// Descriptor for `C_SavePlace`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List c_SavePlaceDescriptor = $convert.base64Decode(
+    'CgtDX1NhdmVQbGFjZRIZCghncm91cF9pZBgBIAEoCVIHZ3JvdXBJZBISCgRuYW1lGAIgASgJUg'
+    'RuYW1lEhgKB2FkZHJlc3MYAyABKAlSB2FkZHJlc3MSGgoIY2F0ZWdvcnkYBCABKAlSCGNhdGVn'
+    'b3J5EhAKA2xhdBgFIAEoAVIDbGF0EhAKA2xuZxgGIAEoAVIDbG5nEhcKB3VzZXJfaWQYByABKA'
+    'lSBnVzZXJJZBIbCgl1c2VyX25hbWUYCCABKAlSCHVzZXJOYW1l');
+
+@$core.Deprecated('Use s_SavePlaceDescriptor instead')
+const S_SavePlace$json = {
+  '1': 'S_SavePlace',
+  '2': [
+    {'1': 'success', '3': 1, '4': 1, '5': 8, '10': 'success'},
+    {
+      '1': 'place',
+      '3': 2,
+      '4': 1,
+      '5': 11,
+      '6': '.Protocol.LocationPlaceInfo',
+      '10': 'place'
+    },
+    {'1': 'error_code', '3': 3, '4': 1, '5': 5, '10': 'errorCode'},
+  ],
+};
+
+/// Descriptor for `S_SavePlace`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List s_SavePlaceDescriptor = $convert.base64Decode(
+    'CgtTX1NhdmVQbGFjZRIYCgdzdWNjZXNzGAEgASgIUgdzdWNjZXNzEjEKBXBsYWNlGAIgASgLMh'
+    'suUHJvdG9jb2wuTG9jYXRpb25QbGFjZUluZm9SBXBsYWNlEh0KCmVycm9yX2NvZGUYAyABKAVS'
+    'CWVycm9yQ29kZQ==');
+
+@$core.Deprecated('Use c_GetPlacesDescriptor instead')
+const C_GetPlaces$json = {
+  '1': 'C_GetPlaces',
+  '2': [
+    {'1': 'group_id', '3': 1, '4': 1, '5': 9, '10': 'groupId'},
+  ],
+};
+
+/// Descriptor for `C_GetPlaces`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List c_GetPlacesDescriptor = $convert
+    .base64Decode('CgtDX0dldFBsYWNlcxIZCghncm91cF9pZBgBIAEoCVIHZ3JvdXBJZA==');
+
+@$core.Deprecated('Use s_GetPlacesDescriptor instead')
+const S_GetPlaces$json = {
+  '1': 'S_GetPlaces',
+  '2': [
+    {'1': 'group_id', '3': 1, '4': 1, '5': 9, '10': 'groupId'},
+    {
+      '1': 'places',
+      '3': 2,
+      '4': 3,
+      '5': 11,
+      '6': '.Protocol.LocationPlaceInfo',
+      '10': 'places'
+    },
+  ],
+};
+
+/// Descriptor for `S_GetPlaces`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List s_GetPlacesDescriptor = $convert.base64Decode(
+    'CgtTX0dldFBsYWNlcxIZCghncm91cF9pZBgBIAEoCVIHZ3JvdXBJZBIzCgZwbGFjZXMYAiADKA'
+    'syGy5Qcm90b2NvbC5Mb2NhdGlvblBsYWNlSW5mb1IGcGxhY2Vz');
+
+@$core.Deprecated('Use c_SaveVisitDescriptor instead')
+const C_SaveVisit$json = {
+  '1': 'C_SaveVisit',
+  '2': [
+    {'1': 'place_id', '3': 1, '4': 1, '5': 9, '10': 'placeId'},
+    {'1': 'group_id', '3': 2, '4': 1, '5': 9, '10': 'groupId'},
+    {'1': 'user_id', '3': 3, '4': 1, '5': 9, '10': 'userId'},
+    {'1': 'user_name', '3': 4, '4': 1, '5': 9, '10': 'userName'},
+    {'1': 'rating', '3': 5, '4': 1, '5': 5, '10': 'rating'},
+    {'1': 'review', '3': 6, '4': 1, '5': 9, '10': 'review'},
+    {'1': 'photo_urls', '3': 7, '4': 3, '5': 9, '10': 'photoUrls'},
+    {'1': 'visited_at', '3': 8, '4': 1, '5': 3, '10': 'visitedAt'},
+  ],
+};
+
+/// Descriptor for `C_SaveVisit`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List c_SaveVisitDescriptor = $convert.base64Decode(
+    'CgtDX1NhdmVWaXNpdBIZCghwbGFjZV9pZBgBIAEoCVIHcGxhY2VJZBIZCghncm91cF9pZBgCIA'
+    'EoCVIHZ3JvdXBJZBIXCgd1c2VyX2lkGAMgASgJUgZ1c2VySWQSGwoJdXNlcl9uYW1lGAQgASgJ'
+    'Ugh1c2VyTmFtZRIWCgZyYXRpbmcYBSABKAVSBnJhdGluZxIWCgZyZXZpZXcYBiABKAlSBnJldm'
+    'lldxIdCgpwaG90b191cmxzGAcgAygJUglwaG90b1VybHMSHQoKdmlzaXRlZF9hdBgIIAEoA1IJ'
+    'dmlzaXRlZEF0');
+
+@$core.Deprecated('Use s_SaveVisitDescriptor instead')
+const S_SaveVisit$json = {
+  '1': 'S_SaveVisit',
+  '2': [
+    {'1': 'success', '3': 1, '4': 1, '5': 8, '10': 'success'},
+    {'1': 'place_id', '3': 2, '4': 1, '5': 9, '10': 'placeId'},
+    {
+      '1': 'visit',
+      '3': 3,
+      '4': 1,
+      '5': 11,
+      '6': '.Protocol.LocationVisitInfo',
+      '10': 'visit'
+    },
+    {
+      '1': 'place',
+      '3': 4,
+      '4': 1,
+      '5': 11,
+      '6': '.Protocol.LocationPlaceInfo',
+      '10': 'place'
+    },
+    {'1': 'error_code', '3': 5, '4': 1, '5': 5, '10': 'errorCode'},
+  ],
+};
+
+/// Descriptor for `S_SaveVisit`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List s_SaveVisitDescriptor = $convert.base64Decode(
+    'CgtTX1NhdmVWaXNpdBIYCgdzdWNjZXNzGAEgASgIUgdzdWNjZXNzEhkKCHBsYWNlX2lkGAIgAS'
+    'gJUgdwbGFjZUlkEjEKBXZpc2l0GAMgASgLMhsuUHJvdG9jb2wuTG9jYXRpb25WaXNpdEluZm9S'
+    'BXZpc2l0EjEKBXBsYWNlGAQgASgLMhsuUHJvdG9jb2wuTG9jYXRpb25QbGFjZUluZm9SBXBsYW'
+    'NlEh0KCmVycm9yX2NvZGUYBSABKAVSCWVycm9yQ29kZQ==');
+
+@$core.Deprecated('Use c_DeletePlaceDescriptor instead')
+const C_DeletePlace$json = {
+  '1': 'C_DeletePlace',
+  '2': [
+    {'1': 'place_id', '3': 1, '4': 1, '5': 9, '10': 'placeId'},
+    {'1': 'group_id', '3': 2, '4': 1, '5': 9, '10': 'groupId'},
+    {'1': 'user_id', '3': 3, '4': 1, '5': 9, '10': 'userId'},
+  ],
+};
+
+/// Descriptor for `C_DeletePlace`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List c_DeletePlaceDescriptor = $convert.base64Decode(
+    'Cg1DX0RlbGV0ZVBsYWNlEhkKCHBsYWNlX2lkGAEgASgJUgdwbGFjZUlkEhkKCGdyb3VwX2lkGA'
+    'IgASgJUgdncm91cElkEhcKB3VzZXJfaWQYAyABKAlSBnVzZXJJZA==');
+
+@$core.Deprecated('Use s_DeletePlaceDescriptor instead')
+const S_DeletePlace$json = {
+  '1': 'S_DeletePlace',
+  '2': [
+    {'1': 'success', '3': 1, '4': 1, '5': 8, '10': 'success'},
+    {'1': 'place_id', '3': 2, '4': 1, '5': 9, '10': 'placeId'},
+    {'1': 'group_id', '3': 3, '4': 1, '5': 9, '10': 'groupId'},
+    {'1': 'error_code', '3': 4, '4': 1, '5': 5, '10': 'errorCode'},
+  ],
+};
+
+/// Descriptor for `S_DeletePlace`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List s_DeletePlaceDescriptor = $convert.base64Decode(
+    'Cg1TX0RlbGV0ZVBsYWNlEhgKB3N1Y2Nlc3MYASABKAhSB3N1Y2Nlc3MSGQoIcGxhY2VfaWQYAi'
+    'ABKAlSB3BsYWNlSWQSGQoIZ3JvdXBfaWQYAyABKAlSB2dyb3VwSWQSHQoKZXJyb3JfY29kZRgE'
+    'IAEoBVIJZXJyb3JDb2Rl');
+
+@$core.Deprecated('Use c_UpdateVisitDescriptor instead')
+const C_UpdateVisit$json = {
+  '1': 'C_UpdateVisit',
+  '2': [
+    {'1': 'visit_id', '3': 1, '4': 1, '5': 9, '10': 'visitId'},
+    {'1': 'place_id', '3': 2, '4': 1, '5': 9, '10': 'placeId'},
+    {'1': 'group_id', '3': 3, '4': 1, '5': 9, '10': 'groupId'},
+    {'1': 'user_id', '3': 4, '4': 1, '5': 9, '10': 'userId'},
+    {'1': 'rating', '3': 5, '4': 1, '5': 5, '10': 'rating'},
+    {'1': 'review', '3': 6, '4': 1, '5': 9, '10': 'review'},
+    {'1': 'photo_urls', '3': 7, '4': 3, '5': 9, '10': 'photoUrls'},
+    {'1': 'visited_at', '3': 8, '4': 1, '5': 3, '10': 'visitedAt'},
+  ],
+};
+
+/// Descriptor for `C_UpdateVisit`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List c_UpdateVisitDescriptor = $convert.base64Decode(
+    'Cg1DX1VwZGF0ZVZpc2l0EhkKCHZpc2l0X2lkGAEgASgJUgd2aXNpdElkEhkKCHBsYWNlX2lkGA'
+    'IgASgJUgdwbGFjZUlkEhkKCGdyb3VwX2lkGAMgASgJUgdncm91cElkEhcKB3VzZXJfaWQYBCAB'
+    'KAlSBnVzZXJJZBIWCgZyYXRpbmcYBSABKAVSBnJhdGluZxIWCgZyZXZpZXcYBiABKAlSBnJldm'
+    'lldxIdCgpwaG90b191cmxzGAcgAygJUglwaG90b1VybHMSHQoKdmlzaXRlZF9hdBgIIAEoA1IJ'
+    'dmlzaXRlZEF0');
+
+@$core.Deprecated('Use s_UpdateVisitDescriptor instead')
+const S_UpdateVisit$json = {
+  '1': 'S_UpdateVisit',
+  '2': [
+    {'1': 'success', '3': 1, '4': 1, '5': 8, '10': 'success'},
+    {
+      '1': 'visit',
+      '3': 2,
+      '4': 1,
+      '5': 11,
+      '6': '.Protocol.LocationVisitInfo',
+      '10': 'visit'
+    },
+    {
+      '1': 'place',
+      '3': 3,
+      '4': 1,
+      '5': 11,
+      '6': '.Protocol.LocationPlaceInfo',
+      '10': 'place'
+    },
+    {'1': 'error_code', '3': 4, '4': 1, '5': 5, '10': 'errorCode'},
+  ],
+};
+
+/// Descriptor for `S_UpdateVisit`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List s_UpdateVisitDescriptor = $convert.base64Decode(
+    'Cg1TX1VwZGF0ZVZpc2l0EhgKB3N1Y2Nlc3MYASABKAhSB3N1Y2Nlc3MSMQoFdmlzaXQYAiABKA'
+    'syGy5Qcm90b2NvbC5Mb2NhdGlvblZpc2l0SW5mb1IFdmlzaXQSMQoFcGxhY2UYAyABKAsyGy5Q'
+    'cm90b2NvbC5Mb2NhdGlvblBsYWNlSW5mb1IFcGxhY2USHQoKZXJyb3JfY29kZRgEIAEoBVIJZX'
+    'Jyb3JDb2Rl');
+
+@$core.Deprecated('Use c_DeleteVisitDescriptor instead')
+const C_DeleteVisit$json = {
+  '1': 'C_DeleteVisit',
+  '2': [
+    {'1': 'visit_id', '3': 1, '4': 1, '5': 9, '10': 'visitId'},
+    {'1': 'place_id', '3': 2, '4': 1, '5': 9, '10': 'placeId'},
+    {'1': 'group_id', '3': 3, '4': 1, '5': 9, '10': 'groupId'},
+    {'1': 'user_id', '3': 4, '4': 1, '5': 9, '10': 'userId'},
+  ],
+};
+
+/// Descriptor for `C_DeleteVisit`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List c_DeleteVisitDescriptor = $convert.base64Decode(
+    'Cg1DX0RlbGV0ZVZpc2l0EhkKCHZpc2l0X2lkGAEgASgJUgd2aXNpdElkEhkKCHBsYWNlX2lkGA'
+    'IgASgJUgdwbGFjZUlkEhkKCGdyb3VwX2lkGAMgASgJUgdncm91cElkEhcKB3VzZXJfaWQYBCAB'
+    'KAlSBnVzZXJJZA==');
+
+@$core.Deprecated('Use s_DeleteVisitDescriptor instead')
+const S_DeleteVisit$json = {
+  '1': 'S_DeleteVisit',
+  '2': [
+    {'1': 'success', '3': 1, '4': 1, '5': 8, '10': 'success'},
+    {'1': 'visit_id', '3': 2, '4': 1, '5': 9, '10': 'visitId'},
+    {'1': 'place_id', '3': 3, '4': 1, '5': 9, '10': 'placeId'},
+    {'1': 'group_id', '3': 4, '4': 1, '5': 9, '10': 'groupId'},
+    {'1': 'place_deleted', '3': 5, '4': 1, '5': 8, '10': 'placeDeleted'},
+    {'1': 'error_code', '3': 6, '4': 1, '5': 5, '10': 'errorCode'},
+  ],
+};
+
+/// Descriptor for `S_DeleteVisit`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List s_DeleteVisitDescriptor = $convert.base64Decode(
+    'Cg1TX0RlbGV0ZVZpc2l0EhgKB3N1Y2Nlc3MYASABKAhSB3N1Y2Nlc3MSGQoIdmlzaXRfaWQYAi'
+    'ABKAlSB3Zpc2l0SWQSGQoIcGxhY2VfaWQYAyABKAlSB3BsYWNlSWQSGQoIZ3JvdXBfaWQYBCAB'
+    'KAlSB2dyb3VwSWQSIwoNcGxhY2VfZGVsZXRlZBgFIAEoCFIMcGxhY2VEZWxldGVkEh0KCmVycm'
+    '9yX2NvZGUYBiABKAVSCWVycm9yQ29kZQ==');
 
 @$core.Deprecated('Use s_ErrorDescriptor instead')
 const S_Error$json = {

@@ -27,7 +27,7 @@ class MessageRepository
 {
 public:
 
-    static string CreateConversationId(const string& user1, const string& user2);
+    static string CreateGroupDMConvId(const string& groupId, const string& user1, const string& user2);
     static string CreateOrGetConversation(const string& convId, const string& convType,
                                           const string& participant1 = "", const string& participant2 = "");
    
@@ -112,6 +112,10 @@ public:
     static bool ClearAnnouncement(const string& convId);
     static AnnouncementInfo GetAnnouncement(const string& convId);
     static vector<AnnouncementInfo> GetAnnouncementsForUser(const string& userId);
+
+    /* 마이그레이션 */
+    // GroupDM conv_id: "groupdm:groupId:u_v" → "groupId:dm:u_v" (1회성, 서버 기동 시 호출)
+    static void MigrateGroupDMConvIds();
 
 protected:
     // 메시지를 메모장에 즉시 추가

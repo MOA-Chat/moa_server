@@ -16,6 +16,8 @@
 #include "Service/PaymentService.h"
 #include "Service/BlockService.h"
 #include "Service/ExpirationBatchJob.h"
+#include "Service/AlbumService.h"
+#include "Service/LocationService.h"
 
 #include <chrono>
 #include <fstream>
@@ -26,7 +28,7 @@
 const int32 GProtoVersion = 1;
 
 const int64 TIMEOUT_MS = 120 * 1000;
-const int32 MAX_GROUP_MEMBERS = 100;  // 그룹 최대 인원 수
+const int32 MAX_GROUP_MEMBERS = 12;  // 그룹 최대 인원 수
 
 // ─── 저장공간 기본 제공량 ───
 const int64 DEFAULT_PERSONAL_STORAGE = 100LL * 1024 * 1024;       // 100MB
@@ -45,6 +47,8 @@ CloudStorage* GCloudStorage = nullptr;
 NotificationService* GNotificationService = nullptr;
 BlockService* GBlockService = nullptr;
 ExpirationBatchJob* GExpirationBatchJob = nullptr;
+AlbumService*    GAlbumService    = nullptr;
+LocationService* GLocationService = nullptr;
 
 CoreGlobal GCoreGlobal;
 
@@ -125,7 +129,9 @@ CoreGlobal::CoreGlobal()
 
     _authService = make_unique<AuthService>(*_userManager);
     _notificationService = make_unique<NotificationService>(*_userManager);
-    _blockService = make_unique<BlockService>(*_userManager);
+    _blockService    = make_unique<BlockService>(*_userManager);
+    _albumService    = make_unique<AlbumService>(*_userManager);
+    _locationService = make_unique<LocationService>(*_userManager);
 
     // CloudStorage 초기화 (파일에서 설정 읽기)
     string projectId, bucketName, credentialsPath;
@@ -176,10 +182,14 @@ CoreGlobal::CoreGlobal()
     GBlockService = _blockService.get();
     GFcmClient = _fcmClient.get();
     GExpirationBatchJob = _expirationBatchJob.get();
+    GAlbumService    = _albumService.get();
+    GLocationService = _locationService.get();
 }
 
 CoreGlobal::~CoreGlobal()
 {
+    GLocationService    = nullptr;
+    GAlbumService       = nullptr;
     GExpirationBatchJob = nullptr;
     GFcmClient = nullptr;
     GPaymentService = nullptr;
@@ -202,6 +212,7 @@ CoreGlobal::~CoreGlobal()
     _fileService.reset();
     _cloudStorage.reset();
     _authService.reset();
+    _albumService.reset();
 
     _verificationManager.reset();
 
@@ -252,7 +263,9 @@ void CoreGlobal::Reset()
 
     _authService = make_unique<AuthService>(*_userManager);
     _notificationService = make_unique<NotificationService>(*_userManager);
-    _blockService = make_unique<BlockService>(*_userManager);
+    _blockService    = make_unique<BlockService>(*_userManager);
+    _albumService    = make_unique<AlbumService>(*_userManager);
+    _locationService = make_unique<LocationService>(*_userManager);
 
     // CloudStorage 초기화 (파일에서 설정 읽기)
     string projectId, bucketName, credentialsPath;
@@ -303,6 +316,8 @@ void CoreGlobal::Reset()
     GBlockService = _blockService.get();
     GFcmClient = _fcmClient.get();
     GExpirationBatchJob = _expirationBatchJob.get();
+    GAlbumService    = _albumService.get();
+    GLocationService = _locationService.get();
 }
 
 

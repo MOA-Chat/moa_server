@@ -11,14 +11,17 @@ bool FileRepository::SaveFileMetadata(const FileInfo& fileInfo) {
         auto files = schema.getTable("file_uploads");
         
         // 파일 메타데이터 저장
-        files.insert("file_id", "user_id", "original_filename", "gcs_bucket", "gcs_path",
+        // created_at: DEFAULT CURRENT_TIMESTAMP 사용 (int64 ms 직접 삽입 시 TIMESTAMP 범위 초과)
+        // uploaded_at, expires_at: NULL (TIMESTAMP 컬럼, ms 값 삽입 불가)
+        files.insert("file_id", "user_id", "group_id", "original_filename", "gcs_bucket", "gcs_path",
                     "file_size", "mime_type", "is_image", "thumbnail_gcs_path",
-                    "upload_status", "created_at", "uploaded_at", "expires_at")
-            .values(fileInfo.fileId, fileInfo.userId, fileInfo.originalFilename, 
-                    fileInfo.gcsBucket, fileInfo.gcsPath, fileInfo.fileSize, 
+                    "upload_status")
+            .values(fileInfo.fileId, fileInfo.userId,
+                    fileInfo.groupId.empty() ? mysqlx::nullvalue : mysqlx::Value(fileInfo.groupId),
+                    fileInfo.originalFilename,
+                    fileInfo.gcsBucket, fileInfo.gcsPath, fileInfo.fileSize,
                     fileInfo.mimeType, fileInfo.isImage, fileInfo.thumbnailGcsPath,
-                    fileInfo.uploadStatus, fileInfo.createdAt, fileInfo.uploadedAt, 
-                    fileInfo.expiresAt)
+                    fileInfo.uploadStatus)
             .execute();
         
         LOG_INFO("[FileRepository] 파일 메타데이터 저장 완료: fileId={}, userId={}", fileInfo.fileId, fileInfo.userId);
@@ -159,24 +162,42 @@ bool FileRepository::UpdateUploadStatus(const string& fileId, const string& stat
         auto schema = db.GetSchema();
         auto files = schema.getTable("file_uploads");
         
-        // 업로드 상태 업데이트
-        int64 uploadedAt = 0;
+        // 업로드 상태 업데이트 (uploaded_at은 completed일 때만 현재 시각으로 설정)
+        auto update = files.update().set("upload_status", status);
         if (status == "completed") {
-            uploadedAt = Nowts();
+            update = update.set("uploaded_at", mysqlx::expr("NOW()"));
         }
-        
-        files.update()
-            .set("upload_status", status)
-            .set("uploaded_at", uploadedAt)
-            .where("file_id = :fid")
-            .bind("fid", fileId)
-            .execute();
+        update.where("file_id = :fid")
+              .bind("fid", fileId)
+              .execute();
         
         LOG_INFO("[FileRepository] 업로드 상태 업데이트 완료: fileId={}, status={}", fileId, status);
         
         return true;
     } catch (const mysqlx::Error& err) {
         LOG_ERROR("[FileRepository] 업로드 상태 업데이트 실패: {}", err.what());
+        return false;
+    }
+}
+
+bool FileRepository::MarkCompletedByGcsPath(const string& gcsPath, const string& gcsBucket) {
+    try {
+        auto& db = DBManager::GetInstance();
+        auto schema = db.GetSchema();
+        auto files = schema.getTable("file_uploads");
+
+        files.update()
+            .set("upload_status", "completed")
+            .set("uploaded_at", mysqlx::expr("NOW()"))
+            .set("gcs_bucket", gcsBucket)
+            .where("gcs_path = :p AND upload_status = 'pending'")
+            .bind("p", gcsPath)
+            .execute();
+
+        LOG_INFO("[FileRepository] MarkCompleted: gcsPath={}", gcsPath);
+        return true;
+    } catch (const mysqlx::Error& err) {
+        LOG_ERROR("[FileRepository] MarkCompleted 실패: {}", err.what());
         return false;
     }
 }
