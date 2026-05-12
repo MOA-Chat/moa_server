@@ -16,6 +16,8 @@ class PaymentService;
 class BlockService;
 class FcmClient;
 class ExpirationBatchJob;
+class AlbumService;
+class LocationService;
 
 
 extern const int32 GProtoVersion;
@@ -42,6 +44,8 @@ extern NotificationService* GNotificationService;
 extern PaymentService* GPaymentService;
 extern BlockService* GBlockService;
 extern ExpirationBatchJob* GExpirationBatchJob;
+extern AlbumService*    GAlbumService;
+extern LocationService* GLocationService;
 
 
 class CoreGlobal
@@ -67,6 +71,8 @@ private:
     unique_ptr<BlockService> _blockService;
     unique_ptr<FcmClient> _fcmClient;
     unique_ptr<ExpirationBatchJob> _expirationBatchJob;
+    unique_ptr<AlbumService>    _albumService;
+    unique_ptr<LocationService> _locationService;
 };
 
 

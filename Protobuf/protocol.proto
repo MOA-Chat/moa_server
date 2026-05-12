@@ -105,6 +105,42 @@ message Envelope {
     S_SocialLogin           s_social_login            = 116;
     C_CompleteSocialSignup  c_complete_social_signup   = 117;
 
+    // ALBUM (120 ~ 131, 140 ~ 147)
+    C_CreateAlbum           c_create_album            = 120;
+    S_CreateAlbum           s_create_album            = 121;
+    C_GetAlbums             c_get_albums              = 122;
+    S_GetAlbums             s_get_albums              = 123;
+    C_AddPhotoToAlbum       c_add_photo_to_album      = 124;
+    S_AddPhotoToAlbum       s_add_photo_to_album      = 125;
+    C_GetAlbumPhotos        c_get_album_photos        = 126;
+    S_GetAlbumPhotos        s_get_album_photos        = 127;
+    C_AddPhotoComment       c_add_photo_comment       = 128;
+    S_AddPhotoComment       s_add_photo_comment       = 129;
+    C_GetPhotoComments      c_get_photo_comments      = 130;
+    S_GetPhotoComments      s_get_photo_comments      = 131;
+    C_DeleteAlbum           c_delete_album            = 140;
+    S_DeleteAlbum           s_delete_album            = 141;
+    C_DeleteAlbumPhoto      c_delete_album_photo      = 142;
+    S_DeleteAlbumPhoto      s_delete_album_photo      = 143;
+    C_MovePhoto             c_move_photo              = 144;
+    S_MovePhoto             s_move_photo              = 145;
+    C_DeletePhotoComment    c_delete_photo_comment    = 146;
+    S_DeletePhotoComment    s_delete_photo_comment    = 147;
+
+    // LOCATION HISTORY (148 ~ 159)
+    C_SavePlace             c_save_place              = 148;
+    S_SavePlace             s_save_place              = 149;
+    C_GetPlaces             c_get_places              = 150;
+    S_GetPlaces             s_get_places              = 151;
+    C_SaveVisit             c_save_visit              = 152;
+    S_SaveVisit             s_save_visit              = 153;
+    C_DeletePlace           c_delete_place            = 154;
+    S_DeletePlace           s_delete_place            = 155;
+    C_UpdateVisit           c_update_visit            = 156;
+    S_UpdateVisit           s_update_visit            = 157;
+    C_DeleteVisit           c_delete_visit            = 158;
+    S_DeleteVisit           s_delete_visit            = 159;
+
     // GROUPS (80 ~ 99)
     C_CreateGroup           c_create_group            = 80;
     S_CreateGroup           s_create_group            = 81;
@@ -800,6 +836,199 @@ message C_CompleteSocialSignup {
     string id_token = 2;
     string user_id  = 3;
     string name     = 4;
+}
+
+/*-------------
+    ALBUM
+---------------*/
+
+message Album {
+    string id              = 1;
+    string group_id        = 2;
+    string name            = 3;
+    string cover_photo_url = 4;
+    string created_by      = 5;
+    int64  created_at      = 6;
+    int32  photo_count     = 7;
+}
+
+message AlbumPhoto {
+    string id           = 1;
+    string album_id     = 2;
+    string group_id     = 3;
+    int64  msg_seq      = 4;
+    string photo_url    = 5;
+    string thumbnail_url = 6;
+    string uploader_id  = 7;
+    string source       = 8;
+    int64  uploaded_at  = 9;
+}
+
+message PhotoComment {
+    string id          = 1;
+    string photo_id    = 2;
+    string sender_id   = 3;
+    string sender_name = 4;
+    string text        = 5;
+    int64  created_at  = 6;
+}
+
+message C_CreateAlbum { string group_id = 1; string name = 2; string created_by = 3; }
+message S_CreateAlbum { bool success = 1; Album album = 2; string error = 3; }
+
+message C_GetAlbums { string group_id = 1; }
+message S_GetAlbums { repeated Album albums = 1; }
+
+message C_AddPhotoToAlbum {
+    string album_id      = 1;
+    string group_id      = 2;
+    int64  msg_seq       = 3;
+    string photo_url     = 4;
+    string thumbnail_url = 5;
+    string uploader_id   = 6;
+}
+message S_AddPhotoToAlbum { bool success = 1; string album_id = 2; AlbumPhoto photo = 3; string error = 4; Album album = 5; }
+
+message C_GetAlbumPhotos { string album_id = 1; bool latest_first = 2; }
+message S_GetAlbumPhotos { string album_id = 1; repeated AlbumPhoto photos = 2; }
+
+message C_DeleteAlbum { string album_id = 1; string user_id = 2; string group_id = 3; }
+message S_DeleteAlbum { bool success = 1; string album_id = 2; string group_id = 3; string error = 4; }
+
+message C_DeleteAlbumPhoto { string photo_id = 1; string user_id = 2; string album_id = 3; string group_id = 4; }
+message S_DeleteAlbumPhoto { bool success = 1; string photo_id = 2; string album_id = 3; string group_id = 4; string error = 5; Album album = 6; }
+
+message C_MovePhoto { string photo_id = 1; string from_album_id = 2; string to_album_id = 3; string group_id = 4; string user_id = 5; }
+message S_MovePhoto { bool success = 1; string photo_id = 2; string from_album_id = 3; string to_album_id = 4; string group_id = 5; string error = 6; Album from_album = 7; Album to_album = 8; }
+
+message C_AddPhotoComment { string photo_id = 1; string sender_id = 2; string sender_name = 3; string text = 4; string group_id = 5; }
+message S_AddPhotoComment { bool success = 1; PhotoComment comment = 2; string error = 3; }
+
+message C_GetPhotoComments { string photo_id = 1; }
+message S_GetPhotoComments { string photo_id = 1; repeated PhotoComment comments = 2; }
+
+message C_DeletePhotoComment { string comment_id = 1; string user_id = 2; string group_id = 3; string photo_id = 4; }
+message S_DeletePhotoComment { bool success = 1; string comment_id = 2; string photo_id = 3; string group_id = 4; string error = 5; }
+
+/*-----------------
+    LOCATION HISTORY
+-------------------*/
+
+message LocationPhoto {
+    string id        = 1;
+    string photo_url = 2;
+}
+
+message LocationVisitInfo {
+    string id                    = 1;
+    string user_id               = 2;
+    string user_name             = 3;
+    int32  rating                = 4;
+    string review                = 5;
+    int64  visited_at            = 6;
+    repeated LocationPhoto photos = 7;
+}
+
+message LocationPlaceInfo {
+    string id                = 1;
+    string group_id          = 2;
+    string name              = 3;
+    string address           = 4;
+    string category          = 5;
+    double lat               = 6;
+    double lng               = 7;
+    string created_by        = 8;
+    int64  created_at        = 9;
+    int32  visit_count       = 10;
+    float  avg_rating        = 11;
+    string recent_photo_url  = 12;
+    repeated LocationVisitInfo visits = 13;
+}
+
+message C_SavePlace {
+    string group_id  = 1;
+    string name      = 2;
+    string address   = 3;
+    string category  = 4;
+    double lat       = 5;
+    double lng       = 6;
+    string user_id   = 7;
+    string user_name = 8;
+}
+message S_SavePlace {
+    bool               success    = 1;
+    LocationPlaceInfo  place      = 2;
+    int32              error_code = 3;
+}
+
+message C_GetPlaces {
+    string group_id = 1;
+}
+message S_GetPlaces {
+    string group_id                    = 1;
+    repeated LocationPlaceInfo places  = 2;
+}
+
+message C_SaveVisit {
+    string place_id              = 1;
+    string group_id              = 2;
+    string user_id               = 3;
+    string user_name             = 4;
+    int32  rating                = 5;
+    string review                = 6;
+    repeated string photo_urls   = 7;
+    int64  visited_at            = 8;
+}
+message S_SaveVisit {
+    bool              success    = 1;
+    string            place_id   = 2;
+    LocationVisitInfo visit      = 3;
+    LocationPlaceInfo place      = 4;
+    int32             error_code = 5;
+}
+
+message C_DeletePlace {
+    string place_id  = 1;
+    string group_id  = 2;
+    string user_id   = 3;
+}
+message S_DeletePlace {
+    bool   success    = 1;
+    string place_id   = 2;
+    string group_id   = 3;
+    int32  error_code = 4;
+}
+
+message C_UpdateVisit {
+    string visit_id              = 1;
+    string place_id              = 2;
+    string group_id              = 3;
+    string user_id               = 4;
+    int32  rating                = 5;
+    string review                = 6;
+    repeated string photo_urls   = 7;
+    int64  visited_at            = 8;
+}
+message S_UpdateVisit {
+    bool              success    = 1;
+    LocationVisitInfo visit      = 2;
+    LocationPlaceInfo place      = 3;
+    int32             error_code = 4;
+}
+
+message C_DeleteVisit {
+    string visit_id  = 1;
+    string place_id  = 2;
+    string group_id  = 3;
+    string user_id   = 4;
+}
+message S_DeleteVisit {
+    bool   success       = 1;
+    string visit_id      = 2;
+    string place_id      = 3;
+    string group_id      = 4;
+    bool   place_deleted = 5;
+    int32  error_code    = 6;
 }
 
 /*-------------

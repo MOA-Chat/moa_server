@@ -12,11 +12,10 @@
         Conv 생성
 =======================*/
 
-string MessageRepository::CreateConversationId(const string& user1, const string& user2) {
+string MessageRepository::CreateGroupDMConvId(const string& groupId, const string& user1, const string& user2) {
     vector<string> participants = {user1, user2};
     sort(participants.begin(), participants.end());
-    
-    return "direct:" + participants[0] + "_" + participants[1];
+    return groupId + ":dm:" + participants[0] + "_" + participants[1];
 }
 
 string MessageRepository::CreateOrGetConversation(const string& convId, const string& convType,
@@ -37,8 +36,8 @@ string MessageRepository::CreateOrGetConversation(const string& convId, const st
             session.sql(queryInsert).bind(convId, convType).execute();
 
             // 참여자 추가 (participants)
-            // 1:1 채팅인 경우에만 초기 멤버를 넣음
-            if (convType == "direct" && !participant1.empty() && !participant2.empty()) {
+            // GroupDM인 경우에만 초기 멤버를 넣음
+            if (convType == "groupdm" && !participant1.empty() && !participant2.empty()) {
                 string queryPart = "INSERT IGNORE INTO conversation_participants (conv_id, user_id) VALUES (?, ?), (?, ?)";
                 session.sql(queryPart).bind(convId, participant1, convId, participant2).execute();
             }
@@ -873,13 +872,39 @@ bool MessageRepository::AppendMessageToLog(const string& convId, const string& s
         }
         AUDIT_LOG("[MSG] conv={} sender={} type={} seq={} msg={}", convId, senderId, msgType, sChat.msg_seq(), messageText);
 
-        // 대화방별 아카이브 (대화방별 daily rotation, 365일 보관)
-        string safeConvId = convId;
-        replace(safeConvId.begin(), safeConvId.end(), ':', '_');
-        replace(safeConvId.begin(), safeConvId.end(), '/', '_');
-        replace(safeConvId.begin(), safeConvId.end(), '\\', '_');
+        // 대화방별 아카이브
+        // group:groupId        → logs/conversations/groupId/chat
+        // groupId:dm:u_v       → logs/conversations/groupId/dm_u_v
+        string logKey; // Logger::GetConvLogger 에 전달할 키 (subdir/filename)
 
-        auto convLogger = Logger::GetConvLogger(safeConvId);
+        if (convId.find("group:") == 0) {
+            string groupId = convId.substr(6);
+            replace(groupId.begin(), groupId.end(), '/', '_');
+            replace(groupId.begin(), groupId.end(), '\\', '_');
+            logKey = groupId + "/chat";
+        }
+        else {
+            // GroupDM 형식: "groupId:dm:userA_userB"
+            auto dmPos = convId.find(":dm:");
+            if (dmPos != string::npos) {
+                string groupId = convId.substr(0, dmPos);
+                string dmPart  = convId.substr(dmPos + 4); // "userA_userB"
+                replace(groupId.begin(), groupId.end(), '/', '_');
+                replace(groupId.begin(), groupId.end(), '\\', '_');
+                replace(dmPart.begin(),  dmPart.end(),  '/', '_');
+                replace(dmPart.begin(),  dmPart.end(),  '\\', '_');
+                logKey = groupId + "/dm_" + dmPart;
+            } else {
+                // 알 수 없는 형식 — 안전하게 변환
+                string safe = convId;
+                replace(safe.begin(), safe.end(), ':', '_');
+                replace(safe.begin(), safe.end(), '/', '_');
+                replace(safe.begin(), safe.end(), '\\', '_');
+                logKey = safe;
+            }
+        }
+
+        auto convLogger = Logger::GetConvLogger(logKey);
         convLogger->info("{} : {}", senderId, messageText);
 
         return true;
@@ -1057,4 +1082,69 @@ vector<MessageRepository::AnnouncementInfo> MessageRepository::GetAnnouncementsF
         LOG_ERROR("[MessageRepository] GetAnnouncementsForUser 실패: {}", e.what());
     }
     return result;
+}
+
+
+/*======================
+    MigrateGroupDMConvIds
+    "groupdm:groupId:u_v" → "groupId:dm:u_v"
+    서버 기동 시 1회 호출, 이미 마이그레이션된 경우 대상 행 0건이라 무해
+=======================*/
+void MessageRepository::MigrateGroupDMConvIds()
+{
+    try {
+        auto& db = DBManager::GetInstance();
+        auto& session = db.GetSession();
+
+        // 1. 대상 conv_id 목록을 conversations 테이블에서 한 번만 수집 (DB는 저장만, 변환은 C++)
+        auto rows = session.sql(
+            "SELECT DISTINCT conv_id FROM conversations WHERE conv_id LIKE 'groupdm:%'"
+        ).execute();
+
+        vector<pair<string, string>> updates; // {oldId, newId}
+        for (auto row : rows) {
+            string oldId = row[0].get<string>(); // "groupdm:groupId:userA_userB"
+            string rest  = oldId.substr(8);       // "groupId:userA_userB"
+            auto colonPos = rest.find(':');
+            if (colonPos == string::npos) continue;
+            string groupId  = rest.substr(0, colonPos);
+            string userPair = rest.substr(colonPos + 1); // "userA_userB"
+            string newId    = groupId + ":dm:" + userPair;
+            updates.emplace_back(oldId, newId);
+        }
+
+        if (updates.empty()) return;
+
+        // 2. FK 제약 일시 해제 → 전체 테이블 일괄 UPDATE → FK 재활성화
+        //    (conversation_participants → conversations FK 충돌 방지)
+        session.sql("SET FOREIGN_KEY_CHECKS = 0").execute();
+
+        const vector<string> tables = {
+            "conversations", "messages", "read_status",
+            "conversation_participants", "announcements", "message_reactions"
+        };
+
+        for (const auto& table : tables) {
+            for (const auto& [oldId, newId] : updates) {
+                session.sql(
+                    "UPDATE " + table + " SET conv_id = ? WHERE conv_id = ?"
+                ).bind(newId).bind(oldId).execute();
+            }
+        }
+
+        session.sql("SET FOREIGN_KEY_CHECKS = 1").execute();
+
+        LOG_INFO("[Migration] GroupDM conv_id {} 건 변환 완료", updates.size());
+        for (const auto& [oldId, newId] : updates) {
+            LOG_INFO("[Migration]   {} → {}", oldId, newId);
+        }
+    }
+    catch (const std::exception& e) {
+        // FK 체크가 비활성화된 채로 예외 발생 시 복구
+        try {
+            auto& session = DBManager::GetInstance().GetSession();
+            session.sql("SET FOREIGN_KEY_CHECKS = 1").execute();
+        } catch (...) {}
+        LOG_ERROR("[MessageRepository] MigrateGroupDMConvIds 실패: {}", e.what());
+    }
 }

@@ -120,6 +120,18 @@
     <ClCompile Include="Logger.cpp">
       <Filter>Main</Filter>
     </ClCompile>
+    <ClCompile Include="Service\AlbumService.cpp">
+      <Filter>Service</Filter>
+    </ClCompile>
+    <ClCompile Include="DB\AlbumRepository.cpp">
+      <Filter>DB</Filter>
+    </ClCompile>
+    <ClCompile Include="Service\LocationService.cpp">
+      <Filter>Service</Filter>
+    </ClCompile>
+    <ClCompile Include="DB\LocationRepository.cpp">
+      <Filter>DB</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -217,6 +229,18 @@
     </ClInclude>
     <ClInclude Include="Logger.h">
       <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Service\AlbumService.h">
+      <Filter>Service</Filter>
+    </ClInclude>
+    <ClInclude Include="DB\AlbumRepository.h">
+      <Filter>DB</Filter>
+    </ClInclude>
+    <ClInclude Include="Service\LocationService.h">
+      <Filter>Service</Filter>
+    </ClInclude>
+    <ClInclude Include="DB\LocationRepository.h">
+      <Filter>DB</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

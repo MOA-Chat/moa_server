@@ -8,6 +8,7 @@
 #include "CoreGlobal.h"
 #include "Service/UserManager.h"
 #include "DB/DBManager.h"
+#include "DB/MessageRepository.h"
 
 #include <curl/curl.h> // 전역 초기화용
 #include <fstream>
@@ -40,8 +41,6 @@ static map<string, string> LoadServerConfig(const string& path)
 
 
 
-
-
 int main()
 {
 	SetConsoleOutputCP(65001);
@@ -66,6 +65,9 @@ int main()
 		return 1;
 	}
 	LOG_INFO("[Server] Database connected successfully");
+
+	// conv_id 포맷 마이그레이션 (groupdm: → groupId:dm:, 이미 완료된 경우 0건 처리)
+	MessageRepository::MigrateGroupDMConvIds();
 
 	// libCurl
 	curl_global_init(CURL_GLOBAL_ALL);

@@ -9,6 +9,8 @@
 #include "../DB/FcmTokenRepository.h"
 #include "../DB/BlockRepository.h"
 #include "../DB/PollRepository.h"
+#include "../DB/FileRepository.h"
+#include "../Cloud/CloudStorage.h"
 #include "../Cloud/FcmClient.h"
 
 #include "../CoreGlobal.h"
@@ -21,20 +23,20 @@ using namespace Protocol;
 
 
 
-bool ChatService::SendDirect(sessionPtr& senderSession, uint64 reqId, const string& receiverId, const Protocol::C_Chat& pkt)
+bool ChatService::SendGroupDM(sessionPtr& senderSession, uint64 reqId, const string& groupId, const string& receiverId, const Protocol::C_Chat& pkt)
 {
     auto session = static_pointer_cast<ServerSession>(senderSession);
     const string senderId = session->GetUserId();
     string senderName = GetUserNameWithId(senderId);
 
-    // 차단 관계 확인 (어느 쪽이든 차단 시 전송 거부)
+    // 차단 관계 확인
     if (BlockRepository::IsBlockedEither(senderId, receiverId)) {
         PacketDispatcher::DispatchError(senderSession, reqId, ERR_NOT_A_FRIEND, "차단된 사용자입니다.");
         return false;
     }
 
-    const string convId = MessageRepository::CreateConversationId(senderId, receiverId);
-    MessageRepository::CreateOrGetConversation(convId, "direct", senderId, receiverId);
+    const string convId = MessageRepository::CreateGroupDMConvId(groupId, senderId, receiverId);
+    MessageRepository::CreateOrGetConversation(convId, "groupdm", senderId, receiverId);
 
     // GCS 경로 검증 (path traversal 방지)
     string gcsPath = pkt.gcs_path();
@@ -98,7 +100,7 @@ bool ChatService::SendDirect(sessionPtr& senderSession, uint64 reqId, const stri
         }
         else if (GFcmClient) {
             // 오프라인 - FCM 푸시 발송
-            LOG_INFO("[ChatService] SendDirect FCM: sender={}, receiver={}", senderId, receiverId);
+            LOG_INFO("[ChatService] SendGroupDM FCM: sender={}, receiver={}, group={}", senderId, receiverId, groupId);
             auto tokens = FcmTokenRepository::GetUserTokens(receiverId);
             LOG_INFO("[ChatService] Found {} FCM tokens for {}", tokens.size(), receiverId);
             if (!tokens.empty()) {
@@ -120,8 +122,9 @@ bool ChatService::SendDirect(sessionPtr& senderSession, uint64 reqId, const stri
                 }
 
                 map<string, string> data = {
-                    {"type", "chat"},
+                    {"type", "groupdm"},
                     {"conv_id", convId},
+                    {"group_id", groupId},
                     {"sender_id", senderId}
                 };
 
@@ -307,7 +310,7 @@ bool ChatService::SendSystemMessage(const string& groupId, const string& message
 
 
 
-bool ChatService::HandleAck(sessionPtr& session, uint64 reqId, bool bDirect, const string& targetId, int64 msg_seq)
+bool ChatService::HandleAck(sessionPtr& session, uint64 reqId, PacketDispatcher::ConvType type, const string& targetId, int64 msg_seq)
 {
     auto serverSession = static_pointer_cast<ServerSession>(session);
     const string userId = serverSession->GetUserId();
@@ -315,13 +318,13 @@ bool ChatService::HandleAck(sessionPtr& session, uint64 reqId, bool bDirect, con
 
     string dbConvId;
 
-    if (bDirect) {
-        if (userId < targetId) {
-            dbConvId = "direct:" + userId + "_" + targetId;
-        }
-        else {
-            dbConvId = "direct:" + targetId + "_" + userId;
-        }
+    if (type == PacketDispatcher::ConvType::GroupDM) {
+        // targetId = "groupId:receiverId"
+        auto sep = targetId.find(':');
+        if (sep == string::npos) return false;
+        string groupId    = targetId.substr(0, sep);
+        string receiverId = targetId.substr(sep + 1);
+        dbConvId = MessageRepository::CreateGroupDMConvId(groupId, userId, receiverId);
     }
     else {
         dbConvId = "group:" + targetId;
@@ -449,7 +452,7 @@ Protocol::S_Chat ChatService::Build_S_Chat(const string& convId, const string& s
         }
     }
 
-    // 파일 보관 만료: subGrade 기반 재계산
+    // 파일 보관 만료: subGrade 기반 재계산 + file_uploads 상태 completed 업데이트
     if (!pkt.gcs_path().empty() && fileSize > 0) {
         UserRepository::StorageInfo storInfo;
         if (UserRepository::GetStorageInfo(senderId, storInfo)) {
@@ -460,6 +463,10 @@ Protocol::S_Chat ChatService::Build_S_Chat(const string& convId, const string& s
         }
         pkt_s_chat.set_file_expires_at(fileRetentionExpiresAt);
         pkt_s_chat.set_file_status("active");
+
+        // 클라이언트가 GCS 업로드를 완료하고 C_Chat을 보낸 시점 → completed로 마킹
+        string bucketName = GCloudStorage ? GCloudStorage->GetBucketName() : "";
+        FileRepository::MarkCompletedByGcsPath(pkt.gcs_path(), bucketName);
     }
 
     return pkt_s_chat;
@@ -501,12 +508,13 @@ bool ChatService::HandleDeleteMessage(sessionPtr& session, uint64 reqId, const P
         return false;
     }
 
-    // 클라이언트 convId → DB convId 변환
-    // 클라이언트: "direct:targetId" → DB: "direct:userA_userB" (정렬)
+    // groupId:dm:targetId → groupId:dm:userA_userB (정렬)
     string convId = clientConvId;
-    if (clientConvId.find("direct:") == 0) {
-        string targetId = clientConvId.substr(7);
-        convId = MessageRepository::CreateConversationId(senderId, targetId);
+    auto dmPos_del = clientConvId.find(":dm:");
+    if (dmPos_del != string::npos) {
+        string groupId  = clientConvId.substr(0, dmPos_del);
+        string targetId = clientConvId.substr(dmPos_del + 4);
+        convId = MessageRepository::CreateGroupDMConvId(groupId, senderId, targetId);
     }
 
     bool success = MessageRepository::SoftDeleteMessage(convId, msgSeq, senderId);
@@ -535,15 +543,14 @@ bool ChatService::HandleDeleteMessage(sessionPtr& session, uint64 reqId, const P
     envPush.set_request_id(0);
     *envPush.mutable_s_delete_message() = pkt_res;
 
-    string targetId;
-    if (convId.find("direct:") == 0) {
-        // 1:1 - 상대방에게 전송
-        string pairStr = convId.substr(7); // "direct:" 이후
-        // "userA_userB" 에서 상대 추출
-        auto sep = pairStr.find('_');
-        if (sep != string::npos) {
-            string userA = pairStr.substr(0, sep);
-            string userB = pairStr.substr(sep + 1);
+    auto dmPos_delB = convId.find(":dm:");
+    if (dmPos_delB != string::npos) {
+        // groupId:dm:userA_userB — 상대방에게 전송
+        string pair = convId.substr(dmPos_delB + 4);
+        auto underPos = pair.find('_');
+        if (underPos != string::npos) {
+            string userA = pair.substr(0, underPos);
+            string userB = pair.substr(underPos + 1);
             string receiverId = (userA == senderId) ? userB : userA;
             if (auto target = _userManager.FindSession(receiverId)) {
                 PacketDispatcher::SendEnvelope(target, envPush);
@@ -581,11 +588,12 @@ bool ChatService::HandleEditMessage(sessionPtr& session, uint64 reqId, const Pro
         return false;
     }
 
-    // 클라이언트 convId → DB convId 변환
     string convId = clientConvId;
-    if (clientConvId.find("direct:") == 0) {
-        string targetId = clientConvId.substr(7);
-        convId = MessageRepository::CreateConversationId(senderId, targetId);
+    auto dmPos_edit = clientConvId.find(":dm:");
+    if (dmPos_edit != string::npos) {
+        string groupId  = clientConvId.substr(0, dmPos_edit);
+        string targetId = clientConvId.substr(dmPos_edit + 4);
+        convId = MessageRepository::CreateGroupDMConvId(groupId, senderId, targetId);
     }
 
     int64 editedAt = Nowts();
@@ -618,12 +626,13 @@ bool ChatService::HandleEditMessage(sessionPtr& session, uint64 reqId, const Pro
     envPush.set_request_id(0);
     *envPush.mutable_s_edit_message() = pkt_res;
 
-    if (convId.find("direct:") == 0) {
-        string pairStr = convId.substr(7);
-        auto sep = pairStr.find('_');
-        if (sep != string::npos) {
-            string userA = pairStr.substr(0, sep);
-            string userB = pairStr.substr(sep + 1);
+    auto dmPos_editB = convId.find(":dm:");
+    if (dmPos_editB != string::npos) {
+        string pair = convId.substr(dmPos_editB + 4);
+        auto underPos = pair.find('_');
+        if (underPos != string::npos) {
+            string userA = pair.substr(0, underPos);
+            string userB = pair.substr(underPos + 1);
             string receiverId = (userA == senderId) ? userB : userA;
             if (auto target = _userManager.FindSession(receiverId)) {
                 PacketDispatcher::SendEnvelope(target, envPush);
@@ -673,18 +682,16 @@ bool ChatService::HandleReadReceipt(sessionPtr& session, uint64 reqId, const Pro
     env.set_request_id(0); // 서버 푸시
     env.mutable_s_read_receipt()->CopyFrom(sReadReceipt);
 
-    if (convId.find("direct:") == 0) {
-        // 1:1 채팅: 상대방에게 전송
-        // convId 형식: direct:userA_userB
-        string participants = convId.substr(7);
-        size_t sep = participants.find('_');
-        if (sep != string::npos) {
-            string user1 = participants.substr(0, sep);
-            string user2 = participants.substr(sep + 1);
-            string targetId = (user1 == userId) ? user2 : user1;
-
-            auto targetSession = _userManager.FindSession(targetId);
-            if (targetSession) {
+    auto dmPos_rr = convId.find(":dm:");
+    if (dmPos_rr != string::npos) {
+        // groupId:dm:userA_userB — 상대방에게 전송
+        string pair = convId.substr(dmPos_rr + 4);
+        auto underPos = pair.find('_');
+        if (underPos != string::npos) {
+            string userA = pair.substr(0, underPos);
+            string userB = pair.substr(underPos + 1);
+            string targetId = (userA == userId) ? userB : userA;
+            if (auto targetSession = _userManager.FindSession(targetId)) {
                 PacketDispatcher::SendEnvelope(targetSession, env);
             }
         }
@@ -719,13 +726,14 @@ bool ChatService::HandleAddReaction(sessionPtr& session, uint64 reqId, const Pro
     int64 msgSeq = pkt.msg_seq();
     const string& emoji = pkt.emoji();
 
-    // 클라이언트 convId → DB convId 변환
-    // 클라이언트: "direct:targetId" → DB: "direct:userA_userB" (정렬)
     string convId = clientConvId;
-    string directTargetId; // 1:1일 때 상대방 userId
-    if (clientConvId.find("direct:") == 0) {
-        directTargetId = clientConvId.substr(7);
-        convId = MessageRepository::CreateConversationId(userId, directTargetId);
+    string dmTargetId; // GroupDM일 때 상대방 userId
+    string dmGroupId;
+    auto dmPos_react = clientConvId.find(":dm:");
+    if (dmPos_react != string::npos) {
+        dmGroupId  = clientConvId.substr(0, dmPos_react);
+        dmTargetId = clientConvId.substr(dmPos_react + 4);
+        convId = MessageRepository::CreateGroupDMConvId(dmGroupId, userId, dmTargetId);
     }
 
     bool outRemoved = false;
@@ -756,9 +764,9 @@ bool ChatService::HandleAddReaction(sessionPtr& session, uint64 reqId, const Pro
                 PacketDispatcher::SendEnvelope(memberSession, env);
             }
         }
-    } else {
-        // 1:1 채팅: 발신자와 수신자 각각에게 전송
-        for (const auto& pid : {userId, directTargetId}) {
+    } else if (!dmTargetId.empty()) {
+        // GroupDM: 발신자와 수신자 각각에게 전송
+        for (const auto& pid : {userId, dmTargetId}) {
             if (pid.empty()) continue;
             if (auto peerSession = _userManager.FindSession(pid)) {
                 Protocol::Envelope env;
@@ -1031,11 +1039,12 @@ bool ChatService::HandleSetAnnouncement(sessionPtr& session, uint64 reqId, const
     const string& text = pkt.text();
     const string& senderName = pkt.sender_name();
 
-    // convId 변환 (direct:targetId → direct:userA_userB)
     string convId = clientConvId;
-    if (convId.find("direct:") == 0) {
-        string targetId = convId.substr(7);
-        convId = "direct:" + MessageRepository::CreateConversationId(userId, targetId);
+    auto dmPos_ann = clientConvId.find(":dm:");
+    if (dmPos_ann != string::npos) {
+        string groupId  = clientConvId.substr(0, dmPos_ann);
+        string targetId = clientConvId.substr(dmPos_ann + 4);
+        convId = MessageRepository::CreateGroupDMConvId(groupId, userId, targetId);
     }
 
     // DB 저장/삭제
@@ -1066,22 +1075,30 @@ bool ChatService::HandleSetAnnouncement(sessionPtr& session, uint64 reqId, const
                 PacketDispatcher::SendEnvelope(memberSession, env);
             }
         }
-    } else if (clientConvId.find("direct:") == 0) {
-        // 요청자에게 응답
-        Protocol::Envelope env;
-        env.set_version(GProtoVersion);
-        env.set_request_id(reqId);
-        *env.mutable_s_set_announcement() = res;
-        PacketDispatcher::SendEnvelope(session, env);
+    } else {
+        // GroupDM: 요청자에게 응답 + 상대방에게 전달
+        auto dmPos_annB = convId.find(":dm:");
+        if (dmPos_annB != string::npos) {
+            Protocol::Envelope env;
+            env.set_version(GProtoVersion);
+            env.set_request_id(reqId);
+            *env.mutable_s_set_announcement() = res;
+            PacketDispatcher::SendEnvelope(session, env);
 
-        // 상대방에게 전달
-        string targetId = clientConvId.substr(7);
-        if (auto targetSession = _userManager.FindSession(targetId)) {
-            Protocol::Envelope env2;
-            env2.set_version(GProtoVersion);
-            env2.set_request_id(0);
-            *env2.mutable_s_set_announcement() = res;
-            PacketDispatcher::SendEnvelope(targetSession, env2);
+            string pair = convId.substr(dmPos_annB + 4);
+            auto underPos = pair.find('_');
+            if (underPos != string::npos) {
+                string userA = pair.substr(0, underPos);
+                string userB = pair.substr(underPos + 1);
+                string targetId = (userA == userId) ? userB : userA;
+                if (auto targetSession = _userManager.FindSession(targetId)) {
+                    Protocol::Envelope env2;
+                    env2.set_version(GProtoVersion);
+                    env2.set_request_id(0);
+                    *env2.mutable_s_set_announcement() = res;
+                    PacketDispatcher::SendEnvelope(targetSession, env2);
+                }
+            }
         }
     }
 

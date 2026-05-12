@@ -144,23 +144,46 @@ protected:
     // PhotoSlide Handler (포토 슬라이드)
     static bool Dispatch_C_CreatePhotoSlide(sessionPtr& session, uint64 reqId, const Protocol::C_CreatePhotoSlide& pkt);
 
-private:
+    // Album Handlers (앨범)
+    static bool Dispatch_C_CreateAlbum      (sessionPtr& session, uint64 reqId, const Protocol::C_CreateAlbum& pkt);
+    static bool Dispatch_C_GetAlbums        (sessionPtr& session, uint64 reqId, const Protocol::C_GetAlbums& pkt);
+    static bool Dispatch_C_DeleteAlbum      (sessionPtr& session, uint64 reqId, const Protocol::C_DeleteAlbum& pkt);
+    static bool Dispatch_C_AddPhotoToAlbum  (sessionPtr& session, uint64 reqId, const Protocol::C_AddPhotoToAlbum& pkt);
+    static bool Dispatch_C_GetAlbumPhotos   (sessionPtr& session, uint64 reqId, const Protocol::C_GetAlbumPhotos& pkt);
+    static bool Dispatch_C_DeleteAlbumPhoto (sessionPtr& session, uint64 reqId, const Protocol::C_DeleteAlbumPhoto& pkt);
+    static bool Dispatch_C_MovePhoto        (sessionPtr& session, uint64 reqId, const Protocol::C_MovePhoto& pkt);
+    static bool Dispatch_C_AddPhotoComment  (sessionPtr& session, uint64 reqId, const Protocol::C_AddPhotoComment& pkt);
+    static bool Dispatch_C_GetPhotoComments (sessionPtr& session, uint64 reqId, const Protocol::C_GetPhotoComments& pkt);
+    static bool Dispatch_C_DeletePhotoComment(sessionPtr& session, uint64 reqId, const Protocol::C_DeletePhotoComment& pkt);
 
-    enum class ConvType { Error = 0, Direct = 1, Group = 2 };
+    // 위치 히스토리
+    static bool Dispatch_C_GetPlaces  (sessionPtr& session, uint64 reqId, const Protocol::C_GetPlaces&   pkt);
+    static bool Dispatch_C_SavePlace  (sessionPtr& session, uint64 reqId, const Protocol::C_SavePlace&   pkt);
+    static bool Dispatch_C_SaveVisit  (sessionPtr& session, uint64 reqId, const Protocol::C_SaveVisit&   pkt);
+    static bool Dispatch_C_DeletePlace(sessionPtr& session, uint64 reqId, const Protocol::C_DeletePlace& pkt);
+    static bool Dispatch_C_UpdateVisit(sessionPtr& session, uint64 reqId, const Protocol::C_UpdateVisit& pkt);
+    static bool Dispatch_C_DeleteVisit(sessionPtr& session, uint64 reqId, const Protocol::C_DeleteVisit& pkt);
+
+public:
+    enum class ConvType { Error = 0, Group = 2, GroupDM = 3 };
+
+private:
+    // Group:   "group:groupId"              → outId = "groupId"
+    // GroupDM: "groupId:dm:targetUserId"    → outId = "groupId:targetUserId"
     static ConvType ParseConvId(const string& rawConvId, string& outId)
     {
-        constexpr const char* pDirect = "direct:";
-        constexpr const char* pGroup = "group:";
-
-        if (rawConvId.find(pDirect) == 0) {
-            outId = rawConvId.substr(strlen(pDirect));
-            return ConvType::Direct;
-        }
-        else if (rawConvId.find(pGroup) == 0) {
-            outId = rawConvId.substr(strlen(pGroup));
+        if (rawConvId.find("group:") == 0) {
+            outId = rawConvId.substr(6);
             return ConvType::Group;
         }
-
+        // GroupDM 형식: "groupId:dm:targetUserId"
+        auto dmPos = rawConvId.find(":dm:");
+        if (dmPos != string::npos) {
+            string groupId  = rawConvId.substr(0, dmPos);
+            string targetId = rawConvId.substr(dmPos + 4);
+            outId = groupId + ":" + targetId; // "groupId:targetUserId"
+            return ConvType::GroupDM;
+        }
         return ConvType::Error;
     }
 };

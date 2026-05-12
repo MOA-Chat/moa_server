@@ -25,6 +25,6 @@ private:
     void HandleErr(sessionPtr& session, uint64 reqId, Protocol::ErrorCode errorCode, const string& errMessage = "");
 
 private:
-    CloudStorage* _cloudStorage;  // 소유권은 CoreGlobal이 가짐
+    CloudStorage* _cloudStorage; 
 };
 

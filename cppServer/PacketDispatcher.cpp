@@ -11,6 +11,8 @@
 #include "Service/NotificationService.h"
 #include "Service/PaymentService.h"
 #include "Service/BlockService.h"
+#include "Service/AlbumService.h"
+#include "Service/LocationService.h"
 
 
 #include "DB/UserRepository.h"
@@ -236,6 +238,58 @@ void PacketDispatcher::DispatchPacket(sessionPtr& session, Protocol::Envelope& e
 		Dispatch_C_RefreshInviteCode(session, envelope.request_id(), envelope.c_refresh_invite_code());
 		break;
 
+		/* 앨범 관련 */
+	case Protocol::Envelope::kCCreateAlbum:
+		Dispatch_C_CreateAlbum(session, envelope.request_id(), envelope.c_create_album());
+		break;
+	case Protocol::Envelope::kCGetAlbums:
+		Dispatch_C_GetAlbums(session, envelope.request_id(), envelope.c_get_albums());
+		break;
+	case Protocol::Envelope::kCDeleteAlbum:
+		Dispatch_C_DeleteAlbum(session, envelope.request_id(), envelope.c_delete_album());
+		break;
+	case Protocol::Envelope::kCAddPhotoToAlbum:
+		Dispatch_C_AddPhotoToAlbum(session, envelope.request_id(), envelope.c_add_photo_to_album());
+		break;
+	case Protocol::Envelope::kCGetAlbumPhotos:
+		Dispatch_C_GetAlbumPhotos(session, envelope.request_id(), envelope.c_get_album_photos());
+		break;
+	case Protocol::Envelope::kCDeleteAlbumPhoto:
+		Dispatch_C_DeleteAlbumPhoto(session, envelope.request_id(), envelope.c_delete_album_photo());
+		break;
+	case Protocol::Envelope::kCMovePhoto:
+		Dispatch_C_MovePhoto(session, envelope.request_id(), envelope.c_move_photo());
+		break;
+	case Protocol::Envelope::kCAddPhotoComment:
+		Dispatch_C_AddPhotoComment(session, envelope.request_id(), envelope.c_add_photo_comment());
+		break;
+	case Protocol::Envelope::kCGetPhotoComments:
+		Dispatch_C_GetPhotoComments(session, envelope.request_id(), envelope.c_get_photo_comments());
+		break;
+	case Protocol::Envelope::kCDeletePhotoComment:
+		Dispatch_C_DeletePhotoComment(session, envelope.request_id(), envelope.c_delete_photo_comment());
+		break;
+
+		/* 위치 히스토리 */
+	case Protocol::Envelope::kCGetPlaces:
+		Dispatch_C_GetPlaces(session, envelope.request_id(), envelope.c_get_places());
+		break;
+	case Protocol::Envelope::kCSavePlace:
+		Dispatch_C_SavePlace(session, envelope.request_id(), envelope.c_save_place());
+		break;
+	case Protocol::Envelope::kCSaveVisit:
+		Dispatch_C_SaveVisit(session, envelope.request_id(), envelope.c_save_visit());
+		break;
+	case Protocol::Envelope::kCDeletePlace:
+		Dispatch_C_DeletePlace(session, envelope.request_id(), envelope.c_delete_place());
+		break;
+	case Protocol::Envelope::kCUpdateVisit:
+		Dispatch_C_UpdateVisit(session, envelope.request_id(), envelope.c_update_visit());
+		break;
+	case Protocol::Envelope::kCDeleteVisit:
+		Dispatch_C_DeleteVisit(session, envelope.request_id(), envelope.c_delete_visit());
+		break;
+
 		/* 친구 관련 */
 	case Protocol::Envelope::kCFriendAction:
 		Dispatch_C_FriendAction(session, envelope.request_id(), envelope.c_friend_action());
@@ -396,7 +450,7 @@ void PacketDispatcher::PushOfflineData(sessionPtr& session, uint64 reqId, const 
 
 	Protocol::S_MessageBatch pkt_batch;
 
-	/* 1:1 채팅방 */
+	/* GroupDM 채팅방 (groupId:dm:userA_userB) */
 	auto conversations = MessageRepository::GetUserConversations(userId);
 	for (const auto& convId : conversations) {
 		vector<MessageInfo> messages;
@@ -598,8 +652,22 @@ bool PacketDispatcher::Dispatch_C_FetchMyInfo(sessionPtr& session, uint64 reqId,
 		return false;
 	}
 
-	// TODO: GUserManager 또는 GMyInfoService를 통해 UserInfo 조회 후 전송
-	//return GUserManager->FetchMyInfo(session, reqId, userId);
+	cUserInfo userInfo;
+	if (!UserRepository::GetUser(userId, userInfo)) {
+		DispatchError(session, reqId, ERR_USER_NOT_FOUND);
+		return false;
+	}
+
+	Protocol::S_FetchMyInfo res;
+	UserRepository::ConvertToProto(userInfo, res.mutable_my_info());
+
+	Protocol::Envelope env;
+	env.set_version(GProtoVersion);
+	env.set_request_id(reqId);
+	env.mutable_s_fetch_my_info()->CopyFrom(res);
+
+	SendEnvelope(session, env);
+	return true;
 }
 
 
@@ -647,11 +715,16 @@ bool PacketDispatcher::Dispatch_C_Chat(sessionPtr& session, uint64 reqId, const 
 	LOG_INFO("[PacketDispatcher] C_Chat conv={} msg=\"{}\"", pkt.conv_id(), msgText);
 
 
-	if (type == ConvType::Direct) {
-		return GChatService->SendDirect(session, reqId, targetId, pkt);
-	}
-	else if (type == ConvType::Group) {
+	if (type == ConvType::Group) {
 		return GChatService->SendGroup(session, reqId, targetId, pkt);
+	}
+	else if (type == ConvType::GroupDM) {
+		// targetId = "groupId:targetUserId"
+		auto sep = targetId.find(':');
+		if (sep == string::npos) { DispatchError(session, reqId, ERR_INVALID_CONV_ID); return false; }
+		string groupId    = targetId.substr(0, sep);
+		string receiverId = targetId.substr(sep + 1);
+		return GChatService->SendGroupDM(session, reqId, groupId, receiverId, pkt);
 	}
 
 	DispatchError(session, reqId, ERR_INVALID_CONV_ID);
@@ -678,8 +751,7 @@ bool PacketDispatcher::Dispatch_C_Ack(sessionPtr& session, uint64 reqId, const P
 		return false;
 	}
 
-	bool bDirect = (type == ConvType::Direct);
-	return GChatService->HandleAck(session, reqId, bDirect, targetId, pkt.msg_seq());
+	return GChatService->HandleAck(session, reqId, type, targetId, pkt.msg_seq());
 }
 
 
@@ -1310,5 +1382,129 @@ bool PacketDispatcher::Dispatch_C_CreatePhotoSlide(sessionPtr& session, uint64 r
     }
 
     return GChatService->HandleCreatePhotoSlide(session, reqId, pkt);
+}
+
+/*======================
+    앨범 핸들러 (Album)
+=======================*/
+
+static bool CheckAlbumAuth(sessionPtr& session, uint64 reqId)
+{
+    auto ss = static_pointer_cast<ServerSession>(session);
+    if (ss->GetUserId().empty()) {
+        PacketDispatcher::DispatchError(session, reqId, Protocol::ERR_UNAUTHORIZED);
+        return false;
+    }
+    if (!GAlbumService) {
+        PacketDispatcher::DispatchError(session, reqId, Protocol::ERR_SERVER_INTERNAL, "AlbumService not ready");
+        return false;
+    }
+    return true;
+}
+
+bool PacketDispatcher::Dispatch_C_CreateAlbum(sessionPtr& session, uint64 reqId, const Protocol::C_CreateAlbum& pkt)
+{
+    if (!CheckAlbumAuth(session, reqId)) return false;
+    return GAlbumService->HandleCreateAlbum(session, reqId, pkt);
+}
+
+bool PacketDispatcher::Dispatch_C_GetAlbums(sessionPtr& session, uint64 reqId, const Protocol::C_GetAlbums& pkt)
+{
+    if (!CheckAlbumAuth(session, reqId)) return false;
+    return GAlbumService->HandleGetAlbums(session, reqId, pkt);
+}
+
+bool PacketDispatcher::Dispatch_C_DeleteAlbum(sessionPtr& session, uint64 reqId, const Protocol::C_DeleteAlbum& pkt)
+{
+    if (!CheckAlbumAuth(session, reqId)) return false;
+    return GAlbumService->HandleDeleteAlbum(session, reqId, pkt);
+}
+
+bool PacketDispatcher::Dispatch_C_AddPhotoToAlbum(sessionPtr& session, uint64 reqId, const Protocol::C_AddPhotoToAlbum& pkt)
+{
+    if (!CheckAlbumAuth(session, reqId)) return false;
+    return GAlbumService->HandleAddPhotoToAlbum(session, reqId, pkt);
+}
+
+bool PacketDispatcher::Dispatch_C_GetAlbumPhotos(sessionPtr& session, uint64 reqId, const Protocol::C_GetAlbumPhotos& pkt)
+{
+    if (!CheckAlbumAuth(session, reqId)) return false;
+    return GAlbumService->HandleGetAlbumPhotos(session, reqId, pkt);
+}
+
+bool PacketDispatcher::Dispatch_C_DeleteAlbumPhoto(sessionPtr& session, uint64 reqId, const Protocol::C_DeleteAlbumPhoto& pkt)
+{
+    if (!CheckAlbumAuth(session, reqId)) return false;
+    return GAlbumService->HandleDeleteAlbumPhoto(session, reqId, pkt);
+}
+
+bool PacketDispatcher::Dispatch_C_MovePhoto(sessionPtr& session, uint64 reqId, const Protocol::C_MovePhoto& pkt)
+{
+    if (!CheckAlbumAuth(session, reqId)) return false;
+    return GAlbumService->HandleMovePhoto(session, reqId, pkt);
+}
+
+bool PacketDispatcher::Dispatch_C_AddPhotoComment(sessionPtr& session, uint64 reqId, const Protocol::C_AddPhotoComment& pkt)
+{
+    if (!CheckAlbumAuth(session, reqId)) return false;
+    return GAlbumService->HandleAddPhotoComment(session, reqId, pkt);
+}
+
+bool PacketDispatcher::Dispatch_C_GetPhotoComments(sessionPtr& session, uint64 reqId, const Protocol::C_GetPhotoComments& pkt)
+{
+    if (!CheckAlbumAuth(session, reqId)) return false;
+    return GAlbumService->HandleGetPhotoComments(session, reqId, pkt);
+}
+
+bool PacketDispatcher::Dispatch_C_DeletePhotoComment(sessionPtr& session, uint64 reqId, const Protocol::C_DeletePhotoComment& pkt)
+{
+    if (!CheckAlbumAuth(session, reqId)) return false;
+    return GAlbumService->HandleDeletePhotoComment(session, reqId, pkt);
+}
+
+// ── 위치 히스토리 ─────────────────────────────────────────────────────────────
+
+static bool CheckLocationAuth(sessionPtr& session, uint64 reqId) {
+    if (!GLocationService) {
+        PacketDispatcher::DispatchError(session, reqId, Protocol::ERR_SERVER_INTERNAL, "LocationService not ready");
+        return false;
+    }
+    return true;
+}
+
+bool PacketDispatcher::Dispatch_C_GetPlaces(sessionPtr& session, uint64 reqId, const Protocol::C_GetPlaces& pkt)
+{
+    if (!CheckLocationAuth(session, reqId)) return false;
+    return GLocationService->HandleGetPlaces(session, reqId, pkt);
+}
+
+bool PacketDispatcher::Dispatch_C_SavePlace(sessionPtr& session, uint64 reqId, const Protocol::C_SavePlace& pkt)
+{
+    if (!CheckLocationAuth(session, reqId)) return false;
+    return GLocationService->HandleSavePlace(session, reqId, pkt);
+}
+
+bool PacketDispatcher::Dispatch_C_SaveVisit(sessionPtr& session, uint64 reqId, const Protocol::C_SaveVisit& pkt)
+{
+    if (!CheckLocationAuth(session, reqId)) return false;
+    return GLocationService->HandleSaveVisit(session, reqId, pkt);
+}
+
+bool PacketDispatcher::Dispatch_C_DeletePlace(sessionPtr& session, uint64 reqId, const Protocol::C_DeletePlace& pkt)
+{
+    if (!CheckLocationAuth(session, reqId)) return false;
+    return GLocationService->HandleDeletePlace(session, reqId, pkt);
+}
+
+bool PacketDispatcher::Dispatch_C_UpdateVisit(sessionPtr& session, uint64 reqId, const Protocol::C_UpdateVisit& pkt)
+{
+    if (!CheckLocationAuth(session, reqId)) return false;
+    return GLocationService->HandleUpdateVisit(session, reqId, pkt);
+}
+
+bool PacketDispatcher::Dispatch_C_DeleteVisit(sessionPtr& session, uint64 reqId, const Protocol::C_DeleteVisit& pkt)
+{
+    if (!CheckLocationAuth(session, reqId)) return false;
+    return GLocationService->HandleDeleteVisit(session, reqId, pkt);
 }
 

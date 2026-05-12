@@ -1687,6 +1687,597 @@ struct C_CompleteSocialSignupDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT C_CompleteSocialSignupDefaultTypeInternal _C_CompleteSocialSignup_default_instance_;
+constexpr Album::Album(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , group_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , name_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , cover_photo_url_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , created_by_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , created_at_(int64_t{0})
+  , photo_count_(0){}
+struct AlbumDefaultTypeInternal {
+  constexpr AlbumDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~AlbumDefaultTypeInternal() {}
+  union {
+    Album _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT AlbumDefaultTypeInternal _Album_default_instance_;
+constexpr AlbumPhoto::AlbumPhoto(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , album_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , group_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , photo_url_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , thumbnail_url_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , uploader_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , source_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , msg_seq_(int64_t{0})
+  , uploaded_at_(int64_t{0}){}
+struct AlbumPhotoDefaultTypeInternal {
+  constexpr AlbumPhotoDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~AlbumPhotoDefaultTypeInternal() {}
+  union {
+    AlbumPhoto _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT AlbumPhotoDefaultTypeInternal _AlbumPhoto_default_instance_;
+constexpr PhotoComment::PhotoComment(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , photo_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , sender_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , sender_name_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , text_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , created_at_(int64_t{0}){}
+struct PhotoCommentDefaultTypeInternal {
+  constexpr PhotoCommentDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~PhotoCommentDefaultTypeInternal() {}
+  union {
+    PhotoComment _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PhotoCommentDefaultTypeInternal _PhotoComment_default_instance_;
+constexpr C_CreateAlbum::C_CreateAlbum(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : group_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , name_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , created_by_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
+struct C_CreateAlbumDefaultTypeInternal {
+  constexpr C_CreateAlbumDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~C_CreateAlbumDefaultTypeInternal() {}
+  union {
+    C_CreateAlbum _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT C_CreateAlbumDefaultTypeInternal _C_CreateAlbum_default_instance_;
+constexpr S_CreateAlbum::S_CreateAlbum(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : error_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , album_(nullptr)
+  , success_(false){}
+struct S_CreateAlbumDefaultTypeInternal {
+  constexpr S_CreateAlbumDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~S_CreateAlbumDefaultTypeInternal() {}
+  union {
+    S_CreateAlbum _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT S_CreateAlbumDefaultTypeInternal _S_CreateAlbum_default_instance_;
+constexpr C_GetAlbums::C_GetAlbums(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : group_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
+struct C_GetAlbumsDefaultTypeInternal {
+  constexpr C_GetAlbumsDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~C_GetAlbumsDefaultTypeInternal() {}
+  union {
+    C_GetAlbums _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT C_GetAlbumsDefaultTypeInternal _C_GetAlbums_default_instance_;
+constexpr S_GetAlbums::S_GetAlbums(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : albums_(){}
+struct S_GetAlbumsDefaultTypeInternal {
+  constexpr S_GetAlbumsDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~S_GetAlbumsDefaultTypeInternal() {}
+  union {
+    S_GetAlbums _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT S_GetAlbumsDefaultTypeInternal _S_GetAlbums_default_instance_;
+constexpr C_AddPhotoToAlbum::C_AddPhotoToAlbum(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : album_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , group_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , photo_url_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , thumbnail_url_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , uploader_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , msg_seq_(int64_t{0}){}
+struct C_AddPhotoToAlbumDefaultTypeInternal {
+  constexpr C_AddPhotoToAlbumDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~C_AddPhotoToAlbumDefaultTypeInternal() {}
+  union {
+    C_AddPhotoToAlbum _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT C_AddPhotoToAlbumDefaultTypeInternal _C_AddPhotoToAlbum_default_instance_;
+constexpr S_AddPhotoToAlbum::S_AddPhotoToAlbum(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : album_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , error_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , photo_(nullptr)
+  , album_(nullptr)
+  , success_(false){}
+struct S_AddPhotoToAlbumDefaultTypeInternal {
+  constexpr S_AddPhotoToAlbumDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~S_AddPhotoToAlbumDefaultTypeInternal() {}
+  union {
+    S_AddPhotoToAlbum _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT S_AddPhotoToAlbumDefaultTypeInternal _S_AddPhotoToAlbum_default_instance_;
+constexpr C_GetAlbumPhotos::C_GetAlbumPhotos(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : album_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , latest_first_(false){}
+struct C_GetAlbumPhotosDefaultTypeInternal {
+  constexpr C_GetAlbumPhotosDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~C_GetAlbumPhotosDefaultTypeInternal() {}
+  union {
+    C_GetAlbumPhotos _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT C_GetAlbumPhotosDefaultTypeInternal _C_GetAlbumPhotos_default_instance_;
+constexpr S_GetAlbumPhotos::S_GetAlbumPhotos(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : photos_()
+  , album_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
+struct S_GetAlbumPhotosDefaultTypeInternal {
+  constexpr S_GetAlbumPhotosDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~S_GetAlbumPhotosDefaultTypeInternal() {}
+  union {
+    S_GetAlbumPhotos _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT S_GetAlbumPhotosDefaultTypeInternal _S_GetAlbumPhotos_default_instance_;
+constexpr C_DeleteAlbum::C_DeleteAlbum(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : album_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , user_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , group_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
+struct C_DeleteAlbumDefaultTypeInternal {
+  constexpr C_DeleteAlbumDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~C_DeleteAlbumDefaultTypeInternal() {}
+  union {
+    C_DeleteAlbum _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT C_DeleteAlbumDefaultTypeInternal _C_DeleteAlbum_default_instance_;
+constexpr S_DeleteAlbum::S_DeleteAlbum(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : album_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , group_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , error_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , success_(false){}
+struct S_DeleteAlbumDefaultTypeInternal {
+  constexpr S_DeleteAlbumDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~S_DeleteAlbumDefaultTypeInternal() {}
+  union {
+    S_DeleteAlbum _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT S_DeleteAlbumDefaultTypeInternal _S_DeleteAlbum_default_instance_;
+constexpr C_DeleteAlbumPhoto::C_DeleteAlbumPhoto(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : photo_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , user_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , album_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , group_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
+struct C_DeleteAlbumPhotoDefaultTypeInternal {
+  constexpr C_DeleteAlbumPhotoDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~C_DeleteAlbumPhotoDefaultTypeInternal() {}
+  union {
+    C_DeleteAlbumPhoto _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT C_DeleteAlbumPhotoDefaultTypeInternal _C_DeleteAlbumPhoto_default_instance_;
+constexpr S_DeleteAlbumPhoto::S_DeleteAlbumPhoto(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : photo_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , album_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , group_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , error_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , album_(nullptr)
+  , success_(false){}
+struct S_DeleteAlbumPhotoDefaultTypeInternal {
+  constexpr S_DeleteAlbumPhotoDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~S_DeleteAlbumPhotoDefaultTypeInternal() {}
+  union {
+    S_DeleteAlbumPhoto _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT S_DeleteAlbumPhotoDefaultTypeInternal _S_DeleteAlbumPhoto_default_instance_;
+constexpr C_MovePhoto::C_MovePhoto(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : photo_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , from_album_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , to_album_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , group_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , user_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
+struct C_MovePhotoDefaultTypeInternal {
+  constexpr C_MovePhotoDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~C_MovePhotoDefaultTypeInternal() {}
+  union {
+    C_MovePhoto _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT C_MovePhotoDefaultTypeInternal _C_MovePhoto_default_instance_;
+constexpr S_MovePhoto::S_MovePhoto(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : photo_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , from_album_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , to_album_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , group_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , error_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , from_album_(nullptr)
+  , to_album_(nullptr)
+  , success_(false){}
+struct S_MovePhotoDefaultTypeInternal {
+  constexpr S_MovePhotoDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~S_MovePhotoDefaultTypeInternal() {}
+  union {
+    S_MovePhoto _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT S_MovePhotoDefaultTypeInternal _S_MovePhoto_default_instance_;
+constexpr C_AddPhotoComment::C_AddPhotoComment(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : photo_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , sender_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , sender_name_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , text_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , group_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
+struct C_AddPhotoCommentDefaultTypeInternal {
+  constexpr C_AddPhotoCommentDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~C_AddPhotoCommentDefaultTypeInternal() {}
+  union {
+    C_AddPhotoComment _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT C_AddPhotoCommentDefaultTypeInternal _C_AddPhotoComment_default_instance_;
+constexpr S_AddPhotoComment::S_AddPhotoComment(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : error_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , comment_(nullptr)
+  , success_(false){}
+struct S_AddPhotoCommentDefaultTypeInternal {
+  constexpr S_AddPhotoCommentDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~S_AddPhotoCommentDefaultTypeInternal() {}
+  union {
+    S_AddPhotoComment _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT S_AddPhotoCommentDefaultTypeInternal _S_AddPhotoComment_default_instance_;
+constexpr C_GetPhotoComments::C_GetPhotoComments(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : photo_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
+struct C_GetPhotoCommentsDefaultTypeInternal {
+  constexpr C_GetPhotoCommentsDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~C_GetPhotoCommentsDefaultTypeInternal() {}
+  union {
+    C_GetPhotoComments _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT C_GetPhotoCommentsDefaultTypeInternal _C_GetPhotoComments_default_instance_;
+constexpr S_GetPhotoComments::S_GetPhotoComments(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : comments_()
+  , photo_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
+struct S_GetPhotoCommentsDefaultTypeInternal {
+  constexpr S_GetPhotoCommentsDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~S_GetPhotoCommentsDefaultTypeInternal() {}
+  union {
+    S_GetPhotoComments _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT S_GetPhotoCommentsDefaultTypeInternal _S_GetPhotoComments_default_instance_;
+constexpr C_DeletePhotoComment::C_DeletePhotoComment(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : comment_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , user_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , group_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , photo_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
+struct C_DeletePhotoCommentDefaultTypeInternal {
+  constexpr C_DeletePhotoCommentDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~C_DeletePhotoCommentDefaultTypeInternal() {}
+  union {
+    C_DeletePhotoComment _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT C_DeletePhotoCommentDefaultTypeInternal _C_DeletePhotoComment_default_instance_;
+constexpr S_DeletePhotoComment::S_DeletePhotoComment(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : comment_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , photo_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , group_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , error_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , success_(false){}
+struct S_DeletePhotoCommentDefaultTypeInternal {
+  constexpr S_DeletePhotoCommentDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~S_DeletePhotoCommentDefaultTypeInternal() {}
+  union {
+    S_DeletePhotoComment _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT S_DeletePhotoCommentDefaultTypeInternal _S_DeletePhotoComment_default_instance_;
+constexpr LocationPhoto::LocationPhoto(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , photo_url_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
+struct LocationPhotoDefaultTypeInternal {
+  constexpr LocationPhotoDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~LocationPhotoDefaultTypeInternal() {}
+  union {
+    LocationPhoto _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT LocationPhotoDefaultTypeInternal _LocationPhoto_default_instance_;
+constexpr LocationVisitInfo::LocationVisitInfo(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : photos_()
+  , id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , user_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , user_name_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , review_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , visited_at_(int64_t{0})
+  , rating_(0){}
+struct LocationVisitInfoDefaultTypeInternal {
+  constexpr LocationVisitInfoDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~LocationVisitInfoDefaultTypeInternal() {}
+  union {
+    LocationVisitInfo _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT LocationVisitInfoDefaultTypeInternal _LocationVisitInfo_default_instance_;
+constexpr LocationPlaceInfo::LocationPlaceInfo(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : visits_()
+  , id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , group_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , name_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , address_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , category_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , created_by_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , recent_photo_url_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , lat_(0)
+  , lng_(0)
+  , created_at_(int64_t{0})
+  , visit_count_(0)
+  , avg_rating_(0){}
+struct LocationPlaceInfoDefaultTypeInternal {
+  constexpr LocationPlaceInfoDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~LocationPlaceInfoDefaultTypeInternal() {}
+  union {
+    LocationPlaceInfo _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT LocationPlaceInfoDefaultTypeInternal _LocationPlaceInfo_default_instance_;
+constexpr C_SavePlace::C_SavePlace(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : group_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , name_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , address_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , category_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , user_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , user_name_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , lat_(0)
+  , lng_(0){}
+struct C_SavePlaceDefaultTypeInternal {
+  constexpr C_SavePlaceDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~C_SavePlaceDefaultTypeInternal() {}
+  union {
+    C_SavePlace _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT C_SavePlaceDefaultTypeInternal _C_SavePlace_default_instance_;
+constexpr S_SavePlace::S_SavePlace(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : place_(nullptr)
+  , success_(false)
+  , error_code_(0){}
+struct S_SavePlaceDefaultTypeInternal {
+  constexpr S_SavePlaceDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~S_SavePlaceDefaultTypeInternal() {}
+  union {
+    S_SavePlace _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT S_SavePlaceDefaultTypeInternal _S_SavePlace_default_instance_;
+constexpr C_GetPlaces::C_GetPlaces(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : group_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
+struct C_GetPlacesDefaultTypeInternal {
+  constexpr C_GetPlacesDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~C_GetPlacesDefaultTypeInternal() {}
+  union {
+    C_GetPlaces _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT C_GetPlacesDefaultTypeInternal _C_GetPlaces_default_instance_;
+constexpr S_GetPlaces::S_GetPlaces(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : places_()
+  , group_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
+struct S_GetPlacesDefaultTypeInternal {
+  constexpr S_GetPlacesDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~S_GetPlacesDefaultTypeInternal() {}
+  union {
+    S_GetPlaces _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT S_GetPlacesDefaultTypeInternal _S_GetPlaces_default_instance_;
+constexpr C_SaveVisit::C_SaveVisit(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : photo_urls_()
+  , place_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , group_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , user_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , user_name_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , review_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , visited_at_(int64_t{0})
+  , rating_(0){}
+struct C_SaveVisitDefaultTypeInternal {
+  constexpr C_SaveVisitDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~C_SaveVisitDefaultTypeInternal() {}
+  union {
+    C_SaveVisit _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT C_SaveVisitDefaultTypeInternal _C_SaveVisit_default_instance_;
+constexpr S_SaveVisit::S_SaveVisit(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : place_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , visit_(nullptr)
+  , place_(nullptr)
+  , success_(false)
+  , error_code_(0){}
+struct S_SaveVisitDefaultTypeInternal {
+  constexpr S_SaveVisitDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~S_SaveVisitDefaultTypeInternal() {}
+  union {
+    S_SaveVisit _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT S_SaveVisitDefaultTypeInternal _S_SaveVisit_default_instance_;
+constexpr C_DeletePlace::C_DeletePlace(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : place_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , group_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , user_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
+struct C_DeletePlaceDefaultTypeInternal {
+  constexpr C_DeletePlaceDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~C_DeletePlaceDefaultTypeInternal() {}
+  union {
+    C_DeletePlace _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT C_DeletePlaceDefaultTypeInternal _C_DeletePlace_default_instance_;
+constexpr S_DeletePlace::S_DeletePlace(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : place_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , group_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , success_(false)
+  , error_code_(0){}
+struct S_DeletePlaceDefaultTypeInternal {
+  constexpr S_DeletePlaceDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~S_DeletePlaceDefaultTypeInternal() {}
+  union {
+    S_DeletePlace _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT S_DeletePlaceDefaultTypeInternal _S_DeletePlace_default_instance_;
+constexpr C_UpdateVisit::C_UpdateVisit(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : photo_urls_()
+  , visit_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , place_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , group_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , user_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , review_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , visited_at_(int64_t{0})
+  , rating_(0){}
+struct C_UpdateVisitDefaultTypeInternal {
+  constexpr C_UpdateVisitDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~C_UpdateVisitDefaultTypeInternal() {}
+  union {
+    C_UpdateVisit _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT C_UpdateVisitDefaultTypeInternal _C_UpdateVisit_default_instance_;
+constexpr S_UpdateVisit::S_UpdateVisit(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : visit_(nullptr)
+  , place_(nullptr)
+  , success_(false)
+  , error_code_(0){}
+struct S_UpdateVisitDefaultTypeInternal {
+  constexpr S_UpdateVisitDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~S_UpdateVisitDefaultTypeInternal() {}
+  union {
+    S_UpdateVisit _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT S_UpdateVisitDefaultTypeInternal _S_UpdateVisit_default_instance_;
+constexpr C_DeleteVisit::C_DeleteVisit(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : visit_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , place_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , group_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , user_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
+struct C_DeleteVisitDefaultTypeInternal {
+  constexpr C_DeleteVisitDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~C_DeleteVisitDefaultTypeInternal() {}
+  union {
+    C_DeleteVisit _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT C_DeleteVisitDefaultTypeInternal _C_DeleteVisit_default_instance_;
+constexpr S_DeleteVisit::S_DeleteVisit(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : visit_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , place_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , group_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , success_(false)
+  , place_deleted_(false)
+  , error_code_(0){}
+struct S_DeleteVisitDefaultTypeInternal {
+  constexpr S_DeleteVisitDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~S_DeleteVisitDefaultTypeInternal() {}
+  union {
+    S_DeleteVisit _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT S_DeleteVisitDefaultTypeInternal _S_DeleteVisit_default_instance_;
 constexpr S_Error::S_Error(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
   : message_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
@@ -1725,7 +2316,7 @@ struct S_HeartbeatDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT S_HeartbeatDefaultTypeInternal _S_Heartbeat_default_instance_;
 }  // namespace Protocol
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_protocol_2eproto[122];
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_protocol_2eproto[160];
 static const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* file_level_enum_descriptors_protocol_2eproto[5];
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_protocol_2eproto = nullptr;
 
@@ -1738,6 +2329,38 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_protocol_2eproto::offsets[] PR
   PROTOBUF_FIELD_OFFSET(::Protocol::Envelope, version_),
   PROTOBUF_FIELD_OFFSET(::Protocol::Envelope, request_id_),
   PROTOBUF_FIELD_OFFSET(::Protocol::Envelope, auth_token_),
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
   ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
   ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
   ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
@@ -2791,6 +3414,369 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_protocol_2eproto::offsets[] PR
   PROTOBUF_FIELD_OFFSET(::Protocol::C_CompleteSocialSignup, user_id_),
   PROTOBUF_FIELD_OFFSET(::Protocol::C_CompleteSocialSignup, name_),
   ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Protocol::Album, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Protocol::Album, id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::Album, group_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::Album, name_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::Album, cover_photo_url_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::Album, created_by_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::Album, created_at_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::Album, photo_count_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Protocol::AlbumPhoto, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Protocol::AlbumPhoto, id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::AlbumPhoto, album_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::AlbumPhoto, group_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::AlbumPhoto, msg_seq_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::AlbumPhoto, photo_url_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::AlbumPhoto, thumbnail_url_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::AlbumPhoto, uploader_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::AlbumPhoto, source_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::AlbumPhoto, uploaded_at_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Protocol::PhotoComment, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Protocol::PhotoComment, id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::PhotoComment, photo_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::PhotoComment, sender_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::PhotoComment, sender_name_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::PhotoComment, text_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::PhotoComment, created_at_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_CreateAlbum, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_CreateAlbum, group_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_CreateAlbum, name_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_CreateAlbum, created_by_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_CreateAlbum, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_CreateAlbum, success_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_CreateAlbum, album_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_CreateAlbum, error_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_GetAlbums, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_GetAlbums, group_id_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_GetAlbums, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_GetAlbums, albums_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_AddPhotoToAlbum, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_AddPhotoToAlbum, album_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_AddPhotoToAlbum, group_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_AddPhotoToAlbum, msg_seq_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_AddPhotoToAlbum, photo_url_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_AddPhotoToAlbum, thumbnail_url_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_AddPhotoToAlbum, uploader_id_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_AddPhotoToAlbum, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_AddPhotoToAlbum, success_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_AddPhotoToAlbum, album_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_AddPhotoToAlbum, photo_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_AddPhotoToAlbum, error_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_AddPhotoToAlbum, album_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_GetAlbumPhotos, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_GetAlbumPhotos, album_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_GetAlbumPhotos, latest_first_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_GetAlbumPhotos, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_GetAlbumPhotos, album_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_GetAlbumPhotos, photos_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_DeleteAlbum, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_DeleteAlbum, album_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_DeleteAlbum, user_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_DeleteAlbum, group_id_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_DeleteAlbum, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_DeleteAlbum, success_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_DeleteAlbum, album_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_DeleteAlbum, group_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_DeleteAlbum, error_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_DeleteAlbumPhoto, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_DeleteAlbumPhoto, photo_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_DeleteAlbumPhoto, user_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_DeleteAlbumPhoto, album_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_DeleteAlbumPhoto, group_id_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_DeleteAlbumPhoto, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_DeleteAlbumPhoto, success_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_DeleteAlbumPhoto, photo_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_DeleteAlbumPhoto, album_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_DeleteAlbumPhoto, group_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_DeleteAlbumPhoto, error_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_DeleteAlbumPhoto, album_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_MovePhoto, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_MovePhoto, photo_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_MovePhoto, from_album_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_MovePhoto, to_album_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_MovePhoto, group_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_MovePhoto, user_id_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_MovePhoto, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_MovePhoto, success_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_MovePhoto, photo_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_MovePhoto, from_album_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_MovePhoto, to_album_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_MovePhoto, group_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_MovePhoto, error_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_MovePhoto, from_album_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_MovePhoto, to_album_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_AddPhotoComment, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_AddPhotoComment, photo_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_AddPhotoComment, sender_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_AddPhotoComment, sender_name_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_AddPhotoComment, text_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_AddPhotoComment, group_id_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_AddPhotoComment, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_AddPhotoComment, success_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_AddPhotoComment, comment_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_AddPhotoComment, error_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_GetPhotoComments, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_GetPhotoComments, photo_id_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_GetPhotoComments, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_GetPhotoComments, photo_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_GetPhotoComments, comments_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_DeletePhotoComment, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_DeletePhotoComment, comment_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_DeletePhotoComment, user_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_DeletePhotoComment, group_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_DeletePhotoComment, photo_id_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_DeletePhotoComment, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_DeletePhotoComment, success_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_DeletePhotoComment, comment_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_DeletePhotoComment, photo_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_DeletePhotoComment, group_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_DeletePhotoComment, error_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Protocol::LocationPhoto, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Protocol::LocationPhoto, id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::LocationPhoto, photo_url_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Protocol::LocationVisitInfo, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Protocol::LocationVisitInfo, id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::LocationVisitInfo, user_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::LocationVisitInfo, user_name_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::LocationVisitInfo, rating_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::LocationVisitInfo, review_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::LocationVisitInfo, visited_at_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::LocationVisitInfo, photos_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Protocol::LocationPlaceInfo, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Protocol::LocationPlaceInfo, id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::LocationPlaceInfo, group_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::LocationPlaceInfo, name_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::LocationPlaceInfo, address_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::LocationPlaceInfo, category_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::LocationPlaceInfo, lat_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::LocationPlaceInfo, lng_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::LocationPlaceInfo, created_by_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::LocationPlaceInfo, created_at_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::LocationPlaceInfo, visit_count_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::LocationPlaceInfo, avg_rating_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::LocationPlaceInfo, recent_photo_url_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::LocationPlaceInfo, visits_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_SavePlace, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_SavePlace, group_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_SavePlace, name_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_SavePlace, address_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_SavePlace, category_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_SavePlace, lat_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_SavePlace, lng_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_SavePlace, user_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_SavePlace, user_name_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_SavePlace, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_SavePlace, success_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_SavePlace, place_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_SavePlace, error_code_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_GetPlaces, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_GetPlaces, group_id_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_GetPlaces, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_GetPlaces, group_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_GetPlaces, places_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_SaveVisit, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_SaveVisit, place_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_SaveVisit, group_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_SaveVisit, user_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_SaveVisit, user_name_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_SaveVisit, rating_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_SaveVisit, review_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_SaveVisit, photo_urls_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_SaveVisit, visited_at_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_SaveVisit, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_SaveVisit, success_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_SaveVisit, place_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_SaveVisit, visit_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_SaveVisit, place_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_SaveVisit, error_code_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_DeletePlace, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_DeletePlace, place_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_DeletePlace, group_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_DeletePlace, user_id_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_DeletePlace, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_DeletePlace, success_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_DeletePlace, place_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_DeletePlace, group_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_DeletePlace, error_code_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_UpdateVisit, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_UpdateVisit, visit_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_UpdateVisit, place_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_UpdateVisit, group_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_UpdateVisit, user_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_UpdateVisit, rating_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_UpdateVisit, review_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_UpdateVisit, photo_urls_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_UpdateVisit, visited_at_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_UpdateVisit, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_UpdateVisit, success_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_UpdateVisit, visit_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_UpdateVisit, place_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_UpdateVisit, error_code_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_DeleteVisit, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_DeleteVisit, visit_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_DeleteVisit, place_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_DeleteVisit, group_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_DeleteVisit, user_id_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_DeleteVisit, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_DeleteVisit, success_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_DeleteVisit, visit_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_DeleteVisit, place_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_DeleteVisit, group_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_DeleteVisit, place_deleted_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_DeleteVisit, error_code_),
+  ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::Protocol::S_Error, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
@@ -2811,127 +3797,165 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_protocol_2eproto::offsets[] PR
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::Protocol::Envelope)},
-  { 115, -1, sizeof(::Protocol::UserInfo)},
-  { 134, -1, sizeof(::Protocol::DeviceInfo)},
-  { 146, -1, sizeof(::Protocol::C_CheckId)},
-  { 152, -1, sizeof(::Protocol::S_CheckId)},
-  { 158, -1, sizeof(::Protocol::C_CheckEmail)},
-  { 164, -1, sizeof(::Protocol::S_CheckEmail)},
-  { 170, -1, sizeof(::Protocol::C_RequestEmailVerify)},
-  { 176, -1, sizeof(::Protocol::S_RequestEmailVerify)},
-  { 183, -1, sizeof(::Protocol::C_ConfirmEmailVerify)},
-  { 190, -1, sizeof(::Protocol::S_ConfirmEmailVerify)},
-  { 196, -1, sizeof(::Protocol::C_SignUp)},
-  { 205, -1, sizeof(::Protocol::S_SignUp)},
-  { 213, -1, sizeof(::Protocol::C_Login)},
-  { 220, -1, sizeof(::Protocol::S_Login)},
-  { 228, -1, sizeof(::Protocol::C_Logout)},
-  { 235, -1, sizeof(::Protocol::S_Logout)},
-  { 241, -1, sizeof(::Protocol::C_GetMyDevices)},
-  { 246, -1, sizeof(::Protocol::S_GetMyDevices)},
-  { 252, -1, sizeof(::Protocol::C_RemoveDevice)},
-  { 258, -1, sizeof(::Protocol::S_RemoveDevice)},
-  { 265, -1, sizeof(::Protocol::C_FetchMyInfo)},
-  { 270, -1, sizeof(::Protocol::S_FetchMyInfo)},
-  { 276, -1, sizeof(::Protocol::C_EditMyInfo)},
-  { 286, -1, sizeof(::Protocol::S_EditMyInfo)},
-  { 294, -1, sizeof(::Protocol::C_RegisterFcmToken)},
-  { 304, -1, sizeof(::Protocol::S_RegisterFcmToken)},
-  { 311, -1, sizeof(::Protocol::C_ChangeEmail)},
-  { 317, -1, sizeof(::Protocol::S_ChangeEmail)},
-  { 325, -1, sizeof(::Protocol::C_ChangePassword)},
-  { 332, -1, sizeof(::Protocol::S_ChangePassword)},
-  { 339, -1, sizeof(::Protocol::Text)},
-  { 345, -1, sizeof(::Protocol::Image)},
-  { 353, -1, sizeof(::Protocol::Video)},
-  { 362, -1, sizeof(::Protocol::File)},
-  { 371, -1, sizeof(::Protocol::SystemMsg)},
-  { 379, -1, sizeof(::Protocol::Audio)},
-  { 387, -1, sizeof(::Protocol::ChatPayload)},
-  { 399, -1, sizeof(::Protocol::C_Chat)},
-  { 411, -1, sizeof(::Protocol::S_Chat)},
-  { 432, -1, sizeof(::Protocol::C_ReadReceipt)},
-  { 439, -1, sizeof(::Protocol::S_ReadReceipt)},
-  { 447, -1, sizeof(::Protocol::C_DeleteMessage)},
-  { 454, -1, sizeof(::Protocol::S_DeleteMessage)},
-  { 462, -1, sizeof(::Protocol::C_EditMessage)},
-  { 470, -1, sizeof(::Protocol::S_EditMessage)},
-  { 480, -1, sizeof(::Protocol::C_ReqHistory)},
-  { 488, -1, sizeof(::Protocol::S_ReqHistory)},
-  { 496, -1, sizeof(::Protocol::C_UploadFile)},
-  { 507, -1, sizeof(::Protocol::S_UploadFile)},
-  { 522, -1, sizeof(::Protocol::C_Ack)},
-  { 529, -1, sizeof(::Protocol::C_FetchOffline)},
-  { 535, -1, sizeof(::Protocol::S_MessageBatch_ConversationBatch)},
-  { 544, -1, sizeof(::Protocol::S_MessageBatch)},
-  { 550, -1, sizeof(::Protocol::C_GetSubscription)},
-  { 555, -1, sizeof(::Protocol::SubscriptionPlan)},
-  { 568, -1, sizeof(::Protocol::S_GetSubscription)},
-  { 581, -1, sizeof(::Protocol::C_VerifyPurchase)},
-  { 590, -1, sizeof(::Protocol::S_VerifyPurchase)},
-  { 600, -1, sizeof(::Protocol::C_CancelSubscription)},
-  { 605, -1, sizeof(::Protocol::S_CancelSubscription)},
-  { 613, -1, sizeof(::Protocol::C_Withdraw)},
-  { 620, -1, sizeof(::Protocol::S_Withdraw)},
-  { 627, -1, sizeof(::Protocol::C_SearchUser)},
-  { 633, -1, sizeof(::Protocol::S_SearchUser)},
-  { 642, -1, sizeof(::Protocol::FriendRequest)},
-  { 650, -1, sizeof(::Protocol::C_FriendAction)},
-  { 657, -1, sizeof(::Protocol::S_FriendAction)},
-  { 665, -1, sizeof(::Protocol::C_FetchFriendData)},
-  { 670, -1, sizeof(::Protocol::S_FetchFriendData)},
-  { 678, -1, sizeof(::Protocol::S_FriendPush)},
-  { 685, -1, sizeof(::Protocol::GroupMemberInfo)},
-  { 693, -1, sizeof(::Protocol::GroupInfo)},
-  { 707, -1, sizeof(::Protocol::C_CreateGroup)},
-  { 713, -1, sizeof(::Protocol::S_CreateGroup)},
-  { 720, -1, sizeof(::Protocol::C_GroupList)},
-  { 725, -1, sizeof(::Protocol::S_GroupList)},
-  { 731, -1, sizeof(::Protocol::C_GroupInfo)},
-  { 737, -1, sizeof(::Protocol::S_GroupInfo)},
-  { 744, -1, sizeof(::Protocol::C_InviteFriend)},
-  { 751, -1, sizeof(::Protocol::S_InviteFriend)},
-  { 757, -1, sizeof(::Protocol::C_JoinGroup)},
-  { 763, -1, sizeof(::Protocol::S_JoinGroup)},
-  { 770, -1, sizeof(::Protocol::C_RefreshInviteCode)},
-  { 776, -1, sizeof(::Protocol::S_RefreshInviteCode)},
-  { 784, -1, sizeof(::Protocol::C_GroupMemberList)},
-  { 790, -1, sizeof(::Protocol::S_GroupMemberList)},
-  { 797, -1, sizeof(::Protocol::C_LeaveGroup)},
-  { 803, -1, sizeof(::Protocol::S_LeaveGroup)},
-  { 809, -1, sizeof(::Protocol::C_EditGroup)},
-  { 818, -1, sizeof(::Protocol::S_EditGroup)},
-  { 825, -1, sizeof(::Protocol::C_DeleteGroup)},
-  { 831, -1, sizeof(::Protocol::S_DeleteGroup)},
-  { 837, -1, sizeof(::Protocol::BlockedUserInfo)},
-  { 846, -1, sizeof(::Protocol::C_BlockUser)},
-  { 852, -1, sizeof(::Protocol::S_BlockUser)},
-  { 859, -1, sizeof(::Protocol::C_UnblockUser)},
-  { 865, -1, sizeof(::Protocol::S_UnblockUser)},
-  { 871, -1, sizeof(::Protocol::C_GetBlockedList)},
-  { 876, -1, sizeof(::Protocol::S_GetBlockedList)},
-  { 882, -1, sizeof(::Protocol::C_ReportUser)},
-  { 890, -1, sizeof(::Protocol::S_ReportUser)},
-  { 896, -1, sizeof(::Protocol::C_AddReaction)},
-  { 904, -1, sizeof(::Protocol::S_AddReaction)},
-  { 914, -1, sizeof(::Protocol::C_CreatePoll)},
-  { 925, -1, sizeof(::Protocol::S_CreatePoll)},
-  { 941, -1, sizeof(::Protocol::C_Vote)},
-  { 950, -1, sizeof(::Protocol::S_Vote)},
-  { 962, -1, sizeof(::Protocol::C_ClosePoll)},
-  { 970, -1, sizeof(::Protocol::S_ClosePoll)},
-  { 978, -1, sizeof(::Protocol::C_SetAnnouncement)},
-  { 987, -1, sizeof(::Protocol::S_SetAnnouncement)},
-  { 997, -1, sizeof(::Protocol::C_CreateBallDrop)},
-  { 1005, -1, sizeof(::Protocol::S_CreateBallDrop)},
-  { 1013, -1, sizeof(::Protocol::C_CreatePhotoSlide)},
-  { 1027, -1, sizeof(::Protocol::S_CreatePhotoSlide)},
-  { 1035, -1, sizeof(::Protocol::C_SocialLogin)},
-  { 1042, -1, sizeof(::Protocol::S_SocialLogin)},
-  { 1051, -1, sizeof(::Protocol::C_CompleteSocialSignup)},
-  { 1060, -1, sizeof(::Protocol::S_Error)},
-  { 1068, -1, sizeof(::Protocol::C_Heartbeat)},
-  { 1073, -1, sizeof(::Protocol::S_Heartbeat)},
+  { 147, -1, sizeof(::Protocol::UserInfo)},
+  { 166, -1, sizeof(::Protocol::DeviceInfo)},
+  { 178, -1, sizeof(::Protocol::C_CheckId)},
+  { 184, -1, sizeof(::Protocol::S_CheckId)},
+  { 190, -1, sizeof(::Protocol::C_CheckEmail)},
+  { 196, -1, sizeof(::Protocol::S_CheckEmail)},
+  { 202, -1, sizeof(::Protocol::C_RequestEmailVerify)},
+  { 208, -1, sizeof(::Protocol::S_RequestEmailVerify)},
+  { 215, -1, sizeof(::Protocol::C_ConfirmEmailVerify)},
+  { 222, -1, sizeof(::Protocol::S_ConfirmEmailVerify)},
+  { 228, -1, sizeof(::Protocol::C_SignUp)},
+  { 237, -1, sizeof(::Protocol::S_SignUp)},
+  { 245, -1, sizeof(::Protocol::C_Login)},
+  { 252, -1, sizeof(::Protocol::S_Login)},
+  { 260, -1, sizeof(::Protocol::C_Logout)},
+  { 267, -1, sizeof(::Protocol::S_Logout)},
+  { 273, -1, sizeof(::Protocol::C_GetMyDevices)},
+  { 278, -1, sizeof(::Protocol::S_GetMyDevices)},
+  { 284, -1, sizeof(::Protocol::C_RemoveDevice)},
+  { 290, -1, sizeof(::Protocol::S_RemoveDevice)},
+  { 297, -1, sizeof(::Protocol::C_FetchMyInfo)},
+  { 302, -1, sizeof(::Protocol::S_FetchMyInfo)},
+  { 308, -1, sizeof(::Protocol::C_EditMyInfo)},
+  { 318, -1, sizeof(::Protocol::S_EditMyInfo)},
+  { 326, -1, sizeof(::Protocol::C_RegisterFcmToken)},
+  { 336, -1, sizeof(::Protocol::S_RegisterFcmToken)},
+  { 343, -1, sizeof(::Protocol::C_ChangeEmail)},
+  { 349, -1, sizeof(::Protocol::S_ChangeEmail)},
+  { 357, -1, sizeof(::Protocol::C_ChangePassword)},
+  { 364, -1, sizeof(::Protocol::S_ChangePassword)},
+  { 371, -1, sizeof(::Protocol::Text)},
+  { 377, -1, sizeof(::Protocol::Image)},
+  { 385, -1, sizeof(::Protocol::Video)},
+  { 394, -1, sizeof(::Protocol::File)},
+  { 403, -1, sizeof(::Protocol::SystemMsg)},
+  { 411, -1, sizeof(::Protocol::Audio)},
+  { 419, -1, sizeof(::Protocol::ChatPayload)},
+  { 431, -1, sizeof(::Protocol::C_Chat)},
+  { 443, -1, sizeof(::Protocol::S_Chat)},
+  { 464, -1, sizeof(::Protocol::C_ReadReceipt)},
+  { 471, -1, sizeof(::Protocol::S_ReadReceipt)},
+  { 479, -1, sizeof(::Protocol::C_DeleteMessage)},
+  { 486, -1, sizeof(::Protocol::S_DeleteMessage)},
+  { 494, -1, sizeof(::Protocol::C_EditMessage)},
+  { 502, -1, sizeof(::Protocol::S_EditMessage)},
+  { 512, -1, sizeof(::Protocol::C_ReqHistory)},
+  { 520, -1, sizeof(::Protocol::S_ReqHistory)},
+  { 528, -1, sizeof(::Protocol::C_UploadFile)},
+  { 539, -1, sizeof(::Protocol::S_UploadFile)},
+  { 554, -1, sizeof(::Protocol::C_Ack)},
+  { 561, -1, sizeof(::Protocol::C_FetchOffline)},
+  { 567, -1, sizeof(::Protocol::S_MessageBatch_ConversationBatch)},
+  { 576, -1, sizeof(::Protocol::S_MessageBatch)},
+  { 582, -1, sizeof(::Protocol::C_GetSubscription)},
+  { 587, -1, sizeof(::Protocol::SubscriptionPlan)},
+  { 600, -1, sizeof(::Protocol::S_GetSubscription)},
+  { 613, -1, sizeof(::Protocol::C_VerifyPurchase)},
+  { 622, -1, sizeof(::Protocol::S_VerifyPurchase)},
+  { 632, -1, sizeof(::Protocol::C_CancelSubscription)},
+  { 637, -1, sizeof(::Protocol::S_CancelSubscription)},
+  { 645, -1, sizeof(::Protocol::C_Withdraw)},
+  { 652, -1, sizeof(::Protocol::S_Withdraw)},
+  { 659, -1, sizeof(::Protocol::C_SearchUser)},
+  { 665, -1, sizeof(::Protocol::S_SearchUser)},
+  { 674, -1, sizeof(::Protocol::FriendRequest)},
+  { 682, -1, sizeof(::Protocol::C_FriendAction)},
+  { 689, -1, sizeof(::Protocol::S_FriendAction)},
+  { 697, -1, sizeof(::Protocol::C_FetchFriendData)},
+  { 702, -1, sizeof(::Protocol::S_FetchFriendData)},
+  { 710, -1, sizeof(::Protocol::S_FriendPush)},
+  { 717, -1, sizeof(::Protocol::GroupMemberInfo)},
+  { 725, -1, sizeof(::Protocol::GroupInfo)},
+  { 739, -1, sizeof(::Protocol::C_CreateGroup)},
+  { 745, -1, sizeof(::Protocol::S_CreateGroup)},
+  { 752, -1, sizeof(::Protocol::C_GroupList)},
+  { 757, -1, sizeof(::Protocol::S_GroupList)},
+  { 763, -1, sizeof(::Protocol::C_GroupInfo)},
+  { 769, -1, sizeof(::Protocol::S_GroupInfo)},
+  { 776, -1, sizeof(::Protocol::C_InviteFriend)},
+  { 783, -1, sizeof(::Protocol::S_InviteFriend)},
+  { 789, -1, sizeof(::Protocol::C_JoinGroup)},
+  { 795, -1, sizeof(::Protocol::S_JoinGroup)},
+  { 802, -1, sizeof(::Protocol::C_RefreshInviteCode)},
+  { 808, -1, sizeof(::Protocol::S_RefreshInviteCode)},
+  { 816, -1, sizeof(::Protocol::C_GroupMemberList)},
+  { 822, -1, sizeof(::Protocol::S_GroupMemberList)},
+  { 829, -1, sizeof(::Protocol::C_LeaveGroup)},
+  { 835, -1, sizeof(::Protocol::S_LeaveGroup)},
+  { 841, -1, sizeof(::Protocol::C_EditGroup)},
+  { 850, -1, sizeof(::Protocol::S_EditGroup)},
+  { 857, -1, sizeof(::Protocol::C_DeleteGroup)},
+  { 863, -1, sizeof(::Protocol::S_DeleteGroup)},
+  { 869, -1, sizeof(::Protocol::BlockedUserInfo)},
+  { 878, -1, sizeof(::Protocol::C_BlockUser)},
+  { 884, -1, sizeof(::Protocol::S_BlockUser)},
+  { 891, -1, sizeof(::Protocol::C_UnblockUser)},
+  { 897, -1, sizeof(::Protocol::S_UnblockUser)},
+  { 903, -1, sizeof(::Protocol::C_GetBlockedList)},
+  { 908, -1, sizeof(::Protocol::S_GetBlockedList)},
+  { 914, -1, sizeof(::Protocol::C_ReportUser)},
+  { 922, -1, sizeof(::Protocol::S_ReportUser)},
+  { 928, -1, sizeof(::Protocol::C_AddReaction)},
+  { 936, -1, sizeof(::Protocol::S_AddReaction)},
+  { 946, -1, sizeof(::Protocol::C_CreatePoll)},
+  { 957, -1, sizeof(::Protocol::S_CreatePoll)},
+  { 973, -1, sizeof(::Protocol::C_Vote)},
+  { 982, -1, sizeof(::Protocol::S_Vote)},
+  { 994, -1, sizeof(::Protocol::C_ClosePoll)},
+  { 1002, -1, sizeof(::Protocol::S_ClosePoll)},
+  { 1010, -1, sizeof(::Protocol::C_SetAnnouncement)},
+  { 1019, -1, sizeof(::Protocol::S_SetAnnouncement)},
+  { 1029, -1, sizeof(::Protocol::C_CreateBallDrop)},
+  { 1037, -1, sizeof(::Protocol::S_CreateBallDrop)},
+  { 1045, -1, sizeof(::Protocol::C_CreatePhotoSlide)},
+  { 1059, -1, sizeof(::Protocol::S_CreatePhotoSlide)},
+  { 1067, -1, sizeof(::Protocol::C_SocialLogin)},
+  { 1074, -1, sizeof(::Protocol::S_SocialLogin)},
+  { 1083, -1, sizeof(::Protocol::C_CompleteSocialSignup)},
+  { 1092, -1, sizeof(::Protocol::Album)},
+  { 1104, -1, sizeof(::Protocol::AlbumPhoto)},
+  { 1118, -1, sizeof(::Protocol::PhotoComment)},
+  { 1129, -1, sizeof(::Protocol::C_CreateAlbum)},
+  { 1137, -1, sizeof(::Protocol::S_CreateAlbum)},
+  { 1145, -1, sizeof(::Protocol::C_GetAlbums)},
+  { 1151, -1, sizeof(::Protocol::S_GetAlbums)},
+  { 1157, -1, sizeof(::Protocol::C_AddPhotoToAlbum)},
+  { 1168, -1, sizeof(::Protocol::S_AddPhotoToAlbum)},
+  { 1178, -1, sizeof(::Protocol::C_GetAlbumPhotos)},
+  { 1185, -1, sizeof(::Protocol::S_GetAlbumPhotos)},
+  { 1192, -1, sizeof(::Protocol::C_DeleteAlbum)},
+  { 1200, -1, sizeof(::Protocol::S_DeleteAlbum)},
+  { 1209, -1, sizeof(::Protocol::C_DeleteAlbumPhoto)},
+  { 1218, -1, sizeof(::Protocol::S_DeleteAlbumPhoto)},
+  { 1229, -1, sizeof(::Protocol::C_MovePhoto)},
+  { 1239, -1, sizeof(::Protocol::S_MovePhoto)},
+  { 1252, -1, sizeof(::Protocol::C_AddPhotoComment)},
+  { 1262, -1, sizeof(::Protocol::S_AddPhotoComment)},
+  { 1270, -1, sizeof(::Protocol::C_GetPhotoComments)},
+  { 1276, -1, sizeof(::Protocol::S_GetPhotoComments)},
+  { 1283, -1, sizeof(::Protocol::C_DeletePhotoComment)},
+  { 1292, -1, sizeof(::Protocol::S_DeletePhotoComment)},
+  { 1302, -1, sizeof(::Protocol::LocationPhoto)},
+  { 1309, -1, sizeof(::Protocol::LocationVisitInfo)},
+  { 1321, -1, sizeof(::Protocol::LocationPlaceInfo)},
+  { 1339, -1, sizeof(::Protocol::C_SavePlace)},
+  { 1352, -1, sizeof(::Protocol::S_SavePlace)},
+  { 1360, -1, sizeof(::Protocol::C_GetPlaces)},
+  { 1366, -1, sizeof(::Protocol::S_GetPlaces)},
+  { 1373, -1, sizeof(::Protocol::C_SaveVisit)},
+  { 1386, -1, sizeof(::Protocol::S_SaveVisit)},
+  { 1396, -1, sizeof(::Protocol::C_DeletePlace)},
+  { 1404, -1, sizeof(::Protocol::S_DeletePlace)},
+  { 1413, -1, sizeof(::Protocol::C_UpdateVisit)},
+  { 1426, -1, sizeof(::Protocol::S_UpdateVisit)},
+  { 1435, -1, sizeof(::Protocol::C_DeleteVisit)},
+  { 1444, -1, sizeof(::Protocol::S_DeleteVisit)},
+  { 1455, -1, sizeof(::Protocol::S_Error)},
+  { 1463, -1, sizeof(::Protocol::C_Heartbeat)},
+  { 1468, -1, sizeof(::Protocol::S_Heartbeat)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -3054,13 +4078,51 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_C_SocialLogin_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_S_SocialLogin_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_C_CompleteSocialSignup_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_Album_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_AlbumPhoto_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_PhotoComment_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_C_CreateAlbum_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_S_CreateAlbum_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_C_GetAlbums_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_S_GetAlbums_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_C_AddPhotoToAlbum_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_S_AddPhotoToAlbum_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_C_GetAlbumPhotos_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_S_GetAlbumPhotos_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_C_DeleteAlbum_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_S_DeleteAlbum_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_C_DeleteAlbumPhoto_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_S_DeleteAlbumPhoto_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_C_MovePhoto_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_S_MovePhoto_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_C_AddPhotoComment_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_S_AddPhotoComment_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_C_GetPhotoComments_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_S_GetPhotoComments_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_C_DeletePhotoComment_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_S_DeletePhotoComment_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_LocationPhoto_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_LocationVisitInfo_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_LocationPlaceInfo_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_C_SavePlace_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_S_SavePlace_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_C_GetPlaces_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_S_GetPlaces_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_C_SaveVisit_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_S_SaveVisit_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_C_DeletePlace_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_S_DeletePlace_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_C_UpdateVisit_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_S_UpdateVisit_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_C_DeleteVisit_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_S_DeleteVisit_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_S_Error_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_C_Heartbeat_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_S_Heartbeat_default_instance_),
 };
 
 const char descriptor_table_protodef_protocol_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\016protocol.proto\022\010Protocol\"\225+\n\010Envelope\022"
+  "\n\016protocol.proto\022\010Protocol\"\3438\n\010Envelope\022"
   "\017\n\007version\030\001 \001(\r\022\022\n\nrequest_id\030\002 \001(\r\022\022\n\n"
   "auth_token\030\003 \001(\t\022)\n\nc_check_id\030\n \001(\0132\023.P"
   "rotocol.C_CheckIdH\000\022)\n\ns_check_id\030\013 \001(\0132"
@@ -3170,325 +4232,473 @@ const char descriptor_table_protodef_protocol_2eproto[] PROTOBUF_SECTION_VARIABL
   "ocol.C_SocialLoginH\000\0221\n\016s_social_login\030t"
   " \001(\0132\027.Protocol.S_SocialLoginH\000\022D\n\030c_com"
   "plete_social_signup\030u \001(\0132 .Protocol.C_C"
-  "ompleteSocialSignupH\000\0221\n\016c_create_group\030"
-  "P \001(\0132\027.Protocol.C_CreateGroupH\000\0221\n\016s_cr"
-  "eate_group\030Q \001(\0132\027.Protocol.S_CreateGrou"
-  "pH\000\022-\n\014c_group_list\030R \001(\0132\025.Protocol.C_G"
-  "roupListH\000\022-\n\014s_group_list\030S \001(\0132\025.Proto"
-  "col.S_GroupListH\000\022-\n\014c_join_group\030T \001(\0132"
-  "\025.Protocol.C_JoinGroupH\000\022-\n\014s_join_group"
-  "\030U \001(\0132\025.Protocol.S_JoinGroupH\000\0223\n\017c_inv"
-  "ite_friend\030V \001(\0132\030.Protocol.C_InviteFrie"
-  "ndH\000\0223\n\017s_invite_friend\030W \001(\0132\030.Protocol"
-  ".S_InviteFriendH\000\022/\n\rc_leave_group\030X \001(\013"
-  "2\026.Protocol.C_LeaveGroupH\000\022/\n\rs_leave_gr"
-  "oup\030Y \001(\0132\026.Protocol.S_LeaveGroupH\000\022:\n\023c"
-  "_group_member_list\030Z \001(\0132\033.Protocol.C_Gr"
-  "oupMemberListH\000\022:\n\023s_group_member_list\030["
-  " \001(\0132\033.Protocol.S_GroupMemberListH\000\022-\n\014c"
-  "_group_info\030\\ \001(\0132\025.Protocol.C_GroupInfo"
-  "H\000\022-\n\014s_group_info\030] \001(\0132\025.Protocol.S_Gr"
-  "oupInfoH\000\022-\n\014c_edit_group\030^ \001(\0132\025.Protoc"
-  "ol.C_EditGroupH\000\022-\n\014s_edit_group\030_ \001(\0132\025"
-  ".Protocol.S_EditGroupH\000\022*\n\nc_withdraw\030` "
-  "\001(\0132\024.Protocol.C_WithdrawH\000\022*\n\ns_withdra"
-  "w\030a \001(\0132\024.Protocol.S_WithdrawH\000\0221\n\016c_del"
-  "ete_group\030b \001(\0132\027.Protocol.C_DeleteGroup"
-  "H\000\0221\n\016s_delete_group\030c \001(\0132\027.Protocol.S_"
-  "DeleteGroupH\000\022$\n\007s_error\030d \001(\0132\021.Protoco"
-  "l.S_ErrorH\000\022,\n\013c_heartbeat\030e \001(\0132\025.Proto"
-  "col.C_HeartbeatH\000\022,\n\013s_heartbeat\030f \001(\0132\025"
-  ".Protocol.S_HeartbeatH\000B\t\n\007payload\"\276\002\n\010U"
-  "serInfo\022\017\n\007user_id\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\026"
-  "\n\016status_message\030\003 \001(\t\022\031\n\021profile_image_"
-  "url\030\004 \001(\t\022\034\n\024background_image_url\030\005 \001(\t\022"
-  "\r\n\005email\030\006 \001(\t\022\r\n\005phone\030\007 \001(\t\022\021\n\tsub_gra"
-  "de\030\010 \001(\r\022\036\n\026storage_capacity_bytes\030\t \001(\003"
-  "\022\033\n\023storage_usage_bytes\030\n \001(\003\022\021\n\tlast_se"
-  "en\030\013 \001(\003\022\016\n\006status\030\014 \001(\t\022\031\n\021is_email_ver"
-  "ified\030\r \001(\010\022\026\n\016oauth_provider\030\016 \001(\t\"\233\001\n\n"
-  "DeviceInfo\022\021\n\tdevice_id\030\001 \001(\t\022\023\n\013device_"
-  "name\030\002 \001(\t\022\020\n\010platform\030\003 \001(\t\022\023\n\013last_act"
-  "ive\030\004 \001(\003\022\025\n\rregistered_at\030\005 \001(\003\022\023\n\013app_"
-  "version\030\006 \001(\t\022\022\n\nis_current\030\007 \001(\010\"\034\n\tC_C"
-  "heckId\022\017\n\007user_id\030\001 \001(\t\"!\n\tS_CheckId\022\024\n\014"
-  "is_available\030\001 \001(\010\"\035\n\014C_CheckEmail\022\r\n\005em"
-  "ail\030\001 \001(\t\"$\n\014S_CheckEmail\022\024\n\014is_availabl"
-  "e\030\001 \001(\010\"%\n\024C_RequestEmailVerify\022\r\n\005email"
-  "\030\001 \001(\t\"8\n\024S_RequestEmailVerify\022\017\n\007succes"
-  "s\030\001 \001(\010\022\017\n\007message\030\002 \001(\t\"3\n\024C_ConfirmEma"
-  "ilVerify\022\r\n\005email\030\001 \001(\t\022\014\n\004code\030\002 \001(\t\"\'\n"
-  "\024S_ConfirmEmailVerify\022\017\n\007success\030\001 \001(\010\"J"
-  "\n\010C_SignUp\022\017\n\007user_id\030\001 \001(\t\022\020\n\010password\030"
-  "\002 \001(\t\022\014\n\004name\030\003 \001(\t\022\r\n\005email\030\004 \001(\t\"=\n\010S_"
-  "SignUp\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\t"
-  "\022\017\n\007user_id\030\003 \001(\t\",\n\007C_Login\022\017\n\007user_id\030"
-  "\001 \001(\t\022\020\n\010password\030\002 \001(\t\"S\n\007S_Login\022\017\n\007su"
-  "ccess\030\001 \001(\010\022\022\n\nauth_token\030\002 \001(\t\022#\n\007my_in"
-  "fo\030\003 \001(\0132\022.Protocol.UserInfo\"0\n\010C_Logout"
-  "\022\021\n\tfcm_token\030\001 \001(\t\022\021\n\tdevice_id\030\002 \001(\t\"\033"
-  "\n\010S_Logout\022\017\n\007success\030\001 \001(\010\"\020\n\016C_GetMyDe"
-  "vices\"7\n\016S_GetMyDevices\022%\n\007devices\030\001 \003(\013"
-  "2\024.Protocol.DeviceInfo\"#\n\016C_RemoveDevice"
-  "\022\021\n\tdevice_id\030\001 \001(\t\"2\n\016S_RemoveDevice\022\017\n"
-  "\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\t\"\017\n\rC_Fet"
-  "chMyInfo\"4\n\rS_FetchMyInfo\022#\n\007my_info\030\001 \001"
-  "(\0132\022.Protocol.UserInfo\"|\n\014C_EditMyInfo\022\014"
-  "\n\004name\030\001 \001(\t\022\026\n\016status_message\030\002 \001(\t\022\031\n\021"
-  "profile_image_url\030\003 \001(\t\022\034\n\024background_im"
-  "age_url\030\004 \001(\t\022\r\n\005phone\030\005 \001(\t\"Z\n\014S_EditMy"
-  "Info\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\t\022("
-  "\n\014updated_info\030\003 \001(\0132\022.Protocol.UserInfo"
-  "\"v\n\022C_RegisterFcmToken\022\021\n\tfcm_token\030\001 \001("
-  "\t\022\020\n\010platform\030\002 \001(\t\022\021\n\tdevice_id\030\003 \001(\t\022\023"
-  "\n\013device_name\030\004 \001(\t\022\023\n\013app_version\030\005 \001(\t"
-  "\"6\n\022S_RegisterFcmToken\022\017\n\007success\030\001 \001(\010\022"
-  "\017\n\007message\030\002 \001(\t\"\"\n\rC_ChangeEmail\022\021\n\tnew"
-  "_email\030\001 \001(\t\"[\n\rS_ChangeEmail\022\017\n\007success"
-  "\030\001 \001(\010\022\017\n\007message\030\002 \001(\t\022(\n\014updated_info\030"
-  "\003 \001(\0132\022.Protocol.UserInfo\"B\n\020C_ChangePas"
-  "sword\022\030\n\020current_password\030\001 \001(\t\022\024\n\014new_p"
-  "assword\030\002 \001(\t\"4\n\020S_ChangePassword\022\017\n\007suc"
-  "cess\030\001 \001(\010\022\017\n\007message\030\002 \001(\t\"\027\n\004Text\022\017\n\007m"
-  "essage\030\001 \001(\t\"5\n\005Image\022\013\n\003url\030\001 \001(\t\022\021\n\tth"
-  "umbnail\030\002 \001(\t\022\014\n\004size\030\003 \001(\003\"K\n\005Video\022\013\n\003"
-  "url\030\001 \001(\t\022\021\n\tthumbnail\030\002 \001(\t\022\024\n\014duration"
-  "_sec\030\003 \001(\005\022\014\n\004size\030\004 \001(\003\"F\n\004File\022\013\n\003url\030"
-  "\001 \001(\t\022\020\n\010filename\030\002 \001(\t\022\014\n\004size\030\003 \001(\003\022\021\n"
-  "\tmime_type\030\004 \001(\t\"C\n\tSystemMsg\022\017\n\007message"
-  "\030\001 \001(\t\022\014\n\004type\030\002 \001(\005\022\027\n\017invite_group_id\030"
-  "\003 \001(\t\"8\n\005Audio\022\013\n\003url\030\001 \001(\t\022\024\n\014duration_"
-  "sec\030\002 \001(\005\022\014\n\004size\030\003 \001(\003\"\345\001\n\013ChatPayload\022"
-  "\036\n\004text\030\001 \001(\0132\016.Protocol.TextH\000\022 \n\005image"
-  "\030\002 \001(\0132\017.Protocol.ImageH\000\022 \n\005video\030\003 \001(\013"
-  "2\017.Protocol.VideoH\000\022\036\n\004file\030\004 \001(\0132\016.Prot"
-  "ocol.FileH\000\022%\n\006system\030\005 \001(\0132\023.Protocol.S"
-  "ystemMsgH\000\022 \n\005audio\030\006 \001(\0132\017.Protocol.Aud"
-  "ioH\000B\t\n\007content\"\257\001\n\006C_Chat\022\017\n\007conv_id\030\001 "
-  "\001(\t\022\025\n\rclient_msg_id\030\002 \001(\005\022&\n\007payload\030\003 "
-  "\001(\0132\025.Protocol.ChatPayload\022\021\n\tts_client\030"
-  "\004 \001(\003\022\024\n\014reply_to_seq\030\005 \001(\003\022\020\n\010gcs_path\030"
-  "\006 \001(\t\022\032\n\022mentioned_user_ids\030\007 \003(\t\"\366\002\n\006S_"
-  "Chat\022\017\n\007conv_id\030\001 \001(\t\022\025\n\rclient_msg_id\030\002"
-  " \001(\005\022\017\n\007msg_seq\030\003 \001(\003\022\021\n\tsender_id\030\004 \001(\t"
-  "\022\023\n\013sender_name\030\005 \001(\t\022&\n\007payload\030\006 \001(\0132\025"
-  ".Protocol.ChatPayload\022\021\n\tts_server\030\007 \001(\003"
-  "\022\024\n\014reply_to_seq\030\010 \001(\003\022\034\n\024reply_to_sende"
-  "r_name\030\t \001(\t\022\025\n\rreply_to_text\030\n \001(\t\022\022\n\ni"
-  "s_deleted\030\013 \001(\010\022\021\n\tis_edited\030\014 \001(\010\022\024\n\014un"
-  "read_count\030\r \001(\005\022\027\n\017file_expires_at\030\016 \001("
-  "\003\022\023\n\013file_status\030\017 \001(\t\022\032\n\022mentioned_user"
-  "_ids\030\020 \003(\t\"7\n\rC_ReadReceipt\022\017\n\007conv_id\030\001"
-  " \001(\t\022\025\n\rlast_read_seq\030\002 \001(\003\"J\n\rS_ReadRec"
-  "eipt\022\017\n\007conv_id\030\001 \001(\t\022\021\n\treader_id\030\002 \001(\t"
-  "\022\025\n\rlast_read_seq\030\003 \001(\003\"3\n\017C_DeleteMessa"
-  "ge\022\017\n\007conv_id\030\001 \001(\t\022\017\n\007msg_seq\030\002 \001(\003\"D\n\017"
-  "S_DeleteMessage\022\017\n\007success\030\001 \001(\010\022\017\n\007conv"
-  "_id\030\002 \001(\t\022\017\n\007msg_seq\030\003 \001(\003\"C\n\rC_EditMess"
-  "age\022\017\n\007conv_id\030\001 \001(\t\022\017\n\007msg_seq\030\002 \001(\003\022\020\n"
-  "\010new_text\030\003 \001(\t\"g\n\rS_EditMessage\022\017\n\007succ"
-  "ess\030\001 \001(\010\022\017\n\007conv_id\030\002 \001(\t\022\017\n\007msg_seq\030\003 "
-  "\001(\003\022\020\n\010new_text\030\004 \001(\t\022\021\n\tedited_at\030\005 \001(\003"
-  "\"D\n\014C_ReqHistory\022\017\n\007conv_id\030\001 \001(\t\022\024\n\014las"
-  "t_msg_seq\030\002 \001(\003\022\r\n\005limit\030\003 \001(\005\"S\n\014S_ReqH"
-  "istory\022\017\n\007conv_id\030\001 \001(\t\022\"\n\010messages\030\002 \003("
-  "\0132\020.Protocol.S_Chat\022\016\n\006is_end\030\003 \001(\010\"\211\002\n\014"
-  "C_UploadFile\022\020\n\010filename\030\001 \001(\t\022\014\n\004size\030\002"
-  " \001(\003\022\021\n\tmime_type\030\003 \001(\t\022\020\n\010is_image\030\004 \001("
-  "\010\0226\n\013upload_type\030\005 \001(\0162!.Protocol.C_Uplo"
-  "adFile.UploadType\022\021\n\ttarget_id\030\006 \001(\t\"i\n\n"
-  "UploadType\022\017\n\013DIRECT_CHAT\020\000\022\016\n\nGROUP_CHA"
-  "T\020\001\022\017\n\013PROFILE_IMG\020\002\022\025\n\021GROUP_PROFILE_IM"
-  "G\020\003\022\022\n\016BACKGROUND_IMG\020\004\"\341\001\n\014S_UploadFile"
-  "\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\t\022\017\n\007fi"
-  "le_id\030\003 \001(\t\022\022\n\nupload_url\030\004 \001(\t\022\024\n\014downl"
-  "oad_url\030\005 \001(\t\022\030\n\020thumb_upload_url\030\006 \001(\t\022"
-  "\025\n\rthumbnail_url\030\007 \001(\t\022\022\n\nexpires_at\030\010 \001"
-  "(\003\022\014\n\004path\030\t \001(\t\022!\n\031file_retention_expir"
-  "es_at\030\n \001(\003\")\n\005C_Ack\022\017\n\007conv_id\030\001 \001(\t\022\017\n"
-  "\007msg_seq\030\002 \001(\003\"\"\n\016C_FetchOffline\022\020\n\010sinc"
-  "e_ts\030\001 \001(\003\"\304\001\n\016S_MessageBatch\022;\n\007batches"
-  "\030\001 \003(\0132*.Protocol.S_MessageBatch.Convers"
-  "ationBatch\032u\n\021ConversationBatch\022\017\n\007conv_"
-  "id\030\001 \001(\t\022\"\n\010messages\030\002 \003(\0132\020.Protocol.S_"
-  "Chat\022\024\n\014unread_count\030\003 \001(\005\022\025\n\rlast_read_"
-  "seq\030\004 \001(\003\"\023\n\021C_GetSubscription\"\252\001\n\020Subsc"
-  "riptionPlan\022\017\n\007plan_id\030\001 \001(\005\022\021\n\tplan_typ"
-  "e\030\002 \001(\t\022\014\n\004name\030\003 \001(\t\022\r\n\005grade\030\004 \001(\005\022\025\n\r"
-  "storage_bytes\030\005 \001(\003\022\025\n\rmax_file_size\030\006 \001"
-  "(\003\022\025\n\rmonthly_price\030\007 \001(\003\022\020\n\010features\030\010 "
-  "\003(\t\"\360\001\n\021S_GetSubscription\022\017\n\007success\030\001 \001"
-  "(\010\022\025\n\rcurrent_grade\030\002 \001(\005\022\031\n\021current_pla"
-  "n_name\030\003 \001(\t\022\036\n\026storage_capacity_bytes\030\004"
-  " \001(\003\022\033\n\023storage_usage_bytes\030\005 \001(\003\022\022\n\nexp"
-  "ires_at\030\006 \001(\003\022\022\n\nauto_renew\030\007 \001(\010\0223\n\017ava"
-  "ilable_plans\030\010 \003(\0132\032.Protocol.Subscripti"
-  "onPlan\"h\n\020C_VerifyPurchase\022\020\n\010platform\030\001"
-  " \001(\t\022\022\n\nproduct_id\030\002 \001(\t\022\026\n\016transaction_"
-  "id\030\003 \001(\t\022\026\n\016purchase_token\030\004 \001(\t\"u\n\020S_Ve"
-  "rifyPurchase\022\017\n\007success\030\001 \001(\010\022\017\n\007message"
-  "\030\002 \001(\t\022\021\n\tnew_grade\030\003 \001(\005\022\022\n\nexpires_at\030"
-  "\004 \001(\003\022\030\n\020storage_capacity\030\005 \001(\003\"\026\n\024C_Can"
-  "celSubscription\"R\n\024S_CancelSubscription\022"
-  "\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\t\022\030\n\020gra"
-  "ce_expires_at\030\003 \001(\003\".\n\nC_Withdraw\022\020\n\010pas"
-  "sword\030\001 \001(\t\022\016\n\006reason\030\002 \001(\t\".\n\nS_Withdra"
-  "w\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\t\"\037\n\014C"
-  "_SearchUser\022\017\n\007user_id\030\001 \001(\t\"s\n\014S_Search"
-  "User\022\017\n\007success\030\001 \001(\010\022%\n\tuser_info\030\002 \001(\013"
-  "2\022.Protocol.UserInfo\022\021\n\tis_friend\030\003 \001(\010\022"
-  "\030\n\020has_sent_request\030\004 \001(\010\"a\n\rFriendReque"
-  "st\022%\n\trequester\030\001 \001(\0132\022.Protocol.UserInf"
-  "o\022\024\n\014requested_at\030\002 \001(\003\022\023\n\013is_received\030\003"
-  " \001(\010\"\314\001\n\016C_FriendAction\0223\n\006action\030\001 \001(\0162"
-  "#.Protocol.C_FriendAction.ActionType\022\026\n\016"
-  "target_user_id\030\002 \001(\t\"m\n\nActionType\022\020\n\014SE"
-  "ND_REQUEST\020\000\022\022\n\016CANCEL_REQUEST\020\001\022\022\n\016ACCE"
-  "PT_REQUEST\020\002\022\022\n\016REJECT_REQUEST\020\003\022\021\n\rDELE"
-  "TE_FRIEND\020\004\"^\n\016S_FriendAction\022\017\n\007success"
-  "\030\001 \001(\010\022\017\n\007message\030\002 \001(\t\022*\n\016updated_frien"
-  "d\030\003 \001(\0132\022.Protocol.UserInfo\"\023\n\021C_FetchFr"
-  "iendData\"\234\001\n\021S_FetchFriendData\022#\n\007friend"
-  "s\030\001 \003(\0132\022.Protocol.UserInfo\0222\n\021received_"
-  "requests\030\002 \003(\0132\027.Protocol.FriendRequest\022"
-  ".\n\rsent_requests\030\003 \003(\0132\027.Protocol.Friend"
-  "Request\"\241\001\n\014S_FriendPush\0222\n\tpush_type\030\001 "
-  "\001(\0162\037.Protocol.S_FriendPush.PushType\022%\n\t"
-  "user_info\030\002 \001(\0132\022.Protocol.UserInfo\"6\n\010P"
-  "ushType\022\017\n\013NEW_REQUEST\020\000\022\014\n\010ACCEPTED\020\001\022\013"
-  "\n\007DELETED\020\002\"n\n\017GroupMemberInfo\022%\n\tuser_i"
-  "nfo\030\001 \001(\0132\022.Protocol.UserInfo\022!\n\004role\030\002 "
-  "\001(\0162\023.Protocol.GroupRole\022\021\n\tjoined_at\030\003 "
-  "\001(\003\"\346\001\n\tGroupInfo\022\020\n\010group_id\030\001 \001(\t\022\022\n\ng"
-  "roup_name\030\002 \001(\t\022\022\n\ngroup_code\030\003 \001(\t\022\023\n\013d"
-  "escription\030\004 \001(\t\022\027\n\017group_image_url\030\005 \001("
-  "\t\022\024\n\014member_count\030\006 \001(\005\022\036\n\026storage_capac"
-  "ity_bytes\030\007 \001(\003\022\033\n\023storage_usage_bytes\030\010"
-  " \001(\003\022\036\n\026invite_code_expires_at\030\t \001(\003\"#\n\r"
-  "C_CreateGroup\022\022\n\ngroup_name\030\001 \001(\t\"D\n\rS_C"
-  "reateGroup\022\017\n\007success\030\001 \001(\010\022\"\n\005group\030\002 \001"
-  "(\0132\023.Protocol.GroupInfo\"\r\n\013C_GroupList\"2"
-  "\n\013S_GroupList\022#\n\006groups\030\001 \003(\0132\023.Protocol"
-  ".GroupInfo\"\037\n\013C_GroupInfo\022\020\n\010group_id\030\001 "
-  "\001(\t\"W\n\013S_GroupInfo\022\"\n\005group\030\001 \001(\0132\023.Prot"
-  "ocol.GroupInfo\022$\n\007my_role\030\002 \001(\0162\023.Protoc"
-  "ol.GroupRole\";\n\016C_InviteFriend\022\020\n\010group_"
-  "id\030\001 \001(\t\022\027\n\017friend_user_ids\030\002 \003(\t\"!\n\016S_I"
-  "nviteFriend\022\017\n\007success\030\001 \001(\010\"!\n\013C_JoinGr"
-  "oup\022\022\n\ngroup_code\030\001 \001(\t\"B\n\013S_JoinGroup\022\017"
-  "\n\007success\030\001 \001(\010\022\"\n\005group\030\002 \001(\0132\023.Protoco"
-  "l.GroupInfo\"\'\n\023C_RefreshInviteCode\022\020\n\010gr"
-  "oup_id\030\001 \001(\t\"N\n\023S_RefreshInviteCode\022\017\n\007s"
-  "uccess\030\001 \001(\010\022\022\n\ngroup_code\030\002 \001(\t\022\022\n\nexpi"
-  "res_at\030\003 \001(\003\"%\n\021C_GroupMemberList\022\020\n\010gro"
-  "up_id\030\001 \001(\t\"Q\n\021S_GroupMemberList\022\020\n\010grou"
-  "p_id\030\001 \001(\t\022*\n\007members\030\002 \003(\0132\031.Protocol.G"
-  "roupMemberInfo\" \n\014C_LeaveGroup\022\020\n\010group_"
-  "id\030\001 \001(\t\"\037\n\014S_LeaveGroup\022\017\n\007success\030\001 \001("
-  "\010\"a\n\013C_EditGroup\022\020\n\010group_id\030\001 \001(\t\022\020\n\010ne"
-  "w_name\030\002 \001(\t\022\027\n\017new_description\030\003 \001(\t\022\025\n"
-  "\rnew_image_url\030\004 \001(\t\"B\n\013S_EditGroup\022\017\n\007s"
-  "uccess\030\001 \001(\010\022\"\n\005group\030\002 \001(\0132\023.Protocol.G"
-  "roupInfo\"!\n\rC_DeleteGroup\022\020\n\010group_id\030\001 "
-  "\001(\t\" \n\rS_DeleteGroup\022\017\n\007success\030\001 \001(\010\"Y\n"
-  "\017BlockedUserInfo\022\017\n\007user_id\030\001 \001(\t\022\014\n\004nam"
-  "e\030\002 \001(\t\022\023\n\013profile_img\030\003 \001(\t\022\022\n\nblocked_"
-  "at\030\004 \001(\003\"%\n\013C_BlockUser\022\026\n\016target_user_i"
-  "d\030\001 \001(\t\"/\n\013S_BlockUser\022\017\n\007success\030\001 \001(\010\022"
-  "\017\n\007message\030\002 \001(\t\"\'\n\rC_UnblockUser\022\026\n\016tar"
-  "get_user_id\030\001 \001(\t\" \n\rS_UnblockUser\022\017\n\007su"
-  "ccess\030\001 \001(\010\"\022\n\020C_GetBlockedList\"D\n\020S_Get"
-  "BlockedList\0220\n\rblocked_users\030\001 \003(\0132\031.Pro"
-  "tocol.BlockedUserInfo\"F\n\014C_ReportUser\022\026\n"
-  "\016target_user_id\030\001 \001(\t\022\016\n\006reason\030\002 \001(\t\022\016\n"
-  "\006detail\030\003 \001(\t\"\037\n\014S_ReportUser\022\017\n\007success"
-  "\030\001 \001(\010\"@\n\rC_AddReaction\022\017\n\007conv_id\030\001 \001(\t"
-  "\022\017\n\007msg_seq\030\002 \001(\003\022\r\n\005emoji\030\003 \001(\t\"b\n\rS_Ad"
-  "dReaction\022\017\n\007conv_id\030\001 \001(\t\022\017\n\007msg_seq\030\002 "
-  "\001(\003\022\017\n\007user_id\030\003 \001(\t\022\r\n\005emoji\030\004 \001(\t\022\017\n\007r"
-  "emoved\030\005 \001(\010\"\205\001\n\014C_CreatePoll\022\017\n\007conv_id"
-  "\030\001 \001(\t\022\020\n\010question\030\002 \001(\t\022\017\n\007options\030\003 \003("
-  "\t\022\027\n\017is_multi_select\030\004 \001(\010\022\024\n\014is_anonymo"
-  "us\030\005 \001(\010\022\022\n\nexpires_at\030\006 \001(\003\"\344\001\n\014S_Creat"
-  "ePoll\022\017\n\007conv_id\030\001 \001(\t\022\017\n\007poll_id\030\002 \001(\t\022"
-  "\017\n\007msg_seq\030\003 \001(\003\022\022\n\ncreator_id\030\004 \001(\t\022\024\n\014"
-  "creator_name\030\005 \001(\t\022\020\n\010question\030\006 \001(\t\022\017\n\007"
-  "options\030\007 \003(\t\022\027\n\017is_multi_select\030\010 \001(\010\022\024"
-  "\n\014is_anonymous\030\t \001(\010\022\022\n\nexpires_at\030\n \001(\003"
-  "\022\021\n\tts_server\030\013 \001(\003\"U\n\006C_Vote\022\017\n\007conv_id"
-  "\030\001 \001(\t\022\017\n\007poll_id\030\002 \001(\t\022\017\n\007msg_seq\030\003 \001(\003"
-  "\022\030\n\020selected_options\030\004 \003(\005\"\217\001\n\006S_Vote\022\017\n"
-  "\007conv_id\030\001 \001(\t\022\017\n\007poll_id\030\002 \001(\t\022\017\n\007msg_s"
-  "eq\030\003 \001(\003\022\020\n\010voter_id\030\004 \001(\t\022\022\n\nvoter_name"
-  "\030\005 \001(\t\022\030\n\020selected_options\030\006 \003(\005\022\022\n\nvote"
-  "s_json\030\007 \001(\t\"@\n\013C_ClosePoll\022\017\n\007conv_id\030\001"
-  " \001(\t\022\017\n\007poll_id\030\002 \001(\t\022\017\n\007msg_seq\030\003 \001(\003\"@"
-  "\n\013S_ClosePoll\022\017\n\007conv_id\030\001 \001(\t\022\017\n\007poll_i"
-  "d\030\002 \001(\t\022\017\n\007msg_seq\030\003 \001(\003\"X\n\021C_SetAnnounc"
-  "ement\022\017\n\007conv_id\030\001 \001(\t\022\017\n\007msg_seq\030\002 \001(\003\022"
-  "\014\n\004text\030\003 \001(\t\022\023\n\013sender_name\030\004 \001(\t\"k\n\021S_"
-  "SetAnnouncement\022\017\n\007conv_id\030\001 \001(\t\022\017\n\007msg_"
-  "seq\030\002 \001(\003\022\014\n\004text\030\003 \001(\t\022\023\n\013sender_name\030\004"
-  " \001(\t\022\021\n\tsetter_id\030\005 \001(\t\"Q\n\020C_CreateBallD"
-  "rop\022\017\n\007conv_id\030\001 \001(\t\022\027\n\017participant_ids\030"
-  "\002 \003(\t\022\023\n\013ball_counts\030\003 \003(\005\"G\n\020S_CreateBa"
-  "llDrop\022\017\n\007conv_id\030\001 \001(\t\022\017\n\007msg_seq\030\002 \001(\003"
-  "\022\021\n\tgame_json\030\003 \001(\t\"\312\001\n\022C_CreatePhotoSli"
-  "de\022\017\n\007conv_id\030\001 \001(\t\022\022\n\nimage_urls\030\002 \003(\t\022"
-  "\026\n\016thumbnail_urls\030\003 \003(\t\022\017\n\007message\030\004 \001(\t"
-  "\022\022\n\nfont_style\030\005 \001(\t\022\025\n\rtext_position\030\006 "
-  "\001(\t\022\020\n\010bg_theme\030\007 \001(\t\022\026\n\016ending_message\030"
-  "\010 \001(\t\022\021\n\tfont_size\030\t \001(\005\"J\n\022S_CreatePhot"
-  "oSlide\022\017\n\007conv_id\030\001 \001(\t\022\017\n\007msg_seq\030\002 \001(\003"
-  "\022\022\n\nslide_json\030\003 \001(\t\"3\n\rC_SocialLogin\022\020\n"
-  "\010provider\030\001 \001(\t\022\020\n\010id_token\030\002 \001(\t\"c\n\rS_S"
-  "ocialLogin\022\032\n\022needs_registration\030\001 \001(\010\022\r"
-  "\n\005email\030\002 \001(\t\022\014\n\004name\030\003 \001(\t\022\031\n\021profile_i"
-  "mage_url\030\004 \001(\t\"[\n\026C_CompleteSocialSignup"
-  "\022\020\n\010provider\030\001 \001(\t\022\020\n\010id_token\030\002 \001(\t\022\017\n\007"
-  "user_id\030\003 \001(\t\022\014\n\004name\030\004 \001(\t\"Q\n\007S_Error\022\'"
-  "\n\nerror_code\030\001 \001(\0162\023.Protocol.ErrorCode\022"
-  "\014\n\004code\030\002 \001(\r\022\017\n\007message\030\003 \001(\t\"\r\n\013C_Hear"
-  "tbeat\"\r\n\013S_Heartbeat*-\n\tGroupRole\022\n\n\006MEM"
-  "BER\020\000\022\t\n\005ADMIN\020\001\022\t\n\005OWNER\020\002*\216\n\n\tErrorCod"
-  "e\022\017\n\013ERR_SUCCESS\020\000\022\017\n\013ERR_UNKNOWN\020\001\022\027\n\023E"
-  "RR_SERVER_INTERNAL\020\002\022\026\n\022ERR_INVALID_PACK"
-  "ET\020\003\022\030\n\024ERR_VERSION_MISMATCH\020\004\022\024\n\020ERR_UN"
-  "AUTHORIZED\020\005\022\025\n\021ERR_INVALID_TOKEN\020\006\022\025\n\021E"
-  "RR_USER_ID_EMPTY\020d\022\030\n\024ERR_USER_ID_REQUIR"
-  "ED\020e\022\031\n\025ERR_PASSWORD_REQUIRED\020f\022\025\n\021ERR_N"
-  "AME_REQUIRED\020g\022\026\n\022ERR_EMAIL_REQUIRED\020h\022\026"
-  "\n\022ERR_USER_NOT_FOUND\020i\022\030\n\024ERR_INVALID_PA"
-  "SSWORD\020j\022\033\n\027ERR_USER_ALREADY_EXISTS\020k\022\034\n"
-  "\030ERR_EMAIL_ALREADY_EXISTS\020l\022\032\n\026ERR_EMAIL"
-  "_NOT_VERIFIED\020m\022\026\n\021ERR_PAYLOAD_EMPTY\020\310\001\022"
-  "\030\n\023ERR_INVALID_CONV_ID\020\311\001\022\034\n\027ERR_INVALID"
-  "_RECEIVER_ID\020\312\001\022\024\n\017ERR_INVALID_ACK\020\313\001\022\037\n"
-  "\032ERR_INVALID_FRIEND_USER_ID\020\254\002\022\030\n\023ERR_CA"
-  "NNOT_ADD_SELF\020\255\002\022\025\n\020ERR_NOT_A_FRIEND\020\256\002\022"
-  "!\n\034ERR_FRIEND_REQUEST_NOT_FOUND\020\257\002\022%\n ER"
-  "R_FILE_SERVICE_NOT_INITIALIZED\020\220\003\022&\n!ERR"
-  "_CLOUD_STORAGE_NOT_INITIALIZED\020\221\003\022\032\n\025ERR"
-  "_FILENAME_REQUIRED\020\222\003\022\032\n\025ERR_INVALID_FIL"
-  "E_SIZE\020\223\003\022\033\n\026ERR_MIME_TYPE_REQUIRED\020\224\003\022\037"
-  "\n\032ERR_FAILED_TO_GENERATE_URL\020\225\003\022\031\n\024ERR_I"
-  "NVALID_FILE_URL\020\226\003\022\031\n\024ERR_INVALID_ARGUME"
-  "NT\020\227\003\022\031\n\024ERR_STORAGE_EXCEEDED\020\230\003\022\027\n\022ERR_"
-  "FILE_TOO_LARGE\020\231\003\022\027\n\022ERR_PAYMENT_FAILED\020"
-  "\232\003\022\030\n\023ERR_RECEIPT_INVALID\020\233\003\022\026\n\021ERR_NO_P"
-  "ERMISSION\020\364\003\022\030\n\023ERR_ALREADY_BLOCKED\020\330\004\022\024"
-  "\n\017ERR_NOT_BLOCKED\020\331\004\022\032\n\025ERR_CANNOT_BLOCK"
-  "_SELF\020\332\004\022\031\n\024ERR_REPORT_DUPLICATE\020\342\004\022\027\n\022E"
-  "RR_POLL_NOT_FOUND\020\274\005\022\024\n\017ERR_POLL_CLOSED\020"
-  "\275\005\022\034\n\027ERR_POLL_INVALID_OPTION\020\276\005\022\027\n\022ERR_"
-  "INVITE_EXPIRED\020\240\006\022!\n\035ERR_OAUTH_VERIFICAT"
-  "ION_FAILED\020x\022\036\n\032ERR_OAUTH_PROVIDER_INVAL"
-  "ID\020yb\006proto3"
+  "ompleteSocialSignupH\000\0221\n\016c_create_album\030"
+  "x \001(\0132\027.Protocol.C_CreateAlbumH\000\0221\n\016s_cr"
+  "eate_album\030y \001(\0132\027.Protocol.S_CreateAlbu"
+  "mH\000\022-\n\014c_get_albums\030z \001(\0132\025.Protocol.C_G"
+  "etAlbumsH\000\022-\n\014s_get_albums\030{ \001(\0132\025.Proto"
+  "col.S_GetAlbumsH\000\022;\n\024c_add_photo_to_albu"
+  "m\030| \001(\0132\033.Protocol.C_AddPhotoToAlbumH\000\022;"
+  "\n\024s_add_photo_to_album\030} \001(\0132\033.Protocol."
+  "S_AddPhotoToAlbumH\000\0228\n\022c_get_album_photo"
+  "s\030~ \001(\0132\032.Protocol.C_GetAlbumPhotosH\000\0228\n"
+  "\022s_get_album_photos\030\177 \001(\0132\032.Protocol.S_G"
+  "etAlbumPhotosH\000\022;\n\023c_add_photo_comment\030\200"
+  "\001 \001(\0132\033.Protocol.C_AddPhotoCommentH\000\022;\n\023"
+  "s_add_photo_comment\030\201\001 \001(\0132\033.Protocol.S_"
+  "AddPhotoCommentH\000\022=\n\024c_get_photo_comment"
+  "s\030\202\001 \001(\0132\034.Protocol.C_GetPhotoCommentsH\000"
+  "\022=\n\024s_get_photo_comments\030\203\001 \001(\0132\034.Protoc"
+  "ol.S_GetPhotoCommentsH\000\0222\n\016c_delete_albu"
+  "m\030\214\001 \001(\0132\027.Protocol.C_DeleteAlbumH\000\0222\n\016s"
+  "_delete_album\030\215\001 \001(\0132\027.Protocol.S_Delete"
+  "AlbumH\000\022=\n\024c_delete_album_photo\030\216\001 \001(\0132\034"
+  ".Protocol.C_DeleteAlbumPhotoH\000\022=\n\024s_dele"
+  "te_album_photo\030\217\001 \001(\0132\034.Protocol.S_Delet"
+  "eAlbumPhotoH\000\022.\n\014c_move_photo\030\220\001 \001(\0132\025.P"
+  "rotocol.C_MovePhotoH\000\022.\n\014s_move_photo\030\221\001"
+  " \001(\0132\025.Protocol.S_MovePhotoH\000\022A\n\026c_delet"
+  "e_photo_comment\030\222\001 \001(\0132\036.Protocol.C_Dele"
+  "tePhotoCommentH\000\022A\n\026s_delete_photo_comme"
+  "nt\030\223\001 \001(\0132\036.Protocol.S_DeletePhotoCommen"
+  "tH\000\022.\n\014c_save_place\030\224\001 \001(\0132\025.Protocol.C_"
+  "SavePlaceH\000\022.\n\014s_save_place\030\225\001 \001(\0132\025.Pro"
+  "tocol.S_SavePlaceH\000\022.\n\014c_get_places\030\226\001 \001"
+  "(\0132\025.Protocol.C_GetPlacesH\000\022.\n\014s_get_pla"
+  "ces\030\227\001 \001(\0132\025.Protocol.S_GetPlacesH\000\022.\n\014c"
+  "_save_visit\030\230\001 \001(\0132\025.Protocol.C_SaveVisi"
+  "tH\000\022.\n\014s_save_visit\030\231\001 \001(\0132\025.Protocol.S_"
+  "SaveVisitH\000\0222\n\016c_delete_place\030\232\001 \001(\0132\027.P"
+  "rotocol.C_DeletePlaceH\000\0222\n\016s_delete_plac"
+  "e\030\233\001 \001(\0132\027.Protocol.S_DeletePlaceH\000\0222\n\016c"
+  "_update_visit\030\234\001 \001(\0132\027.Protocol.C_Update"
+  "VisitH\000\0222\n\016s_update_visit\030\235\001 \001(\0132\027.Proto"
+  "col.S_UpdateVisitH\000\0222\n\016c_delete_visit\030\236\001"
+  " \001(\0132\027.Protocol.C_DeleteVisitH\000\0222\n\016s_del"
+  "ete_visit\030\237\001 \001(\0132\027.Protocol.S_DeleteVisi"
+  "tH\000\0221\n\016c_create_group\030P \001(\0132\027.Protocol.C"
+  "_CreateGroupH\000\0221\n\016s_create_group\030Q \001(\0132\027"
+  ".Protocol.S_CreateGroupH\000\022-\n\014c_group_lis"
+  "t\030R \001(\0132\025.Protocol.C_GroupListH\000\022-\n\014s_gr"
+  "oup_list\030S \001(\0132\025.Protocol.S_GroupListH\000\022"
+  "-\n\014c_join_group\030T \001(\0132\025.Protocol.C_JoinG"
+  "roupH\000\022-\n\014s_join_group\030U \001(\0132\025.Protocol."
+  "S_JoinGroupH\000\0223\n\017c_invite_friend\030V \001(\0132\030"
+  ".Protocol.C_InviteFriendH\000\0223\n\017s_invite_f"
+  "riend\030W \001(\0132\030.Protocol.S_InviteFriendH\000\022"
+  "/\n\rc_leave_group\030X \001(\0132\026.Protocol.C_Leav"
+  "eGroupH\000\022/\n\rs_leave_group\030Y \001(\0132\026.Protoc"
+  "ol.S_LeaveGroupH\000\022:\n\023c_group_member_list"
+  "\030Z \001(\0132\033.Protocol.C_GroupMemberListH\000\022:\n"
+  "\023s_group_member_list\030[ \001(\0132\033.Protocol.S_"
+  "GroupMemberListH\000\022-\n\014c_group_info\030\\ \001(\0132"
+  "\025.Protocol.C_GroupInfoH\000\022-\n\014s_group_info"
+  "\030] \001(\0132\025.Protocol.S_GroupInfoH\000\022-\n\014c_edi"
+  "t_group\030^ \001(\0132\025.Protocol.C_EditGroupH\000\022-"
+  "\n\014s_edit_group\030_ \001(\0132\025.Protocol.S_EditGr"
+  "oupH\000\022*\n\nc_withdraw\030` \001(\0132\024.Protocol.C_W"
+  "ithdrawH\000\022*\n\ns_withdraw\030a \001(\0132\024.Protocol"
+  ".S_WithdrawH\000\0221\n\016c_delete_group\030b \001(\0132\027."
+  "Protocol.C_DeleteGroupH\000\0221\n\016s_delete_gro"
+  "up\030c \001(\0132\027.Protocol.S_DeleteGroupH\000\022$\n\007s"
+  "_error\030d \001(\0132\021.Protocol.S_ErrorH\000\022,\n\013c_h"
+  "eartbeat\030e \001(\0132\025.Protocol.C_HeartbeatH\000\022"
+  ",\n\013s_heartbeat\030f \001(\0132\025.Protocol.S_Heartb"
+  "eatH\000B\t\n\007payload\"\276\002\n\010UserInfo\022\017\n\007user_id"
+  "\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\026\n\016status_message\030\003"
+  " \001(\t\022\031\n\021profile_image_url\030\004 \001(\t\022\034\n\024backg"
+  "round_image_url\030\005 \001(\t\022\r\n\005email\030\006 \001(\t\022\r\n\005"
+  "phone\030\007 \001(\t\022\021\n\tsub_grade\030\010 \001(\r\022\036\n\026storag"
+  "e_capacity_bytes\030\t \001(\003\022\033\n\023storage_usage_"
+  "bytes\030\n \001(\003\022\021\n\tlast_seen\030\013 \001(\003\022\016\n\006status"
+  "\030\014 \001(\t\022\031\n\021is_email_verified\030\r \001(\010\022\026\n\016oau"
+  "th_provider\030\016 \001(\t\"\233\001\n\nDeviceInfo\022\021\n\tdevi"
+  "ce_id\030\001 \001(\t\022\023\n\013device_name\030\002 \001(\t\022\020\n\010plat"
+  "form\030\003 \001(\t\022\023\n\013last_active\030\004 \001(\003\022\025\n\rregis"
+  "tered_at\030\005 \001(\003\022\023\n\013app_version\030\006 \001(\t\022\022\n\ni"
+  "s_current\030\007 \001(\010\"\034\n\tC_CheckId\022\017\n\007user_id\030"
+  "\001 \001(\t\"!\n\tS_CheckId\022\024\n\014is_available\030\001 \001(\010"
+  "\"\035\n\014C_CheckEmail\022\r\n\005email\030\001 \001(\t\"$\n\014S_Che"
+  "ckEmail\022\024\n\014is_available\030\001 \001(\010\"%\n\024C_Reque"
+  "stEmailVerify\022\r\n\005email\030\001 \001(\t\"8\n\024S_Reques"
+  "tEmailVerify\022\017\n\007success\030\001 \001(\010\022\017\n\007message"
+  "\030\002 \001(\t\"3\n\024C_ConfirmEmailVerify\022\r\n\005email\030"
+  "\001 \001(\t\022\014\n\004code\030\002 \001(\t\"\'\n\024S_ConfirmEmailVer"
+  "ify\022\017\n\007success\030\001 \001(\010\"J\n\010C_SignUp\022\017\n\007user"
+  "_id\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\022\014\n\004name\030\003 \001("
+  "\t\022\r\n\005email\030\004 \001(\t\"=\n\010S_SignUp\022\017\n\007success\030"
+  "\001 \001(\010\022\017\n\007message\030\002 \001(\t\022\017\n\007user_id\030\003 \001(\t\""
+  ",\n\007C_Login\022\017\n\007user_id\030\001 \001(\t\022\020\n\010password\030"
+  "\002 \001(\t\"S\n\007S_Login\022\017\n\007success\030\001 \001(\010\022\022\n\naut"
+  "h_token\030\002 \001(\t\022#\n\007my_info\030\003 \001(\0132\022.Protoco"
+  "l.UserInfo\"0\n\010C_Logout\022\021\n\tfcm_token\030\001 \001("
+  "\t\022\021\n\tdevice_id\030\002 \001(\t\"\033\n\010S_Logout\022\017\n\007succ"
+  "ess\030\001 \001(\010\"\020\n\016C_GetMyDevices\"7\n\016S_GetMyDe"
+  "vices\022%\n\007devices\030\001 \003(\0132\024.Protocol.Device"
+  "Info\"#\n\016C_RemoveDevice\022\021\n\tdevice_id\030\001 \001("
+  "\t\"2\n\016S_RemoveDevice\022\017\n\007success\030\001 \001(\010\022\017\n\007"
+  "message\030\002 \001(\t\"\017\n\rC_FetchMyInfo\"4\n\rS_Fetc"
+  "hMyInfo\022#\n\007my_info\030\001 \001(\0132\022.Protocol.User"
+  "Info\"|\n\014C_EditMyInfo\022\014\n\004name\030\001 \001(\t\022\026\n\016st"
+  "atus_message\030\002 \001(\t\022\031\n\021profile_image_url\030"
+  "\003 \001(\t\022\034\n\024background_image_url\030\004 \001(\t\022\r\n\005p"
+  "hone\030\005 \001(\t\"Z\n\014S_EditMyInfo\022\017\n\007success\030\001 "
+  "\001(\010\022\017\n\007message\030\002 \001(\t\022(\n\014updated_info\030\003 \001"
+  "(\0132\022.Protocol.UserInfo\"v\n\022C_RegisterFcmT"
+  "oken\022\021\n\tfcm_token\030\001 \001(\t\022\020\n\010platform\030\002 \001("
+  "\t\022\021\n\tdevice_id\030\003 \001(\t\022\023\n\013device_name\030\004 \001("
+  "\t\022\023\n\013app_version\030\005 \001(\t\"6\n\022S_RegisterFcmT"
+  "oken\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\t\"\""
+  "\n\rC_ChangeEmail\022\021\n\tnew_email\030\001 \001(\t\"[\n\rS_"
+  "ChangeEmail\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030"
+  "\002 \001(\t\022(\n\014updated_info\030\003 \001(\0132\022.Protocol.U"
+  "serInfo\"B\n\020C_ChangePassword\022\030\n\020current_p"
+  "assword\030\001 \001(\t\022\024\n\014new_password\030\002 \001(\t\"4\n\020S"
+  "_ChangePassword\022\017\n\007success\030\001 \001(\010\022\017\n\007mess"
+  "age\030\002 \001(\t\"\027\n\004Text\022\017\n\007message\030\001 \001(\t\"5\n\005Im"
+  "age\022\013\n\003url\030\001 \001(\t\022\021\n\tthumbnail\030\002 \001(\t\022\014\n\004s"
+  "ize\030\003 \001(\003\"K\n\005Video\022\013\n\003url\030\001 \001(\t\022\021\n\tthumb"
+  "nail\030\002 \001(\t\022\024\n\014duration_sec\030\003 \001(\005\022\014\n\004size"
+  "\030\004 \001(\003\"F\n\004File\022\013\n\003url\030\001 \001(\t\022\020\n\010filename\030"
+  "\002 \001(\t\022\014\n\004size\030\003 \001(\003\022\021\n\tmime_type\030\004 \001(\t\"C"
+  "\n\tSystemMsg\022\017\n\007message\030\001 \001(\t\022\014\n\004type\030\002 \001"
+  "(\005\022\027\n\017invite_group_id\030\003 \001(\t\"8\n\005Audio\022\013\n\003"
+  "url\030\001 \001(\t\022\024\n\014duration_sec\030\002 \001(\005\022\014\n\004size\030"
+  "\003 \001(\003\"\345\001\n\013ChatPayload\022\036\n\004text\030\001 \001(\0132\016.Pr"
+  "otocol.TextH\000\022 \n\005image\030\002 \001(\0132\017.Protocol."
+  "ImageH\000\022 \n\005video\030\003 \001(\0132\017.Protocol.VideoH"
+  "\000\022\036\n\004file\030\004 \001(\0132\016.Protocol.FileH\000\022%\n\006sys"
+  "tem\030\005 \001(\0132\023.Protocol.SystemMsgH\000\022 \n\005audi"
+  "o\030\006 \001(\0132\017.Protocol.AudioH\000B\t\n\007content\"\257\001"
+  "\n\006C_Chat\022\017\n\007conv_id\030\001 \001(\t\022\025\n\rclient_msg_"
+  "id\030\002 \001(\005\022&\n\007payload\030\003 \001(\0132\025.Protocol.Cha"
+  "tPayload\022\021\n\tts_client\030\004 \001(\003\022\024\n\014reply_to_"
+  "seq\030\005 \001(\003\022\020\n\010gcs_path\030\006 \001(\t\022\032\n\022mentioned"
+  "_user_ids\030\007 \003(\t\"\366\002\n\006S_Chat\022\017\n\007conv_id\030\001 "
+  "\001(\t\022\025\n\rclient_msg_id\030\002 \001(\005\022\017\n\007msg_seq\030\003 "
+  "\001(\003\022\021\n\tsender_id\030\004 \001(\t\022\023\n\013sender_name\030\005 "
+  "\001(\t\022&\n\007payload\030\006 \001(\0132\025.Protocol.ChatPayl"
+  "oad\022\021\n\tts_server\030\007 \001(\003\022\024\n\014reply_to_seq\030\010"
+  " \001(\003\022\034\n\024reply_to_sender_name\030\t \001(\t\022\025\n\rre"
+  "ply_to_text\030\n \001(\t\022\022\n\nis_deleted\030\013 \001(\010\022\021\n"
+  "\tis_edited\030\014 \001(\010\022\024\n\014unread_count\030\r \001(\005\022\027"
+  "\n\017file_expires_at\030\016 \001(\003\022\023\n\013file_status\030\017"
+  " \001(\t\022\032\n\022mentioned_user_ids\030\020 \003(\t\"7\n\rC_Re"
+  "adReceipt\022\017\n\007conv_id\030\001 \001(\t\022\025\n\rlast_read_"
+  "seq\030\002 \001(\003\"J\n\rS_ReadReceipt\022\017\n\007conv_id\030\001 "
+  "\001(\t\022\021\n\treader_id\030\002 \001(\t\022\025\n\rlast_read_seq\030"
+  "\003 \001(\003\"3\n\017C_DeleteMessage\022\017\n\007conv_id\030\001 \001("
+  "\t\022\017\n\007msg_seq\030\002 \001(\003\"D\n\017S_DeleteMessage\022\017\n"
+  "\007success\030\001 \001(\010\022\017\n\007conv_id\030\002 \001(\t\022\017\n\007msg_s"
+  "eq\030\003 \001(\003\"C\n\rC_EditMessage\022\017\n\007conv_id\030\001 \001"
+  "(\t\022\017\n\007msg_seq\030\002 \001(\003\022\020\n\010new_text\030\003 \001(\t\"g\n"
+  "\rS_EditMessage\022\017\n\007success\030\001 \001(\010\022\017\n\007conv_"
+  "id\030\002 \001(\t\022\017\n\007msg_seq\030\003 \001(\003\022\020\n\010new_text\030\004 "
+  "\001(\t\022\021\n\tedited_at\030\005 \001(\003\"D\n\014C_ReqHistory\022\017"
+  "\n\007conv_id\030\001 \001(\t\022\024\n\014last_msg_seq\030\002 \001(\003\022\r\n"
+  "\005limit\030\003 \001(\005\"S\n\014S_ReqHistory\022\017\n\007conv_id\030"
+  "\001 \001(\t\022\"\n\010messages\030\002 \003(\0132\020.Protocol.S_Cha"
+  "t\022\016\n\006is_end\030\003 \001(\010\"\211\002\n\014C_UploadFile\022\020\n\010fi"
+  "lename\030\001 \001(\t\022\014\n\004size\030\002 \001(\003\022\021\n\tmime_type\030"
+  "\003 \001(\t\022\020\n\010is_image\030\004 \001(\010\0226\n\013upload_type\030\005"
+  " \001(\0162!.Protocol.C_UploadFile.UploadType\022"
+  "\021\n\ttarget_id\030\006 \001(\t\"i\n\nUploadType\022\017\n\013DIRE"
+  "CT_CHAT\020\000\022\016\n\nGROUP_CHAT\020\001\022\017\n\013PROFILE_IMG"
+  "\020\002\022\025\n\021GROUP_PROFILE_IMG\020\003\022\022\n\016BACKGROUND_"
+  "IMG\020\004\"\341\001\n\014S_UploadFile\022\017\n\007success\030\001 \001(\010\022"
+  "\017\n\007message\030\002 \001(\t\022\017\n\007file_id\030\003 \001(\t\022\022\n\nupl"
+  "oad_url\030\004 \001(\t\022\024\n\014download_url\030\005 \001(\t\022\030\n\020t"
+  "humb_upload_url\030\006 \001(\t\022\025\n\rthumbnail_url\030\007"
+  " \001(\t\022\022\n\nexpires_at\030\010 \001(\003\022\014\n\004path\030\t \001(\t\022!"
+  "\n\031file_retention_expires_at\030\n \001(\003\")\n\005C_A"
+  "ck\022\017\n\007conv_id\030\001 \001(\t\022\017\n\007msg_seq\030\002 \001(\003\"\"\n\016"
+  "C_FetchOffline\022\020\n\010since_ts\030\001 \001(\003\"\304\001\n\016S_M"
+  "essageBatch\022;\n\007batches\030\001 \003(\0132*.Protocol."
+  "S_MessageBatch.ConversationBatch\032u\n\021Conv"
+  "ersationBatch\022\017\n\007conv_id\030\001 \001(\t\022\"\n\010messag"
+  "es\030\002 \003(\0132\020.Protocol.S_Chat\022\024\n\014unread_cou"
+  "nt\030\003 \001(\005\022\025\n\rlast_read_seq\030\004 \001(\003\"\023\n\021C_Get"
+  "Subscription\"\252\001\n\020SubscriptionPlan\022\017\n\007pla"
+  "n_id\030\001 \001(\005\022\021\n\tplan_type\030\002 \001(\t\022\014\n\004name\030\003 "
+  "\001(\t\022\r\n\005grade\030\004 \001(\005\022\025\n\rstorage_bytes\030\005 \001("
+  "\003\022\025\n\rmax_file_size\030\006 \001(\003\022\025\n\rmonthly_pric"
+  "e\030\007 \001(\003\022\020\n\010features\030\010 \003(\t\"\360\001\n\021S_GetSubsc"
+  "ription\022\017\n\007success\030\001 \001(\010\022\025\n\rcurrent_grad"
+  "e\030\002 \001(\005\022\031\n\021current_plan_name\030\003 \001(\t\022\036\n\026st"
+  "orage_capacity_bytes\030\004 \001(\003\022\033\n\023storage_us"
+  "age_bytes\030\005 \001(\003\022\022\n\nexpires_at\030\006 \001(\003\022\022\n\na"
+  "uto_renew\030\007 \001(\010\0223\n\017available_plans\030\010 \003(\013"
+  "2\032.Protocol.SubscriptionPlan\"h\n\020C_Verify"
+  "Purchase\022\020\n\010platform\030\001 \001(\t\022\022\n\nproduct_id"
+  "\030\002 \001(\t\022\026\n\016transaction_id\030\003 \001(\t\022\026\n\016purcha"
+  "se_token\030\004 \001(\t\"u\n\020S_VerifyPurchase\022\017\n\007su"
+  "ccess\030\001 \001(\010\022\017\n\007message\030\002 \001(\t\022\021\n\tnew_grad"
+  "e\030\003 \001(\005\022\022\n\nexpires_at\030\004 \001(\003\022\030\n\020storage_c"
+  "apacity\030\005 \001(\003\"\026\n\024C_CancelSubscription\"R\n"
+  "\024S_CancelSubscription\022\017\n\007success\030\001 \001(\010\022\017"
+  "\n\007message\030\002 \001(\t\022\030\n\020grace_expires_at\030\003 \001("
+  "\003\".\n\nC_Withdraw\022\020\n\010password\030\001 \001(\t\022\016\n\006rea"
+  "son\030\002 \001(\t\".\n\nS_Withdraw\022\017\n\007success\030\001 \001(\010"
+  "\022\017\n\007message\030\002 \001(\t\"\037\n\014C_SearchUser\022\017\n\007use"
+  "r_id\030\001 \001(\t\"s\n\014S_SearchUser\022\017\n\007success\030\001 "
+  "\001(\010\022%\n\tuser_info\030\002 \001(\0132\022.Protocol.UserIn"
+  "fo\022\021\n\tis_friend\030\003 \001(\010\022\030\n\020has_sent_reques"
+  "t\030\004 \001(\010\"a\n\rFriendRequest\022%\n\trequester\030\001 "
+  "\001(\0132\022.Protocol.UserInfo\022\024\n\014requested_at\030"
+  "\002 \001(\003\022\023\n\013is_received\030\003 \001(\010\"\314\001\n\016C_FriendA"
+  "ction\0223\n\006action\030\001 \001(\0162#.Protocol.C_Frien"
+  "dAction.ActionType\022\026\n\016target_user_id\030\002 \001"
+  "(\t\"m\n\nActionType\022\020\n\014SEND_REQUEST\020\000\022\022\n\016CA"
+  "NCEL_REQUEST\020\001\022\022\n\016ACCEPT_REQUEST\020\002\022\022\n\016RE"
+  "JECT_REQUEST\020\003\022\021\n\rDELETE_FRIEND\020\004\"^\n\016S_F"
+  "riendAction\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030"
+  "\002 \001(\t\022*\n\016updated_friend\030\003 \001(\0132\022.Protocol"
+  ".UserInfo\"\023\n\021C_FetchFriendData\"\234\001\n\021S_Fet"
+  "chFriendData\022#\n\007friends\030\001 \003(\0132\022.Protocol"
+  ".UserInfo\0222\n\021received_requests\030\002 \003(\0132\027.P"
+  "rotocol.FriendRequest\022.\n\rsent_requests\030\003"
+  " \003(\0132\027.Protocol.FriendRequest\"\241\001\n\014S_Frie"
+  "ndPush\0222\n\tpush_type\030\001 \001(\0162\037.Protocol.S_F"
+  "riendPush.PushType\022%\n\tuser_info\030\002 \001(\0132\022."
+  "Protocol.UserInfo\"6\n\010PushType\022\017\n\013NEW_REQ"
+  "UEST\020\000\022\014\n\010ACCEPTED\020\001\022\013\n\007DELETED\020\002\"n\n\017Gro"
+  "upMemberInfo\022%\n\tuser_info\030\001 \001(\0132\022.Protoc"
+  "ol.UserInfo\022!\n\004role\030\002 \001(\0162\023.Protocol.Gro"
+  "upRole\022\021\n\tjoined_at\030\003 \001(\003\"\346\001\n\tGroupInfo\022"
+  "\020\n\010group_id\030\001 \001(\t\022\022\n\ngroup_name\030\002 \001(\t\022\022\n"
+  "\ngroup_code\030\003 \001(\t\022\023\n\013description\030\004 \001(\t\022\027"
+  "\n\017group_image_url\030\005 \001(\t\022\024\n\014member_count\030"
+  "\006 \001(\005\022\036\n\026storage_capacity_bytes\030\007 \001(\003\022\033\n"
+  "\023storage_usage_bytes\030\010 \001(\003\022\036\n\026invite_cod"
+  "e_expires_at\030\t \001(\003\"#\n\rC_CreateGroup\022\022\n\ng"
+  "roup_name\030\001 \001(\t\"D\n\rS_CreateGroup\022\017\n\007succ"
+  "ess\030\001 \001(\010\022\"\n\005group\030\002 \001(\0132\023.Protocol.Grou"
+  "pInfo\"\r\n\013C_GroupList\"2\n\013S_GroupList\022#\n\006g"
+  "roups\030\001 \003(\0132\023.Protocol.GroupInfo\"\037\n\013C_Gr"
+  "oupInfo\022\020\n\010group_id\030\001 \001(\t\"W\n\013S_GroupInfo"
+  "\022\"\n\005group\030\001 \001(\0132\023.Protocol.GroupInfo\022$\n\007"
+  "my_role\030\002 \001(\0162\023.Protocol.GroupRole\";\n\016C_"
+  "InviteFriend\022\020\n\010group_id\030\001 \001(\t\022\027\n\017friend"
+  "_user_ids\030\002 \003(\t\"!\n\016S_InviteFriend\022\017\n\007suc"
+  "cess\030\001 \001(\010\"!\n\013C_JoinGroup\022\022\n\ngroup_code\030"
+  "\001 \001(\t\"B\n\013S_JoinGroup\022\017\n\007success\030\001 \001(\010\022\"\n"
+  "\005group\030\002 \001(\0132\023.Protocol.GroupInfo\"\'\n\023C_R"
+  "efreshInviteCode\022\020\n\010group_id\030\001 \001(\t\"N\n\023S_"
+  "RefreshInviteCode\022\017\n\007success\030\001 \001(\010\022\022\n\ngr"
+  "oup_code\030\002 \001(\t\022\022\n\nexpires_at\030\003 \001(\003\"%\n\021C_"
+  "GroupMemberList\022\020\n\010group_id\030\001 \001(\t\"Q\n\021S_G"
+  "roupMemberList\022\020\n\010group_id\030\001 \001(\t\022*\n\007memb"
+  "ers\030\002 \003(\0132\031.Protocol.GroupMemberInfo\" \n\014"
+  "C_LeaveGroup\022\020\n\010group_id\030\001 \001(\t\"\037\n\014S_Leav"
+  "eGroup\022\017\n\007success\030\001 \001(\010\"a\n\013C_EditGroup\022\020"
+  "\n\010group_id\030\001 \001(\t\022\020\n\010new_name\030\002 \001(\t\022\027\n\017ne"
+  "w_description\030\003 \001(\t\022\025\n\rnew_image_url\030\004 \001"
+  "(\t\"B\n\013S_EditGroup\022\017\n\007success\030\001 \001(\010\022\"\n\005gr"
+  "oup\030\002 \001(\0132\023.Protocol.GroupInfo\"!\n\rC_Dele"
+  "teGroup\022\020\n\010group_id\030\001 \001(\t\" \n\rS_DeleteGro"
+  "up\022\017\n\007success\030\001 \001(\010\"Y\n\017BlockedUserInfo\022\017"
+  "\n\007user_id\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\023\n\013profile"
+  "_img\030\003 \001(\t\022\022\n\nblocked_at\030\004 \001(\003\"%\n\013C_Bloc"
+  "kUser\022\026\n\016target_user_id\030\001 \001(\t\"/\n\013S_Block"
+  "User\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\t\"\'"
+  "\n\rC_UnblockUser\022\026\n\016target_user_id\030\001 \001(\t\""
+  " \n\rS_UnblockUser\022\017\n\007success\030\001 \001(\010\"\022\n\020C_G"
+  "etBlockedList\"D\n\020S_GetBlockedList\0220\n\rblo"
+  "cked_users\030\001 \003(\0132\031.Protocol.BlockedUserI"
+  "nfo\"F\n\014C_ReportUser\022\026\n\016target_user_id\030\001 "
+  "\001(\t\022\016\n\006reason\030\002 \001(\t\022\016\n\006detail\030\003 \001(\t\"\037\n\014S"
+  "_ReportUser\022\017\n\007success\030\001 \001(\010\"@\n\rC_AddRea"
+  "ction\022\017\n\007conv_id\030\001 \001(\t\022\017\n\007msg_seq\030\002 \001(\003\022"
+  "\r\n\005emoji\030\003 \001(\t\"b\n\rS_AddReaction\022\017\n\007conv_"
+  "id\030\001 \001(\t\022\017\n\007msg_seq\030\002 \001(\003\022\017\n\007user_id\030\003 \001"
+  "(\t\022\r\n\005emoji\030\004 \001(\t\022\017\n\007removed\030\005 \001(\010\"\205\001\n\014C"
+  "_CreatePoll\022\017\n\007conv_id\030\001 \001(\t\022\020\n\010question"
+  "\030\002 \001(\t\022\017\n\007options\030\003 \003(\t\022\027\n\017is_multi_sele"
+  "ct\030\004 \001(\010\022\024\n\014is_anonymous\030\005 \001(\010\022\022\n\nexpire"
+  "s_at\030\006 \001(\003\"\344\001\n\014S_CreatePoll\022\017\n\007conv_id\030\001"
+  " \001(\t\022\017\n\007poll_id\030\002 \001(\t\022\017\n\007msg_seq\030\003 \001(\003\022\022"
+  "\n\ncreator_id\030\004 \001(\t\022\024\n\014creator_name\030\005 \001(\t"
+  "\022\020\n\010question\030\006 \001(\t\022\017\n\007options\030\007 \003(\t\022\027\n\017i"
+  "s_multi_select\030\010 \001(\010\022\024\n\014is_anonymous\030\t \001"
+  "(\010\022\022\n\nexpires_at\030\n \001(\003\022\021\n\tts_server\030\013 \001("
+  "\003\"U\n\006C_Vote\022\017\n\007conv_id\030\001 \001(\t\022\017\n\007poll_id\030"
+  "\002 \001(\t\022\017\n\007msg_seq\030\003 \001(\003\022\030\n\020selected_optio"
+  "ns\030\004 \003(\005\"\217\001\n\006S_Vote\022\017\n\007conv_id\030\001 \001(\t\022\017\n\007"
+  "poll_id\030\002 \001(\t\022\017\n\007msg_seq\030\003 \001(\003\022\020\n\010voter_"
+  "id\030\004 \001(\t\022\022\n\nvoter_name\030\005 \001(\t\022\030\n\020selected"
+  "_options\030\006 \003(\005\022\022\n\nvotes_json\030\007 \001(\t\"@\n\013C_"
+  "ClosePoll\022\017\n\007conv_id\030\001 \001(\t\022\017\n\007poll_id\030\002 "
+  "\001(\t\022\017\n\007msg_seq\030\003 \001(\003\"@\n\013S_ClosePoll\022\017\n\007c"
+  "onv_id\030\001 \001(\t\022\017\n\007poll_id\030\002 \001(\t\022\017\n\007msg_seq"
+  "\030\003 \001(\003\"X\n\021C_SetAnnouncement\022\017\n\007conv_id\030\001"
+  " \001(\t\022\017\n\007msg_seq\030\002 \001(\003\022\014\n\004text\030\003 \001(\t\022\023\n\013s"
+  "ender_name\030\004 \001(\t\"k\n\021S_SetAnnouncement\022\017\n"
+  "\007conv_id\030\001 \001(\t\022\017\n\007msg_seq\030\002 \001(\003\022\014\n\004text\030"
+  "\003 \001(\t\022\023\n\013sender_name\030\004 \001(\t\022\021\n\tsetter_id\030"
+  "\005 \001(\t\"Q\n\020C_CreateBallDrop\022\017\n\007conv_id\030\001 \001"
+  "(\t\022\027\n\017participant_ids\030\002 \003(\t\022\023\n\013ball_coun"
+  "ts\030\003 \003(\005\"G\n\020S_CreateBallDrop\022\017\n\007conv_id\030"
+  "\001 \001(\t\022\017\n\007msg_seq\030\002 \001(\003\022\021\n\tgame_json\030\003 \001("
+  "\t\"\312\001\n\022C_CreatePhotoSlide\022\017\n\007conv_id\030\001 \001("
+  "\t\022\022\n\nimage_urls\030\002 \003(\t\022\026\n\016thumbnail_urls\030"
+  "\003 \003(\t\022\017\n\007message\030\004 \001(\t\022\022\n\nfont_style\030\005 \001"
+  "(\t\022\025\n\rtext_position\030\006 \001(\t\022\020\n\010bg_theme\030\007 "
+  "\001(\t\022\026\n\016ending_message\030\010 \001(\t\022\021\n\tfont_size"
+  "\030\t \001(\005\"J\n\022S_CreatePhotoSlide\022\017\n\007conv_id\030"
+  "\001 \001(\t\022\017\n\007msg_seq\030\002 \001(\003\022\022\n\nslide_json\030\003 \001"
+  "(\t\"3\n\rC_SocialLogin\022\020\n\010provider\030\001 \001(\t\022\020\n"
+  "\010id_token\030\002 \001(\t\"c\n\rS_SocialLogin\022\032\n\022need"
+  "s_registration\030\001 \001(\010\022\r\n\005email\030\002 \001(\t\022\014\n\004n"
+  "ame\030\003 \001(\t\022\031\n\021profile_image_url\030\004 \001(\t\"[\n\026"
+  "C_CompleteSocialSignup\022\020\n\010provider\030\001 \001(\t"
+  "\022\020\n\010id_token\030\002 \001(\t\022\017\n\007user_id\030\003 \001(\t\022\014\n\004n"
+  "ame\030\004 \001(\t\"\211\001\n\005Album\022\n\n\002id\030\001 \001(\t\022\020\n\010group"
+  "_id\030\002 \001(\t\022\014\n\004name\030\003 \001(\t\022\027\n\017cover_photo_u"
+  "rl\030\004 \001(\t\022\022\n\ncreated_by\030\005 \001(\t\022\022\n\ncreated_"
+  "at\030\006 \001(\003\022\023\n\013photo_count\030\007 \001(\005\"\261\001\n\nAlbumP"
+  "hoto\022\n\n\002id\030\001 \001(\t\022\020\n\010album_id\030\002 \001(\t\022\020\n\010gr"
+  "oup_id\030\003 \001(\t\022\017\n\007msg_seq\030\004 \001(\003\022\021\n\tphoto_u"
+  "rl\030\005 \001(\t\022\025\n\rthumbnail_url\030\006 \001(\t\022\023\n\013uploa"
+  "der_id\030\007 \001(\t\022\016\n\006source\030\010 \001(\t\022\023\n\013uploaded"
+  "_at\030\t \001(\003\"v\n\014PhotoComment\022\n\n\002id\030\001 \001(\t\022\020\n"
+  "\010photo_id\030\002 \001(\t\022\021\n\tsender_id\030\003 \001(\t\022\023\n\013se"
+  "nder_name\030\004 \001(\t\022\014\n\004text\030\005 \001(\t\022\022\n\ncreated"
+  "_at\030\006 \001(\003\"C\n\rC_CreateAlbum\022\020\n\010group_id\030\001"
+  " \001(\t\022\014\n\004name\030\002 \001(\t\022\022\n\ncreated_by\030\003 \001(\t\"O"
+  "\n\rS_CreateAlbum\022\017\n\007success\030\001 \001(\010\022\036\n\005albu"
+  "m\030\002 \001(\0132\017.Protocol.Album\022\r\n\005error\030\003 \001(\t\""
+  "\037\n\013C_GetAlbums\022\020\n\010group_id\030\001 \001(\t\".\n\013S_Ge"
+  "tAlbums\022\037\n\006albums\030\001 \003(\0132\017.Protocol.Album"
+  "\"\207\001\n\021C_AddPhotoToAlbum\022\020\n\010album_id\030\001 \001(\t"
+  "\022\020\n\010group_id\030\002 \001(\t\022\017\n\007msg_seq\030\003 \001(\003\022\021\n\tp"
+  "hoto_url\030\004 \001(\t\022\025\n\rthumbnail_url\030\005 \001(\t\022\023\n"
+  "\013uploader_id\030\006 \001(\t\"\212\001\n\021S_AddPhotoToAlbum"
+  "\022\017\n\007success\030\001 \001(\010\022\020\n\010album_id\030\002 \001(\t\022#\n\005p"
+  "hoto\030\003 \001(\0132\024.Protocol.AlbumPhoto\022\r\n\005erro"
+  "r\030\004 \001(\t\022\036\n\005album\030\005 \001(\0132\017.Protocol.Album\""
+  ":\n\020C_GetAlbumPhotos\022\020\n\010album_id\030\001 \001(\t\022\024\n"
+  "\014latest_first\030\002 \001(\010\"J\n\020S_GetAlbumPhotos\022"
+  "\020\n\010album_id\030\001 \001(\t\022$\n\006photos\030\002 \003(\0132\024.Prot"
+  "ocol.AlbumPhoto\"D\n\rC_DeleteAlbum\022\020\n\010albu"
+  "m_id\030\001 \001(\t\022\017\n\007user_id\030\002 \001(\t\022\020\n\010group_id\030"
+  "\003 \001(\t\"S\n\rS_DeleteAlbum\022\017\n\007success\030\001 \001(\010\022"
+  "\020\n\010album_id\030\002 \001(\t\022\020\n\010group_id\030\003 \001(\t\022\r\n\005e"
+  "rror\030\004 \001(\t\"[\n\022C_DeleteAlbumPhoto\022\020\n\010phot"
+  "o_id\030\001 \001(\t\022\017\n\007user_id\030\002 \001(\t\022\020\n\010album_id\030"
+  "\003 \001(\t\022\020\n\010group_id\030\004 \001(\t\"\212\001\n\022S_DeleteAlbu"
+  "mPhoto\022\017\n\007success\030\001 \001(\010\022\020\n\010photo_id\030\002 \001("
+  "\t\022\020\n\010album_id\030\003 \001(\t\022\020\n\010group_id\030\004 \001(\t\022\r\n"
+  "\005error\030\005 \001(\t\022\036\n\005album\030\006 \001(\0132\017.Protocol.A"
+  "lbum\"n\n\013C_MovePhoto\022\020\n\010photo_id\030\001 \001(\t\022\025\n"
+  "\rfrom_album_id\030\002 \001(\t\022\023\n\013to_album_id\030\003 \001("
+  "\t\022\020\n\010group_id\030\004 \001(\t\022\017\n\007user_id\030\005 \001(\t\"\305\001\n"
+  "\013S_MovePhoto\022\017\n\007success\030\001 \001(\010\022\020\n\010photo_i"
+  "d\030\002 \001(\t\022\025\n\rfrom_album_id\030\003 \001(\t\022\023\n\013to_alb"
+  "um_id\030\004 \001(\t\022\020\n\010group_id\030\005 \001(\t\022\r\n\005error\030\006"
+  " \001(\t\022#\n\nfrom_album\030\007 \001(\0132\017.Protocol.Albu"
+  "m\022!\n\010to_album\030\010 \001(\0132\017.Protocol.Album\"m\n\021"
+  "C_AddPhotoComment\022\020\n\010photo_id\030\001 \001(\t\022\021\n\ts"
+  "ender_id\030\002 \001(\t\022\023\n\013sender_name\030\003 \001(\t\022\014\n\004t"
+  "ext\030\004 \001(\t\022\020\n\010group_id\030\005 \001(\t\"\\\n\021S_AddPhot"
+  "oComment\022\017\n\007success\030\001 \001(\010\022\'\n\007comment\030\002 \001"
+  "(\0132\026.Protocol.PhotoComment\022\r\n\005error\030\003 \001("
+  "\t\"&\n\022C_GetPhotoComments\022\020\n\010photo_id\030\001 \001("
+  "\t\"P\n\022S_GetPhotoComments\022\020\n\010photo_id\030\001 \001("
+  "\t\022(\n\010comments\030\002 \003(\0132\026.Protocol.PhotoComm"
+  "ent\"_\n\024C_DeletePhotoComment\022\022\n\ncomment_i"
+  "d\030\001 \001(\t\022\017\n\007user_id\030\002 \001(\t\022\020\n\010group_id\030\003 \001"
+  "(\t\022\020\n\010photo_id\030\004 \001(\t\"n\n\024S_DeletePhotoCom"
+  "ment\022\017\n\007success\030\001 \001(\010\022\022\n\ncomment_id\030\002 \001("
+  "\t\022\020\n\010photo_id\030\003 \001(\t\022\020\n\010group_id\030\004 \001(\t\022\r\n"
+  "\005error\030\005 \001(\t\".\n\rLocationPhoto\022\n\n\002id\030\001 \001("
+  "\t\022\021\n\tphoto_url\030\002 \001(\t\"\240\001\n\021LocationVisitIn"
+  "fo\022\n\n\002id\030\001 \001(\t\022\017\n\007user_id\030\002 \001(\t\022\021\n\tuser_"
+  "name\030\003 \001(\t\022\016\n\006rating\030\004 \001(\005\022\016\n\006review\030\005 \001"
+  "(\t\022\022\n\nvisited_at\030\006 \001(\003\022\'\n\006photos\030\007 \003(\0132\027"
+  ".Protocol.LocationPhoto\"\224\002\n\021LocationPlac"
+  "eInfo\022\n\n\002id\030\001 \001(\t\022\020\n\010group_id\030\002 \001(\t\022\014\n\004n"
+  "ame\030\003 \001(\t\022\017\n\007address\030\004 \001(\t\022\020\n\010category\030\005"
+  " \001(\t\022\013\n\003lat\030\006 \001(\001\022\013\n\003lng\030\007 \001(\001\022\022\n\ncreate"
+  "d_by\030\010 \001(\t\022\022\n\ncreated_at\030\t \001(\003\022\023\n\013visit_"
+  "count\030\n \001(\005\022\022\n\navg_rating\030\013 \001(\002\022\030\n\020recen"
+  "t_photo_url\030\014 \001(\t\022+\n\006visits\030\r \003(\0132\033.Prot"
+  "ocol.LocationVisitInfo\"\216\001\n\013C_SavePlace\022\020"
+  "\n\010group_id\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\017\n\007addres"
+  "s\030\003 \001(\t\022\020\n\010category\030\004 \001(\t\022\013\n\003lat\030\005 \001(\001\022\013"
+  "\n\003lng\030\006 \001(\001\022\017\n\007user_id\030\007 \001(\t\022\021\n\tuser_nam"
+  "e\030\010 \001(\t\"^\n\013S_SavePlace\022\017\n\007success\030\001 \001(\010\022"
+  "*\n\005place\030\002 \001(\0132\033.Protocol.LocationPlaceI"
+  "nfo\022\022\n\nerror_code\030\003 \001(\005\"\037\n\013C_GetPlaces\022\020"
+  "\n\010group_id\030\001 \001(\t\"L\n\013S_GetPlaces\022\020\n\010group"
+  "_id\030\001 \001(\t\022+\n\006places\030\002 \003(\0132\033.Protocol.Loc"
+  "ationPlaceInfo\"\235\001\n\013C_SaveVisit\022\020\n\010place_"
+  "id\030\001 \001(\t\022\020\n\010group_id\030\002 \001(\t\022\017\n\007user_id\030\003 "
+  "\001(\t\022\021\n\tuser_name\030\004 \001(\t\022\016\n\006rating\030\005 \001(\005\022\016"
+  "\n\006review\030\006 \001(\t\022\022\n\nphoto_urls\030\007 \003(\t\022\022\n\nvi"
+  "sited_at\030\010 \001(\003\"\234\001\n\013S_SaveVisit\022\017\n\007succes"
+  "s\030\001 \001(\010\022\020\n\010place_id\030\002 \001(\t\022*\n\005visit\030\003 \001(\013"
+  "2\033.Protocol.LocationVisitInfo\022*\n\005place\030\004"
+  " \001(\0132\033.Protocol.LocationPlaceInfo\022\022\n\nerr"
+  "or_code\030\005 \001(\005\"D\n\rC_DeletePlace\022\020\n\010place_"
+  "id\030\001 \001(\t\022\020\n\010group_id\030\002 \001(\t\022\017\n\007user_id\030\003 "
+  "\001(\t\"X\n\rS_DeletePlace\022\017\n\007success\030\001 \001(\010\022\020\n"
+  "\010place_id\030\002 \001(\t\022\020\n\010group_id\030\003 \001(\t\022\022\n\nerr"
+  "or_code\030\004 \001(\005\"\236\001\n\rC_UpdateVisit\022\020\n\010visit"
+  "_id\030\001 \001(\t\022\020\n\010place_id\030\002 \001(\t\022\020\n\010group_id\030"
+  "\003 \001(\t\022\017\n\007user_id\030\004 \001(\t\022\016\n\006rating\030\005 \001(\005\022\016"
+  "\n\006review\030\006 \001(\t\022\022\n\nphoto_urls\030\007 \003(\t\022\022\n\nvi"
+  "sited_at\030\010 \001(\003\"\214\001\n\rS_UpdateVisit\022\017\n\007succ"
+  "ess\030\001 \001(\010\022*\n\005visit\030\002 \001(\0132\033.Protocol.Loca"
+  "tionVisitInfo\022*\n\005place\030\003 \001(\0132\033.Protocol."
+  "LocationPlaceInfo\022\022\n\nerror_code\030\004 \001(\005\"V\n"
+  "\rC_DeleteVisit\022\020\n\010visit_id\030\001 \001(\t\022\020\n\010plac"
+  "e_id\030\002 \001(\t\022\020\n\010group_id\030\003 \001(\t\022\017\n\007user_id\030"
+  "\004 \001(\t\"\201\001\n\rS_DeleteVisit\022\017\n\007success\030\001 \001(\010"
+  "\022\020\n\010visit_id\030\002 \001(\t\022\020\n\010place_id\030\003 \001(\t\022\020\n\010"
+  "group_id\030\004 \001(\t\022\025\n\rplace_deleted\030\005 \001(\010\022\022\n"
+  "\nerror_code\030\006 \001(\005\"Q\n\007S_Error\022\'\n\nerror_co"
+  "de\030\001 \001(\0162\023.Protocol.ErrorCode\022\014\n\004code\030\002 "
+  "\001(\r\022\017\n\007message\030\003 \001(\t\"\r\n\013C_Heartbeat\"\r\n\013S"
+  "_Heartbeat*-\n\tGroupRole\022\n\n\006MEMBER\020\000\022\t\n\005A"
+  "DMIN\020\001\022\t\n\005OWNER\020\002*\216\n\n\tErrorCode\022\017\n\013ERR_S"
+  "UCCESS\020\000\022\017\n\013ERR_UNKNOWN\020\001\022\027\n\023ERR_SERVER_"
+  "INTERNAL\020\002\022\026\n\022ERR_INVALID_PACKET\020\003\022\030\n\024ER"
+  "R_VERSION_MISMATCH\020\004\022\024\n\020ERR_UNAUTHORIZED"
+  "\020\005\022\025\n\021ERR_INVALID_TOKEN\020\006\022\025\n\021ERR_USER_ID"
+  "_EMPTY\020d\022\030\n\024ERR_USER_ID_REQUIRED\020e\022\031\n\025ER"
+  "R_PASSWORD_REQUIRED\020f\022\025\n\021ERR_NAME_REQUIR"
+  "ED\020g\022\026\n\022ERR_EMAIL_REQUIRED\020h\022\026\n\022ERR_USER"
+  "_NOT_FOUND\020i\022\030\n\024ERR_INVALID_PASSWORD\020j\022\033"
+  "\n\027ERR_USER_ALREADY_EXISTS\020k\022\034\n\030ERR_EMAIL"
+  "_ALREADY_EXISTS\020l\022\032\n\026ERR_EMAIL_NOT_VERIF"
+  "IED\020m\022\026\n\021ERR_PAYLOAD_EMPTY\020\310\001\022\030\n\023ERR_INV"
+  "ALID_CONV_ID\020\311\001\022\034\n\027ERR_INVALID_RECEIVER_"
+  "ID\020\312\001\022\024\n\017ERR_INVALID_ACK\020\313\001\022\037\n\032ERR_INVAL"
+  "ID_FRIEND_USER_ID\020\254\002\022\030\n\023ERR_CANNOT_ADD_S"
+  "ELF\020\255\002\022\025\n\020ERR_NOT_A_FRIEND\020\256\002\022!\n\034ERR_FRI"
+  "END_REQUEST_NOT_FOUND\020\257\002\022%\n ERR_FILE_SER"
+  "VICE_NOT_INITIALIZED\020\220\003\022&\n!ERR_CLOUD_STO"
+  "RAGE_NOT_INITIALIZED\020\221\003\022\032\n\025ERR_FILENAME_"
+  "REQUIRED\020\222\003\022\032\n\025ERR_INVALID_FILE_SIZE\020\223\003\022"
+  "\033\n\026ERR_MIME_TYPE_REQUIRED\020\224\003\022\037\n\032ERR_FAIL"
+  "ED_TO_GENERATE_URL\020\225\003\022\031\n\024ERR_INVALID_FIL"
+  "E_URL\020\226\003\022\031\n\024ERR_INVALID_ARGUMENT\020\227\003\022\031\n\024E"
+  "RR_STORAGE_EXCEEDED\020\230\003\022\027\n\022ERR_FILE_TOO_L"
+  "ARGE\020\231\003\022\027\n\022ERR_PAYMENT_FAILED\020\232\003\022\030\n\023ERR_"
+  "RECEIPT_INVALID\020\233\003\022\026\n\021ERR_NO_PERMISSION\020"
+  "\364\003\022\030\n\023ERR_ALREADY_BLOCKED\020\330\004\022\024\n\017ERR_NOT_"
+  "BLOCKED\020\331\004\022\032\n\025ERR_CANNOT_BLOCK_SELF\020\332\004\022\031"
+  "\n\024ERR_REPORT_DUPLICATE\020\342\004\022\027\n\022ERR_POLL_NO"
+  "T_FOUND\020\274\005\022\024\n\017ERR_POLL_CLOSED\020\275\005\022\034\n\027ERR_"
+  "POLL_INVALID_OPTION\020\276\005\022\027\n\022ERR_INVITE_EXP"
+  "IRED\020\240\006\022!\n\035ERR_OAUTH_VERIFICATION_FAILED"
+  "\020x\022\036\n\032ERR_OAUTH_PROVIDER_INVALID\020yb\006prot"
+  "o3"
   ;
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_protocol_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_protocol_2eproto = {
-  false, false, 16932, descriptor_table_protodef_protocol_2eproto, "protocol.proto", 
-  &descriptor_table_protocol_2eproto_once, nullptr, 0, 122,
+  false, false, 22842, descriptor_table_protodef_protocol_2eproto, "protocol.proto", 
+  &descriptor_table_protocol_2eproto_once, nullptr, 0, 160,
   schemas, file_default_instances, TableStruct_protocol_2eproto::offsets,
   file_level_metadata_protocol_2eproto, file_level_enum_descriptors_protocol_2eproto, file_level_service_descriptors_protocol_2eproto,
 };
@@ -3739,6 +4949,38 @@ class Envelope::_Internal {
   static const ::Protocol::C_SocialLogin& c_social_login(const Envelope* msg);
   static const ::Protocol::S_SocialLogin& s_social_login(const Envelope* msg);
   static const ::Protocol::C_CompleteSocialSignup& c_complete_social_signup(const Envelope* msg);
+  static const ::Protocol::C_CreateAlbum& c_create_album(const Envelope* msg);
+  static const ::Protocol::S_CreateAlbum& s_create_album(const Envelope* msg);
+  static const ::Protocol::C_GetAlbums& c_get_albums(const Envelope* msg);
+  static const ::Protocol::S_GetAlbums& s_get_albums(const Envelope* msg);
+  static const ::Protocol::C_AddPhotoToAlbum& c_add_photo_to_album(const Envelope* msg);
+  static const ::Protocol::S_AddPhotoToAlbum& s_add_photo_to_album(const Envelope* msg);
+  static const ::Protocol::C_GetAlbumPhotos& c_get_album_photos(const Envelope* msg);
+  static const ::Protocol::S_GetAlbumPhotos& s_get_album_photos(const Envelope* msg);
+  static const ::Protocol::C_AddPhotoComment& c_add_photo_comment(const Envelope* msg);
+  static const ::Protocol::S_AddPhotoComment& s_add_photo_comment(const Envelope* msg);
+  static const ::Protocol::C_GetPhotoComments& c_get_photo_comments(const Envelope* msg);
+  static const ::Protocol::S_GetPhotoComments& s_get_photo_comments(const Envelope* msg);
+  static const ::Protocol::C_DeleteAlbum& c_delete_album(const Envelope* msg);
+  static const ::Protocol::S_DeleteAlbum& s_delete_album(const Envelope* msg);
+  static const ::Protocol::C_DeleteAlbumPhoto& c_delete_album_photo(const Envelope* msg);
+  static const ::Protocol::S_DeleteAlbumPhoto& s_delete_album_photo(const Envelope* msg);
+  static const ::Protocol::C_MovePhoto& c_move_photo(const Envelope* msg);
+  static const ::Protocol::S_MovePhoto& s_move_photo(const Envelope* msg);
+  static const ::Protocol::C_DeletePhotoComment& c_delete_photo_comment(const Envelope* msg);
+  static const ::Protocol::S_DeletePhotoComment& s_delete_photo_comment(const Envelope* msg);
+  static const ::Protocol::C_SavePlace& c_save_place(const Envelope* msg);
+  static const ::Protocol::S_SavePlace& s_save_place(const Envelope* msg);
+  static const ::Protocol::C_GetPlaces& c_get_places(const Envelope* msg);
+  static const ::Protocol::S_GetPlaces& s_get_places(const Envelope* msg);
+  static const ::Protocol::C_SaveVisit& c_save_visit(const Envelope* msg);
+  static const ::Protocol::S_SaveVisit& s_save_visit(const Envelope* msg);
+  static const ::Protocol::C_DeletePlace& c_delete_place(const Envelope* msg);
+  static const ::Protocol::S_DeletePlace& s_delete_place(const Envelope* msg);
+  static const ::Protocol::C_UpdateVisit& c_update_visit(const Envelope* msg);
+  static const ::Protocol::S_UpdateVisit& s_update_visit(const Envelope* msg);
+  static const ::Protocol::C_DeleteVisit& c_delete_visit(const Envelope* msg);
+  static const ::Protocol::S_DeleteVisit& s_delete_visit(const Envelope* msg);
   static const ::Protocol::C_CreateGroup& c_create_group(const Envelope* msg);
   static const ::Protocol::S_CreateGroup& s_create_group(const Envelope* msg);
   static const ::Protocol::C_GroupList& c_group_list(const Envelope* msg);
@@ -4095,6 +5337,134 @@ Envelope::_Internal::s_social_login(const Envelope* msg) {
 const ::Protocol::C_CompleteSocialSignup&
 Envelope::_Internal::c_complete_social_signup(const Envelope* msg) {
   return *msg->payload_.c_complete_social_signup_;
+}
+const ::Protocol::C_CreateAlbum&
+Envelope::_Internal::c_create_album(const Envelope* msg) {
+  return *msg->payload_.c_create_album_;
+}
+const ::Protocol::S_CreateAlbum&
+Envelope::_Internal::s_create_album(const Envelope* msg) {
+  return *msg->payload_.s_create_album_;
+}
+const ::Protocol::C_GetAlbums&
+Envelope::_Internal::c_get_albums(const Envelope* msg) {
+  return *msg->payload_.c_get_albums_;
+}
+const ::Protocol::S_GetAlbums&
+Envelope::_Internal::s_get_albums(const Envelope* msg) {
+  return *msg->payload_.s_get_albums_;
+}
+const ::Protocol::C_AddPhotoToAlbum&
+Envelope::_Internal::c_add_photo_to_album(const Envelope* msg) {
+  return *msg->payload_.c_add_photo_to_album_;
+}
+const ::Protocol::S_AddPhotoToAlbum&
+Envelope::_Internal::s_add_photo_to_album(const Envelope* msg) {
+  return *msg->payload_.s_add_photo_to_album_;
+}
+const ::Protocol::C_GetAlbumPhotos&
+Envelope::_Internal::c_get_album_photos(const Envelope* msg) {
+  return *msg->payload_.c_get_album_photos_;
+}
+const ::Protocol::S_GetAlbumPhotos&
+Envelope::_Internal::s_get_album_photos(const Envelope* msg) {
+  return *msg->payload_.s_get_album_photos_;
+}
+const ::Protocol::C_AddPhotoComment&
+Envelope::_Internal::c_add_photo_comment(const Envelope* msg) {
+  return *msg->payload_.c_add_photo_comment_;
+}
+const ::Protocol::S_AddPhotoComment&
+Envelope::_Internal::s_add_photo_comment(const Envelope* msg) {
+  return *msg->payload_.s_add_photo_comment_;
+}
+const ::Protocol::C_GetPhotoComments&
+Envelope::_Internal::c_get_photo_comments(const Envelope* msg) {
+  return *msg->payload_.c_get_photo_comments_;
+}
+const ::Protocol::S_GetPhotoComments&
+Envelope::_Internal::s_get_photo_comments(const Envelope* msg) {
+  return *msg->payload_.s_get_photo_comments_;
+}
+const ::Protocol::C_DeleteAlbum&
+Envelope::_Internal::c_delete_album(const Envelope* msg) {
+  return *msg->payload_.c_delete_album_;
+}
+const ::Protocol::S_DeleteAlbum&
+Envelope::_Internal::s_delete_album(const Envelope* msg) {
+  return *msg->payload_.s_delete_album_;
+}
+const ::Protocol::C_DeleteAlbumPhoto&
+Envelope::_Internal::c_delete_album_photo(const Envelope* msg) {
+  return *msg->payload_.c_delete_album_photo_;
+}
+const ::Protocol::S_DeleteAlbumPhoto&
+Envelope::_Internal::s_delete_album_photo(const Envelope* msg) {
+  return *msg->payload_.s_delete_album_photo_;
+}
+const ::Protocol::C_MovePhoto&
+Envelope::_Internal::c_move_photo(const Envelope* msg) {
+  return *msg->payload_.c_move_photo_;
+}
+const ::Protocol::S_MovePhoto&
+Envelope::_Internal::s_move_photo(const Envelope* msg) {
+  return *msg->payload_.s_move_photo_;
+}
+const ::Protocol::C_DeletePhotoComment&
+Envelope::_Internal::c_delete_photo_comment(const Envelope* msg) {
+  return *msg->payload_.c_delete_photo_comment_;
+}
+const ::Protocol::S_DeletePhotoComment&
+Envelope::_Internal::s_delete_photo_comment(const Envelope* msg) {
+  return *msg->payload_.s_delete_photo_comment_;
+}
+const ::Protocol::C_SavePlace&
+Envelope::_Internal::c_save_place(const Envelope* msg) {
+  return *msg->payload_.c_save_place_;
+}
+const ::Protocol::S_SavePlace&
+Envelope::_Internal::s_save_place(const Envelope* msg) {
+  return *msg->payload_.s_save_place_;
+}
+const ::Protocol::C_GetPlaces&
+Envelope::_Internal::c_get_places(const Envelope* msg) {
+  return *msg->payload_.c_get_places_;
+}
+const ::Protocol::S_GetPlaces&
+Envelope::_Internal::s_get_places(const Envelope* msg) {
+  return *msg->payload_.s_get_places_;
+}
+const ::Protocol::C_SaveVisit&
+Envelope::_Internal::c_save_visit(const Envelope* msg) {
+  return *msg->payload_.c_save_visit_;
+}
+const ::Protocol::S_SaveVisit&
+Envelope::_Internal::s_save_visit(const Envelope* msg) {
+  return *msg->payload_.s_save_visit_;
+}
+const ::Protocol::C_DeletePlace&
+Envelope::_Internal::c_delete_place(const Envelope* msg) {
+  return *msg->payload_.c_delete_place_;
+}
+const ::Protocol::S_DeletePlace&
+Envelope::_Internal::s_delete_place(const Envelope* msg) {
+  return *msg->payload_.s_delete_place_;
+}
+const ::Protocol::C_UpdateVisit&
+Envelope::_Internal::c_update_visit(const Envelope* msg) {
+  return *msg->payload_.c_update_visit_;
+}
+const ::Protocol::S_UpdateVisit&
+Envelope::_Internal::s_update_visit(const Envelope* msg) {
+  return *msg->payload_.s_update_visit_;
+}
+const ::Protocol::C_DeleteVisit&
+Envelope::_Internal::c_delete_visit(const Envelope* msg) {
+  return *msg->payload_.c_delete_visit_;
+}
+const ::Protocol::S_DeleteVisit&
+Envelope::_Internal::s_delete_visit(const Envelope* msg) {
+  return *msg->payload_.s_delete_visit_;
 }
 const ::Protocol::C_CreateGroup&
 Envelope::_Internal::c_create_group(const Envelope* msg) {
@@ -5433,6 +6803,486 @@ void Envelope::set_allocated_c_complete_social_signup(::Protocol::C_CompleteSoci
   }
   // @@protoc_insertion_point(field_set_allocated:Protocol.Envelope.c_complete_social_signup)
 }
+void Envelope::set_allocated_c_create_album(::Protocol::C_CreateAlbum* c_create_album) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  clear_payload();
+  if (c_create_album) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::Protocol::C_CreateAlbum>::GetOwningArena(c_create_album);
+    if (message_arena != submessage_arena) {
+      c_create_album = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, c_create_album, submessage_arena);
+    }
+    set_has_c_create_album();
+    payload_.c_create_album_ = c_create_album;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Protocol.Envelope.c_create_album)
+}
+void Envelope::set_allocated_s_create_album(::Protocol::S_CreateAlbum* s_create_album) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  clear_payload();
+  if (s_create_album) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::Protocol::S_CreateAlbum>::GetOwningArena(s_create_album);
+    if (message_arena != submessage_arena) {
+      s_create_album = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, s_create_album, submessage_arena);
+    }
+    set_has_s_create_album();
+    payload_.s_create_album_ = s_create_album;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Protocol.Envelope.s_create_album)
+}
+void Envelope::set_allocated_c_get_albums(::Protocol::C_GetAlbums* c_get_albums) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  clear_payload();
+  if (c_get_albums) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::Protocol::C_GetAlbums>::GetOwningArena(c_get_albums);
+    if (message_arena != submessage_arena) {
+      c_get_albums = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, c_get_albums, submessage_arena);
+    }
+    set_has_c_get_albums();
+    payload_.c_get_albums_ = c_get_albums;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Protocol.Envelope.c_get_albums)
+}
+void Envelope::set_allocated_s_get_albums(::Protocol::S_GetAlbums* s_get_albums) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  clear_payload();
+  if (s_get_albums) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::Protocol::S_GetAlbums>::GetOwningArena(s_get_albums);
+    if (message_arena != submessage_arena) {
+      s_get_albums = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, s_get_albums, submessage_arena);
+    }
+    set_has_s_get_albums();
+    payload_.s_get_albums_ = s_get_albums;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Protocol.Envelope.s_get_albums)
+}
+void Envelope::set_allocated_c_add_photo_to_album(::Protocol::C_AddPhotoToAlbum* c_add_photo_to_album) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  clear_payload();
+  if (c_add_photo_to_album) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::Protocol::C_AddPhotoToAlbum>::GetOwningArena(c_add_photo_to_album);
+    if (message_arena != submessage_arena) {
+      c_add_photo_to_album = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, c_add_photo_to_album, submessage_arena);
+    }
+    set_has_c_add_photo_to_album();
+    payload_.c_add_photo_to_album_ = c_add_photo_to_album;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Protocol.Envelope.c_add_photo_to_album)
+}
+void Envelope::set_allocated_s_add_photo_to_album(::Protocol::S_AddPhotoToAlbum* s_add_photo_to_album) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  clear_payload();
+  if (s_add_photo_to_album) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::Protocol::S_AddPhotoToAlbum>::GetOwningArena(s_add_photo_to_album);
+    if (message_arena != submessage_arena) {
+      s_add_photo_to_album = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, s_add_photo_to_album, submessage_arena);
+    }
+    set_has_s_add_photo_to_album();
+    payload_.s_add_photo_to_album_ = s_add_photo_to_album;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Protocol.Envelope.s_add_photo_to_album)
+}
+void Envelope::set_allocated_c_get_album_photos(::Protocol::C_GetAlbumPhotos* c_get_album_photos) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  clear_payload();
+  if (c_get_album_photos) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::Protocol::C_GetAlbumPhotos>::GetOwningArena(c_get_album_photos);
+    if (message_arena != submessage_arena) {
+      c_get_album_photos = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, c_get_album_photos, submessage_arena);
+    }
+    set_has_c_get_album_photos();
+    payload_.c_get_album_photos_ = c_get_album_photos;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Protocol.Envelope.c_get_album_photos)
+}
+void Envelope::set_allocated_s_get_album_photos(::Protocol::S_GetAlbumPhotos* s_get_album_photos) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  clear_payload();
+  if (s_get_album_photos) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::Protocol::S_GetAlbumPhotos>::GetOwningArena(s_get_album_photos);
+    if (message_arena != submessage_arena) {
+      s_get_album_photos = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, s_get_album_photos, submessage_arena);
+    }
+    set_has_s_get_album_photos();
+    payload_.s_get_album_photos_ = s_get_album_photos;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Protocol.Envelope.s_get_album_photos)
+}
+void Envelope::set_allocated_c_add_photo_comment(::Protocol::C_AddPhotoComment* c_add_photo_comment) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  clear_payload();
+  if (c_add_photo_comment) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::Protocol::C_AddPhotoComment>::GetOwningArena(c_add_photo_comment);
+    if (message_arena != submessage_arena) {
+      c_add_photo_comment = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, c_add_photo_comment, submessage_arena);
+    }
+    set_has_c_add_photo_comment();
+    payload_.c_add_photo_comment_ = c_add_photo_comment;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Protocol.Envelope.c_add_photo_comment)
+}
+void Envelope::set_allocated_s_add_photo_comment(::Protocol::S_AddPhotoComment* s_add_photo_comment) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  clear_payload();
+  if (s_add_photo_comment) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::Protocol::S_AddPhotoComment>::GetOwningArena(s_add_photo_comment);
+    if (message_arena != submessage_arena) {
+      s_add_photo_comment = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, s_add_photo_comment, submessage_arena);
+    }
+    set_has_s_add_photo_comment();
+    payload_.s_add_photo_comment_ = s_add_photo_comment;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Protocol.Envelope.s_add_photo_comment)
+}
+void Envelope::set_allocated_c_get_photo_comments(::Protocol::C_GetPhotoComments* c_get_photo_comments) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  clear_payload();
+  if (c_get_photo_comments) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::Protocol::C_GetPhotoComments>::GetOwningArena(c_get_photo_comments);
+    if (message_arena != submessage_arena) {
+      c_get_photo_comments = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, c_get_photo_comments, submessage_arena);
+    }
+    set_has_c_get_photo_comments();
+    payload_.c_get_photo_comments_ = c_get_photo_comments;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Protocol.Envelope.c_get_photo_comments)
+}
+void Envelope::set_allocated_s_get_photo_comments(::Protocol::S_GetPhotoComments* s_get_photo_comments) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  clear_payload();
+  if (s_get_photo_comments) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::Protocol::S_GetPhotoComments>::GetOwningArena(s_get_photo_comments);
+    if (message_arena != submessage_arena) {
+      s_get_photo_comments = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, s_get_photo_comments, submessage_arena);
+    }
+    set_has_s_get_photo_comments();
+    payload_.s_get_photo_comments_ = s_get_photo_comments;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Protocol.Envelope.s_get_photo_comments)
+}
+void Envelope::set_allocated_c_delete_album(::Protocol::C_DeleteAlbum* c_delete_album) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  clear_payload();
+  if (c_delete_album) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::Protocol::C_DeleteAlbum>::GetOwningArena(c_delete_album);
+    if (message_arena != submessage_arena) {
+      c_delete_album = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, c_delete_album, submessage_arena);
+    }
+    set_has_c_delete_album();
+    payload_.c_delete_album_ = c_delete_album;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Protocol.Envelope.c_delete_album)
+}
+void Envelope::set_allocated_s_delete_album(::Protocol::S_DeleteAlbum* s_delete_album) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  clear_payload();
+  if (s_delete_album) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::Protocol::S_DeleteAlbum>::GetOwningArena(s_delete_album);
+    if (message_arena != submessage_arena) {
+      s_delete_album = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, s_delete_album, submessage_arena);
+    }
+    set_has_s_delete_album();
+    payload_.s_delete_album_ = s_delete_album;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Protocol.Envelope.s_delete_album)
+}
+void Envelope::set_allocated_c_delete_album_photo(::Protocol::C_DeleteAlbumPhoto* c_delete_album_photo) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  clear_payload();
+  if (c_delete_album_photo) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::Protocol::C_DeleteAlbumPhoto>::GetOwningArena(c_delete_album_photo);
+    if (message_arena != submessage_arena) {
+      c_delete_album_photo = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, c_delete_album_photo, submessage_arena);
+    }
+    set_has_c_delete_album_photo();
+    payload_.c_delete_album_photo_ = c_delete_album_photo;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Protocol.Envelope.c_delete_album_photo)
+}
+void Envelope::set_allocated_s_delete_album_photo(::Protocol::S_DeleteAlbumPhoto* s_delete_album_photo) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  clear_payload();
+  if (s_delete_album_photo) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::Protocol::S_DeleteAlbumPhoto>::GetOwningArena(s_delete_album_photo);
+    if (message_arena != submessage_arena) {
+      s_delete_album_photo = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, s_delete_album_photo, submessage_arena);
+    }
+    set_has_s_delete_album_photo();
+    payload_.s_delete_album_photo_ = s_delete_album_photo;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Protocol.Envelope.s_delete_album_photo)
+}
+void Envelope::set_allocated_c_move_photo(::Protocol::C_MovePhoto* c_move_photo) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  clear_payload();
+  if (c_move_photo) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::Protocol::C_MovePhoto>::GetOwningArena(c_move_photo);
+    if (message_arena != submessage_arena) {
+      c_move_photo = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, c_move_photo, submessage_arena);
+    }
+    set_has_c_move_photo();
+    payload_.c_move_photo_ = c_move_photo;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Protocol.Envelope.c_move_photo)
+}
+void Envelope::set_allocated_s_move_photo(::Protocol::S_MovePhoto* s_move_photo) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  clear_payload();
+  if (s_move_photo) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::Protocol::S_MovePhoto>::GetOwningArena(s_move_photo);
+    if (message_arena != submessage_arena) {
+      s_move_photo = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, s_move_photo, submessage_arena);
+    }
+    set_has_s_move_photo();
+    payload_.s_move_photo_ = s_move_photo;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Protocol.Envelope.s_move_photo)
+}
+void Envelope::set_allocated_c_delete_photo_comment(::Protocol::C_DeletePhotoComment* c_delete_photo_comment) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  clear_payload();
+  if (c_delete_photo_comment) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::Protocol::C_DeletePhotoComment>::GetOwningArena(c_delete_photo_comment);
+    if (message_arena != submessage_arena) {
+      c_delete_photo_comment = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, c_delete_photo_comment, submessage_arena);
+    }
+    set_has_c_delete_photo_comment();
+    payload_.c_delete_photo_comment_ = c_delete_photo_comment;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Protocol.Envelope.c_delete_photo_comment)
+}
+void Envelope::set_allocated_s_delete_photo_comment(::Protocol::S_DeletePhotoComment* s_delete_photo_comment) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  clear_payload();
+  if (s_delete_photo_comment) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::Protocol::S_DeletePhotoComment>::GetOwningArena(s_delete_photo_comment);
+    if (message_arena != submessage_arena) {
+      s_delete_photo_comment = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, s_delete_photo_comment, submessage_arena);
+    }
+    set_has_s_delete_photo_comment();
+    payload_.s_delete_photo_comment_ = s_delete_photo_comment;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Protocol.Envelope.s_delete_photo_comment)
+}
+void Envelope::set_allocated_c_save_place(::Protocol::C_SavePlace* c_save_place) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  clear_payload();
+  if (c_save_place) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::Protocol::C_SavePlace>::GetOwningArena(c_save_place);
+    if (message_arena != submessage_arena) {
+      c_save_place = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, c_save_place, submessage_arena);
+    }
+    set_has_c_save_place();
+    payload_.c_save_place_ = c_save_place;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Protocol.Envelope.c_save_place)
+}
+void Envelope::set_allocated_s_save_place(::Protocol::S_SavePlace* s_save_place) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  clear_payload();
+  if (s_save_place) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::Protocol::S_SavePlace>::GetOwningArena(s_save_place);
+    if (message_arena != submessage_arena) {
+      s_save_place = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, s_save_place, submessage_arena);
+    }
+    set_has_s_save_place();
+    payload_.s_save_place_ = s_save_place;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Protocol.Envelope.s_save_place)
+}
+void Envelope::set_allocated_c_get_places(::Protocol::C_GetPlaces* c_get_places) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  clear_payload();
+  if (c_get_places) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::Protocol::C_GetPlaces>::GetOwningArena(c_get_places);
+    if (message_arena != submessage_arena) {
+      c_get_places = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, c_get_places, submessage_arena);
+    }
+    set_has_c_get_places();
+    payload_.c_get_places_ = c_get_places;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Protocol.Envelope.c_get_places)
+}
+void Envelope::set_allocated_s_get_places(::Protocol::S_GetPlaces* s_get_places) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  clear_payload();
+  if (s_get_places) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::Protocol::S_GetPlaces>::GetOwningArena(s_get_places);
+    if (message_arena != submessage_arena) {
+      s_get_places = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, s_get_places, submessage_arena);
+    }
+    set_has_s_get_places();
+    payload_.s_get_places_ = s_get_places;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Protocol.Envelope.s_get_places)
+}
+void Envelope::set_allocated_c_save_visit(::Protocol::C_SaveVisit* c_save_visit) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  clear_payload();
+  if (c_save_visit) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::Protocol::C_SaveVisit>::GetOwningArena(c_save_visit);
+    if (message_arena != submessage_arena) {
+      c_save_visit = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, c_save_visit, submessage_arena);
+    }
+    set_has_c_save_visit();
+    payload_.c_save_visit_ = c_save_visit;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Protocol.Envelope.c_save_visit)
+}
+void Envelope::set_allocated_s_save_visit(::Protocol::S_SaveVisit* s_save_visit) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  clear_payload();
+  if (s_save_visit) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::Protocol::S_SaveVisit>::GetOwningArena(s_save_visit);
+    if (message_arena != submessage_arena) {
+      s_save_visit = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, s_save_visit, submessage_arena);
+    }
+    set_has_s_save_visit();
+    payload_.s_save_visit_ = s_save_visit;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Protocol.Envelope.s_save_visit)
+}
+void Envelope::set_allocated_c_delete_place(::Protocol::C_DeletePlace* c_delete_place) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  clear_payload();
+  if (c_delete_place) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::Protocol::C_DeletePlace>::GetOwningArena(c_delete_place);
+    if (message_arena != submessage_arena) {
+      c_delete_place = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, c_delete_place, submessage_arena);
+    }
+    set_has_c_delete_place();
+    payload_.c_delete_place_ = c_delete_place;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Protocol.Envelope.c_delete_place)
+}
+void Envelope::set_allocated_s_delete_place(::Protocol::S_DeletePlace* s_delete_place) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  clear_payload();
+  if (s_delete_place) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::Protocol::S_DeletePlace>::GetOwningArena(s_delete_place);
+    if (message_arena != submessage_arena) {
+      s_delete_place = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, s_delete_place, submessage_arena);
+    }
+    set_has_s_delete_place();
+    payload_.s_delete_place_ = s_delete_place;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Protocol.Envelope.s_delete_place)
+}
+void Envelope::set_allocated_c_update_visit(::Protocol::C_UpdateVisit* c_update_visit) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  clear_payload();
+  if (c_update_visit) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::Protocol::C_UpdateVisit>::GetOwningArena(c_update_visit);
+    if (message_arena != submessage_arena) {
+      c_update_visit = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, c_update_visit, submessage_arena);
+    }
+    set_has_c_update_visit();
+    payload_.c_update_visit_ = c_update_visit;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Protocol.Envelope.c_update_visit)
+}
+void Envelope::set_allocated_s_update_visit(::Protocol::S_UpdateVisit* s_update_visit) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  clear_payload();
+  if (s_update_visit) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::Protocol::S_UpdateVisit>::GetOwningArena(s_update_visit);
+    if (message_arena != submessage_arena) {
+      s_update_visit = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, s_update_visit, submessage_arena);
+    }
+    set_has_s_update_visit();
+    payload_.s_update_visit_ = s_update_visit;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Protocol.Envelope.s_update_visit)
+}
+void Envelope::set_allocated_c_delete_visit(::Protocol::C_DeleteVisit* c_delete_visit) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  clear_payload();
+  if (c_delete_visit) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::Protocol::C_DeleteVisit>::GetOwningArena(c_delete_visit);
+    if (message_arena != submessage_arena) {
+      c_delete_visit = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, c_delete_visit, submessage_arena);
+    }
+    set_has_c_delete_visit();
+    payload_.c_delete_visit_ = c_delete_visit;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Protocol.Envelope.c_delete_visit)
+}
+void Envelope::set_allocated_s_delete_visit(::Protocol::S_DeleteVisit* s_delete_visit) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  clear_payload();
+  if (s_delete_visit) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::Protocol::S_DeleteVisit>::GetOwningArena(s_delete_visit);
+    if (message_arena != submessage_arena) {
+      s_delete_visit = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, s_delete_visit, submessage_arena);
+    }
+    set_has_s_delete_visit();
+    payload_.s_delete_visit_ = s_delete_visit;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Protocol.Envelope.s_delete_visit)
+}
 void Envelope::set_allocated_c_create_group(::Protocol::C_CreateGroup* c_create_group) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
   clear_payload();
@@ -6129,6 +7979,134 @@ Envelope::Envelope(const Envelope& from)
       _internal_mutable_c_complete_social_signup()->::Protocol::C_CompleteSocialSignup::MergeFrom(from._internal_c_complete_social_signup());
       break;
     }
+    case kCCreateAlbum: {
+      _internal_mutable_c_create_album()->::Protocol::C_CreateAlbum::MergeFrom(from._internal_c_create_album());
+      break;
+    }
+    case kSCreateAlbum: {
+      _internal_mutable_s_create_album()->::Protocol::S_CreateAlbum::MergeFrom(from._internal_s_create_album());
+      break;
+    }
+    case kCGetAlbums: {
+      _internal_mutable_c_get_albums()->::Protocol::C_GetAlbums::MergeFrom(from._internal_c_get_albums());
+      break;
+    }
+    case kSGetAlbums: {
+      _internal_mutable_s_get_albums()->::Protocol::S_GetAlbums::MergeFrom(from._internal_s_get_albums());
+      break;
+    }
+    case kCAddPhotoToAlbum: {
+      _internal_mutable_c_add_photo_to_album()->::Protocol::C_AddPhotoToAlbum::MergeFrom(from._internal_c_add_photo_to_album());
+      break;
+    }
+    case kSAddPhotoToAlbum: {
+      _internal_mutable_s_add_photo_to_album()->::Protocol::S_AddPhotoToAlbum::MergeFrom(from._internal_s_add_photo_to_album());
+      break;
+    }
+    case kCGetAlbumPhotos: {
+      _internal_mutable_c_get_album_photos()->::Protocol::C_GetAlbumPhotos::MergeFrom(from._internal_c_get_album_photos());
+      break;
+    }
+    case kSGetAlbumPhotos: {
+      _internal_mutable_s_get_album_photos()->::Protocol::S_GetAlbumPhotos::MergeFrom(from._internal_s_get_album_photos());
+      break;
+    }
+    case kCAddPhotoComment: {
+      _internal_mutable_c_add_photo_comment()->::Protocol::C_AddPhotoComment::MergeFrom(from._internal_c_add_photo_comment());
+      break;
+    }
+    case kSAddPhotoComment: {
+      _internal_mutable_s_add_photo_comment()->::Protocol::S_AddPhotoComment::MergeFrom(from._internal_s_add_photo_comment());
+      break;
+    }
+    case kCGetPhotoComments: {
+      _internal_mutable_c_get_photo_comments()->::Protocol::C_GetPhotoComments::MergeFrom(from._internal_c_get_photo_comments());
+      break;
+    }
+    case kSGetPhotoComments: {
+      _internal_mutable_s_get_photo_comments()->::Protocol::S_GetPhotoComments::MergeFrom(from._internal_s_get_photo_comments());
+      break;
+    }
+    case kCDeleteAlbum: {
+      _internal_mutable_c_delete_album()->::Protocol::C_DeleteAlbum::MergeFrom(from._internal_c_delete_album());
+      break;
+    }
+    case kSDeleteAlbum: {
+      _internal_mutable_s_delete_album()->::Protocol::S_DeleteAlbum::MergeFrom(from._internal_s_delete_album());
+      break;
+    }
+    case kCDeleteAlbumPhoto: {
+      _internal_mutable_c_delete_album_photo()->::Protocol::C_DeleteAlbumPhoto::MergeFrom(from._internal_c_delete_album_photo());
+      break;
+    }
+    case kSDeleteAlbumPhoto: {
+      _internal_mutable_s_delete_album_photo()->::Protocol::S_DeleteAlbumPhoto::MergeFrom(from._internal_s_delete_album_photo());
+      break;
+    }
+    case kCMovePhoto: {
+      _internal_mutable_c_move_photo()->::Protocol::C_MovePhoto::MergeFrom(from._internal_c_move_photo());
+      break;
+    }
+    case kSMovePhoto: {
+      _internal_mutable_s_move_photo()->::Protocol::S_MovePhoto::MergeFrom(from._internal_s_move_photo());
+      break;
+    }
+    case kCDeletePhotoComment: {
+      _internal_mutable_c_delete_photo_comment()->::Protocol::C_DeletePhotoComment::MergeFrom(from._internal_c_delete_photo_comment());
+      break;
+    }
+    case kSDeletePhotoComment: {
+      _internal_mutable_s_delete_photo_comment()->::Protocol::S_DeletePhotoComment::MergeFrom(from._internal_s_delete_photo_comment());
+      break;
+    }
+    case kCSavePlace: {
+      _internal_mutable_c_save_place()->::Protocol::C_SavePlace::MergeFrom(from._internal_c_save_place());
+      break;
+    }
+    case kSSavePlace: {
+      _internal_mutable_s_save_place()->::Protocol::S_SavePlace::MergeFrom(from._internal_s_save_place());
+      break;
+    }
+    case kCGetPlaces: {
+      _internal_mutable_c_get_places()->::Protocol::C_GetPlaces::MergeFrom(from._internal_c_get_places());
+      break;
+    }
+    case kSGetPlaces: {
+      _internal_mutable_s_get_places()->::Protocol::S_GetPlaces::MergeFrom(from._internal_s_get_places());
+      break;
+    }
+    case kCSaveVisit: {
+      _internal_mutable_c_save_visit()->::Protocol::C_SaveVisit::MergeFrom(from._internal_c_save_visit());
+      break;
+    }
+    case kSSaveVisit: {
+      _internal_mutable_s_save_visit()->::Protocol::S_SaveVisit::MergeFrom(from._internal_s_save_visit());
+      break;
+    }
+    case kCDeletePlace: {
+      _internal_mutable_c_delete_place()->::Protocol::C_DeletePlace::MergeFrom(from._internal_c_delete_place());
+      break;
+    }
+    case kSDeletePlace: {
+      _internal_mutable_s_delete_place()->::Protocol::S_DeletePlace::MergeFrom(from._internal_s_delete_place());
+      break;
+    }
+    case kCUpdateVisit: {
+      _internal_mutable_c_update_visit()->::Protocol::C_UpdateVisit::MergeFrom(from._internal_c_update_visit());
+      break;
+    }
+    case kSUpdateVisit: {
+      _internal_mutable_s_update_visit()->::Protocol::S_UpdateVisit::MergeFrom(from._internal_s_update_visit());
+      break;
+    }
+    case kCDeleteVisit: {
+      _internal_mutable_c_delete_visit()->::Protocol::C_DeleteVisit::MergeFrom(from._internal_c_delete_visit());
+      break;
+    }
+    case kSDeleteVisit: {
+      _internal_mutable_s_delete_visit()->::Protocol::S_DeleteVisit::MergeFrom(from._internal_s_delete_visit());
+      break;
+    }
     case kCCreateGroup: {
       _internal_mutable_c_create_group()->::Protocol::C_CreateGroup::MergeFrom(from._internal_c_create_group());
       break;
@@ -6759,6 +8737,198 @@ void Envelope::clear_payload() {
     case kCCompleteSocialSignup: {
       if (GetArenaForAllocation() == nullptr) {
         delete payload_.c_complete_social_signup_;
+      }
+      break;
+    }
+    case kCCreateAlbum: {
+      if (GetArenaForAllocation() == nullptr) {
+        delete payload_.c_create_album_;
+      }
+      break;
+    }
+    case kSCreateAlbum: {
+      if (GetArenaForAllocation() == nullptr) {
+        delete payload_.s_create_album_;
+      }
+      break;
+    }
+    case kCGetAlbums: {
+      if (GetArenaForAllocation() == nullptr) {
+        delete payload_.c_get_albums_;
+      }
+      break;
+    }
+    case kSGetAlbums: {
+      if (GetArenaForAllocation() == nullptr) {
+        delete payload_.s_get_albums_;
+      }
+      break;
+    }
+    case kCAddPhotoToAlbum: {
+      if (GetArenaForAllocation() == nullptr) {
+        delete payload_.c_add_photo_to_album_;
+      }
+      break;
+    }
+    case kSAddPhotoToAlbum: {
+      if (GetArenaForAllocation() == nullptr) {
+        delete payload_.s_add_photo_to_album_;
+      }
+      break;
+    }
+    case kCGetAlbumPhotos: {
+      if (GetArenaForAllocation() == nullptr) {
+        delete payload_.c_get_album_photos_;
+      }
+      break;
+    }
+    case kSGetAlbumPhotos: {
+      if (GetArenaForAllocation() == nullptr) {
+        delete payload_.s_get_album_photos_;
+      }
+      break;
+    }
+    case kCAddPhotoComment: {
+      if (GetArenaForAllocation() == nullptr) {
+        delete payload_.c_add_photo_comment_;
+      }
+      break;
+    }
+    case kSAddPhotoComment: {
+      if (GetArenaForAllocation() == nullptr) {
+        delete payload_.s_add_photo_comment_;
+      }
+      break;
+    }
+    case kCGetPhotoComments: {
+      if (GetArenaForAllocation() == nullptr) {
+        delete payload_.c_get_photo_comments_;
+      }
+      break;
+    }
+    case kSGetPhotoComments: {
+      if (GetArenaForAllocation() == nullptr) {
+        delete payload_.s_get_photo_comments_;
+      }
+      break;
+    }
+    case kCDeleteAlbum: {
+      if (GetArenaForAllocation() == nullptr) {
+        delete payload_.c_delete_album_;
+      }
+      break;
+    }
+    case kSDeleteAlbum: {
+      if (GetArenaForAllocation() == nullptr) {
+        delete payload_.s_delete_album_;
+      }
+      break;
+    }
+    case kCDeleteAlbumPhoto: {
+      if (GetArenaForAllocation() == nullptr) {
+        delete payload_.c_delete_album_photo_;
+      }
+      break;
+    }
+    case kSDeleteAlbumPhoto: {
+      if (GetArenaForAllocation() == nullptr) {
+        delete payload_.s_delete_album_photo_;
+      }
+      break;
+    }
+    case kCMovePhoto: {
+      if (GetArenaForAllocation() == nullptr) {
+        delete payload_.c_move_photo_;
+      }
+      break;
+    }
+    case kSMovePhoto: {
+      if (GetArenaForAllocation() == nullptr) {
+        delete payload_.s_move_photo_;
+      }
+      break;
+    }
+    case kCDeletePhotoComment: {
+      if (GetArenaForAllocation() == nullptr) {
+        delete payload_.c_delete_photo_comment_;
+      }
+      break;
+    }
+    case kSDeletePhotoComment: {
+      if (GetArenaForAllocation() == nullptr) {
+        delete payload_.s_delete_photo_comment_;
+      }
+      break;
+    }
+    case kCSavePlace: {
+      if (GetArenaForAllocation() == nullptr) {
+        delete payload_.c_save_place_;
+      }
+      break;
+    }
+    case kSSavePlace: {
+      if (GetArenaForAllocation() == nullptr) {
+        delete payload_.s_save_place_;
+      }
+      break;
+    }
+    case kCGetPlaces: {
+      if (GetArenaForAllocation() == nullptr) {
+        delete payload_.c_get_places_;
+      }
+      break;
+    }
+    case kSGetPlaces: {
+      if (GetArenaForAllocation() == nullptr) {
+        delete payload_.s_get_places_;
+      }
+      break;
+    }
+    case kCSaveVisit: {
+      if (GetArenaForAllocation() == nullptr) {
+        delete payload_.c_save_visit_;
+      }
+      break;
+    }
+    case kSSaveVisit: {
+      if (GetArenaForAllocation() == nullptr) {
+        delete payload_.s_save_visit_;
+      }
+      break;
+    }
+    case kCDeletePlace: {
+      if (GetArenaForAllocation() == nullptr) {
+        delete payload_.c_delete_place_;
+      }
+      break;
+    }
+    case kSDeletePlace: {
+      if (GetArenaForAllocation() == nullptr) {
+        delete payload_.s_delete_place_;
+      }
+      break;
+    }
+    case kCUpdateVisit: {
+      if (GetArenaForAllocation() == nullptr) {
+        delete payload_.c_update_visit_;
+      }
+      break;
+    }
+    case kSUpdateVisit: {
+      if (GetArenaForAllocation() == nullptr) {
+        delete payload_.s_update_visit_;
+      }
+      break;
+    }
+    case kCDeleteVisit: {
+      if (GetArenaForAllocation() == nullptr) {
+        delete payload_.c_delete_visit_;
+      }
+      break;
+    }
+    case kSDeleteVisit: {
+      if (GetArenaForAllocation() == nullptr) {
+        delete payload_.s_delete_visit_;
       }
       break;
     }
@@ -7693,6 +9863,230 @@ const char* Envelope::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::i
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
+      // .Protocol.C_CreateAlbum c_create_album = 120;
+      case 120:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 194)) {
+          ptr = ctx->ParseMessage(_internal_mutable_c_create_album(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .Protocol.S_CreateAlbum s_create_album = 121;
+      case 121:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 202)) {
+          ptr = ctx->ParseMessage(_internal_mutable_s_create_album(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .Protocol.C_GetAlbums c_get_albums = 122;
+      case 122:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 210)) {
+          ptr = ctx->ParseMessage(_internal_mutable_c_get_albums(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .Protocol.S_GetAlbums s_get_albums = 123;
+      case 123:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 218)) {
+          ptr = ctx->ParseMessage(_internal_mutable_s_get_albums(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .Protocol.C_AddPhotoToAlbum c_add_photo_to_album = 124;
+      case 124:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 226)) {
+          ptr = ctx->ParseMessage(_internal_mutable_c_add_photo_to_album(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .Protocol.S_AddPhotoToAlbum s_add_photo_to_album = 125;
+      case 125:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 234)) {
+          ptr = ctx->ParseMessage(_internal_mutable_s_add_photo_to_album(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .Protocol.C_GetAlbumPhotos c_get_album_photos = 126;
+      case 126:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 242)) {
+          ptr = ctx->ParseMessage(_internal_mutable_c_get_album_photos(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .Protocol.S_GetAlbumPhotos s_get_album_photos = 127;
+      case 127:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 250)) {
+          ptr = ctx->ParseMessage(_internal_mutable_s_get_album_photos(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .Protocol.C_AddPhotoComment c_add_photo_comment = 128;
+      case 128:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 2)) {
+          ptr = ctx->ParseMessage(_internal_mutable_c_add_photo_comment(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .Protocol.S_AddPhotoComment s_add_photo_comment = 129;
+      case 129:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_s_add_photo_comment(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .Protocol.C_GetPhotoComments c_get_photo_comments = 130;
+      case 130:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          ptr = ctx->ParseMessage(_internal_mutable_c_get_photo_comments(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .Protocol.S_GetPhotoComments s_get_photo_comments = 131;
+      case 131:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_s_get_photo_comments(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .Protocol.C_DeleteAlbum c_delete_album = 140;
+      case 140:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 98)) {
+          ptr = ctx->ParseMessage(_internal_mutable_c_delete_album(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .Protocol.S_DeleteAlbum s_delete_album = 141;
+      case 141:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 106)) {
+          ptr = ctx->ParseMessage(_internal_mutable_s_delete_album(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .Protocol.C_DeleteAlbumPhoto c_delete_album_photo = 142;
+      case 142:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 114)) {
+          ptr = ctx->ParseMessage(_internal_mutable_c_delete_album_photo(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .Protocol.S_DeleteAlbumPhoto s_delete_album_photo = 143;
+      case 143:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 122)) {
+          ptr = ctx->ParseMessage(_internal_mutable_s_delete_album_photo(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .Protocol.C_MovePhoto c_move_photo = 144;
+      case 144:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 130)) {
+          ptr = ctx->ParseMessage(_internal_mutable_c_move_photo(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .Protocol.S_MovePhoto s_move_photo = 145;
+      case 145:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 138)) {
+          ptr = ctx->ParseMessage(_internal_mutable_s_move_photo(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .Protocol.C_DeletePhotoComment c_delete_photo_comment = 146;
+      case 146:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 146)) {
+          ptr = ctx->ParseMessage(_internal_mutable_c_delete_photo_comment(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .Protocol.S_DeletePhotoComment s_delete_photo_comment = 147;
+      case 147:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 154)) {
+          ptr = ctx->ParseMessage(_internal_mutable_s_delete_photo_comment(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .Protocol.C_SavePlace c_save_place = 148;
+      case 148:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 162)) {
+          ptr = ctx->ParseMessage(_internal_mutable_c_save_place(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .Protocol.S_SavePlace s_save_place = 149;
+      case 149:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 170)) {
+          ptr = ctx->ParseMessage(_internal_mutable_s_save_place(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .Protocol.C_GetPlaces c_get_places = 150;
+      case 150:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 178)) {
+          ptr = ctx->ParseMessage(_internal_mutable_c_get_places(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .Protocol.S_GetPlaces s_get_places = 151;
+      case 151:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 186)) {
+          ptr = ctx->ParseMessage(_internal_mutable_s_get_places(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .Protocol.C_SaveVisit c_save_visit = 152;
+      case 152:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 194)) {
+          ptr = ctx->ParseMessage(_internal_mutable_c_save_visit(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .Protocol.S_SaveVisit s_save_visit = 153;
+      case 153:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 202)) {
+          ptr = ctx->ParseMessage(_internal_mutable_s_save_visit(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .Protocol.C_DeletePlace c_delete_place = 154;
+      case 154:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 210)) {
+          ptr = ctx->ParseMessage(_internal_mutable_c_delete_place(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .Protocol.S_DeletePlace s_delete_place = 155;
+      case 155:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 218)) {
+          ptr = ctx->ParseMessage(_internal_mutable_s_delete_place(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .Protocol.C_UpdateVisit c_update_visit = 156;
+      case 156:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 226)) {
+          ptr = ctx->ParseMessage(_internal_mutable_c_update_visit(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .Protocol.S_UpdateVisit s_update_visit = 157;
+      case 157:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 234)) {
+          ptr = ctx->ParseMessage(_internal_mutable_s_update_visit(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .Protocol.C_DeleteVisit c_delete_visit = 158;
+      case 158:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 242)) {
+          ptr = ctx->ParseMessage(_internal_mutable_c_delete_visit(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .Protocol.S_DeleteVisit s_delete_visit = 159;
+      case 159:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 250)) {
+          ptr = ctx->ParseMessage(_internal_mutable_s_delete_visit(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       default: {
       handle_unusual:
         if ((tag == 0) || ((tag & 7) == 4)) {
@@ -8592,6 +10986,262 @@ failure:
         117, _Internal::c_complete_social_signup(this), target, stream);
   }
 
+  // .Protocol.C_CreateAlbum c_create_album = 120;
+  if (_internal_has_c_create_album()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        120, _Internal::c_create_album(this), target, stream);
+  }
+
+  // .Protocol.S_CreateAlbum s_create_album = 121;
+  if (_internal_has_s_create_album()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        121, _Internal::s_create_album(this), target, stream);
+  }
+
+  // .Protocol.C_GetAlbums c_get_albums = 122;
+  if (_internal_has_c_get_albums()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        122, _Internal::c_get_albums(this), target, stream);
+  }
+
+  // .Protocol.S_GetAlbums s_get_albums = 123;
+  if (_internal_has_s_get_albums()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        123, _Internal::s_get_albums(this), target, stream);
+  }
+
+  // .Protocol.C_AddPhotoToAlbum c_add_photo_to_album = 124;
+  if (_internal_has_c_add_photo_to_album()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        124, _Internal::c_add_photo_to_album(this), target, stream);
+  }
+
+  // .Protocol.S_AddPhotoToAlbum s_add_photo_to_album = 125;
+  if (_internal_has_s_add_photo_to_album()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        125, _Internal::s_add_photo_to_album(this), target, stream);
+  }
+
+  // .Protocol.C_GetAlbumPhotos c_get_album_photos = 126;
+  if (_internal_has_c_get_album_photos()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        126, _Internal::c_get_album_photos(this), target, stream);
+  }
+
+  // .Protocol.S_GetAlbumPhotos s_get_album_photos = 127;
+  if (_internal_has_s_get_album_photos()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        127, _Internal::s_get_album_photos(this), target, stream);
+  }
+
+  // .Protocol.C_AddPhotoComment c_add_photo_comment = 128;
+  if (_internal_has_c_add_photo_comment()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        128, _Internal::c_add_photo_comment(this), target, stream);
+  }
+
+  // .Protocol.S_AddPhotoComment s_add_photo_comment = 129;
+  if (_internal_has_s_add_photo_comment()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        129, _Internal::s_add_photo_comment(this), target, stream);
+  }
+
+  // .Protocol.C_GetPhotoComments c_get_photo_comments = 130;
+  if (_internal_has_c_get_photo_comments()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        130, _Internal::c_get_photo_comments(this), target, stream);
+  }
+
+  // .Protocol.S_GetPhotoComments s_get_photo_comments = 131;
+  if (_internal_has_s_get_photo_comments()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        131, _Internal::s_get_photo_comments(this), target, stream);
+  }
+
+  // .Protocol.C_DeleteAlbum c_delete_album = 140;
+  if (_internal_has_c_delete_album()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        140, _Internal::c_delete_album(this), target, stream);
+  }
+
+  // .Protocol.S_DeleteAlbum s_delete_album = 141;
+  if (_internal_has_s_delete_album()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        141, _Internal::s_delete_album(this), target, stream);
+  }
+
+  // .Protocol.C_DeleteAlbumPhoto c_delete_album_photo = 142;
+  if (_internal_has_c_delete_album_photo()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        142, _Internal::c_delete_album_photo(this), target, stream);
+  }
+
+  // .Protocol.S_DeleteAlbumPhoto s_delete_album_photo = 143;
+  if (_internal_has_s_delete_album_photo()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        143, _Internal::s_delete_album_photo(this), target, stream);
+  }
+
+  // .Protocol.C_MovePhoto c_move_photo = 144;
+  if (_internal_has_c_move_photo()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        144, _Internal::c_move_photo(this), target, stream);
+  }
+
+  // .Protocol.S_MovePhoto s_move_photo = 145;
+  if (_internal_has_s_move_photo()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        145, _Internal::s_move_photo(this), target, stream);
+  }
+
+  // .Protocol.C_DeletePhotoComment c_delete_photo_comment = 146;
+  if (_internal_has_c_delete_photo_comment()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        146, _Internal::c_delete_photo_comment(this), target, stream);
+  }
+
+  // .Protocol.S_DeletePhotoComment s_delete_photo_comment = 147;
+  if (_internal_has_s_delete_photo_comment()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        147, _Internal::s_delete_photo_comment(this), target, stream);
+  }
+
+  // .Protocol.C_SavePlace c_save_place = 148;
+  if (_internal_has_c_save_place()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        148, _Internal::c_save_place(this), target, stream);
+  }
+
+  // .Protocol.S_SavePlace s_save_place = 149;
+  if (_internal_has_s_save_place()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        149, _Internal::s_save_place(this), target, stream);
+  }
+
+  // .Protocol.C_GetPlaces c_get_places = 150;
+  if (_internal_has_c_get_places()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        150, _Internal::c_get_places(this), target, stream);
+  }
+
+  // .Protocol.S_GetPlaces s_get_places = 151;
+  if (_internal_has_s_get_places()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        151, _Internal::s_get_places(this), target, stream);
+  }
+
+  // .Protocol.C_SaveVisit c_save_visit = 152;
+  if (_internal_has_c_save_visit()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        152, _Internal::c_save_visit(this), target, stream);
+  }
+
+  // .Protocol.S_SaveVisit s_save_visit = 153;
+  if (_internal_has_s_save_visit()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        153, _Internal::s_save_visit(this), target, stream);
+  }
+
+  // .Protocol.C_DeletePlace c_delete_place = 154;
+  if (_internal_has_c_delete_place()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        154, _Internal::c_delete_place(this), target, stream);
+  }
+
+  // .Protocol.S_DeletePlace s_delete_place = 155;
+  if (_internal_has_s_delete_place()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        155, _Internal::s_delete_place(this), target, stream);
+  }
+
+  // .Protocol.C_UpdateVisit c_update_visit = 156;
+  if (_internal_has_c_update_visit()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        156, _Internal::c_update_visit(this), target, stream);
+  }
+
+  // .Protocol.S_UpdateVisit s_update_visit = 157;
+  if (_internal_has_s_update_visit()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        157, _Internal::s_update_visit(this), target, stream);
+  }
+
+  // .Protocol.C_DeleteVisit c_delete_visit = 158;
+  if (_internal_has_c_delete_visit()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        158, _Internal::c_delete_visit(this), target, stream);
+  }
+
+  // .Protocol.S_DeleteVisit s_delete_visit = 159;
+  if (_internal_has_s_delete_visit()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        159, _Internal::s_delete_visit(this), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -9211,6 +11861,230 @@ size_t Envelope::ByteSizeLong() const {
           *payload_.c_complete_social_signup_);
       break;
     }
+    // .Protocol.C_CreateAlbum c_create_album = 120;
+    case kCCreateAlbum: {
+      total_size += 2 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *payload_.c_create_album_);
+      break;
+    }
+    // .Protocol.S_CreateAlbum s_create_album = 121;
+    case kSCreateAlbum: {
+      total_size += 2 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *payload_.s_create_album_);
+      break;
+    }
+    // .Protocol.C_GetAlbums c_get_albums = 122;
+    case kCGetAlbums: {
+      total_size += 2 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *payload_.c_get_albums_);
+      break;
+    }
+    // .Protocol.S_GetAlbums s_get_albums = 123;
+    case kSGetAlbums: {
+      total_size += 2 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *payload_.s_get_albums_);
+      break;
+    }
+    // .Protocol.C_AddPhotoToAlbum c_add_photo_to_album = 124;
+    case kCAddPhotoToAlbum: {
+      total_size += 2 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *payload_.c_add_photo_to_album_);
+      break;
+    }
+    // .Protocol.S_AddPhotoToAlbum s_add_photo_to_album = 125;
+    case kSAddPhotoToAlbum: {
+      total_size += 2 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *payload_.s_add_photo_to_album_);
+      break;
+    }
+    // .Protocol.C_GetAlbumPhotos c_get_album_photos = 126;
+    case kCGetAlbumPhotos: {
+      total_size += 2 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *payload_.c_get_album_photos_);
+      break;
+    }
+    // .Protocol.S_GetAlbumPhotos s_get_album_photos = 127;
+    case kSGetAlbumPhotos: {
+      total_size += 2 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *payload_.s_get_album_photos_);
+      break;
+    }
+    // .Protocol.C_AddPhotoComment c_add_photo_comment = 128;
+    case kCAddPhotoComment: {
+      total_size += 2 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *payload_.c_add_photo_comment_);
+      break;
+    }
+    // .Protocol.S_AddPhotoComment s_add_photo_comment = 129;
+    case kSAddPhotoComment: {
+      total_size += 2 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *payload_.s_add_photo_comment_);
+      break;
+    }
+    // .Protocol.C_GetPhotoComments c_get_photo_comments = 130;
+    case kCGetPhotoComments: {
+      total_size += 2 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *payload_.c_get_photo_comments_);
+      break;
+    }
+    // .Protocol.S_GetPhotoComments s_get_photo_comments = 131;
+    case kSGetPhotoComments: {
+      total_size += 2 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *payload_.s_get_photo_comments_);
+      break;
+    }
+    // .Protocol.C_DeleteAlbum c_delete_album = 140;
+    case kCDeleteAlbum: {
+      total_size += 2 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *payload_.c_delete_album_);
+      break;
+    }
+    // .Protocol.S_DeleteAlbum s_delete_album = 141;
+    case kSDeleteAlbum: {
+      total_size += 2 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *payload_.s_delete_album_);
+      break;
+    }
+    // .Protocol.C_DeleteAlbumPhoto c_delete_album_photo = 142;
+    case kCDeleteAlbumPhoto: {
+      total_size += 2 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *payload_.c_delete_album_photo_);
+      break;
+    }
+    // .Protocol.S_DeleteAlbumPhoto s_delete_album_photo = 143;
+    case kSDeleteAlbumPhoto: {
+      total_size += 2 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *payload_.s_delete_album_photo_);
+      break;
+    }
+    // .Protocol.C_MovePhoto c_move_photo = 144;
+    case kCMovePhoto: {
+      total_size += 2 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *payload_.c_move_photo_);
+      break;
+    }
+    // .Protocol.S_MovePhoto s_move_photo = 145;
+    case kSMovePhoto: {
+      total_size += 2 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *payload_.s_move_photo_);
+      break;
+    }
+    // .Protocol.C_DeletePhotoComment c_delete_photo_comment = 146;
+    case kCDeletePhotoComment: {
+      total_size += 2 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *payload_.c_delete_photo_comment_);
+      break;
+    }
+    // .Protocol.S_DeletePhotoComment s_delete_photo_comment = 147;
+    case kSDeletePhotoComment: {
+      total_size += 2 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *payload_.s_delete_photo_comment_);
+      break;
+    }
+    // .Protocol.C_SavePlace c_save_place = 148;
+    case kCSavePlace: {
+      total_size += 2 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *payload_.c_save_place_);
+      break;
+    }
+    // .Protocol.S_SavePlace s_save_place = 149;
+    case kSSavePlace: {
+      total_size += 2 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *payload_.s_save_place_);
+      break;
+    }
+    // .Protocol.C_GetPlaces c_get_places = 150;
+    case kCGetPlaces: {
+      total_size += 2 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *payload_.c_get_places_);
+      break;
+    }
+    // .Protocol.S_GetPlaces s_get_places = 151;
+    case kSGetPlaces: {
+      total_size += 2 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *payload_.s_get_places_);
+      break;
+    }
+    // .Protocol.C_SaveVisit c_save_visit = 152;
+    case kCSaveVisit: {
+      total_size += 2 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *payload_.c_save_visit_);
+      break;
+    }
+    // .Protocol.S_SaveVisit s_save_visit = 153;
+    case kSSaveVisit: {
+      total_size += 2 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *payload_.s_save_visit_);
+      break;
+    }
+    // .Protocol.C_DeletePlace c_delete_place = 154;
+    case kCDeletePlace: {
+      total_size += 2 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *payload_.c_delete_place_);
+      break;
+    }
+    // .Protocol.S_DeletePlace s_delete_place = 155;
+    case kSDeletePlace: {
+      total_size += 2 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *payload_.s_delete_place_);
+      break;
+    }
+    // .Protocol.C_UpdateVisit c_update_visit = 156;
+    case kCUpdateVisit: {
+      total_size += 2 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *payload_.c_update_visit_);
+      break;
+    }
+    // .Protocol.S_UpdateVisit s_update_visit = 157;
+    case kSUpdateVisit: {
+      total_size += 2 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *payload_.s_update_visit_);
+      break;
+    }
+    // .Protocol.C_DeleteVisit c_delete_visit = 158;
+    case kCDeleteVisit: {
+      total_size += 2 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *payload_.c_delete_visit_);
+      break;
+    }
+    // .Protocol.S_DeleteVisit s_delete_visit = 159;
+    case kSDeleteVisit: {
+      total_size += 2 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *payload_.s_delete_visit_);
+      break;
+    }
     // .Protocol.C_CreateGroup c_create_group = 80;
     case kCCreateGroup: {
       total_size += 2 +
@@ -9747,6 +12621,134 @@ void Envelope::MergeFrom(const Envelope& from) {
     }
     case kCCompleteSocialSignup: {
       _internal_mutable_c_complete_social_signup()->::Protocol::C_CompleteSocialSignup::MergeFrom(from._internal_c_complete_social_signup());
+      break;
+    }
+    case kCCreateAlbum: {
+      _internal_mutable_c_create_album()->::Protocol::C_CreateAlbum::MergeFrom(from._internal_c_create_album());
+      break;
+    }
+    case kSCreateAlbum: {
+      _internal_mutable_s_create_album()->::Protocol::S_CreateAlbum::MergeFrom(from._internal_s_create_album());
+      break;
+    }
+    case kCGetAlbums: {
+      _internal_mutable_c_get_albums()->::Protocol::C_GetAlbums::MergeFrom(from._internal_c_get_albums());
+      break;
+    }
+    case kSGetAlbums: {
+      _internal_mutable_s_get_albums()->::Protocol::S_GetAlbums::MergeFrom(from._internal_s_get_albums());
+      break;
+    }
+    case kCAddPhotoToAlbum: {
+      _internal_mutable_c_add_photo_to_album()->::Protocol::C_AddPhotoToAlbum::MergeFrom(from._internal_c_add_photo_to_album());
+      break;
+    }
+    case kSAddPhotoToAlbum: {
+      _internal_mutable_s_add_photo_to_album()->::Protocol::S_AddPhotoToAlbum::MergeFrom(from._internal_s_add_photo_to_album());
+      break;
+    }
+    case kCGetAlbumPhotos: {
+      _internal_mutable_c_get_album_photos()->::Protocol::C_GetAlbumPhotos::MergeFrom(from._internal_c_get_album_photos());
+      break;
+    }
+    case kSGetAlbumPhotos: {
+      _internal_mutable_s_get_album_photos()->::Protocol::S_GetAlbumPhotos::MergeFrom(from._internal_s_get_album_photos());
+      break;
+    }
+    case kCAddPhotoComment: {
+      _internal_mutable_c_add_photo_comment()->::Protocol::C_AddPhotoComment::MergeFrom(from._internal_c_add_photo_comment());
+      break;
+    }
+    case kSAddPhotoComment: {
+      _internal_mutable_s_add_photo_comment()->::Protocol::S_AddPhotoComment::MergeFrom(from._internal_s_add_photo_comment());
+      break;
+    }
+    case kCGetPhotoComments: {
+      _internal_mutable_c_get_photo_comments()->::Protocol::C_GetPhotoComments::MergeFrom(from._internal_c_get_photo_comments());
+      break;
+    }
+    case kSGetPhotoComments: {
+      _internal_mutable_s_get_photo_comments()->::Protocol::S_GetPhotoComments::MergeFrom(from._internal_s_get_photo_comments());
+      break;
+    }
+    case kCDeleteAlbum: {
+      _internal_mutable_c_delete_album()->::Protocol::C_DeleteAlbum::MergeFrom(from._internal_c_delete_album());
+      break;
+    }
+    case kSDeleteAlbum: {
+      _internal_mutable_s_delete_album()->::Protocol::S_DeleteAlbum::MergeFrom(from._internal_s_delete_album());
+      break;
+    }
+    case kCDeleteAlbumPhoto: {
+      _internal_mutable_c_delete_album_photo()->::Protocol::C_DeleteAlbumPhoto::MergeFrom(from._internal_c_delete_album_photo());
+      break;
+    }
+    case kSDeleteAlbumPhoto: {
+      _internal_mutable_s_delete_album_photo()->::Protocol::S_DeleteAlbumPhoto::MergeFrom(from._internal_s_delete_album_photo());
+      break;
+    }
+    case kCMovePhoto: {
+      _internal_mutable_c_move_photo()->::Protocol::C_MovePhoto::MergeFrom(from._internal_c_move_photo());
+      break;
+    }
+    case kSMovePhoto: {
+      _internal_mutable_s_move_photo()->::Protocol::S_MovePhoto::MergeFrom(from._internal_s_move_photo());
+      break;
+    }
+    case kCDeletePhotoComment: {
+      _internal_mutable_c_delete_photo_comment()->::Protocol::C_DeletePhotoComment::MergeFrom(from._internal_c_delete_photo_comment());
+      break;
+    }
+    case kSDeletePhotoComment: {
+      _internal_mutable_s_delete_photo_comment()->::Protocol::S_DeletePhotoComment::MergeFrom(from._internal_s_delete_photo_comment());
+      break;
+    }
+    case kCSavePlace: {
+      _internal_mutable_c_save_place()->::Protocol::C_SavePlace::MergeFrom(from._internal_c_save_place());
+      break;
+    }
+    case kSSavePlace: {
+      _internal_mutable_s_save_place()->::Protocol::S_SavePlace::MergeFrom(from._internal_s_save_place());
+      break;
+    }
+    case kCGetPlaces: {
+      _internal_mutable_c_get_places()->::Protocol::C_GetPlaces::MergeFrom(from._internal_c_get_places());
+      break;
+    }
+    case kSGetPlaces: {
+      _internal_mutable_s_get_places()->::Protocol::S_GetPlaces::MergeFrom(from._internal_s_get_places());
+      break;
+    }
+    case kCSaveVisit: {
+      _internal_mutable_c_save_visit()->::Protocol::C_SaveVisit::MergeFrom(from._internal_c_save_visit());
+      break;
+    }
+    case kSSaveVisit: {
+      _internal_mutable_s_save_visit()->::Protocol::S_SaveVisit::MergeFrom(from._internal_s_save_visit());
+      break;
+    }
+    case kCDeletePlace: {
+      _internal_mutable_c_delete_place()->::Protocol::C_DeletePlace::MergeFrom(from._internal_c_delete_place());
+      break;
+    }
+    case kSDeletePlace: {
+      _internal_mutable_s_delete_place()->::Protocol::S_DeletePlace::MergeFrom(from._internal_s_delete_place());
+      break;
+    }
+    case kCUpdateVisit: {
+      _internal_mutable_c_update_visit()->::Protocol::C_UpdateVisit::MergeFrom(from._internal_c_update_visit());
+      break;
+    }
+    case kSUpdateVisit: {
+      _internal_mutable_s_update_visit()->::Protocol::S_UpdateVisit::MergeFrom(from._internal_s_update_visit());
+      break;
+    }
+    case kCDeleteVisit: {
+      _internal_mutable_c_delete_visit()->::Protocol::C_DeleteVisit::MergeFrom(from._internal_c_delete_visit());
+      break;
+    }
+    case kSDeleteVisit: {
+      _internal_mutable_s_delete_visit()->::Protocol::S_DeleteVisit::MergeFrom(from._internal_s_delete_visit());
       break;
     }
     case kCCreateGroup: {
@@ -42049,6 +45051,12884 @@ void C_CompleteSocialSignup::InternalSwap(C_CompleteSocialSignup* other) {
 
 // ===================================================================
 
+class Album::_Internal {
+ public:
+};
+
+Album::Album(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Protocol.Album)
+}
+Album::Album(const Album& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_id().empty()) {
+    id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_id(), 
+      GetArenaForAllocation());
+  }
+  group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_group_id().empty()) {
+    group_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_group_id(), 
+      GetArenaForAllocation());
+  }
+  name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_name().empty()) {
+    name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_name(), 
+      GetArenaForAllocation());
+  }
+  cover_photo_url_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_cover_photo_url().empty()) {
+    cover_photo_url_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_cover_photo_url(), 
+      GetArenaForAllocation());
+  }
+  created_by_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_created_by().empty()) {
+    created_by_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_created_by(), 
+      GetArenaForAllocation());
+  }
+  ::memcpy(&created_at_, &from.created_at_,
+    static_cast<size_t>(reinterpret_cast<char*>(&photo_count_) -
+    reinterpret_cast<char*>(&created_at_)) + sizeof(photo_count_));
+  // @@protoc_insertion_point(copy_constructor:Protocol.Album)
+}
+
+void Album::SharedCtor() {
+id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+cover_photo_url_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+created_by_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&created_at_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&photo_count_) -
+    reinterpret_cast<char*>(&created_at_)) + sizeof(photo_count_));
+}
+
+Album::~Album() {
+  // @@protoc_insertion_point(destructor:Protocol.Album)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void Album::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  group_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  name_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  cover_photo_url_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  created_by_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void Album::ArenaDtor(void* object) {
+  Album* _this = reinterpret_cast< Album* >(object);
+  (void)_this;
+}
+void Album::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void Album::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void Album::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.Album)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  id_.ClearToEmpty();
+  group_id_.ClearToEmpty();
+  name_.ClearToEmpty();
+  cover_photo_url_.ClearToEmpty();
+  created_by_.ClearToEmpty();
+  ::memset(&created_at_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&photo_count_) -
+      reinterpret_cast<char*>(&created_at_)) + sizeof(photo_count_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* Album::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.Album.id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string group_id = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_group_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.Album.group_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string name = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          auto str = _internal_mutable_name();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.Album.name"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string cover_photo_url = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+          auto str = _internal_mutable_cover_photo_url();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.Album.cover_photo_url"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string created_by = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 42)) {
+          auto str = _internal_mutable_created_by();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.Album.created_by"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // int64 created_at = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 48)) {
+          created_at_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // int32 photo_count = 7;
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 56)) {
+          photo_count_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* Album::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.Album)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string id = 1;
+  if (!this->id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_id().data(), static_cast<int>(this->_internal_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.Album.id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_id(), target);
+  }
+
+  // string group_id = 2;
+  if (!this->group_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_group_id().data(), static_cast<int>(this->_internal_group_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.Album.group_id");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_group_id(), target);
+  }
+
+  // string name = 3;
+  if (!this->name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.Album.name");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_name(), target);
+  }
+
+  // string cover_photo_url = 4;
+  if (!this->cover_photo_url().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_cover_photo_url().data(), static_cast<int>(this->_internal_cover_photo_url().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.Album.cover_photo_url");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_cover_photo_url(), target);
+  }
+
+  // string created_by = 5;
+  if (!this->created_by().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_created_by().data(), static_cast<int>(this->_internal_created_by().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.Album.created_by");
+    target = stream->WriteStringMaybeAliased(
+        5, this->_internal_created_by(), target);
+  }
+
+  // int64 created_at = 6;
+  if (this->created_at() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(6, this->_internal_created_at(), target);
+  }
+
+  // int32 photo_count = 7;
+  if (this->photo_count() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(7, this->_internal_photo_count(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.Album)
+  return target;
+}
+
+size_t Album::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Protocol.Album)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string id = 1;
+  if (!this->id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_id());
+  }
+
+  // string group_id = 2;
+  if (!this->group_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_group_id());
+  }
+
+  // string name = 3;
+  if (!this->name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_name());
+  }
+
+  // string cover_photo_url = 4;
+  if (!this->cover_photo_url().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_cover_photo_url());
+  }
+
+  // string created_by = 5;
+  if (!this->created_by().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_created_by());
+  }
+
+  // int64 created_at = 6;
+  if (this->created_at() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64Size(
+        this->_internal_created_at());
+  }
+
+  // int32 photo_count = 7;
+  if (this->photo_count() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_photo_count());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void Album::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Protocol.Album)
+  GOOGLE_DCHECK_NE(&from, this);
+  const Album* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<Album>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Protocol.Album)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Protocol.Album)
+    MergeFrom(*source);
+  }
+}
+
+void Album::MergeFrom(const Album& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Protocol.Album)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from.id().empty()) {
+    _internal_set_id(from._internal_id());
+  }
+  if (!from.group_id().empty()) {
+    _internal_set_group_id(from._internal_group_id());
+  }
+  if (!from.name().empty()) {
+    _internal_set_name(from._internal_name());
+  }
+  if (!from.cover_photo_url().empty()) {
+    _internal_set_cover_photo_url(from._internal_cover_photo_url());
+  }
+  if (!from.created_by().empty()) {
+    _internal_set_created_by(from._internal_created_by());
+  }
+  if (from.created_at() != 0) {
+    _internal_set_created_at(from._internal_created_at());
+  }
+  if (from.photo_count() != 0) {
+    _internal_set_photo_count(from._internal_photo_count());
+  }
+}
+
+void Album::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Protocol.Album)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void Album::CopyFrom(const Album& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.Album)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool Album::IsInitialized() const {
+  return true;
+}
+
+void Album::InternalSwap(Album* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &id_, GetArenaForAllocation(),
+      &other->id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &group_id_, GetArenaForAllocation(),
+      &other->group_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &name_, GetArenaForAllocation(),
+      &other->name_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &cover_photo_url_, GetArenaForAllocation(),
+      &other->cover_photo_url_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &created_by_, GetArenaForAllocation(),
+      &other->created_by_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(Album, photo_count_)
+      + sizeof(Album::photo_count_)
+      - PROTOBUF_FIELD_OFFSET(Album, created_at_)>(
+          reinterpret_cast<char*>(&created_at_),
+          reinterpret_cast<char*>(&other->created_at_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata Album::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
+      file_level_metadata_protocol_2eproto[119]);
+}
+
+// ===================================================================
+
+class AlbumPhoto::_Internal {
+ public:
+};
+
+AlbumPhoto::AlbumPhoto(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Protocol.AlbumPhoto)
+}
+AlbumPhoto::AlbumPhoto(const AlbumPhoto& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_id().empty()) {
+    id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_id(), 
+      GetArenaForAllocation());
+  }
+  album_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_album_id().empty()) {
+    album_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_album_id(), 
+      GetArenaForAllocation());
+  }
+  group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_group_id().empty()) {
+    group_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_group_id(), 
+      GetArenaForAllocation());
+  }
+  photo_url_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_photo_url().empty()) {
+    photo_url_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_photo_url(), 
+      GetArenaForAllocation());
+  }
+  thumbnail_url_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_thumbnail_url().empty()) {
+    thumbnail_url_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_thumbnail_url(), 
+      GetArenaForAllocation());
+  }
+  uploader_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_uploader_id().empty()) {
+    uploader_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_uploader_id(), 
+      GetArenaForAllocation());
+  }
+  source_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_source().empty()) {
+    source_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_source(), 
+      GetArenaForAllocation());
+  }
+  ::memcpy(&msg_seq_, &from.msg_seq_,
+    static_cast<size_t>(reinterpret_cast<char*>(&uploaded_at_) -
+    reinterpret_cast<char*>(&msg_seq_)) + sizeof(uploaded_at_));
+  // @@protoc_insertion_point(copy_constructor:Protocol.AlbumPhoto)
+}
+
+void AlbumPhoto::SharedCtor() {
+id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+album_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+photo_url_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+thumbnail_url_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+uploader_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+source_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&msg_seq_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&uploaded_at_) -
+    reinterpret_cast<char*>(&msg_seq_)) + sizeof(uploaded_at_));
+}
+
+AlbumPhoto::~AlbumPhoto() {
+  // @@protoc_insertion_point(destructor:Protocol.AlbumPhoto)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void AlbumPhoto::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  album_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  group_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  photo_url_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  thumbnail_url_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  uploader_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  source_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void AlbumPhoto::ArenaDtor(void* object) {
+  AlbumPhoto* _this = reinterpret_cast< AlbumPhoto* >(object);
+  (void)_this;
+}
+void AlbumPhoto::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void AlbumPhoto::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void AlbumPhoto::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.AlbumPhoto)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  id_.ClearToEmpty();
+  album_id_.ClearToEmpty();
+  group_id_.ClearToEmpty();
+  photo_url_.ClearToEmpty();
+  thumbnail_url_.ClearToEmpty();
+  uploader_id_.ClearToEmpty();
+  source_.ClearToEmpty();
+  ::memset(&msg_seq_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&uploaded_at_) -
+      reinterpret_cast<char*>(&msg_seq_)) + sizeof(uploaded_at_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* AlbumPhoto::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.AlbumPhoto.id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string album_id = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_album_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.AlbumPhoto.album_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string group_id = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          auto str = _internal_mutable_group_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.AlbumPhoto.group_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // int64 msg_seq = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 32)) {
+          msg_seq_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string photo_url = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 42)) {
+          auto str = _internal_mutable_photo_url();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.AlbumPhoto.photo_url"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string thumbnail_url = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 50)) {
+          auto str = _internal_mutable_thumbnail_url();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.AlbumPhoto.thumbnail_url"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string uploader_id = 7;
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 58)) {
+          auto str = _internal_mutable_uploader_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.AlbumPhoto.uploader_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string source = 8;
+      case 8:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 66)) {
+          auto str = _internal_mutable_source();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.AlbumPhoto.source"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // int64 uploaded_at = 9;
+      case 9:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 72)) {
+          uploaded_at_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* AlbumPhoto::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.AlbumPhoto)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string id = 1;
+  if (!this->id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_id().data(), static_cast<int>(this->_internal_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.AlbumPhoto.id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_id(), target);
+  }
+
+  // string album_id = 2;
+  if (!this->album_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_album_id().data(), static_cast<int>(this->_internal_album_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.AlbumPhoto.album_id");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_album_id(), target);
+  }
+
+  // string group_id = 3;
+  if (!this->group_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_group_id().data(), static_cast<int>(this->_internal_group_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.AlbumPhoto.group_id");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_group_id(), target);
+  }
+
+  // int64 msg_seq = 4;
+  if (this->msg_seq() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(4, this->_internal_msg_seq(), target);
+  }
+
+  // string photo_url = 5;
+  if (!this->photo_url().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_photo_url().data(), static_cast<int>(this->_internal_photo_url().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.AlbumPhoto.photo_url");
+    target = stream->WriteStringMaybeAliased(
+        5, this->_internal_photo_url(), target);
+  }
+
+  // string thumbnail_url = 6;
+  if (!this->thumbnail_url().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_thumbnail_url().data(), static_cast<int>(this->_internal_thumbnail_url().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.AlbumPhoto.thumbnail_url");
+    target = stream->WriteStringMaybeAliased(
+        6, this->_internal_thumbnail_url(), target);
+  }
+
+  // string uploader_id = 7;
+  if (!this->uploader_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_uploader_id().data(), static_cast<int>(this->_internal_uploader_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.AlbumPhoto.uploader_id");
+    target = stream->WriteStringMaybeAliased(
+        7, this->_internal_uploader_id(), target);
+  }
+
+  // string source = 8;
+  if (!this->source().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_source().data(), static_cast<int>(this->_internal_source().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.AlbumPhoto.source");
+    target = stream->WriteStringMaybeAliased(
+        8, this->_internal_source(), target);
+  }
+
+  // int64 uploaded_at = 9;
+  if (this->uploaded_at() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(9, this->_internal_uploaded_at(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.AlbumPhoto)
+  return target;
+}
+
+size_t AlbumPhoto::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Protocol.AlbumPhoto)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string id = 1;
+  if (!this->id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_id());
+  }
+
+  // string album_id = 2;
+  if (!this->album_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_album_id());
+  }
+
+  // string group_id = 3;
+  if (!this->group_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_group_id());
+  }
+
+  // string photo_url = 5;
+  if (!this->photo_url().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_photo_url());
+  }
+
+  // string thumbnail_url = 6;
+  if (!this->thumbnail_url().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_thumbnail_url());
+  }
+
+  // string uploader_id = 7;
+  if (!this->uploader_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_uploader_id());
+  }
+
+  // string source = 8;
+  if (!this->source().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_source());
+  }
+
+  // int64 msg_seq = 4;
+  if (this->msg_seq() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64Size(
+        this->_internal_msg_seq());
+  }
+
+  // int64 uploaded_at = 9;
+  if (this->uploaded_at() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64Size(
+        this->_internal_uploaded_at());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void AlbumPhoto::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Protocol.AlbumPhoto)
+  GOOGLE_DCHECK_NE(&from, this);
+  const AlbumPhoto* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<AlbumPhoto>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Protocol.AlbumPhoto)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Protocol.AlbumPhoto)
+    MergeFrom(*source);
+  }
+}
+
+void AlbumPhoto::MergeFrom(const AlbumPhoto& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Protocol.AlbumPhoto)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from.id().empty()) {
+    _internal_set_id(from._internal_id());
+  }
+  if (!from.album_id().empty()) {
+    _internal_set_album_id(from._internal_album_id());
+  }
+  if (!from.group_id().empty()) {
+    _internal_set_group_id(from._internal_group_id());
+  }
+  if (!from.photo_url().empty()) {
+    _internal_set_photo_url(from._internal_photo_url());
+  }
+  if (!from.thumbnail_url().empty()) {
+    _internal_set_thumbnail_url(from._internal_thumbnail_url());
+  }
+  if (!from.uploader_id().empty()) {
+    _internal_set_uploader_id(from._internal_uploader_id());
+  }
+  if (!from.source().empty()) {
+    _internal_set_source(from._internal_source());
+  }
+  if (from.msg_seq() != 0) {
+    _internal_set_msg_seq(from._internal_msg_seq());
+  }
+  if (from.uploaded_at() != 0) {
+    _internal_set_uploaded_at(from._internal_uploaded_at());
+  }
+}
+
+void AlbumPhoto::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Protocol.AlbumPhoto)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void AlbumPhoto::CopyFrom(const AlbumPhoto& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.AlbumPhoto)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool AlbumPhoto::IsInitialized() const {
+  return true;
+}
+
+void AlbumPhoto::InternalSwap(AlbumPhoto* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &id_, GetArenaForAllocation(),
+      &other->id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &album_id_, GetArenaForAllocation(),
+      &other->album_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &group_id_, GetArenaForAllocation(),
+      &other->group_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &photo_url_, GetArenaForAllocation(),
+      &other->photo_url_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &thumbnail_url_, GetArenaForAllocation(),
+      &other->thumbnail_url_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &uploader_id_, GetArenaForAllocation(),
+      &other->uploader_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &source_, GetArenaForAllocation(),
+      &other->source_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(AlbumPhoto, uploaded_at_)
+      + sizeof(AlbumPhoto::uploaded_at_)
+      - PROTOBUF_FIELD_OFFSET(AlbumPhoto, msg_seq_)>(
+          reinterpret_cast<char*>(&msg_seq_),
+          reinterpret_cast<char*>(&other->msg_seq_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata AlbumPhoto::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
+      file_level_metadata_protocol_2eproto[120]);
+}
+
+// ===================================================================
+
+class PhotoComment::_Internal {
+ public:
+};
+
+PhotoComment::PhotoComment(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Protocol.PhotoComment)
+}
+PhotoComment::PhotoComment(const PhotoComment& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_id().empty()) {
+    id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_id(), 
+      GetArenaForAllocation());
+  }
+  photo_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_photo_id().empty()) {
+    photo_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_photo_id(), 
+      GetArenaForAllocation());
+  }
+  sender_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_sender_id().empty()) {
+    sender_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_sender_id(), 
+      GetArenaForAllocation());
+  }
+  sender_name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_sender_name().empty()) {
+    sender_name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_sender_name(), 
+      GetArenaForAllocation());
+  }
+  text_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_text().empty()) {
+    text_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_text(), 
+      GetArenaForAllocation());
+  }
+  created_at_ = from.created_at_;
+  // @@protoc_insertion_point(copy_constructor:Protocol.PhotoComment)
+}
+
+void PhotoComment::SharedCtor() {
+id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+photo_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+sender_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+sender_name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+text_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+created_at_ = int64_t{0};
+}
+
+PhotoComment::~PhotoComment() {
+  // @@protoc_insertion_point(destructor:Protocol.PhotoComment)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void PhotoComment::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  photo_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  sender_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  sender_name_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  text_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void PhotoComment::ArenaDtor(void* object) {
+  PhotoComment* _this = reinterpret_cast< PhotoComment* >(object);
+  (void)_this;
+}
+void PhotoComment::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void PhotoComment::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void PhotoComment::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.PhotoComment)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  id_.ClearToEmpty();
+  photo_id_.ClearToEmpty();
+  sender_id_.ClearToEmpty();
+  sender_name_.ClearToEmpty();
+  text_.ClearToEmpty();
+  created_at_ = int64_t{0};
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* PhotoComment::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.PhotoComment.id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string photo_id = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_photo_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.PhotoComment.photo_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string sender_id = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          auto str = _internal_mutable_sender_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.PhotoComment.sender_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string sender_name = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+          auto str = _internal_mutable_sender_name();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.PhotoComment.sender_name"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string text = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 42)) {
+          auto str = _internal_mutable_text();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.PhotoComment.text"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // int64 created_at = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 48)) {
+          created_at_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* PhotoComment::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.PhotoComment)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string id = 1;
+  if (!this->id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_id().data(), static_cast<int>(this->_internal_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.PhotoComment.id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_id(), target);
+  }
+
+  // string photo_id = 2;
+  if (!this->photo_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_photo_id().data(), static_cast<int>(this->_internal_photo_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.PhotoComment.photo_id");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_photo_id(), target);
+  }
+
+  // string sender_id = 3;
+  if (!this->sender_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_sender_id().data(), static_cast<int>(this->_internal_sender_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.PhotoComment.sender_id");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_sender_id(), target);
+  }
+
+  // string sender_name = 4;
+  if (!this->sender_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_sender_name().data(), static_cast<int>(this->_internal_sender_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.PhotoComment.sender_name");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_sender_name(), target);
+  }
+
+  // string text = 5;
+  if (!this->text().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_text().data(), static_cast<int>(this->_internal_text().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.PhotoComment.text");
+    target = stream->WriteStringMaybeAliased(
+        5, this->_internal_text(), target);
+  }
+
+  // int64 created_at = 6;
+  if (this->created_at() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(6, this->_internal_created_at(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.PhotoComment)
+  return target;
+}
+
+size_t PhotoComment::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Protocol.PhotoComment)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string id = 1;
+  if (!this->id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_id());
+  }
+
+  // string photo_id = 2;
+  if (!this->photo_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_photo_id());
+  }
+
+  // string sender_id = 3;
+  if (!this->sender_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_sender_id());
+  }
+
+  // string sender_name = 4;
+  if (!this->sender_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_sender_name());
+  }
+
+  // string text = 5;
+  if (!this->text().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_text());
+  }
+
+  // int64 created_at = 6;
+  if (this->created_at() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64Size(
+        this->_internal_created_at());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void PhotoComment::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Protocol.PhotoComment)
+  GOOGLE_DCHECK_NE(&from, this);
+  const PhotoComment* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<PhotoComment>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Protocol.PhotoComment)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Protocol.PhotoComment)
+    MergeFrom(*source);
+  }
+}
+
+void PhotoComment::MergeFrom(const PhotoComment& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Protocol.PhotoComment)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from.id().empty()) {
+    _internal_set_id(from._internal_id());
+  }
+  if (!from.photo_id().empty()) {
+    _internal_set_photo_id(from._internal_photo_id());
+  }
+  if (!from.sender_id().empty()) {
+    _internal_set_sender_id(from._internal_sender_id());
+  }
+  if (!from.sender_name().empty()) {
+    _internal_set_sender_name(from._internal_sender_name());
+  }
+  if (!from.text().empty()) {
+    _internal_set_text(from._internal_text());
+  }
+  if (from.created_at() != 0) {
+    _internal_set_created_at(from._internal_created_at());
+  }
+}
+
+void PhotoComment::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Protocol.PhotoComment)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void PhotoComment::CopyFrom(const PhotoComment& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.PhotoComment)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool PhotoComment::IsInitialized() const {
+  return true;
+}
+
+void PhotoComment::InternalSwap(PhotoComment* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &id_, GetArenaForAllocation(),
+      &other->id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &photo_id_, GetArenaForAllocation(),
+      &other->photo_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &sender_id_, GetArenaForAllocation(),
+      &other->sender_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &sender_name_, GetArenaForAllocation(),
+      &other->sender_name_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &text_, GetArenaForAllocation(),
+      &other->text_, other->GetArenaForAllocation()
+  );
+  swap(created_at_, other->created_at_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata PhotoComment::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
+      file_level_metadata_protocol_2eproto[121]);
+}
+
+// ===================================================================
+
+class C_CreateAlbum::_Internal {
+ public:
+};
+
+C_CreateAlbum::C_CreateAlbum(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Protocol.C_CreateAlbum)
+}
+C_CreateAlbum::C_CreateAlbum(const C_CreateAlbum& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_group_id().empty()) {
+    group_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_group_id(), 
+      GetArenaForAllocation());
+  }
+  name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_name().empty()) {
+    name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_name(), 
+      GetArenaForAllocation());
+  }
+  created_by_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_created_by().empty()) {
+    created_by_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_created_by(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:Protocol.C_CreateAlbum)
+}
+
+void C_CreateAlbum::SharedCtor() {
+group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+created_by_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+C_CreateAlbum::~C_CreateAlbum() {
+  // @@protoc_insertion_point(destructor:Protocol.C_CreateAlbum)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void C_CreateAlbum::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  group_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  name_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  created_by_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void C_CreateAlbum::ArenaDtor(void* object) {
+  C_CreateAlbum* _this = reinterpret_cast< C_CreateAlbum* >(object);
+  (void)_this;
+}
+void C_CreateAlbum::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void C_CreateAlbum::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void C_CreateAlbum::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.C_CreateAlbum)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  group_id_.ClearToEmpty();
+  name_.ClearToEmpty();
+  created_by_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* C_CreateAlbum::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string group_id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_group_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_CreateAlbum.group_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string name = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_name();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_CreateAlbum.name"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string created_by = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          auto str = _internal_mutable_created_by();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_CreateAlbum.created_by"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* C_CreateAlbum::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.C_CreateAlbum)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string group_id = 1;
+  if (!this->group_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_group_id().data(), static_cast<int>(this->_internal_group_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_CreateAlbum.group_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_group_id(), target);
+  }
+
+  // string name = 2;
+  if (!this->name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_CreateAlbum.name");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_name(), target);
+  }
+
+  // string created_by = 3;
+  if (!this->created_by().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_created_by().data(), static_cast<int>(this->_internal_created_by().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_CreateAlbum.created_by");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_created_by(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.C_CreateAlbum)
+  return target;
+}
+
+size_t C_CreateAlbum::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Protocol.C_CreateAlbum)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string group_id = 1;
+  if (!this->group_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_group_id());
+  }
+
+  // string name = 2;
+  if (!this->name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_name());
+  }
+
+  // string created_by = 3;
+  if (!this->created_by().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_created_by());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void C_CreateAlbum::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Protocol.C_CreateAlbum)
+  GOOGLE_DCHECK_NE(&from, this);
+  const C_CreateAlbum* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<C_CreateAlbum>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Protocol.C_CreateAlbum)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Protocol.C_CreateAlbum)
+    MergeFrom(*source);
+  }
+}
+
+void C_CreateAlbum::MergeFrom(const C_CreateAlbum& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Protocol.C_CreateAlbum)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from.group_id().empty()) {
+    _internal_set_group_id(from._internal_group_id());
+  }
+  if (!from.name().empty()) {
+    _internal_set_name(from._internal_name());
+  }
+  if (!from.created_by().empty()) {
+    _internal_set_created_by(from._internal_created_by());
+  }
+}
+
+void C_CreateAlbum::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Protocol.C_CreateAlbum)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void C_CreateAlbum::CopyFrom(const C_CreateAlbum& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.C_CreateAlbum)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool C_CreateAlbum::IsInitialized() const {
+  return true;
+}
+
+void C_CreateAlbum::InternalSwap(C_CreateAlbum* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &group_id_, GetArenaForAllocation(),
+      &other->group_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &name_, GetArenaForAllocation(),
+      &other->name_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &created_by_, GetArenaForAllocation(),
+      &other->created_by_, other->GetArenaForAllocation()
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata C_CreateAlbum::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
+      file_level_metadata_protocol_2eproto[122]);
+}
+
+// ===================================================================
+
+class S_CreateAlbum::_Internal {
+ public:
+  static const ::Protocol::Album& album(const S_CreateAlbum* msg);
+};
+
+const ::Protocol::Album&
+S_CreateAlbum::_Internal::album(const S_CreateAlbum* msg) {
+  return *msg->album_;
+}
+S_CreateAlbum::S_CreateAlbum(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Protocol.S_CreateAlbum)
+}
+S_CreateAlbum::S_CreateAlbum(const S_CreateAlbum& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  error_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_error().empty()) {
+    error_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_error(), 
+      GetArenaForAllocation());
+  }
+  if (from._internal_has_album()) {
+    album_ = new ::Protocol::Album(*from.album_);
+  } else {
+    album_ = nullptr;
+  }
+  success_ = from.success_;
+  // @@protoc_insertion_point(copy_constructor:Protocol.S_CreateAlbum)
+}
+
+void S_CreateAlbum::SharedCtor() {
+error_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&album_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&success_) -
+    reinterpret_cast<char*>(&album_)) + sizeof(success_));
+}
+
+S_CreateAlbum::~S_CreateAlbum() {
+  // @@protoc_insertion_point(destructor:Protocol.S_CreateAlbum)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void S_CreateAlbum::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  error_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (this != internal_default_instance()) delete album_;
+}
+
+void S_CreateAlbum::ArenaDtor(void* object) {
+  S_CreateAlbum* _this = reinterpret_cast< S_CreateAlbum* >(object);
+  (void)_this;
+}
+void S_CreateAlbum::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void S_CreateAlbum::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void S_CreateAlbum::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.S_CreateAlbum)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  error_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && album_ != nullptr) {
+    delete album_;
+  }
+  album_ = nullptr;
+  success_ = false;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* S_CreateAlbum::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // bool success = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          success_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .Protocol.Album album = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          ptr = ctx->ParseMessage(_internal_mutable_album(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string error = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          auto str = _internal_mutable_error();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.S_CreateAlbum.error"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* S_CreateAlbum::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.S_CreateAlbum)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bool success = 1;
+  if (this->success() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(1, this->_internal_success(), target);
+  }
+
+  // .Protocol.Album album = 2;
+  if (this->has_album()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        2, _Internal::album(this), target, stream);
+  }
+
+  // string error = 3;
+  if (!this->error().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_error().data(), static_cast<int>(this->_internal_error().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.S_CreateAlbum.error");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_error(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.S_CreateAlbum)
+  return target;
+}
+
+size_t S_CreateAlbum::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Protocol.S_CreateAlbum)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string error = 3;
+  if (!this->error().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_error());
+  }
+
+  // .Protocol.Album album = 2;
+  if (this->has_album()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *album_);
+  }
+
+  // bool success = 1;
+  if (this->success() != 0) {
+    total_size += 1 + 1;
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void S_CreateAlbum::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Protocol.S_CreateAlbum)
+  GOOGLE_DCHECK_NE(&from, this);
+  const S_CreateAlbum* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<S_CreateAlbum>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Protocol.S_CreateAlbum)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Protocol.S_CreateAlbum)
+    MergeFrom(*source);
+  }
+}
+
+void S_CreateAlbum::MergeFrom(const S_CreateAlbum& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Protocol.S_CreateAlbum)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from.error().empty()) {
+    _internal_set_error(from._internal_error());
+  }
+  if (from.has_album()) {
+    _internal_mutable_album()->::Protocol::Album::MergeFrom(from._internal_album());
+  }
+  if (from.success() != 0) {
+    _internal_set_success(from._internal_success());
+  }
+}
+
+void S_CreateAlbum::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Protocol.S_CreateAlbum)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void S_CreateAlbum::CopyFrom(const S_CreateAlbum& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.S_CreateAlbum)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool S_CreateAlbum::IsInitialized() const {
+  return true;
+}
+
+void S_CreateAlbum::InternalSwap(S_CreateAlbum* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &error_, GetArenaForAllocation(),
+      &other->error_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(S_CreateAlbum, success_)
+      + sizeof(S_CreateAlbum::success_)
+      - PROTOBUF_FIELD_OFFSET(S_CreateAlbum, album_)>(
+          reinterpret_cast<char*>(&album_),
+          reinterpret_cast<char*>(&other->album_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata S_CreateAlbum::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
+      file_level_metadata_protocol_2eproto[123]);
+}
+
+// ===================================================================
+
+class C_GetAlbums::_Internal {
+ public:
+};
+
+C_GetAlbums::C_GetAlbums(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Protocol.C_GetAlbums)
+}
+C_GetAlbums::C_GetAlbums(const C_GetAlbums& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_group_id().empty()) {
+    group_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_group_id(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:Protocol.C_GetAlbums)
+}
+
+void C_GetAlbums::SharedCtor() {
+group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+C_GetAlbums::~C_GetAlbums() {
+  // @@protoc_insertion_point(destructor:Protocol.C_GetAlbums)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void C_GetAlbums::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  group_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void C_GetAlbums::ArenaDtor(void* object) {
+  C_GetAlbums* _this = reinterpret_cast< C_GetAlbums* >(object);
+  (void)_this;
+}
+void C_GetAlbums::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void C_GetAlbums::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void C_GetAlbums::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.C_GetAlbums)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  group_id_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* C_GetAlbums::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string group_id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_group_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_GetAlbums.group_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* C_GetAlbums::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.C_GetAlbums)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string group_id = 1;
+  if (!this->group_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_group_id().data(), static_cast<int>(this->_internal_group_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_GetAlbums.group_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_group_id(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.C_GetAlbums)
+  return target;
+}
+
+size_t C_GetAlbums::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Protocol.C_GetAlbums)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string group_id = 1;
+  if (!this->group_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_group_id());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void C_GetAlbums::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Protocol.C_GetAlbums)
+  GOOGLE_DCHECK_NE(&from, this);
+  const C_GetAlbums* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<C_GetAlbums>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Protocol.C_GetAlbums)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Protocol.C_GetAlbums)
+    MergeFrom(*source);
+  }
+}
+
+void C_GetAlbums::MergeFrom(const C_GetAlbums& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Protocol.C_GetAlbums)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from.group_id().empty()) {
+    _internal_set_group_id(from._internal_group_id());
+  }
+}
+
+void C_GetAlbums::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Protocol.C_GetAlbums)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void C_GetAlbums::CopyFrom(const C_GetAlbums& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.C_GetAlbums)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool C_GetAlbums::IsInitialized() const {
+  return true;
+}
+
+void C_GetAlbums::InternalSwap(C_GetAlbums* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &group_id_, GetArenaForAllocation(),
+      &other->group_id_, other->GetArenaForAllocation()
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata C_GetAlbums::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
+      file_level_metadata_protocol_2eproto[124]);
+}
+
+// ===================================================================
+
+class S_GetAlbums::_Internal {
+ public:
+};
+
+S_GetAlbums::S_GetAlbums(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena),
+  albums_(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Protocol.S_GetAlbums)
+}
+S_GetAlbums::S_GetAlbums(const S_GetAlbums& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      albums_(from.albums_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:Protocol.S_GetAlbums)
+}
+
+void S_GetAlbums::SharedCtor() {
+}
+
+S_GetAlbums::~S_GetAlbums() {
+  // @@protoc_insertion_point(destructor:Protocol.S_GetAlbums)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void S_GetAlbums::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void S_GetAlbums::ArenaDtor(void* object) {
+  S_GetAlbums* _this = reinterpret_cast< S_GetAlbums* >(object);
+  (void)_this;
+}
+void S_GetAlbums::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void S_GetAlbums::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void S_GetAlbums::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.S_GetAlbums)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  albums_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* S_GetAlbums::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // repeated .Protocol.Album albums = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_albums(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* S_GetAlbums::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.S_GetAlbums)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated .Protocol.Album albums = 1;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->_internal_albums_size()); i < n; i++) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(1, this->_internal_albums(i), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.S_GetAlbums)
+  return target;
+}
+
+size_t S_GetAlbums::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Protocol.S_GetAlbums)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .Protocol.Album albums = 1;
+  total_size += 1UL * this->_internal_albums_size();
+  for (const auto& msg : this->albums_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void S_GetAlbums::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Protocol.S_GetAlbums)
+  GOOGLE_DCHECK_NE(&from, this);
+  const S_GetAlbums* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<S_GetAlbums>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Protocol.S_GetAlbums)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Protocol.S_GetAlbums)
+    MergeFrom(*source);
+  }
+}
+
+void S_GetAlbums::MergeFrom(const S_GetAlbums& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Protocol.S_GetAlbums)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  albums_.MergeFrom(from.albums_);
+}
+
+void S_GetAlbums::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Protocol.S_GetAlbums)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void S_GetAlbums::CopyFrom(const S_GetAlbums& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.S_GetAlbums)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool S_GetAlbums::IsInitialized() const {
+  return true;
+}
+
+void S_GetAlbums::InternalSwap(S_GetAlbums* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  albums_.InternalSwap(&other->albums_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata S_GetAlbums::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
+      file_level_metadata_protocol_2eproto[125]);
+}
+
+// ===================================================================
+
+class C_AddPhotoToAlbum::_Internal {
+ public:
+};
+
+C_AddPhotoToAlbum::C_AddPhotoToAlbum(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Protocol.C_AddPhotoToAlbum)
+}
+C_AddPhotoToAlbum::C_AddPhotoToAlbum(const C_AddPhotoToAlbum& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  album_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_album_id().empty()) {
+    album_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_album_id(), 
+      GetArenaForAllocation());
+  }
+  group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_group_id().empty()) {
+    group_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_group_id(), 
+      GetArenaForAllocation());
+  }
+  photo_url_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_photo_url().empty()) {
+    photo_url_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_photo_url(), 
+      GetArenaForAllocation());
+  }
+  thumbnail_url_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_thumbnail_url().empty()) {
+    thumbnail_url_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_thumbnail_url(), 
+      GetArenaForAllocation());
+  }
+  uploader_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_uploader_id().empty()) {
+    uploader_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_uploader_id(), 
+      GetArenaForAllocation());
+  }
+  msg_seq_ = from.msg_seq_;
+  // @@protoc_insertion_point(copy_constructor:Protocol.C_AddPhotoToAlbum)
+}
+
+void C_AddPhotoToAlbum::SharedCtor() {
+album_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+photo_url_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+thumbnail_url_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+uploader_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+msg_seq_ = int64_t{0};
+}
+
+C_AddPhotoToAlbum::~C_AddPhotoToAlbum() {
+  // @@protoc_insertion_point(destructor:Protocol.C_AddPhotoToAlbum)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void C_AddPhotoToAlbum::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  album_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  group_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  photo_url_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  thumbnail_url_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  uploader_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void C_AddPhotoToAlbum::ArenaDtor(void* object) {
+  C_AddPhotoToAlbum* _this = reinterpret_cast< C_AddPhotoToAlbum* >(object);
+  (void)_this;
+}
+void C_AddPhotoToAlbum::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void C_AddPhotoToAlbum::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void C_AddPhotoToAlbum::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.C_AddPhotoToAlbum)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  album_id_.ClearToEmpty();
+  group_id_.ClearToEmpty();
+  photo_url_.ClearToEmpty();
+  thumbnail_url_.ClearToEmpty();
+  uploader_id_.ClearToEmpty();
+  msg_seq_ = int64_t{0};
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* C_AddPhotoToAlbum::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string album_id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_album_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_AddPhotoToAlbum.album_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string group_id = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_group_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_AddPhotoToAlbum.group_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // int64 msg_seq = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
+          msg_seq_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string photo_url = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+          auto str = _internal_mutable_photo_url();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_AddPhotoToAlbum.photo_url"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string thumbnail_url = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 42)) {
+          auto str = _internal_mutable_thumbnail_url();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_AddPhotoToAlbum.thumbnail_url"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string uploader_id = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 50)) {
+          auto str = _internal_mutable_uploader_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_AddPhotoToAlbum.uploader_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* C_AddPhotoToAlbum::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.C_AddPhotoToAlbum)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string album_id = 1;
+  if (!this->album_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_album_id().data(), static_cast<int>(this->_internal_album_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_AddPhotoToAlbum.album_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_album_id(), target);
+  }
+
+  // string group_id = 2;
+  if (!this->group_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_group_id().data(), static_cast<int>(this->_internal_group_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_AddPhotoToAlbum.group_id");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_group_id(), target);
+  }
+
+  // int64 msg_seq = 3;
+  if (this->msg_seq() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(3, this->_internal_msg_seq(), target);
+  }
+
+  // string photo_url = 4;
+  if (!this->photo_url().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_photo_url().data(), static_cast<int>(this->_internal_photo_url().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_AddPhotoToAlbum.photo_url");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_photo_url(), target);
+  }
+
+  // string thumbnail_url = 5;
+  if (!this->thumbnail_url().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_thumbnail_url().data(), static_cast<int>(this->_internal_thumbnail_url().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_AddPhotoToAlbum.thumbnail_url");
+    target = stream->WriteStringMaybeAliased(
+        5, this->_internal_thumbnail_url(), target);
+  }
+
+  // string uploader_id = 6;
+  if (!this->uploader_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_uploader_id().data(), static_cast<int>(this->_internal_uploader_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_AddPhotoToAlbum.uploader_id");
+    target = stream->WriteStringMaybeAliased(
+        6, this->_internal_uploader_id(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.C_AddPhotoToAlbum)
+  return target;
+}
+
+size_t C_AddPhotoToAlbum::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Protocol.C_AddPhotoToAlbum)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string album_id = 1;
+  if (!this->album_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_album_id());
+  }
+
+  // string group_id = 2;
+  if (!this->group_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_group_id());
+  }
+
+  // string photo_url = 4;
+  if (!this->photo_url().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_photo_url());
+  }
+
+  // string thumbnail_url = 5;
+  if (!this->thumbnail_url().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_thumbnail_url());
+  }
+
+  // string uploader_id = 6;
+  if (!this->uploader_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_uploader_id());
+  }
+
+  // int64 msg_seq = 3;
+  if (this->msg_seq() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64Size(
+        this->_internal_msg_seq());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void C_AddPhotoToAlbum::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Protocol.C_AddPhotoToAlbum)
+  GOOGLE_DCHECK_NE(&from, this);
+  const C_AddPhotoToAlbum* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<C_AddPhotoToAlbum>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Protocol.C_AddPhotoToAlbum)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Protocol.C_AddPhotoToAlbum)
+    MergeFrom(*source);
+  }
+}
+
+void C_AddPhotoToAlbum::MergeFrom(const C_AddPhotoToAlbum& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Protocol.C_AddPhotoToAlbum)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from.album_id().empty()) {
+    _internal_set_album_id(from._internal_album_id());
+  }
+  if (!from.group_id().empty()) {
+    _internal_set_group_id(from._internal_group_id());
+  }
+  if (!from.photo_url().empty()) {
+    _internal_set_photo_url(from._internal_photo_url());
+  }
+  if (!from.thumbnail_url().empty()) {
+    _internal_set_thumbnail_url(from._internal_thumbnail_url());
+  }
+  if (!from.uploader_id().empty()) {
+    _internal_set_uploader_id(from._internal_uploader_id());
+  }
+  if (from.msg_seq() != 0) {
+    _internal_set_msg_seq(from._internal_msg_seq());
+  }
+}
+
+void C_AddPhotoToAlbum::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Protocol.C_AddPhotoToAlbum)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void C_AddPhotoToAlbum::CopyFrom(const C_AddPhotoToAlbum& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.C_AddPhotoToAlbum)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool C_AddPhotoToAlbum::IsInitialized() const {
+  return true;
+}
+
+void C_AddPhotoToAlbum::InternalSwap(C_AddPhotoToAlbum* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &album_id_, GetArenaForAllocation(),
+      &other->album_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &group_id_, GetArenaForAllocation(),
+      &other->group_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &photo_url_, GetArenaForAllocation(),
+      &other->photo_url_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &thumbnail_url_, GetArenaForAllocation(),
+      &other->thumbnail_url_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &uploader_id_, GetArenaForAllocation(),
+      &other->uploader_id_, other->GetArenaForAllocation()
+  );
+  swap(msg_seq_, other->msg_seq_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata C_AddPhotoToAlbum::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
+      file_level_metadata_protocol_2eproto[126]);
+}
+
+// ===================================================================
+
+class S_AddPhotoToAlbum::_Internal {
+ public:
+  static const ::Protocol::AlbumPhoto& photo(const S_AddPhotoToAlbum* msg);
+  static const ::Protocol::Album& album(const S_AddPhotoToAlbum* msg);
+};
+
+const ::Protocol::AlbumPhoto&
+S_AddPhotoToAlbum::_Internal::photo(const S_AddPhotoToAlbum* msg) {
+  return *msg->photo_;
+}
+const ::Protocol::Album&
+S_AddPhotoToAlbum::_Internal::album(const S_AddPhotoToAlbum* msg) {
+  return *msg->album_;
+}
+S_AddPhotoToAlbum::S_AddPhotoToAlbum(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Protocol.S_AddPhotoToAlbum)
+}
+S_AddPhotoToAlbum::S_AddPhotoToAlbum(const S_AddPhotoToAlbum& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  album_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_album_id().empty()) {
+    album_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_album_id(), 
+      GetArenaForAllocation());
+  }
+  error_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_error().empty()) {
+    error_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_error(), 
+      GetArenaForAllocation());
+  }
+  if (from._internal_has_photo()) {
+    photo_ = new ::Protocol::AlbumPhoto(*from.photo_);
+  } else {
+    photo_ = nullptr;
+  }
+  if (from._internal_has_album()) {
+    album_ = new ::Protocol::Album(*from.album_);
+  } else {
+    album_ = nullptr;
+  }
+  success_ = from.success_;
+  // @@protoc_insertion_point(copy_constructor:Protocol.S_AddPhotoToAlbum)
+}
+
+void S_AddPhotoToAlbum::SharedCtor() {
+album_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+error_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&photo_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&success_) -
+    reinterpret_cast<char*>(&photo_)) + sizeof(success_));
+}
+
+S_AddPhotoToAlbum::~S_AddPhotoToAlbum() {
+  // @@protoc_insertion_point(destructor:Protocol.S_AddPhotoToAlbum)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void S_AddPhotoToAlbum::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  album_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  error_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (this != internal_default_instance()) delete photo_;
+  if (this != internal_default_instance()) delete album_;
+}
+
+void S_AddPhotoToAlbum::ArenaDtor(void* object) {
+  S_AddPhotoToAlbum* _this = reinterpret_cast< S_AddPhotoToAlbum* >(object);
+  (void)_this;
+}
+void S_AddPhotoToAlbum::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void S_AddPhotoToAlbum::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void S_AddPhotoToAlbum::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.S_AddPhotoToAlbum)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  album_id_.ClearToEmpty();
+  error_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && photo_ != nullptr) {
+    delete photo_;
+  }
+  photo_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && album_ != nullptr) {
+    delete album_;
+  }
+  album_ = nullptr;
+  success_ = false;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* S_AddPhotoToAlbum::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // bool success = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          success_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string album_id = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_album_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.S_AddPhotoToAlbum.album_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .Protocol.AlbumPhoto photo = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_photo(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string error = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+          auto str = _internal_mutable_error();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.S_AddPhotoToAlbum.error"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .Protocol.Album album = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 42)) {
+          ptr = ctx->ParseMessage(_internal_mutable_album(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* S_AddPhotoToAlbum::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.S_AddPhotoToAlbum)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bool success = 1;
+  if (this->success() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(1, this->_internal_success(), target);
+  }
+
+  // string album_id = 2;
+  if (!this->album_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_album_id().data(), static_cast<int>(this->_internal_album_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.S_AddPhotoToAlbum.album_id");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_album_id(), target);
+  }
+
+  // .Protocol.AlbumPhoto photo = 3;
+  if (this->has_photo()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        3, _Internal::photo(this), target, stream);
+  }
+
+  // string error = 4;
+  if (!this->error().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_error().data(), static_cast<int>(this->_internal_error().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.S_AddPhotoToAlbum.error");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_error(), target);
+  }
+
+  // .Protocol.Album album = 5;
+  if (this->has_album()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        5, _Internal::album(this), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.S_AddPhotoToAlbum)
+  return target;
+}
+
+size_t S_AddPhotoToAlbum::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Protocol.S_AddPhotoToAlbum)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string album_id = 2;
+  if (!this->album_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_album_id());
+  }
+
+  // string error = 4;
+  if (!this->error().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_error());
+  }
+
+  // .Protocol.AlbumPhoto photo = 3;
+  if (this->has_photo()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *photo_);
+  }
+
+  // .Protocol.Album album = 5;
+  if (this->has_album()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *album_);
+  }
+
+  // bool success = 1;
+  if (this->success() != 0) {
+    total_size += 1 + 1;
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void S_AddPhotoToAlbum::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Protocol.S_AddPhotoToAlbum)
+  GOOGLE_DCHECK_NE(&from, this);
+  const S_AddPhotoToAlbum* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<S_AddPhotoToAlbum>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Protocol.S_AddPhotoToAlbum)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Protocol.S_AddPhotoToAlbum)
+    MergeFrom(*source);
+  }
+}
+
+void S_AddPhotoToAlbum::MergeFrom(const S_AddPhotoToAlbum& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Protocol.S_AddPhotoToAlbum)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from.album_id().empty()) {
+    _internal_set_album_id(from._internal_album_id());
+  }
+  if (!from.error().empty()) {
+    _internal_set_error(from._internal_error());
+  }
+  if (from.has_photo()) {
+    _internal_mutable_photo()->::Protocol::AlbumPhoto::MergeFrom(from._internal_photo());
+  }
+  if (from.has_album()) {
+    _internal_mutable_album()->::Protocol::Album::MergeFrom(from._internal_album());
+  }
+  if (from.success() != 0) {
+    _internal_set_success(from._internal_success());
+  }
+}
+
+void S_AddPhotoToAlbum::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Protocol.S_AddPhotoToAlbum)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void S_AddPhotoToAlbum::CopyFrom(const S_AddPhotoToAlbum& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.S_AddPhotoToAlbum)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool S_AddPhotoToAlbum::IsInitialized() const {
+  return true;
+}
+
+void S_AddPhotoToAlbum::InternalSwap(S_AddPhotoToAlbum* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &album_id_, GetArenaForAllocation(),
+      &other->album_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &error_, GetArenaForAllocation(),
+      &other->error_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(S_AddPhotoToAlbum, success_)
+      + sizeof(S_AddPhotoToAlbum::success_)
+      - PROTOBUF_FIELD_OFFSET(S_AddPhotoToAlbum, photo_)>(
+          reinterpret_cast<char*>(&photo_),
+          reinterpret_cast<char*>(&other->photo_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata S_AddPhotoToAlbum::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
+      file_level_metadata_protocol_2eproto[127]);
+}
+
+// ===================================================================
+
+class C_GetAlbumPhotos::_Internal {
+ public:
+};
+
+C_GetAlbumPhotos::C_GetAlbumPhotos(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Protocol.C_GetAlbumPhotos)
+}
+C_GetAlbumPhotos::C_GetAlbumPhotos(const C_GetAlbumPhotos& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  album_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_album_id().empty()) {
+    album_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_album_id(), 
+      GetArenaForAllocation());
+  }
+  latest_first_ = from.latest_first_;
+  // @@protoc_insertion_point(copy_constructor:Protocol.C_GetAlbumPhotos)
+}
+
+void C_GetAlbumPhotos::SharedCtor() {
+album_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+latest_first_ = false;
+}
+
+C_GetAlbumPhotos::~C_GetAlbumPhotos() {
+  // @@protoc_insertion_point(destructor:Protocol.C_GetAlbumPhotos)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void C_GetAlbumPhotos::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  album_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void C_GetAlbumPhotos::ArenaDtor(void* object) {
+  C_GetAlbumPhotos* _this = reinterpret_cast< C_GetAlbumPhotos* >(object);
+  (void)_this;
+}
+void C_GetAlbumPhotos::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void C_GetAlbumPhotos::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void C_GetAlbumPhotos::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.C_GetAlbumPhotos)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  album_id_.ClearToEmpty();
+  latest_first_ = false;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* C_GetAlbumPhotos::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string album_id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_album_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_GetAlbumPhotos.album_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // bool latest_first = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
+          latest_first_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* C_GetAlbumPhotos::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.C_GetAlbumPhotos)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string album_id = 1;
+  if (!this->album_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_album_id().data(), static_cast<int>(this->_internal_album_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_GetAlbumPhotos.album_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_album_id(), target);
+  }
+
+  // bool latest_first = 2;
+  if (this->latest_first() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(2, this->_internal_latest_first(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.C_GetAlbumPhotos)
+  return target;
+}
+
+size_t C_GetAlbumPhotos::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Protocol.C_GetAlbumPhotos)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string album_id = 1;
+  if (!this->album_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_album_id());
+  }
+
+  // bool latest_first = 2;
+  if (this->latest_first() != 0) {
+    total_size += 1 + 1;
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void C_GetAlbumPhotos::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Protocol.C_GetAlbumPhotos)
+  GOOGLE_DCHECK_NE(&from, this);
+  const C_GetAlbumPhotos* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<C_GetAlbumPhotos>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Protocol.C_GetAlbumPhotos)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Protocol.C_GetAlbumPhotos)
+    MergeFrom(*source);
+  }
+}
+
+void C_GetAlbumPhotos::MergeFrom(const C_GetAlbumPhotos& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Protocol.C_GetAlbumPhotos)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from.album_id().empty()) {
+    _internal_set_album_id(from._internal_album_id());
+  }
+  if (from.latest_first() != 0) {
+    _internal_set_latest_first(from._internal_latest_first());
+  }
+}
+
+void C_GetAlbumPhotos::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Protocol.C_GetAlbumPhotos)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void C_GetAlbumPhotos::CopyFrom(const C_GetAlbumPhotos& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.C_GetAlbumPhotos)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool C_GetAlbumPhotos::IsInitialized() const {
+  return true;
+}
+
+void C_GetAlbumPhotos::InternalSwap(C_GetAlbumPhotos* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &album_id_, GetArenaForAllocation(),
+      &other->album_id_, other->GetArenaForAllocation()
+  );
+  swap(latest_first_, other->latest_first_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata C_GetAlbumPhotos::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
+      file_level_metadata_protocol_2eproto[128]);
+}
+
+// ===================================================================
+
+class S_GetAlbumPhotos::_Internal {
+ public:
+};
+
+S_GetAlbumPhotos::S_GetAlbumPhotos(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena),
+  photos_(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Protocol.S_GetAlbumPhotos)
+}
+S_GetAlbumPhotos::S_GetAlbumPhotos(const S_GetAlbumPhotos& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      photos_(from.photos_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  album_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_album_id().empty()) {
+    album_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_album_id(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:Protocol.S_GetAlbumPhotos)
+}
+
+void S_GetAlbumPhotos::SharedCtor() {
+album_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+S_GetAlbumPhotos::~S_GetAlbumPhotos() {
+  // @@protoc_insertion_point(destructor:Protocol.S_GetAlbumPhotos)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void S_GetAlbumPhotos::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  album_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void S_GetAlbumPhotos::ArenaDtor(void* object) {
+  S_GetAlbumPhotos* _this = reinterpret_cast< S_GetAlbumPhotos* >(object);
+  (void)_this;
+}
+void S_GetAlbumPhotos::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void S_GetAlbumPhotos::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void S_GetAlbumPhotos::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.S_GetAlbumPhotos)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  photos_.Clear();
+  album_id_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* S_GetAlbumPhotos::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string album_id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_album_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.S_GetAlbumPhotos.album_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // repeated .Protocol.AlbumPhoto photos = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_photos(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* S_GetAlbumPhotos::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.S_GetAlbumPhotos)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string album_id = 1;
+  if (!this->album_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_album_id().data(), static_cast<int>(this->_internal_album_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.S_GetAlbumPhotos.album_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_album_id(), target);
+  }
+
+  // repeated .Protocol.AlbumPhoto photos = 2;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->_internal_photos_size()); i < n; i++) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(2, this->_internal_photos(i), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.S_GetAlbumPhotos)
+  return target;
+}
+
+size_t S_GetAlbumPhotos::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Protocol.S_GetAlbumPhotos)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .Protocol.AlbumPhoto photos = 2;
+  total_size += 1UL * this->_internal_photos_size();
+  for (const auto& msg : this->photos_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // string album_id = 1;
+  if (!this->album_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_album_id());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void S_GetAlbumPhotos::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Protocol.S_GetAlbumPhotos)
+  GOOGLE_DCHECK_NE(&from, this);
+  const S_GetAlbumPhotos* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<S_GetAlbumPhotos>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Protocol.S_GetAlbumPhotos)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Protocol.S_GetAlbumPhotos)
+    MergeFrom(*source);
+  }
+}
+
+void S_GetAlbumPhotos::MergeFrom(const S_GetAlbumPhotos& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Protocol.S_GetAlbumPhotos)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  photos_.MergeFrom(from.photos_);
+  if (!from.album_id().empty()) {
+    _internal_set_album_id(from._internal_album_id());
+  }
+}
+
+void S_GetAlbumPhotos::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Protocol.S_GetAlbumPhotos)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void S_GetAlbumPhotos::CopyFrom(const S_GetAlbumPhotos& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.S_GetAlbumPhotos)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool S_GetAlbumPhotos::IsInitialized() const {
+  return true;
+}
+
+void S_GetAlbumPhotos::InternalSwap(S_GetAlbumPhotos* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  photos_.InternalSwap(&other->photos_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &album_id_, GetArenaForAllocation(),
+      &other->album_id_, other->GetArenaForAllocation()
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata S_GetAlbumPhotos::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
+      file_level_metadata_protocol_2eproto[129]);
+}
+
+// ===================================================================
+
+class C_DeleteAlbum::_Internal {
+ public:
+};
+
+C_DeleteAlbum::C_DeleteAlbum(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Protocol.C_DeleteAlbum)
+}
+C_DeleteAlbum::C_DeleteAlbum(const C_DeleteAlbum& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  album_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_album_id().empty()) {
+    album_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_album_id(), 
+      GetArenaForAllocation());
+  }
+  user_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_user_id().empty()) {
+    user_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_user_id(), 
+      GetArenaForAllocation());
+  }
+  group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_group_id().empty()) {
+    group_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_group_id(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:Protocol.C_DeleteAlbum)
+}
+
+void C_DeleteAlbum::SharedCtor() {
+album_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+user_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+C_DeleteAlbum::~C_DeleteAlbum() {
+  // @@protoc_insertion_point(destructor:Protocol.C_DeleteAlbum)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void C_DeleteAlbum::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  album_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  user_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  group_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void C_DeleteAlbum::ArenaDtor(void* object) {
+  C_DeleteAlbum* _this = reinterpret_cast< C_DeleteAlbum* >(object);
+  (void)_this;
+}
+void C_DeleteAlbum::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void C_DeleteAlbum::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void C_DeleteAlbum::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.C_DeleteAlbum)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  album_id_.ClearToEmpty();
+  user_id_.ClearToEmpty();
+  group_id_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* C_DeleteAlbum::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string album_id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_album_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_DeleteAlbum.album_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string user_id = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_user_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_DeleteAlbum.user_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string group_id = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          auto str = _internal_mutable_group_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_DeleteAlbum.group_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* C_DeleteAlbum::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.C_DeleteAlbum)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string album_id = 1;
+  if (!this->album_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_album_id().data(), static_cast<int>(this->_internal_album_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_DeleteAlbum.album_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_album_id(), target);
+  }
+
+  // string user_id = 2;
+  if (!this->user_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_user_id().data(), static_cast<int>(this->_internal_user_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_DeleteAlbum.user_id");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_user_id(), target);
+  }
+
+  // string group_id = 3;
+  if (!this->group_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_group_id().data(), static_cast<int>(this->_internal_group_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_DeleteAlbum.group_id");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_group_id(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.C_DeleteAlbum)
+  return target;
+}
+
+size_t C_DeleteAlbum::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Protocol.C_DeleteAlbum)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string album_id = 1;
+  if (!this->album_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_album_id());
+  }
+
+  // string user_id = 2;
+  if (!this->user_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_user_id());
+  }
+
+  // string group_id = 3;
+  if (!this->group_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_group_id());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void C_DeleteAlbum::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Protocol.C_DeleteAlbum)
+  GOOGLE_DCHECK_NE(&from, this);
+  const C_DeleteAlbum* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<C_DeleteAlbum>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Protocol.C_DeleteAlbum)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Protocol.C_DeleteAlbum)
+    MergeFrom(*source);
+  }
+}
+
+void C_DeleteAlbum::MergeFrom(const C_DeleteAlbum& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Protocol.C_DeleteAlbum)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from.album_id().empty()) {
+    _internal_set_album_id(from._internal_album_id());
+  }
+  if (!from.user_id().empty()) {
+    _internal_set_user_id(from._internal_user_id());
+  }
+  if (!from.group_id().empty()) {
+    _internal_set_group_id(from._internal_group_id());
+  }
+}
+
+void C_DeleteAlbum::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Protocol.C_DeleteAlbum)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void C_DeleteAlbum::CopyFrom(const C_DeleteAlbum& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.C_DeleteAlbum)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool C_DeleteAlbum::IsInitialized() const {
+  return true;
+}
+
+void C_DeleteAlbum::InternalSwap(C_DeleteAlbum* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &album_id_, GetArenaForAllocation(),
+      &other->album_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &user_id_, GetArenaForAllocation(),
+      &other->user_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &group_id_, GetArenaForAllocation(),
+      &other->group_id_, other->GetArenaForAllocation()
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata C_DeleteAlbum::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
+      file_level_metadata_protocol_2eproto[130]);
+}
+
+// ===================================================================
+
+class S_DeleteAlbum::_Internal {
+ public:
+};
+
+S_DeleteAlbum::S_DeleteAlbum(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Protocol.S_DeleteAlbum)
+}
+S_DeleteAlbum::S_DeleteAlbum(const S_DeleteAlbum& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  album_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_album_id().empty()) {
+    album_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_album_id(), 
+      GetArenaForAllocation());
+  }
+  group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_group_id().empty()) {
+    group_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_group_id(), 
+      GetArenaForAllocation());
+  }
+  error_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_error().empty()) {
+    error_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_error(), 
+      GetArenaForAllocation());
+  }
+  success_ = from.success_;
+  // @@protoc_insertion_point(copy_constructor:Protocol.S_DeleteAlbum)
+}
+
+void S_DeleteAlbum::SharedCtor() {
+album_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+error_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+success_ = false;
+}
+
+S_DeleteAlbum::~S_DeleteAlbum() {
+  // @@protoc_insertion_point(destructor:Protocol.S_DeleteAlbum)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void S_DeleteAlbum::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  album_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  group_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  error_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void S_DeleteAlbum::ArenaDtor(void* object) {
+  S_DeleteAlbum* _this = reinterpret_cast< S_DeleteAlbum* >(object);
+  (void)_this;
+}
+void S_DeleteAlbum::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void S_DeleteAlbum::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void S_DeleteAlbum::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.S_DeleteAlbum)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  album_id_.ClearToEmpty();
+  group_id_.ClearToEmpty();
+  error_.ClearToEmpty();
+  success_ = false;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* S_DeleteAlbum::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // bool success = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          success_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string album_id = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_album_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.S_DeleteAlbum.album_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string group_id = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          auto str = _internal_mutable_group_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.S_DeleteAlbum.group_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string error = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+          auto str = _internal_mutable_error();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.S_DeleteAlbum.error"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* S_DeleteAlbum::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.S_DeleteAlbum)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bool success = 1;
+  if (this->success() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(1, this->_internal_success(), target);
+  }
+
+  // string album_id = 2;
+  if (!this->album_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_album_id().data(), static_cast<int>(this->_internal_album_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.S_DeleteAlbum.album_id");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_album_id(), target);
+  }
+
+  // string group_id = 3;
+  if (!this->group_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_group_id().data(), static_cast<int>(this->_internal_group_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.S_DeleteAlbum.group_id");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_group_id(), target);
+  }
+
+  // string error = 4;
+  if (!this->error().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_error().data(), static_cast<int>(this->_internal_error().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.S_DeleteAlbum.error");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_error(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.S_DeleteAlbum)
+  return target;
+}
+
+size_t S_DeleteAlbum::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Protocol.S_DeleteAlbum)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string album_id = 2;
+  if (!this->album_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_album_id());
+  }
+
+  // string group_id = 3;
+  if (!this->group_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_group_id());
+  }
+
+  // string error = 4;
+  if (!this->error().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_error());
+  }
+
+  // bool success = 1;
+  if (this->success() != 0) {
+    total_size += 1 + 1;
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void S_DeleteAlbum::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Protocol.S_DeleteAlbum)
+  GOOGLE_DCHECK_NE(&from, this);
+  const S_DeleteAlbum* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<S_DeleteAlbum>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Protocol.S_DeleteAlbum)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Protocol.S_DeleteAlbum)
+    MergeFrom(*source);
+  }
+}
+
+void S_DeleteAlbum::MergeFrom(const S_DeleteAlbum& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Protocol.S_DeleteAlbum)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from.album_id().empty()) {
+    _internal_set_album_id(from._internal_album_id());
+  }
+  if (!from.group_id().empty()) {
+    _internal_set_group_id(from._internal_group_id());
+  }
+  if (!from.error().empty()) {
+    _internal_set_error(from._internal_error());
+  }
+  if (from.success() != 0) {
+    _internal_set_success(from._internal_success());
+  }
+}
+
+void S_DeleteAlbum::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Protocol.S_DeleteAlbum)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void S_DeleteAlbum::CopyFrom(const S_DeleteAlbum& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.S_DeleteAlbum)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool S_DeleteAlbum::IsInitialized() const {
+  return true;
+}
+
+void S_DeleteAlbum::InternalSwap(S_DeleteAlbum* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &album_id_, GetArenaForAllocation(),
+      &other->album_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &group_id_, GetArenaForAllocation(),
+      &other->group_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &error_, GetArenaForAllocation(),
+      &other->error_, other->GetArenaForAllocation()
+  );
+  swap(success_, other->success_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata S_DeleteAlbum::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
+      file_level_metadata_protocol_2eproto[131]);
+}
+
+// ===================================================================
+
+class C_DeleteAlbumPhoto::_Internal {
+ public:
+};
+
+C_DeleteAlbumPhoto::C_DeleteAlbumPhoto(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Protocol.C_DeleteAlbumPhoto)
+}
+C_DeleteAlbumPhoto::C_DeleteAlbumPhoto(const C_DeleteAlbumPhoto& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  photo_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_photo_id().empty()) {
+    photo_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_photo_id(), 
+      GetArenaForAllocation());
+  }
+  user_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_user_id().empty()) {
+    user_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_user_id(), 
+      GetArenaForAllocation());
+  }
+  album_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_album_id().empty()) {
+    album_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_album_id(), 
+      GetArenaForAllocation());
+  }
+  group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_group_id().empty()) {
+    group_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_group_id(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:Protocol.C_DeleteAlbumPhoto)
+}
+
+void C_DeleteAlbumPhoto::SharedCtor() {
+photo_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+user_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+album_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+C_DeleteAlbumPhoto::~C_DeleteAlbumPhoto() {
+  // @@protoc_insertion_point(destructor:Protocol.C_DeleteAlbumPhoto)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void C_DeleteAlbumPhoto::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  photo_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  user_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  album_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  group_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void C_DeleteAlbumPhoto::ArenaDtor(void* object) {
+  C_DeleteAlbumPhoto* _this = reinterpret_cast< C_DeleteAlbumPhoto* >(object);
+  (void)_this;
+}
+void C_DeleteAlbumPhoto::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void C_DeleteAlbumPhoto::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void C_DeleteAlbumPhoto::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.C_DeleteAlbumPhoto)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  photo_id_.ClearToEmpty();
+  user_id_.ClearToEmpty();
+  album_id_.ClearToEmpty();
+  group_id_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* C_DeleteAlbumPhoto::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string photo_id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_photo_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_DeleteAlbumPhoto.photo_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string user_id = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_user_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_DeleteAlbumPhoto.user_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string album_id = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          auto str = _internal_mutable_album_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_DeleteAlbumPhoto.album_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string group_id = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+          auto str = _internal_mutable_group_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_DeleteAlbumPhoto.group_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* C_DeleteAlbumPhoto::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.C_DeleteAlbumPhoto)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string photo_id = 1;
+  if (!this->photo_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_photo_id().data(), static_cast<int>(this->_internal_photo_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_DeleteAlbumPhoto.photo_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_photo_id(), target);
+  }
+
+  // string user_id = 2;
+  if (!this->user_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_user_id().data(), static_cast<int>(this->_internal_user_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_DeleteAlbumPhoto.user_id");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_user_id(), target);
+  }
+
+  // string album_id = 3;
+  if (!this->album_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_album_id().data(), static_cast<int>(this->_internal_album_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_DeleteAlbumPhoto.album_id");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_album_id(), target);
+  }
+
+  // string group_id = 4;
+  if (!this->group_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_group_id().data(), static_cast<int>(this->_internal_group_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_DeleteAlbumPhoto.group_id");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_group_id(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.C_DeleteAlbumPhoto)
+  return target;
+}
+
+size_t C_DeleteAlbumPhoto::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Protocol.C_DeleteAlbumPhoto)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string photo_id = 1;
+  if (!this->photo_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_photo_id());
+  }
+
+  // string user_id = 2;
+  if (!this->user_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_user_id());
+  }
+
+  // string album_id = 3;
+  if (!this->album_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_album_id());
+  }
+
+  // string group_id = 4;
+  if (!this->group_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_group_id());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void C_DeleteAlbumPhoto::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Protocol.C_DeleteAlbumPhoto)
+  GOOGLE_DCHECK_NE(&from, this);
+  const C_DeleteAlbumPhoto* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<C_DeleteAlbumPhoto>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Protocol.C_DeleteAlbumPhoto)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Protocol.C_DeleteAlbumPhoto)
+    MergeFrom(*source);
+  }
+}
+
+void C_DeleteAlbumPhoto::MergeFrom(const C_DeleteAlbumPhoto& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Protocol.C_DeleteAlbumPhoto)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from.photo_id().empty()) {
+    _internal_set_photo_id(from._internal_photo_id());
+  }
+  if (!from.user_id().empty()) {
+    _internal_set_user_id(from._internal_user_id());
+  }
+  if (!from.album_id().empty()) {
+    _internal_set_album_id(from._internal_album_id());
+  }
+  if (!from.group_id().empty()) {
+    _internal_set_group_id(from._internal_group_id());
+  }
+}
+
+void C_DeleteAlbumPhoto::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Protocol.C_DeleteAlbumPhoto)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void C_DeleteAlbumPhoto::CopyFrom(const C_DeleteAlbumPhoto& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.C_DeleteAlbumPhoto)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool C_DeleteAlbumPhoto::IsInitialized() const {
+  return true;
+}
+
+void C_DeleteAlbumPhoto::InternalSwap(C_DeleteAlbumPhoto* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &photo_id_, GetArenaForAllocation(),
+      &other->photo_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &user_id_, GetArenaForAllocation(),
+      &other->user_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &album_id_, GetArenaForAllocation(),
+      &other->album_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &group_id_, GetArenaForAllocation(),
+      &other->group_id_, other->GetArenaForAllocation()
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata C_DeleteAlbumPhoto::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
+      file_level_metadata_protocol_2eproto[132]);
+}
+
+// ===================================================================
+
+class S_DeleteAlbumPhoto::_Internal {
+ public:
+  static const ::Protocol::Album& album(const S_DeleteAlbumPhoto* msg);
+};
+
+const ::Protocol::Album&
+S_DeleteAlbumPhoto::_Internal::album(const S_DeleteAlbumPhoto* msg) {
+  return *msg->album_;
+}
+S_DeleteAlbumPhoto::S_DeleteAlbumPhoto(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Protocol.S_DeleteAlbumPhoto)
+}
+S_DeleteAlbumPhoto::S_DeleteAlbumPhoto(const S_DeleteAlbumPhoto& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  photo_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_photo_id().empty()) {
+    photo_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_photo_id(), 
+      GetArenaForAllocation());
+  }
+  album_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_album_id().empty()) {
+    album_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_album_id(), 
+      GetArenaForAllocation());
+  }
+  group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_group_id().empty()) {
+    group_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_group_id(), 
+      GetArenaForAllocation());
+  }
+  error_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_error().empty()) {
+    error_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_error(), 
+      GetArenaForAllocation());
+  }
+  if (from._internal_has_album()) {
+    album_ = new ::Protocol::Album(*from.album_);
+  } else {
+    album_ = nullptr;
+  }
+  success_ = from.success_;
+  // @@protoc_insertion_point(copy_constructor:Protocol.S_DeleteAlbumPhoto)
+}
+
+void S_DeleteAlbumPhoto::SharedCtor() {
+photo_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+album_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+error_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&album_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&success_) -
+    reinterpret_cast<char*>(&album_)) + sizeof(success_));
+}
+
+S_DeleteAlbumPhoto::~S_DeleteAlbumPhoto() {
+  // @@protoc_insertion_point(destructor:Protocol.S_DeleteAlbumPhoto)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void S_DeleteAlbumPhoto::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  photo_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  album_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  group_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  error_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (this != internal_default_instance()) delete album_;
+}
+
+void S_DeleteAlbumPhoto::ArenaDtor(void* object) {
+  S_DeleteAlbumPhoto* _this = reinterpret_cast< S_DeleteAlbumPhoto* >(object);
+  (void)_this;
+}
+void S_DeleteAlbumPhoto::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void S_DeleteAlbumPhoto::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void S_DeleteAlbumPhoto::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.S_DeleteAlbumPhoto)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  photo_id_.ClearToEmpty();
+  album_id_.ClearToEmpty();
+  group_id_.ClearToEmpty();
+  error_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && album_ != nullptr) {
+    delete album_;
+  }
+  album_ = nullptr;
+  success_ = false;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* S_DeleteAlbumPhoto::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // bool success = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          success_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string photo_id = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_photo_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.S_DeleteAlbumPhoto.photo_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string album_id = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          auto str = _internal_mutable_album_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.S_DeleteAlbumPhoto.album_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string group_id = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+          auto str = _internal_mutable_group_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.S_DeleteAlbumPhoto.group_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string error = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 42)) {
+          auto str = _internal_mutable_error();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.S_DeleteAlbumPhoto.error"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .Protocol.Album album = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 50)) {
+          ptr = ctx->ParseMessage(_internal_mutable_album(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* S_DeleteAlbumPhoto::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.S_DeleteAlbumPhoto)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bool success = 1;
+  if (this->success() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(1, this->_internal_success(), target);
+  }
+
+  // string photo_id = 2;
+  if (!this->photo_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_photo_id().data(), static_cast<int>(this->_internal_photo_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.S_DeleteAlbumPhoto.photo_id");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_photo_id(), target);
+  }
+
+  // string album_id = 3;
+  if (!this->album_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_album_id().data(), static_cast<int>(this->_internal_album_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.S_DeleteAlbumPhoto.album_id");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_album_id(), target);
+  }
+
+  // string group_id = 4;
+  if (!this->group_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_group_id().data(), static_cast<int>(this->_internal_group_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.S_DeleteAlbumPhoto.group_id");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_group_id(), target);
+  }
+
+  // string error = 5;
+  if (!this->error().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_error().data(), static_cast<int>(this->_internal_error().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.S_DeleteAlbumPhoto.error");
+    target = stream->WriteStringMaybeAliased(
+        5, this->_internal_error(), target);
+  }
+
+  // .Protocol.Album album = 6;
+  if (this->has_album()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        6, _Internal::album(this), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.S_DeleteAlbumPhoto)
+  return target;
+}
+
+size_t S_DeleteAlbumPhoto::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Protocol.S_DeleteAlbumPhoto)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string photo_id = 2;
+  if (!this->photo_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_photo_id());
+  }
+
+  // string album_id = 3;
+  if (!this->album_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_album_id());
+  }
+
+  // string group_id = 4;
+  if (!this->group_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_group_id());
+  }
+
+  // string error = 5;
+  if (!this->error().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_error());
+  }
+
+  // .Protocol.Album album = 6;
+  if (this->has_album()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *album_);
+  }
+
+  // bool success = 1;
+  if (this->success() != 0) {
+    total_size += 1 + 1;
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void S_DeleteAlbumPhoto::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Protocol.S_DeleteAlbumPhoto)
+  GOOGLE_DCHECK_NE(&from, this);
+  const S_DeleteAlbumPhoto* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<S_DeleteAlbumPhoto>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Protocol.S_DeleteAlbumPhoto)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Protocol.S_DeleteAlbumPhoto)
+    MergeFrom(*source);
+  }
+}
+
+void S_DeleteAlbumPhoto::MergeFrom(const S_DeleteAlbumPhoto& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Protocol.S_DeleteAlbumPhoto)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from.photo_id().empty()) {
+    _internal_set_photo_id(from._internal_photo_id());
+  }
+  if (!from.album_id().empty()) {
+    _internal_set_album_id(from._internal_album_id());
+  }
+  if (!from.group_id().empty()) {
+    _internal_set_group_id(from._internal_group_id());
+  }
+  if (!from.error().empty()) {
+    _internal_set_error(from._internal_error());
+  }
+  if (from.has_album()) {
+    _internal_mutable_album()->::Protocol::Album::MergeFrom(from._internal_album());
+  }
+  if (from.success() != 0) {
+    _internal_set_success(from._internal_success());
+  }
+}
+
+void S_DeleteAlbumPhoto::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Protocol.S_DeleteAlbumPhoto)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void S_DeleteAlbumPhoto::CopyFrom(const S_DeleteAlbumPhoto& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.S_DeleteAlbumPhoto)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool S_DeleteAlbumPhoto::IsInitialized() const {
+  return true;
+}
+
+void S_DeleteAlbumPhoto::InternalSwap(S_DeleteAlbumPhoto* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &photo_id_, GetArenaForAllocation(),
+      &other->photo_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &album_id_, GetArenaForAllocation(),
+      &other->album_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &group_id_, GetArenaForAllocation(),
+      &other->group_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &error_, GetArenaForAllocation(),
+      &other->error_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(S_DeleteAlbumPhoto, success_)
+      + sizeof(S_DeleteAlbumPhoto::success_)
+      - PROTOBUF_FIELD_OFFSET(S_DeleteAlbumPhoto, album_)>(
+          reinterpret_cast<char*>(&album_),
+          reinterpret_cast<char*>(&other->album_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata S_DeleteAlbumPhoto::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
+      file_level_metadata_protocol_2eproto[133]);
+}
+
+// ===================================================================
+
+class C_MovePhoto::_Internal {
+ public:
+};
+
+C_MovePhoto::C_MovePhoto(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Protocol.C_MovePhoto)
+}
+C_MovePhoto::C_MovePhoto(const C_MovePhoto& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  photo_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_photo_id().empty()) {
+    photo_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_photo_id(), 
+      GetArenaForAllocation());
+  }
+  from_album_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_from_album_id().empty()) {
+    from_album_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_from_album_id(), 
+      GetArenaForAllocation());
+  }
+  to_album_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_to_album_id().empty()) {
+    to_album_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_to_album_id(), 
+      GetArenaForAllocation());
+  }
+  group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_group_id().empty()) {
+    group_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_group_id(), 
+      GetArenaForAllocation());
+  }
+  user_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_user_id().empty()) {
+    user_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_user_id(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:Protocol.C_MovePhoto)
+}
+
+void C_MovePhoto::SharedCtor() {
+photo_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+from_album_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+to_album_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+user_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+C_MovePhoto::~C_MovePhoto() {
+  // @@protoc_insertion_point(destructor:Protocol.C_MovePhoto)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void C_MovePhoto::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  photo_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  from_album_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  to_album_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  group_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  user_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void C_MovePhoto::ArenaDtor(void* object) {
+  C_MovePhoto* _this = reinterpret_cast< C_MovePhoto* >(object);
+  (void)_this;
+}
+void C_MovePhoto::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void C_MovePhoto::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void C_MovePhoto::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.C_MovePhoto)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  photo_id_.ClearToEmpty();
+  from_album_id_.ClearToEmpty();
+  to_album_id_.ClearToEmpty();
+  group_id_.ClearToEmpty();
+  user_id_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* C_MovePhoto::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string photo_id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_photo_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_MovePhoto.photo_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string from_album_id = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_from_album_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_MovePhoto.from_album_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string to_album_id = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          auto str = _internal_mutable_to_album_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_MovePhoto.to_album_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string group_id = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+          auto str = _internal_mutable_group_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_MovePhoto.group_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string user_id = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 42)) {
+          auto str = _internal_mutable_user_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_MovePhoto.user_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* C_MovePhoto::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.C_MovePhoto)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string photo_id = 1;
+  if (!this->photo_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_photo_id().data(), static_cast<int>(this->_internal_photo_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_MovePhoto.photo_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_photo_id(), target);
+  }
+
+  // string from_album_id = 2;
+  if (!this->from_album_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_from_album_id().data(), static_cast<int>(this->_internal_from_album_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_MovePhoto.from_album_id");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_from_album_id(), target);
+  }
+
+  // string to_album_id = 3;
+  if (!this->to_album_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_to_album_id().data(), static_cast<int>(this->_internal_to_album_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_MovePhoto.to_album_id");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_to_album_id(), target);
+  }
+
+  // string group_id = 4;
+  if (!this->group_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_group_id().data(), static_cast<int>(this->_internal_group_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_MovePhoto.group_id");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_group_id(), target);
+  }
+
+  // string user_id = 5;
+  if (!this->user_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_user_id().data(), static_cast<int>(this->_internal_user_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_MovePhoto.user_id");
+    target = stream->WriteStringMaybeAliased(
+        5, this->_internal_user_id(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.C_MovePhoto)
+  return target;
+}
+
+size_t C_MovePhoto::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Protocol.C_MovePhoto)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string photo_id = 1;
+  if (!this->photo_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_photo_id());
+  }
+
+  // string from_album_id = 2;
+  if (!this->from_album_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_from_album_id());
+  }
+
+  // string to_album_id = 3;
+  if (!this->to_album_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_to_album_id());
+  }
+
+  // string group_id = 4;
+  if (!this->group_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_group_id());
+  }
+
+  // string user_id = 5;
+  if (!this->user_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_user_id());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void C_MovePhoto::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Protocol.C_MovePhoto)
+  GOOGLE_DCHECK_NE(&from, this);
+  const C_MovePhoto* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<C_MovePhoto>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Protocol.C_MovePhoto)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Protocol.C_MovePhoto)
+    MergeFrom(*source);
+  }
+}
+
+void C_MovePhoto::MergeFrom(const C_MovePhoto& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Protocol.C_MovePhoto)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from.photo_id().empty()) {
+    _internal_set_photo_id(from._internal_photo_id());
+  }
+  if (!from.from_album_id().empty()) {
+    _internal_set_from_album_id(from._internal_from_album_id());
+  }
+  if (!from.to_album_id().empty()) {
+    _internal_set_to_album_id(from._internal_to_album_id());
+  }
+  if (!from.group_id().empty()) {
+    _internal_set_group_id(from._internal_group_id());
+  }
+  if (!from.user_id().empty()) {
+    _internal_set_user_id(from._internal_user_id());
+  }
+}
+
+void C_MovePhoto::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Protocol.C_MovePhoto)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void C_MovePhoto::CopyFrom(const C_MovePhoto& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.C_MovePhoto)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool C_MovePhoto::IsInitialized() const {
+  return true;
+}
+
+void C_MovePhoto::InternalSwap(C_MovePhoto* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &photo_id_, GetArenaForAllocation(),
+      &other->photo_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &from_album_id_, GetArenaForAllocation(),
+      &other->from_album_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &to_album_id_, GetArenaForAllocation(),
+      &other->to_album_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &group_id_, GetArenaForAllocation(),
+      &other->group_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &user_id_, GetArenaForAllocation(),
+      &other->user_id_, other->GetArenaForAllocation()
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata C_MovePhoto::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
+      file_level_metadata_protocol_2eproto[134]);
+}
+
+// ===================================================================
+
+class S_MovePhoto::_Internal {
+ public:
+  static const ::Protocol::Album& from_album(const S_MovePhoto* msg);
+  static const ::Protocol::Album& to_album(const S_MovePhoto* msg);
+};
+
+const ::Protocol::Album&
+S_MovePhoto::_Internal::from_album(const S_MovePhoto* msg) {
+  return *msg->from_album_;
+}
+const ::Protocol::Album&
+S_MovePhoto::_Internal::to_album(const S_MovePhoto* msg) {
+  return *msg->to_album_;
+}
+S_MovePhoto::S_MovePhoto(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Protocol.S_MovePhoto)
+}
+S_MovePhoto::S_MovePhoto(const S_MovePhoto& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  photo_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_photo_id().empty()) {
+    photo_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_photo_id(), 
+      GetArenaForAllocation());
+  }
+  from_album_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_from_album_id().empty()) {
+    from_album_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_from_album_id(), 
+      GetArenaForAllocation());
+  }
+  to_album_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_to_album_id().empty()) {
+    to_album_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_to_album_id(), 
+      GetArenaForAllocation());
+  }
+  group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_group_id().empty()) {
+    group_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_group_id(), 
+      GetArenaForAllocation());
+  }
+  error_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_error().empty()) {
+    error_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_error(), 
+      GetArenaForAllocation());
+  }
+  if (from._internal_has_from_album()) {
+    from_album_ = new ::Protocol::Album(*from.from_album_);
+  } else {
+    from_album_ = nullptr;
+  }
+  if (from._internal_has_to_album()) {
+    to_album_ = new ::Protocol::Album(*from.to_album_);
+  } else {
+    to_album_ = nullptr;
+  }
+  success_ = from.success_;
+  // @@protoc_insertion_point(copy_constructor:Protocol.S_MovePhoto)
+}
+
+void S_MovePhoto::SharedCtor() {
+photo_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+from_album_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+to_album_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+error_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&from_album_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&success_) -
+    reinterpret_cast<char*>(&from_album_)) + sizeof(success_));
+}
+
+S_MovePhoto::~S_MovePhoto() {
+  // @@protoc_insertion_point(destructor:Protocol.S_MovePhoto)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void S_MovePhoto::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  photo_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  from_album_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  to_album_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  group_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  error_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (this != internal_default_instance()) delete from_album_;
+  if (this != internal_default_instance()) delete to_album_;
+}
+
+void S_MovePhoto::ArenaDtor(void* object) {
+  S_MovePhoto* _this = reinterpret_cast< S_MovePhoto* >(object);
+  (void)_this;
+}
+void S_MovePhoto::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void S_MovePhoto::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void S_MovePhoto::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.S_MovePhoto)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  photo_id_.ClearToEmpty();
+  from_album_id_.ClearToEmpty();
+  to_album_id_.ClearToEmpty();
+  group_id_.ClearToEmpty();
+  error_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && from_album_ != nullptr) {
+    delete from_album_;
+  }
+  from_album_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && to_album_ != nullptr) {
+    delete to_album_;
+  }
+  to_album_ = nullptr;
+  success_ = false;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* S_MovePhoto::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // bool success = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          success_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string photo_id = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_photo_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.S_MovePhoto.photo_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string from_album_id = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          auto str = _internal_mutable_from_album_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.S_MovePhoto.from_album_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string to_album_id = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+          auto str = _internal_mutable_to_album_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.S_MovePhoto.to_album_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string group_id = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 42)) {
+          auto str = _internal_mutable_group_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.S_MovePhoto.group_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string error = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 50)) {
+          auto str = _internal_mutable_error();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.S_MovePhoto.error"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .Protocol.Album from_album = 7;
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 58)) {
+          ptr = ctx->ParseMessage(_internal_mutable_from_album(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .Protocol.Album to_album = 8;
+      case 8:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 66)) {
+          ptr = ctx->ParseMessage(_internal_mutable_to_album(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* S_MovePhoto::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.S_MovePhoto)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bool success = 1;
+  if (this->success() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(1, this->_internal_success(), target);
+  }
+
+  // string photo_id = 2;
+  if (!this->photo_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_photo_id().data(), static_cast<int>(this->_internal_photo_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.S_MovePhoto.photo_id");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_photo_id(), target);
+  }
+
+  // string from_album_id = 3;
+  if (!this->from_album_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_from_album_id().data(), static_cast<int>(this->_internal_from_album_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.S_MovePhoto.from_album_id");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_from_album_id(), target);
+  }
+
+  // string to_album_id = 4;
+  if (!this->to_album_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_to_album_id().data(), static_cast<int>(this->_internal_to_album_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.S_MovePhoto.to_album_id");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_to_album_id(), target);
+  }
+
+  // string group_id = 5;
+  if (!this->group_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_group_id().data(), static_cast<int>(this->_internal_group_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.S_MovePhoto.group_id");
+    target = stream->WriteStringMaybeAliased(
+        5, this->_internal_group_id(), target);
+  }
+
+  // string error = 6;
+  if (!this->error().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_error().data(), static_cast<int>(this->_internal_error().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.S_MovePhoto.error");
+    target = stream->WriteStringMaybeAliased(
+        6, this->_internal_error(), target);
+  }
+
+  // .Protocol.Album from_album = 7;
+  if (this->has_from_album()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        7, _Internal::from_album(this), target, stream);
+  }
+
+  // .Protocol.Album to_album = 8;
+  if (this->has_to_album()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        8, _Internal::to_album(this), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.S_MovePhoto)
+  return target;
+}
+
+size_t S_MovePhoto::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Protocol.S_MovePhoto)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string photo_id = 2;
+  if (!this->photo_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_photo_id());
+  }
+
+  // string from_album_id = 3;
+  if (!this->from_album_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_from_album_id());
+  }
+
+  // string to_album_id = 4;
+  if (!this->to_album_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_to_album_id());
+  }
+
+  // string group_id = 5;
+  if (!this->group_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_group_id());
+  }
+
+  // string error = 6;
+  if (!this->error().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_error());
+  }
+
+  // .Protocol.Album from_album = 7;
+  if (this->has_from_album()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *from_album_);
+  }
+
+  // .Protocol.Album to_album = 8;
+  if (this->has_to_album()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *to_album_);
+  }
+
+  // bool success = 1;
+  if (this->success() != 0) {
+    total_size += 1 + 1;
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void S_MovePhoto::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Protocol.S_MovePhoto)
+  GOOGLE_DCHECK_NE(&from, this);
+  const S_MovePhoto* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<S_MovePhoto>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Protocol.S_MovePhoto)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Protocol.S_MovePhoto)
+    MergeFrom(*source);
+  }
+}
+
+void S_MovePhoto::MergeFrom(const S_MovePhoto& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Protocol.S_MovePhoto)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from.photo_id().empty()) {
+    _internal_set_photo_id(from._internal_photo_id());
+  }
+  if (!from.from_album_id().empty()) {
+    _internal_set_from_album_id(from._internal_from_album_id());
+  }
+  if (!from.to_album_id().empty()) {
+    _internal_set_to_album_id(from._internal_to_album_id());
+  }
+  if (!from.group_id().empty()) {
+    _internal_set_group_id(from._internal_group_id());
+  }
+  if (!from.error().empty()) {
+    _internal_set_error(from._internal_error());
+  }
+  if (from.has_from_album()) {
+    _internal_mutable_from_album()->::Protocol::Album::MergeFrom(from._internal_from_album());
+  }
+  if (from.has_to_album()) {
+    _internal_mutable_to_album()->::Protocol::Album::MergeFrom(from._internal_to_album());
+  }
+  if (from.success() != 0) {
+    _internal_set_success(from._internal_success());
+  }
+}
+
+void S_MovePhoto::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Protocol.S_MovePhoto)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void S_MovePhoto::CopyFrom(const S_MovePhoto& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.S_MovePhoto)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool S_MovePhoto::IsInitialized() const {
+  return true;
+}
+
+void S_MovePhoto::InternalSwap(S_MovePhoto* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &photo_id_, GetArenaForAllocation(),
+      &other->photo_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &from_album_id_, GetArenaForAllocation(),
+      &other->from_album_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &to_album_id_, GetArenaForAllocation(),
+      &other->to_album_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &group_id_, GetArenaForAllocation(),
+      &other->group_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &error_, GetArenaForAllocation(),
+      &other->error_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(S_MovePhoto, success_)
+      + sizeof(S_MovePhoto::success_)
+      - PROTOBUF_FIELD_OFFSET(S_MovePhoto, from_album_)>(
+          reinterpret_cast<char*>(&from_album_),
+          reinterpret_cast<char*>(&other->from_album_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata S_MovePhoto::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
+      file_level_metadata_protocol_2eproto[135]);
+}
+
+// ===================================================================
+
+class C_AddPhotoComment::_Internal {
+ public:
+};
+
+C_AddPhotoComment::C_AddPhotoComment(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Protocol.C_AddPhotoComment)
+}
+C_AddPhotoComment::C_AddPhotoComment(const C_AddPhotoComment& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  photo_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_photo_id().empty()) {
+    photo_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_photo_id(), 
+      GetArenaForAllocation());
+  }
+  sender_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_sender_id().empty()) {
+    sender_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_sender_id(), 
+      GetArenaForAllocation());
+  }
+  sender_name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_sender_name().empty()) {
+    sender_name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_sender_name(), 
+      GetArenaForAllocation());
+  }
+  text_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_text().empty()) {
+    text_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_text(), 
+      GetArenaForAllocation());
+  }
+  group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_group_id().empty()) {
+    group_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_group_id(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:Protocol.C_AddPhotoComment)
+}
+
+void C_AddPhotoComment::SharedCtor() {
+photo_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+sender_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+sender_name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+text_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+C_AddPhotoComment::~C_AddPhotoComment() {
+  // @@protoc_insertion_point(destructor:Protocol.C_AddPhotoComment)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void C_AddPhotoComment::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  photo_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  sender_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  sender_name_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  text_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  group_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void C_AddPhotoComment::ArenaDtor(void* object) {
+  C_AddPhotoComment* _this = reinterpret_cast< C_AddPhotoComment* >(object);
+  (void)_this;
+}
+void C_AddPhotoComment::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void C_AddPhotoComment::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void C_AddPhotoComment::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.C_AddPhotoComment)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  photo_id_.ClearToEmpty();
+  sender_id_.ClearToEmpty();
+  sender_name_.ClearToEmpty();
+  text_.ClearToEmpty();
+  group_id_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* C_AddPhotoComment::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string photo_id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_photo_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_AddPhotoComment.photo_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string sender_id = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_sender_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_AddPhotoComment.sender_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string sender_name = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          auto str = _internal_mutable_sender_name();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_AddPhotoComment.sender_name"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string text = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+          auto str = _internal_mutable_text();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_AddPhotoComment.text"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string group_id = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 42)) {
+          auto str = _internal_mutable_group_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_AddPhotoComment.group_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* C_AddPhotoComment::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.C_AddPhotoComment)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string photo_id = 1;
+  if (!this->photo_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_photo_id().data(), static_cast<int>(this->_internal_photo_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_AddPhotoComment.photo_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_photo_id(), target);
+  }
+
+  // string sender_id = 2;
+  if (!this->sender_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_sender_id().data(), static_cast<int>(this->_internal_sender_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_AddPhotoComment.sender_id");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_sender_id(), target);
+  }
+
+  // string sender_name = 3;
+  if (!this->sender_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_sender_name().data(), static_cast<int>(this->_internal_sender_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_AddPhotoComment.sender_name");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_sender_name(), target);
+  }
+
+  // string text = 4;
+  if (!this->text().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_text().data(), static_cast<int>(this->_internal_text().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_AddPhotoComment.text");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_text(), target);
+  }
+
+  // string group_id = 5;
+  if (!this->group_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_group_id().data(), static_cast<int>(this->_internal_group_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_AddPhotoComment.group_id");
+    target = stream->WriteStringMaybeAliased(
+        5, this->_internal_group_id(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.C_AddPhotoComment)
+  return target;
+}
+
+size_t C_AddPhotoComment::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Protocol.C_AddPhotoComment)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string photo_id = 1;
+  if (!this->photo_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_photo_id());
+  }
+
+  // string sender_id = 2;
+  if (!this->sender_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_sender_id());
+  }
+
+  // string sender_name = 3;
+  if (!this->sender_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_sender_name());
+  }
+
+  // string text = 4;
+  if (!this->text().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_text());
+  }
+
+  // string group_id = 5;
+  if (!this->group_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_group_id());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void C_AddPhotoComment::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Protocol.C_AddPhotoComment)
+  GOOGLE_DCHECK_NE(&from, this);
+  const C_AddPhotoComment* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<C_AddPhotoComment>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Protocol.C_AddPhotoComment)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Protocol.C_AddPhotoComment)
+    MergeFrom(*source);
+  }
+}
+
+void C_AddPhotoComment::MergeFrom(const C_AddPhotoComment& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Protocol.C_AddPhotoComment)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from.photo_id().empty()) {
+    _internal_set_photo_id(from._internal_photo_id());
+  }
+  if (!from.sender_id().empty()) {
+    _internal_set_sender_id(from._internal_sender_id());
+  }
+  if (!from.sender_name().empty()) {
+    _internal_set_sender_name(from._internal_sender_name());
+  }
+  if (!from.text().empty()) {
+    _internal_set_text(from._internal_text());
+  }
+  if (!from.group_id().empty()) {
+    _internal_set_group_id(from._internal_group_id());
+  }
+}
+
+void C_AddPhotoComment::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Protocol.C_AddPhotoComment)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void C_AddPhotoComment::CopyFrom(const C_AddPhotoComment& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.C_AddPhotoComment)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool C_AddPhotoComment::IsInitialized() const {
+  return true;
+}
+
+void C_AddPhotoComment::InternalSwap(C_AddPhotoComment* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &photo_id_, GetArenaForAllocation(),
+      &other->photo_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &sender_id_, GetArenaForAllocation(),
+      &other->sender_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &sender_name_, GetArenaForAllocation(),
+      &other->sender_name_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &text_, GetArenaForAllocation(),
+      &other->text_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &group_id_, GetArenaForAllocation(),
+      &other->group_id_, other->GetArenaForAllocation()
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata C_AddPhotoComment::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
+      file_level_metadata_protocol_2eproto[136]);
+}
+
+// ===================================================================
+
+class S_AddPhotoComment::_Internal {
+ public:
+  static const ::Protocol::PhotoComment& comment(const S_AddPhotoComment* msg);
+};
+
+const ::Protocol::PhotoComment&
+S_AddPhotoComment::_Internal::comment(const S_AddPhotoComment* msg) {
+  return *msg->comment_;
+}
+S_AddPhotoComment::S_AddPhotoComment(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Protocol.S_AddPhotoComment)
+}
+S_AddPhotoComment::S_AddPhotoComment(const S_AddPhotoComment& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  error_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_error().empty()) {
+    error_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_error(), 
+      GetArenaForAllocation());
+  }
+  if (from._internal_has_comment()) {
+    comment_ = new ::Protocol::PhotoComment(*from.comment_);
+  } else {
+    comment_ = nullptr;
+  }
+  success_ = from.success_;
+  // @@protoc_insertion_point(copy_constructor:Protocol.S_AddPhotoComment)
+}
+
+void S_AddPhotoComment::SharedCtor() {
+error_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&comment_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&success_) -
+    reinterpret_cast<char*>(&comment_)) + sizeof(success_));
+}
+
+S_AddPhotoComment::~S_AddPhotoComment() {
+  // @@protoc_insertion_point(destructor:Protocol.S_AddPhotoComment)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void S_AddPhotoComment::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  error_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (this != internal_default_instance()) delete comment_;
+}
+
+void S_AddPhotoComment::ArenaDtor(void* object) {
+  S_AddPhotoComment* _this = reinterpret_cast< S_AddPhotoComment* >(object);
+  (void)_this;
+}
+void S_AddPhotoComment::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void S_AddPhotoComment::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void S_AddPhotoComment::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.S_AddPhotoComment)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  error_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && comment_ != nullptr) {
+    delete comment_;
+  }
+  comment_ = nullptr;
+  success_ = false;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* S_AddPhotoComment::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // bool success = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          success_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .Protocol.PhotoComment comment = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          ptr = ctx->ParseMessage(_internal_mutable_comment(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string error = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          auto str = _internal_mutable_error();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.S_AddPhotoComment.error"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* S_AddPhotoComment::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.S_AddPhotoComment)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bool success = 1;
+  if (this->success() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(1, this->_internal_success(), target);
+  }
+
+  // .Protocol.PhotoComment comment = 2;
+  if (this->has_comment()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        2, _Internal::comment(this), target, stream);
+  }
+
+  // string error = 3;
+  if (!this->error().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_error().data(), static_cast<int>(this->_internal_error().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.S_AddPhotoComment.error");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_error(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.S_AddPhotoComment)
+  return target;
+}
+
+size_t S_AddPhotoComment::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Protocol.S_AddPhotoComment)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string error = 3;
+  if (!this->error().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_error());
+  }
+
+  // .Protocol.PhotoComment comment = 2;
+  if (this->has_comment()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *comment_);
+  }
+
+  // bool success = 1;
+  if (this->success() != 0) {
+    total_size += 1 + 1;
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void S_AddPhotoComment::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Protocol.S_AddPhotoComment)
+  GOOGLE_DCHECK_NE(&from, this);
+  const S_AddPhotoComment* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<S_AddPhotoComment>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Protocol.S_AddPhotoComment)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Protocol.S_AddPhotoComment)
+    MergeFrom(*source);
+  }
+}
+
+void S_AddPhotoComment::MergeFrom(const S_AddPhotoComment& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Protocol.S_AddPhotoComment)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from.error().empty()) {
+    _internal_set_error(from._internal_error());
+  }
+  if (from.has_comment()) {
+    _internal_mutable_comment()->::Protocol::PhotoComment::MergeFrom(from._internal_comment());
+  }
+  if (from.success() != 0) {
+    _internal_set_success(from._internal_success());
+  }
+}
+
+void S_AddPhotoComment::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Protocol.S_AddPhotoComment)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void S_AddPhotoComment::CopyFrom(const S_AddPhotoComment& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.S_AddPhotoComment)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool S_AddPhotoComment::IsInitialized() const {
+  return true;
+}
+
+void S_AddPhotoComment::InternalSwap(S_AddPhotoComment* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &error_, GetArenaForAllocation(),
+      &other->error_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(S_AddPhotoComment, success_)
+      + sizeof(S_AddPhotoComment::success_)
+      - PROTOBUF_FIELD_OFFSET(S_AddPhotoComment, comment_)>(
+          reinterpret_cast<char*>(&comment_),
+          reinterpret_cast<char*>(&other->comment_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata S_AddPhotoComment::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
+      file_level_metadata_protocol_2eproto[137]);
+}
+
+// ===================================================================
+
+class C_GetPhotoComments::_Internal {
+ public:
+};
+
+C_GetPhotoComments::C_GetPhotoComments(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Protocol.C_GetPhotoComments)
+}
+C_GetPhotoComments::C_GetPhotoComments(const C_GetPhotoComments& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  photo_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_photo_id().empty()) {
+    photo_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_photo_id(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:Protocol.C_GetPhotoComments)
+}
+
+void C_GetPhotoComments::SharedCtor() {
+photo_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+C_GetPhotoComments::~C_GetPhotoComments() {
+  // @@protoc_insertion_point(destructor:Protocol.C_GetPhotoComments)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void C_GetPhotoComments::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  photo_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void C_GetPhotoComments::ArenaDtor(void* object) {
+  C_GetPhotoComments* _this = reinterpret_cast< C_GetPhotoComments* >(object);
+  (void)_this;
+}
+void C_GetPhotoComments::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void C_GetPhotoComments::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void C_GetPhotoComments::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.C_GetPhotoComments)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  photo_id_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* C_GetPhotoComments::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string photo_id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_photo_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_GetPhotoComments.photo_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* C_GetPhotoComments::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.C_GetPhotoComments)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string photo_id = 1;
+  if (!this->photo_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_photo_id().data(), static_cast<int>(this->_internal_photo_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_GetPhotoComments.photo_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_photo_id(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.C_GetPhotoComments)
+  return target;
+}
+
+size_t C_GetPhotoComments::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Protocol.C_GetPhotoComments)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string photo_id = 1;
+  if (!this->photo_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_photo_id());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void C_GetPhotoComments::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Protocol.C_GetPhotoComments)
+  GOOGLE_DCHECK_NE(&from, this);
+  const C_GetPhotoComments* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<C_GetPhotoComments>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Protocol.C_GetPhotoComments)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Protocol.C_GetPhotoComments)
+    MergeFrom(*source);
+  }
+}
+
+void C_GetPhotoComments::MergeFrom(const C_GetPhotoComments& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Protocol.C_GetPhotoComments)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from.photo_id().empty()) {
+    _internal_set_photo_id(from._internal_photo_id());
+  }
+}
+
+void C_GetPhotoComments::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Protocol.C_GetPhotoComments)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void C_GetPhotoComments::CopyFrom(const C_GetPhotoComments& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.C_GetPhotoComments)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool C_GetPhotoComments::IsInitialized() const {
+  return true;
+}
+
+void C_GetPhotoComments::InternalSwap(C_GetPhotoComments* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &photo_id_, GetArenaForAllocation(),
+      &other->photo_id_, other->GetArenaForAllocation()
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata C_GetPhotoComments::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
+      file_level_metadata_protocol_2eproto[138]);
+}
+
+// ===================================================================
+
+class S_GetPhotoComments::_Internal {
+ public:
+};
+
+S_GetPhotoComments::S_GetPhotoComments(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena),
+  comments_(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Protocol.S_GetPhotoComments)
+}
+S_GetPhotoComments::S_GetPhotoComments(const S_GetPhotoComments& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      comments_(from.comments_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  photo_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_photo_id().empty()) {
+    photo_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_photo_id(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:Protocol.S_GetPhotoComments)
+}
+
+void S_GetPhotoComments::SharedCtor() {
+photo_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+S_GetPhotoComments::~S_GetPhotoComments() {
+  // @@protoc_insertion_point(destructor:Protocol.S_GetPhotoComments)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void S_GetPhotoComments::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  photo_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void S_GetPhotoComments::ArenaDtor(void* object) {
+  S_GetPhotoComments* _this = reinterpret_cast< S_GetPhotoComments* >(object);
+  (void)_this;
+}
+void S_GetPhotoComments::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void S_GetPhotoComments::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void S_GetPhotoComments::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.S_GetPhotoComments)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  comments_.Clear();
+  photo_id_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* S_GetPhotoComments::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string photo_id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_photo_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.S_GetPhotoComments.photo_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // repeated .Protocol.PhotoComment comments = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_comments(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* S_GetPhotoComments::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.S_GetPhotoComments)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string photo_id = 1;
+  if (!this->photo_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_photo_id().data(), static_cast<int>(this->_internal_photo_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.S_GetPhotoComments.photo_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_photo_id(), target);
+  }
+
+  // repeated .Protocol.PhotoComment comments = 2;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->_internal_comments_size()); i < n; i++) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(2, this->_internal_comments(i), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.S_GetPhotoComments)
+  return target;
+}
+
+size_t S_GetPhotoComments::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Protocol.S_GetPhotoComments)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .Protocol.PhotoComment comments = 2;
+  total_size += 1UL * this->_internal_comments_size();
+  for (const auto& msg : this->comments_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // string photo_id = 1;
+  if (!this->photo_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_photo_id());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void S_GetPhotoComments::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Protocol.S_GetPhotoComments)
+  GOOGLE_DCHECK_NE(&from, this);
+  const S_GetPhotoComments* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<S_GetPhotoComments>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Protocol.S_GetPhotoComments)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Protocol.S_GetPhotoComments)
+    MergeFrom(*source);
+  }
+}
+
+void S_GetPhotoComments::MergeFrom(const S_GetPhotoComments& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Protocol.S_GetPhotoComments)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  comments_.MergeFrom(from.comments_);
+  if (!from.photo_id().empty()) {
+    _internal_set_photo_id(from._internal_photo_id());
+  }
+}
+
+void S_GetPhotoComments::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Protocol.S_GetPhotoComments)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void S_GetPhotoComments::CopyFrom(const S_GetPhotoComments& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.S_GetPhotoComments)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool S_GetPhotoComments::IsInitialized() const {
+  return true;
+}
+
+void S_GetPhotoComments::InternalSwap(S_GetPhotoComments* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  comments_.InternalSwap(&other->comments_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &photo_id_, GetArenaForAllocation(),
+      &other->photo_id_, other->GetArenaForAllocation()
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata S_GetPhotoComments::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
+      file_level_metadata_protocol_2eproto[139]);
+}
+
+// ===================================================================
+
+class C_DeletePhotoComment::_Internal {
+ public:
+};
+
+C_DeletePhotoComment::C_DeletePhotoComment(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Protocol.C_DeletePhotoComment)
+}
+C_DeletePhotoComment::C_DeletePhotoComment(const C_DeletePhotoComment& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  comment_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_comment_id().empty()) {
+    comment_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_comment_id(), 
+      GetArenaForAllocation());
+  }
+  user_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_user_id().empty()) {
+    user_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_user_id(), 
+      GetArenaForAllocation());
+  }
+  group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_group_id().empty()) {
+    group_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_group_id(), 
+      GetArenaForAllocation());
+  }
+  photo_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_photo_id().empty()) {
+    photo_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_photo_id(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:Protocol.C_DeletePhotoComment)
+}
+
+void C_DeletePhotoComment::SharedCtor() {
+comment_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+user_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+photo_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+C_DeletePhotoComment::~C_DeletePhotoComment() {
+  // @@protoc_insertion_point(destructor:Protocol.C_DeletePhotoComment)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void C_DeletePhotoComment::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  comment_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  user_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  group_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  photo_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void C_DeletePhotoComment::ArenaDtor(void* object) {
+  C_DeletePhotoComment* _this = reinterpret_cast< C_DeletePhotoComment* >(object);
+  (void)_this;
+}
+void C_DeletePhotoComment::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void C_DeletePhotoComment::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void C_DeletePhotoComment::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.C_DeletePhotoComment)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  comment_id_.ClearToEmpty();
+  user_id_.ClearToEmpty();
+  group_id_.ClearToEmpty();
+  photo_id_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* C_DeletePhotoComment::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string comment_id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_comment_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_DeletePhotoComment.comment_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string user_id = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_user_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_DeletePhotoComment.user_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string group_id = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          auto str = _internal_mutable_group_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_DeletePhotoComment.group_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string photo_id = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+          auto str = _internal_mutable_photo_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_DeletePhotoComment.photo_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* C_DeletePhotoComment::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.C_DeletePhotoComment)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string comment_id = 1;
+  if (!this->comment_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_comment_id().data(), static_cast<int>(this->_internal_comment_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_DeletePhotoComment.comment_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_comment_id(), target);
+  }
+
+  // string user_id = 2;
+  if (!this->user_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_user_id().data(), static_cast<int>(this->_internal_user_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_DeletePhotoComment.user_id");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_user_id(), target);
+  }
+
+  // string group_id = 3;
+  if (!this->group_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_group_id().data(), static_cast<int>(this->_internal_group_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_DeletePhotoComment.group_id");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_group_id(), target);
+  }
+
+  // string photo_id = 4;
+  if (!this->photo_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_photo_id().data(), static_cast<int>(this->_internal_photo_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_DeletePhotoComment.photo_id");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_photo_id(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.C_DeletePhotoComment)
+  return target;
+}
+
+size_t C_DeletePhotoComment::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Protocol.C_DeletePhotoComment)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string comment_id = 1;
+  if (!this->comment_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_comment_id());
+  }
+
+  // string user_id = 2;
+  if (!this->user_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_user_id());
+  }
+
+  // string group_id = 3;
+  if (!this->group_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_group_id());
+  }
+
+  // string photo_id = 4;
+  if (!this->photo_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_photo_id());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void C_DeletePhotoComment::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Protocol.C_DeletePhotoComment)
+  GOOGLE_DCHECK_NE(&from, this);
+  const C_DeletePhotoComment* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<C_DeletePhotoComment>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Protocol.C_DeletePhotoComment)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Protocol.C_DeletePhotoComment)
+    MergeFrom(*source);
+  }
+}
+
+void C_DeletePhotoComment::MergeFrom(const C_DeletePhotoComment& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Protocol.C_DeletePhotoComment)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from.comment_id().empty()) {
+    _internal_set_comment_id(from._internal_comment_id());
+  }
+  if (!from.user_id().empty()) {
+    _internal_set_user_id(from._internal_user_id());
+  }
+  if (!from.group_id().empty()) {
+    _internal_set_group_id(from._internal_group_id());
+  }
+  if (!from.photo_id().empty()) {
+    _internal_set_photo_id(from._internal_photo_id());
+  }
+}
+
+void C_DeletePhotoComment::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Protocol.C_DeletePhotoComment)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void C_DeletePhotoComment::CopyFrom(const C_DeletePhotoComment& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.C_DeletePhotoComment)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool C_DeletePhotoComment::IsInitialized() const {
+  return true;
+}
+
+void C_DeletePhotoComment::InternalSwap(C_DeletePhotoComment* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &comment_id_, GetArenaForAllocation(),
+      &other->comment_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &user_id_, GetArenaForAllocation(),
+      &other->user_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &group_id_, GetArenaForAllocation(),
+      &other->group_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &photo_id_, GetArenaForAllocation(),
+      &other->photo_id_, other->GetArenaForAllocation()
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata C_DeletePhotoComment::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
+      file_level_metadata_protocol_2eproto[140]);
+}
+
+// ===================================================================
+
+class S_DeletePhotoComment::_Internal {
+ public:
+};
+
+S_DeletePhotoComment::S_DeletePhotoComment(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Protocol.S_DeletePhotoComment)
+}
+S_DeletePhotoComment::S_DeletePhotoComment(const S_DeletePhotoComment& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  comment_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_comment_id().empty()) {
+    comment_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_comment_id(), 
+      GetArenaForAllocation());
+  }
+  photo_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_photo_id().empty()) {
+    photo_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_photo_id(), 
+      GetArenaForAllocation());
+  }
+  group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_group_id().empty()) {
+    group_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_group_id(), 
+      GetArenaForAllocation());
+  }
+  error_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_error().empty()) {
+    error_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_error(), 
+      GetArenaForAllocation());
+  }
+  success_ = from.success_;
+  // @@protoc_insertion_point(copy_constructor:Protocol.S_DeletePhotoComment)
+}
+
+void S_DeletePhotoComment::SharedCtor() {
+comment_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+photo_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+error_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+success_ = false;
+}
+
+S_DeletePhotoComment::~S_DeletePhotoComment() {
+  // @@protoc_insertion_point(destructor:Protocol.S_DeletePhotoComment)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void S_DeletePhotoComment::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  comment_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  photo_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  group_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  error_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void S_DeletePhotoComment::ArenaDtor(void* object) {
+  S_DeletePhotoComment* _this = reinterpret_cast< S_DeletePhotoComment* >(object);
+  (void)_this;
+}
+void S_DeletePhotoComment::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void S_DeletePhotoComment::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void S_DeletePhotoComment::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.S_DeletePhotoComment)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  comment_id_.ClearToEmpty();
+  photo_id_.ClearToEmpty();
+  group_id_.ClearToEmpty();
+  error_.ClearToEmpty();
+  success_ = false;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* S_DeletePhotoComment::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // bool success = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          success_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string comment_id = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_comment_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.S_DeletePhotoComment.comment_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string photo_id = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          auto str = _internal_mutable_photo_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.S_DeletePhotoComment.photo_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string group_id = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+          auto str = _internal_mutable_group_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.S_DeletePhotoComment.group_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string error = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 42)) {
+          auto str = _internal_mutable_error();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.S_DeletePhotoComment.error"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* S_DeletePhotoComment::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.S_DeletePhotoComment)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bool success = 1;
+  if (this->success() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(1, this->_internal_success(), target);
+  }
+
+  // string comment_id = 2;
+  if (!this->comment_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_comment_id().data(), static_cast<int>(this->_internal_comment_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.S_DeletePhotoComment.comment_id");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_comment_id(), target);
+  }
+
+  // string photo_id = 3;
+  if (!this->photo_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_photo_id().data(), static_cast<int>(this->_internal_photo_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.S_DeletePhotoComment.photo_id");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_photo_id(), target);
+  }
+
+  // string group_id = 4;
+  if (!this->group_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_group_id().data(), static_cast<int>(this->_internal_group_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.S_DeletePhotoComment.group_id");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_group_id(), target);
+  }
+
+  // string error = 5;
+  if (!this->error().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_error().data(), static_cast<int>(this->_internal_error().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.S_DeletePhotoComment.error");
+    target = stream->WriteStringMaybeAliased(
+        5, this->_internal_error(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.S_DeletePhotoComment)
+  return target;
+}
+
+size_t S_DeletePhotoComment::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Protocol.S_DeletePhotoComment)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string comment_id = 2;
+  if (!this->comment_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_comment_id());
+  }
+
+  // string photo_id = 3;
+  if (!this->photo_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_photo_id());
+  }
+
+  // string group_id = 4;
+  if (!this->group_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_group_id());
+  }
+
+  // string error = 5;
+  if (!this->error().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_error());
+  }
+
+  // bool success = 1;
+  if (this->success() != 0) {
+    total_size += 1 + 1;
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void S_DeletePhotoComment::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Protocol.S_DeletePhotoComment)
+  GOOGLE_DCHECK_NE(&from, this);
+  const S_DeletePhotoComment* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<S_DeletePhotoComment>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Protocol.S_DeletePhotoComment)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Protocol.S_DeletePhotoComment)
+    MergeFrom(*source);
+  }
+}
+
+void S_DeletePhotoComment::MergeFrom(const S_DeletePhotoComment& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Protocol.S_DeletePhotoComment)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from.comment_id().empty()) {
+    _internal_set_comment_id(from._internal_comment_id());
+  }
+  if (!from.photo_id().empty()) {
+    _internal_set_photo_id(from._internal_photo_id());
+  }
+  if (!from.group_id().empty()) {
+    _internal_set_group_id(from._internal_group_id());
+  }
+  if (!from.error().empty()) {
+    _internal_set_error(from._internal_error());
+  }
+  if (from.success() != 0) {
+    _internal_set_success(from._internal_success());
+  }
+}
+
+void S_DeletePhotoComment::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Protocol.S_DeletePhotoComment)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void S_DeletePhotoComment::CopyFrom(const S_DeletePhotoComment& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.S_DeletePhotoComment)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool S_DeletePhotoComment::IsInitialized() const {
+  return true;
+}
+
+void S_DeletePhotoComment::InternalSwap(S_DeletePhotoComment* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &comment_id_, GetArenaForAllocation(),
+      &other->comment_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &photo_id_, GetArenaForAllocation(),
+      &other->photo_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &group_id_, GetArenaForAllocation(),
+      &other->group_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &error_, GetArenaForAllocation(),
+      &other->error_, other->GetArenaForAllocation()
+  );
+  swap(success_, other->success_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata S_DeletePhotoComment::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
+      file_level_metadata_protocol_2eproto[141]);
+}
+
+// ===================================================================
+
+class LocationPhoto::_Internal {
+ public:
+};
+
+LocationPhoto::LocationPhoto(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Protocol.LocationPhoto)
+}
+LocationPhoto::LocationPhoto(const LocationPhoto& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_id().empty()) {
+    id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_id(), 
+      GetArenaForAllocation());
+  }
+  photo_url_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_photo_url().empty()) {
+    photo_url_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_photo_url(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:Protocol.LocationPhoto)
+}
+
+void LocationPhoto::SharedCtor() {
+id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+photo_url_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+LocationPhoto::~LocationPhoto() {
+  // @@protoc_insertion_point(destructor:Protocol.LocationPhoto)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void LocationPhoto::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  photo_url_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void LocationPhoto::ArenaDtor(void* object) {
+  LocationPhoto* _this = reinterpret_cast< LocationPhoto* >(object);
+  (void)_this;
+}
+void LocationPhoto::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void LocationPhoto::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void LocationPhoto::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.LocationPhoto)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  id_.ClearToEmpty();
+  photo_url_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* LocationPhoto::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.LocationPhoto.id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string photo_url = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_photo_url();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.LocationPhoto.photo_url"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* LocationPhoto::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.LocationPhoto)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string id = 1;
+  if (!this->id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_id().data(), static_cast<int>(this->_internal_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.LocationPhoto.id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_id(), target);
+  }
+
+  // string photo_url = 2;
+  if (!this->photo_url().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_photo_url().data(), static_cast<int>(this->_internal_photo_url().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.LocationPhoto.photo_url");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_photo_url(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.LocationPhoto)
+  return target;
+}
+
+size_t LocationPhoto::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Protocol.LocationPhoto)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string id = 1;
+  if (!this->id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_id());
+  }
+
+  // string photo_url = 2;
+  if (!this->photo_url().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_photo_url());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void LocationPhoto::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Protocol.LocationPhoto)
+  GOOGLE_DCHECK_NE(&from, this);
+  const LocationPhoto* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<LocationPhoto>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Protocol.LocationPhoto)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Protocol.LocationPhoto)
+    MergeFrom(*source);
+  }
+}
+
+void LocationPhoto::MergeFrom(const LocationPhoto& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Protocol.LocationPhoto)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from.id().empty()) {
+    _internal_set_id(from._internal_id());
+  }
+  if (!from.photo_url().empty()) {
+    _internal_set_photo_url(from._internal_photo_url());
+  }
+}
+
+void LocationPhoto::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Protocol.LocationPhoto)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void LocationPhoto::CopyFrom(const LocationPhoto& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.LocationPhoto)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool LocationPhoto::IsInitialized() const {
+  return true;
+}
+
+void LocationPhoto::InternalSwap(LocationPhoto* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &id_, GetArenaForAllocation(),
+      &other->id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &photo_url_, GetArenaForAllocation(),
+      &other->photo_url_, other->GetArenaForAllocation()
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata LocationPhoto::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
+      file_level_metadata_protocol_2eproto[142]);
+}
+
+// ===================================================================
+
+class LocationVisitInfo::_Internal {
+ public:
+};
+
+LocationVisitInfo::LocationVisitInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena),
+  photos_(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Protocol.LocationVisitInfo)
+}
+LocationVisitInfo::LocationVisitInfo(const LocationVisitInfo& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      photos_(from.photos_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_id().empty()) {
+    id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_id(), 
+      GetArenaForAllocation());
+  }
+  user_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_user_id().empty()) {
+    user_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_user_id(), 
+      GetArenaForAllocation());
+  }
+  user_name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_user_name().empty()) {
+    user_name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_user_name(), 
+      GetArenaForAllocation());
+  }
+  review_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_review().empty()) {
+    review_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_review(), 
+      GetArenaForAllocation());
+  }
+  ::memcpy(&visited_at_, &from.visited_at_,
+    static_cast<size_t>(reinterpret_cast<char*>(&rating_) -
+    reinterpret_cast<char*>(&visited_at_)) + sizeof(rating_));
+  // @@protoc_insertion_point(copy_constructor:Protocol.LocationVisitInfo)
+}
+
+void LocationVisitInfo::SharedCtor() {
+id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+user_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+user_name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+review_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&visited_at_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&rating_) -
+    reinterpret_cast<char*>(&visited_at_)) + sizeof(rating_));
+}
+
+LocationVisitInfo::~LocationVisitInfo() {
+  // @@protoc_insertion_point(destructor:Protocol.LocationVisitInfo)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void LocationVisitInfo::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  user_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  user_name_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  review_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void LocationVisitInfo::ArenaDtor(void* object) {
+  LocationVisitInfo* _this = reinterpret_cast< LocationVisitInfo* >(object);
+  (void)_this;
+}
+void LocationVisitInfo::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void LocationVisitInfo::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void LocationVisitInfo::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.LocationVisitInfo)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  photos_.Clear();
+  id_.ClearToEmpty();
+  user_id_.ClearToEmpty();
+  user_name_.ClearToEmpty();
+  review_.ClearToEmpty();
+  ::memset(&visited_at_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&rating_) -
+      reinterpret_cast<char*>(&visited_at_)) + sizeof(rating_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* LocationVisitInfo::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.LocationVisitInfo.id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string user_id = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_user_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.LocationVisitInfo.user_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string user_name = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          auto str = _internal_mutable_user_name();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.LocationVisitInfo.user_name"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // int32 rating = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 32)) {
+          rating_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string review = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 42)) {
+          auto str = _internal_mutable_review();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.LocationVisitInfo.review"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // int64 visited_at = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 48)) {
+          visited_at_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // repeated .Protocol.LocationPhoto photos = 7;
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 58)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_photos(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<58>(ptr));
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* LocationVisitInfo::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.LocationVisitInfo)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string id = 1;
+  if (!this->id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_id().data(), static_cast<int>(this->_internal_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.LocationVisitInfo.id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_id(), target);
+  }
+
+  // string user_id = 2;
+  if (!this->user_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_user_id().data(), static_cast<int>(this->_internal_user_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.LocationVisitInfo.user_id");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_user_id(), target);
+  }
+
+  // string user_name = 3;
+  if (!this->user_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_user_name().data(), static_cast<int>(this->_internal_user_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.LocationVisitInfo.user_name");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_user_name(), target);
+  }
+
+  // int32 rating = 4;
+  if (this->rating() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(4, this->_internal_rating(), target);
+  }
+
+  // string review = 5;
+  if (!this->review().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_review().data(), static_cast<int>(this->_internal_review().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.LocationVisitInfo.review");
+    target = stream->WriteStringMaybeAliased(
+        5, this->_internal_review(), target);
+  }
+
+  // int64 visited_at = 6;
+  if (this->visited_at() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(6, this->_internal_visited_at(), target);
+  }
+
+  // repeated .Protocol.LocationPhoto photos = 7;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->_internal_photos_size()); i < n; i++) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(7, this->_internal_photos(i), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.LocationVisitInfo)
+  return target;
+}
+
+size_t LocationVisitInfo::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Protocol.LocationVisitInfo)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .Protocol.LocationPhoto photos = 7;
+  total_size += 1UL * this->_internal_photos_size();
+  for (const auto& msg : this->photos_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // string id = 1;
+  if (!this->id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_id());
+  }
+
+  // string user_id = 2;
+  if (!this->user_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_user_id());
+  }
+
+  // string user_name = 3;
+  if (!this->user_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_user_name());
+  }
+
+  // string review = 5;
+  if (!this->review().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_review());
+  }
+
+  // int64 visited_at = 6;
+  if (this->visited_at() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64Size(
+        this->_internal_visited_at());
+  }
+
+  // int32 rating = 4;
+  if (this->rating() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_rating());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void LocationVisitInfo::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Protocol.LocationVisitInfo)
+  GOOGLE_DCHECK_NE(&from, this);
+  const LocationVisitInfo* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<LocationVisitInfo>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Protocol.LocationVisitInfo)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Protocol.LocationVisitInfo)
+    MergeFrom(*source);
+  }
+}
+
+void LocationVisitInfo::MergeFrom(const LocationVisitInfo& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Protocol.LocationVisitInfo)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  photos_.MergeFrom(from.photos_);
+  if (!from.id().empty()) {
+    _internal_set_id(from._internal_id());
+  }
+  if (!from.user_id().empty()) {
+    _internal_set_user_id(from._internal_user_id());
+  }
+  if (!from.user_name().empty()) {
+    _internal_set_user_name(from._internal_user_name());
+  }
+  if (!from.review().empty()) {
+    _internal_set_review(from._internal_review());
+  }
+  if (from.visited_at() != 0) {
+    _internal_set_visited_at(from._internal_visited_at());
+  }
+  if (from.rating() != 0) {
+    _internal_set_rating(from._internal_rating());
+  }
+}
+
+void LocationVisitInfo::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Protocol.LocationVisitInfo)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void LocationVisitInfo::CopyFrom(const LocationVisitInfo& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.LocationVisitInfo)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool LocationVisitInfo::IsInitialized() const {
+  return true;
+}
+
+void LocationVisitInfo::InternalSwap(LocationVisitInfo* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  photos_.InternalSwap(&other->photos_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &id_, GetArenaForAllocation(),
+      &other->id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &user_id_, GetArenaForAllocation(),
+      &other->user_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &user_name_, GetArenaForAllocation(),
+      &other->user_name_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &review_, GetArenaForAllocation(),
+      &other->review_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(LocationVisitInfo, rating_)
+      + sizeof(LocationVisitInfo::rating_)
+      - PROTOBUF_FIELD_OFFSET(LocationVisitInfo, visited_at_)>(
+          reinterpret_cast<char*>(&visited_at_),
+          reinterpret_cast<char*>(&other->visited_at_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata LocationVisitInfo::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
+      file_level_metadata_protocol_2eproto[143]);
+}
+
+// ===================================================================
+
+class LocationPlaceInfo::_Internal {
+ public:
+};
+
+LocationPlaceInfo::LocationPlaceInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena),
+  visits_(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Protocol.LocationPlaceInfo)
+}
+LocationPlaceInfo::LocationPlaceInfo(const LocationPlaceInfo& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      visits_(from.visits_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_id().empty()) {
+    id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_id(), 
+      GetArenaForAllocation());
+  }
+  group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_group_id().empty()) {
+    group_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_group_id(), 
+      GetArenaForAllocation());
+  }
+  name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_name().empty()) {
+    name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_name(), 
+      GetArenaForAllocation());
+  }
+  address_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_address().empty()) {
+    address_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_address(), 
+      GetArenaForAllocation());
+  }
+  category_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_category().empty()) {
+    category_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_category(), 
+      GetArenaForAllocation());
+  }
+  created_by_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_created_by().empty()) {
+    created_by_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_created_by(), 
+      GetArenaForAllocation());
+  }
+  recent_photo_url_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_recent_photo_url().empty()) {
+    recent_photo_url_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_recent_photo_url(), 
+      GetArenaForAllocation());
+  }
+  ::memcpy(&lat_, &from.lat_,
+    static_cast<size_t>(reinterpret_cast<char*>(&avg_rating_) -
+    reinterpret_cast<char*>(&lat_)) + sizeof(avg_rating_));
+  // @@protoc_insertion_point(copy_constructor:Protocol.LocationPlaceInfo)
+}
+
+void LocationPlaceInfo::SharedCtor() {
+id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+address_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+category_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+created_by_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+recent_photo_url_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&lat_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&avg_rating_) -
+    reinterpret_cast<char*>(&lat_)) + sizeof(avg_rating_));
+}
+
+LocationPlaceInfo::~LocationPlaceInfo() {
+  // @@protoc_insertion_point(destructor:Protocol.LocationPlaceInfo)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void LocationPlaceInfo::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  group_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  name_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  address_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  category_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  created_by_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  recent_photo_url_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void LocationPlaceInfo::ArenaDtor(void* object) {
+  LocationPlaceInfo* _this = reinterpret_cast< LocationPlaceInfo* >(object);
+  (void)_this;
+}
+void LocationPlaceInfo::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void LocationPlaceInfo::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void LocationPlaceInfo::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.LocationPlaceInfo)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  visits_.Clear();
+  id_.ClearToEmpty();
+  group_id_.ClearToEmpty();
+  name_.ClearToEmpty();
+  address_.ClearToEmpty();
+  category_.ClearToEmpty();
+  created_by_.ClearToEmpty();
+  recent_photo_url_.ClearToEmpty();
+  ::memset(&lat_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&avg_rating_) -
+      reinterpret_cast<char*>(&lat_)) + sizeof(avg_rating_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* LocationPlaceInfo::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.LocationPlaceInfo.id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string group_id = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_group_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.LocationPlaceInfo.group_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string name = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          auto str = _internal_mutable_name();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.LocationPlaceInfo.name"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string address = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+          auto str = _internal_mutable_address();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.LocationPlaceInfo.address"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string category = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 42)) {
+          auto str = _internal_mutable_category();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.LocationPlaceInfo.category"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // double lat = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 49)) {
+          lat_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else goto handle_unusual;
+        continue;
+      // double lng = 7;
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 57)) {
+          lng_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else goto handle_unusual;
+        continue;
+      // string created_by = 8;
+      case 8:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 66)) {
+          auto str = _internal_mutable_created_by();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.LocationPlaceInfo.created_by"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // int64 created_at = 9;
+      case 9:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 72)) {
+          created_at_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // int32 visit_count = 10;
+      case 10:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 80)) {
+          visit_count_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // float avg_rating = 11;
+      case 11:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 93)) {
+          avg_rating_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else goto handle_unusual;
+        continue;
+      // string recent_photo_url = 12;
+      case 12:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 98)) {
+          auto str = _internal_mutable_recent_photo_url();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.LocationPlaceInfo.recent_photo_url"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // repeated .Protocol.LocationVisitInfo visits = 13;
+      case 13:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 106)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_visits(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<106>(ptr));
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* LocationPlaceInfo::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.LocationPlaceInfo)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string id = 1;
+  if (!this->id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_id().data(), static_cast<int>(this->_internal_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.LocationPlaceInfo.id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_id(), target);
+  }
+
+  // string group_id = 2;
+  if (!this->group_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_group_id().data(), static_cast<int>(this->_internal_group_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.LocationPlaceInfo.group_id");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_group_id(), target);
+  }
+
+  // string name = 3;
+  if (!this->name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.LocationPlaceInfo.name");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_name(), target);
+  }
+
+  // string address = 4;
+  if (!this->address().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_address().data(), static_cast<int>(this->_internal_address().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.LocationPlaceInfo.address");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_address(), target);
+  }
+
+  // string category = 5;
+  if (!this->category().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_category().data(), static_cast<int>(this->_internal_category().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.LocationPlaceInfo.category");
+    target = stream->WriteStringMaybeAliased(
+        5, this->_internal_category(), target);
+  }
+
+  // double lat = 6;
+  if (!(this->lat() <= 0 && this->lat() >= 0)) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(6, this->_internal_lat(), target);
+  }
+
+  // double lng = 7;
+  if (!(this->lng() <= 0 && this->lng() >= 0)) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(7, this->_internal_lng(), target);
+  }
+
+  // string created_by = 8;
+  if (!this->created_by().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_created_by().data(), static_cast<int>(this->_internal_created_by().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.LocationPlaceInfo.created_by");
+    target = stream->WriteStringMaybeAliased(
+        8, this->_internal_created_by(), target);
+  }
+
+  // int64 created_at = 9;
+  if (this->created_at() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(9, this->_internal_created_at(), target);
+  }
+
+  // int32 visit_count = 10;
+  if (this->visit_count() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(10, this->_internal_visit_count(), target);
+  }
+
+  // float avg_rating = 11;
+  if (!(this->avg_rating() <= 0 && this->avg_rating() >= 0)) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(11, this->_internal_avg_rating(), target);
+  }
+
+  // string recent_photo_url = 12;
+  if (!this->recent_photo_url().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_recent_photo_url().data(), static_cast<int>(this->_internal_recent_photo_url().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.LocationPlaceInfo.recent_photo_url");
+    target = stream->WriteStringMaybeAliased(
+        12, this->_internal_recent_photo_url(), target);
+  }
+
+  // repeated .Protocol.LocationVisitInfo visits = 13;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->_internal_visits_size()); i < n; i++) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(13, this->_internal_visits(i), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.LocationPlaceInfo)
+  return target;
+}
+
+size_t LocationPlaceInfo::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Protocol.LocationPlaceInfo)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .Protocol.LocationVisitInfo visits = 13;
+  total_size += 1UL * this->_internal_visits_size();
+  for (const auto& msg : this->visits_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // string id = 1;
+  if (!this->id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_id());
+  }
+
+  // string group_id = 2;
+  if (!this->group_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_group_id());
+  }
+
+  // string name = 3;
+  if (!this->name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_name());
+  }
+
+  // string address = 4;
+  if (!this->address().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_address());
+  }
+
+  // string category = 5;
+  if (!this->category().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_category());
+  }
+
+  // string created_by = 8;
+  if (!this->created_by().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_created_by());
+  }
+
+  // string recent_photo_url = 12;
+  if (!this->recent_photo_url().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_recent_photo_url());
+  }
+
+  // double lat = 6;
+  if (!(this->lat() <= 0 && this->lat() >= 0)) {
+    total_size += 1 + 8;
+  }
+
+  // double lng = 7;
+  if (!(this->lng() <= 0 && this->lng() >= 0)) {
+    total_size += 1 + 8;
+  }
+
+  // int64 created_at = 9;
+  if (this->created_at() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64Size(
+        this->_internal_created_at());
+  }
+
+  // int32 visit_count = 10;
+  if (this->visit_count() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_visit_count());
+  }
+
+  // float avg_rating = 11;
+  if (!(this->avg_rating() <= 0 && this->avg_rating() >= 0)) {
+    total_size += 1 + 4;
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void LocationPlaceInfo::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Protocol.LocationPlaceInfo)
+  GOOGLE_DCHECK_NE(&from, this);
+  const LocationPlaceInfo* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<LocationPlaceInfo>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Protocol.LocationPlaceInfo)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Protocol.LocationPlaceInfo)
+    MergeFrom(*source);
+  }
+}
+
+void LocationPlaceInfo::MergeFrom(const LocationPlaceInfo& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Protocol.LocationPlaceInfo)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  visits_.MergeFrom(from.visits_);
+  if (!from.id().empty()) {
+    _internal_set_id(from._internal_id());
+  }
+  if (!from.group_id().empty()) {
+    _internal_set_group_id(from._internal_group_id());
+  }
+  if (!from.name().empty()) {
+    _internal_set_name(from._internal_name());
+  }
+  if (!from.address().empty()) {
+    _internal_set_address(from._internal_address());
+  }
+  if (!from.category().empty()) {
+    _internal_set_category(from._internal_category());
+  }
+  if (!from.created_by().empty()) {
+    _internal_set_created_by(from._internal_created_by());
+  }
+  if (!from.recent_photo_url().empty()) {
+    _internal_set_recent_photo_url(from._internal_recent_photo_url());
+  }
+  if (!(from.lat() <= 0 && from.lat() >= 0)) {
+    _internal_set_lat(from._internal_lat());
+  }
+  if (!(from.lng() <= 0 && from.lng() >= 0)) {
+    _internal_set_lng(from._internal_lng());
+  }
+  if (from.created_at() != 0) {
+    _internal_set_created_at(from._internal_created_at());
+  }
+  if (from.visit_count() != 0) {
+    _internal_set_visit_count(from._internal_visit_count());
+  }
+  if (!(from.avg_rating() <= 0 && from.avg_rating() >= 0)) {
+    _internal_set_avg_rating(from._internal_avg_rating());
+  }
+}
+
+void LocationPlaceInfo::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Protocol.LocationPlaceInfo)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void LocationPlaceInfo::CopyFrom(const LocationPlaceInfo& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.LocationPlaceInfo)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool LocationPlaceInfo::IsInitialized() const {
+  return true;
+}
+
+void LocationPlaceInfo::InternalSwap(LocationPlaceInfo* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  visits_.InternalSwap(&other->visits_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &id_, GetArenaForAllocation(),
+      &other->id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &group_id_, GetArenaForAllocation(),
+      &other->group_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &name_, GetArenaForAllocation(),
+      &other->name_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &address_, GetArenaForAllocation(),
+      &other->address_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &category_, GetArenaForAllocation(),
+      &other->category_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &created_by_, GetArenaForAllocation(),
+      &other->created_by_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &recent_photo_url_, GetArenaForAllocation(),
+      &other->recent_photo_url_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(LocationPlaceInfo, avg_rating_)
+      + sizeof(LocationPlaceInfo::avg_rating_)
+      - PROTOBUF_FIELD_OFFSET(LocationPlaceInfo, lat_)>(
+          reinterpret_cast<char*>(&lat_),
+          reinterpret_cast<char*>(&other->lat_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata LocationPlaceInfo::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
+      file_level_metadata_protocol_2eproto[144]);
+}
+
+// ===================================================================
+
+class C_SavePlace::_Internal {
+ public:
+};
+
+C_SavePlace::C_SavePlace(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Protocol.C_SavePlace)
+}
+C_SavePlace::C_SavePlace(const C_SavePlace& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_group_id().empty()) {
+    group_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_group_id(), 
+      GetArenaForAllocation());
+  }
+  name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_name().empty()) {
+    name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_name(), 
+      GetArenaForAllocation());
+  }
+  address_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_address().empty()) {
+    address_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_address(), 
+      GetArenaForAllocation());
+  }
+  category_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_category().empty()) {
+    category_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_category(), 
+      GetArenaForAllocation());
+  }
+  user_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_user_id().empty()) {
+    user_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_user_id(), 
+      GetArenaForAllocation());
+  }
+  user_name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_user_name().empty()) {
+    user_name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_user_name(), 
+      GetArenaForAllocation());
+  }
+  ::memcpy(&lat_, &from.lat_,
+    static_cast<size_t>(reinterpret_cast<char*>(&lng_) -
+    reinterpret_cast<char*>(&lat_)) + sizeof(lng_));
+  // @@protoc_insertion_point(copy_constructor:Protocol.C_SavePlace)
+}
+
+void C_SavePlace::SharedCtor() {
+group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+address_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+category_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+user_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+user_name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&lat_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&lng_) -
+    reinterpret_cast<char*>(&lat_)) + sizeof(lng_));
+}
+
+C_SavePlace::~C_SavePlace() {
+  // @@protoc_insertion_point(destructor:Protocol.C_SavePlace)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void C_SavePlace::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  group_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  name_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  address_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  category_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  user_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  user_name_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void C_SavePlace::ArenaDtor(void* object) {
+  C_SavePlace* _this = reinterpret_cast< C_SavePlace* >(object);
+  (void)_this;
+}
+void C_SavePlace::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void C_SavePlace::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void C_SavePlace::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.C_SavePlace)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  group_id_.ClearToEmpty();
+  name_.ClearToEmpty();
+  address_.ClearToEmpty();
+  category_.ClearToEmpty();
+  user_id_.ClearToEmpty();
+  user_name_.ClearToEmpty();
+  ::memset(&lat_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&lng_) -
+      reinterpret_cast<char*>(&lat_)) + sizeof(lng_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* C_SavePlace::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string group_id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_group_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_SavePlace.group_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string name = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_name();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_SavePlace.name"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string address = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          auto str = _internal_mutable_address();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_SavePlace.address"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string category = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+          auto str = _internal_mutable_category();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_SavePlace.category"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // double lat = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 41)) {
+          lat_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else goto handle_unusual;
+        continue;
+      // double lng = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 49)) {
+          lng_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else goto handle_unusual;
+        continue;
+      // string user_id = 7;
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 58)) {
+          auto str = _internal_mutable_user_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_SavePlace.user_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string user_name = 8;
+      case 8:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 66)) {
+          auto str = _internal_mutable_user_name();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_SavePlace.user_name"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* C_SavePlace::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.C_SavePlace)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string group_id = 1;
+  if (!this->group_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_group_id().data(), static_cast<int>(this->_internal_group_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_SavePlace.group_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_group_id(), target);
+  }
+
+  // string name = 2;
+  if (!this->name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_SavePlace.name");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_name(), target);
+  }
+
+  // string address = 3;
+  if (!this->address().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_address().data(), static_cast<int>(this->_internal_address().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_SavePlace.address");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_address(), target);
+  }
+
+  // string category = 4;
+  if (!this->category().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_category().data(), static_cast<int>(this->_internal_category().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_SavePlace.category");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_category(), target);
+  }
+
+  // double lat = 5;
+  if (!(this->lat() <= 0 && this->lat() >= 0)) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(5, this->_internal_lat(), target);
+  }
+
+  // double lng = 6;
+  if (!(this->lng() <= 0 && this->lng() >= 0)) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(6, this->_internal_lng(), target);
+  }
+
+  // string user_id = 7;
+  if (!this->user_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_user_id().data(), static_cast<int>(this->_internal_user_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_SavePlace.user_id");
+    target = stream->WriteStringMaybeAliased(
+        7, this->_internal_user_id(), target);
+  }
+
+  // string user_name = 8;
+  if (!this->user_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_user_name().data(), static_cast<int>(this->_internal_user_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_SavePlace.user_name");
+    target = stream->WriteStringMaybeAliased(
+        8, this->_internal_user_name(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.C_SavePlace)
+  return target;
+}
+
+size_t C_SavePlace::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Protocol.C_SavePlace)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string group_id = 1;
+  if (!this->group_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_group_id());
+  }
+
+  // string name = 2;
+  if (!this->name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_name());
+  }
+
+  // string address = 3;
+  if (!this->address().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_address());
+  }
+
+  // string category = 4;
+  if (!this->category().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_category());
+  }
+
+  // string user_id = 7;
+  if (!this->user_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_user_id());
+  }
+
+  // string user_name = 8;
+  if (!this->user_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_user_name());
+  }
+
+  // double lat = 5;
+  if (!(this->lat() <= 0 && this->lat() >= 0)) {
+    total_size += 1 + 8;
+  }
+
+  // double lng = 6;
+  if (!(this->lng() <= 0 && this->lng() >= 0)) {
+    total_size += 1 + 8;
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void C_SavePlace::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Protocol.C_SavePlace)
+  GOOGLE_DCHECK_NE(&from, this);
+  const C_SavePlace* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<C_SavePlace>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Protocol.C_SavePlace)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Protocol.C_SavePlace)
+    MergeFrom(*source);
+  }
+}
+
+void C_SavePlace::MergeFrom(const C_SavePlace& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Protocol.C_SavePlace)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from.group_id().empty()) {
+    _internal_set_group_id(from._internal_group_id());
+  }
+  if (!from.name().empty()) {
+    _internal_set_name(from._internal_name());
+  }
+  if (!from.address().empty()) {
+    _internal_set_address(from._internal_address());
+  }
+  if (!from.category().empty()) {
+    _internal_set_category(from._internal_category());
+  }
+  if (!from.user_id().empty()) {
+    _internal_set_user_id(from._internal_user_id());
+  }
+  if (!from.user_name().empty()) {
+    _internal_set_user_name(from._internal_user_name());
+  }
+  if (!(from.lat() <= 0 && from.lat() >= 0)) {
+    _internal_set_lat(from._internal_lat());
+  }
+  if (!(from.lng() <= 0 && from.lng() >= 0)) {
+    _internal_set_lng(from._internal_lng());
+  }
+}
+
+void C_SavePlace::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Protocol.C_SavePlace)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void C_SavePlace::CopyFrom(const C_SavePlace& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.C_SavePlace)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool C_SavePlace::IsInitialized() const {
+  return true;
+}
+
+void C_SavePlace::InternalSwap(C_SavePlace* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &group_id_, GetArenaForAllocation(),
+      &other->group_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &name_, GetArenaForAllocation(),
+      &other->name_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &address_, GetArenaForAllocation(),
+      &other->address_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &category_, GetArenaForAllocation(),
+      &other->category_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &user_id_, GetArenaForAllocation(),
+      &other->user_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &user_name_, GetArenaForAllocation(),
+      &other->user_name_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(C_SavePlace, lng_)
+      + sizeof(C_SavePlace::lng_)
+      - PROTOBUF_FIELD_OFFSET(C_SavePlace, lat_)>(
+          reinterpret_cast<char*>(&lat_),
+          reinterpret_cast<char*>(&other->lat_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata C_SavePlace::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
+      file_level_metadata_protocol_2eproto[145]);
+}
+
+// ===================================================================
+
+class S_SavePlace::_Internal {
+ public:
+  static const ::Protocol::LocationPlaceInfo& place(const S_SavePlace* msg);
+};
+
+const ::Protocol::LocationPlaceInfo&
+S_SavePlace::_Internal::place(const S_SavePlace* msg) {
+  return *msg->place_;
+}
+S_SavePlace::S_SavePlace(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Protocol.S_SavePlace)
+}
+S_SavePlace::S_SavePlace(const S_SavePlace& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_place()) {
+    place_ = new ::Protocol::LocationPlaceInfo(*from.place_);
+  } else {
+    place_ = nullptr;
+  }
+  ::memcpy(&success_, &from.success_,
+    static_cast<size_t>(reinterpret_cast<char*>(&error_code_) -
+    reinterpret_cast<char*>(&success_)) + sizeof(error_code_));
+  // @@protoc_insertion_point(copy_constructor:Protocol.S_SavePlace)
+}
+
+void S_SavePlace::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&place_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&error_code_) -
+    reinterpret_cast<char*>(&place_)) + sizeof(error_code_));
+}
+
+S_SavePlace::~S_SavePlace() {
+  // @@protoc_insertion_point(destructor:Protocol.S_SavePlace)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void S_SavePlace::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  if (this != internal_default_instance()) delete place_;
+}
+
+void S_SavePlace::ArenaDtor(void* object) {
+  S_SavePlace* _this = reinterpret_cast< S_SavePlace* >(object);
+  (void)_this;
+}
+void S_SavePlace::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void S_SavePlace::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void S_SavePlace::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.S_SavePlace)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  if (GetArenaForAllocation() == nullptr && place_ != nullptr) {
+    delete place_;
+  }
+  place_ = nullptr;
+  ::memset(&success_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&error_code_) -
+      reinterpret_cast<char*>(&success_)) + sizeof(error_code_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* S_SavePlace::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // bool success = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          success_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .Protocol.LocationPlaceInfo place = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          ptr = ctx->ParseMessage(_internal_mutable_place(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // int32 error_code = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
+          error_code_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* S_SavePlace::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.S_SavePlace)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bool success = 1;
+  if (this->success() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(1, this->_internal_success(), target);
+  }
+
+  // .Protocol.LocationPlaceInfo place = 2;
+  if (this->has_place()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        2, _Internal::place(this), target, stream);
+  }
+
+  // int32 error_code = 3;
+  if (this->error_code() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(3, this->_internal_error_code(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.S_SavePlace)
+  return target;
+}
+
+size_t S_SavePlace::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Protocol.S_SavePlace)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .Protocol.LocationPlaceInfo place = 2;
+  if (this->has_place()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *place_);
+  }
+
+  // bool success = 1;
+  if (this->success() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // int32 error_code = 3;
+  if (this->error_code() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_error_code());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void S_SavePlace::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Protocol.S_SavePlace)
+  GOOGLE_DCHECK_NE(&from, this);
+  const S_SavePlace* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<S_SavePlace>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Protocol.S_SavePlace)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Protocol.S_SavePlace)
+    MergeFrom(*source);
+  }
+}
+
+void S_SavePlace::MergeFrom(const S_SavePlace& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Protocol.S_SavePlace)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.has_place()) {
+    _internal_mutable_place()->::Protocol::LocationPlaceInfo::MergeFrom(from._internal_place());
+  }
+  if (from.success() != 0) {
+    _internal_set_success(from._internal_success());
+  }
+  if (from.error_code() != 0) {
+    _internal_set_error_code(from._internal_error_code());
+  }
+}
+
+void S_SavePlace::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Protocol.S_SavePlace)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void S_SavePlace::CopyFrom(const S_SavePlace& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.S_SavePlace)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool S_SavePlace::IsInitialized() const {
+  return true;
+}
+
+void S_SavePlace::InternalSwap(S_SavePlace* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(S_SavePlace, error_code_)
+      + sizeof(S_SavePlace::error_code_)
+      - PROTOBUF_FIELD_OFFSET(S_SavePlace, place_)>(
+          reinterpret_cast<char*>(&place_),
+          reinterpret_cast<char*>(&other->place_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata S_SavePlace::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
+      file_level_metadata_protocol_2eproto[146]);
+}
+
+// ===================================================================
+
+class C_GetPlaces::_Internal {
+ public:
+};
+
+C_GetPlaces::C_GetPlaces(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Protocol.C_GetPlaces)
+}
+C_GetPlaces::C_GetPlaces(const C_GetPlaces& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_group_id().empty()) {
+    group_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_group_id(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:Protocol.C_GetPlaces)
+}
+
+void C_GetPlaces::SharedCtor() {
+group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+C_GetPlaces::~C_GetPlaces() {
+  // @@protoc_insertion_point(destructor:Protocol.C_GetPlaces)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void C_GetPlaces::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  group_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void C_GetPlaces::ArenaDtor(void* object) {
+  C_GetPlaces* _this = reinterpret_cast< C_GetPlaces* >(object);
+  (void)_this;
+}
+void C_GetPlaces::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void C_GetPlaces::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void C_GetPlaces::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.C_GetPlaces)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  group_id_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* C_GetPlaces::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string group_id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_group_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_GetPlaces.group_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* C_GetPlaces::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.C_GetPlaces)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string group_id = 1;
+  if (!this->group_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_group_id().data(), static_cast<int>(this->_internal_group_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_GetPlaces.group_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_group_id(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.C_GetPlaces)
+  return target;
+}
+
+size_t C_GetPlaces::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Protocol.C_GetPlaces)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string group_id = 1;
+  if (!this->group_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_group_id());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void C_GetPlaces::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Protocol.C_GetPlaces)
+  GOOGLE_DCHECK_NE(&from, this);
+  const C_GetPlaces* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<C_GetPlaces>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Protocol.C_GetPlaces)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Protocol.C_GetPlaces)
+    MergeFrom(*source);
+  }
+}
+
+void C_GetPlaces::MergeFrom(const C_GetPlaces& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Protocol.C_GetPlaces)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from.group_id().empty()) {
+    _internal_set_group_id(from._internal_group_id());
+  }
+}
+
+void C_GetPlaces::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Protocol.C_GetPlaces)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void C_GetPlaces::CopyFrom(const C_GetPlaces& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.C_GetPlaces)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool C_GetPlaces::IsInitialized() const {
+  return true;
+}
+
+void C_GetPlaces::InternalSwap(C_GetPlaces* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &group_id_, GetArenaForAllocation(),
+      &other->group_id_, other->GetArenaForAllocation()
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata C_GetPlaces::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
+      file_level_metadata_protocol_2eproto[147]);
+}
+
+// ===================================================================
+
+class S_GetPlaces::_Internal {
+ public:
+};
+
+S_GetPlaces::S_GetPlaces(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena),
+  places_(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Protocol.S_GetPlaces)
+}
+S_GetPlaces::S_GetPlaces(const S_GetPlaces& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      places_(from.places_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_group_id().empty()) {
+    group_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_group_id(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:Protocol.S_GetPlaces)
+}
+
+void S_GetPlaces::SharedCtor() {
+group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+S_GetPlaces::~S_GetPlaces() {
+  // @@protoc_insertion_point(destructor:Protocol.S_GetPlaces)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void S_GetPlaces::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  group_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void S_GetPlaces::ArenaDtor(void* object) {
+  S_GetPlaces* _this = reinterpret_cast< S_GetPlaces* >(object);
+  (void)_this;
+}
+void S_GetPlaces::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void S_GetPlaces::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void S_GetPlaces::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.S_GetPlaces)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  places_.Clear();
+  group_id_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* S_GetPlaces::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string group_id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_group_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.S_GetPlaces.group_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // repeated .Protocol.LocationPlaceInfo places = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_places(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* S_GetPlaces::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.S_GetPlaces)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string group_id = 1;
+  if (!this->group_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_group_id().data(), static_cast<int>(this->_internal_group_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.S_GetPlaces.group_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_group_id(), target);
+  }
+
+  // repeated .Protocol.LocationPlaceInfo places = 2;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->_internal_places_size()); i < n; i++) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(2, this->_internal_places(i), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.S_GetPlaces)
+  return target;
+}
+
+size_t S_GetPlaces::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Protocol.S_GetPlaces)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .Protocol.LocationPlaceInfo places = 2;
+  total_size += 1UL * this->_internal_places_size();
+  for (const auto& msg : this->places_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // string group_id = 1;
+  if (!this->group_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_group_id());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void S_GetPlaces::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Protocol.S_GetPlaces)
+  GOOGLE_DCHECK_NE(&from, this);
+  const S_GetPlaces* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<S_GetPlaces>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Protocol.S_GetPlaces)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Protocol.S_GetPlaces)
+    MergeFrom(*source);
+  }
+}
+
+void S_GetPlaces::MergeFrom(const S_GetPlaces& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Protocol.S_GetPlaces)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  places_.MergeFrom(from.places_);
+  if (!from.group_id().empty()) {
+    _internal_set_group_id(from._internal_group_id());
+  }
+}
+
+void S_GetPlaces::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Protocol.S_GetPlaces)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void S_GetPlaces::CopyFrom(const S_GetPlaces& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.S_GetPlaces)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool S_GetPlaces::IsInitialized() const {
+  return true;
+}
+
+void S_GetPlaces::InternalSwap(S_GetPlaces* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  places_.InternalSwap(&other->places_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &group_id_, GetArenaForAllocation(),
+      &other->group_id_, other->GetArenaForAllocation()
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata S_GetPlaces::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
+      file_level_metadata_protocol_2eproto[148]);
+}
+
+// ===================================================================
+
+class C_SaveVisit::_Internal {
+ public:
+};
+
+C_SaveVisit::C_SaveVisit(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena),
+  photo_urls_(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Protocol.C_SaveVisit)
+}
+C_SaveVisit::C_SaveVisit(const C_SaveVisit& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      photo_urls_(from.photo_urls_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  place_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_place_id().empty()) {
+    place_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_place_id(), 
+      GetArenaForAllocation());
+  }
+  group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_group_id().empty()) {
+    group_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_group_id(), 
+      GetArenaForAllocation());
+  }
+  user_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_user_id().empty()) {
+    user_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_user_id(), 
+      GetArenaForAllocation());
+  }
+  user_name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_user_name().empty()) {
+    user_name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_user_name(), 
+      GetArenaForAllocation());
+  }
+  review_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_review().empty()) {
+    review_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_review(), 
+      GetArenaForAllocation());
+  }
+  ::memcpy(&visited_at_, &from.visited_at_,
+    static_cast<size_t>(reinterpret_cast<char*>(&rating_) -
+    reinterpret_cast<char*>(&visited_at_)) + sizeof(rating_));
+  // @@protoc_insertion_point(copy_constructor:Protocol.C_SaveVisit)
+}
+
+void C_SaveVisit::SharedCtor() {
+place_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+user_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+user_name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+review_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&visited_at_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&rating_) -
+    reinterpret_cast<char*>(&visited_at_)) + sizeof(rating_));
+}
+
+C_SaveVisit::~C_SaveVisit() {
+  // @@protoc_insertion_point(destructor:Protocol.C_SaveVisit)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void C_SaveVisit::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  place_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  group_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  user_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  user_name_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  review_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void C_SaveVisit::ArenaDtor(void* object) {
+  C_SaveVisit* _this = reinterpret_cast< C_SaveVisit* >(object);
+  (void)_this;
+}
+void C_SaveVisit::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void C_SaveVisit::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void C_SaveVisit::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.C_SaveVisit)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  photo_urls_.Clear();
+  place_id_.ClearToEmpty();
+  group_id_.ClearToEmpty();
+  user_id_.ClearToEmpty();
+  user_name_.ClearToEmpty();
+  review_.ClearToEmpty();
+  ::memset(&visited_at_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&rating_) -
+      reinterpret_cast<char*>(&visited_at_)) + sizeof(rating_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* C_SaveVisit::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string place_id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_place_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_SaveVisit.place_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string group_id = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_group_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_SaveVisit.group_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string user_id = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          auto str = _internal_mutable_user_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_SaveVisit.user_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string user_name = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+          auto str = _internal_mutable_user_name();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_SaveVisit.user_name"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // int32 rating = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 40)) {
+          rating_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string review = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 50)) {
+          auto str = _internal_mutable_review();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_SaveVisit.review"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // repeated string photo_urls = 7;
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 58)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            auto str = _internal_add_photo_urls();
+            ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+            CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_SaveVisit.photo_urls"));
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<58>(ptr));
+        } else goto handle_unusual;
+        continue;
+      // int64 visited_at = 8;
+      case 8:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 64)) {
+          visited_at_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* C_SaveVisit::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.C_SaveVisit)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string place_id = 1;
+  if (!this->place_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_place_id().data(), static_cast<int>(this->_internal_place_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_SaveVisit.place_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_place_id(), target);
+  }
+
+  // string group_id = 2;
+  if (!this->group_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_group_id().data(), static_cast<int>(this->_internal_group_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_SaveVisit.group_id");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_group_id(), target);
+  }
+
+  // string user_id = 3;
+  if (!this->user_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_user_id().data(), static_cast<int>(this->_internal_user_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_SaveVisit.user_id");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_user_id(), target);
+  }
+
+  // string user_name = 4;
+  if (!this->user_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_user_name().data(), static_cast<int>(this->_internal_user_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_SaveVisit.user_name");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_user_name(), target);
+  }
+
+  // int32 rating = 5;
+  if (this->rating() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(5, this->_internal_rating(), target);
+  }
+
+  // string review = 6;
+  if (!this->review().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_review().data(), static_cast<int>(this->_internal_review().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_SaveVisit.review");
+    target = stream->WriteStringMaybeAliased(
+        6, this->_internal_review(), target);
+  }
+
+  // repeated string photo_urls = 7;
+  for (int i = 0, n = this->_internal_photo_urls_size(); i < n; i++) {
+    const auto& s = this->_internal_photo_urls(i);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      s.data(), static_cast<int>(s.length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_SaveVisit.photo_urls");
+    target = stream->WriteString(7, s, target);
+  }
+
+  // int64 visited_at = 8;
+  if (this->visited_at() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(8, this->_internal_visited_at(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.C_SaveVisit)
+  return target;
+}
+
+size_t C_SaveVisit::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Protocol.C_SaveVisit)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated string photo_urls = 7;
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(photo_urls_.size());
+  for (int i = 0, n = photo_urls_.size(); i < n; i++) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+      photo_urls_.Get(i));
+  }
+
+  // string place_id = 1;
+  if (!this->place_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_place_id());
+  }
+
+  // string group_id = 2;
+  if (!this->group_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_group_id());
+  }
+
+  // string user_id = 3;
+  if (!this->user_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_user_id());
+  }
+
+  // string user_name = 4;
+  if (!this->user_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_user_name());
+  }
+
+  // string review = 6;
+  if (!this->review().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_review());
+  }
+
+  // int64 visited_at = 8;
+  if (this->visited_at() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64Size(
+        this->_internal_visited_at());
+  }
+
+  // int32 rating = 5;
+  if (this->rating() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_rating());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void C_SaveVisit::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Protocol.C_SaveVisit)
+  GOOGLE_DCHECK_NE(&from, this);
+  const C_SaveVisit* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<C_SaveVisit>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Protocol.C_SaveVisit)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Protocol.C_SaveVisit)
+    MergeFrom(*source);
+  }
+}
+
+void C_SaveVisit::MergeFrom(const C_SaveVisit& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Protocol.C_SaveVisit)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  photo_urls_.MergeFrom(from.photo_urls_);
+  if (!from.place_id().empty()) {
+    _internal_set_place_id(from._internal_place_id());
+  }
+  if (!from.group_id().empty()) {
+    _internal_set_group_id(from._internal_group_id());
+  }
+  if (!from.user_id().empty()) {
+    _internal_set_user_id(from._internal_user_id());
+  }
+  if (!from.user_name().empty()) {
+    _internal_set_user_name(from._internal_user_name());
+  }
+  if (!from.review().empty()) {
+    _internal_set_review(from._internal_review());
+  }
+  if (from.visited_at() != 0) {
+    _internal_set_visited_at(from._internal_visited_at());
+  }
+  if (from.rating() != 0) {
+    _internal_set_rating(from._internal_rating());
+  }
+}
+
+void C_SaveVisit::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Protocol.C_SaveVisit)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void C_SaveVisit::CopyFrom(const C_SaveVisit& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.C_SaveVisit)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool C_SaveVisit::IsInitialized() const {
+  return true;
+}
+
+void C_SaveVisit::InternalSwap(C_SaveVisit* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  photo_urls_.InternalSwap(&other->photo_urls_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &place_id_, GetArenaForAllocation(),
+      &other->place_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &group_id_, GetArenaForAllocation(),
+      &other->group_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &user_id_, GetArenaForAllocation(),
+      &other->user_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &user_name_, GetArenaForAllocation(),
+      &other->user_name_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &review_, GetArenaForAllocation(),
+      &other->review_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(C_SaveVisit, rating_)
+      + sizeof(C_SaveVisit::rating_)
+      - PROTOBUF_FIELD_OFFSET(C_SaveVisit, visited_at_)>(
+          reinterpret_cast<char*>(&visited_at_),
+          reinterpret_cast<char*>(&other->visited_at_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata C_SaveVisit::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
+      file_level_metadata_protocol_2eproto[149]);
+}
+
+// ===================================================================
+
+class S_SaveVisit::_Internal {
+ public:
+  static const ::Protocol::LocationVisitInfo& visit(const S_SaveVisit* msg);
+  static const ::Protocol::LocationPlaceInfo& place(const S_SaveVisit* msg);
+};
+
+const ::Protocol::LocationVisitInfo&
+S_SaveVisit::_Internal::visit(const S_SaveVisit* msg) {
+  return *msg->visit_;
+}
+const ::Protocol::LocationPlaceInfo&
+S_SaveVisit::_Internal::place(const S_SaveVisit* msg) {
+  return *msg->place_;
+}
+S_SaveVisit::S_SaveVisit(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Protocol.S_SaveVisit)
+}
+S_SaveVisit::S_SaveVisit(const S_SaveVisit& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  place_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_place_id().empty()) {
+    place_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_place_id(), 
+      GetArenaForAllocation());
+  }
+  if (from._internal_has_visit()) {
+    visit_ = new ::Protocol::LocationVisitInfo(*from.visit_);
+  } else {
+    visit_ = nullptr;
+  }
+  if (from._internal_has_place()) {
+    place_ = new ::Protocol::LocationPlaceInfo(*from.place_);
+  } else {
+    place_ = nullptr;
+  }
+  ::memcpy(&success_, &from.success_,
+    static_cast<size_t>(reinterpret_cast<char*>(&error_code_) -
+    reinterpret_cast<char*>(&success_)) + sizeof(error_code_));
+  // @@protoc_insertion_point(copy_constructor:Protocol.S_SaveVisit)
+}
+
+void S_SaveVisit::SharedCtor() {
+place_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&visit_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&error_code_) -
+    reinterpret_cast<char*>(&visit_)) + sizeof(error_code_));
+}
+
+S_SaveVisit::~S_SaveVisit() {
+  // @@protoc_insertion_point(destructor:Protocol.S_SaveVisit)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void S_SaveVisit::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  place_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (this != internal_default_instance()) delete visit_;
+  if (this != internal_default_instance()) delete place_;
+}
+
+void S_SaveVisit::ArenaDtor(void* object) {
+  S_SaveVisit* _this = reinterpret_cast< S_SaveVisit* >(object);
+  (void)_this;
+}
+void S_SaveVisit::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void S_SaveVisit::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void S_SaveVisit::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.S_SaveVisit)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  place_id_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && visit_ != nullptr) {
+    delete visit_;
+  }
+  visit_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && place_ != nullptr) {
+    delete place_;
+  }
+  place_ = nullptr;
+  ::memset(&success_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&error_code_) -
+      reinterpret_cast<char*>(&success_)) + sizeof(error_code_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* S_SaveVisit::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // bool success = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          success_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string place_id = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_place_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.S_SaveVisit.place_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .Protocol.LocationVisitInfo visit = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_visit(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .Protocol.LocationPlaceInfo place = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+          ptr = ctx->ParseMessage(_internal_mutable_place(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // int32 error_code = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 40)) {
+          error_code_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* S_SaveVisit::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.S_SaveVisit)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bool success = 1;
+  if (this->success() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(1, this->_internal_success(), target);
+  }
+
+  // string place_id = 2;
+  if (!this->place_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_place_id().data(), static_cast<int>(this->_internal_place_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.S_SaveVisit.place_id");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_place_id(), target);
+  }
+
+  // .Protocol.LocationVisitInfo visit = 3;
+  if (this->has_visit()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        3, _Internal::visit(this), target, stream);
+  }
+
+  // .Protocol.LocationPlaceInfo place = 4;
+  if (this->has_place()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        4, _Internal::place(this), target, stream);
+  }
+
+  // int32 error_code = 5;
+  if (this->error_code() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(5, this->_internal_error_code(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.S_SaveVisit)
+  return target;
+}
+
+size_t S_SaveVisit::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Protocol.S_SaveVisit)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string place_id = 2;
+  if (!this->place_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_place_id());
+  }
+
+  // .Protocol.LocationVisitInfo visit = 3;
+  if (this->has_visit()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *visit_);
+  }
+
+  // .Protocol.LocationPlaceInfo place = 4;
+  if (this->has_place()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *place_);
+  }
+
+  // bool success = 1;
+  if (this->success() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // int32 error_code = 5;
+  if (this->error_code() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_error_code());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void S_SaveVisit::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Protocol.S_SaveVisit)
+  GOOGLE_DCHECK_NE(&from, this);
+  const S_SaveVisit* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<S_SaveVisit>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Protocol.S_SaveVisit)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Protocol.S_SaveVisit)
+    MergeFrom(*source);
+  }
+}
+
+void S_SaveVisit::MergeFrom(const S_SaveVisit& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Protocol.S_SaveVisit)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from.place_id().empty()) {
+    _internal_set_place_id(from._internal_place_id());
+  }
+  if (from.has_visit()) {
+    _internal_mutable_visit()->::Protocol::LocationVisitInfo::MergeFrom(from._internal_visit());
+  }
+  if (from.has_place()) {
+    _internal_mutable_place()->::Protocol::LocationPlaceInfo::MergeFrom(from._internal_place());
+  }
+  if (from.success() != 0) {
+    _internal_set_success(from._internal_success());
+  }
+  if (from.error_code() != 0) {
+    _internal_set_error_code(from._internal_error_code());
+  }
+}
+
+void S_SaveVisit::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Protocol.S_SaveVisit)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void S_SaveVisit::CopyFrom(const S_SaveVisit& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.S_SaveVisit)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool S_SaveVisit::IsInitialized() const {
+  return true;
+}
+
+void S_SaveVisit::InternalSwap(S_SaveVisit* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &place_id_, GetArenaForAllocation(),
+      &other->place_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(S_SaveVisit, error_code_)
+      + sizeof(S_SaveVisit::error_code_)
+      - PROTOBUF_FIELD_OFFSET(S_SaveVisit, visit_)>(
+          reinterpret_cast<char*>(&visit_),
+          reinterpret_cast<char*>(&other->visit_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata S_SaveVisit::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
+      file_level_metadata_protocol_2eproto[150]);
+}
+
+// ===================================================================
+
+class C_DeletePlace::_Internal {
+ public:
+};
+
+C_DeletePlace::C_DeletePlace(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Protocol.C_DeletePlace)
+}
+C_DeletePlace::C_DeletePlace(const C_DeletePlace& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  place_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_place_id().empty()) {
+    place_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_place_id(), 
+      GetArenaForAllocation());
+  }
+  group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_group_id().empty()) {
+    group_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_group_id(), 
+      GetArenaForAllocation());
+  }
+  user_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_user_id().empty()) {
+    user_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_user_id(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:Protocol.C_DeletePlace)
+}
+
+void C_DeletePlace::SharedCtor() {
+place_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+user_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+C_DeletePlace::~C_DeletePlace() {
+  // @@protoc_insertion_point(destructor:Protocol.C_DeletePlace)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void C_DeletePlace::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  place_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  group_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  user_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void C_DeletePlace::ArenaDtor(void* object) {
+  C_DeletePlace* _this = reinterpret_cast< C_DeletePlace* >(object);
+  (void)_this;
+}
+void C_DeletePlace::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void C_DeletePlace::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void C_DeletePlace::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.C_DeletePlace)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  place_id_.ClearToEmpty();
+  group_id_.ClearToEmpty();
+  user_id_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* C_DeletePlace::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string place_id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_place_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_DeletePlace.place_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string group_id = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_group_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_DeletePlace.group_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string user_id = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          auto str = _internal_mutable_user_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_DeletePlace.user_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* C_DeletePlace::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.C_DeletePlace)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string place_id = 1;
+  if (!this->place_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_place_id().data(), static_cast<int>(this->_internal_place_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_DeletePlace.place_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_place_id(), target);
+  }
+
+  // string group_id = 2;
+  if (!this->group_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_group_id().data(), static_cast<int>(this->_internal_group_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_DeletePlace.group_id");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_group_id(), target);
+  }
+
+  // string user_id = 3;
+  if (!this->user_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_user_id().data(), static_cast<int>(this->_internal_user_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_DeletePlace.user_id");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_user_id(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.C_DeletePlace)
+  return target;
+}
+
+size_t C_DeletePlace::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Protocol.C_DeletePlace)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string place_id = 1;
+  if (!this->place_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_place_id());
+  }
+
+  // string group_id = 2;
+  if (!this->group_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_group_id());
+  }
+
+  // string user_id = 3;
+  if (!this->user_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_user_id());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void C_DeletePlace::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Protocol.C_DeletePlace)
+  GOOGLE_DCHECK_NE(&from, this);
+  const C_DeletePlace* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<C_DeletePlace>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Protocol.C_DeletePlace)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Protocol.C_DeletePlace)
+    MergeFrom(*source);
+  }
+}
+
+void C_DeletePlace::MergeFrom(const C_DeletePlace& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Protocol.C_DeletePlace)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from.place_id().empty()) {
+    _internal_set_place_id(from._internal_place_id());
+  }
+  if (!from.group_id().empty()) {
+    _internal_set_group_id(from._internal_group_id());
+  }
+  if (!from.user_id().empty()) {
+    _internal_set_user_id(from._internal_user_id());
+  }
+}
+
+void C_DeletePlace::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Protocol.C_DeletePlace)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void C_DeletePlace::CopyFrom(const C_DeletePlace& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.C_DeletePlace)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool C_DeletePlace::IsInitialized() const {
+  return true;
+}
+
+void C_DeletePlace::InternalSwap(C_DeletePlace* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &place_id_, GetArenaForAllocation(),
+      &other->place_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &group_id_, GetArenaForAllocation(),
+      &other->group_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &user_id_, GetArenaForAllocation(),
+      &other->user_id_, other->GetArenaForAllocation()
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata C_DeletePlace::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
+      file_level_metadata_protocol_2eproto[151]);
+}
+
+// ===================================================================
+
+class S_DeletePlace::_Internal {
+ public:
+};
+
+S_DeletePlace::S_DeletePlace(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Protocol.S_DeletePlace)
+}
+S_DeletePlace::S_DeletePlace(const S_DeletePlace& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  place_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_place_id().empty()) {
+    place_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_place_id(), 
+      GetArenaForAllocation());
+  }
+  group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_group_id().empty()) {
+    group_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_group_id(), 
+      GetArenaForAllocation());
+  }
+  ::memcpy(&success_, &from.success_,
+    static_cast<size_t>(reinterpret_cast<char*>(&error_code_) -
+    reinterpret_cast<char*>(&success_)) + sizeof(error_code_));
+  // @@protoc_insertion_point(copy_constructor:Protocol.S_DeletePlace)
+}
+
+void S_DeletePlace::SharedCtor() {
+place_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&success_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&error_code_) -
+    reinterpret_cast<char*>(&success_)) + sizeof(error_code_));
+}
+
+S_DeletePlace::~S_DeletePlace() {
+  // @@protoc_insertion_point(destructor:Protocol.S_DeletePlace)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void S_DeletePlace::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  place_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  group_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void S_DeletePlace::ArenaDtor(void* object) {
+  S_DeletePlace* _this = reinterpret_cast< S_DeletePlace* >(object);
+  (void)_this;
+}
+void S_DeletePlace::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void S_DeletePlace::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void S_DeletePlace::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.S_DeletePlace)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  place_id_.ClearToEmpty();
+  group_id_.ClearToEmpty();
+  ::memset(&success_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&error_code_) -
+      reinterpret_cast<char*>(&success_)) + sizeof(error_code_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* S_DeletePlace::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // bool success = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          success_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string place_id = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_place_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.S_DeletePlace.place_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string group_id = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          auto str = _internal_mutable_group_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.S_DeletePlace.group_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // int32 error_code = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 32)) {
+          error_code_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* S_DeletePlace::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.S_DeletePlace)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bool success = 1;
+  if (this->success() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(1, this->_internal_success(), target);
+  }
+
+  // string place_id = 2;
+  if (!this->place_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_place_id().data(), static_cast<int>(this->_internal_place_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.S_DeletePlace.place_id");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_place_id(), target);
+  }
+
+  // string group_id = 3;
+  if (!this->group_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_group_id().data(), static_cast<int>(this->_internal_group_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.S_DeletePlace.group_id");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_group_id(), target);
+  }
+
+  // int32 error_code = 4;
+  if (this->error_code() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(4, this->_internal_error_code(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.S_DeletePlace)
+  return target;
+}
+
+size_t S_DeletePlace::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Protocol.S_DeletePlace)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string place_id = 2;
+  if (!this->place_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_place_id());
+  }
+
+  // string group_id = 3;
+  if (!this->group_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_group_id());
+  }
+
+  // bool success = 1;
+  if (this->success() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // int32 error_code = 4;
+  if (this->error_code() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_error_code());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void S_DeletePlace::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Protocol.S_DeletePlace)
+  GOOGLE_DCHECK_NE(&from, this);
+  const S_DeletePlace* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<S_DeletePlace>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Protocol.S_DeletePlace)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Protocol.S_DeletePlace)
+    MergeFrom(*source);
+  }
+}
+
+void S_DeletePlace::MergeFrom(const S_DeletePlace& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Protocol.S_DeletePlace)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from.place_id().empty()) {
+    _internal_set_place_id(from._internal_place_id());
+  }
+  if (!from.group_id().empty()) {
+    _internal_set_group_id(from._internal_group_id());
+  }
+  if (from.success() != 0) {
+    _internal_set_success(from._internal_success());
+  }
+  if (from.error_code() != 0) {
+    _internal_set_error_code(from._internal_error_code());
+  }
+}
+
+void S_DeletePlace::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Protocol.S_DeletePlace)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void S_DeletePlace::CopyFrom(const S_DeletePlace& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.S_DeletePlace)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool S_DeletePlace::IsInitialized() const {
+  return true;
+}
+
+void S_DeletePlace::InternalSwap(S_DeletePlace* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &place_id_, GetArenaForAllocation(),
+      &other->place_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &group_id_, GetArenaForAllocation(),
+      &other->group_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(S_DeletePlace, error_code_)
+      + sizeof(S_DeletePlace::error_code_)
+      - PROTOBUF_FIELD_OFFSET(S_DeletePlace, success_)>(
+          reinterpret_cast<char*>(&success_),
+          reinterpret_cast<char*>(&other->success_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata S_DeletePlace::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
+      file_level_metadata_protocol_2eproto[152]);
+}
+
+// ===================================================================
+
+class C_UpdateVisit::_Internal {
+ public:
+};
+
+C_UpdateVisit::C_UpdateVisit(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena),
+  photo_urls_(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Protocol.C_UpdateVisit)
+}
+C_UpdateVisit::C_UpdateVisit(const C_UpdateVisit& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      photo_urls_(from.photo_urls_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  visit_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_visit_id().empty()) {
+    visit_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_visit_id(), 
+      GetArenaForAllocation());
+  }
+  place_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_place_id().empty()) {
+    place_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_place_id(), 
+      GetArenaForAllocation());
+  }
+  group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_group_id().empty()) {
+    group_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_group_id(), 
+      GetArenaForAllocation());
+  }
+  user_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_user_id().empty()) {
+    user_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_user_id(), 
+      GetArenaForAllocation());
+  }
+  review_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_review().empty()) {
+    review_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_review(), 
+      GetArenaForAllocation());
+  }
+  ::memcpy(&visited_at_, &from.visited_at_,
+    static_cast<size_t>(reinterpret_cast<char*>(&rating_) -
+    reinterpret_cast<char*>(&visited_at_)) + sizeof(rating_));
+  // @@protoc_insertion_point(copy_constructor:Protocol.C_UpdateVisit)
+}
+
+void C_UpdateVisit::SharedCtor() {
+visit_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+place_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+user_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+review_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&visited_at_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&rating_) -
+    reinterpret_cast<char*>(&visited_at_)) + sizeof(rating_));
+}
+
+C_UpdateVisit::~C_UpdateVisit() {
+  // @@protoc_insertion_point(destructor:Protocol.C_UpdateVisit)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void C_UpdateVisit::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  visit_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  place_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  group_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  user_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  review_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void C_UpdateVisit::ArenaDtor(void* object) {
+  C_UpdateVisit* _this = reinterpret_cast< C_UpdateVisit* >(object);
+  (void)_this;
+}
+void C_UpdateVisit::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void C_UpdateVisit::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void C_UpdateVisit::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.C_UpdateVisit)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  photo_urls_.Clear();
+  visit_id_.ClearToEmpty();
+  place_id_.ClearToEmpty();
+  group_id_.ClearToEmpty();
+  user_id_.ClearToEmpty();
+  review_.ClearToEmpty();
+  ::memset(&visited_at_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&rating_) -
+      reinterpret_cast<char*>(&visited_at_)) + sizeof(rating_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* C_UpdateVisit::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string visit_id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_visit_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_UpdateVisit.visit_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string place_id = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_place_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_UpdateVisit.place_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string group_id = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          auto str = _internal_mutable_group_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_UpdateVisit.group_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string user_id = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+          auto str = _internal_mutable_user_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_UpdateVisit.user_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // int32 rating = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 40)) {
+          rating_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string review = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 50)) {
+          auto str = _internal_mutable_review();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_UpdateVisit.review"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // repeated string photo_urls = 7;
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 58)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            auto str = _internal_add_photo_urls();
+            ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+            CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_UpdateVisit.photo_urls"));
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<58>(ptr));
+        } else goto handle_unusual;
+        continue;
+      // int64 visited_at = 8;
+      case 8:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 64)) {
+          visited_at_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* C_UpdateVisit::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.C_UpdateVisit)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string visit_id = 1;
+  if (!this->visit_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_visit_id().data(), static_cast<int>(this->_internal_visit_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_UpdateVisit.visit_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_visit_id(), target);
+  }
+
+  // string place_id = 2;
+  if (!this->place_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_place_id().data(), static_cast<int>(this->_internal_place_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_UpdateVisit.place_id");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_place_id(), target);
+  }
+
+  // string group_id = 3;
+  if (!this->group_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_group_id().data(), static_cast<int>(this->_internal_group_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_UpdateVisit.group_id");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_group_id(), target);
+  }
+
+  // string user_id = 4;
+  if (!this->user_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_user_id().data(), static_cast<int>(this->_internal_user_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_UpdateVisit.user_id");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_user_id(), target);
+  }
+
+  // int32 rating = 5;
+  if (this->rating() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(5, this->_internal_rating(), target);
+  }
+
+  // string review = 6;
+  if (!this->review().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_review().data(), static_cast<int>(this->_internal_review().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_UpdateVisit.review");
+    target = stream->WriteStringMaybeAliased(
+        6, this->_internal_review(), target);
+  }
+
+  // repeated string photo_urls = 7;
+  for (int i = 0, n = this->_internal_photo_urls_size(); i < n; i++) {
+    const auto& s = this->_internal_photo_urls(i);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      s.data(), static_cast<int>(s.length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_UpdateVisit.photo_urls");
+    target = stream->WriteString(7, s, target);
+  }
+
+  // int64 visited_at = 8;
+  if (this->visited_at() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(8, this->_internal_visited_at(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.C_UpdateVisit)
+  return target;
+}
+
+size_t C_UpdateVisit::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Protocol.C_UpdateVisit)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated string photo_urls = 7;
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(photo_urls_.size());
+  for (int i = 0, n = photo_urls_.size(); i < n; i++) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+      photo_urls_.Get(i));
+  }
+
+  // string visit_id = 1;
+  if (!this->visit_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_visit_id());
+  }
+
+  // string place_id = 2;
+  if (!this->place_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_place_id());
+  }
+
+  // string group_id = 3;
+  if (!this->group_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_group_id());
+  }
+
+  // string user_id = 4;
+  if (!this->user_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_user_id());
+  }
+
+  // string review = 6;
+  if (!this->review().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_review());
+  }
+
+  // int64 visited_at = 8;
+  if (this->visited_at() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64Size(
+        this->_internal_visited_at());
+  }
+
+  // int32 rating = 5;
+  if (this->rating() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_rating());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void C_UpdateVisit::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Protocol.C_UpdateVisit)
+  GOOGLE_DCHECK_NE(&from, this);
+  const C_UpdateVisit* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<C_UpdateVisit>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Protocol.C_UpdateVisit)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Protocol.C_UpdateVisit)
+    MergeFrom(*source);
+  }
+}
+
+void C_UpdateVisit::MergeFrom(const C_UpdateVisit& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Protocol.C_UpdateVisit)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  photo_urls_.MergeFrom(from.photo_urls_);
+  if (!from.visit_id().empty()) {
+    _internal_set_visit_id(from._internal_visit_id());
+  }
+  if (!from.place_id().empty()) {
+    _internal_set_place_id(from._internal_place_id());
+  }
+  if (!from.group_id().empty()) {
+    _internal_set_group_id(from._internal_group_id());
+  }
+  if (!from.user_id().empty()) {
+    _internal_set_user_id(from._internal_user_id());
+  }
+  if (!from.review().empty()) {
+    _internal_set_review(from._internal_review());
+  }
+  if (from.visited_at() != 0) {
+    _internal_set_visited_at(from._internal_visited_at());
+  }
+  if (from.rating() != 0) {
+    _internal_set_rating(from._internal_rating());
+  }
+}
+
+void C_UpdateVisit::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Protocol.C_UpdateVisit)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void C_UpdateVisit::CopyFrom(const C_UpdateVisit& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.C_UpdateVisit)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool C_UpdateVisit::IsInitialized() const {
+  return true;
+}
+
+void C_UpdateVisit::InternalSwap(C_UpdateVisit* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  photo_urls_.InternalSwap(&other->photo_urls_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &visit_id_, GetArenaForAllocation(),
+      &other->visit_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &place_id_, GetArenaForAllocation(),
+      &other->place_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &group_id_, GetArenaForAllocation(),
+      &other->group_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &user_id_, GetArenaForAllocation(),
+      &other->user_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &review_, GetArenaForAllocation(),
+      &other->review_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(C_UpdateVisit, rating_)
+      + sizeof(C_UpdateVisit::rating_)
+      - PROTOBUF_FIELD_OFFSET(C_UpdateVisit, visited_at_)>(
+          reinterpret_cast<char*>(&visited_at_),
+          reinterpret_cast<char*>(&other->visited_at_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata C_UpdateVisit::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
+      file_level_metadata_protocol_2eproto[153]);
+}
+
+// ===================================================================
+
+class S_UpdateVisit::_Internal {
+ public:
+  static const ::Protocol::LocationVisitInfo& visit(const S_UpdateVisit* msg);
+  static const ::Protocol::LocationPlaceInfo& place(const S_UpdateVisit* msg);
+};
+
+const ::Protocol::LocationVisitInfo&
+S_UpdateVisit::_Internal::visit(const S_UpdateVisit* msg) {
+  return *msg->visit_;
+}
+const ::Protocol::LocationPlaceInfo&
+S_UpdateVisit::_Internal::place(const S_UpdateVisit* msg) {
+  return *msg->place_;
+}
+S_UpdateVisit::S_UpdateVisit(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Protocol.S_UpdateVisit)
+}
+S_UpdateVisit::S_UpdateVisit(const S_UpdateVisit& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_visit()) {
+    visit_ = new ::Protocol::LocationVisitInfo(*from.visit_);
+  } else {
+    visit_ = nullptr;
+  }
+  if (from._internal_has_place()) {
+    place_ = new ::Protocol::LocationPlaceInfo(*from.place_);
+  } else {
+    place_ = nullptr;
+  }
+  ::memcpy(&success_, &from.success_,
+    static_cast<size_t>(reinterpret_cast<char*>(&error_code_) -
+    reinterpret_cast<char*>(&success_)) + sizeof(error_code_));
+  // @@protoc_insertion_point(copy_constructor:Protocol.S_UpdateVisit)
+}
+
+void S_UpdateVisit::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&visit_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&error_code_) -
+    reinterpret_cast<char*>(&visit_)) + sizeof(error_code_));
+}
+
+S_UpdateVisit::~S_UpdateVisit() {
+  // @@protoc_insertion_point(destructor:Protocol.S_UpdateVisit)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void S_UpdateVisit::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  if (this != internal_default_instance()) delete visit_;
+  if (this != internal_default_instance()) delete place_;
+}
+
+void S_UpdateVisit::ArenaDtor(void* object) {
+  S_UpdateVisit* _this = reinterpret_cast< S_UpdateVisit* >(object);
+  (void)_this;
+}
+void S_UpdateVisit::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void S_UpdateVisit::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void S_UpdateVisit::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.S_UpdateVisit)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  if (GetArenaForAllocation() == nullptr && visit_ != nullptr) {
+    delete visit_;
+  }
+  visit_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && place_ != nullptr) {
+    delete place_;
+  }
+  place_ = nullptr;
+  ::memset(&success_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&error_code_) -
+      reinterpret_cast<char*>(&success_)) + sizeof(error_code_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* S_UpdateVisit::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // bool success = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          success_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .Protocol.LocationVisitInfo visit = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          ptr = ctx->ParseMessage(_internal_mutable_visit(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .Protocol.LocationPlaceInfo place = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_place(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // int32 error_code = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 32)) {
+          error_code_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* S_UpdateVisit::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.S_UpdateVisit)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bool success = 1;
+  if (this->success() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(1, this->_internal_success(), target);
+  }
+
+  // .Protocol.LocationVisitInfo visit = 2;
+  if (this->has_visit()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        2, _Internal::visit(this), target, stream);
+  }
+
+  // .Protocol.LocationPlaceInfo place = 3;
+  if (this->has_place()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        3, _Internal::place(this), target, stream);
+  }
+
+  // int32 error_code = 4;
+  if (this->error_code() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(4, this->_internal_error_code(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.S_UpdateVisit)
+  return target;
+}
+
+size_t S_UpdateVisit::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Protocol.S_UpdateVisit)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .Protocol.LocationVisitInfo visit = 2;
+  if (this->has_visit()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *visit_);
+  }
+
+  // .Protocol.LocationPlaceInfo place = 3;
+  if (this->has_place()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *place_);
+  }
+
+  // bool success = 1;
+  if (this->success() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // int32 error_code = 4;
+  if (this->error_code() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_error_code());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void S_UpdateVisit::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Protocol.S_UpdateVisit)
+  GOOGLE_DCHECK_NE(&from, this);
+  const S_UpdateVisit* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<S_UpdateVisit>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Protocol.S_UpdateVisit)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Protocol.S_UpdateVisit)
+    MergeFrom(*source);
+  }
+}
+
+void S_UpdateVisit::MergeFrom(const S_UpdateVisit& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Protocol.S_UpdateVisit)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.has_visit()) {
+    _internal_mutable_visit()->::Protocol::LocationVisitInfo::MergeFrom(from._internal_visit());
+  }
+  if (from.has_place()) {
+    _internal_mutable_place()->::Protocol::LocationPlaceInfo::MergeFrom(from._internal_place());
+  }
+  if (from.success() != 0) {
+    _internal_set_success(from._internal_success());
+  }
+  if (from.error_code() != 0) {
+    _internal_set_error_code(from._internal_error_code());
+  }
+}
+
+void S_UpdateVisit::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Protocol.S_UpdateVisit)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void S_UpdateVisit::CopyFrom(const S_UpdateVisit& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.S_UpdateVisit)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool S_UpdateVisit::IsInitialized() const {
+  return true;
+}
+
+void S_UpdateVisit::InternalSwap(S_UpdateVisit* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(S_UpdateVisit, error_code_)
+      + sizeof(S_UpdateVisit::error_code_)
+      - PROTOBUF_FIELD_OFFSET(S_UpdateVisit, visit_)>(
+          reinterpret_cast<char*>(&visit_),
+          reinterpret_cast<char*>(&other->visit_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata S_UpdateVisit::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
+      file_level_metadata_protocol_2eproto[154]);
+}
+
+// ===================================================================
+
+class C_DeleteVisit::_Internal {
+ public:
+};
+
+C_DeleteVisit::C_DeleteVisit(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Protocol.C_DeleteVisit)
+}
+C_DeleteVisit::C_DeleteVisit(const C_DeleteVisit& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  visit_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_visit_id().empty()) {
+    visit_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_visit_id(), 
+      GetArenaForAllocation());
+  }
+  place_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_place_id().empty()) {
+    place_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_place_id(), 
+      GetArenaForAllocation());
+  }
+  group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_group_id().empty()) {
+    group_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_group_id(), 
+      GetArenaForAllocation());
+  }
+  user_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_user_id().empty()) {
+    user_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_user_id(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:Protocol.C_DeleteVisit)
+}
+
+void C_DeleteVisit::SharedCtor() {
+visit_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+place_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+user_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+C_DeleteVisit::~C_DeleteVisit() {
+  // @@protoc_insertion_point(destructor:Protocol.C_DeleteVisit)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void C_DeleteVisit::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  visit_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  place_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  group_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  user_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void C_DeleteVisit::ArenaDtor(void* object) {
+  C_DeleteVisit* _this = reinterpret_cast< C_DeleteVisit* >(object);
+  (void)_this;
+}
+void C_DeleteVisit::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void C_DeleteVisit::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void C_DeleteVisit::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.C_DeleteVisit)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  visit_id_.ClearToEmpty();
+  place_id_.ClearToEmpty();
+  group_id_.ClearToEmpty();
+  user_id_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* C_DeleteVisit::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string visit_id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_visit_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_DeleteVisit.visit_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string place_id = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_place_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_DeleteVisit.place_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string group_id = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          auto str = _internal_mutable_group_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_DeleteVisit.group_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string user_id = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+          auto str = _internal_mutable_user_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_DeleteVisit.user_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* C_DeleteVisit::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.C_DeleteVisit)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string visit_id = 1;
+  if (!this->visit_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_visit_id().data(), static_cast<int>(this->_internal_visit_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_DeleteVisit.visit_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_visit_id(), target);
+  }
+
+  // string place_id = 2;
+  if (!this->place_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_place_id().data(), static_cast<int>(this->_internal_place_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_DeleteVisit.place_id");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_place_id(), target);
+  }
+
+  // string group_id = 3;
+  if (!this->group_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_group_id().data(), static_cast<int>(this->_internal_group_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_DeleteVisit.group_id");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_group_id(), target);
+  }
+
+  // string user_id = 4;
+  if (!this->user_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_user_id().data(), static_cast<int>(this->_internal_user_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_DeleteVisit.user_id");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_user_id(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.C_DeleteVisit)
+  return target;
+}
+
+size_t C_DeleteVisit::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Protocol.C_DeleteVisit)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string visit_id = 1;
+  if (!this->visit_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_visit_id());
+  }
+
+  // string place_id = 2;
+  if (!this->place_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_place_id());
+  }
+
+  // string group_id = 3;
+  if (!this->group_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_group_id());
+  }
+
+  // string user_id = 4;
+  if (!this->user_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_user_id());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void C_DeleteVisit::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Protocol.C_DeleteVisit)
+  GOOGLE_DCHECK_NE(&from, this);
+  const C_DeleteVisit* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<C_DeleteVisit>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Protocol.C_DeleteVisit)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Protocol.C_DeleteVisit)
+    MergeFrom(*source);
+  }
+}
+
+void C_DeleteVisit::MergeFrom(const C_DeleteVisit& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Protocol.C_DeleteVisit)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from.visit_id().empty()) {
+    _internal_set_visit_id(from._internal_visit_id());
+  }
+  if (!from.place_id().empty()) {
+    _internal_set_place_id(from._internal_place_id());
+  }
+  if (!from.group_id().empty()) {
+    _internal_set_group_id(from._internal_group_id());
+  }
+  if (!from.user_id().empty()) {
+    _internal_set_user_id(from._internal_user_id());
+  }
+}
+
+void C_DeleteVisit::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Protocol.C_DeleteVisit)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void C_DeleteVisit::CopyFrom(const C_DeleteVisit& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.C_DeleteVisit)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool C_DeleteVisit::IsInitialized() const {
+  return true;
+}
+
+void C_DeleteVisit::InternalSwap(C_DeleteVisit* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &visit_id_, GetArenaForAllocation(),
+      &other->visit_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &place_id_, GetArenaForAllocation(),
+      &other->place_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &group_id_, GetArenaForAllocation(),
+      &other->group_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &user_id_, GetArenaForAllocation(),
+      &other->user_id_, other->GetArenaForAllocation()
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata C_DeleteVisit::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
+      file_level_metadata_protocol_2eproto[155]);
+}
+
+// ===================================================================
+
+class S_DeleteVisit::_Internal {
+ public:
+};
+
+S_DeleteVisit::S_DeleteVisit(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Protocol.S_DeleteVisit)
+}
+S_DeleteVisit::S_DeleteVisit(const S_DeleteVisit& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  visit_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_visit_id().empty()) {
+    visit_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_visit_id(), 
+      GetArenaForAllocation());
+  }
+  place_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_place_id().empty()) {
+    place_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_place_id(), 
+      GetArenaForAllocation());
+  }
+  group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_group_id().empty()) {
+    group_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_group_id(), 
+      GetArenaForAllocation());
+  }
+  ::memcpy(&success_, &from.success_,
+    static_cast<size_t>(reinterpret_cast<char*>(&error_code_) -
+    reinterpret_cast<char*>(&success_)) + sizeof(error_code_));
+  // @@protoc_insertion_point(copy_constructor:Protocol.S_DeleteVisit)
+}
+
+void S_DeleteVisit::SharedCtor() {
+visit_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+place_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&success_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&error_code_) -
+    reinterpret_cast<char*>(&success_)) + sizeof(error_code_));
+}
+
+S_DeleteVisit::~S_DeleteVisit() {
+  // @@protoc_insertion_point(destructor:Protocol.S_DeleteVisit)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void S_DeleteVisit::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  visit_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  place_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  group_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void S_DeleteVisit::ArenaDtor(void* object) {
+  S_DeleteVisit* _this = reinterpret_cast< S_DeleteVisit* >(object);
+  (void)_this;
+}
+void S_DeleteVisit::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void S_DeleteVisit::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void S_DeleteVisit::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.S_DeleteVisit)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  visit_id_.ClearToEmpty();
+  place_id_.ClearToEmpty();
+  group_id_.ClearToEmpty();
+  ::memset(&success_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&error_code_) -
+      reinterpret_cast<char*>(&success_)) + sizeof(error_code_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* S_DeleteVisit::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // bool success = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          success_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string visit_id = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_visit_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.S_DeleteVisit.visit_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string place_id = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          auto str = _internal_mutable_place_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.S_DeleteVisit.place_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string group_id = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+          auto str = _internal_mutable_group_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.S_DeleteVisit.group_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // bool place_deleted = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 40)) {
+          place_deleted_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // int32 error_code = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 48)) {
+          error_code_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* S_DeleteVisit::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.S_DeleteVisit)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bool success = 1;
+  if (this->success() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(1, this->_internal_success(), target);
+  }
+
+  // string visit_id = 2;
+  if (!this->visit_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_visit_id().data(), static_cast<int>(this->_internal_visit_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.S_DeleteVisit.visit_id");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_visit_id(), target);
+  }
+
+  // string place_id = 3;
+  if (!this->place_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_place_id().data(), static_cast<int>(this->_internal_place_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.S_DeleteVisit.place_id");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_place_id(), target);
+  }
+
+  // string group_id = 4;
+  if (!this->group_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_group_id().data(), static_cast<int>(this->_internal_group_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.S_DeleteVisit.group_id");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_group_id(), target);
+  }
+
+  // bool place_deleted = 5;
+  if (this->place_deleted() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(5, this->_internal_place_deleted(), target);
+  }
+
+  // int32 error_code = 6;
+  if (this->error_code() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(6, this->_internal_error_code(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.S_DeleteVisit)
+  return target;
+}
+
+size_t S_DeleteVisit::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Protocol.S_DeleteVisit)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string visit_id = 2;
+  if (!this->visit_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_visit_id());
+  }
+
+  // string place_id = 3;
+  if (!this->place_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_place_id());
+  }
+
+  // string group_id = 4;
+  if (!this->group_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_group_id());
+  }
+
+  // bool success = 1;
+  if (this->success() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // bool place_deleted = 5;
+  if (this->place_deleted() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // int32 error_code = 6;
+  if (this->error_code() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_error_code());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void S_DeleteVisit::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Protocol.S_DeleteVisit)
+  GOOGLE_DCHECK_NE(&from, this);
+  const S_DeleteVisit* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<S_DeleteVisit>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Protocol.S_DeleteVisit)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Protocol.S_DeleteVisit)
+    MergeFrom(*source);
+  }
+}
+
+void S_DeleteVisit::MergeFrom(const S_DeleteVisit& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Protocol.S_DeleteVisit)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from.visit_id().empty()) {
+    _internal_set_visit_id(from._internal_visit_id());
+  }
+  if (!from.place_id().empty()) {
+    _internal_set_place_id(from._internal_place_id());
+  }
+  if (!from.group_id().empty()) {
+    _internal_set_group_id(from._internal_group_id());
+  }
+  if (from.success() != 0) {
+    _internal_set_success(from._internal_success());
+  }
+  if (from.place_deleted() != 0) {
+    _internal_set_place_deleted(from._internal_place_deleted());
+  }
+  if (from.error_code() != 0) {
+    _internal_set_error_code(from._internal_error_code());
+  }
+}
+
+void S_DeleteVisit::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Protocol.S_DeleteVisit)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void S_DeleteVisit::CopyFrom(const S_DeleteVisit& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.S_DeleteVisit)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool S_DeleteVisit::IsInitialized() const {
+  return true;
+}
+
+void S_DeleteVisit::InternalSwap(S_DeleteVisit* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &visit_id_, GetArenaForAllocation(),
+      &other->visit_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &place_id_, GetArenaForAllocation(),
+      &other->place_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &group_id_, GetArenaForAllocation(),
+      &other->group_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(S_DeleteVisit, error_code_)
+      + sizeof(S_DeleteVisit::error_code_)
+      - PROTOBUF_FIELD_OFFSET(S_DeleteVisit, success_)>(
+          reinterpret_cast<char*>(&success_),
+          reinterpret_cast<char*>(&other->success_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata S_DeleteVisit::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
+      file_level_metadata_protocol_2eproto[156]);
+}
+
+// ===================================================================
+
 class S_Error::_Internal {
  public:
 };
@@ -42312,7 +58192,7 @@ void S_Error::InternalSwap(S_Error* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata S_Error::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[119]);
+      file_level_metadata_protocol_2eproto[157]);
 }
 
 // ===================================================================
@@ -42470,7 +58350,7 @@ void C_Heartbeat::InternalSwap(C_Heartbeat* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata C_Heartbeat::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[120]);
+      file_level_metadata_protocol_2eproto[158]);
 }
 
 // ===================================================================
@@ -42628,7 +58508,7 @@ void S_Heartbeat::InternalSwap(S_Heartbeat* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata S_Heartbeat::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[121]);
+      file_level_metadata_protocol_2eproto[159]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
@@ -42990,6 +58870,120 @@ template<> PROTOBUF_NOINLINE ::Protocol::S_SocialLogin* Arena::CreateMaybeMessag
 }
 template<> PROTOBUF_NOINLINE ::Protocol::C_CompleteSocialSignup* Arena::CreateMaybeMessage< ::Protocol::C_CompleteSocialSignup >(Arena* arena) {
   return Arena::CreateMessageInternal< ::Protocol::C_CompleteSocialSignup >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Protocol::Album* Arena::CreateMaybeMessage< ::Protocol::Album >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::Album >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Protocol::AlbumPhoto* Arena::CreateMaybeMessage< ::Protocol::AlbumPhoto >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::AlbumPhoto >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Protocol::PhotoComment* Arena::CreateMaybeMessage< ::Protocol::PhotoComment >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::PhotoComment >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Protocol::C_CreateAlbum* Arena::CreateMaybeMessage< ::Protocol::C_CreateAlbum >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::C_CreateAlbum >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Protocol::S_CreateAlbum* Arena::CreateMaybeMessage< ::Protocol::S_CreateAlbum >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::S_CreateAlbum >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Protocol::C_GetAlbums* Arena::CreateMaybeMessage< ::Protocol::C_GetAlbums >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::C_GetAlbums >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Protocol::S_GetAlbums* Arena::CreateMaybeMessage< ::Protocol::S_GetAlbums >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::S_GetAlbums >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Protocol::C_AddPhotoToAlbum* Arena::CreateMaybeMessage< ::Protocol::C_AddPhotoToAlbum >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::C_AddPhotoToAlbum >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Protocol::S_AddPhotoToAlbum* Arena::CreateMaybeMessage< ::Protocol::S_AddPhotoToAlbum >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::S_AddPhotoToAlbum >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Protocol::C_GetAlbumPhotos* Arena::CreateMaybeMessage< ::Protocol::C_GetAlbumPhotos >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::C_GetAlbumPhotos >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Protocol::S_GetAlbumPhotos* Arena::CreateMaybeMessage< ::Protocol::S_GetAlbumPhotos >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::S_GetAlbumPhotos >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Protocol::C_DeleteAlbum* Arena::CreateMaybeMessage< ::Protocol::C_DeleteAlbum >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::C_DeleteAlbum >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Protocol::S_DeleteAlbum* Arena::CreateMaybeMessage< ::Protocol::S_DeleteAlbum >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::S_DeleteAlbum >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Protocol::C_DeleteAlbumPhoto* Arena::CreateMaybeMessage< ::Protocol::C_DeleteAlbumPhoto >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::C_DeleteAlbumPhoto >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Protocol::S_DeleteAlbumPhoto* Arena::CreateMaybeMessage< ::Protocol::S_DeleteAlbumPhoto >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::S_DeleteAlbumPhoto >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Protocol::C_MovePhoto* Arena::CreateMaybeMessage< ::Protocol::C_MovePhoto >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::C_MovePhoto >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Protocol::S_MovePhoto* Arena::CreateMaybeMessage< ::Protocol::S_MovePhoto >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::S_MovePhoto >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Protocol::C_AddPhotoComment* Arena::CreateMaybeMessage< ::Protocol::C_AddPhotoComment >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::C_AddPhotoComment >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Protocol::S_AddPhotoComment* Arena::CreateMaybeMessage< ::Protocol::S_AddPhotoComment >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::S_AddPhotoComment >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Protocol::C_GetPhotoComments* Arena::CreateMaybeMessage< ::Protocol::C_GetPhotoComments >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::C_GetPhotoComments >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Protocol::S_GetPhotoComments* Arena::CreateMaybeMessage< ::Protocol::S_GetPhotoComments >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::S_GetPhotoComments >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Protocol::C_DeletePhotoComment* Arena::CreateMaybeMessage< ::Protocol::C_DeletePhotoComment >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::C_DeletePhotoComment >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Protocol::S_DeletePhotoComment* Arena::CreateMaybeMessage< ::Protocol::S_DeletePhotoComment >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::S_DeletePhotoComment >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Protocol::LocationPhoto* Arena::CreateMaybeMessage< ::Protocol::LocationPhoto >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::LocationPhoto >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Protocol::LocationVisitInfo* Arena::CreateMaybeMessage< ::Protocol::LocationVisitInfo >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::LocationVisitInfo >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Protocol::LocationPlaceInfo* Arena::CreateMaybeMessage< ::Protocol::LocationPlaceInfo >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::LocationPlaceInfo >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Protocol::C_SavePlace* Arena::CreateMaybeMessage< ::Protocol::C_SavePlace >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::C_SavePlace >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Protocol::S_SavePlace* Arena::CreateMaybeMessage< ::Protocol::S_SavePlace >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::S_SavePlace >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Protocol::C_GetPlaces* Arena::CreateMaybeMessage< ::Protocol::C_GetPlaces >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::C_GetPlaces >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Protocol::S_GetPlaces* Arena::CreateMaybeMessage< ::Protocol::S_GetPlaces >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::S_GetPlaces >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Protocol::C_SaveVisit* Arena::CreateMaybeMessage< ::Protocol::C_SaveVisit >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::C_SaveVisit >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Protocol::S_SaveVisit* Arena::CreateMaybeMessage< ::Protocol::S_SaveVisit >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::S_SaveVisit >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Protocol::C_DeletePlace* Arena::CreateMaybeMessage< ::Protocol::C_DeletePlace >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::C_DeletePlace >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Protocol::S_DeletePlace* Arena::CreateMaybeMessage< ::Protocol::S_DeletePlace >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::S_DeletePlace >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Protocol::C_UpdateVisit* Arena::CreateMaybeMessage< ::Protocol::C_UpdateVisit >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::C_UpdateVisit >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Protocol::S_UpdateVisit* Arena::CreateMaybeMessage< ::Protocol::S_UpdateVisit >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::S_UpdateVisit >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Protocol::C_DeleteVisit* Arena::CreateMaybeMessage< ::Protocol::C_DeleteVisit >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::C_DeleteVisit >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Protocol::S_DeleteVisit* Arena::CreateMaybeMessage< ::Protocol::S_DeleteVisit >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::S_DeleteVisit >(arena);
 }
 template<> PROTOBUF_NOINLINE ::Protocol::S_Error* Arena::CreateMaybeMessage< ::Protocol::S_Error >(Arena* arena) {
   return Arena::CreateMessageInternal< ::Protocol::S_Error >(arena);

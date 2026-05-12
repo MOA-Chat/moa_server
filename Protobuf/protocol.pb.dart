@@ -128,6 +128,38 @@ enum Envelope_Payload {
   cSocialLogin,
   sSocialLogin,
   cCompleteSocialSignup,
+  cCreateAlbum,
+  sCreateAlbum,
+  cGetAlbums,
+  sGetAlbums,
+  cAddPhotoToAlbum,
+  sAddPhotoToAlbum,
+  cGetAlbumPhotos,
+  sGetAlbumPhotos,
+  cAddPhotoComment,
+  sAddPhotoComment,
+  cGetPhotoComments,
+  sGetPhotoComments,
+  cDeleteAlbum,
+  sDeleteAlbum,
+  cDeleteAlbumPhoto,
+  sDeleteAlbumPhoto,
+  cMovePhoto,
+  sMovePhoto,
+  cDeletePhotoComment,
+  sDeletePhotoComment,
+  cSavePlace,
+  sSavePlace,
+  cGetPlaces,
+  sGetPlaces,
+  cSaveVisit,
+  sSaveVisit,
+  cDeletePlace,
+  sDeletePlace,
+  cUpdateVisit,
+  sUpdateVisit,
+  cDeleteVisit,
+  sDeleteVisit,
   notSet
 }
 
@@ -245,6 +277,38 @@ class Envelope extends $pb.GeneratedMessage {
     C_SocialLogin? cSocialLogin,
     S_SocialLogin? sSocialLogin,
     C_CompleteSocialSignup? cCompleteSocialSignup,
+    C_CreateAlbum? cCreateAlbum,
+    S_CreateAlbum? sCreateAlbum,
+    C_GetAlbums? cGetAlbums,
+    S_GetAlbums? sGetAlbums,
+    C_AddPhotoToAlbum? cAddPhotoToAlbum,
+    S_AddPhotoToAlbum? sAddPhotoToAlbum,
+    C_GetAlbumPhotos? cGetAlbumPhotos,
+    S_GetAlbumPhotos? sGetAlbumPhotos,
+    C_AddPhotoComment? cAddPhotoComment,
+    S_AddPhotoComment? sAddPhotoComment,
+    C_GetPhotoComments? cGetPhotoComments,
+    S_GetPhotoComments? sGetPhotoComments,
+    C_DeleteAlbum? cDeleteAlbum,
+    S_DeleteAlbum? sDeleteAlbum,
+    C_DeleteAlbumPhoto? cDeleteAlbumPhoto,
+    S_DeleteAlbumPhoto? sDeleteAlbumPhoto,
+    C_MovePhoto? cMovePhoto,
+    S_MovePhoto? sMovePhoto,
+    C_DeletePhotoComment? cDeletePhotoComment,
+    S_DeletePhotoComment? sDeletePhotoComment,
+    C_SavePlace? cSavePlace,
+    S_SavePlace? sSavePlace,
+    C_GetPlaces? cGetPlaces,
+    S_GetPlaces? sGetPlaces,
+    C_SaveVisit? cSaveVisit,
+    S_SaveVisit? sSaveVisit,
+    C_DeletePlace? cDeletePlace,
+    S_DeletePlace? sDeletePlace,
+    C_UpdateVisit? cUpdateVisit,
+    S_UpdateVisit? sUpdateVisit,
+    C_DeleteVisit? cDeleteVisit,
+    S_DeleteVisit? sDeleteVisit,
   }) {
     final result = create();
     if (version != null) result.version = version;
@@ -363,6 +427,40 @@ class Envelope extends $pb.GeneratedMessage {
     if (sSocialLogin != null) result.sSocialLogin = sSocialLogin;
     if (cCompleteSocialSignup != null)
       result.cCompleteSocialSignup = cCompleteSocialSignup;
+    if (cCreateAlbum != null) result.cCreateAlbum = cCreateAlbum;
+    if (sCreateAlbum != null) result.sCreateAlbum = sCreateAlbum;
+    if (cGetAlbums != null) result.cGetAlbums = cGetAlbums;
+    if (sGetAlbums != null) result.sGetAlbums = sGetAlbums;
+    if (cAddPhotoToAlbum != null) result.cAddPhotoToAlbum = cAddPhotoToAlbum;
+    if (sAddPhotoToAlbum != null) result.sAddPhotoToAlbum = sAddPhotoToAlbum;
+    if (cGetAlbumPhotos != null) result.cGetAlbumPhotos = cGetAlbumPhotos;
+    if (sGetAlbumPhotos != null) result.sGetAlbumPhotos = sGetAlbumPhotos;
+    if (cAddPhotoComment != null) result.cAddPhotoComment = cAddPhotoComment;
+    if (sAddPhotoComment != null) result.sAddPhotoComment = sAddPhotoComment;
+    if (cGetPhotoComments != null) result.cGetPhotoComments = cGetPhotoComments;
+    if (sGetPhotoComments != null) result.sGetPhotoComments = sGetPhotoComments;
+    if (cDeleteAlbum != null) result.cDeleteAlbum = cDeleteAlbum;
+    if (sDeleteAlbum != null) result.sDeleteAlbum = sDeleteAlbum;
+    if (cDeleteAlbumPhoto != null) result.cDeleteAlbumPhoto = cDeleteAlbumPhoto;
+    if (sDeleteAlbumPhoto != null) result.sDeleteAlbumPhoto = sDeleteAlbumPhoto;
+    if (cMovePhoto != null) result.cMovePhoto = cMovePhoto;
+    if (sMovePhoto != null) result.sMovePhoto = sMovePhoto;
+    if (cDeletePhotoComment != null)
+      result.cDeletePhotoComment = cDeletePhotoComment;
+    if (sDeletePhotoComment != null)
+      result.sDeletePhotoComment = sDeletePhotoComment;
+    if (cSavePlace != null) result.cSavePlace = cSavePlace;
+    if (sSavePlace != null) result.sSavePlace = sSavePlace;
+    if (cGetPlaces != null) result.cGetPlaces = cGetPlaces;
+    if (sGetPlaces != null) result.sGetPlaces = sGetPlaces;
+    if (cSaveVisit != null) result.cSaveVisit = cSaveVisit;
+    if (sSaveVisit != null) result.sSaveVisit = sSaveVisit;
+    if (cDeletePlace != null) result.cDeletePlace = cDeletePlace;
+    if (sDeletePlace != null) result.sDeletePlace = sDeletePlace;
+    if (cUpdateVisit != null) result.cUpdateVisit = cUpdateVisit;
+    if (sUpdateVisit != null) result.sUpdateVisit = sUpdateVisit;
+    if (cDeleteVisit != null) result.cDeleteVisit = cDeleteVisit;
+    if (sDeleteVisit != null) result.sDeleteVisit = sDeleteVisit;
     return result;
   }
 
@@ -482,6 +580,38 @@ class Envelope extends $pb.GeneratedMessage {
     115: Envelope_Payload.cSocialLogin,
     116: Envelope_Payload.sSocialLogin,
     117: Envelope_Payload.cCompleteSocialSignup,
+    120: Envelope_Payload.cCreateAlbum,
+    121: Envelope_Payload.sCreateAlbum,
+    122: Envelope_Payload.cGetAlbums,
+    123: Envelope_Payload.sGetAlbums,
+    124: Envelope_Payload.cAddPhotoToAlbum,
+    125: Envelope_Payload.sAddPhotoToAlbum,
+    126: Envelope_Payload.cGetAlbumPhotos,
+    127: Envelope_Payload.sGetAlbumPhotos,
+    128: Envelope_Payload.cAddPhotoComment,
+    129: Envelope_Payload.sAddPhotoComment,
+    130: Envelope_Payload.cGetPhotoComments,
+    131: Envelope_Payload.sGetPhotoComments,
+    140: Envelope_Payload.cDeleteAlbum,
+    141: Envelope_Payload.sDeleteAlbum,
+    142: Envelope_Payload.cDeleteAlbumPhoto,
+    143: Envelope_Payload.sDeleteAlbumPhoto,
+    144: Envelope_Payload.cMovePhoto,
+    145: Envelope_Payload.sMovePhoto,
+    146: Envelope_Payload.cDeletePhotoComment,
+    147: Envelope_Payload.sDeletePhotoComment,
+    148: Envelope_Payload.cSavePlace,
+    149: Envelope_Payload.sSavePlace,
+    150: Envelope_Payload.cGetPlaces,
+    151: Envelope_Payload.sGetPlaces,
+    152: Envelope_Payload.cSaveVisit,
+    153: Envelope_Payload.sSaveVisit,
+    154: Envelope_Payload.cDeletePlace,
+    155: Envelope_Payload.sDeletePlace,
+    156: Envelope_Payload.cUpdateVisit,
+    157: Envelope_Payload.sUpdateVisit,
+    158: Envelope_Payload.cDeleteVisit,
+    159: Envelope_Payload.sDeleteVisit,
     0: Envelope_Payload.notSet
   };
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
@@ -594,7 +724,39 @@ class Envelope extends $pb.GeneratedMessage {
       114,
       115,
       116,
-      117
+      117,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125,
+      126,
+      127,
+      128,
+      129,
+      130,
+      131,
+      140,
+      141,
+      142,
+      143,
+      144,
+      145,
+      146,
+      147,
+      148,
+      149,
+      150,
+      151,
+      152,
+      153,
+      154,
+      155,
+      156,
+      157,
+      158,
+      159
     ])
     ..aI(1, _omitFieldNames ? '' : 'version', fieldType: $pb.PbFieldType.OU3)
     ..aI(2, _omitFieldNames ? '' : 'requestId', fieldType: $pb.PbFieldType.OU3)
@@ -812,6 +974,72 @@ class Envelope extends $pb.GeneratedMessage {
     ..aOM<C_CompleteSocialSignup>(
         117, _omitFieldNames ? '' : 'cCompleteSocialSignup',
         subBuilder: C_CompleteSocialSignup.create)
+    ..aOM<C_CreateAlbum>(120, _omitFieldNames ? '' : 'cCreateAlbum',
+        subBuilder: C_CreateAlbum.create)
+    ..aOM<S_CreateAlbum>(121, _omitFieldNames ? '' : 'sCreateAlbum',
+        subBuilder: S_CreateAlbum.create)
+    ..aOM<C_GetAlbums>(122, _omitFieldNames ? '' : 'cGetAlbums',
+        subBuilder: C_GetAlbums.create)
+    ..aOM<S_GetAlbums>(123, _omitFieldNames ? '' : 'sGetAlbums',
+        subBuilder: S_GetAlbums.create)
+    ..aOM<C_AddPhotoToAlbum>(124, _omitFieldNames ? '' : 'cAddPhotoToAlbum',
+        subBuilder: C_AddPhotoToAlbum.create)
+    ..aOM<S_AddPhotoToAlbum>(125, _omitFieldNames ? '' : 'sAddPhotoToAlbum',
+        subBuilder: S_AddPhotoToAlbum.create)
+    ..aOM<C_GetAlbumPhotos>(126, _omitFieldNames ? '' : 'cGetAlbumPhotos',
+        subBuilder: C_GetAlbumPhotos.create)
+    ..aOM<S_GetAlbumPhotos>(127, _omitFieldNames ? '' : 'sGetAlbumPhotos',
+        subBuilder: S_GetAlbumPhotos.create)
+    ..aOM<C_AddPhotoComment>(128, _omitFieldNames ? '' : 'cAddPhotoComment',
+        subBuilder: C_AddPhotoComment.create)
+    ..aOM<S_AddPhotoComment>(129, _omitFieldNames ? '' : 'sAddPhotoComment',
+        subBuilder: S_AddPhotoComment.create)
+    ..aOM<C_GetPhotoComments>(130, _omitFieldNames ? '' : 'cGetPhotoComments',
+        subBuilder: C_GetPhotoComments.create)
+    ..aOM<S_GetPhotoComments>(131, _omitFieldNames ? '' : 'sGetPhotoComments',
+        subBuilder: S_GetPhotoComments.create)
+    ..aOM<C_DeleteAlbum>(140, _omitFieldNames ? '' : 'cDeleteAlbum',
+        subBuilder: C_DeleteAlbum.create)
+    ..aOM<S_DeleteAlbum>(141, _omitFieldNames ? '' : 'sDeleteAlbum',
+        subBuilder: S_DeleteAlbum.create)
+    ..aOM<C_DeleteAlbumPhoto>(142, _omitFieldNames ? '' : 'cDeleteAlbumPhoto',
+        subBuilder: C_DeleteAlbumPhoto.create)
+    ..aOM<S_DeleteAlbumPhoto>(143, _omitFieldNames ? '' : 'sDeleteAlbumPhoto',
+        subBuilder: S_DeleteAlbumPhoto.create)
+    ..aOM<C_MovePhoto>(144, _omitFieldNames ? '' : 'cMovePhoto',
+        subBuilder: C_MovePhoto.create)
+    ..aOM<S_MovePhoto>(145, _omitFieldNames ? '' : 'sMovePhoto',
+        subBuilder: S_MovePhoto.create)
+    ..aOM<C_DeletePhotoComment>(
+        146, _omitFieldNames ? '' : 'cDeletePhotoComment',
+        subBuilder: C_DeletePhotoComment.create)
+    ..aOM<S_DeletePhotoComment>(
+        147, _omitFieldNames ? '' : 'sDeletePhotoComment',
+        subBuilder: S_DeletePhotoComment.create)
+    ..aOM<C_SavePlace>(148, _omitFieldNames ? '' : 'cSavePlace',
+        subBuilder: C_SavePlace.create)
+    ..aOM<S_SavePlace>(149, _omitFieldNames ? '' : 'sSavePlace',
+        subBuilder: S_SavePlace.create)
+    ..aOM<C_GetPlaces>(150, _omitFieldNames ? '' : 'cGetPlaces',
+        subBuilder: C_GetPlaces.create)
+    ..aOM<S_GetPlaces>(151, _omitFieldNames ? '' : 'sGetPlaces',
+        subBuilder: S_GetPlaces.create)
+    ..aOM<C_SaveVisit>(152, _omitFieldNames ? '' : 'cSaveVisit',
+        subBuilder: C_SaveVisit.create)
+    ..aOM<S_SaveVisit>(153, _omitFieldNames ? '' : 'sSaveVisit',
+        subBuilder: S_SaveVisit.create)
+    ..aOM<C_DeletePlace>(154, _omitFieldNames ? '' : 'cDeletePlace',
+        subBuilder: C_DeletePlace.create)
+    ..aOM<S_DeletePlace>(155, _omitFieldNames ? '' : 'sDeletePlace',
+        subBuilder: S_DeletePlace.create)
+    ..aOM<C_UpdateVisit>(156, _omitFieldNames ? '' : 'cUpdateVisit',
+        subBuilder: C_UpdateVisit.create)
+    ..aOM<S_UpdateVisit>(157, _omitFieldNames ? '' : 'sUpdateVisit',
+        subBuilder: S_UpdateVisit.create)
+    ..aOM<C_DeleteVisit>(158, _omitFieldNames ? '' : 'cDeleteVisit',
+        subBuilder: C_DeleteVisit.create)
+    ..aOM<S_DeleteVisit>(159, _omitFieldNames ? '' : 'sDeleteVisit',
+        subBuilder: S_DeleteVisit.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -938,6 +1166,38 @@ class Envelope extends $pb.GeneratedMessage {
   @$pb.TagNumber(115)
   @$pb.TagNumber(116)
   @$pb.TagNumber(117)
+  @$pb.TagNumber(120)
+  @$pb.TagNumber(121)
+  @$pb.TagNumber(122)
+  @$pb.TagNumber(123)
+  @$pb.TagNumber(124)
+  @$pb.TagNumber(125)
+  @$pb.TagNumber(126)
+  @$pb.TagNumber(127)
+  @$pb.TagNumber(128)
+  @$pb.TagNumber(129)
+  @$pb.TagNumber(130)
+  @$pb.TagNumber(131)
+  @$pb.TagNumber(140)
+  @$pb.TagNumber(141)
+  @$pb.TagNumber(142)
+  @$pb.TagNumber(143)
+  @$pb.TagNumber(144)
+  @$pb.TagNumber(145)
+  @$pb.TagNumber(146)
+  @$pb.TagNumber(147)
+  @$pb.TagNumber(148)
+  @$pb.TagNumber(149)
+  @$pb.TagNumber(150)
+  @$pb.TagNumber(151)
+  @$pb.TagNumber(152)
+  @$pb.TagNumber(153)
+  @$pb.TagNumber(154)
+  @$pb.TagNumber(155)
+  @$pb.TagNumber(156)
+  @$pb.TagNumber(157)
+  @$pb.TagNumber(158)
+  @$pb.TagNumber(159)
   Envelope_Payload whichPayload() => _Envelope_PayloadByTag[$_whichOneof(0)]!;
   @$pb.TagNumber(10)
   @$pb.TagNumber(11)
@@ -1045,6 +1305,38 @@ class Envelope extends $pb.GeneratedMessage {
   @$pb.TagNumber(115)
   @$pb.TagNumber(116)
   @$pb.TagNumber(117)
+  @$pb.TagNumber(120)
+  @$pb.TagNumber(121)
+  @$pb.TagNumber(122)
+  @$pb.TagNumber(123)
+  @$pb.TagNumber(124)
+  @$pb.TagNumber(125)
+  @$pb.TagNumber(126)
+  @$pb.TagNumber(127)
+  @$pb.TagNumber(128)
+  @$pb.TagNumber(129)
+  @$pb.TagNumber(130)
+  @$pb.TagNumber(131)
+  @$pb.TagNumber(140)
+  @$pb.TagNumber(141)
+  @$pb.TagNumber(142)
+  @$pb.TagNumber(143)
+  @$pb.TagNumber(144)
+  @$pb.TagNumber(145)
+  @$pb.TagNumber(146)
+  @$pb.TagNumber(147)
+  @$pb.TagNumber(148)
+  @$pb.TagNumber(149)
+  @$pb.TagNumber(150)
+  @$pb.TagNumber(151)
+  @$pb.TagNumber(152)
+  @$pb.TagNumber(153)
+  @$pb.TagNumber(154)
+  @$pb.TagNumber(155)
+  @$pb.TagNumber(156)
+  @$pb.TagNumber(157)
+  @$pb.TagNumber(158)
+  @$pb.TagNumber(159)
   void clearPayload() => $_clearField($_whichOneof(0));
 
   @$pb.TagNumber(1)
@@ -2247,6 +2539,360 @@ class Envelope extends $pb.GeneratedMessage {
   void clearCCompleteSocialSignup() => $_clearField(117);
   @$pb.TagNumber(117)
   C_CompleteSocialSignup ensureCCompleteSocialSignup() => $_ensure(108);
+
+  /// ALBUM (120 ~ 131, 140 ~ 147)
+  @$pb.TagNumber(120)
+  C_CreateAlbum get cCreateAlbum => $_getN(109);
+  @$pb.TagNumber(120)
+  set cCreateAlbum(C_CreateAlbum value) => $_setField(120, value);
+  @$pb.TagNumber(120)
+  $core.bool hasCCreateAlbum() => $_has(109);
+  @$pb.TagNumber(120)
+  void clearCCreateAlbum() => $_clearField(120);
+  @$pb.TagNumber(120)
+  C_CreateAlbum ensureCCreateAlbum() => $_ensure(109);
+
+  @$pb.TagNumber(121)
+  S_CreateAlbum get sCreateAlbum => $_getN(110);
+  @$pb.TagNumber(121)
+  set sCreateAlbum(S_CreateAlbum value) => $_setField(121, value);
+  @$pb.TagNumber(121)
+  $core.bool hasSCreateAlbum() => $_has(110);
+  @$pb.TagNumber(121)
+  void clearSCreateAlbum() => $_clearField(121);
+  @$pb.TagNumber(121)
+  S_CreateAlbum ensureSCreateAlbum() => $_ensure(110);
+
+  @$pb.TagNumber(122)
+  C_GetAlbums get cGetAlbums => $_getN(111);
+  @$pb.TagNumber(122)
+  set cGetAlbums(C_GetAlbums value) => $_setField(122, value);
+  @$pb.TagNumber(122)
+  $core.bool hasCGetAlbums() => $_has(111);
+  @$pb.TagNumber(122)
+  void clearCGetAlbums() => $_clearField(122);
+  @$pb.TagNumber(122)
+  C_GetAlbums ensureCGetAlbums() => $_ensure(111);
+
+  @$pb.TagNumber(123)
+  S_GetAlbums get sGetAlbums => $_getN(112);
+  @$pb.TagNumber(123)
+  set sGetAlbums(S_GetAlbums value) => $_setField(123, value);
+  @$pb.TagNumber(123)
+  $core.bool hasSGetAlbums() => $_has(112);
+  @$pb.TagNumber(123)
+  void clearSGetAlbums() => $_clearField(123);
+  @$pb.TagNumber(123)
+  S_GetAlbums ensureSGetAlbums() => $_ensure(112);
+
+  @$pb.TagNumber(124)
+  C_AddPhotoToAlbum get cAddPhotoToAlbum => $_getN(113);
+  @$pb.TagNumber(124)
+  set cAddPhotoToAlbum(C_AddPhotoToAlbum value) => $_setField(124, value);
+  @$pb.TagNumber(124)
+  $core.bool hasCAddPhotoToAlbum() => $_has(113);
+  @$pb.TagNumber(124)
+  void clearCAddPhotoToAlbum() => $_clearField(124);
+  @$pb.TagNumber(124)
+  C_AddPhotoToAlbum ensureCAddPhotoToAlbum() => $_ensure(113);
+
+  @$pb.TagNumber(125)
+  S_AddPhotoToAlbum get sAddPhotoToAlbum => $_getN(114);
+  @$pb.TagNumber(125)
+  set sAddPhotoToAlbum(S_AddPhotoToAlbum value) => $_setField(125, value);
+  @$pb.TagNumber(125)
+  $core.bool hasSAddPhotoToAlbum() => $_has(114);
+  @$pb.TagNumber(125)
+  void clearSAddPhotoToAlbum() => $_clearField(125);
+  @$pb.TagNumber(125)
+  S_AddPhotoToAlbum ensureSAddPhotoToAlbum() => $_ensure(114);
+
+  @$pb.TagNumber(126)
+  C_GetAlbumPhotos get cGetAlbumPhotos => $_getN(115);
+  @$pb.TagNumber(126)
+  set cGetAlbumPhotos(C_GetAlbumPhotos value) => $_setField(126, value);
+  @$pb.TagNumber(126)
+  $core.bool hasCGetAlbumPhotos() => $_has(115);
+  @$pb.TagNumber(126)
+  void clearCGetAlbumPhotos() => $_clearField(126);
+  @$pb.TagNumber(126)
+  C_GetAlbumPhotos ensureCGetAlbumPhotos() => $_ensure(115);
+
+  @$pb.TagNumber(127)
+  S_GetAlbumPhotos get sGetAlbumPhotos => $_getN(116);
+  @$pb.TagNumber(127)
+  set sGetAlbumPhotos(S_GetAlbumPhotos value) => $_setField(127, value);
+  @$pb.TagNumber(127)
+  $core.bool hasSGetAlbumPhotos() => $_has(116);
+  @$pb.TagNumber(127)
+  void clearSGetAlbumPhotos() => $_clearField(127);
+  @$pb.TagNumber(127)
+  S_GetAlbumPhotos ensureSGetAlbumPhotos() => $_ensure(116);
+
+  @$pb.TagNumber(128)
+  C_AddPhotoComment get cAddPhotoComment => $_getN(117);
+  @$pb.TagNumber(128)
+  set cAddPhotoComment(C_AddPhotoComment value) => $_setField(128, value);
+  @$pb.TagNumber(128)
+  $core.bool hasCAddPhotoComment() => $_has(117);
+  @$pb.TagNumber(128)
+  void clearCAddPhotoComment() => $_clearField(128);
+  @$pb.TagNumber(128)
+  C_AddPhotoComment ensureCAddPhotoComment() => $_ensure(117);
+
+  @$pb.TagNumber(129)
+  S_AddPhotoComment get sAddPhotoComment => $_getN(118);
+  @$pb.TagNumber(129)
+  set sAddPhotoComment(S_AddPhotoComment value) => $_setField(129, value);
+  @$pb.TagNumber(129)
+  $core.bool hasSAddPhotoComment() => $_has(118);
+  @$pb.TagNumber(129)
+  void clearSAddPhotoComment() => $_clearField(129);
+  @$pb.TagNumber(129)
+  S_AddPhotoComment ensureSAddPhotoComment() => $_ensure(118);
+
+  @$pb.TagNumber(130)
+  C_GetPhotoComments get cGetPhotoComments => $_getN(119);
+  @$pb.TagNumber(130)
+  set cGetPhotoComments(C_GetPhotoComments value) => $_setField(130, value);
+  @$pb.TagNumber(130)
+  $core.bool hasCGetPhotoComments() => $_has(119);
+  @$pb.TagNumber(130)
+  void clearCGetPhotoComments() => $_clearField(130);
+  @$pb.TagNumber(130)
+  C_GetPhotoComments ensureCGetPhotoComments() => $_ensure(119);
+
+  @$pb.TagNumber(131)
+  S_GetPhotoComments get sGetPhotoComments => $_getN(120);
+  @$pb.TagNumber(131)
+  set sGetPhotoComments(S_GetPhotoComments value) => $_setField(131, value);
+  @$pb.TagNumber(131)
+  $core.bool hasSGetPhotoComments() => $_has(120);
+  @$pb.TagNumber(131)
+  void clearSGetPhotoComments() => $_clearField(131);
+  @$pb.TagNumber(131)
+  S_GetPhotoComments ensureSGetPhotoComments() => $_ensure(120);
+
+  @$pb.TagNumber(140)
+  C_DeleteAlbum get cDeleteAlbum => $_getN(121);
+  @$pb.TagNumber(140)
+  set cDeleteAlbum(C_DeleteAlbum value) => $_setField(140, value);
+  @$pb.TagNumber(140)
+  $core.bool hasCDeleteAlbum() => $_has(121);
+  @$pb.TagNumber(140)
+  void clearCDeleteAlbum() => $_clearField(140);
+  @$pb.TagNumber(140)
+  C_DeleteAlbum ensureCDeleteAlbum() => $_ensure(121);
+
+  @$pb.TagNumber(141)
+  S_DeleteAlbum get sDeleteAlbum => $_getN(122);
+  @$pb.TagNumber(141)
+  set sDeleteAlbum(S_DeleteAlbum value) => $_setField(141, value);
+  @$pb.TagNumber(141)
+  $core.bool hasSDeleteAlbum() => $_has(122);
+  @$pb.TagNumber(141)
+  void clearSDeleteAlbum() => $_clearField(141);
+  @$pb.TagNumber(141)
+  S_DeleteAlbum ensureSDeleteAlbum() => $_ensure(122);
+
+  @$pb.TagNumber(142)
+  C_DeleteAlbumPhoto get cDeleteAlbumPhoto => $_getN(123);
+  @$pb.TagNumber(142)
+  set cDeleteAlbumPhoto(C_DeleteAlbumPhoto value) => $_setField(142, value);
+  @$pb.TagNumber(142)
+  $core.bool hasCDeleteAlbumPhoto() => $_has(123);
+  @$pb.TagNumber(142)
+  void clearCDeleteAlbumPhoto() => $_clearField(142);
+  @$pb.TagNumber(142)
+  C_DeleteAlbumPhoto ensureCDeleteAlbumPhoto() => $_ensure(123);
+
+  @$pb.TagNumber(143)
+  S_DeleteAlbumPhoto get sDeleteAlbumPhoto => $_getN(124);
+  @$pb.TagNumber(143)
+  set sDeleteAlbumPhoto(S_DeleteAlbumPhoto value) => $_setField(143, value);
+  @$pb.TagNumber(143)
+  $core.bool hasSDeleteAlbumPhoto() => $_has(124);
+  @$pb.TagNumber(143)
+  void clearSDeleteAlbumPhoto() => $_clearField(143);
+  @$pb.TagNumber(143)
+  S_DeleteAlbumPhoto ensureSDeleteAlbumPhoto() => $_ensure(124);
+
+  @$pb.TagNumber(144)
+  C_MovePhoto get cMovePhoto => $_getN(125);
+  @$pb.TagNumber(144)
+  set cMovePhoto(C_MovePhoto value) => $_setField(144, value);
+  @$pb.TagNumber(144)
+  $core.bool hasCMovePhoto() => $_has(125);
+  @$pb.TagNumber(144)
+  void clearCMovePhoto() => $_clearField(144);
+  @$pb.TagNumber(144)
+  C_MovePhoto ensureCMovePhoto() => $_ensure(125);
+
+  @$pb.TagNumber(145)
+  S_MovePhoto get sMovePhoto => $_getN(126);
+  @$pb.TagNumber(145)
+  set sMovePhoto(S_MovePhoto value) => $_setField(145, value);
+  @$pb.TagNumber(145)
+  $core.bool hasSMovePhoto() => $_has(126);
+  @$pb.TagNumber(145)
+  void clearSMovePhoto() => $_clearField(145);
+  @$pb.TagNumber(145)
+  S_MovePhoto ensureSMovePhoto() => $_ensure(126);
+
+  @$pb.TagNumber(146)
+  C_DeletePhotoComment get cDeletePhotoComment => $_getN(127);
+  @$pb.TagNumber(146)
+  set cDeletePhotoComment(C_DeletePhotoComment value) => $_setField(146, value);
+  @$pb.TagNumber(146)
+  $core.bool hasCDeletePhotoComment() => $_has(127);
+  @$pb.TagNumber(146)
+  void clearCDeletePhotoComment() => $_clearField(146);
+  @$pb.TagNumber(146)
+  C_DeletePhotoComment ensureCDeletePhotoComment() => $_ensure(127);
+
+  @$pb.TagNumber(147)
+  S_DeletePhotoComment get sDeletePhotoComment => $_getN(128);
+  @$pb.TagNumber(147)
+  set sDeletePhotoComment(S_DeletePhotoComment value) => $_setField(147, value);
+  @$pb.TagNumber(147)
+  $core.bool hasSDeletePhotoComment() => $_has(128);
+  @$pb.TagNumber(147)
+  void clearSDeletePhotoComment() => $_clearField(147);
+  @$pb.TagNumber(147)
+  S_DeletePhotoComment ensureSDeletePhotoComment() => $_ensure(128);
+
+  /// LOCATION HISTORY (148 ~ 159)
+  @$pb.TagNumber(148)
+  C_SavePlace get cSavePlace => $_getN(129);
+  @$pb.TagNumber(148)
+  set cSavePlace(C_SavePlace value) => $_setField(148, value);
+  @$pb.TagNumber(148)
+  $core.bool hasCSavePlace() => $_has(129);
+  @$pb.TagNumber(148)
+  void clearCSavePlace() => $_clearField(148);
+  @$pb.TagNumber(148)
+  C_SavePlace ensureCSavePlace() => $_ensure(129);
+
+  @$pb.TagNumber(149)
+  S_SavePlace get sSavePlace => $_getN(130);
+  @$pb.TagNumber(149)
+  set sSavePlace(S_SavePlace value) => $_setField(149, value);
+  @$pb.TagNumber(149)
+  $core.bool hasSSavePlace() => $_has(130);
+  @$pb.TagNumber(149)
+  void clearSSavePlace() => $_clearField(149);
+  @$pb.TagNumber(149)
+  S_SavePlace ensureSSavePlace() => $_ensure(130);
+
+  @$pb.TagNumber(150)
+  C_GetPlaces get cGetPlaces => $_getN(131);
+  @$pb.TagNumber(150)
+  set cGetPlaces(C_GetPlaces value) => $_setField(150, value);
+  @$pb.TagNumber(150)
+  $core.bool hasCGetPlaces() => $_has(131);
+  @$pb.TagNumber(150)
+  void clearCGetPlaces() => $_clearField(150);
+  @$pb.TagNumber(150)
+  C_GetPlaces ensureCGetPlaces() => $_ensure(131);
+
+  @$pb.TagNumber(151)
+  S_GetPlaces get sGetPlaces => $_getN(132);
+  @$pb.TagNumber(151)
+  set sGetPlaces(S_GetPlaces value) => $_setField(151, value);
+  @$pb.TagNumber(151)
+  $core.bool hasSGetPlaces() => $_has(132);
+  @$pb.TagNumber(151)
+  void clearSGetPlaces() => $_clearField(151);
+  @$pb.TagNumber(151)
+  S_GetPlaces ensureSGetPlaces() => $_ensure(132);
+
+  @$pb.TagNumber(152)
+  C_SaveVisit get cSaveVisit => $_getN(133);
+  @$pb.TagNumber(152)
+  set cSaveVisit(C_SaveVisit value) => $_setField(152, value);
+  @$pb.TagNumber(152)
+  $core.bool hasCSaveVisit() => $_has(133);
+  @$pb.TagNumber(152)
+  void clearCSaveVisit() => $_clearField(152);
+  @$pb.TagNumber(152)
+  C_SaveVisit ensureCSaveVisit() => $_ensure(133);
+
+  @$pb.TagNumber(153)
+  S_SaveVisit get sSaveVisit => $_getN(134);
+  @$pb.TagNumber(153)
+  set sSaveVisit(S_SaveVisit value) => $_setField(153, value);
+  @$pb.TagNumber(153)
+  $core.bool hasSSaveVisit() => $_has(134);
+  @$pb.TagNumber(153)
+  void clearSSaveVisit() => $_clearField(153);
+  @$pb.TagNumber(153)
+  S_SaveVisit ensureSSaveVisit() => $_ensure(134);
+
+  @$pb.TagNumber(154)
+  C_DeletePlace get cDeletePlace => $_getN(135);
+  @$pb.TagNumber(154)
+  set cDeletePlace(C_DeletePlace value) => $_setField(154, value);
+  @$pb.TagNumber(154)
+  $core.bool hasCDeletePlace() => $_has(135);
+  @$pb.TagNumber(154)
+  void clearCDeletePlace() => $_clearField(154);
+  @$pb.TagNumber(154)
+  C_DeletePlace ensureCDeletePlace() => $_ensure(135);
+
+  @$pb.TagNumber(155)
+  S_DeletePlace get sDeletePlace => $_getN(136);
+  @$pb.TagNumber(155)
+  set sDeletePlace(S_DeletePlace value) => $_setField(155, value);
+  @$pb.TagNumber(155)
+  $core.bool hasSDeletePlace() => $_has(136);
+  @$pb.TagNumber(155)
+  void clearSDeletePlace() => $_clearField(155);
+  @$pb.TagNumber(155)
+  S_DeletePlace ensureSDeletePlace() => $_ensure(136);
+
+  @$pb.TagNumber(156)
+  C_UpdateVisit get cUpdateVisit => $_getN(137);
+  @$pb.TagNumber(156)
+  set cUpdateVisit(C_UpdateVisit value) => $_setField(156, value);
+  @$pb.TagNumber(156)
+  $core.bool hasCUpdateVisit() => $_has(137);
+  @$pb.TagNumber(156)
+  void clearCUpdateVisit() => $_clearField(156);
+  @$pb.TagNumber(156)
+  C_UpdateVisit ensureCUpdateVisit() => $_ensure(137);
+
+  @$pb.TagNumber(157)
+  S_UpdateVisit get sUpdateVisit => $_getN(138);
+  @$pb.TagNumber(157)
+  set sUpdateVisit(S_UpdateVisit value) => $_setField(157, value);
+  @$pb.TagNumber(157)
+  $core.bool hasSUpdateVisit() => $_has(138);
+  @$pb.TagNumber(157)
+  void clearSUpdateVisit() => $_clearField(157);
+  @$pb.TagNumber(157)
+  S_UpdateVisit ensureSUpdateVisit() => $_ensure(138);
+
+  @$pb.TagNumber(158)
+  C_DeleteVisit get cDeleteVisit => $_getN(139);
+  @$pb.TagNumber(158)
+  set cDeleteVisit(C_DeleteVisit value) => $_setField(158, value);
+  @$pb.TagNumber(158)
+  $core.bool hasCDeleteVisit() => $_has(139);
+  @$pb.TagNumber(158)
+  void clearCDeleteVisit() => $_clearField(158);
+  @$pb.TagNumber(158)
+  C_DeleteVisit ensureCDeleteVisit() => $_ensure(139);
+
+  @$pb.TagNumber(159)
+  S_DeleteVisit get sDeleteVisit => $_getN(140);
+  @$pb.TagNumber(159)
+  set sDeleteVisit(S_DeleteVisit value) => $_setField(159, value);
+  @$pb.TagNumber(159)
+  $core.bool hasSDeleteVisit() => $_has(140);
+  @$pb.TagNumber(159)
+  void clearSDeleteVisit() => $_clearField(159);
+  @$pb.TagNumber(159)
+  S_DeleteVisit ensureSDeleteVisit() => $_ensure(140);
 }
 
 /// UserInfo
@@ -11386,6 +12032,3665 @@ class C_CompleteSocialSignup extends $pb.GeneratedMessage {
   $core.bool hasName() => $_has(3);
   @$pb.TagNumber(4)
   void clearName() => $_clearField(4);
+}
+
+class Album extends $pb.GeneratedMessage {
+  factory Album({
+    $core.String? id,
+    $core.String? groupId,
+    $core.String? name,
+    $core.String? coverPhotoUrl,
+    $core.String? createdBy,
+    $fixnum.Int64? createdAt,
+    $core.int? photoCount,
+  }) {
+    final result = create();
+    if (id != null) result.id = id;
+    if (groupId != null) result.groupId = groupId;
+    if (name != null) result.name = name;
+    if (coverPhotoUrl != null) result.coverPhotoUrl = coverPhotoUrl;
+    if (createdBy != null) result.createdBy = createdBy;
+    if (createdAt != null) result.createdAt = createdAt;
+    if (photoCount != null) result.photoCount = photoCount;
+    return result;
+  }
+
+  Album._();
+
+  factory Album.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory Album.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'Album',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'Protocol'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'id')
+    ..aOS(2, _omitFieldNames ? '' : 'groupId')
+    ..aOS(3, _omitFieldNames ? '' : 'name')
+    ..aOS(4, _omitFieldNames ? '' : 'coverPhotoUrl')
+    ..aOS(5, _omitFieldNames ? '' : 'createdBy')
+    ..aInt64(6, _omitFieldNames ? '' : 'createdAt')
+    ..aI(7, _omitFieldNames ? '' : 'photoCount')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  Album clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  Album copyWith(void Function(Album) updates) =>
+      super.copyWith((message) => updates(message as Album)) as Album;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static Album create() => Album._();
+  @$core.override
+  Album createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static Album getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Album>(create);
+  static Album? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get id => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set id($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => $_clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get groupId => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set groupId($core.String value) => $_setString(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasGroupId() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearGroupId() => $_clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.String get name => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set name($core.String value) => $_setString(2, value);
+  @$pb.TagNumber(3)
+  $core.bool hasName() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearName() => $_clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.String get coverPhotoUrl => $_getSZ(3);
+  @$pb.TagNumber(4)
+  set coverPhotoUrl($core.String value) => $_setString(3, value);
+  @$pb.TagNumber(4)
+  $core.bool hasCoverPhotoUrl() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearCoverPhotoUrl() => $_clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.String get createdBy => $_getSZ(4);
+  @$pb.TagNumber(5)
+  set createdBy($core.String value) => $_setString(4, value);
+  @$pb.TagNumber(5)
+  $core.bool hasCreatedBy() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearCreatedBy() => $_clearField(5);
+
+  @$pb.TagNumber(6)
+  $fixnum.Int64 get createdAt => $_getI64(5);
+  @$pb.TagNumber(6)
+  set createdAt($fixnum.Int64 value) => $_setInt64(5, value);
+  @$pb.TagNumber(6)
+  $core.bool hasCreatedAt() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearCreatedAt() => $_clearField(6);
+
+  @$pb.TagNumber(7)
+  $core.int get photoCount => $_getIZ(6);
+  @$pb.TagNumber(7)
+  set photoCount($core.int value) => $_setSignedInt32(6, value);
+  @$pb.TagNumber(7)
+  $core.bool hasPhotoCount() => $_has(6);
+  @$pb.TagNumber(7)
+  void clearPhotoCount() => $_clearField(7);
+}
+
+class AlbumPhoto extends $pb.GeneratedMessage {
+  factory AlbumPhoto({
+    $core.String? id,
+    $core.String? albumId,
+    $core.String? groupId,
+    $fixnum.Int64? msgSeq,
+    $core.String? photoUrl,
+    $core.String? thumbnailUrl,
+    $core.String? uploaderId,
+    $core.String? source,
+    $fixnum.Int64? uploadedAt,
+  }) {
+    final result = create();
+    if (id != null) result.id = id;
+    if (albumId != null) result.albumId = albumId;
+    if (groupId != null) result.groupId = groupId;
+    if (msgSeq != null) result.msgSeq = msgSeq;
+    if (photoUrl != null) result.photoUrl = photoUrl;
+    if (thumbnailUrl != null) result.thumbnailUrl = thumbnailUrl;
+    if (uploaderId != null) result.uploaderId = uploaderId;
+    if (source != null) result.source = source;
+    if (uploadedAt != null) result.uploadedAt = uploadedAt;
+    return result;
+  }
+
+  AlbumPhoto._();
+
+  factory AlbumPhoto.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory AlbumPhoto.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'AlbumPhoto',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'Protocol'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'id')
+    ..aOS(2, _omitFieldNames ? '' : 'albumId')
+    ..aOS(3, _omitFieldNames ? '' : 'groupId')
+    ..aInt64(4, _omitFieldNames ? '' : 'msgSeq')
+    ..aOS(5, _omitFieldNames ? '' : 'photoUrl')
+    ..aOS(6, _omitFieldNames ? '' : 'thumbnailUrl')
+    ..aOS(7, _omitFieldNames ? '' : 'uploaderId')
+    ..aOS(8, _omitFieldNames ? '' : 'source')
+    ..aInt64(9, _omitFieldNames ? '' : 'uploadedAt')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  AlbumPhoto clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  AlbumPhoto copyWith(void Function(AlbumPhoto) updates) =>
+      super.copyWith((message) => updates(message as AlbumPhoto)) as AlbumPhoto;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static AlbumPhoto create() => AlbumPhoto._();
+  @$core.override
+  AlbumPhoto createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static AlbumPhoto getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<AlbumPhoto>(create);
+  static AlbumPhoto? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get id => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set id($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => $_clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get albumId => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set albumId($core.String value) => $_setString(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasAlbumId() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearAlbumId() => $_clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.String get groupId => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set groupId($core.String value) => $_setString(2, value);
+  @$pb.TagNumber(3)
+  $core.bool hasGroupId() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearGroupId() => $_clearField(3);
+
+  @$pb.TagNumber(4)
+  $fixnum.Int64 get msgSeq => $_getI64(3);
+  @$pb.TagNumber(4)
+  set msgSeq($fixnum.Int64 value) => $_setInt64(3, value);
+  @$pb.TagNumber(4)
+  $core.bool hasMsgSeq() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearMsgSeq() => $_clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.String get photoUrl => $_getSZ(4);
+  @$pb.TagNumber(5)
+  set photoUrl($core.String value) => $_setString(4, value);
+  @$pb.TagNumber(5)
+  $core.bool hasPhotoUrl() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearPhotoUrl() => $_clearField(5);
+
+  @$pb.TagNumber(6)
+  $core.String get thumbnailUrl => $_getSZ(5);
+  @$pb.TagNumber(6)
+  set thumbnailUrl($core.String value) => $_setString(5, value);
+  @$pb.TagNumber(6)
+  $core.bool hasThumbnailUrl() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearThumbnailUrl() => $_clearField(6);
+
+  @$pb.TagNumber(7)
+  $core.String get uploaderId => $_getSZ(6);
+  @$pb.TagNumber(7)
+  set uploaderId($core.String value) => $_setString(6, value);
+  @$pb.TagNumber(7)
+  $core.bool hasUploaderId() => $_has(6);
+  @$pb.TagNumber(7)
+  void clearUploaderId() => $_clearField(7);
+
+  @$pb.TagNumber(8)
+  $core.String get source => $_getSZ(7);
+  @$pb.TagNumber(8)
+  set source($core.String value) => $_setString(7, value);
+  @$pb.TagNumber(8)
+  $core.bool hasSource() => $_has(7);
+  @$pb.TagNumber(8)
+  void clearSource() => $_clearField(8);
+
+  @$pb.TagNumber(9)
+  $fixnum.Int64 get uploadedAt => $_getI64(8);
+  @$pb.TagNumber(9)
+  set uploadedAt($fixnum.Int64 value) => $_setInt64(8, value);
+  @$pb.TagNumber(9)
+  $core.bool hasUploadedAt() => $_has(8);
+  @$pb.TagNumber(9)
+  void clearUploadedAt() => $_clearField(9);
+}
+
+class PhotoComment extends $pb.GeneratedMessage {
+  factory PhotoComment({
+    $core.String? id,
+    $core.String? photoId,
+    $core.String? senderId,
+    $core.String? senderName,
+    $core.String? text,
+    $fixnum.Int64? createdAt,
+  }) {
+    final result = create();
+    if (id != null) result.id = id;
+    if (photoId != null) result.photoId = photoId;
+    if (senderId != null) result.senderId = senderId;
+    if (senderName != null) result.senderName = senderName;
+    if (text != null) result.text = text;
+    if (createdAt != null) result.createdAt = createdAt;
+    return result;
+  }
+
+  PhotoComment._();
+
+  factory PhotoComment.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory PhotoComment.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'PhotoComment',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'Protocol'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'id')
+    ..aOS(2, _omitFieldNames ? '' : 'photoId')
+    ..aOS(3, _omitFieldNames ? '' : 'senderId')
+    ..aOS(4, _omitFieldNames ? '' : 'senderName')
+    ..aOS(5, _omitFieldNames ? '' : 'text')
+    ..aInt64(6, _omitFieldNames ? '' : 'createdAt')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  PhotoComment clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  PhotoComment copyWith(void Function(PhotoComment) updates) =>
+      super.copyWith((message) => updates(message as PhotoComment))
+          as PhotoComment;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static PhotoComment create() => PhotoComment._();
+  @$core.override
+  PhotoComment createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static PhotoComment getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<PhotoComment>(create);
+  static PhotoComment? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get id => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set id($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => $_clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get photoId => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set photoId($core.String value) => $_setString(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasPhotoId() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearPhotoId() => $_clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.String get senderId => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set senderId($core.String value) => $_setString(2, value);
+  @$pb.TagNumber(3)
+  $core.bool hasSenderId() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearSenderId() => $_clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.String get senderName => $_getSZ(3);
+  @$pb.TagNumber(4)
+  set senderName($core.String value) => $_setString(3, value);
+  @$pb.TagNumber(4)
+  $core.bool hasSenderName() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearSenderName() => $_clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.String get text => $_getSZ(4);
+  @$pb.TagNumber(5)
+  set text($core.String value) => $_setString(4, value);
+  @$pb.TagNumber(5)
+  $core.bool hasText() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearText() => $_clearField(5);
+
+  @$pb.TagNumber(6)
+  $fixnum.Int64 get createdAt => $_getI64(5);
+  @$pb.TagNumber(6)
+  set createdAt($fixnum.Int64 value) => $_setInt64(5, value);
+  @$pb.TagNumber(6)
+  $core.bool hasCreatedAt() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearCreatedAt() => $_clearField(6);
+}
+
+class C_CreateAlbum extends $pb.GeneratedMessage {
+  factory C_CreateAlbum({
+    $core.String? groupId,
+    $core.String? name,
+    $core.String? createdBy,
+  }) {
+    final result = create();
+    if (groupId != null) result.groupId = groupId;
+    if (name != null) result.name = name;
+    if (createdBy != null) result.createdBy = createdBy;
+    return result;
+  }
+
+  C_CreateAlbum._();
+
+  factory C_CreateAlbum.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory C_CreateAlbum.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'C_CreateAlbum',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'Protocol'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'groupId')
+    ..aOS(2, _omitFieldNames ? '' : 'name')
+    ..aOS(3, _omitFieldNames ? '' : 'createdBy')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  C_CreateAlbum clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  C_CreateAlbum copyWith(void Function(C_CreateAlbum) updates) =>
+      super.copyWith((message) => updates(message as C_CreateAlbum))
+          as C_CreateAlbum;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static C_CreateAlbum create() => C_CreateAlbum._();
+  @$core.override
+  C_CreateAlbum createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static C_CreateAlbum getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<C_CreateAlbum>(create);
+  static C_CreateAlbum? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get groupId => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set groupId($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasGroupId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearGroupId() => $_clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get name => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set name($core.String value) => $_setString(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasName() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearName() => $_clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.String get createdBy => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set createdBy($core.String value) => $_setString(2, value);
+  @$pb.TagNumber(3)
+  $core.bool hasCreatedBy() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearCreatedBy() => $_clearField(3);
+}
+
+class S_CreateAlbum extends $pb.GeneratedMessage {
+  factory S_CreateAlbum({
+    $core.bool? success,
+    Album? album,
+    $core.String? error,
+  }) {
+    final result = create();
+    if (success != null) result.success = success;
+    if (album != null) result.album = album;
+    if (error != null) result.error = error;
+    return result;
+  }
+
+  S_CreateAlbum._();
+
+  factory S_CreateAlbum.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory S_CreateAlbum.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'S_CreateAlbum',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'Protocol'),
+      createEmptyInstance: create)
+    ..aOB(1, _omitFieldNames ? '' : 'success')
+    ..aOM<Album>(2, _omitFieldNames ? '' : 'album', subBuilder: Album.create)
+    ..aOS(3, _omitFieldNames ? '' : 'error')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  S_CreateAlbum clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  S_CreateAlbum copyWith(void Function(S_CreateAlbum) updates) =>
+      super.copyWith((message) => updates(message as S_CreateAlbum))
+          as S_CreateAlbum;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static S_CreateAlbum create() => S_CreateAlbum._();
+  @$core.override
+  S_CreateAlbum createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static S_CreateAlbum getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<S_CreateAlbum>(create);
+  static S_CreateAlbum? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.bool get success => $_getBF(0);
+  @$pb.TagNumber(1)
+  set success($core.bool value) => $_setBool(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasSuccess() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearSuccess() => $_clearField(1);
+
+  @$pb.TagNumber(2)
+  Album get album => $_getN(1);
+  @$pb.TagNumber(2)
+  set album(Album value) => $_setField(2, value);
+  @$pb.TagNumber(2)
+  $core.bool hasAlbum() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearAlbum() => $_clearField(2);
+  @$pb.TagNumber(2)
+  Album ensureAlbum() => $_ensure(1);
+
+  @$pb.TagNumber(3)
+  $core.String get error => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set error($core.String value) => $_setString(2, value);
+  @$pb.TagNumber(3)
+  $core.bool hasError() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearError() => $_clearField(3);
+}
+
+class C_GetAlbums extends $pb.GeneratedMessage {
+  factory C_GetAlbums({
+    $core.String? groupId,
+  }) {
+    final result = create();
+    if (groupId != null) result.groupId = groupId;
+    return result;
+  }
+
+  C_GetAlbums._();
+
+  factory C_GetAlbums.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory C_GetAlbums.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'C_GetAlbums',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'Protocol'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'groupId')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  C_GetAlbums clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  C_GetAlbums copyWith(void Function(C_GetAlbums) updates) =>
+      super.copyWith((message) => updates(message as C_GetAlbums))
+          as C_GetAlbums;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static C_GetAlbums create() => C_GetAlbums._();
+  @$core.override
+  C_GetAlbums createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static C_GetAlbums getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<C_GetAlbums>(create);
+  static C_GetAlbums? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get groupId => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set groupId($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasGroupId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearGroupId() => $_clearField(1);
+}
+
+class S_GetAlbums extends $pb.GeneratedMessage {
+  factory S_GetAlbums({
+    $core.Iterable<Album>? albums,
+  }) {
+    final result = create();
+    if (albums != null) result.albums.addAll(albums);
+    return result;
+  }
+
+  S_GetAlbums._();
+
+  factory S_GetAlbums.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory S_GetAlbums.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'S_GetAlbums',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'Protocol'),
+      createEmptyInstance: create)
+    ..pPM<Album>(1, _omitFieldNames ? '' : 'albums', subBuilder: Album.create)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  S_GetAlbums clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  S_GetAlbums copyWith(void Function(S_GetAlbums) updates) =>
+      super.copyWith((message) => updates(message as S_GetAlbums))
+          as S_GetAlbums;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static S_GetAlbums create() => S_GetAlbums._();
+  @$core.override
+  S_GetAlbums createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static S_GetAlbums getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<S_GetAlbums>(create);
+  static S_GetAlbums? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $pb.PbList<Album> get albums => $_getList(0);
+}
+
+class C_AddPhotoToAlbum extends $pb.GeneratedMessage {
+  factory C_AddPhotoToAlbum({
+    $core.String? albumId,
+    $core.String? groupId,
+    $fixnum.Int64? msgSeq,
+    $core.String? photoUrl,
+    $core.String? thumbnailUrl,
+    $core.String? uploaderId,
+  }) {
+    final result = create();
+    if (albumId != null) result.albumId = albumId;
+    if (groupId != null) result.groupId = groupId;
+    if (msgSeq != null) result.msgSeq = msgSeq;
+    if (photoUrl != null) result.photoUrl = photoUrl;
+    if (thumbnailUrl != null) result.thumbnailUrl = thumbnailUrl;
+    if (uploaderId != null) result.uploaderId = uploaderId;
+    return result;
+  }
+
+  C_AddPhotoToAlbum._();
+
+  factory C_AddPhotoToAlbum.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory C_AddPhotoToAlbum.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'C_AddPhotoToAlbum',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'Protocol'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'albumId')
+    ..aOS(2, _omitFieldNames ? '' : 'groupId')
+    ..aInt64(3, _omitFieldNames ? '' : 'msgSeq')
+    ..aOS(4, _omitFieldNames ? '' : 'photoUrl')
+    ..aOS(5, _omitFieldNames ? '' : 'thumbnailUrl')
+    ..aOS(6, _omitFieldNames ? '' : 'uploaderId')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  C_AddPhotoToAlbum clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  C_AddPhotoToAlbum copyWith(void Function(C_AddPhotoToAlbum) updates) =>
+      super.copyWith((message) => updates(message as C_AddPhotoToAlbum))
+          as C_AddPhotoToAlbum;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static C_AddPhotoToAlbum create() => C_AddPhotoToAlbum._();
+  @$core.override
+  C_AddPhotoToAlbum createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static C_AddPhotoToAlbum getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<C_AddPhotoToAlbum>(create);
+  static C_AddPhotoToAlbum? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get albumId => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set albumId($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasAlbumId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearAlbumId() => $_clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get groupId => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set groupId($core.String value) => $_setString(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasGroupId() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearGroupId() => $_clearField(2);
+
+  @$pb.TagNumber(3)
+  $fixnum.Int64 get msgSeq => $_getI64(2);
+  @$pb.TagNumber(3)
+  set msgSeq($fixnum.Int64 value) => $_setInt64(2, value);
+  @$pb.TagNumber(3)
+  $core.bool hasMsgSeq() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearMsgSeq() => $_clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.String get photoUrl => $_getSZ(3);
+  @$pb.TagNumber(4)
+  set photoUrl($core.String value) => $_setString(3, value);
+  @$pb.TagNumber(4)
+  $core.bool hasPhotoUrl() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearPhotoUrl() => $_clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.String get thumbnailUrl => $_getSZ(4);
+  @$pb.TagNumber(5)
+  set thumbnailUrl($core.String value) => $_setString(4, value);
+  @$pb.TagNumber(5)
+  $core.bool hasThumbnailUrl() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearThumbnailUrl() => $_clearField(5);
+
+  @$pb.TagNumber(6)
+  $core.String get uploaderId => $_getSZ(5);
+  @$pb.TagNumber(6)
+  set uploaderId($core.String value) => $_setString(5, value);
+  @$pb.TagNumber(6)
+  $core.bool hasUploaderId() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearUploaderId() => $_clearField(6);
+}
+
+class S_AddPhotoToAlbum extends $pb.GeneratedMessage {
+  factory S_AddPhotoToAlbum({
+    $core.bool? success,
+    $core.String? albumId,
+    AlbumPhoto? photo,
+    $core.String? error,
+    Album? album,
+  }) {
+    final result = create();
+    if (success != null) result.success = success;
+    if (albumId != null) result.albumId = albumId;
+    if (photo != null) result.photo = photo;
+    if (error != null) result.error = error;
+    if (album != null) result.album = album;
+    return result;
+  }
+
+  S_AddPhotoToAlbum._();
+
+  factory S_AddPhotoToAlbum.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory S_AddPhotoToAlbum.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'S_AddPhotoToAlbum',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'Protocol'),
+      createEmptyInstance: create)
+    ..aOB(1, _omitFieldNames ? '' : 'success')
+    ..aOS(2, _omitFieldNames ? '' : 'albumId')
+    ..aOM<AlbumPhoto>(3, _omitFieldNames ? '' : 'photo',
+        subBuilder: AlbumPhoto.create)
+    ..aOS(4, _omitFieldNames ? '' : 'error')
+    ..aOM<Album>(5, _omitFieldNames ? '' : 'album', subBuilder: Album.create)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  S_AddPhotoToAlbum clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  S_AddPhotoToAlbum copyWith(void Function(S_AddPhotoToAlbum) updates) =>
+      super.copyWith((message) => updates(message as S_AddPhotoToAlbum))
+          as S_AddPhotoToAlbum;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static S_AddPhotoToAlbum create() => S_AddPhotoToAlbum._();
+  @$core.override
+  S_AddPhotoToAlbum createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static S_AddPhotoToAlbum getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<S_AddPhotoToAlbum>(create);
+  static S_AddPhotoToAlbum? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.bool get success => $_getBF(0);
+  @$pb.TagNumber(1)
+  set success($core.bool value) => $_setBool(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasSuccess() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearSuccess() => $_clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get albumId => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set albumId($core.String value) => $_setString(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasAlbumId() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearAlbumId() => $_clearField(2);
+
+  @$pb.TagNumber(3)
+  AlbumPhoto get photo => $_getN(2);
+  @$pb.TagNumber(3)
+  set photo(AlbumPhoto value) => $_setField(3, value);
+  @$pb.TagNumber(3)
+  $core.bool hasPhoto() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearPhoto() => $_clearField(3);
+  @$pb.TagNumber(3)
+  AlbumPhoto ensurePhoto() => $_ensure(2);
+
+  @$pb.TagNumber(4)
+  $core.String get error => $_getSZ(3);
+  @$pb.TagNumber(4)
+  set error($core.String value) => $_setString(3, value);
+  @$pb.TagNumber(4)
+  $core.bool hasError() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearError() => $_clearField(4);
+
+  @$pb.TagNumber(5)
+  Album get album => $_getN(4);
+  @$pb.TagNumber(5)
+  set album(Album value) => $_setField(5, value);
+  @$pb.TagNumber(5)
+  $core.bool hasAlbum() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearAlbum() => $_clearField(5);
+  @$pb.TagNumber(5)
+  Album ensureAlbum() => $_ensure(4);
+}
+
+class C_GetAlbumPhotos extends $pb.GeneratedMessage {
+  factory C_GetAlbumPhotos({
+    $core.String? albumId,
+    $core.bool? latestFirst,
+  }) {
+    final result = create();
+    if (albumId != null) result.albumId = albumId;
+    if (latestFirst != null) result.latestFirst = latestFirst;
+    return result;
+  }
+
+  C_GetAlbumPhotos._();
+
+  factory C_GetAlbumPhotos.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory C_GetAlbumPhotos.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'C_GetAlbumPhotos',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'Protocol'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'albumId')
+    ..aOB(2, _omitFieldNames ? '' : 'latestFirst')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  C_GetAlbumPhotos clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  C_GetAlbumPhotos copyWith(void Function(C_GetAlbumPhotos) updates) =>
+      super.copyWith((message) => updates(message as C_GetAlbumPhotos))
+          as C_GetAlbumPhotos;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static C_GetAlbumPhotos create() => C_GetAlbumPhotos._();
+  @$core.override
+  C_GetAlbumPhotos createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static C_GetAlbumPhotos getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<C_GetAlbumPhotos>(create);
+  static C_GetAlbumPhotos? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get albumId => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set albumId($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasAlbumId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearAlbumId() => $_clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.bool get latestFirst => $_getBF(1);
+  @$pb.TagNumber(2)
+  set latestFirst($core.bool value) => $_setBool(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasLatestFirst() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearLatestFirst() => $_clearField(2);
+}
+
+class S_GetAlbumPhotos extends $pb.GeneratedMessage {
+  factory S_GetAlbumPhotos({
+    $core.String? albumId,
+    $core.Iterable<AlbumPhoto>? photos,
+  }) {
+    final result = create();
+    if (albumId != null) result.albumId = albumId;
+    if (photos != null) result.photos.addAll(photos);
+    return result;
+  }
+
+  S_GetAlbumPhotos._();
+
+  factory S_GetAlbumPhotos.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory S_GetAlbumPhotos.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'S_GetAlbumPhotos',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'Protocol'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'albumId')
+    ..pPM<AlbumPhoto>(2, _omitFieldNames ? '' : 'photos',
+        subBuilder: AlbumPhoto.create)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  S_GetAlbumPhotos clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  S_GetAlbumPhotos copyWith(void Function(S_GetAlbumPhotos) updates) =>
+      super.copyWith((message) => updates(message as S_GetAlbumPhotos))
+          as S_GetAlbumPhotos;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static S_GetAlbumPhotos create() => S_GetAlbumPhotos._();
+  @$core.override
+  S_GetAlbumPhotos createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static S_GetAlbumPhotos getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<S_GetAlbumPhotos>(create);
+  static S_GetAlbumPhotos? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get albumId => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set albumId($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasAlbumId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearAlbumId() => $_clearField(1);
+
+  @$pb.TagNumber(2)
+  $pb.PbList<AlbumPhoto> get photos => $_getList(1);
+}
+
+class C_DeleteAlbum extends $pb.GeneratedMessage {
+  factory C_DeleteAlbum({
+    $core.String? albumId,
+    $core.String? userId,
+    $core.String? groupId,
+  }) {
+    final result = create();
+    if (albumId != null) result.albumId = albumId;
+    if (userId != null) result.userId = userId;
+    if (groupId != null) result.groupId = groupId;
+    return result;
+  }
+
+  C_DeleteAlbum._();
+
+  factory C_DeleteAlbum.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory C_DeleteAlbum.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'C_DeleteAlbum',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'Protocol'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'albumId')
+    ..aOS(2, _omitFieldNames ? '' : 'userId')
+    ..aOS(3, _omitFieldNames ? '' : 'groupId')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  C_DeleteAlbum clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  C_DeleteAlbum copyWith(void Function(C_DeleteAlbum) updates) =>
+      super.copyWith((message) => updates(message as C_DeleteAlbum))
+          as C_DeleteAlbum;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static C_DeleteAlbum create() => C_DeleteAlbum._();
+  @$core.override
+  C_DeleteAlbum createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static C_DeleteAlbum getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<C_DeleteAlbum>(create);
+  static C_DeleteAlbum? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get albumId => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set albumId($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasAlbumId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearAlbumId() => $_clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get userId => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set userId($core.String value) => $_setString(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasUserId() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearUserId() => $_clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.String get groupId => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set groupId($core.String value) => $_setString(2, value);
+  @$pb.TagNumber(3)
+  $core.bool hasGroupId() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearGroupId() => $_clearField(3);
+}
+
+class S_DeleteAlbum extends $pb.GeneratedMessage {
+  factory S_DeleteAlbum({
+    $core.bool? success,
+    $core.String? albumId,
+    $core.String? groupId,
+    $core.String? error,
+  }) {
+    final result = create();
+    if (success != null) result.success = success;
+    if (albumId != null) result.albumId = albumId;
+    if (groupId != null) result.groupId = groupId;
+    if (error != null) result.error = error;
+    return result;
+  }
+
+  S_DeleteAlbum._();
+
+  factory S_DeleteAlbum.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory S_DeleteAlbum.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'S_DeleteAlbum',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'Protocol'),
+      createEmptyInstance: create)
+    ..aOB(1, _omitFieldNames ? '' : 'success')
+    ..aOS(2, _omitFieldNames ? '' : 'albumId')
+    ..aOS(3, _omitFieldNames ? '' : 'groupId')
+    ..aOS(4, _omitFieldNames ? '' : 'error')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  S_DeleteAlbum clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  S_DeleteAlbum copyWith(void Function(S_DeleteAlbum) updates) =>
+      super.copyWith((message) => updates(message as S_DeleteAlbum))
+          as S_DeleteAlbum;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static S_DeleteAlbum create() => S_DeleteAlbum._();
+  @$core.override
+  S_DeleteAlbum createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static S_DeleteAlbum getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<S_DeleteAlbum>(create);
+  static S_DeleteAlbum? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.bool get success => $_getBF(0);
+  @$pb.TagNumber(1)
+  set success($core.bool value) => $_setBool(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasSuccess() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearSuccess() => $_clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get albumId => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set albumId($core.String value) => $_setString(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasAlbumId() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearAlbumId() => $_clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.String get groupId => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set groupId($core.String value) => $_setString(2, value);
+  @$pb.TagNumber(3)
+  $core.bool hasGroupId() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearGroupId() => $_clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.String get error => $_getSZ(3);
+  @$pb.TagNumber(4)
+  set error($core.String value) => $_setString(3, value);
+  @$pb.TagNumber(4)
+  $core.bool hasError() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearError() => $_clearField(4);
+}
+
+class C_DeleteAlbumPhoto extends $pb.GeneratedMessage {
+  factory C_DeleteAlbumPhoto({
+    $core.String? photoId,
+    $core.String? userId,
+    $core.String? albumId,
+    $core.String? groupId,
+  }) {
+    final result = create();
+    if (photoId != null) result.photoId = photoId;
+    if (userId != null) result.userId = userId;
+    if (albumId != null) result.albumId = albumId;
+    if (groupId != null) result.groupId = groupId;
+    return result;
+  }
+
+  C_DeleteAlbumPhoto._();
+
+  factory C_DeleteAlbumPhoto.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory C_DeleteAlbumPhoto.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'C_DeleteAlbumPhoto',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'Protocol'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'photoId')
+    ..aOS(2, _omitFieldNames ? '' : 'userId')
+    ..aOS(3, _omitFieldNames ? '' : 'albumId')
+    ..aOS(4, _omitFieldNames ? '' : 'groupId')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  C_DeleteAlbumPhoto clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  C_DeleteAlbumPhoto copyWith(void Function(C_DeleteAlbumPhoto) updates) =>
+      super.copyWith((message) => updates(message as C_DeleteAlbumPhoto))
+          as C_DeleteAlbumPhoto;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static C_DeleteAlbumPhoto create() => C_DeleteAlbumPhoto._();
+  @$core.override
+  C_DeleteAlbumPhoto createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static C_DeleteAlbumPhoto getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<C_DeleteAlbumPhoto>(create);
+  static C_DeleteAlbumPhoto? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get photoId => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set photoId($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasPhotoId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearPhotoId() => $_clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get userId => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set userId($core.String value) => $_setString(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasUserId() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearUserId() => $_clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.String get albumId => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set albumId($core.String value) => $_setString(2, value);
+  @$pb.TagNumber(3)
+  $core.bool hasAlbumId() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearAlbumId() => $_clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.String get groupId => $_getSZ(3);
+  @$pb.TagNumber(4)
+  set groupId($core.String value) => $_setString(3, value);
+  @$pb.TagNumber(4)
+  $core.bool hasGroupId() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearGroupId() => $_clearField(4);
+}
+
+class S_DeleteAlbumPhoto extends $pb.GeneratedMessage {
+  factory S_DeleteAlbumPhoto({
+    $core.bool? success,
+    $core.String? photoId,
+    $core.String? albumId,
+    $core.String? groupId,
+    $core.String? error,
+    Album? album,
+  }) {
+    final result = create();
+    if (success != null) result.success = success;
+    if (photoId != null) result.photoId = photoId;
+    if (albumId != null) result.albumId = albumId;
+    if (groupId != null) result.groupId = groupId;
+    if (error != null) result.error = error;
+    if (album != null) result.album = album;
+    return result;
+  }
+
+  S_DeleteAlbumPhoto._();
+
+  factory S_DeleteAlbumPhoto.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory S_DeleteAlbumPhoto.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'S_DeleteAlbumPhoto',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'Protocol'),
+      createEmptyInstance: create)
+    ..aOB(1, _omitFieldNames ? '' : 'success')
+    ..aOS(2, _omitFieldNames ? '' : 'photoId')
+    ..aOS(3, _omitFieldNames ? '' : 'albumId')
+    ..aOS(4, _omitFieldNames ? '' : 'groupId')
+    ..aOS(5, _omitFieldNames ? '' : 'error')
+    ..aOM<Album>(6, _omitFieldNames ? '' : 'album', subBuilder: Album.create)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  S_DeleteAlbumPhoto clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  S_DeleteAlbumPhoto copyWith(void Function(S_DeleteAlbumPhoto) updates) =>
+      super.copyWith((message) => updates(message as S_DeleteAlbumPhoto))
+          as S_DeleteAlbumPhoto;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static S_DeleteAlbumPhoto create() => S_DeleteAlbumPhoto._();
+  @$core.override
+  S_DeleteAlbumPhoto createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static S_DeleteAlbumPhoto getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<S_DeleteAlbumPhoto>(create);
+  static S_DeleteAlbumPhoto? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.bool get success => $_getBF(0);
+  @$pb.TagNumber(1)
+  set success($core.bool value) => $_setBool(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasSuccess() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearSuccess() => $_clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get photoId => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set photoId($core.String value) => $_setString(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasPhotoId() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearPhotoId() => $_clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.String get albumId => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set albumId($core.String value) => $_setString(2, value);
+  @$pb.TagNumber(3)
+  $core.bool hasAlbumId() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearAlbumId() => $_clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.String get groupId => $_getSZ(3);
+  @$pb.TagNumber(4)
+  set groupId($core.String value) => $_setString(3, value);
+  @$pb.TagNumber(4)
+  $core.bool hasGroupId() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearGroupId() => $_clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.String get error => $_getSZ(4);
+  @$pb.TagNumber(5)
+  set error($core.String value) => $_setString(4, value);
+  @$pb.TagNumber(5)
+  $core.bool hasError() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearError() => $_clearField(5);
+
+  @$pb.TagNumber(6)
+  Album get album => $_getN(5);
+  @$pb.TagNumber(6)
+  set album(Album value) => $_setField(6, value);
+  @$pb.TagNumber(6)
+  $core.bool hasAlbum() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearAlbum() => $_clearField(6);
+  @$pb.TagNumber(6)
+  Album ensureAlbum() => $_ensure(5);
+}
+
+class C_MovePhoto extends $pb.GeneratedMessage {
+  factory C_MovePhoto({
+    $core.String? photoId,
+    $core.String? fromAlbumId,
+    $core.String? toAlbumId,
+    $core.String? groupId,
+    $core.String? userId,
+  }) {
+    final result = create();
+    if (photoId != null) result.photoId = photoId;
+    if (fromAlbumId != null) result.fromAlbumId = fromAlbumId;
+    if (toAlbumId != null) result.toAlbumId = toAlbumId;
+    if (groupId != null) result.groupId = groupId;
+    if (userId != null) result.userId = userId;
+    return result;
+  }
+
+  C_MovePhoto._();
+
+  factory C_MovePhoto.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory C_MovePhoto.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'C_MovePhoto',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'Protocol'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'photoId')
+    ..aOS(2, _omitFieldNames ? '' : 'fromAlbumId')
+    ..aOS(3, _omitFieldNames ? '' : 'toAlbumId')
+    ..aOS(4, _omitFieldNames ? '' : 'groupId')
+    ..aOS(5, _omitFieldNames ? '' : 'userId')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  C_MovePhoto clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  C_MovePhoto copyWith(void Function(C_MovePhoto) updates) =>
+      super.copyWith((message) => updates(message as C_MovePhoto))
+          as C_MovePhoto;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static C_MovePhoto create() => C_MovePhoto._();
+  @$core.override
+  C_MovePhoto createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static C_MovePhoto getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<C_MovePhoto>(create);
+  static C_MovePhoto? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get photoId => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set photoId($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasPhotoId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearPhotoId() => $_clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get fromAlbumId => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set fromAlbumId($core.String value) => $_setString(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasFromAlbumId() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearFromAlbumId() => $_clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.String get toAlbumId => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set toAlbumId($core.String value) => $_setString(2, value);
+  @$pb.TagNumber(3)
+  $core.bool hasToAlbumId() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearToAlbumId() => $_clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.String get groupId => $_getSZ(3);
+  @$pb.TagNumber(4)
+  set groupId($core.String value) => $_setString(3, value);
+  @$pb.TagNumber(4)
+  $core.bool hasGroupId() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearGroupId() => $_clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.String get userId => $_getSZ(4);
+  @$pb.TagNumber(5)
+  set userId($core.String value) => $_setString(4, value);
+  @$pb.TagNumber(5)
+  $core.bool hasUserId() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearUserId() => $_clearField(5);
+}
+
+class S_MovePhoto extends $pb.GeneratedMessage {
+  factory S_MovePhoto({
+    $core.bool? success,
+    $core.String? photoId,
+    $core.String? fromAlbumId,
+    $core.String? toAlbumId,
+    $core.String? groupId,
+    $core.String? error,
+    Album? fromAlbum,
+    Album? toAlbum,
+  }) {
+    final result = create();
+    if (success != null) result.success = success;
+    if (photoId != null) result.photoId = photoId;
+    if (fromAlbumId != null) result.fromAlbumId = fromAlbumId;
+    if (toAlbumId != null) result.toAlbumId = toAlbumId;
+    if (groupId != null) result.groupId = groupId;
+    if (error != null) result.error = error;
+    if (fromAlbum != null) result.fromAlbum = fromAlbum;
+    if (toAlbum != null) result.toAlbum = toAlbum;
+    return result;
+  }
+
+  S_MovePhoto._();
+
+  factory S_MovePhoto.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory S_MovePhoto.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'S_MovePhoto',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'Protocol'),
+      createEmptyInstance: create)
+    ..aOB(1, _omitFieldNames ? '' : 'success')
+    ..aOS(2, _omitFieldNames ? '' : 'photoId')
+    ..aOS(3, _omitFieldNames ? '' : 'fromAlbumId')
+    ..aOS(4, _omitFieldNames ? '' : 'toAlbumId')
+    ..aOS(5, _omitFieldNames ? '' : 'groupId')
+    ..aOS(6, _omitFieldNames ? '' : 'error')
+    ..aOM<Album>(7, _omitFieldNames ? '' : 'fromAlbum',
+        subBuilder: Album.create)
+    ..aOM<Album>(8, _omitFieldNames ? '' : 'toAlbum', subBuilder: Album.create)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  S_MovePhoto clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  S_MovePhoto copyWith(void Function(S_MovePhoto) updates) =>
+      super.copyWith((message) => updates(message as S_MovePhoto))
+          as S_MovePhoto;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static S_MovePhoto create() => S_MovePhoto._();
+  @$core.override
+  S_MovePhoto createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static S_MovePhoto getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<S_MovePhoto>(create);
+  static S_MovePhoto? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.bool get success => $_getBF(0);
+  @$pb.TagNumber(1)
+  set success($core.bool value) => $_setBool(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasSuccess() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearSuccess() => $_clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get photoId => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set photoId($core.String value) => $_setString(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasPhotoId() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearPhotoId() => $_clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.String get fromAlbumId => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set fromAlbumId($core.String value) => $_setString(2, value);
+  @$pb.TagNumber(3)
+  $core.bool hasFromAlbumId() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearFromAlbumId() => $_clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.String get toAlbumId => $_getSZ(3);
+  @$pb.TagNumber(4)
+  set toAlbumId($core.String value) => $_setString(3, value);
+  @$pb.TagNumber(4)
+  $core.bool hasToAlbumId() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearToAlbumId() => $_clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.String get groupId => $_getSZ(4);
+  @$pb.TagNumber(5)
+  set groupId($core.String value) => $_setString(4, value);
+  @$pb.TagNumber(5)
+  $core.bool hasGroupId() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearGroupId() => $_clearField(5);
+
+  @$pb.TagNumber(6)
+  $core.String get error => $_getSZ(5);
+  @$pb.TagNumber(6)
+  set error($core.String value) => $_setString(5, value);
+  @$pb.TagNumber(6)
+  $core.bool hasError() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearError() => $_clearField(6);
+
+  @$pb.TagNumber(7)
+  Album get fromAlbum => $_getN(6);
+  @$pb.TagNumber(7)
+  set fromAlbum(Album value) => $_setField(7, value);
+  @$pb.TagNumber(7)
+  $core.bool hasFromAlbum() => $_has(6);
+  @$pb.TagNumber(7)
+  void clearFromAlbum() => $_clearField(7);
+  @$pb.TagNumber(7)
+  Album ensureFromAlbum() => $_ensure(6);
+
+  @$pb.TagNumber(8)
+  Album get toAlbum => $_getN(7);
+  @$pb.TagNumber(8)
+  set toAlbum(Album value) => $_setField(8, value);
+  @$pb.TagNumber(8)
+  $core.bool hasToAlbum() => $_has(7);
+  @$pb.TagNumber(8)
+  void clearToAlbum() => $_clearField(8);
+  @$pb.TagNumber(8)
+  Album ensureToAlbum() => $_ensure(7);
+}
+
+class C_AddPhotoComment extends $pb.GeneratedMessage {
+  factory C_AddPhotoComment({
+    $core.String? photoId,
+    $core.String? senderId,
+    $core.String? senderName,
+    $core.String? text,
+    $core.String? groupId,
+  }) {
+    final result = create();
+    if (photoId != null) result.photoId = photoId;
+    if (senderId != null) result.senderId = senderId;
+    if (senderName != null) result.senderName = senderName;
+    if (text != null) result.text = text;
+    if (groupId != null) result.groupId = groupId;
+    return result;
+  }
+
+  C_AddPhotoComment._();
+
+  factory C_AddPhotoComment.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory C_AddPhotoComment.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'C_AddPhotoComment',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'Protocol'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'photoId')
+    ..aOS(2, _omitFieldNames ? '' : 'senderId')
+    ..aOS(3, _omitFieldNames ? '' : 'senderName')
+    ..aOS(4, _omitFieldNames ? '' : 'text')
+    ..aOS(5, _omitFieldNames ? '' : 'groupId')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  C_AddPhotoComment clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  C_AddPhotoComment copyWith(void Function(C_AddPhotoComment) updates) =>
+      super.copyWith((message) => updates(message as C_AddPhotoComment))
+          as C_AddPhotoComment;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static C_AddPhotoComment create() => C_AddPhotoComment._();
+  @$core.override
+  C_AddPhotoComment createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static C_AddPhotoComment getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<C_AddPhotoComment>(create);
+  static C_AddPhotoComment? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get photoId => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set photoId($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasPhotoId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearPhotoId() => $_clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get senderId => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set senderId($core.String value) => $_setString(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasSenderId() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearSenderId() => $_clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.String get senderName => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set senderName($core.String value) => $_setString(2, value);
+  @$pb.TagNumber(3)
+  $core.bool hasSenderName() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearSenderName() => $_clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.String get text => $_getSZ(3);
+  @$pb.TagNumber(4)
+  set text($core.String value) => $_setString(3, value);
+  @$pb.TagNumber(4)
+  $core.bool hasText() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearText() => $_clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.String get groupId => $_getSZ(4);
+  @$pb.TagNumber(5)
+  set groupId($core.String value) => $_setString(4, value);
+  @$pb.TagNumber(5)
+  $core.bool hasGroupId() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearGroupId() => $_clearField(5);
+}
+
+class S_AddPhotoComment extends $pb.GeneratedMessage {
+  factory S_AddPhotoComment({
+    $core.bool? success,
+    PhotoComment? comment,
+    $core.String? error,
+  }) {
+    final result = create();
+    if (success != null) result.success = success;
+    if (comment != null) result.comment = comment;
+    if (error != null) result.error = error;
+    return result;
+  }
+
+  S_AddPhotoComment._();
+
+  factory S_AddPhotoComment.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory S_AddPhotoComment.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'S_AddPhotoComment',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'Protocol'),
+      createEmptyInstance: create)
+    ..aOB(1, _omitFieldNames ? '' : 'success')
+    ..aOM<PhotoComment>(2, _omitFieldNames ? '' : 'comment',
+        subBuilder: PhotoComment.create)
+    ..aOS(3, _omitFieldNames ? '' : 'error')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  S_AddPhotoComment clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  S_AddPhotoComment copyWith(void Function(S_AddPhotoComment) updates) =>
+      super.copyWith((message) => updates(message as S_AddPhotoComment))
+          as S_AddPhotoComment;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static S_AddPhotoComment create() => S_AddPhotoComment._();
+  @$core.override
+  S_AddPhotoComment createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static S_AddPhotoComment getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<S_AddPhotoComment>(create);
+  static S_AddPhotoComment? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.bool get success => $_getBF(0);
+  @$pb.TagNumber(1)
+  set success($core.bool value) => $_setBool(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasSuccess() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearSuccess() => $_clearField(1);
+
+  @$pb.TagNumber(2)
+  PhotoComment get comment => $_getN(1);
+  @$pb.TagNumber(2)
+  set comment(PhotoComment value) => $_setField(2, value);
+  @$pb.TagNumber(2)
+  $core.bool hasComment() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearComment() => $_clearField(2);
+  @$pb.TagNumber(2)
+  PhotoComment ensureComment() => $_ensure(1);
+
+  @$pb.TagNumber(3)
+  $core.String get error => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set error($core.String value) => $_setString(2, value);
+  @$pb.TagNumber(3)
+  $core.bool hasError() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearError() => $_clearField(3);
+}
+
+class C_GetPhotoComments extends $pb.GeneratedMessage {
+  factory C_GetPhotoComments({
+    $core.String? photoId,
+  }) {
+    final result = create();
+    if (photoId != null) result.photoId = photoId;
+    return result;
+  }
+
+  C_GetPhotoComments._();
+
+  factory C_GetPhotoComments.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory C_GetPhotoComments.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'C_GetPhotoComments',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'Protocol'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'photoId')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  C_GetPhotoComments clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  C_GetPhotoComments copyWith(void Function(C_GetPhotoComments) updates) =>
+      super.copyWith((message) => updates(message as C_GetPhotoComments))
+          as C_GetPhotoComments;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static C_GetPhotoComments create() => C_GetPhotoComments._();
+  @$core.override
+  C_GetPhotoComments createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static C_GetPhotoComments getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<C_GetPhotoComments>(create);
+  static C_GetPhotoComments? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get photoId => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set photoId($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasPhotoId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearPhotoId() => $_clearField(1);
+}
+
+class S_GetPhotoComments extends $pb.GeneratedMessage {
+  factory S_GetPhotoComments({
+    $core.String? photoId,
+    $core.Iterable<PhotoComment>? comments,
+  }) {
+    final result = create();
+    if (photoId != null) result.photoId = photoId;
+    if (comments != null) result.comments.addAll(comments);
+    return result;
+  }
+
+  S_GetPhotoComments._();
+
+  factory S_GetPhotoComments.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory S_GetPhotoComments.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'S_GetPhotoComments',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'Protocol'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'photoId')
+    ..pPM<PhotoComment>(2, _omitFieldNames ? '' : 'comments',
+        subBuilder: PhotoComment.create)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  S_GetPhotoComments clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  S_GetPhotoComments copyWith(void Function(S_GetPhotoComments) updates) =>
+      super.copyWith((message) => updates(message as S_GetPhotoComments))
+          as S_GetPhotoComments;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static S_GetPhotoComments create() => S_GetPhotoComments._();
+  @$core.override
+  S_GetPhotoComments createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static S_GetPhotoComments getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<S_GetPhotoComments>(create);
+  static S_GetPhotoComments? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get photoId => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set photoId($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasPhotoId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearPhotoId() => $_clearField(1);
+
+  @$pb.TagNumber(2)
+  $pb.PbList<PhotoComment> get comments => $_getList(1);
+}
+
+class C_DeletePhotoComment extends $pb.GeneratedMessage {
+  factory C_DeletePhotoComment({
+    $core.String? commentId,
+    $core.String? userId,
+    $core.String? groupId,
+    $core.String? photoId,
+  }) {
+    final result = create();
+    if (commentId != null) result.commentId = commentId;
+    if (userId != null) result.userId = userId;
+    if (groupId != null) result.groupId = groupId;
+    if (photoId != null) result.photoId = photoId;
+    return result;
+  }
+
+  C_DeletePhotoComment._();
+
+  factory C_DeletePhotoComment.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory C_DeletePhotoComment.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'C_DeletePhotoComment',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'Protocol'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'commentId')
+    ..aOS(2, _omitFieldNames ? '' : 'userId')
+    ..aOS(3, _omitFieldNames ? '' : 'groupId')
+    ..aOS(4, _omitFieldNames ? '' : 'photoId')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  C_DeletePhotoComment clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  C_DeletePhotoComment copyWith(void Function(C_DeletePhotoComment) updates) =>
+      super.copyWith((message) => updates(message as C_DeletePhotoComment))
+          as C_DeletePhotoComment;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static C_DeletePhotoComment create() => C_DeletePhotoComment._();
+  @$core.override
+  C_DeletePhotoComment createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static C_DeletePhotoComment getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<C_DeletePhotoComment>(create);
+  static C_DeletePhotoComment? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get commentId => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set commentId($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasCommentId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearCommentId() => $_clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get userId => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set userId($core.String value) => $_setString(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasUserId() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearUserId() => $_clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.String get groupId => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set groupId($core.String value) => $_setString(2, value);
+  @$pb.TagNumber(3)
+  $core.bool hasGroupId() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearGroupId() => $_clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.String get photoId => $_getSZ(3);
+  @$pb.TagNumber(4)
+  set photoId($core.String value) => $_setString(3, value);
+  @$pb.TagNumber(4)
+  $core.bool hasPhotoId() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearPhotoId() => $_clearField(4);
+}
+
+class S_DeletePhotoComment extends $pb.GeneratedMessage {
+  factory S_DeletePhotoComment({
+    $core.bool? success,
+    $core.String? commentId,
+    $core.String? photoId,
+    $core.String? groupId,
+    $core.String? error,
+  }) {
+    final result = create();
+    if (success != null) result.success = success;
+    if (commentId != null) result.commentId = commentId;
+    if (photoId != null) result.photoId = photoId;
+    if (groupId != null) result.groupId = groupId;
+    if (error != null) result.error = error;
+    return result;
+  }
+
+  S_DeletePhotoComment._();
+
+  factory S_DeletePhotoComment.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory S_DeletePhotoComment.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'S_DeletePhotoComment',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'Protocol'),
+      createEmptyInstance: create)
+    ..aOB(1, _omitFieldNames ? '' : 'success')
+    ..aOS(2, _omitFieldNames ? '' : 'commentId')
+    ..aOS(3, _omitFieldNames ? '' : 'photoId')
+    ..aOS(4, _omitFieldNames ? '' : 'groupId')
+    ..aOS(5, _omitFieldNames ? '' : 'error')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  S_DeletePhotoComment clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  S_DeletePhotoComment copyWith(void Function(S_DeletePhotoComment) updates) =>
+      super.copyWith((message) => updates(message as S_DeletePhotoComment))
+          as S_DeletePhotoComment;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static S_DeletePhotoComment create() => S_DeletePhotoComment._();
+  @$core.override
+  S_DeletePhotoComment createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static S_DeletePhotoComment getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<S_DeletePhotoComment>(create);
+  static S_DeletePhotoComment? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.bool get success => $_getBF(0);
+  @$pb.TagNumber(1)
+  set success($core.bool value) => $_setBool(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasSuccess() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearSuccess() => $_clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get commentId => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set commentId($core.String value) => $_setString(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasCommentId() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearCommentId() => $_clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.String get photoId => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set photoId($core.String value) => $_setString(2, value);
+  @$pb.TagNumber(3)
+  $core.bool hasPhotoId() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearPhotoId() => $_clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.String get groupId => $_getSZ(3);
+  @$pb.TagNumber(4)
+  set groupId($core.String value) => $_setString(3, value);
+  @$pb.TagNumber(4)
+  $core.bool hasGroupId() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearGroupId() => $_clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.String get error => $_getSZ(4);
+  @$pb.TagNumber(5)
+  set error($core.String value) => $_setString(4, value);
+  @$pb.TagNumber(5)
+  $core.bool hasError() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearError() => $_clearField(5);
+}
+
+class LocationPhoto extends $pb.GeneratedMessage {
+  factory LocationPhoto({
+    $core.String? id,
+    $core.String? photoUrl,
+  }) {
+    final result = create();
+    if (id != null) result.id = id;
+    if (photoUrl != null) result.photoUrl = photoUrl;
+    return result;
+  }
+
+  LocationPhoto._();
+
+  factory LocationPhoto.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory LocationPhoto.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'LocationPhoto',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'Protocol'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'id')
+    ..aOS(2, _omitFieldNames ? '' : 'photoUrl')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  LocationPhoto clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  LocationPhoto copyWith(void Function(LocationPhoto) updates) =>
+      super.copyWith((message) => updates(message as LocationPhoto))
+          as LocationPhoto;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static LocationPhoto create() => LocationPhoto._();
+  @$core.override
+  LocationPhoto createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static LocationPhoto getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<LocationPhoto>(create);
+  static LocationPhoto? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get id => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set id($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => $_clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get photoUrl => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set photoUrl($core.String value) => $_setString(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasPhotoUrl() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearPhotoUrl() => $_clearField(2);
+}
+
+class LocationVisitInfo extends $pb.GeneratedMessage {
+  factory LocationVisitInfo({
+    $core.String? id,
+    $core.String? userId,
+    $core.String? userName,
+    $core.int? rating,
+    $core.String? review,
+    $fixnum.Int64? visitedAt,
+    $core.Iterable<LocationPhoto>? photos,
+  }) {
+    final result = create();
+    if (id != null) result.id = id;
+    if (userId != null) result.userId = userId;
+    if (userName != null) result.userName = userName;
+    if (rating != null) result.rating = rating;
+    if (review != null) result.review = review;
+    if (visitedAt != null) result.visitedAt = visitedAt;
+    if (photos != null) result.photos.addAll(photos);
+    return result;
+  }
+
+  LocationVisitInfo._();
+
+  factory LocationVisitInfo.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory LocationVisitInfo.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'LocationVisitInfo',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'Protocol'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'id')
+    ..aOS(2, _omitFieldNames ? '' : 'userId')
+    ..aOS(3, _omitFieldNames ? '' : 'userName')
+    ..aI(4, _omitFieldNames ? '' : 'rating')
+    ..aOS(5, _omitFieldNames ? '' : 'review')
+    ..aInt64(6, _omitFieldNames ? '' : 'visitedAt')
+    ..pPM<LocationPhoto>(7, _omitFieldNames ? '' : 'photos',
+        subBuilder: LocationPhoto.create)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  LocationVisitInfo clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  LocationVisitInfo copyWith(void Function(LocationVisitInfo) updates) =>
+      super.copyWith((message) => updates(message as LocationVisitInfo))
+          as LocationVisitInfo;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static LocationVisitInfo create() => LocationVisitInfo._();
+  @$core.override
+  LocationVisitInfo createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static LocationVisitInfo getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<LocationVisitInfo>(create);
+  static LocationVisitInfo? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get id => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set id($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => $_clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get userId => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set userId($core.String value) => $_setString(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasUserId() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearUserId() => $_clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.String get userName => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set userName($core.String value) => $_setString(2, value);
+  @$pb.TagNumber(3)
+  $core.bool hasUserName() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearUserName() => $_clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.int get rating => $_getIZ(3);
+  @$pb.TagNumber(4)
+  set rating($core.int value) => $_setSignedInt32(3, value);
+  @$pb.TagNumber(4)
+  $core.bool hasRating() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearRating() => $_clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.String get review => $_getSZ(4);
+  @$pb.TagNumber(5)
+  set review($core.String value) => $_setString(4, value);
+  @$pb.TagNumber(5)
+  $core.bool hasReview() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearReview() => $_clearField(5);
+
+  @$pb.TagNumber(6)
+  $fixnum.Int64 get visitedAt => $_getI64(5);
+  @$pb.TagNumber(6)
+  set visitedAt($fixnum.Int64 value) => $_setInt64(5, value);
+  @$pb.TagNumber(6)
+  $core.bool hasVisitedAt() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearVisitedAt() => $_clearField(6);
+
+  @$pb.TagNumber(7)
+  $pb.PbList<LocationPhoto> get photos => $_getList(6);
+}
+
+class LocationPlaceInfo extends $pb.GeneratedMessage {
+  factory LocationPlaceInfo({
+    $core.String? id,
+    $core.String? groupId,
+    $core.String? name,
+    $core.String? address,
+    $core.String? category,
+    $core.double? lat,
+    $core.double? lng,
+    $core.String? createdBy,
+    $fixnum.Int64? createdAt,
+    $core.int? visitCount,
+    $core.double? avgRating,
+    $core.String? recentPhotoUrl,
+    $core.Iterable<LocationVisitInfo>? visits,
+  }) {
+    final result = create();
+    if (id != null) result.id = id;
+    if (groupId != null) result.groupId = groupId;
+    if (name != null) result.name = name;
+    if (address != null) result.address = address;
+    if (category != null) result.category = category;
+    if (lat != null) result.lat = lat;
+    if (lng != null) result.lng = lng;
+    if (createdBy != null) result.createdBy = createdBy;
+    if (createdAt != null) result.createdAt = createdAt;
+    if (visitCount != null) result.visitCount = visitCount;
+    if (avgRating != null) result.avgRating = avgRating;
+    if (recentPhotoUrl != null) result.recentPhotoUrl = recentPhotoUrl;
+    if (visits != null) result.visits.addAll(visits);
+    return result;
+  }
+
+  LocationPlaceInfo._();
+
+  factory LocationPlaceInfo.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory LocationPlaceInfo.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'LocationPlaceInfo',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'Protocol'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'id')
+    ..aOS(2, _omitFieldNames ? '' : 'groupId')
+    ..aOS(3, _omitFieldNames ? '' : 'name')
+    ..aOS(4, _omitFieldNames ? '' : 'address')
+    ..aOS(5, _omitFieldNames ? '' : 'category')
+    ..aD(6, _omitFieldNames ? '' : 'lat')
+    ..aD(7, _omitFieldNames ? '' : 'lng')
+    ..aOS(8, _omitFieldNames ? '' : 'createdBy')
+    ..aInt64(9, _omitFieldNames ? '' : 'createdAt')
+    ..aI(10, _omitFieldNames ? '' : 'visitCount')
+    ..aD(11, _omitFieldNames ? '' : 'avgRating', fieldType: $pb.PbFieldType.OF)
+    ..aOS(12, _omitFieldNames ? '' : 'recentPhotoUrl')
+    ..pPM<LocationVisitInfo>(13, _omitFieldNames ? '' : 'visits',
+        subBuilder: LocationVisitInfo.create)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  LocationPlaceInfo clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  LocationPlaceInfo copyWith(void Function(LocationPlaceInfo) updates) =>
+      super.copyWith((message) => updates(message as LocationPlaceInfo))
+          as LocationPlaceInfo;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static LocationPlaceInfo create() => LocationPlaceInfo._();
+  @$core.override
+  LocationPlaceInfo createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static LocationPlaceInfo getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<LocationPlaceInfo>(create);
+  static LocationPlaceInfo? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get id => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set id($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => $_clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get groupId => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set groupId($core.String value) => $_setString(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasGroupId() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearGroupId() => $_clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.String get name => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set name($core.String value) => $_setString(2, value);
+  @$pb.TagNumber(3)
+  $core.bool hasName() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearName() => $_clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.String get address => $_getSZ(3);
+  @$pb.TagNumber(4)
+  set address($core.String value) => $_setString(3, value);
+  @$pb.TagNumber(4)
+  $core.bool hasAddress() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearAddress() => $_clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.String get category => $_getSZ(4);
+  @$pb.TagNumber(5)
+  set category($core.String value) => $_setString(4, value);
+  @$pb.TagNumber(5)
+  $core.bool hasCategory() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearCategory() => $_clearField(5);
+
+  @$pb.TagNumber(6)
+  $core.double get lat => $_getN(5);
+  @$pb.TagNumber(6)
+  set lat($core.double value) => $_setDouble(5, value);
+  @$pb.TagNumber(6)
+  $core.bool hasLat() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearLat() => $_clearField(6);
+
+  @$pb.TagNumber(7)
+  $core.double get lng => $_getN(6);
+  @$pb.TagNumber(7)
+  set lng($core.double value) => $_setDouble(6, value);
+  @$pb.TagNumber(7)
+  $core.bool hasLng() => $_has(6);
+  @$pb.TagNumber(7)
+  void clearLng() => $_clearField(7);
+
+  @$pb.TagNumber(8)
+  $core.String get createdBy => $_getSZ(7);
+  @$pb.TagNumber(8)
+  set createdBy($core.String value) => $_setString(7, value);
+  @$pb.TagNumber(8)
+  $core.bool hasCreatedBy() => $_has(7);
+  @$pb.TagNumber(8)
+  void clearCreatedBy() => $_clearField(8);
+
+  @$pb.TagNumber(9)
+  $fixnum.Int64 get createdAt => $_getI64(8);
+  @$pb.TagNumber(9)
+  set createdAt($fixnum.Int64 value) => $_setInt64(8, value);
+  @$pb.TagNumber(9)
+  $core.bool hasCreatedAt() => $_has(8);
+  @$pb.TagNumber(9)
+  void clearCreatedAt() => $_clearField(9);
+
+  @$pb.TagNumber(10)
+  $core.int get visitCount => $_getIZ(9);
+  @$pb.TagNumber(10)
+  set visitCount($core.int value) => $_setSignedInt32(9, value);
+  @$pb.TagNumber(10)
+  $core.bool hasVisitCount() => $_has(9);
+  @$pb.TagNumber(10)
+  void clearVisitCount() => $_clearField(10);
+
+  @$pb.TagNumber(11)
+  $core.double get avgRating => $_getN(10);
+  @$pb.TagNumber(11)
+  set avgRating($core.double value) => $_setFloat(10, value);
+  @$pb.TagNumber(11)
+  $core.bool hasAvgRating() => $_has(10);
+  @$pb.TagNumber(11)
+  void clearAvgRating() => $_clearField(11);
+
+  @$pb.TagNumber(12)
+  $core.String get recentPhotoUrl => $_getSZ(11);
+  @$pb.TagNumber(12)
+  set recentPhotoUrl($core.String value) => $_setString(11, value);
+  @$pb.TagNumber(12)
+  $core.bool hasRecentPhotoUrl() => $_has(11);
+  @$pb.TagNumber(12)
+  void clearRecentPhotoUrl() => $_clearField(12);
+
+  @$pb.TagNumber(13)
+  $pb.PbList<LocationVisitInfo> get visits => $_getList(12);
+}
+
+class C_SavePlace extends $pb.GeneratedMessage {
+  factory C_SavePlace({
+    $core.String? groupId,
+    $core.String? name,
+    $core.String? address,
+    $core.String? category,
+    $core.double? lat,
+    $core.double? lng,
+    $core.String? userId,
+    $core.String? userName,
+  }) {
+    final result = create();
+    if (groupId != null) result.groupId = groupId;
+    if (name != null) result.name = name;
+    if (address != null) result.address = address;
+    if (category != null) result.category = category;
+    if (lat != null) result.lat = lat;
+    if (lng != null) result.lng = lng;
+    if (userId != null) result.userId = userId;
+    if (userName != null) result.userName = userName;
+    return result;
+  }
+
+  C_SavePlace._();
+
+  factory C_SavePlace.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory C_SavePlace.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'C_SavePlace',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'Protocol'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'groupId')
+    ..aOS(2, _omitFieldNames ? '' : 'name')
+    ..aOS(3, _omitFieldNames ? '' : 'address')
+    ..aOS(4, _omitFieldNames ? '' : 'category')
+    ..aD(5, _omitFieldNames ? '' : 'lat')
+    ..aD(6, _omitFieldNames ? '' : 'lng')
+    ..aOS(7, _omitFieldNames ? '' : 'userId')
+    ..aOS(8, _omitFieldNames ? '' : 'userName')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  C_SavePlace clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  C_SavePlace copyWith(void Function(C_SavePlace) updates) =>
+      super.copyWith((message) => updates(message as C_SavePlace))
+          as C_SavePlace;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static C_SavePlace create() => C_SavePlace._();
+  @$core.override
+  C_SavePlace createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static C_SavePlace getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<C_SavePlace>(create);
+  static C_SavePlace? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get groupId => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set groupId($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasGroupId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearGroupId() => $_clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get name => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set name($core.String value) => $_setString(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasName() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearName() => $_clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.String get address => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set address($core.String value) => $_setString(2, value);
+  @$pb.TagNumber(3)
+  $core.bool hasAddress() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearAddress() => $_clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.String get category => $_getSZ(3);
+  @$pb.TagNumber(4)
+  set category($core.String value) => $_setString(3, value);
+  @$pb.TagNumber(4)
+  $core.bool hasCategory() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearCategory() => $_clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.double get lat => $_getN(4);
+  @$pb.TagNumber(5)
+  set lat($core.double value) => $_setDouble(4, value);
+  @$pb.TagNumber(5)
+  $core.bool hasLat() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearLat() => $_clearField(5);
+
+  @$pb.TagNumber(6)
+  $core.double get lng => $_getN(5);
+  @$pb.TagNumber(6)
+  set lng($core.double value) => $_setDouble(5, value);
+  @$pb.TagNumber(6)
+  $core.bool hasLng() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearLng() => $_clearField(6);
+
+  @$pb.TagNumber(7)
+  $core.String get userId => $_getSZ(6);
+  @$pb.TagNumber(7)
+  set userId($core.String value) => $_setString(6, value);
+  @$pb.TagNumber(7)
+  $core.bool hasUserId() => $_has(6);
+  @$pb.TagNumber(7)
+  void clearUserId() => $_clearField(7);
+
+  @$pb.TagNumber(8)
+  $core.String get userName => $_getSZ(7);
+  @$pb.TagNumber(8)
+  set userName($core.String value) => $_setString(7, value);
+  @$pb.TagNumber(8)
+  $core.bool hasUserName() => $_has(7);
+  @$pb.TagNumber(8)
+  void clearUserName() => $_clearField(8);
+}
+
+class S_SavePlace extends $pb.GeneratedMessage {
+  factory S_SavePlace({
+    $core.bool? success,
+    LocationPlaceInfo? place,
+    $core.int? errorCode,
+  }) {
+    final result = create();
+    if (success != null) result.success = success;
+    if (place != null) result.place = place;
+    if (errorCode != null) result.errorCode = errorCode;
+    return result;
+  }
+
+  S_SavePlace._();
+
+  factory S_SavePlace.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory S_SavePlace.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'S_SavePlace',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'Protocol'),
+      createEmptyInstance: create)
+    ..aOB(1, _omitFieldNames ? '' : 'success')
+    ..aOM<LocationPlaceInfo>(2, _omitFieldNames ? '' : 'place',
+        subBuilder: LocationPlaceInfo.create)
+    ..aI(3, _omitFieldNames ? '' : 'errorCode')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  S_SavePlace clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  S_SavePlace copyWith(void Function(S_SavePlace) updates) =>
+      super.copyWith((message) => updates(message as S_SavePlace))
+          as S_SavePlace;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static S_SavePlace create() => S_SavePlace._();
+  @$core.override
+  S_SavePlace createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static S_SavePlace getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<S_SavePlace>(create);
+  static S_SavePlace? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.bool get success => $_getBF(0);
+  @$pb.TagNumber(1)
+  set success($core.bool value) => $_setBool(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasSuccess() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearSuccess() => $_clearField(1);
+
+  @$pb.TagNumber(2)
+  LocationPlaceInfo get place => $_getN(1);
+  @$pb.TagNumber(2)
+  set place(LocationPlaceInfo value) => $_setField(2, value);
+  @$pb.TagNumber(2)
+  $core.bool hasPlace() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearPlace() => $_clearField(2);
+  @$pb.TagNumber(2)
+  LocationPlaceInfo ensurePlace() => $_ensure(1);
+
+  @$pb.TagNumber(3)
+  $core.int get errorCode => $_getIZ(2);
+  @$pb.TagNumber(3)
+  set errorCode($core.int value) => $_setSignedInt32(2, value);
+  @$pb.TagNumber(3)
+  $core.bool hasErrorCode() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearErrorCode() => $_clearField(3);
+}
+
+class C_GetPlaces extends $pb.GeneratedMessage {
+  factory C_GetPlaces({
+    $core.String? groupId,
+  }) {
+    final result = create();
+    if (groupId != null) result.groupId = groupId;
+    return result;
+  }
+
+  C_GetPlaces._();
+
+  factory C_GetPlaces.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory C_GetPlaces.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'C_GetPlaces',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'Protocol'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'groupId')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  C_GetPlaces clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  C_GetPlaces copyWith(void Function(C_GetPlaces) updates) =>
+      super.copyWith((message) => updates(message as C_GetPlaces))
+          as C_GetPlaces;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static C_GetPlaces create() => C_GetPlaces._();
+  @$core.override
+  C_GetPlaces createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static C_GetPlaces getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<C_GetPlaces>(create);
+  static C_GetPlaces? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get groupId => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set groupId($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasGroupId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearGroupId() => $_clearField(1);
+}
+
+class S_GetPlaces extends $pb.GeneratedMessage {
+  factory S_GetPlaces({
+    $core.String? groupId,
+    $core.Iterable<LocationPlaceInfo>? places,
+  }) {
+    final result = create();
+    if (groupId != null) result.groupId = groupId;
+    if (places != null) result.places.addAll(places);
+    return result;
+  }
+
+  S_GetPlaces._();
+
+  factory S_GetPlaces.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory S_GetPlaces.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'S_GetPlaces',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'Protocol'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'groupId')
+    ..pPM<LocationPlaceInfo>(2, _omitFieldNames ? '' : 'places',
+        subBuilder: LocationPlaceInfo.create)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  S_GetPlaces clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  S_GetPlaces copyWith(void Function(S_GetPlaces) updates) =>
+      super.copyWith((message) => updates(message as S_GetPlaces))
+          as S_GetPlaces;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static S_GetPlaces create() => S_GetPlaces._();
+  @$core.override
+  S_GetPlaces createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static S_GetPlaces getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<S_GetPlaces>(create);
+  static S_GetPlaces? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get groupId => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set groupId($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasGroupId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearGroupId() => $_clearField(1);
+
+  @$pb.TagNumber(2)
+  $pb.PbList<LocationPlaceInfo> get places => $_getList(1);
+}
+
+class C_SaveVisit extends $pb.GeneratedMessage {
+  factory C_SaveVisit({
+    $core.String? placeId,
+    $core.String? groupId,
+    $core.String? userId,
+    $core.String? userName,
+    $core.int? rating,
+    $core.String? review,
+    $core.Iterable<$core.String>? photoUrls,
+    $fixnum.Int64? visitedAt,
+  }) {
+    final result = create();
+    if (placeId != null) result.placeId = placeId;
+    if (groupId != null) result.groupId = groupId;
+    if (userId != null) result.userId = userId;
+    if (userName != null) result.userName = userName;
+    if (rating != null) result.rating = rating;
+    if (review != null) result.review = review;
+    if (photoUrls != null) result.photoUrls.addAll(photoUrls);
+    if (visitedAt != null) result.visitedAt = visitedAt;
+    return result;
+  }
+
+  C_SaveVisit._();
+
+  factory C_SaveVisit.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory C_SaveVisit.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'C_SaveVisit',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'Protocol'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'placeId')
+    ..aOS(2, _omitFieldNames ? '' : 'groupId')
+    ..aOS(3, _omitFieldNames ? '' : 'userId')
+    ..aOS(4, _omitFieldNames ? '' : 'userName')
+    ..aI(5, _omitFieldNames ? '' : 'rating')
+    ..aOS(6, _omitFieldNames ? '' : 'review')
+    ..pPS(7, _omitFieldNames ? '' : 'photoUrls')
+    ..aInt64(8, _omitFieldNames ? '' : 'visitedAt')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  C_SaveVisit clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  C_SaveVisit copyWith(void Function(C_SaveVisit) updates) =>
+      super.copyWith((message) => updates(message as C_SaveVisit))
+          as C_SaveVisit;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static C_SaveVisit create() => C_SaveVisit._();
+  @$core.override
+  C_SaveVisit createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static C_SaveVisit getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<C_SaveVisit>(create);
+  static C_SaveVisit? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get placeId => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set placeId($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasPlaceId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearPlaceId() => $_clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get groupId => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set groupId($core.String value) => $_setString(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasGroupId() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearGroupId() => $_clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.String get userId => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set userId($core.String value) => $_setString(2, value);
+  @$pb.TagNumber(3)
+  $core.bool hasUserId() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearUserId() => $_clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.String get userName => $_getSZ(3);
+  @$pb.TagNumber(4)
+  set userName($core.String value) => $_setString(3, value);
+  @$pb.TagNumber(4)
+  $core.bool hasUserName() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearUserName() => $_clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.int get rating => $_getIZ(4);
+  @$pb.TagNumber(5)
+  set rating($core.int value) => $_setSignedInt32(4, value);
+  @$pb.TagNumber(5)
+  $core.bool hasRating() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearRating() => $_clearField(5);
+
+  @$pb.TagNumber(6)
+  $core.String get review => $_getSZ(5);
+  @$pb.TagNumber(6)
+  set review($core.String value) => $_setString(5, value);
+  @$pb.TagNumber(6)
+  $core.bool hasReview() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearReview() => $_clearField(6);
+
+  @$pb.TagNumber(7)
+  $pb.PbList<$core.String> get photoUrls => $_getList(6);
+
+  @$pb.TagNumber(8)
+  $fixnum.Int64 get visitedAt => $_getI64(7);
+  @$pb.TagNumber(8)
+  set visitedAt($fixnum.Int64 value) => $_setInt64(7, value);
+  @$pb.TagNumber(8)
+  $core.bool hasVisitedAt() => $_has(7);
+  @$pb.TagNumber(8)
+  void clearVisitedAt() => $_clearField(8);
+}
+
+class S_SaveVisit extends $pb.GeneratedMessage {
+  factory S_SaveVisit({
+    $core.bool? success,
+    $core.String? placeId,
+    LocationVisitInfo? visit,
+    LocationPlaceInfo? place,
+    $core.int? errorCode,
+  }) {
+    final result = create();
+    if (success != null) result.success = success;
+    if (placeId != null) result.placeId = placeId;
+    if (visit != null) result.visit = visit;
+    if (place != null) result.place = place;
+    if (errorCode != null) result.errorCode = errorCode;
+    return result;
+  }
+
+  S_SaveVisit._();
+
+  factory S_SaveVisit.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory S_SaveVisit.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'S_SaveVisit',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'Protocol'),
+      createEmptyInstance: create)
+    ..aOB(1, _omitFieldNames ? '' : 'success')
+    ..aOS(2, _omitFieldNames ? '' : 'placeId')
+    ..aOM<LocationVisitInfo>(3, _omitFieldNames ? '' : 'visit',
+        subBuilder: LocationVisitInfo.create)
+    ..aOM<LocationPlaceInfo>(4, _omitFieldNames ? '' : 'place',
+        subBuilder: LocationPlaceInfo.create)
+    ..aI(5, _omitFieldNames ? '' : 'errorCode')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  S_SaveVisit clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  S_SaveVisit copyWith(void Function(S_SaveVisit) updates) =>
+      super.copyWith((message) => updates(message as S_SaveVisit))
+          as S_SaveVisit;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static S_SaveVisit create() => S_SaveVisit._();
+  @$core.override
+  S_SaveVisit createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static S_SaveVisit getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<S_SaveVisit>(create);
+  static S_SaveVisit? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.bool get success => $_getBF(0);
+  @$pb.TagNumber(1)
+  set success($core.bool value) => $_setBool(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasSuccess() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearSuccess() => $_clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get placeId => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set placeId($core.String value) => $_setString(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasPlaceId() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearPlaceId() => $_clearField(2);
+
+  @$pb.TagNumber(3)
+  LocationVisitInfo get visit => $_getN(2);
+  @$pb.TagNumber(3)
+  set visit(LocationVisitInfo value) => $_setField(3, value);
+  @$pb.TagNumber(3)
+  $core.bool hasVisit() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearVisit() => $_clearField(3);
+  @$pb.TagNumber(3)
+  LocationVisitInfo ensureVisit() => $_ensure(2);
+
+  @$pb.TagNumber(4)
+  LocationPlaceInfo get place => $_getN(3);
+  @$pb.TagNumber(4)
+  set place(LocationPlaceInfo value) => $_setField(4, value);
+  @$pb.TagNumber(4)
+  $core.bool hasPlace() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearPlace() => $_clearField(4);
+  @$pb.TagNumber(4)
+  LocationPlaceInfo ensurePlace() => $_ensure(3);
+
+  @$pb.TagNumber(5)
+  $core.int get errorCode => $_getIZ(4);
+  @$pb.TagNumber(5)
+  set errorCode($core.int value) => $_setSignedInt32(4, value);
+  @$pb.TagNumber(5)
+  $core.bool hasErrorCode() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearErrorCode() => $_clearField(5);
+}
+
+class C_DeletePlace extends $pb.GeneratedMessage {
+  factory C_DeletePlace({
+    $core.String? placeId,
+    $core.String? groupId,
+    $core.String? userId,
+  }) {
+    final result = create();
+    if (placeId != null) result.placeId = placeId;
+    if (groupId != null) result.groupId = groupId;
+    if (userId != null) result.userId = userId;
+    return result;
+  }
+
+  C_DeletePlace._();
+
+  factory C_DeletePlace.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory C_DeletePlace.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'C_DeletePlace',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'Protocol'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'placeId')
+    ..aOS(2, _omitFieldNames ? '' : 'groupId')
+    ..aOS(3, _omitFieldNames ? '' : 'userId')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  C_DeletePlace clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  C_DeletePlace copyWith(void Function(C_DeletePlace) updates) =>
+      super.copyWith((message) => updates(message as C_DeletePlace))
+          as C_DeletePlace;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static C_DeletePlace create() => C_DeletePlace._();
+  @$core.override
+  C_DeletePlace createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static C_DeletePlace getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<C_DeletePlace>(create);
+  static C_DeletePlace? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get placeId => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set placeId($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasPlaceId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearPlaceId() => $_clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get groupId => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set groupId($core.String value) => $_setString(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasGroupId() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearGroupId() => $_clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.String get userId => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set userId($core.String value) => $_setString(2, value);
+  @$pb.TagNumber(3)
+  $core.bool hasUserId() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearUserId() => $_clearField(3);
+}
+
+class S_DeletePlace extends $pb.GeneratedMessage {
+  factory S_DeletePlace({
+    $core.bool? success,
+    $core.String? placeId,
+    $core.String? groupId,
+    $core.int? errorCode,
+  }) {
+    final result = create();
+    if (success != null) result.success = success;
+    if (placeId != null) result.placeId = placeId;
+    if (groupId != null) result.groupId = groupId;
+    if (errorCode != null) result.errorCode = errorCode;
+    return result;
+  }
+
+  S_DeletePlace._();
+
+  factory S_DeletePlace.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory S_DeletePlace.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'S_DeletePlace',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'Protocol'),
+      createEmptyInstance: create)
+    ..aOB(1, _omitFieldNames ? '' : 'success')
+    ..aOS(2, _omitFieldNames ? '' : 'placeId')
+    ..aOS(3, _omitFieldNames ? '' : 'groupId')
+    ..aI(4, _omitFieldNames ? '' : 'errorCode')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  S_DeletePlace clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  S_DeletePlace copyWith(void Function(S_DeletePlace) updates) =>
+      super.copyWith((message) => updates(message as S_DeletePlace))
+          as S_DeletePlace;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static S_DeletePlace create() => S_DeletePlace._();
+  @$core.override
+  S_DeletePlace createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static S_DeletePlace getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<S_DeletePlace>(create);
+  static S_DeletePlace? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.bool get success => $_getBF(0);
+  @$pb.TagNumber(1)
+  set success($core.bool value) => $_setBool(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasSuccess() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearSuccess() => $_clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get placeId => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set placeId($core.String value) => $_setString(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasPlaceId() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearPlaceId() => $_clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.String get groupId => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set groupId($core.String value) => $_setString(2, value);
+  @$pb.TagNumber(3)
+  $core.bool hasGroupId() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearGroupId() => $_clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.int get errorCode => $_getIZ(3);
+  @$pb.TagNumber(4)
+  set errorCode($core.int value) => $_setSignedInt32(3, value);
+  @$pb.TagNumber(4)
+  $core.bool hasErrorCode() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearErrorCode() => $_clearField(4);
+}
+
+class C_UpdateVisit extends $pb.GeneratedMessage {
+  factory C_UpdateVisit({
+    $core.String? visitId,
+    $core.String? placeId,
+    $core.String? groupId,
+    $core.String? userId,
+    $core.int? rating,
+    $core.String? review,
+    $core.Iterable<$core.String>? photoUrls,
+    $fixnum.Int64? visitedAt,
+  }) {
+    final result = create();
+    if (visitId != null) result.visitId = visitId;
+    if (placeId != null) result.placeId = placeId;
+    if (groupId != null) result.groupId = groupId;
+    if (userId != null) result.userId = userId;
+    if (rating != null) result.rating = rating;
+    if (review != null) result.review = review;
+    if (photoUrls != null) result.photoUrls.addAll(photoUrls);
+    if (visitedAt != null) result.visitedAt = visitedAt;
+    return result;
+  }
+
+  C_UpdateVisit._();
+
+  factory C_UpdateVisit.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory C_UpdateVisit.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'C_UpdateVisit',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'Protocol'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'visitId')
+    ..aOS(2, _omitFieldNames ? '' : 'placeId')
+    ..aOS(3, _omitFieldNames ? '' : 'groupId')
+    ..aOS(4, _omitFieldNames ? '' : 'userId')
+    ..aI(5, _omitFieldNames ? '' : 'rating')
+    ..aOS(6, _omitFieldNames ? '' : 'review')
+    ..pPS(7, _omitFieldNames ? '' : 'photoUrls')
+    ..aInt64(8, _omitFieldNames ? '' : 'visitedAt')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  C_UpdateVisit clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  C_UpdateVisit copyWith(void Function(C_UpdateVisit) updates) =>
+      super.copyWith((message) => updates(message as C_UpdateVisit))
+          as C_UpdateVisit;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static C_UpdateVisit create() => C_UpdateVisit._();
+  @$core.override
+  C_UpdateVisit createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static C_UpdateVisit getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<C_UpdateVisit>(create);
+  static C_UpdateVisit? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get visitId => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set visitId($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasVisitId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearVisitId() => $_clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get placeId => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set placeId($core.String value) => $_setString(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasPlaceId() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearPlaceId() => $_clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.String get groupId => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set groupId($core.String value) => $_setString(2, value);
+  @$pb.TagNumber(3)
+  $core.bool hasGroupId() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearGroupId() => $_clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.String get userId => $_getSZ(3);
+  @$pb.TagNumber(4)
+  set userId($core.String value) => $_setString(3, value);
+  @$pb.TagNumber(4)
+  $core.bool hasUserId() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearUserId() => $_clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.int get rating => $_getIZ(4);
+  @$pb.TagNumber(5)
+  set rating($core.int value) => $_setSignedInt32(4, value);
+  @$pb.TagNumber(5)
+  $core.bool hasRating() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearRating() => $_clearField(5);
+
+  @$pb.TagNumber(6)
+  $core.String get review => $_getSZ(5);
+  @$pb.TagNumber(6)
+  set review($core.String value) => $_setString(5, value);
+  @$pb.TagNumber(6)
+  $core.bool hasReview() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearReview() => $_clearField(6);
+
+  @$pb.TagNumber(7)
+  $pb.PbList<$core.String> get photoUrls => $_getList(6);
+
+  @$pb.TagNumber(8)
+  $fixnum.Int64 get visitedAt => $_getI64(7);
+  @$pb.TagNumber(8)
+  set visitedAt($fixnum.Int64 value) => $_setInt64(7, value);
+  @$pb.TagNumber(8)
+  $core.bool hasVisitedAt() => $_has(7);
+  @$pb.TagNumber(8)
+  void clearVisitedAt() => $_clearField(8);
+}
+
+class S_UpdateVisit extends $pb.GeneratedMessage {
+  factory S_UpdateVisit({
+    $core.bool? success,
+    LocationVisitInfo? visit,
+    LocationPlaceInfo? place,
+    $core.int? errorCode,
+  }) {
+    final result = create();
+    if (success != null) result.success = success;
+    if (visit != null) result.visit = visit;
+    if (place != null) result.place = place;
+    if (errorCode != null) result.errorCode = errorCode;
+    return result;
+  }
+
+  S_UpdateVisit._();
+
+  factory S_UpdateVisit.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory S_UpdateVisit.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'S_UpdateVisit',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'Protocol'),
+      createEmptyInstance: create)
+    ..aOB(1, _omitFieldNames ? '' : 'success')
+    ..aOM<LocationVisitInfo>(2, _omitFieldNames ? '' : 'visit',
+        subBuilder: LocationVisitInfo.create)
+    ..aOM<LocationPlaceInfo>(3, _omitFieldNames ? '' : 'place',
+        subBuilder: LocationPlaceInfo.create)
+    ..aI(4, _omitFieldNames ? '' : 'errorCode')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  S_UpdateVisit clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  S_UpdateVisit copyWith(void Function(S_UpdateVisit) updates) =>
+      super.copyWith((message) => updates(message as S_UpdateVisit))
+          as S_UpdateVisit;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static S_UpdateVisit create() => S_UpdateVisit._();
+  @$core.override
+  S_UpdateVisit createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static S_UpdateVisit getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<S_UpdateVisit>(create);
+  static S_UpdateVisit? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.bool get success => $_getBF(0);
+  @$pb.TagNumber(1)
+  set success($core.bool value) => $_setBool(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasSuccess() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearSuccess() => $_clearField(1);
+
+  @$pb.TagNumber(2)
+  LocationVisitInfo get visit => $_getN(1);
+  @$pb.TagNumber(2)
+  set visit(LocationVisitInfo value) => $_setField(2, value);
+  @$pb.TagNumber(2)
+  $core.bool hasVisit() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearVisit() => $_clearField(2);
+  @$pb.TagNumber(2)
+  LocationVisitInfo ensureVisit() => $_ensure(1);
+
+  @$pb.TagNumber(3)
+  LocationPlaceInfo get place => $_getN(2);
+  @$pb.TagNumber(3)
+  set place(LocationPlaceInfo value) => $_setField(3, value);
+  @$pb.TagNumber(3)
+  $core.bool hasPlace() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearPlace() => $_clearField(3);
+  @$pb.TagNumber(3)
+  LocationPlaceInfo ensurePlace() => $_ensure(2);
+
+  @$pb.TagNumber(4)
+  $core.int get errorCode => $_getIZ(3);
+  @$pb.TagNumber(4)
+  set errorCode($core.int value) => $_setSignedInt32(3, value);
+  @$pb.TagNumber(4)
+  $core.bool hasErrorCode() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearErrorCode() => $_clearField(4);
+}
+
+class C_DeleteVisit extends $pb.GeneratedMessage {
+  factory C_DeleteVisit({
+    $core.String? visitId,
+    $core.String? placeId,
+    $core.String? groupId,
+    $core.String? userId,
+  }) {
+    final result = create();
+    if (visitId != null) result.visitId = visitId;
+    if (placeId != null) result.placeId = placeId;
+    if (groupId != null) result.groupId = groupId;
+    if (userId != null) result.userId = userId;
+    return result;
+  }
+
+  C_DeleteVisit._();
+
+  factory C_DeleteVisit.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory C_DeleteVisit.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'C_DeleteVisit',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'Protocol'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'visitId')
+    ..aOS(2, _omitFieldNames ? '' : 'placeId')
+    ..aOS(3, _omitFieldNames ? '' : 'groupId')
+    ..aOS(4, _omitFieldNames ? '' : 'userId')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  C_DeleteVisit clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  C_DeleteVisit copyWith(void Function(C_DeleteVisit) updates) =>
+      super.copyWith((message) => updates(message as C_DeleteVisit))
+          as C_DeleteVisit;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static C_DeleteVisit create() => C_DeleteVisit._();
+  @$core.override
+  C_DeleteVisit createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static C_DeleteVisit getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<C_DeleteVisit>(create);
+  static C_DeleteVisit? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get visitId => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set visitId($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasVisitId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearVisitId() => $_clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get placeId => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set placeId($core.String value) => $_setString(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasPlaceId() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearPlaceId() => $_clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.String get groupId => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set groupId($core.String value) => $_setString(2, value);
+  @$pb.TagNumber(3)
+  $core.bool hasGroupId() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearGroupId() => $_clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.String get userId => $_getSZ(3);
+  @$pb.TagNumber(4)
+  set userId($core.String value) => $_setString(3, value);
+  @$pb.TagNumber(4)
+  $core.bool hasUserId() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearUserId() => $_clearField(4);
+}
+
+class S_DeleteVisit extends $pb.GeneratedMessage {
+  factory S_DeleteVisit({
+    $core.bool? success,
+    $core.String? visitId,
+    $core.String? placeId,
+    $core.String? groupId,
+    $core.bool? placeDeleted,
+    $core.int? errorCode,
+  }) {
+    final result = create();
+    if (success != null) result.success = success;
+    if (visitId != null) result.visitId = visitId;
+    if (placeId != null) result.placeId = placeId;
+    if (groupId != null) result.groupId = groupId;
+    if (placeDeleted != null) result.placeDeleted = placeDeleted;
+    if (errorCode != null) result.errorCode = errorCode;
+    return result;
+  }
+
+  S_DeleteVisit._();
+
+  factory S_DeleteVisit.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory S_DeleteVisit.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'S_DeleteVisit',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'Protocol'),
+      createEmptyInstance: create)
+    ..aOB(1, _omitFieldNames ? '' : 'success')
+    ..aOS(2, _omitFieldNames ? '' : 'visitId')
+    ..aOS(3, _omitFieldNames ? '' : 'placeId')
+    ..aOS(4, _omitFieldNames ? '' : 'groupId')
+    ..aOB(5, _omitFieldNames ? '' : 'placeDeleted')
+    ..aI(6, _omitFieldNames ? '' : 'errorCode')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  S_DeleteVisit clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  S_DeleteVisit copyWith(void Function(S_DeleteVisit) updates) =>
+      super.copyWith((message) => updates(message as S_DeleteVisit))
+          as S_DeleteVisit;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static S_DeleteVisit create() => S_DeleteVisit._();
+  @$core.override
+  S_DeleteVisit createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static S_DeleteVisit getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<S_DeleteVisit>(create);
+  static S_DeleteVisit? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.bool get success => $_getBF(0);
+  @$pb.TagNumber(1)
+  set success($core.bool value) => $_setBool(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasSuccess() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearSuccess() => $_clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get visitId => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set visitId($core.String value) => $_setString(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasVisitId() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearVisitId() => $_clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.String get placeId => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set placeId($core.String value) => $_setString(2, value);
+  @$pb.TagNumber(3)
+  $core.bool hasPlaceId() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearPlaceId() => $_clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.String get groupId => $_getSZ(3);
+  @$pb.TagNumber(4)
+  set groupId($core.String value) => $_setString(3, value);
+  @$pb.TagNumber(4)
+  $core.bool hasGroupId() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearGroupId() => $_clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.bool get placeDeleted => $_getBF(4);
+  @$pb.TagNumber(5)
+  set placeDeleted($core.bool value) => $_setBool(4, value);
+  @$pb.TagNumber(5)
+  $core.bool hasPlaceDeleted() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearPlaceDeleted() => $_clearField(5);
+
+  @$pb.TagNumber(6)
+  $core.int get errorCode => $_getIZ(5);
+  @$pb.TagNumber(6)
+  set errorCode($core.int value) => $_setSignedInt32(5, value);
+  @$pb.TagNumber(6)
+  $core.bool hasErrorCode() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearErrorCode() => $_clearField(6);
 }
 
 class S_Error extends $pb.GeneratedMessage {

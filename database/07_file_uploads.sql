@@ -26,3 +26,8 @@ CREATE TABLE IF NOT EXISTS file_uploads (
     INDEX idx_upload_status (upload_status),
     INDEX idx_expires_at    (expires_at)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+ALTER TABLE file_uploads
+      ADD COLUMN group_id VARCHAR(100) NULL AFTER user_id,
+      ADD INDEX idx_group_id (group_id);

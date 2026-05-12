@@ -19,6 +19,7 @@ public:
     bool UploadFile(const string& path, const vector<uint8>& data, const string& mimeType) override;
     bool RemoveFile(const string& path) override;
     bool FileExists(const string& path) override;
+    string GetBucketName() const override { return _bucketName; }
 
 private:
     /* Helpers */

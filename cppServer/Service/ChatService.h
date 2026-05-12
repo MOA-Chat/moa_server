@@ -2,6 +2,7 @@
 
 #include "Session.h"
 #include "../protocol.pb.h"
+#include "../PacketDispatcher.h"
 
 using sessionPtr = shared_ptr<Session>;
 
@@ -12,13 +13,13 @@ public:
 	~ChatService() = default;
 
 
-	bool SendDirect(sessionPtr& senderSession, uint64 reqId, const string& receiverId, const Protocol::C_Chat& pkt);
+	bool SendGroupDM(sessionPtr& senderSession, uint64 reqId, const string& groupId, const string& receiverId, const Protocol::C_Chat& pkt);
 	bool SendGroup(sessionPtr& senderSession, uint64 reqId, const string& groupId, const Protocol::C_Chat& pkt);
-	
+
 	bool SendSystemMessage(const string& groupId, const string& message);
 
 
-	bool HandleAck(sessionPtr& session, uint64 reqId, bool bDirect, const string& targetId, int64 msg_seq);
+	bool HandleAck(sessionPtr& session, uint64 reqId, PacketDispatcher::ConvType type, const string& targetId, int64 msg_seq);
 	bool HandleReqHistory(sessionPtr& session, uint64 reqId, const Protocol::C_ReqHistory& pkt);
 
 	bool HandleDeleteMessage(sessionPtr& session, uint64 reqId, const Protocol::C_DeleteMessage& pkt);
