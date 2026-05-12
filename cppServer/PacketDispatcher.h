@@ -138,12 +138,6 @@ protected:
     // Announcement Handler (공지)
     static bool Dispatch_C_SetAnnouncement(sessionPtr& session, uint64 reqId, const Protocol::C_SetAnnouncement& pkt);
 
-    // BallDrop Handler (숫자 뽑기)
-    static bool Dispatch_C_CreateBallDrop(sessionPtr& session, uint64 reqId, const Protocol::C_CreateBallDrop& pkt);
-
-    // PhotoSlide Handler (포토 슬라이드)
-    static bool Dispatch_C_CreatePhotoSlide(sessionPtr& session, uint64 reqId, const Protocol::C_CreatePhotoSlide& pkt);
-
     // Album Handlers (앨범)
     static bool Dispatch_C_CreateAlbum      (sessionPtr& session, uint64 reqId, const Protocol::C_CreateAlbum& pkt);
     static bool Dispatch_C_GetAlbums        (sessionPtr& session, uint64 reqId, const Protocol::C_GetAlbums& pkt);

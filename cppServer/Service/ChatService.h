@@ -32,9 +32,6 @@ public:
 	bool HandleClosePoll(sessionPtr& session, uint64 reqId, const Protocol::C_ClosePoll& pkt);
 
 	bool HandleSetAnnouncement(sessionPtr& session, uint64 reqId, const Protocol::C_SetAnnouncement& pkt);
-	bool HandleCreateBallDrop(sessionPtr& session, uint64 reqId, const Protocol::C_CreateBallDrop& pkt);
-	bool HandleCreatePhotoSlide(sessionPtr& session, uint64 reqId, const Protocol::C_CreatePhotoSlide& pkt);
-
 
 protected:
 	/* Helpers */

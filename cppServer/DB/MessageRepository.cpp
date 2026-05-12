@@ -377,12 +377,6 @@ void MessageRepository::ParseChatPacket(Protocol::S_Chat& sChat, const mysqlx::R
     case 6: // AUDIO
         payload->mutable_audio()->set_url(row[5].isNull() ? "" : row[5].get<string>());
         break;
-    case 7: // GAME (ballDrop) — message 컬럼에 game JSON 저장, text payload로 전달
-        payload->mutable_text()->set_message(row[4].get<string>());
-        break;
-    case 8: // PHOTO_SLIDE — message 컬럼에 slide JSON 저장, text payload로 전달
-        payload->mutable_text()->set_message(row[4].get<string>());
-        break;
     }
 }
 

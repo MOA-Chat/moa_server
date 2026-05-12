@@ -228,12 +228,6 @@ void PacketDispatcher::DispatchPacket(sessionPtr& session, Protocol::Envelope& e
 	case Protocol::Envelope::kCSetAnnouncement:
 		Dispatch_C_SetAnnouncement(session, envelope.request_id(), envelope.c_set_announcement());
 		break;
-	case Protocol::Envelope::kCCreateBallDrop:
-		Dispatch_C_CreateBallDrop(session, envelope.request_id(), envelope.c_create_ball_drop());
-		break;
-	case Protocol::Envelope::kCCreatePhotoSlide:
-		Dispatch_C_CreatePhotoSlide(session, envelope.request_id(), envelope.c_create_photo_slide());
-		break;
 	case Protocol::Envelope::kCRefreshInviteCode:
 		Dispatch_C_RefreshInviteCode(session, envelope.request_id(), envelope.c_refresh_invite_code());
 		break;
@@ -1358,30 +1352,6 @@ bool PacketDispatcher::Dispatch_C_SetAnnouncement(sessionPtr& session, uint64 re
     }
 
     return GChatService->HandleSetAnnouncement(session, reqId, pkt);
-}
-
-bool PacketDispatcher::Dispatch_C_CreateBallDrop(sessionPtr& session, uint64 reqId, const Protocol::C_CreateBallDrop& pkt)
-{
-    auto serverSession = static_pointer_cast<ServerSession>(session);
-    const string userId = serverSession->GetUserId();
-    if (userId.empty()) {
-        DispatchError(session, reqId, ERR_UNAUTHORIZED);
-        return false;
-    }
-
-    return GChatService->HandleCreateBallDrop(session, reqId, pkt);
-}
-
-bool PacketDispatcher::Dispatch_C_CreatePhotoSlide(sessionPtr& session, uint64 reqId, const Protocol::C_CreatePhotoSlide& pkt)
-{
-    auto serverSession = static_pointer_cast<ServerSession>(session);
-    const string userId = serverSession->GetUserId();
-    if (userId.empty()) {
-        DispatchError(session, reqId, ERR_UNAUTHORIZED);
-        return false;
-    }
-
-    return GChatService->HandleCreatePhotoSlide(session, reqId, pkt);
 }
 
 /*======================
