@@ -444,7 +444,7 @@ vector<MessageInfo> MessageRepository::GetMessagesAfter(const string& convId, in
             "SELECT m.conv_id, m.msg_seq, m.sender_id, m.msg_type, m.message, m.media_url, m.thumbnail_url, m.timestamp, u.name, m.reply_to_seq, m.is_deleted, m.is_edited, m.edited_at, m.file_retention_expires_at, m.file_status, m.mentioned_user_ids "
             "FROM messages m "
             "LEFT JOIN users u ON m.sender_id = u.user_id "
-            "WHERE m.conv_id = ? AND m.timestamp > ? "
+            "WHERE m.conv_id = ? AND m.timestamp >= ? "
             "ORDER BY m.timestamp ASC "
             "LIMIT ?";
 
