@@ -74,9 +74,6 @@ bool AuthService::CheckEmailAvailable(sessionPtr& session, uint64 reqId, const s
 
 
 
-/*--------------------
-        SignUp
----------------------*/
 bool AuthService::SignUp(sessionPtr& session, uint64 reqId, const string& userId,
                          const string& password, const string& name,
                          const string& email) {
@@ -138,9 +135,6 @@ bool AuthService::SignUp(sessionPtr& session, uint64 reqId, const string& userId
 
 
 
-/*--------------------
-        Login
----------------------*/
 bool AuthService::Login(sessionPtr& session, uint64 reqId, const string& userId, const string& password) 
 {
     LOG_INFO("[AuthService] Login 요청: userId={}", userId);
@@ -368,11 +362,6 @@ string AuthService::BcryptPassword(const string& password)
 
 
 
-// ============================================
-// Auth Token 생성
-// ============================================
-
-
 string AuthService::GenerateAuthToken(const string& userId) {
     // JWT 기반 토큰 생성 (userId, name 포함)
     return TokenManager::GenerateToken(userId);
@@ -384,10 +373,6 @@ void AuthService::HandleErr(sessionPtr& session, uint64 reqId, ErrorCode errorCo
     PacketDispatcher::DispatchError(session, reqId, errorCode, errMessage);
 }
 
-
-/*--------------------
-    Email Verify
----------------------*/
 
 // curl response callback
 static size_t WriteCallback(void* contents, size_t size, size_t nmemb, string* userp) {
@@ -493,24 +478,8 @@ bool AuthService::HandleConfirmEmailVerify(sessionPtr& session, uint64 reqId, co
         pkt.set_success(true);
         LOG_INFO("[AuthService] 이메일 인증 확인 성공: {}", email);
 
-        // users 테이블 is_email_verified = 1 업데이트
-        try {
-            auto& db = DBManager::GetInstance();
-            auto schema = db.GetSchema();
-            schema.getTable("users")
-                .update()
-                .set("is_email_verified", 1)
-                .where("user_id = :uid")
-                .bind("uid", userId)
-                .execute();
-            LOG_INFO("[AuthService] is_email_verified 업데이트 완료: {}", userId);
-
-            // 기존 유효기간 파일 → 영구 보관으로 전환
-            FileRepository::UpdateUserFilesRetentionExpiry(userId, 0);
-            LOG_INFO("[AuthService] 파일 영구 전환 완료: {}", userId);
-        } catch (const mysqlx::Error& err) {
-            LOG_ERROR("[AuthService] is_email_verified 업데이트 실패: {}", err.what());
-        }
+        UserRepository::SetEmailVerified(userId);
+        FileRepository::UpdateUserFilesRetentionExpiry(userId, 0);
     } else {
         pkt.set_success(false);
         LOG_ERROR("[AuthService] 이메일 인증 확인 실패: CURL={}, HTTP={}", static_cast<int>(res), httpCode);
@@ -526,9 +495,6 @@ bool AuthService::HandleConfirmEmailVerify(sessionPtr& session, uint64 reqId, co
 }
 
 
-/*--------------------
-    Change Email
----------------------*/
 bool AuthService::HandleChangeEmail(sessionPtr& session, uint64 reqId, const string& newEmail)
 {
     auto serverSession = static_pointer_cast<ServerSession>(session);
@@ -567,9 +533,6 @@ bool AuthService::HandleChangeEmail(sessionPtr& session, uint64 reqId, const str
 }
 
 
-/*--------------------
-    Change Password
----------------------*/
 bool AuthService::HandleChangePassword(sessionPtr& session, uint64 reqId, const string& currentPassword, const string& newPassword)
 {
     auto serverSession = static_pointer_cast<ServerSession>(session);
@@ -606,9 +569,6 @@ bool AuthService::HandleChangePassword(sessionPtr& session, uint64 reqId, const 
 }
 
 
-/*--------------------
-    Logout (로그아웃)
----------------------*/
 bool AuthService::HandleLogout(sessionPtr& session, uint64 reqId, const string& fcmToken, const string& deviceId)
 {
     auto serverSession = static_pointer_cast<ServerSession>(session);
@@ -650,9 +610,6 @@ bool AuthService::HandleLogout(sessionPtr& session, uint64 reqId, const string& 
 }
 
 
-/*--------------------
-    Withdraw (회원 탈퇴)
----------------------*/
 bool AuthService::HandleWithdraw(sessionPtr& session, uint64 reqId, const string& password, const string& reason)
 {
     auto serverSession = static_pointer_cast<ServerSession>(session);
@@ -726,9 +683,6 @@ SEND_RESPONSE:
 }
 
 
-/*--------------------
-    LoginExistingUser (소셜/일반 로그인 공통)
----------------------*/
 bool AuthService::LoginExistingUser(sessionPtr& session, uint64 reqId, cUserInfo& userInfo)
 {
     if (userInfo.isDeleted) {
@@ -770,9 +724,6 @@ bool AuthService::LoginExistingUser(sessionPtr& session, uint64 reqId, cUserInfo
 }
 
 
-/*--------------------
-    OAuth 토큰 검증 (Java 서버 호출)
----------------------*/
 struct OAuthVerifyResult {
     bool success = false;
     string email;
@@ -833,9 +784,6 @@ static OAuthVerifyResult VerifyOAuthToken(const string& provider, const string& 
 }
 
 
-/*--------------------
-    SocialLogin
----------------------*/
 bool AuthService::SocialLogin(sessionPtr& session, uint64 reqId, const string& provider, const string& idToken)
 {
     LOG_INFO("[AuthService] SocialLogin 요청: provider={}", provider);
@@ -890,9 +838,6 @@ bool AuthService::SocialLogin(sessionPtr& session, uint64 reqId, const string& p
 }
 
 
-/*--------------------
-    CompleteSocialSignup
----------------------*/
 bool AuthService::CompleteSocialSignup(sessionPtr& session, uint64 reqId, const string& provider,
                                         const string& idToken, const string& userId, const string& name)
 {

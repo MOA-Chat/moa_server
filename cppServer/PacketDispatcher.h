@@ -73,11 +73,10 @@ protected:
     static bool Dispatch_C_UploadFile(sessionPtr& session, uint64 reqId, const Protocol::C_UploadFile& pkt);
 
 
-    // Friend Request Handlers ()
-  
-    static bool Dispatch_C_SearchUser(sessionPtr& session, uint64 reqId, const Protocol::C_SearchUser& pkt);
-    static bool Dispatch_C_FriendAction(sessionPtr& session, uint64 reqId, const Protocol::C_FriendAction& pkt);
-    static bool Dispatch_C_FetchFriendData(sessionPtr& session, uint64 reqId, const Protocol::C_FetchFriendData& pkt);
+    // Friend Request Handlers (미사용 — 추후 활성화)
+    //static bool Dispatch_C_SearchUser(sessionPtr& session, uint64 reqId, const Protocol::C_SearchUser& pkt);
+    //static bool Dispatch_C_FriendAction(sessionPtr& session, uint64 reqId, const Protocol::C_FriendAction& pkt);
+    //static bool Dispatch_C_FetchFriendData(sessionPtr& session, uint64 reqId, const Protocol::C_FetchFriendData& pkt);
 
     // Group Handlers
     static bool Dispatch_C_CreateGroup(sessionPtr& session, uint64 reqId, const Protocol::C_CreateGroup& pkt);
@@ -92,10 +91,6 @@ protected:
 
     // FCM Token Handler
     static bool Dispatch_C_RegisterFcmToken(sessionPtr& session, uint64 reqId, const Protocol::C_RegisterFcmToken& pkt);
-
-    // Email Verification Handlers
-    static bool Dispatch_C_ReqEmailVerify(sessionPtr& session, uint64 reqId, const Protocol::C_RequestEmailVerify& pkt);
-    static bool Dispatch_C_ConfirmEmailVerify(sessionPtr& session, uint64 reqId, const Protocol::C_ConfirmEmailVerify& pkt);
 
     // Account Management Handlers
     static bool Dispatch_C_ChangeEmail(sessionPtr& session, uint64 reqId, const Protocol::C_ChangeEmail& pkt);
@@ -121,11 +116,11 @@ protected:
     // Payment Handler (결제 검증)
     static bool Dispatch_C_VerifyPurchase(sessionPtr& session, uint64 reqId, const Protocol::C_VerifyPurchase& pkt);
 
-    // Block / Report Handlers (차단/신고)
-    static bool Dispatch_C_BlockUser     (sessionPtr& session, uint64 reqId, const Protocol::C_BlockUser&      pkt);
-    static bool Dispatch_C_UnblockUser   (sessionPtr& session, uint64 reqId, const Protocol::C_UnblockUser&    pkt);
-    static bool Dispatch_C_GetBlockedList(sessionPtr& session, uint64 reqId, const Protocol::C_GetBlockedList& pkt);
-    static bool Dispatch_C_ReportUser    (sessionPtr& session, uint64 reqId, const Protocol::C_ReportUser&     pkt);
+    // Block / Report Handlers (미사용 — 추후 활성화)
+    //static bool Dispatch_C_BlockUser     (sessionPtr& session, uint64 reqId, const Protocol::C_BlockUser&      pkt);
+    //static bool Dispatch_C_UnblockUser   (sessionPtr& session, uint64 reqId, const Protocol::C_UnblockUser&    pkt);
+    //static bool Dispatch_C_GetBlockedList(sessionPtr& session, uint64 reqId, const Protocol::C_GetBlockedList& pkt);
+    //static bool Dispatch_C_ReportUser    (sessionPtr& session, uint64 reqId, const Protocol::C_ReportUser&     pkt);
 
     // Reaction Handler (이모지 반응)
     static bool Dispatch_C_AddReaction(sessionPtr& session, uint64 reqId, const Protocol::C_AddReaction& pkt);

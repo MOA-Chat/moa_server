@@ -81,7 +81,8 @@ bool ChatService::SendGroupDM(sessionPtr& senderSession, uint64 reqId, const str
         pkt_s_chat.set_unread_count(unreadCount);
 
         if (fileSize > 0) {
-            UserRepository::SaveUserAsset(senderId, msgSeq, fileSize, fileType);
+            // GroupDM 파일은 그룹 스토리지 차감 (업로드 시 GROUP_CHAT 타입으로 체크됨)
+            GroupRepository::SaveGroupAsset(groupId, senderId, msgSeq, fileSize, fileType);
         }
     }
 
@@ -665,6 +666,16 @@ bool ChatService::HandleReadReceipt(sessionPtr& session, uint64 reqId, const Pro
     int64 lastReadSeq = pkt.last_read_seq();
     if (convId.empty() || lastReadSeq <= 0) return false;
 
+    // groupId:dm:targetId → groupId:dm:userA_userB (DB 정렬 형식)
+    auto dmPos_rr0 = convId.find(":dm:");
+    if (dmPos_rr0 != string::npos) {
+        string groupId  = convId.substr(0, dmPos_rr0);
+        string targetId = convId.substr(dmPos_rr0 + 4);
+        if (targetId.find('_') == string::npos) {
+            convId = MessageRepository::CreateGroupDMConvId(groupId, userId, targetId);
+        }
+    }
+
     // DB 업데이트
     bool ok = MessageRepository::UpdateReadStatus(userId, convId, lastReadSeq);
     if (!ok) return false;
@@ -782,9 +793,6 @@ bool ChatService::HandleAddReaction(sessionPtr& session, uint64 reqId, const Pro
 }
 
 
-/*======================
-    HandleCreatePoll
-========================*/
 bool ChatService::HandleCreatePoll(sessionPtr& session, uint64 reqId, const Protocol::C_CreatePoll& pkt)
 {
     auto serverSession = static_pointer_cast<ServerSession>(session);
@@ -902,9 +910,6 @@ bool ChatService::HandleCreatePoll(sessionPtr& session, uint64 reqId, const Prot
     return true;
 }
 
-/*======================
-    HandleVote
-========================*/
 bool ChatService::HandleVote(sessionPtr& session, uint64 reqId, const Protocol::C_Vote& pkt)
 {
     auto serverSession = static_pointer_cast<ServerSession>(session);
@@ -980,9 +985,6 @@ bool ChatService::HandleVote(sessionPtr& session, uint64 reqId, const Protocol::
     return true;
 }
 
-/*======================
-    HandleClosePoll
-========================*/
 bool ChatService::HandleClosePoll(sessionPtr& session, uint64 reqId, const Protocol::C_ClosePoll& pkt)
 {
     auto serverSession = static_pointer_cast<ServerSession>(session);

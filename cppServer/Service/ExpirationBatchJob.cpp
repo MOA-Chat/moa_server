@@ -3,6 +3,8 @@
 #include "Cloud/CloudStorage.h"
 #include "../DB/FileRepository.h"
 #include "../DB/MessageRepository.h"
+#include "../DB/GroupRepository.h"
+#include "../DB/UserRepository.h"
 #include "../CoreGlobal.h"
 
 #include <iostream>
@@ -97,6 +99,15 @@ void ExpirationBatchJob::ProcessExpiredFiles()
         // 4) Update messages: file_status = 'expired', invalidate URLs
         if (!fi.gcsPath.empty()) {
             MessageRepository::UpdateFileStatusByGcsPath(fi.gcsPath, "expired");
+        }
+
+        // 5) Release storage quota (group or personal)
+        if (!fi.gcsPath.empty()) {
+            if (!fi.groupId.empty()) {
+                GroupRepository::DeleteGroupAssetByGcsPath(fi.gcsPath);
+            } else {
+                UserRepository::DeleteUserAssetByGcsPath(fi.gcsPath);
+            }
         }
 
         if (gcsOk) {

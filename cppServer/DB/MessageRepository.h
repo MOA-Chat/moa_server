@@ -113,6 +113,10 @@ public:
     static AnnouncementInfo GetAnnouncement(const string& convId);
     static vector<AnnouncementInfo> GetAnnouncementsForUser(const string& userId);
 
+    // 파일 보관 정책: 구독 활성화 시 영구 전환, 해지 시 유예 만료 설정
+    static bool RetainUserFiles(const string& userId);
+    static bool SetFilesExpiringSoon(const string& userId, int64 graceExpiresAt);
+
     /* 마이그레이션 */
     // GroupDM conv_id: "groupdm:groupId:u_v" → "groupId:dm:u_v" (1회성, 서버 기동 시 호출)
     static void MigrateGroupDMConvIds();

@@ -31,7 +31,7 @@ const int64 TIMEOUT_MS = 120 * 1000;
 const int32 MAX_GROUP_MEMBERS = 12;  // 그룹 최대 인원 수
 
 // ─── 저장공간 기본 제공량 ───
-const int64 DEFAULT_PERSONAL_STORAGE = 100LL * 1024 * 1024;       // 100MB
+const int64 DEFAULT_PERSONAL_STORAGE = 1LL * 1024 * 1024 * 1024;  // 1GB (무료 플랜 기본값)
 const int64 DEFAULT_GROUP_STORAGE    = 1LL * 1024 * 1024 * 1024;  // 1GB
 const int64 DEFAULT_MAX_FILE_SIZE    = 25LL * 1024 * 1024;        // 25MB
 

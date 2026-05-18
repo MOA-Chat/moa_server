@@ -1079,6 +1079,41 @@ vector<MessageRepository::AnnouncementInfo> MessageRepository::GetAnnouncementsF
 }
 
 
+bool MessageRepository::RetainUserFiles(const string& userId)
+{
+    try {
+        auto& db = DBManager::GetInstance();
+        db.GetSession().sql(
+            "UPDATE messages SET file_retention_expires_at = NULL, file_status = 'active' "
+            "WHERE sender_id = ? AND file_status != 'expired' "
+            "AND (file_retention_expires_at IS NOT NULL OR file_status = 'expiring_soon')"
+        ).bind(userId).execute();
+        return true;
+    } catch (const mysqlx::Error& err) {
+        LOG_ERROR("[MessageRepository] RetainUserFiles 실패: {}", err.what());
+        return false;
+    }
+}
+
+
+bool MessageRepository::SetFilesExpiringSoon(const string& userId, int64 graceExpiresAt)
+{
+    try {
+        auto& db = DBManager::GetInstance();
+        db.GetSession().sql(
+            "UPDATE messages SET file_retention_expires_at = ?, file_status = 'expiring_soon' "
+            "WHERE sender_id = ? "
+            "AND (file_retention_expires_at IS NULL OR file_retention_expires_at > ?) "
+            "AND file_status = 'active'"
+        ).bind(graceExpiresAt, userId, graceExpiresAt).execute();
+        return true;
+    } catch (const mysqlx::Error& err) {
+        LOG_ERROR("[MessageRepository] SetFilesExpiringSoon 실패: {}", err.what());
+        return false;
+    }
+}
+
+
 /*======================
     MigrateGroupDMConvIds
     "groupdm:groupId:u_v" → "groupId:dm:u_v"

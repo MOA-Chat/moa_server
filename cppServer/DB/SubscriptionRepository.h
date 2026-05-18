@@ -1,37 +1,42 @@
 #pragma once
 
 #include "pch.h"
-#include "../protocol.pb.h"
 #include "DBManager.h"
 
+struct SubscriptionPlanInfo {
+    int   grade        = 0;
+    int64 storageBytes = 0;
+};
 
 struct cSubscriptionInfo {
-	int32 planId = 0;
-	int64 expiresAt = 0;	// Unix timestamp (ms)
-	bool autoRenew = true;
+    int64 expiresAt = 0;    // ms timestamp, 0 = 영구
+    bool  autoRenew = false;
 };
 
-struct cPlanInfo {
-	int32 planId = 0;
-	string planType;		// "personal" or "group"
-	string name;
-	int32 grade = 0;
-	int64 storageBytes = 0;
-	int64 maxFileSize = 0;
-	double monthlyPrice = 0.0;
-	vector<string> features;
+struct PlanDetail {
+    int             planId       = 0;
+    string          planType;
+    string          name;
+    int             grade        = 0;
+    int64           storageBytes = 0;
+    int64           maxFileSize  = 0;
+    double          monthlyPrice = 0.0;
+    vector<string>  features;
 };
-
 
 class SubscriptionRepository {
 public:
-	// 현재 구독 정보 조회
-	static bool GetActiveSubscription(const string& userId, cSubscriptionInfo& OUT info);
+    static bool RecordTransaction(const string& userId, int planId, const string& platform,
+                                  const string& productId, const string& transactionId,
+                                  const string& purchaseToken);
 
-	// 이용 가능한 플랜 목록 조회
-	static vector<cPlanInfo> GetAvailablePlans(const string& planType = "personal");
+    static bool GetPlanInfo(int planId, SubscriptionPlanInfo& OUT info);
 
-private:
-	static uint64 ParseTimestamp(const mysqlx::Value& value);
-	static vector<string> ParseFeaturesJson(const string& json);
+    static bool UpsertSubscription(const string& userId, int planId, int64 expiresAtMs);
+
+    static bool CancelSubscription(const string& userId);
+
+    static bool GetActiveSubscription(const string& userId, cSubscriptionInfo& OUT info);
+
+    static vector<PlanDetail> GetAvailablePlans(const string& planType);
 };

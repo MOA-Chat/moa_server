@@ -73,23 +73,24 @@ bool FcmClient::SendPush(const string& fcmToken, const string& title, const stri
         string url = "/v1/projects/" + _projectId + "/messages:send";
 
         // 메시지 JSON 구성
+        // Android: notification 필드 없음(data-only) → 백그라운드 핸들러가 설정 적용 후 직접 표시
+        // iOS: apns.aps.alert → 시스템 자동 표시 (포그라운드는 onMessage 핸들러에서 처리)
         json message = {
             {"message", {
                 {"token", fcmToken},
-                {"notification", {
-                    {"title", title},
-                    {"body", body}
-                }},
                 {"android", {
-                    {"priority", "high"},
-                    {"notification", {
-                        {"sound", "default"},
-                        {"click_action", "FLUTTER_NOTIFICATION_CLICK"}
-                    }}
+                    {"priority", "high"}
                 }},
                 {"apns", {
+                    {"headers", {
+                        {"apns-priority", "10"}
+                    }},
                     {"payload", {
                         {"aps", {
+                            {"alert", {
+                                {"title", title},
+                                {"body", body}
+                            }},
                             {"sound", "default"},
                             {"badge", 1}
                         }}
@@ -98,9 +99,11 @@ bool FcmClient::SendPush(const string& fcmToken, const string& title, const stri
             }}
         };
 
-        // 커스텀 데이터 추가
-        if (!data.empty()) {
+        // data 필드: title/body 포함 (Android 백그라운드 핸들러에서 사용)
+        {
             json dataJson;
+            dataJson["title"] = title;
+            dataJson["body"] = body;
             for (const auto& [key, value] : data) {
                 dataJson[key] = value;
             }
