@@ -3,10 +3,10 @@
 #include "../CoreGlobal.h"
 #include "../PacketDispatcher.h"
 #include "../ServerSession.h"
-#include "../DB/DBManager.h"
 #include "../DB/UserRepository.h"
 #include "../DB/FileRepository.h"
 #include "../DB/MessageRepository.h"
+#include "../DB/SubscriptionRepository.h"
 
 #include <fstream>
 #include <sstream>
@@ -297,105 +297,34 @@ bool PaymentService::UpdateSubscription(const string& userId, int planId,
                                           const string& purchaseToken, int64 expiresAt)
 {
     try {
-        auto& db = DBManager::GetInstance();
-        auto schema = db.GetSchema();
-
-        // payment_transactions INSERT
-        time_t now = ::time(nullptr);
-        struct tm tmNow = {};
-        localtime_s(&tmNow, &now);
-        char nowStr[32];
-        strftime(nowStr, sizeof(nowStr), "%Y-%m-%d %H:%M:%S", &tmNow);
-
-        auto txnTable = schema.getTable("payment_transactions");
-        txnTable.insert("user_id", "plan_id", "platform", "product_id",
-                         "transaction_id", "purchase_token", "status", "verified_at")
-            .values(userId, planId, platform, productId,
-                    transactionId, purchaseToken, "verified",
-                    string(nowStr))
-            .execute();
-
-        // 등급/용량 조회
-        auto planTable = schema.getTable("subscription_plans");
-        auto planResult = planTable.select("grade", "storage_bytes")
-            .where("plan_id = :pid")
-            .bind("pid", planId)
-            .execute();
-
-        auto planRow = planResult.fetchOne();
-        if (!planRow) {
-            HandleErr("UpdateSubscription", "Plan not found: " + to_string(planId));
+        if (!SubscriptionRepository::RecordTransaction(userId, planId, platform, productId, transactionId, purchaseToken)) {
+            HandleErr("UpdateSubscription", "RecordTransaction failed");
             return false;
         }
 
-        int grade = planRow[0].get<int>();
-        int64 storageBytes = planRow[1].get<int64>();
-
-        // subscriptions UPSERT
-        auto subsTable = schema.getTable("subscriptions");
-        auto existResult = subsTable.select("id")
-            .where("user_id = :uid AND status = 'active'")
-            .limit(1)
-            .bind("uid", userId)
-            .execute();
-
-        auto existRow = existResult.fetchOne();
-        if (existRow) {
-            // UPDATE
-            int existId = existRow[0].get<int>();
-
-            time_t expSecUpd = static_cast<time_t>(expiresAt / 1000);
-            struct tm tmExpUpd = {};
-            gmtime_s(&tmExpUpd, &expSecUpd);
-            char expStrUpd[32];
-            strftime(expStrUpd, sizeof(expStrUpd), "%Y-%m-%d %H:%M:%S", &tmExpUpd);
-
-            subsTable.update()
-                .set("plan_id", planId)
-                .set("expires_at", string(expStrUpd))
-                .set("status", "active")
-                .set("auto_renew", 1)
-                .where("id = :id")
-                .bind("id", existId)
-                .execute();
-        }
-        else {
-            time_t expSec = static_cast<time_t>(expiresAt / 1000);
-            struct tm tmExp = {};
-            gmtime_s(&tmExp, &expSec);
-            char expStr[32];
-            strftime(expStr, sizeof(expStr), "%Y-%m-%d %H:%M:%S", &tmExp);
-
-            subsTable.insert("user_id", "plan_id", "expires_at", "auto_renew", "status")
-                .values(userId, planId, string(expStr), 1, "active")
-                .execute();
+        SubscriptionPlanInfo planInfo;
+        if (!SubscriptionRepository::GetPlanInfo(planId, planInfo)) {
+            HandleErr("UpdateSubscription", "GetPlanInfo failed: planId=" + to_string(planId));
+            return false;
         }
 
-        // users 등급/용량 업데이트
-        auto usersTable = schema.getTable("users");
-        usersTable.update()
-            .set("sub_grade", grade)
-            .set("storage_capacity_bytes", storageBytes)
-            .where("user_id = :uid")
-            .bind("uid", userId)
-            .execute();
+        if (!SubscriptionRepository::UpsertSubscription(userId, planId, expiresAt)) {
+            HandleErr("UpdateSubscription", "UpsertSubscription failed");
+            return false;
+        }
 
-        LOG_INFO("[PaymentService] DB 업데이트 완료: user={} grade={} storage={}", userId, grade, storageBytes);
+        if (!UserRepository::UpdateSubscriptionGrade(userId, planInfo.grade, planInfo.storageBytes)) {
+            HandleErr("UpdateSubscription", "UpdateSubscriptionGrade failed");
+            return false;
+        }
 
-        // 구독 시작 → 파일 영구 보관 전환
-        if (grade > 0) {
+        if (planInfo.grade > 0) {
             FileRepository::UpdateUserFilesRetentionExpiry(userId, 0);
-
-            auto& sess2 = db.GetSession();
-            sess2.sql(
-                "UPDATE messages SET file_retention_expires_at = NULL, file_status = 'active' "
-                "WHERE sender_id = ? AND file_status != 'expired' AND file_status != '' "
-                "AND (file_retention_expires_at IS NOT NULL OR file_status = 'expiring_soon')")
-                .bind(userId).execute();
-
-            LOG_INFO("[PaymentService] 파일 보관 정책 전환: 영구 보관 적용 userId={}", userId);
+            MessageRepository::RetainUserFiles(userId);
+            LOG_INFO("[PaymentService] 파일 영구 보관 전환: userId={}", userId);
         }
 
+        LOG_INFO("[PaymentService] 구독 업데이트 완료: user={} grade={} storage={}", userId, planInfo.grade, planInfo.storageBytes);
         return true;
     }
     catch (const exception& e) {
@@ -408,29 +337,20 @@ bool PaymentService::UpdateSubscription(const string& userId, int planId,
 bool PaymentService::HandleCancelSubscription(sessionPtr& session, uint64 reqId)
 {
     auto serverSession = static_pointer_cast<ServerSession>(session);
-    string userId = serverSession->GetUserId();
+    const string userId = serverSession->GetUserId();
     if (userId.empty()) {
         PacketDispatcher::DispatchError(session, reqId, Protocol::ERR_INVALID_TOKEN);
         return false;
     }
 
     try {
-        auto& db = DBManager::GetInstance();
-        auto schema = db.GetSchema();
-
-        // 현재 구독 등급 확인
-        auto usersTable = schema.getTable("users");
-        auto res = usersTable.select("sub_grade")
-            .where("user_id = :uid").bind("uid", userId).execute();
-        auto row = res.fetchOne();
-        if (!row) {
+        int grade = UserRepository::GetSubscriptionGrade(userId);
+        if (grade < 0) {
             PacketDispatcher::DispatchError(session, reqId, Protocol::ERR_USER_NOT_FOUND);
             return false;
         }
-        int grade = static_cast<int>(row[0].get<int64>());
 
-        if (grade <= 0) {
-            // 이미 무료 플랜
+        if (grade == 0) {
             Protocol::S_CancelSubscription resp;
             resp.set_success(false);
             resp.set_message("구독 중인 플랜이 없습니다.");
@@ -443,36 +363,13 @@ bool PaymentService::HandleCancelSubscription(sessionPtr& session, uint64 reqId)
             return true;
         }
 
-        // 14일 유예 기간 설정
         const int64 GRACE_PERIOD_MS = 14LL * 24 * 3600 * 1000;
         int64 graceExpiresAt = Nowts() + GRACE_PERIOD_MS;
 
-        // subscriptions: status = 'cancelled', auto_renew = 0
-        auto subsTable = schema.getTable("subscriptions");
-        subsTable.update()
-            .set("status", "cancelled")
-            .set("auto_renew", 0)
-            .where("user_id = :uid AND status = 'active'")
-            .bind("uid", userId)
-            .execute();
-
-        // users: sub_grade = 0 (무료로 다운그레이드)
-        usersTable.update()
-            .set("sub_grade", 0)
-            .where("user_id = :uid")
-            .bind("uid", userId)
-            .execute();
-
-        // file_uploads: 활성 파일에 14일 유예 만료 설정
+        SubscriptionRepository::CancelSubscription(userId);
+        UserRepository::DowngradeToFree(userId);
         FileRepository::UpdateUserFilesRetentionExpiry(userId, graceExpiresAt);
-
-        // messages: 유예 만료로 전환
-        auto& sess = db.GetSession();
-        sess.sql(
-            "UPDATE messages SET file_retention_expires_at = ?, file_status = 'expiring_soon' "
-            "WHERE sender_id = ? AND (file_retention_expires_at IS NULL OR file_retention_expires_at > ?) "
-            "AND file_status = 'active'")
-            .bind(graceExpiresAt, userId, graceExpiresAt).execute();
+        MessageRepository::SetFilesExpiringSoon(userId, graceExpiresAt);
 
         LOG_INFO("[PaymentService] 구독 해지: userId={}, 유예기간 만료={}", userId, graceExpiresAt);
 
@@ -499,24 +396,12 @@ bool PaymentService::HandleCancelSubscription(sessionPtr& session, uint64 reqId)
 
 int PaymentService::GetPlanIdFromProductId(const string& productId)
 {
-    try {
-        auto& db = DBManager::GetInstance();
-        auto schema = db.GetSchema();
-
-        // product_id → plan_id 매핑
-        if (productId == "moa_pro_monthly") return 2;        // Pro
-        if (productId == "moa_premium_monthly") return 3;    // Premium
-
-        HandleErr("GetPlanIdFromProductId", "Unknown product: " + productId);
-        return 1; // 무료 플랜 기본값
-    }
-    catch (...) {
-        return 1;
-    }
+    if (productId == "moa_pro_monthly")     return 2;
+    if (productId == "moa_premium_monthly") return 3;
+    LOG_WARN("[PaymentService] Unknown productId: {}", productId);
+    return 1;
 }
 
-
-// ===== OAuth2 (FcmClient와 동일한 로직) =====
 
 bool PaymentService::LoadServiceAccountJson(const string& filePath)
 {

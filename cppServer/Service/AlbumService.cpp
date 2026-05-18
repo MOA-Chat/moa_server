@@ -64,10 +64,6 @@ void AlbumService::HandleErr(sessionPtr& session, uint64 reqId, Protocol::ErrorC
     PacketDispatcher::DispatchError(session, reqId, errorCode, errMessage);
 }
 
-/*======================
-        앨범 핸들러
-=======================*/
-
 bool AlbumService::HandleCreateAlbum(sessionPtr& session, uint64 reqId, const C_CreateAlbum& pkt)
 {
     const string& groupId   = pkt.group_id();
@@ -141,10 +137,6 @@ bool AlbumService::HandleDeleteAlbum(sessionPtr& session, uint64 reqId, const C_
     LOG_INFO("[AlbumService] 앨범 삭제: albumId={} by={}", albumId, userId);
     return true;
 }
-
-/*======================
-        사진 핸들러
-=======================*/
 
 bool AlbumService::HandleAddPhotoToAlbum(sessionPtr& session, uint64 reqId, const C_AddPhotoToAlbum& pkt)
 {
@@ -268,10 +260,6 @@ bool AlbumService::HandleMovePhoto(sessionPtr& session, uint64 reqId, const C_Mo
     BroadcastToGroup(groupId, resp, _userManager);
     return true;
 }
-
-/*======================
-        댓글 핸들러
-=======================*/
 
 bool AlbumService::HandleAddPhotoComment(sessionPtr& session, uint64 reqId, const C_AddPhotoComment& pkt)
 {

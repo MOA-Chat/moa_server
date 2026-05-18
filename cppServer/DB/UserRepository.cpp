@@ -537,6 +537,122 @@ bool UserRepository::SaveUserAsset(const string& userId, int64 msgSeq, int64 fil
 }
 
 
+bool UserRepository::DeleteUserAssetByGcsPath(const string& gcsPath) {
+    if (gcsPath.empty()) return false;
+    try {
+        auto& db = DBManager::GetInstance();
+        auto& session = db.GetSession();
+        // user_assets와 messages 조인해서 gcs_path 매칭 레코드 삭제
+        // storage_usage_bytes는 수동 감소 (트리거 없음)
+        auto rows = session.sql(
+            "SELECT ua.user_id, ua.file_size FROM user_assets ua "
+            "JOIN messages m ON ua.msg_seq = m.msg_seq "
+            "WHERE m.gcs_path = ? LIMIT 1"
+        ).bind(gcsPath).execute();
+        if (rows.count() == 0) return true;
+        auto row = rows.fetchOne();
+        string userId = row[0].get<string>();
+        int64_t fileSize = row[1].get<int64_t>();
+
+        session.sql(
+            "DELETE ua FROM user_assets ua "
+            "JOIN messages m ON ua.msg_seq = m.msg_seq "
+            "WHERE m.gcs_path = ?"
+        ).bind(gcsPath).execute();
+
+        if (fileSize > 0) {
+            session.sql(
+                "UPDATE users SET storage_usage_bytes = GREATEST(0, storage_usage_bytes - ?) "
+                "WHERE user_id = ?"
+            ).bind(fileSize, userId).execute();
+        }
+        return true;
+    } catch (const mysqlx::Error& err) {
+        LOG_ERROR("[UserRepository] DeleteUserAssetByGcsPath 실패: {}", err.what());
+        return false;
+    }
+}
+
+
+
+bool UserRepository::SetEmailVerified(const string& userId)
+{
+    try {
+        auto& db = DBManager::GetInstance();
+        auto schema = db.GetSchema();
+        schema.getTable("users")
+            .update()
+            .set("is_email_verified", 1)
+            .where("user_id = :uid")
+            .bind("uid", userId)
+            .execute();
+        LOG_INFO("[UserRepository] SetEmailVerified: {}", userId);
+        return true;
+    } catch (const mysqlx::Error& err) {
+        LOG_ERROR("[UserRepository] SetEmailVerified 실패: {}", err.what());
+        return false;
+    }
+}
+
+
+int UserRepository::GetSubscriptionGrade(const string& userId)
+{
+    try {
+        auto& db = DBManager::GetInstance();
+        auto result = db.GetSchema().getTable("users")
+            .select("sub_grade")
+            .where("user_id = :uid")
+            .bind("uid", userId)
+            .execute();
+        auto row = result.fetchOne();
+        if (!row) return -1;
+        return static_cast<int>(row[0].get<int64>());
+    } catch (const mysqlx::Error& err) {
+        LOG_ERROR("[UserRepository] GetSubscriptionGrade 실패: {}", err.what());
+        return -1;
+    }
+}
+
+
+bool UserRepository::UpdateSubscriptionGrade(const string& userId, int grade, int64 storageBytes)
+{
+    try {
+        auto& db = DBManager::GetInstance();
+        db.GetSchema().getTable("users")
+            .update()
+            .set("sub_grade", grade)
+            .set("storage_capacity_bytes", storageBytes)
+            .where("user_id = :uid")
+            .bind("uid", userId)
+            .execute();
+        LOG_INFO("[UserRepository] UpdateSubscriptionGrade: userId={} grade={} storage={}", userId, grade, storageBytes);
+        return true;
+    } catch (const mysqlx::Error& err) {
+        LOG_ERROR("[UserRepository] UpdateSubscriptionGrade 실패: {}", err.what());
+        return false;
+    }
+}
+
+
+bool UserRepository::DowngradeToFree(const string& userId)
+{
+    try {
+        auto& db = DBManager::GetInstance();
+        db.GetSchema().getTable("users")
+            .update()
+            .set("sub_grade", 0)
+            .where("user_id = :uid")
+            .bind("uid", userId)
+            .execute();
+        LOG_INFO("[UserRepository] DowngradeToFree: userId={}", userId);
+        return true;
+    } catch (const mysqlx::Error& err) {
+        LOG_ERROR("[UserRepository] DowngradeToFree 실패: {}", err.what());
+        return false;
+    }
+}
+
+
 bool UserRepository::GetUserByOAuthProvider(const string& provider, const string& providerId, cUserInfo& OUT userInfo) {
     try {
         auto& db = DBManager::GetInstance();

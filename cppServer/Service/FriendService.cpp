@@ -9,11 +9,6 @@
 
 using namespace Protocol;
 
-// ============================================
-// Friend Request
-// ============================================
-
-
 bool FriendService::SearchUser(sessionPtr& session, uint64 reqId, const string& searchUserId)
 {
 	auto serverSession = static_pointer_cast<ServerSession>(session);

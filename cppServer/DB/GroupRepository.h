@@ -43,6 +43,7 @@ public:
     static bool AddMember(const string& groupId, const string& userId, const string& role);
     static bool RemoveMember(const string& groupId, const string& userId);
     static bool SaveGroupAsset(const string& groupId, const string& userId, int64 msgSeq, int64 fileSize, const string& fileType);
+    static bool DeleteGroupAssetByGcsPath(const string& gcsPath);
     static bool UpdateGroupInfo(const string& groupId, const string& newName, const string& newImageUrl);
     static bool RefreshInviteCode(const string& groupId, string& OUT newCode, int64& OUT expiresAt);
     static bool DeleteGroup(const string& groupId);
@@ -55,6 +56,8 @@ public:
     static bool IsMember(const string& groupId, const string& userId);
     static string GetMemberRole(const string& groupId, const string& userId);
     static vector<cGroupMemberInfo> GetGroupMembers(const string& groupId);
+
+    static void EnsureDefaultStorage(const string& groupId, int64 defaultCapacity);
 
 
 private:

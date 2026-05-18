@@ -47,7 +47,7 @@ struct TableStruct_protocol_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[160]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[156]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -112,15 +112,9 @@ extern C_ConfirmEmailVerifyDefaultTypeInternal _C_ConfirmEmailVerify_default_ins
 class C_CreateAlbum;
 struct C_CreateAlbumDefaultTypeInternal;
 extern C_CreateAlbumDefaultTypeInternal _C_CreateAlbum_default_instance_;
-class C_CreateBallDrop;
-struct C_CreateBallDropDefaultTypeInternal;
-extern C_CreateBallDropDefaultTypeInternal _C_CreateBallDrop_default_instance_;
 class C_CreateGroup;
 struct C_CreateGroupDefaultTypeInternal;
 extern C_CreateGroupDefaultTypeInternal _C_CreateGroup_default_instance_;
-class C_CreatePhotoSlide;
-struct C_CreatePhotoSlideDefaultTypeInternal;
-extern C_CreatePhotoSlideDefaultTypeInternal _C_CreatePhotoSlide_default_instance_;
 class C_CreatePoll;
 struct C_CreatePollDefaultTypeInternal;
 extern C_CreatePollDefaultTypeInternal _C_CreatePoll_default_instance_;
@@ -349,15 +343,9 @@ extern S_ConfirmEmailVerifyDefaultTypeInternal _S_ConfirmEmailVerify_default_ins
 class S_CreateAlbum;
 struct S_CreateAlbumDefaultTypeInternal;
 extern S_CreateAlbumDefaultTypeInternal _S_CreateAlbum_default_instance_;
-class S_CreateBallDrop;
-struct S_CreateBallDropDefaultTypeInternal;
-extern S_CreateBallDropDefaultTypeInternal _S_CreateBallDrop_default_instance_;
 class S_CreateGroup;
 struct S_CreateGroupDefaultTypeInternal;
 extern S_CreateGroupDefaultTypeInternal _S_CreateGroup_default_instance_;
-class S_CreatePhotoSlide;
-struct S_CreatePhotoSlideDefaultTypeInternal;
-extern S_CreatePhotoSlideDefaultTypeInternal _S_CreatePhotoSlide_default_instance_;
 class S_CreatePoll;
 struct S_CreatePollDefaultTypeInternal;
 extern S_CreatePollDefaultTypeInternal _S_CreatePoll_default_instance_;
@@ -556,9 +544,7 @@ template<> ::Protocol::C_ClosePoll* Arena::CreateMaybeMessage<::Protocol::C_Clos
 template<> ::Protocol::C_CompleteSocialSignup* Arena::CreateMaybeMessage<::Protocol::C_CompleteSocialSignup>(Arena*);
 template<> ::Protocol::C_ConfirmEmailVerify* Arena::CreateMaybeMessage<::Protocol::C_ConfirmEmailVerify>(Arena*);
 template<> ::Protocol::C_CreateAlbum* Arena::CreateMaybeMessage<::Protocol::C_CreateAlbum>(Arena*);
-template<> ::Protocol::C_CreateBallDrop* Arena::CreateMaybeMessage<::Protocol::C_CreateBallDrop>(Arena*);
 template<> ::Protocol::C_CreateGroup* Arena::CreateMaybeMessage<::Protocol::C_CreateGroup>(Arena*);
-template<> ::Protocol::C_CreatePhotoSlide* Arena::CreateMaybeMessage<::Protocol::C_CreatePhotoSlide>(Arena*);
 template<> ::Protocol::C_CreatePoll* Arena::CreateMaybeMessage<::Protocol::C_CreatePoll>(Arena*);
 template<> ::Protocol::C_DeleteAlbum* Arena::CreateMaybeMessage<::Protocol::C_DeleteAlbum>(Arena*);
 template<> ::Protocol::C_DeleteAlbumPhoto* Arena::CreateMaybeMessage<::Protocol::C_DeleteAlbumPhoto>(Arena*);
@@ -635,9 +621,7 @@ template<> ::Protocol::S_CheckId* Arena::CreateMaybeMessage<::Protocol::S_CheckI
 template<> ::Protocol::S_ClosePoll* Arena::CreateMaybeMessage<::Protocol::S_ClosePoll>(Arena*);
 template<> ::Protocol::S_ConfirmEmailVerify* Arena::CreateMaybeMessage<::Protocol::S_ConfirmEmailVerify>(Arena*);
 template<> ::Protocol::S_CreateAlbum* Arena::CreateMaybeMessage<::Protocol::S_CreateAlbum>(Arena*);
-template<> ::Protocol::S_CreateBallDrop* Arena::CreateMaybeMessage<::Protocol::S_CreateBallDrop>(Arena*);
 template<> ::Protocol::S_CreateGroup* Arena::CreateMaybeMessage<::Protocol::S_CreateGroup>(Arena*);
-template<> ::Protocol::S_CreatePhotoSlide* Arena::CreateMaybeMessage<::Protocol::S_CreatePhotoSlide>(Arena*);
 template<> ::Protocol::S_CreatePoll* Arena::CreateMaybeMessage<::Protocol::S_CreatePoll>(Arena*);
 template<> ::Protocol::S_DeleteAlbum* Arena::CreateMaybeMessage<::Protocol::S_DeleteAlbum>(Arena*);
 template<> ::Protocol::S_DeleteAlbumPhoto* Arena::CreateMaybeMessage<::Protocol::S_DeleteAlbumPhoto>(Arena*);
@@ -995,10 +979,6 @@ class Envelope final :
     kSVote = 106,
     kSClosePoll = 107,
     kSSetAnnouncement = 108,
-    kCCreateBallDrop = 109,
-    kSCreateBallDrop = 110,
-    kCCreatePhotoSlide = 111,
-    kSCreatePhotoSlide = 112,
     kCRefreshInviteCode = 113,
     kSRefreshInviteCode = 114,
     kCSocialLogin = 115,
@@ -1208,10 +1188,6 @@ class Envelope final :
     kSVoteFieldNumber = 106,
     kSClosePollFieldNumber = 107,
     kSSetAnnouncementFieldNumber = 108,
-    kCCreateBallDropFieldNumber = 109,
-    kSCreateBallDropFieldNumber = 110,
-    kCCreatePhotoSlideFieldNumber = 111,
-    kSCreatePhotoSlideFieldNumber = 112,
     kCRefreshInviteCodeFieldNumber = 113,
     kSRefreshInviteCodeFieldNumber = 114,
     kCSocialLoginFieldNumber = 115,
@@ -2637,78 +2613,6 @@ class Envelope final :
       ::Protocol::S_SetAnnouncement* s_set_announcement);
   ::Protocol::S_SetAnnouncement* unsafe_arena_release_s_set_announcement();
 
-  // .Protocol.C_CreateBallDrop c_create_ball_drop = 109;
-  bool has_c_create_ball_drop() const;
-  private:
-  bool _internal_has_c_create_ball_drop() const;
-  public:
-  void clear_c_create_ball_drop();
-  const ::Protocol::C_CreateBallDrop& c_create_ball_drop() const;
-  PROTOBUF_FUTURE_MUST_USE_RESULT ::Protocol::C_CreateBallDrop* release_c_create_ball_drop();
-  ::Protocol::C_CreateBallDrop* mutable_c_create_ball_drop();
-  void set_allocated_c_create_ball_drop(::Protocol::C_CreateBallDrop* c_create_ball_drop);
-  private:
-  const ::Protocol::C_CreateBallDrop& _internal_c_create_ball_drop() const;
-  ::Protocol::C_CreateBallDrop* _internal_mutable_c_create_ball_drop();
-  public:
-  void unsafe_arena_set_allocated_c_create_ball_drop(
-      ::Protocol::C_CreateBallDrop* c_create_ball_drop);
-  ::Protocol::C_CreateBallDrop* unsafe_arena_release_c_create_ball_drop();
-
-  // .Protocol.S_CreateBallDrop s_create_ball_drop = 110;
-  bool has_s_create_ball_drop() const;
-  private:
-  bool _internal_has_s_create_ball_drop() const;
-  public:
-  void clear_s_create_ball_drop();
-  const ::Protocol::S_CreateBallDrop& s_create_ball_drop() const;
-  PROTOBUF_FUTURE_MUST_USE_RESULT ::Protocol::S_CreateBallDrop* release_s_create_ball_drop();
-  ::Protocol::S_CreateBallDrop* mutable_s_create_ball_drop();
-  void set_allocated_s_create_ball_drop(::Protocol::S_CreateBallDrop* s_create_ball_drop);
-  private:
-  const ::Protocol::S_CreateBallDrop& _internal_s_create_ball_drop() const;
-  ::Protocol::S_CreateBallDrop* _internal_mutable_s_create_ball_drop();
-  public:
-  void unsafe_arena_set_allocated_s_create_ball_drop(
-      ::Protocol::S_CreateBallDrop* s_create_ball_drop);
-  ::Protocol::S_CreateBallDrop* unsafe_arena_release_s_create_ball_drop();
-
-  // .Protocol.C_CreatePhotoSlide c_create_photo_slide = 111;
-  bool has_c_create_photo_slide() const;
-  private:
-  bool _internal_has_c_create_photo_slide() const;
-  public:
-  void clear_c_create_photo_slide();
-  const ::Protocol::C_CreatePhotoSlide& c_create_photo_slide() const;
-  PROTOBUF_FUTURE_MUST_USE_RESULT ::Protocol::C_CreatePhotoSlide* release_c_create_photo_slide();
-  ::Protocol::C_CreatePhotoSlide* mutable_c_create_photo_slide();
-  void set_allocated_c_create_photo_slide(::Protocol::C_CreatePhotoSlide* c_create_photo_slide);
-  private:
-  const ::Protocol::C_CreatePhotoSlide& _internal_c_create_photo_slide() const;
-  ::Protocol::C_CreatePhotoSlide* _internal_mutable_c_create_photo_slide();
-  public:
-  void unsafe_arena_set_allocated_c_create_photo_slide(
-      ::Protocol::C_CreatePhotoSlide* c_create_photo_slide);
-  ::Protocol::C_CreatePhotoSlide* unsafe_arena_release_c_create_photo_slide();
-
-  // .Protocol.S_CreatePhotoSlide s_create_photo_slide = 112;
-  bool has_s_create_photo_slide() const;
-  private:
-  bool _internal_has_s_create_photo_slide() const;
-  public:
-  void clear_s_create_photo_slide();
-  const ::Protocol::S_CreatePhotoSlide& s_create_photo_slide() const;
-  PROTOBUF_FUTURE_MUST_USE_RESULT ::Protocol::S_CreatePhotoSlide* release_s_create_photo_slide();
-  ::Protocol::S_CreatePhotoSlide* mutable_s_create_photo_slide();
-  void set_allocated_s_create_photo_slide(::Protocol::S_CreatePhotoSlide* s_create_photo_slide);
-  private:
-  const ::Protocol::S_CreatePhotoSlide& _internal_s_create_photo_slide() const;
-  ::Protocol::S_CreatePhotoSlide* _internal_mutable_s_create_photo_slide();
-  public:
-  void unsafe_arena_set_allocated_s_create_photo_slide(
-      ::Protocol::S_CreatePhotoSlide* s_create_photo_slide);
-  ::Protocol::S_CreatePhotoSlide* unsafe_arena_release_s_create_photo_slide();
-
   // .Protocol.C_RefreshInviteCode c_refresh_invite_code = 113;
   bool has_c_refresh_invite_code() const;
   private:
@@ -3868,10 +3772,6 @@ class Envelope final :
   void set_has_s_vote();
   void set_has_s_close_poll();
   void set_has_s_set_announcement();
-  void set_has_c_create_ball_drop();
-  void set_has_s_create_ball_drop();
-  void set_has_c_create_photo_slide();
-  void set_has_s_create_photo_slide();
   void set_has_c_refresh_invite_code();
   void set_has_s_refresh_invite_code();
   void set_has_c_social_login();
@@ -4019,10 +3919,6 @@ class Envelope final :
     ::Protocol::S_Vote* s_vote_;
     ::Protocol::S_ClosePoll* s_close_poll_;
     ::Protocol::S_SetAnnouncement* s_set_announcement_;
-    ::Protocol::C_CreateBallDrop* c_create_ball_drop_;
-    ::Protocol::S_CreateBallDrop* s_create_ball_drop_;
-    ::Protocol::C_CreatePhotoSlide* c_create_photo_slide_;
-    ::Protocol::S_CreatePhotoSlide* s_create_photo_slide_;
     ::Protocol::C_RefreshInviteCode* c_refresh_invite_code_;
     ::Protocol::S_RefreshInviteCode* s_refresh_invite_code_;
     ::Protocol::C_SocialLogin* c_social_login_;
@@ -22453,802 +22349,6 @@ class S_SetAnnouncement final :
 };
 // -------------------------------------------------------------------
 
-class C_CreateBallDrop final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Protocol.C_CreateBallDrop) */ {
- public:
-  inline C_CreateBallDrop() : C_CreateBallDrop(nullptr) {}
-  ~C_CreateBallDrop() override;
-  explicit constexpr C_CreateBallDrop(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  C_CreateBallDrop(const C_CreateBallDrop& from);
-  C_CreateBallDrop(C_CreateBallDrop&& from) noexcept
-    : C_CreateBallDrop() {
-    *this = ::std::move(from);
-  }
-
-  inline C_CreateBallDrop& operator=(const C_CreateBallDrop& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline C_CreateBallDrop& operator=(C_CreateBallDrop&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const C_CreateBallDrop& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const C_CreateBallDrop* internal_default_instance() {
-    return reinterpret_cast<const C_CreateBallDrop*>(
-               &_C_CreateBallDrop_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    112;
-
-  friend void swap(C_CreateBallDrop& a, C_CreateBallDrop& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(C_CreateBallDrop* other) {
-    if (other == this) return;
-    if (GetOwningArena() == other->GetOwningArena()) {
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(C_CreateBallDrop* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  inline C_CreateBallDrop* New() const final {
-    return new C_CreateBallDrop();
-  }
-
-  C_CreateBallDrop* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<C_CreateBallDrop>(arena);
-  }
-  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const C_CreateBallDrop& from);
-  void MergeFrom(const C_CreateBallDrop& from);
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
-      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
-
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(C_CreateBallDrop* other);
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "Protocol.C_CreateBallDrop";
-  }
-  protected:
-  explicit C_CreateBallDrop(::PROTOBUF_NAMESPACE_ID::Arena* arena);
-  private:
-  static void ArenaDtor(void* object);
-  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
-  public:
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kParticipantIdsFieldNumber = 2,
-    kBallCountsFieldNumber = 3,
-    kConvIdFieldNumber = 1,
-  };
-  // repeated string participant_ids = 2;
-  int participant_ids_size() const;
-  private:
-  int _internal_participant_ids_size() const;
-  public:
-  void clear_participant_ids();
-  const std::string& participant_ids(int index) const;
-  std::string* mutable_participant_ids(int index);
-  void set_participant_ids(int index, const std::string& value);
-  void set_participant_ids(int index, std::string&& value);
-  void set_participant_ids(int index, const char* value);
-  void set_participant_ids(int index, const char* value, size_t size);
-  std::string* add_participant_ids();
-  void add_participant_ids(const std::string& value);
-  void add_participant_ids(std::string&& value);
-  void add_participant_ids(const char* value);
-  void add_participant_ids(const char* value, size_t size);
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& participant_ids() const;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_participant_ids();
-  private:
-  const std::string& _internal_participant_ids(int index) const;
-  std::string* _internal_add_participant_ids();
-  public:
-
-  // repeated int32 ball_counts = 3;
-  int ball_counts_size() const;
-  private:
-  int _internal_ball_counts_size() const;
-  public:
-  void clear_ball_counts();
-  private:
-  ::PROTOBUF_NAMESPACE_ID::int32 _internal_ball_counts(int index) const;
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >&
-      _internal_ball_counts() const;
-  void _internal_add_ball_counts(::PROTOBUF_NAMESPACE_ID::int32 value);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >*
-      _internal_mutable_ball_counts();
-  public:
-  ::PROTOBUF_NAMESPACE_ID::int32 ball_counts(int index) const;
-  void set_ball_counts(int index, ::PROTOBUF_NAMESPACE_ID::int32 value);
-  void add_ball_counts(::PROTOBUF_NAMESPACE_ID::int32 value);
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >&
-      ball_counts() const;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >*
-      mutable_ball_counts();
-
-  // string conv_id = 1;
-  void clear_conv_id();
-  const std::string& conv_id() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_conv_id(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_conv_id();
-  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_conv_id();
-  void set_allocated_conv_id(std::string* conv_id);
-  private:
-  const std::string& _internal_conv_id() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_conv_id(const std::string& value);
-  std::string* _internal_mutable_conv_id();
-  public:
-
-  // @@protoc_insertion_point(class_scope:Protocol.C_CreateBallDrop)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> participant_ids_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 > ball_counts_;
-  mutable std::atomic<int> _ball_counts_cached_byte_size_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr conv_id_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_protocol_2eproto;
-};
-// -------------------------------------------------------------------
-
-class S_CreateBallDrop final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Protocol.S_CreateBallDrop) */ {
- public:
-  inline S_CreateBallDrop() : S_CreateBallDrop(nullptr) {}
-  ~S_CreateBallDrop() override;
-  explicit constexpr S_CreateBallDrop(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  S_CreateBallDrop(const S_CreateBallDrop& from);
-  S_CreateBallDrop(S_CreateBallDrop&& from) noexcept
-    : S_CreateBallDrop() {
-    *this = ::std::move(from);
-  }
-
-  inline S_CreateBallDrop& operator=(const S_CreateBallDrop& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline S_CreateBallDrop& operator=(S_CreateBallDrop&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const S_CreateBallDrop& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const S_CreateBallDrop* internal_default_instance() {
-    return reinterpret_cast<const S_CreateBallDrop*>(
-               &_S_CreateBallDrop_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    113;
-
-  friend void swap(S_CreateBallDrop& a, S_CreateBallDrop& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(S_CreateBallDrop* other) {
-    if (other == this) return;
-    if (GetOwningArena() == other->GetOwningArena()) {
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(S_CreateBallDrop* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  inline S_CreateBallDrop* New() const final {
-    return new S_CreateBallDrop();
-  }
-
-  S_CreateBallDrop* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<S_CreateBallDrop>(arena);
-  }
-  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const S_CreateBallDrop& from);
-  void MergeFrom(const S_CreateBallDrop& from);
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
-      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
-
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(S_CreateBallDrop* other);
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "Protocol.S_CreateBallDrop";
-  }
-  protected:
-  explicit S_CreateBallDrop(::PROTOBUF_NAMESPACE_ID::Arena* arena);
-  private:
-  static void ArenaDtor(void* object);
-  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
-  public:
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kConvIdFieldNumber = 1,
-    kGameJsonFieldNumber = 3,
-    kMsgSeqFieldNumber = 2,
-  };
-  // string conv_id = 1;
-  void clear_conv_id();
-  const std::string& conv_id() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_conv_id(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_conv_id();
-  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_conv_id();
-  void set_allocated_conv_id(std::string* conv_id);
-  private:
-  const std::string& _internal_conv_id() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_conv_id(const std::string& value);
-  std::string* _internal_mutable_conv_id();
-  public:
-
-  // string game_json = 3;
-  void clear_game_json();
-  const std::string& game_json() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_game_json(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_game_json();
-  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_game_json();
-  void set_allocated_game_json(std::string* game_json);
-  private:
-  const std::string& _internal_game_json() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_game_json(const std::string& value);
-  std::string* _internal_mutable_game_json();
-  public:
-
-  // int64 msg_seq = 2;
-  void clear_msg_seq();
-  ::PROTOBUF_NAMESPACE_ID::int64 msg_seq() const;
-  void set_msg_seq(::PROTOBUF_NAMESPACE_ID::int64 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::int64 _internal_msg_seq() const;
-  void _internal_set_msg_seq(::PROTOBUF_NAMESPACE_ID::int64 value);
-  public:
-
-  // @@protoc_insertion_point(class_scope:Protocol.S_CreateBallDrop)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr conv_id_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr game_json_;
-  ::PROTOBUF_NAMESPACE_ID::int64 msg_seq_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_protocol_2eproto;
-};
-// -------------------------------------------------------------------
-
-class C_CreatePhotoSlide final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Protocol.C_CreatePhotoSlide) */ {
- public:
-  inline C_CreatePhotoSlide() : C_CreatePhotoSlide(nullptr) {}
-  ~C_CreatePhotoSlide() override;
-  explicit constexpr C_CreatePhotoSlide(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  C_CreatePhotoSlide(const C_CreatePhotoSlide& from);
-  C_CreatePhotoSlide(C_CreatePhotoSlide&& from) noexcept
-    : C_CreatePhotoSlide() {
-    *this = ::std::move(from);
-  }
-
-  inline C_CreatePhotoSlide& operator=(const C_CreatePhotoSlide& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline C_CreatePhotoSlide& operator=(C_CreatePhotoSlide&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const C_CreatePhotoSlide& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const C_CreatePhotoSlide* internal_default_instance() {
-    return reinterpret_cast<const C_CreatePhotoSlide*>(
-               &_C_CreatePhotoSlide_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    114;
-
-  friend void swap(C_CreatePhotoSlide& a, C_CreatePhotoSlide& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(C_CreatePhotoSlide* other) {
-    if (other == this) return;
-    if (GetOwningArena() == other->GetOwningArena()) {
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(C_CreatePhotoSlide* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  inline C_CreatePhotoSlide* New() const final {
-    return new C_CreatePhotoSlide();
-  }
-
-  C_CreatePhotoSlide* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<C_CreatePhotoSlide>(arena);
-  }
-  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const C_CreatePhotoSlide& from);
-  void MergeFrom(const C_CreatePhotoSlide& from);
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
-      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
-
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(C_CreatePhotoSlide* other);
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "Protocol.C_CreatePhotoSlide";
-  }
-  protected:
-  explicit C_CreatePhotoSlide(::PROTOBUF_NAMESPACE_ID::Arena* arena);
-  private:
-  static void ArenaDtor(void* object);
-  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
-  public:
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kImageUrlsFieldNumber = 2,
-    kThumbnailUrlsFieldNumber = 3,
-    kConvIdFieldNumber = 1,
-    kMessageFieldNumber = 4,
-    kFontStyleFieldNumber = 5,
-    kTextPositionFieldNumber = 6,
-    kBgThemeFieldNumber = 7,
-    kEndingMessageFieldNumber = 8,
-    kFontSizeFieldNumber = 9,
-  };
-  // repeated string image_urls = 2;
-  int image_urls_size() const;
-  private:
-  int _internal_image_urls_size() const;
-  public:
-  void clear_image_urls();
-  const std::string& image_urls(int index) const;
-  std::string* mutable_image_urls(int index);
-  void set_image_urls(int index, const std::string& value);
-  void set_image_urls(int index, std::string&& value);
-  void set_image_urls(int index, const char* value);
-  void set_image_urls(int index, const char* value, size_t size);
-  std::string* add_image_urls();
-  void add_image_urls(const std::string& value);
-  void add_image_urls(std::string&& value);
-  void add_image_urls(const char* value);
-  void add_image_urls(const char* value, size_t size);
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& image_urls() const;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_image_urls();
-  private:
-  const std::string& _internal_image_urls(int index) const;
-  std::string* _internal_add_image_urls();
-  public:
-
-  // repeated string thumbnail_urls = 3;
-  int thumbnail_urls_size() const;
-  private:
-  int _internal_thumbnail_urls_size() const;
-  public:
-  void clear_thumbnail_urls();
-  const std::string& thumbnail_urls(int index) const;
-  std::string* mutable_thumbnail_urls(int index);
-  void set_thumbnail_urls(int index, const std::string& value);
-  void set_thumbnail_urls(int index, std::string&& value);
-  void set_thumbnail_urls(int index, const char* value);
-  void set_thumbnail_urls(int index, const char* value, size_t size);
-  std::string* add_thumbnail_urls();
-  void add_thumbnail_urls(const std::string& value);
-  void add_thumbnail_urls(std::string&& value);
-  void add_thumbnail_urls(const char* value);
-  void add_thumbnail_urls(const char* value, size_t size);
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& thumbnail_urls() const;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_thumbnail_urls();
-  private:
-  const std::string& _internal_thumbnail_urls(int index) const;
-  std::string* _internal_add_thumbnail_urls();
-  public:
-
-  // string conv_id = 1;
-  void clear_conv_id();
-  const std::string& conv_id() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_conv_id(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_conv_id();
-  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_conv_id();
-  void set_allocated_conv_id(std::string* conv_id);
-  private:
-  const std::string& _internal_conv_id() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_conv_id(const std::string& value);
-  std::string* _internal_mutable_conv_id();
-  public:
-
-  // string message = 4;
-  void clear_message();
-  const std::string& message() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_message(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_message();
-  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_message();
-  void set_allocated_message(std::string* message);
-  private:
-  const std::string& _internal_message() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_message(const std::string& value);
-  std::string* _internal_mutable_message();
-  public:
-
-  // string font_style = 5;
-  void clear_font_style();
-  const std::string& font_style() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_font_style(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_font_style();
-  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_font_style();
-  void set_allocated_font_style(std::string* font_style);
-  private:
-  const std::string& _internal_font_style() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_font_style(const std::string& value);
-  std::string* _internal_mutable_font_style();
-  public:
-
-  // string text_position = 6;
-  void clear_text_position();
-  const std::string& text_position() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_text_position(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_text_position();
-  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_text_position();
-  void set_allocated_text_position(std::string* text_position);
-  private:
-  const std::string& _internal_text_position() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_text_position(const std::string& value);
-  std::string* _internal_mutable_text_position();
-  public:
-
-  // string bg_theme = 7;
-  void clear_bg_theme();
-  const std::string& bg_theme() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_bg_theme(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_bg_theme();
-  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_bg_theme();
-  void set_allocated_bg_theme(std::string* bg_theme);
-  private:
-  const std::string& _internal_bg_theme() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_bg_theme(const std::string& value);
-  std::string* _internal_mutable_bg_theme();
-  public:
-
-  // string ending_message = 8;
-  void clear_ending_message();
-  const std::string& ending_message() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_ending_message(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_ending_message();
-  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_ending_message();
-  void set_allocated_ending_message(std::string* ending_message);
-  private:
-  const std::string& _internal_ending_message() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_ending_message(const std::string& value);
-  std::string* _internal_mutable_ending_message();
-  public:
-
-  // int32 font_size = 9;
-  void clear_font_size();
-  ::PROTOBUF_NAMESPACE_ID::int32 font_size() const;
-  void set_font_size(::PROTOBUF_NAMESPACE_ID::int32 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::int32 _internal_font_size() const;
-  void _internal_set_font_size(::PROTOBUF_NAMESPACE_ID::int32 value);
-  public:
-
-  // @@protoc_insertion_point(class_scope:Protocol.C_CreatePhotoSlide)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> image_urls_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> thumbnail_urls_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr conv_id_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr message_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr font_style_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr text_position_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr bg_theme_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr ending_message_;
-  ::PROTOBUF_NAMESPACE_ID::int32 font_size_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_protocol_2eproto;
-};
-// -------------------------------------------------------------------
-
-class S_CreatePhotoSlide final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Protocol.S_CreatePhotoSlide) */ {
- public:
-  inline S_CreatePhotoSlide() : S_CreatePhotoSlide(nullptr) {}
-  ~S_CreatePhotoSlide() override;
-  explicit constexpr S_CreatePhotoSlide(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  S_CreatePhotoSlide(const S_CreatePhotoSlide& from);
-  S_CreatePhotoSlide(S_CreatePhotoSlide&& from) noexcept
-    : S_CreatePhotoSlide() {
-    *this = ::std::move(from);
-  }
-
-  inline S_CreatePhotoSlide& operator=(const S_CreatePhotoSlide& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline S_CreatePhotoSlide& operator=(S_CreatePhotoSlide&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const S_CreatePhotoSlide& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const S_CreatePhotoSlide* internal_default_instance() {
-    return reinterpret_cast<const S_CreatePhotoSlide*>(
-               &_S_CreatePhotoSlide_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    115;
-
-  friend void swap(S_CreatePhotoSlide& a, S_CreatePhotoSlide& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(S_CreatePhotoSlide* other) {
-    if (other == this) return;
-    if (GetOwningArena() == other->GetOwningArena()) {
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(S_CreatePhotoSlide* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  inline S_CreatePhotoSlide* New() const final {
-    return new S_CreatePhotoSlide();
-  }
-
-  S_CreatePhotoSlide* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<S_CreatePhotoSlide>(arena);
-  }
-  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const S_CreatePhotoSlide& from);
-  void MergeFrom(const S_CreatePhotoSlide& from);
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
-      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
-
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(S_CreatePhotoSlide* other);
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "Protocol.S_CreatePhotoSlide";
-  }
-  protected:
-  explicit S_CreatePhotoSlide(::PROTOBUF_NAMESPACE_ID::Arena* arena);
-  private:
-  static void ArenaDtor(void* object);
-  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
-  public:
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kConvIdFieldNumber = 1,
-    kSlideJsonFieldNumber = 3,
-    kMsgSeqFieldNumber = 2,
-  };
-  // string conv_id = 1;
-  void clear_conv_id();
-  const std::string& conv_id() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_conv_id(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_conv_id();
-  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_conv_id();
-  void set_allocated_conv_id(std::string* conv_id);
-  private:
-  const std::string& _internal_conv_id() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_conv_id(const std::string& value);
-  std::string* _internal_mutable_conv_id();
-  public:
-
-  // string slide_json = 3;
-  void clear_slide_json();
-  const std::string& slide_json() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_slide_json(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_slide_json();
-  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_slide_json();
-  void set_allocated_slide_json(std::string* slide_json);
-  private:
-  const std::string& _internal_slide_json() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_slide_json(const std::string& value);
-  std::string* _internal_mutable_slide_json();
-  public:
-
-  // int64 msg_seq = 2;
-  void clear_msg_seq();
-  ::PROTOBUF_NAMESPACE_ID::int64 msg_seq() const;
-  void set_msg_seq(::PROTOBUF_NAMESPACE_ID::int64 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::int64 _internal_msg_seq() const;
-  void _internal_set_msg_seq(::PROTOBUF_NAMESPACE_ID::int64 value);
-  public:
-
-  // @@protoc_insertion_point(class_scope:Protocol.S_CreatePhotoSlide)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr conv_id_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr slide_json_;
-  ::PROTOBUF_NAMESPACE_ID::int64 msg_seq_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_protocol_2eproto;
-};
-// -------------------------------------------------------------------
-
 class C_SocialLogin final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Protocol.C_SocialLogin) */ {
  public:
@@ -23293,7 +22393,7 @@ class C_SocialLogin final :
                &_C_SocialLogin_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    116;
+    112;
 
   friend void swap(C_SocialLogin& a, C_SocialLogin& b) {
     a.Swap(&b);
@@ -23446,7 +22546,7 @@ class S_SocialLogin final :
                &_S_SocialLogin_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    117;
+    113;
 
   friend void swap(S_SocialLogin& a, S_SocialLogin& b) {
     a.Swap(&b);
@@ -23626,7 +22726,7 @@ class C_CompleteSocialSignup final :
                &_C_CompleteSocialSignup_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    118;
+    114;
 
   friend void swap(C_CompleteSocialSignup& a, C_CompleteSocialSignup& b) {
     a.Swap(&b);
@@ -23811,7 +22911,7 @@ class Album final :
                &_Album_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    119;
+    115;
 
   friend void swap(Album& a, Album& b) {
     a.Swap(&b);
@@ -24034,7 +23134,7 @@ class AlbumPhoto final :
                &_AlbumPhoto_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    120;
+    116;
 
   friend void swap(AlbumPhoto& a, AlbumPhoto& b) {
     a.Swap(&b);
@@ -24289,7 +23389,7 @@ class PhotoComment final :
                &_PhotoComment_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    121;
+    117;
 
   friend void swap(PhotoComment& a, PhotoComment& b) {
     a.Swap(&b);
@@ -24501,7 +23601,7 @@ class C_CreateAlbum final :
                &_C_CreateAlbum_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    122;
+    118;
 
   friend void swap(C_CreateAlbum& a, C_CreateAlbum& b) {
     a.Swap(&b);
@@ -24670,7 +23770,7 @@ class S_CreateAlbum final :
                &_S_CreateAlbum_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    123;
+    119;
 
   friend void swap(S_CreateAlbum& a, S_CreateAlbum& b) {
     a.Swap(&b);
@@ -24838,7 +23938,7 @@ class C_GetAlbums final :
                &_C_GetAlbums_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    124;
+    120;
 
   friend void swap(C_GetAlbums& a, C_GetAlbums& b) {
     a.Swap(&b);
@@ -24975,7 +24075,7 @@ class S_GetAlbums final :
                &_S_GetAlbums_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    125;
+    121;
 
   friend void swap(S_GetAlbums& a, S_GetAlbums& b) {
     a.Swap(&b);
@@ -25116,7 +24216,7 @@ class C_AddPhotoToAlbum final :
                &_C_AddPhotoToAlbum_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    126;
+    122;
 
   friend void swap(C_AddPhotoToAlbum& a, C_AddPhotoToAlbum& b) {
     a.Swap(&b);
@@ -25328,7 +24428,7 @@ class S_AddPhotoToAlbum final :
                &_S_AddPhotoToAlbum_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    127;
+    123;
 
   friend void swap(S_AddPhotoToAlbum& a, S_AddPhotoToAlbum& b) {
     a.Swap(&b);
@@ -25532,7 +24632,7 @@ class C_GetAlbumPhotos final :
                &_C_GetAlbumPhotos_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    128;
+    124;
 
   friend void swap(C_GetAlbumPhotos& a, C_GetAlbumPhotos& b) {
     a.Swap(&b);
@@ -25680,7 +24780,7 @@ class S_GetAlbumPhotos final :
                &_S_GetAlbumPhotos_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    129;
+    125;
 
   friend void swap(S_GetAlbumPhotos& a, S_GetAlbumPhotos& b) {
     a.Swap(&b);
@@ -25837,7 +24937,7 @@ class C_DeleteAlbum final :
                &_C_DeleteAlbum_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    130;
+    126;
 
   friend void swap(C_DeleteAlbum& a, C_DeleteAlbum& b) {
     a.Swap(&b);
@@ -26006,7 +25106,7 @@ class S_DeleteAlbum final :
                &_S_DeleteAlbum_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    131;
+    127;
 
   friend void swap(S_DeleteAlbum& a, S_DeleteAlbum& b) {
     a.Swap(&b);
@@ -26186,7 +25286,7 @@ class C_DeleteAlbumPhoto final :
                &_C_DeleteAlbumPhoto_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    132;
+    128;
 
   friend void swap(C_DeleteAlbumPhoto& a, C_DeleteAlbumPhoto& b) {
     a.Swap(&b);
@@ -26371,7 +25471,7 @@ class S_DeleteAlbumPhoto final :
                &_S_DeleteAlbumPhoto_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    133;
+    129;
 
   friend void swap(S_DeleteAlbumPhoto& a, S_DeleteAlbumPhoto& b) {
     a.Swap(&b);
@@ -26587,7 +25687,7 @@ class C_MovePhoto final :
                &_C_MovePhoto_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    134;
+    130;
 
   friend void swap(C_MovePhoto& a, C_MovePhoto& b) {
     a.Swap(&b);
@@ -26788,7 +25888,7 @@ class S_MovePhoto final :
                &_S_MovePhoto_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    135;
+    131;
 
   friend void swap(S_MovePhoto& a, S_MovePhoto& b) {
     a.Swap(&b);
@@ -27040,7 +26140,7 @@ class C_AddPhotoComment final :
                &_C_AddPhotoComment_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    136;
+    132;
 
   friend void swap(C_AddPhotoComment& a, C_AddPhotoComment& b) {
     a.Swap(&b);
@@ -27241,7 +26341,7 @@ class S_AddPhotoComment final :
                &_S_AddPhotoComment_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    137;
+    133;
 
   friend void swap(S_AddPhotoComment& a, S_AddPhotoComment& b) {
     a.Swap(&b);
@@ -27409,7 +26509,7 @@ class C_GetPhotoComments final :
                &_C_GetPhotoComments_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    138;
+    134;
 
   friend void swap(C_GetPhotoComments& a, C_GetPhotoComments& b) {
     a.Swap(&b);
@@ -27546,7 +26646,7 @@ class S_GetPhotoComments final :
                &_S_GetPhotoComments_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    139;
+    135;
 
   friend void swap(S_GetPhotoComments& a, S_GetPhotoComments& b) {
     a.Swap(&b);
@@ -27703,7 +26803,7 @@ class C_DeletePhotoComment final :
                &_C_DeletePhotoComment_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    140;
+    136;
 
   friend void swap(C_DeletePhotoComment& a, C_DeletePhotoComment& b) {
     a.Swap(&b);
@@ -27888,7 +26988,7 @@ class S_DeletePhotoComment final :
                &_S_DeletePhotoComment_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    141;
+    137;
 
   friend void swap(S_DeletePhotoComment& a, S_DeletePhotoComment& b) {
     a.Swap(&b);
@@ -28084,7 +27184,7 @@ class LocationPhoto final :
                &_LocationPhoto_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    142;
+    138;
 
   friend void swap(LocationPhoto& a, LocationPhoto& b) {
     a.Swap(&b);
@@ -28237,7 +27337,7 @@ class LocationVisitInfo final :
                &_LocationVisitInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    143;
+    139;
 
   friend void swap(LocationVisitInfo& a, LocationVisitInfo& b) {
     a.Swap(&b);
@@ -28464,7 +27564,7 @@ class LocationPlaceInfo final :
                &_LocationPlaceInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    144;
+    140;
 
   friend void swap(LocationPlaceInfo& a, LocationPlaceInfo& b) {
     a.Swap(&b);
@@ -28772,7 +27872,7 @@ class C_SavePlace final :
                &_C_SavePlace_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    145;
+    141;
 
   friend void swap(C_SavePlace& a, C_SavePlace& b) {
     a.Swap(&b);
@@ -29011,7 +28111,7 @@ class S_SavePlace final :
                &_S_SavePlace_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    146;
+    142;
 
   friend void swap(S_SavePlace& a, S_SavePlace& b) {
     a.Swap(&b);
@@ -29174,7 +28274,7 @@ class C_GetPlaces final :
                &_C_GetPlaces_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    147;
+    143;
 
   friend void swap(C_GetPlaces& a, C_GetPlaces& b) {
     a.Swap(&b);
@@ -29311,7 +28411,7 @@ class S_GetPlaces final :
                &_S_GetPlaces_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    148;
+    144;
 
   friend void swap(S_GetPlaces& a, S_GetPlaces& b) {
     a.Swap(&b);
@@ -29468,7 +28568,7 @@ class C_SaveVisit final :
                &_C_SaveVisit_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    149;
+    145;
 
   friend void swap(C_SaveVisit& a, C_SaveVisit& b) {
     a.Swap(&b);
@@ -29717,7 +28817,7 @@ class S_SaveVisit final :
                &_S_SaveVisit_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    150;
+    146;
 
   friend void swap(S_SaveVisit& a, S_SaveVisit& b) {
     a.Swap(&b);
@@ -29916,7 +29016,7 @@ class C_DeletePlace final :
                &_C_DeletePlace_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    151;
+    147;
 
   friend void swap(C_DeletePlace& a, C_DeletePlace& b) {
     a.Swap(&b);
@@ -30085,7 +29185,7 @@ class S_DeletePlace final :
                &_S_DeletePlace_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    152;
+    148;
 
   friend void swap(S_DeletePlace& a, S_DeletePlace& b) {
     a.Swap(&b);
@@ -30260,7 +29360,7 @@ class C_UpdateVisit final :
                &_C_UpdateVisit_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    153;
+    149;
 
   friend void swap(C_UpdateVisit& a, C_UpdateVisit& b) {
     a.Swap(&b);
@@ -30509,7 +29609,7 @@ class S_UpdateVisit final :
                &_S_UpdateVisit_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    154;
+    150;
 
   friend void swap(S_UpdateVisit& a, S_UpdateVisit& b) {
     a.Swap(&b);
@@ -30692,7 +29792,7 @@ class C_DeleteVisit final :
                &_C_DeleteVisit_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    155;
+    151;
 
   friend void swap(C_DeleteVisit& a, C_DeleteVisit& b) {
     a.Swap(&b);
@@ -30877,7 +29977,7 @@ class S_DeleteVisit final :
                &_S_DeleteVisit_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    156;
+    152;
 
   friend void swap(S_DeleteVisit& a, S_DeleteVisit& b) {
     a.Swap(&b);
@@ -31079,7 +30179,7 @@ class S_Error final :
                &_S_Error_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    157;
+    153;
 
   friend void swap(S_Error& a, S_Error& b) {
     a.Swap(&b);
@@ -31238,7 +30338,7 @@ class C_Heartbeat final :
                &_C_Heartbeat_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    158;
+    154;
 
   friend void swap(C_Heartbeat& a, C_Heartbeat& b) {
     a.Swap(&b);
@@ -31357,7 +30457,7 @@ class S_Heartbeat final :
                &_S_Heartbeat_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    159;
+    155;
 
   friend void swap(S_Heartbeat& a, S_Heartbeat& b) {
     a.Swap(&b);
@@ -36926,298 +36026,6 @@ inline ::Protocol::S_SetAnnouncement* Envelope::_internal_mutable_s_set_announce
 inline ::Protocol::S_SetAnnouncement* Envelope::mutable_s_set_announcement() {
   // @@protoc_insertion_point(field_mutable:Protocol.Envelope.s_set_announcement)
   return _internal_mutable_s_set_announcement();
-}
-
-// .Protocol.C_CreateBallDrop c_create_ball_drop = 109;
-inline bool Envelope::_internal_has_c_create_ball_drop() const {
-  return payload_case() == kCCreateBallDrop;
-}
-inline bool Envelope::has_c_create_ball_drop() const {
-  return _internal_has_c_create_ball_drop();
-}
-inline void Envelope::set_has_c_create_ball_drop() {
-  _oneof_case_[0] = kCCreateBallDrop;
-}
-inline void Envelope::clear_c_create_ball_drop() {
-  if (_internal_has_c_create_ball_drop()) {
-    if (GetArenaForAllocation() == nullptr) {
-      delete payload_.c_create_ball_drop_;
-    }
-    clear_has_payload();
-  }
-}
-inline ::Protocol::C_CreateBallDrop* Envelope::release_c_create_ball_drop() {
-  // @@protoc_insertion_point(field_release:Protocol.Envelope.c_create_ball_drop)
-  if (_internal_has_c_create_ball_drop()) {
-    clear_has_payload();
-      ::Protocol::C_CreateBallDrop* temp = payload_.c_create_ball_drop_;
-    if (GetArenaForAllocation() != nullptr) {
-      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-    }
-    payload_.c_create_ball_drop_ = nullptr;
-    return temp;
-  } else {
-    return nullptr;
-  }
-}
-inline const ::Protocol::C_CreateBallDrop& Envelope::_internal_c_create_ball_drop() const {
-  return _internal_has_c_create_ball_drop()
-      ? *payload_.c_create_ball_drop_
-      : reinterpret_cast< ::Protocol::C_CreateBallDrop&>(::Protocol::_C_CreateBallDrop_default_instance_);
-}
-inline const ::Protocol::C_CreateBallDrop& Envelope::c_create_ball_drop() const {
-  // @@protoc_insertion_point(field_get:Protocol.Envelope.c_create_ball_drop)
-  return _internal_c_create_ball_drop();
-}
-inline ::Protocol::C_CreateBallDrop* Envelope::unsafe_arena_release_c_create_ball_drop() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:Protocol.Envelope.c_create_ball_drop)
-  if (_internal_has_c_create_ball_drop()) {
-    clear_has_payload();
-    ::Protocol::C_CreateBallDrop* temp = payload_.c_create_ball_drop_;
-    payload_.c_create_ball_drop_ = nullptr;
-    return temp;
-  } else {
-    return nullptr;
-  }
-}
-inline void Envelope::unsafe_arena_set_allocated_c_create_ball_drop(::Protocol::C_CreateBallDrop* c_create_ball_drop) {
-  clear_payload();
-  if (c_create_ball_drop) {
-    set_has_c_create_ball_drop();
-    payload_.c_create_ball_drop_ = c_create_ball_drop;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Protocol.Envelope.c_create_ball_drop)
-}
-inline ::Protocol::C_CreateBallDrop* Envelope::_internal_mutable_c_create_ball_drop() {
-  if (!_internal_has_c_create_ball_drop()) {
-    clear_payload();
-    set_has_c_create_ball_drop();
-    payload_.c_create_ball_drop_ = CreateMaybeMessage< ::Protocol::C_CreateBallDrop >(GetArenaForAllocation());
-  }
-  return payload_.c_create_ball_drop_;
-}
-inline ::Protocol::C_CreateBallDrop* Envelope::mutable_c_create_ball_drop() {
-  // @@protoc_insertion_point(field_mutable:Protocol.Envelope.c_create_ball_drop)
-  return _internal_mutable_c_create_ball_drop();
-}
-
-// .Protocol.S_CreateBallDrop s_create_ball_drop = 110;
-inline bool Envelope::_internal_has_s_create_ball_drop() const {
-  return payload_case() == kSCreateBallDrop;
-}
-inline bool Envelope::has_s_create_ball_drop() const {
-  return _internal_has_s_create_ball_drop();
-}
-inline void Envelope::set_has_s_create_ball_drop() {
-  _oneof_case_[0] = kSCreateBallDrop;
-}
-inline void Envelope::clear_s_create_ball_drop() {
-  if (_internal_has_s_create_ball_drop()) {
-    if (GetArenaForAllocation() == nullptr) {
-      delete payload_.s_create_ball_drop_;
-    }
-    clear_has_payload();
-  }
-}
-inline ::Protocol::S_CreateBallDrop* Envelope::release_s_create_ball_drop() {
-  // @@protoc_insertion_point(field_release:Protocol.Envelope.s_create_ball_drop)
-  if (_internal_has_s_create_ball_drop()) {
-    clear_has_payload();
-      ::Protocol::S_CreateBallDrop* temp = payload_.s_create_ball_drop_;
-    if (GetArenaForAllocation() != nullptr) {
-      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-    }
-    payload_.s_create_ball_drop_ = nullptr;
-    return temp;
-  } else {
-    return nullptr;
-  }
-}
-inline const ::Protocol::S_CreateBallDrop& Envelope::_internal_s_create_ball_drop() const {
-  return _internal_has_s_create_ball_drop()
-      ? *payload_.s_create_ball_drop_
-      : reinterpret_cast< ::Protocol::S_CreateBallDrop&>(::Protocol::_S_CreateBallDrop_default_instance_);
-}
-inline const ::Protocol::S_CreateBallDrop& Envelope::s_create_ball_drop() const {
-  // @@protoc_insertion_point(field_get:Protocol.Envelope.s_create_ball_drop)
-  return _internal_s_create_ball_drop();
-}
-inline ::Protocol::S_CreateBallDrop* Envelope::unsafe_arena_release_s_create_ball_drop() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:Protocol.Envelope.s_create_ball_drop)
-  if (_internal_has_s_create_ball_drop()) {
-    clear_has_payload();
-    ::Protocol::S_CreateBallDrop* temp = payload_.s_create_ball_drop_;
-    payload_.s_create_ball_drop_ = nullptr;
-    return temp;
-  } else {
-    return nullptr;
-  }
-}
-inline void Envelope::unsafe_arena_set_allocated_s_create_ball_drop(::Protocol::S_CreateBallDrop* s_create_ball_drop) {
-  clear_payload();
-  if (s_create_ball_drop) {
-    set_has_s_create_ball_drop();
-    payload_.s_create_ball_drop_ = s_create_ball_drop;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Protocol.Envelope.s_create_ball_drop)
-}
-inline ::Protocol::S_CreateBallDrop* Envelope::_internal_mutable_s_create_ball_drop() {
-  if (!_internal_has_s_create_ball_drop()) {
-    clear_payload();
-    set_has_s_create_ball_drop();
-    payload_.s_create_ball_drop_ = CreateMaybeMessage< ::Protocol::S_CreateBallDrop >(GetArenaForAllocation());
-  }
-  return payload_.s_create_ball_drop_;
-}
-inline ::Protocol::S_CreateBallDrop* Envelope::mutable_s_create_ball_drop() {
-  // @@protoc_insertion_point(field_mutable:Protocol.Envelope.s_create_ball_drop)
-  return _internal_mutable_s_create_ball_drop();
-}
-
-// .Protocol.C_CreatePhotoSlide c_create_photo_slide = 111;
-inline bool Envelope::_internal_has_c_create_photo_slide() const {
-  return payload_case() == kCCreatePhotoSlide;
-}
-inline bool Envelope::has_c_create_photo_slide() const {
-  return _internal_has_c_create_photo_slide();
-}
-inline void Envelope::set_has_c_create_photo_slide() {
-  _oneof_case_[0] = kCCreatePhotoSlide;
-}
-inline void Envelope::clear_c_create_photo_slide() {
-  if (_internal_has_c_create_photo_slide()) {
-    if (GetArenaForAllocation() == nullptr) {
-      delete payload_.c_create_photo_slide_;
-    }
-    clear_has_payload();
-  }
-}
-inline ::Protocol::C_CreatePhotoSlide* Envelope::release_c_create_photo_slide() {
-  // @@protoc_insertion_point(field_release:Protocol.Envelope.c_create_photo_slide)
-  if (_internal_has_c_create_photo_slide()) {
-    clear_has_payload();
-      ::Protocol::C_CreatePhotoSlide* temp = payload_.c_create_photo_slide_;
-    if (GetArenaForAllocation() != nullptr) {
-      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-    }
-    payload_.c_create_photo_slide_ = nullptr;
-    return temp;
-  } else {
-    return nullptr;
-  }
-}
-inline const ::Protocol::C_CreatePhotoSlide& Envelope::_internal_c_create_photo_slide() const {
-  return _internal_has_c_create_photo_slide()
-      ? *payload_.c_create_photo_slide_
-      : reinterpret_cast< ::Protocol::C_CreatePhotoSlide&>(::Protocol::_C_CreatePhotoSlide_default_instance_);
-}
-inline const ::Protocol::C_CreatePhotoSlide& Envelope::c_create_photo_slide() const {
-  // @@protoc_insertion_point(field_get:Protocol.Envelope.c_create_photo_slide)
-  return _internal_c_create_photo_slide();
-}
-inline ::Protocol::C_CreatePhotoSlide* Envelope::unsafe_arena_release_c_create_photo_slide() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:Protocol.Envelope.c_create_photo_slide)
-  if (_internal_has_c_create_photo_slide()) {
-    clear_has_payload();
-    ::Protocol::C_CreatePhotoSlide* temp = payload_.c_create_photo_slide_;
-    payload_.c_create_photo_slide_ = nullptr;
-    return temp;
-  } else {
-    return nullptr;
-  }
-}
-inline void Envelope::unsafe_arena_set_allocated_c_create_photo_slide(::Protocol::C_CreatePhotoSlide* c_create_photo_slide) {
-  clear_payload();
-  if (c_create_photo_slide) {
-    set_has_c_create_photo_slide();
-    payload_.c_create_photo_slide_ = c_create_photo_slide;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Protocol.Envelope.c_create_photo_slide)
-}
-inline ::Protocol::C_CreatePhotoSlide* Envelope::_internal_mutable_c_create_photo_slide() {
-  if (!_internal_has_c_create_photo_slide()) {
-    clear_payload();
-    set_has_c_create_photo_slide();
-    payload_.c_create_photo_slide_ = CreateMaybeMessage< ::Protocol::C_CreatePhotoSlide >(GetArenaForAllocation());
-  }
-  return payload_.c_create_photo_slide_;
-}
-inline ::Protocol::C_CreatePhotoSlide* Envelope::mutable_c_create_photo_slide() {
-  // @@protoc_insertion_point(field_mutable:Protocol.Envelope.c_create_photo_slide)
-  return _internal_mutable_c_create_photo_slide();
-}
-
-// .Protocol.S_CreatePhotoSlide s_create_photo_slide = 112;
-inline bool Envelope::_internal_has_s_create_photo_slide() const {
-  return payload_case() == kSCreatePhotoSlide;
-}
-inline bool Envelope::has_s_create_photo_slide() const {
-  return _internal_has_s_create_photo_slide();
-}
-inline void Envelope::set_has_s_create_photo_slide() {
-  _oneof_case_[0] = kSCreatePhotoSlide;
-}
-inline void Envelope::clear_s_create_photo_slide() {
-  if (_internal_has_s_create_photo_slide()) {
-    if (GetArenaForAllocation() == nullptr) {
-      delete payload_.s_create_photo_slide_;
-    }
-    clear_has_payload();
-  }
-}
-inline ::Protocol::S_CreatePhotoSlide* Envelope::release_s_create_photo_slide() {
-  // @@protoc_insertion_point(field_release:Protocol.Envelope.s_create_photo_slide)
-  if (_internal_has_s_create_photo_slide()) {
-    clear_has_payload();
-      ::Protocol::S_CreatePhotoSlide* temp = payload_.s_create_photo_slide_;
-    if (GetArenaForAllocation() != nullptr) {
-      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-    }
-    payload_.s_create_photo_slide_ = nullptr;
-    return temp;
-  } else {
-    return nullptr;
-  }
-}
-inline const ::Protocol::S_CreatePhotoSlide& Envelope::_internal_s_create_photo_slide() const {
-  return _internal_has_s_create_photo_slide()
-      ? *payload_.s_create_photo_slide_
-      : reinterpret_cast< ::Protocol::S_CreatePhotoSlide&>(::Protocol::_S_CreatePhotoSlide_default_instance_);
-}
-inline const ::Protocol::S_CreatePhotoSlide& Envelope::s_create_photo_slide() const {
-  // @@protoc_insertion_point(field_get:Protocol.Envelope.s_create_photo_slide)
-  return _internal_s_create_photo_slide();
-}
-inline ::Protocol::S_CreatePhotoSlide* Envelope::unsafe_arena_release_s_create_photo_slide() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:Protocol.Envelope.s_create_photo_slide)
-  if (_internal_has_s_create_photo_slide()) {
-    clear_has_payload();
-    ::Protocol::S_CreatePhotoSlide* temp = payload_.s_create_photo_slide_;
-    payload_.s_create_photo_slide_ = nullptr;
-    return temp;
-  } else {
-    return nullptr;
-  }
-}
-inline void Envelope::unsafe_arena_set_allocated_s_create_photo_slide(::Protocol::S_CreatePhotoSlide* s_create_photo_slide) {
-  clear_payload();
-  if (s_create_photo_slide) {
-    set_has_s_create_photo_slide();
-    payload_.s_create_photo_slide_ = s_create_photo_slide;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Protocol.Envelope.s_create_photo_slide)
-}
-inline ::Protocol::S_CreatePhotoSlide* Envelope::_internal_mutable_s_create_photo_slide() {
-  if (!_internal_has_s_create_photo_slide()) {
-    clear_payload();
-    set_has_s_create_photo_slide();
-    payload_.s_create_photo_slide_ = CreateMaybeMessage< ::Protocol::S_CreatePhotoSlide >(GetArenaForAllocation());
-  }
-  return payload_.s_create_photo_slide_;
-}
-inline ::Protocol::S_CreatePhotoSlide* Envelope::mutable_s_create_photo_slide() {
-  // @@protoc_insertion_point(field_mutable:Protocol.Envelope.s_create_photo_slide)
-  return _internal_mutable_s_create_photo_slide();
 }
 
 // .Protocol.C_RefreshInviteCode c_refresh_invite_code = 113;
@@ -54534,846 +53342,6 @@ inline void S_SetAnnouncement::set_allocated_setter_id(std::string* setter_id) {
 
 // -------------------------------------------------------------------
 
-// C_CreateBallDrop
-
-// string conv_id = 1;
-inline void C_CreateBallDrop::clear_conv_id() {
-  conv_id_.ClearToEmpty();
-}
-inline const std::string& C_CreateBallDrop::conv_id() const {
-  // @@protoc_insertion_point(field_get:Protocol.C_CreateBallDrop.conv_id)
-  return _internal_conv_id();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void C_CreateBallDrop::set_conv_id(ArgT0&& arg0, ArgT... args) {
- 
- conv_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Protocol.C_CreateBallDrop.conv_id)
-}
-inline std::string* C_CreateBallDrop::mutable_conv_id() {
-  // @@protoc_insertion_point(field_mutable:Protocol.C_CreateBallDrop.conv_id)
-  return _internal_mutable_conv_id();
-}
-inline const std::string& C_CreateBallDrop::_internal_conv_id() const {
-  return conv_id_.Get();
-}
-inline void C_CreateBallDrop::_internal_set_conv_id(const std::string& value) {
-  
-  conv_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
-}
-inline std::string* C_CreateBallDrop::_internal_mutable_conv_id() {
-  
-  return conv_id_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
-}
-inline std::string* C_CreateBallDrop::release_conv_id() {
-  // @@protoc_insertion_point(field_release:Protocol.C_CreateBallDrop.conv_id)
-  return conv_id_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
-}
-inline void C_CreateBallDrop::set_allocated_conv_id(std::string* conv_id) {
-  if (conv_id != nullptr) {
-    
-  } else {
-    
-  }
-  conv_id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), conv_id,
-      GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:Protocol.C_CreateBallDrop.conv_id)
-}
-
-// repeated string participant_ids = 2;
-inline int C_CreateBallDrop::_internal_participant_ids_size() const {
-  return participant_ids_.size();
-}
-inline int C_CreateBallDrop::participant_ids_size() const {
-  return _internal_participant_ids_size();
-}
-inline void C_CreateBallDrop::clear_participant_ids() {
-  participant_ids_.Clear();
-}
-inline std::string* C_CreateBallDrop::add_participant_ids() {
-  // @@protoc_insertion_point(field_add_mutable:Protocol.C_CreateBallDrop.participant_ids)
-  return _internal_add_participant_ids();
-}
-inline const std::string& C_CreateBallDrop::_internal_participant_ids(int index) const {
-  return participant_ids_.Get(index);
-}
-inline const std::string& C_CreateBallDrop::participant_ids(int index) const {
-  // @@protoc_insertion_point(field_get:Protocol.C_CreateBallDrop.participant_ids)
-  return _internal_participant_ids(index);
-}
-inline std::string* C_CreateBallDrop::mutable_participant_ids(int index) {
-  // @@protoc_insertion_point(field_mutable:Protocol.C_CreateBallDrop.participant_ids)
-  return participant_ids_.Mutable(index);
-}
-inline void C_CreateBallDrop::set_participant_ids(int index, const std::string& value) {
-  // @@protoc_insertion_point(field_set:Protocol.C_CreateBallDrop.participant_ids)
-  participant_ids_.Mutable(index)->assign(value);
-}
-inline void C_CreateBallDrop::set_participant_ids(int index, std::string&& value) {
-  // @@protoc_insertion_point(field_set:Protocol.C_CreateBallDrop.participant_ids)
-  participant_ids_.Mutable(index)->assign(std::move(value));
-}
-inline void C_CreateBallDrop::set_participant_ids(int index, const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  participant_ids_.Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set_char:Protocol.C_CreateBallDrop.participant_ids)
-}
-inline void C_CreateBallDrop::set_participant_ids(int index, const char* value, size_t size) {
-  participant_ids_.Mutable(index)->assign(
-    reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:Protocol.C_CreateBallDrop.participant_ids)
-}
-inline std::string* C_CreateBallDrop::_internal_add_participant_ids() {
-  return participant_ids_.Add();
-}
-inline void C_CreateBallDrop::add_participant_ids(const std::string& value) {
-  participant_ids_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add:Protocol.C_CreateBallDrop.participant_ids)
-}
-inline void C_CreateBallDrop::add_participant_ids(std::string&& value) {
-  participant_ids_.Add(std::move(value));
-  // @@protoc_insertion_point(field_add:Protocol.C_CreateBallDrop.participant_ids)
-}
-inline void C_CreateBallDrop::add_participant_ids(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  participant_ids_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add_char:Protocol.C_CreateBallDrop.participant_ids)
-}
-inline void C_CreateBallDrop::add_participant_ids(const char* value, size_t size) {
-  participant_ids_.Add()->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_add_pointer:Protocol.C_CreateBallDrop.participant_ids)
-}
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
-C_CreateBallDrop::participant_ids() const {
-  // @@protoc_insertion_point(field_list:Protocol.C_CreateBallDrop.participant_ids)
-  return participant_ids_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
-C_CreateBallDrop::mutable_participant_ids() {
-  // @@protoc_insertion_point(field_mutable_list:Protocol.C_CreateBallDrop.participant_ids)
-  return &participant_ids_;
-}
-
-// repeated int32 ball_counts = 3;
-inline int C_CreateBallDrop::_internal_ball_counts_size() const {
-  return ball_counts_.size();
-}
-inline int C_CreateBallDrop::ball_counts_size() const {
-  return _internal_ball_counts_size();
-}
-inline void C_CreateBallDrop::clear_ball_counts() {
-  ball_counts_.Clear();
-}
-inline ::PROTOBUF_NAMESPACE_ID::int32 C_CreateBallDrop::_internal_ball_counts(int index) const {
-  return ball_counts_.Get(index);
-}
-inline ::PROTOBUF_NAMESPACE_ID::int32 C_CreateBallDrop::ball_counts(int index) const {
-  // @@protoc_insertion_point(field_get:Protocol.C_CreateBallDrop.ball_counts)
-  return _internal_ball_counts(index);
-}
-inline void C_CreateBallDrop::set_ball_counts(int index, ::PROTOBUF_NAMESPACE_ID::int32 value) {
-  ball_counts_.Set(index, value);
-  // @@protoc_insertion_point(field_set:Protocol.C_CreateBallDrop.ball_counts)
-}
-inline void C_CreateBallDrop::_internal_add_ball_counts(::PROTOBUF_NAMESPACE_ID::int32 value) {
-  ball_counts_.Add(value);
-}
-inline void C_CreateBallDrop::add_ball_counts(::PROTOBUF_NAMESPACE_ID::int32 value) {
-  _internal_add_ball_counts(value);
-  // @@protoc_insertion_point(field_add:Protocol.C_CreateBallDrop.ball_counts)
-}
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >&
-C_CreateBallDrop::_internal_ball_counts() const {
-  return ball_counts_;
-}
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >&
-C_CreateBallDrop::ball_counts() const {
-  // @@protoc_insertion_point(field_list:Protocol.C_CreateBallDrop.ball_counts)
-  return _internal_ball_counts();
-}
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >*
-C_CreateBallDrop::_internal_mutable_ball_counts() {
-  return &ball_counts_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >*
-C_CreateBallDrop::mutable_ball_counts() {
-  // @@protoc_insertion_point(field_mutable_list:Protocol.C_CreateBallDrop.ball_counts)
-  return _internal_mutable_ball_counts();
-}
-
-// -------------------------------------------------------------------
-
-// S_CreateBallDrop
-
-// string conv_id = 1;
-inline void S_CreateBallDrop::clear_conv_id() {
-  conv_id_.ClearToEmpty();
-}
-inline const std::string& S_CreateBallDrop::conv_id() const {
-  // @@protoc_insertion_point(field_get:Protocol.S_CreateBallDrop.conv_id)
-  return _internal_conv_id();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void S_CreateBallDrop::set_conv_id(ArgT0&& arg0, ArgT... args) {
- 
- conv_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Protocol.S_CreateBallDrop.conv_id)
-}
-inline std::string* S_CreateBallDrop::mutable_conv_id() {
-  // @@protoc_insertion_point(field_mutable:Protocol.S_CreateBallDrop.conv_id)
-  return _internal_mutable_conv_id();
-}
-inline const std::string& S_CreateBallDrop::_internal_conv_id() const {
-  return conv_id_.Get();
-}
-inline void S_CreateBallDrop::_internal_set_conv_id(const std::string& value) {
-  
-  conv_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
-}
-inline std::string* S_CreateBallDrop::_internal_mutable_conv_id() {
-  
-  return conv_id_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
-}
-inline std::string* S_CreateBallDrop::release_conv_id() {
-  // @@protoc_insertion_point(field_release:Protocol.S_CreateBallDrop.conv_id)
-  return conv_id_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
-}
-inline void S_CreateBallDrop::set_allocated_conv_id(std::string* conv_id) {
-  if (conv_id != nullptr) {
-    
-  } else {
-    
-  }
-  conv_id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), conv_id,
-      GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:Protocol.S_CreateBallDrop.conv_id)
-}
-
-// int64 msg_seq = 2;
-inline void S_CreateBallDrop::clear_msg_seq() {
-  msg_seq_ = int64_t{0};
-}
-inline ::PROTOBUF_NAMESPACE_ID::int64 S_CreateBallDrop::_internal_msg_seq() const {
-  return msg_seq_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::int64 S_CreateBallDrop::msg_seq() const {
-  // @@protoc_insertion_point(field_get:Protocol.S_CreateBallDrop.msg_seq)
-  return _internal_msg_seq();
-}
-inline void S_CreateBallDrop::_internal_set_msg_seq(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  
-  msg_seq_ = value;
-}
-inline void S_CreateBallDrop::set_msg_seq(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  _internal_set_msg_seq(value);
-  // @@protoc_insertion_point(field_set:Protocol.S_CreateBallDrop.msg_seq)
-}
-
-// string game_json = 3;
-inline void S_CreateBallDrop::clear_game_json() {
-  game_json_.ClearToEmpty();
-}
-inline const std::string& S_CreateBallDrop::game_json() const {
-  // @@protoc_insertion_point(field_get:Protocol.S_CreateBallDrop.game_json)
-  return _internal_game_json();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void S_CreateBallDrop::set_game_json(ArgT0&& arg0, ArgT... args) {
- 
- game_json_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Protocol.S_CreateBallDrop.game_json)
-}
-inline std::string* S_CreateBallDrop::mutable_game_json() {
-  // @@protoc_insertion_point(field_mutable:Protocol.S_CreateBallDrop.game_json)
-  return _internal_mutable_game_json();
-}
-inline const std::string& S_CreateBallDrop::_internal_game_json() const {
-  return game_json_.Get();
-}
-inline void S_CreateBallDrop::_internal_set_game_json(const std::string& value) {
-  
-  game_json_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
-}
-inline std::string* S_CreateBallDrop::_internal_mutable_game_json() {
-  
-  return game_json_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
-}
-inline std::string* S_CreateBallDrop::release_game_json() {
-  // @@protoc_insertion_point(field_release:Protocol.S_CreateBallDrop.game_json)
-  return game_json_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
-}
-inline void S_CreateBallDrop::set_allocated_game_json(std::string* game_json) {
-  if (game_json != nullptr) {
-    
-  } else {
-    
-  }
-  game_json_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), game_json,
-      GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:Protocol.S_CreateBallDrop.game_json)
-}
-
-// -------------------------------------------------------------------
-
-// C_CreatePhotoSlide
-
-// string conv_id = 1;
-inline void C_CreatePhotoSlide::clear_conv_id() {
-  conv_id_.ClearToEmpty();
-}
-inline const std::string& C_CreatePhotoSlide::conv_id() const {
-  // @@protoc_insertion_point(field_get:Protocol.C_CreatePhotoSlide.conv_id)
-  return _internal_conv_id();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void C_CreatePhotoSlide::set_conv_id(ArgT0&& arg0, ArgT... args) {
- 
- conv_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Protocol.C_CreatePhotoSlide.conv_id)
-}
-inline std::string* C_CreatePhotoSlide::mutable_conv_id() {
-  // @@protoc_insertion_point(field_mutable:Protocol.C_CreatePhotoSlide.conv_id)
-  return _internal_mutable_conv_id();
-}
-inline const std::string& C_CreatePhotoSlide::_internal_conv_id() const {
-  return conv_id_.Get();
-}
-inline void C_CreatePhotoSlide::_internal_set_conv_id(const std::string& value) {
-  
-  conv_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
-}
-inline std::string* C_CreatePhotoSlide::_internal_mutable_conv_id() {
-  
-  return conv_id_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
-}
-inline std::string* C_CreatePhotoSlide::release_conv_id() {
-  // @@protoc_insertion_point(field_release:Protocol.C_CreatePhotoSlide.conv_id)
-  return conv_id_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
-}
-inline void C_CreatePhotoSlide::set_allocated_conv_id(std::string* conv_id) {
-  if (conv_id != nullptr) {
-    
-  } else {
-    
-  }
-  conv_id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), conv_id,
-      GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:Protocol.C_CreatePhotoSlide.conv_id)
-}
-
-// repeated string image_urls = 2;
-inline int C_CreatePhotoSlide::_internal_image_urls_size() const {
-  return image_urls_.size();
-}
-inline int C_CreatePhotoSlide::image_urls_size() const {
-  return _internal_image_urls_size();
-}
-inline void C_CreatePhotoSlide::clear_image_urls() {
-  image_urls_.Clear();
-}
-inline std::string* C_CreatePhotoSlide::add_image_urls() {
-  // @@protoc_insertion_point(field_add_mutable:Protocol.C_CreatePhotoSlide.image_urls)
-  return _internal_add_image_urls();
-}
-inline const std::string& C_CreatePhotoSlide::_internal_image_urls(int index) const {
-  return image_urls_.Get(index);
-}
-inline const std::string& C_CreatePhotoSlide::image_urls(int index) const {
-  // @@protoc_insertion_point(field_get:Protocol.C_CreatePhotoSlide.image_urls)
-  return _internal_image_urls(index);
-}
-inline std::string* C_CreatePhotoSlide::mutable_image_urls(int index) {
-  // @@protoc_insertion_point(field_mutable:Protocol.C_CreatePhotoSlide.image_urls)
-  return image_urls_.Mutable(index);
-}
-inline void C_CreatePhotoSlide::set_image_urls(int index, const std::string& value) {
-  // @@protoc_insertion_point(field_set:Protocol.C_CreatePhotoSlide.image_urls)
-  image_urls_.Mutable(index)->assign(value);
-}
-inline void C_CreatePhotoSlide::set_image_urls(int index, std::string&& value) {
-  // @@protoc_insertion_point(field_set:Protocol.C_CreatePhotoSlide.image_urls)
-  image_urls_.Mutable(index)->assign(std::move(value));
-}
-inline void C_CreatePhotoSlide::set_image_urls(int index, const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  image_urls_.Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set_char:Protocol.C_CreatePhotoSlide.image_urls)
-}
-inline void C_CreatePhotoSlide::set_image_urls(int index, const char* value, size_t size) {
-  image_urls_.Mutable(index)->assign(
-    reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:Protocol.C_CreatePhotoSlide.image_urls)
-}
-inline std::string* C_CreatePhotoSlide::_internal_add_image_urls() {
-  return image_urls_.Add();
-}
-inline void C_CreatePhotoSlide::add_image_urls(const std::string& value) {
-  image_urls_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add:Protocol.C_CreatePhotoSlide.image_urls)
-}
-inline void C_CreatePhotoSlide::add_image_urls(std::string&& value) {
-  image_urls_.Add(std::move(value));
-  // @@protoc_insertion_point(field_add:Protocol.C_CreatePhotoSlide.image_urls)
-}
-inline void C_CreatePhotoSlide::add_image_urls(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  image_urls_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add_char:Protocol.C_CreatePhotoSlide.image_urls)
-}
-inline void C_CreatePhotoSlide::add_image_urls(const char* value, size_t size) {
-  image_urls_.Add()->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_add_pointer:Protocol.C_CreatePhotoSlide.image_urls)
-}
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
-C_CreatePhotoSlide::image_urls() const {
-  // @@protoc_insertion_point(field_list:Protocol.C_CreatePhotoSlide.image_urls)
-  return image_urls_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
-C_CreatePhotoSlide::mutable_image_urls() {
-  // @@protoc_insertion_point(field_mutable_list:Protocol.C_CreatePhotoSlide.image_urls)
-  return &image_urls_;
-}
-
-// repeated string thumbnail_urls = 3;
-inline int C_CreatePhotoSlide::_internal_thumbnail_urls_size() const {
-  return thumbnail_urls_.size();
-}
-inline int C_CreatePhotoSlide::thumbnail_urls_size() const {
-  return _internal_thumbnail_urls_size();
-}
-inline void C_CreatePhotoSlide::clear_thumbnail_urls() {
-  thumbnail_urls_.Clear();
-}
-inline std::string* C_CreatePhotoSlide::add_thumbnail_urls() {
-  // @@protoc_insertion_point(field_add_mutable:Protocol.C_CreatePhotoSlide.thumbnail_urls)
-  return _internal_add_thumbnail_urls();
-}
-inline const std::string& C_CreatePhotoSlide::_internal_thumbnail_urls(int index) const {
-  return thumbnail_urls_.Get(index);
-}
-inline const std::string& C_CreatePhotoSlide::thumbnail_urls(int index) const {
-  // @@protoc_insertion_point(field_get:Protocol.C_CreatePhotoSlide.thumbnail_urls)
-  return _internal_thumbnail_urls(index);
-}
-inline std::string* C_CreatePhotoSlide::mutable_thumbnail_urls(int index) {
-  // @@protoc_insertion_point(field_mutable:Protocol.C_CreatePhotoSlide.thumbnail_urls)
-  return thumbnail_urls_.Mutable(index);
-}
-inline void C_CreatePhotoSlide::set_thumbnail_urls(int index, const std::string& value) {
-  // @@protoc_insertion_point(field_set:Protocol.C_CreatePhotoSlide.thumbnail_urls)
-  thumbnail_urls_.Mutable(index)->assign(value);
-}
-inline void C_CreatePhotoSlide::set_thumbnail_urls(int index, std::string&& value) {
-  // @@protoc_insertion_point(field_set:Protocol.C_CreatePhotoSlide.thumbnail_urls)
-  thumbnail_urls_.Mutable(index)->assign(std::move(value));
-}
-inline void C_CreatePhotoSlide::set_thumbnail_urls(int index, const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  thumbnail_urls_.Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set_char:Protocol.C_CreatePhotoSlide.thumbnail_urls)
-}
-inline void C_CreatePhotoSlide::set_thumbnail_urls(int index, const char* value, size_t size) {
-  thumbnail_urls_.Mutable(index)->assign(
-    reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:Protocol.C_CreatePhotoSlide.thumbnail_urls)
-}
-inline std::string* C_CreatePhotoSlide::_internal_add_thumbnail_urls() {
-  return thumbnail_urls_.Add();
-}
-inline void C_CreatePhotoSlide::add_thumbnail_urls(const std::string& value) {
-  thumbnail_urls_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add:Protocol.C_CreatePhotoSlide.thumbnail_urls)
-}
-inline void C_CreatePhotoSlide::add_thumbnail_urls(std::string&& value) {
-  thumbnail_urls_.Add(std::move(value));
-  // @@protoc_insertion_point(field_add:Protocol.C_CreatePhotoSlide.thumbnail_urls)
-}
-inline void C_CreatePhotoSlide::add_thumbnail_urls(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  thumbnail_urls_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add_char:Protocol.C_CreatePhotoSlide.thumbnail_urls)
-}
-inline void C_CreatePhotoSlide::add_thumbnail_urls(const char* value, size_t size) {
-  thumbnail_urls_.Add()->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_add_pointer:Protocol.C_CreatePhotoSlide.thumbnail_urls)
-}
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
-C_CreatePhotoSlide::thumbnail_urls() const {
-  // @@protoc_insertion_point(field_list:Protocol.C_CreatePhotoSlide.thumbnail_urls)
-  return thumbnail_urls_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
-C_CreatePhotoSlide::mutable_thumbnail_urls() {
-  // @@protoc_insertion_point(field_mutable_list:Protocol.C_CreatePhotoSlide.thumbnail_urls)
-  return &thumbnail_urls_;
-}
-
-// string message = 4;
-inline void C_CreatePhotoSlide::clear_message() {
-  message_.ClearToEmpty();
-}
-inline const std::string& C_CreatePhotoSlide::message() const {
-  // @@protoc_insertion_point(field_get:Protocol.C_CreatePhotoSlide.message)
-  return _internal_message();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void C_CreatePhotoSlide::set_message(ArgT0&& arg0, ArgT... args) {
- 
- message_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Protocol.C_CreatePhotoSlide.message)
-}
-inline std::string* C_CreatePhotoSlide::mutable_message() {
-  // @@protoc_insertion_point(field_mutable:Protocol.C_CreatePhotoSlide.message)
-  return _internal_mutable_message();
-}
-inline const std::string& C_CreatePhotoSlide::_internal_message() const {
-  return message_.Get();
-}
-inline void C_CreatePhotoSlide::_internal_set_message(const std::string& value) {
-  
-  message_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
-}
-inline std::string* C_CreatePhotoSlide::_internal_mutable_message() {
-  
-  return message_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
-}
-inline std::string* C_CreatePhotoSlide::release_message() {
-  // @@protoc_insertion_point(field_release:Protocol.C_CreatePhotoSlide.message)
-  return message_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
-}
-inline void C_CreatePhotoSlide::set_allocated_message(std::string* message) {
-  if (message != nullptr) {
-    
-  } else {
-    
-  }
-  message_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), message,
-      GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:Protocol.C_CreatePhotoSlide.message)
-}
-
-// string font_style = 5;
-inline void C_CreatePhotoSlide::clear_font_style() {
-  font_style_.ClearToEmpty();
-}
-inline const std::string& C_CreatePhotoSlide::font_style() const {
-  // @@protoc_insertion_point(field_get:Protocol.C_CreatePhotoSlide.font_style)
-  return _internal_font_style();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void C_CreatePhotoSlide::set_font_style(ArgT0&& arg0, ArgT... args) {
- 
- font_style_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Protocol.C_CreatePhotoSlide.font_style)
-}
-inline std::string* C_CreatePhotoSlide::mutable_font_style() {
-  // @@protoc_insertion_point(field_mutable:Protocol.C_CreatePhotoSlide.font_style)
-  return _internal_mutable_font_style();
-}
-inline const std::string& C_CreatePhotoSlide::_internal_font_style() const {
-  return font_style_.Get();
-}
-inline void C_CreatePhotoSlide::_internal_set_font_style(const std::string& value) {
-  
-  font_style_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
-}
-inline std::string* C_CreatePhotoSlide::_internal_mutable_font_style() {
-  
-  return font_style_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
-}
-inline std::string* C_CreatePhotoSlide::release_font_style() {
-  // @@protoc_insertion_point(field_release:Protocol.C_CreatePhotoSlide.font_style)
-  return font_style_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
-}
-inline void C_CreatePhotoSlide::set_allocated_font_style(std::string* font_style) {
-  if (font_style != nullptr) {
-    
-  } else {
-    
-  }
-  font_style_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), font_style,
-      GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:Protocol.C_CreatePhotoSlide.font_style)
-}
-
-// string text_position = 6;
-inline void C_CreatePhotoSlide::clear_text_position() {
-  text_position_.ClearToEmpty();
-}
-inline const std::string& C_CreatePhotoSlide::text_position() const {
-  // @@protoc_insertion_point(field_get:Protocol.C_CreatePhotoSlide.text_position)
-  return _internal_text_position();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void C_CreatePhotoSlide::set_text_position(ArgT0&& arg0, ArgT... args) {
- 
- text_position_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Protocol.C_CreatePhotoSlide.text_position)
-}
-inline std::string* C_CreatePhotoSlide::mutable_text_position() {
-  // @@protoc_insertion_point(field_mutable:Protocol.C_CreatePhotoSlide.text_position)
-  return _internal_mutable_text_position();
-}
-inline const std::string& C_CreatePhotoSlide::_internal_text_position() const {
-  return text_position_.Get();
-}
-inline void C_CreatePhotoSlide::_internal_set_text_position(const std::string& value) {
-  
-  text_position_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
-}
-inline std::string* C_CreatePhotoSlide::_internal_mutable_text_position() {
-  
-  return text_position_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
-}
-inline std::string* C_CreatePhotoSlide::release_text_position() {
-  // @@protoc_insertion_point(field_release:Protocol.C_CreatePhotoSlide.text_position)
-  return text_position_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
-}
-inline void C_CreatePhotoSlide::set_allocated_text_position(std::string* text_position) {
-  if (text_position != nullptr) {
-    
-  } else {
-    
-  }
-  text_position_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), text_position,
-      GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:Protocol.C_CreatePhotoSlide.text_position)
-}
-
-// string bg_theme = 7;
-inline void C_CreatePhotoSlide::clear_bg_theme() {
-  bg_theme_.ClearToEmpty();
-}
-inline const std::string& C_CreatePhotoSlide::bg_theme() const {
-  // @@protoc_insertion_point(field_get:Protocol.C_CreatePhotoSlide.bg_theme)
-  return _internal_bg_theme();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void C_CreatePhotoSlide::set_bg_theme(ArgT0&& arg0, ArgT... args) {
- 
- bg_theme_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Protocol.C_CreatePhotoSlide.bg_theme)
-}
-inline std::string* C_CreatePhotoSlide::mutable_bg_theme() {
-  // @@protoc_insertion_point(field_mutable:Protocol.C_CreatePhotoSlide.bg_theme)
-  return _internal_mutable_bg_theme();
-}
-inline const std::string& C_CreatePhotoSlide::_internal_bg_theme() const {
-  return bg_theme_.Get();
-}
-inline void C_CreatePhotoSlide::_internal_set_bg_theme(const std::string& value) {
-  
-  bg_theme_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
-}
-inline std::string* C_CreatePhotoSlide::_internal_mutable_bg_theme() {
-  
-  return bg_theme_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
-}
-inline std::string* C_CreatePhotoSlide::release_bg_theme() {
-  // @@protoc_insertion_point(field_release:Protocol.C_CreatePhotoSlide.bg_theme)
-  return bg_theme_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
-}
-inline void C_CreatePhotoSlide::set_allocated_bg_theme(std::string* bg_theme) {
-  if (bg_theme != nullptr) {
-    
-  } else {
-    
-  }
-  bg_theme_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), bg_theme,
-      GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:Protocol.C_CreatePhotoSlide.bg_theme)
-}
-
-// string ending_message = 8;
-inline void C_CreatePhotoSlide::clear_ending_message() {
-  ending_message_.ClearToEmpty();
-}
-inline const std::string& C_CreatePhotoSlide::ending_message() const {
-  // @@protoc_insertion_point(field_get:Protocol.C_CreatePhotoSlide.ending_message)
-  return _internal_ending_message();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void C_CreatePhotoSlide::set_ending_message(ArgT0&& arg0, ArgT... args) {
- 
- ending_message_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Protocol.C_CreatePhotoSlide.ending_message)
-}
-inline std::string* C_CreatePhotoSlide::mutable_ending_message() {
-  // @@protoc_insertion_point(field_mutable:Protocol.C_CreatePhotoSlide.ending_message)
-  return _internal_mutable_ending_message();
-}
-inline const std::string& C_CreatePhotoSlide::_internal_ending_message() const {
-  return ending_message_.Get();
-}
-inline void C_CreatePhotoSlide::_internal_set_ending_message(const std::string& value) {
-  
-  ending_message_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
-}
-inline std::string* C_CreatePhotoSlide::_internal_mutable_ending_message() {
-  
-  return ending_message_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
-}
-inline std::string* C_CreatePhotoSlide::release_ending_message() {
-  // @@protoc_insertion_point(field_release:Protocol.C_CreatePhotoSlide.ending_message)
-  return ending_message_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
-}
-inline void C_CreatePhotoSlide::set_allocated_ending_message(std::string* ending_message) {
-  if (ending_message != nullptr) {
-    
-  } else {
-    
-  }
-  ending_message_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ending_message,
-      GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:Protocol.C_CreatePhotoSlide.ending_message)
-}
-
-// int32 font_size = 9;
-inline void C_CreatePhotoSlide::clear_font_size() {
-  font_size_ = 0;
-}
-inline ::PROTOBUF_NAMESPACE_ID::int32 C_CreatePhotoSlide::_internal_font_size() const {
-  return font_size_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::int32 C_CreatePhotoSlide::font_size() const {
-  // @@protoc_insertion_point(field_get:Protocol.C_CreatePhotoSlide.font_size)
-  return _internal_font_size();
-}
-inline void C_CreatePhotoSlide::_internal_set_font_size(::PROTOBUF_NAMESPACE_ID::int32 value) {
-  
-  font_size_ = value;
-}
-inline void C_CreatePhotoSlide::set_font_size(::PROTOBUF_NAMESPACE_ID::int32 value) {
-  _internal_set_font_size(value);
-  // @@protoc_insertion_point(field_set:Protocol.C_CreatePhotoSlide.font_size)
-}
-
-// -------------------------------------------------------------------
-
-// S_CreatePhotoSlide
-
-// string conv_id = 1;
-inline void S_CreatePhotoSlide::clear_conv_id() {
-  conv_id_.ClearToEmpty();
-}
-inline const std::string& S_CreatePhotoSlide::conv_id() const {
-  // @@protoc_insertion_point(field_get:Protocol.S_CreatePhotoSlide.conv_id)
-  return _internal_conv_id();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void S_CreatePhotoSlide::set_conv_id(ArgT0&& arg0, ArgT... args) {
- 
- conv_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Protocol.S_CreatePhotoSlide.conv_id)
-}
-inline std::string* S_CreatePhotoSlide::mutable_conv_id() {
-  // @@protoc_insertion_point(field_mutable:Protocol.S_CreatePhotoSlide.conv_id)
-  return _internal_mutable_conv_id();
-}
-inline const std::string& S_CreatePhotoSlide::_internal_conv_id() const {
-  return conv_id_.Get();
-}
-inline void S_CreatePhotoSlide::_internal_set_conv_id(const std::string& value) {
-  
-  conv_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
-}
-inline std::string* S_CreatePhotoSlide::_internal_mutable_conv_id() {
-  
-  return conv_id_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
-}
-inline std::string* S_CreatePhotoSlide::release_conv_id() {
-  // @@protoc_insertion_point(field_release:Protocol.S_CreatePhotoSlide.conv_id)
-  return conv_id_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
-}
-inline void S_CreatePhotoSlide::set_allocated_conv_id(std::string* conv_id) {
-  if (conv_id != nullptr) {
-    
-  } else {
-    
-  }
-  conv_id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), conv_id,
-      GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:Protocol.S_CreatePhotoSlide.conv_id)
-}
-
-// int64 msg_seq = 2;
-inline void S_CreatePhotoSlide::clear_msg_seq() {
-  msg_seq_ = int64_t{0};
-}
-inline ::PROTOBUF_NAMESPACE_ID::int64 S_CreatePhotoSlide::_internal_msg_seq() const {
-  return msg_seq_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::int64 S_CreatePhotoSlide::msg_seq() const {
-  // @@protoc_insertion_point(field_get:Protocol.S_CreatePhotoSlide.msg_seq)
-  return _internal_msg_seq();
-}
-inline void S_CreatePhotoSlide::_internal_set_msg_seq(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  
-  msg_seq_ = value;
-}
-inline void S_CreatePhotoSlide::set_msg_seq(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  _internal_set_msg_seq(value);
-  // @@protoc_insertion_point(field_set:Protocol.S_CreatePhotoSlide.msg_seq)
-}
-
-// string slide_json = 3;
-inline void S_CreatePhotoSlide::clear_slide_json() {
-  slide_json_.ClearToEmpty();
-}
-inline const std::string& S_CreatePhotoSlide::slide_json() const {
-  // @@protoc_insertion_point(field_get:Protocol.S_CreatePhotoSlide.slide_json)
-  return _internal_slide_json();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void S_CreatePhotoSlide::set_slide_json(ArgT0&& arg0, ArgT... args) {
- 
- slide_json_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Protocol.S_CreatePhotoSlide.slide_json)
-}
-inline std::string* S_CreatePhotoSlide::mutable_slide_json() {
-  // @@protoc_insertion_point(field_mutable:Protocol.S_CreatePhotoSlide.slide_json)
-  return _internal_mutable_slide_json();
-}
-inline const std::string& S_CreatePhotoSlide::_internal_slide_json() const {
-  return slide_json_.Get();
-}
-inline void S_CreatePhotoSlide::_internal_set_slide_json(const std::string& value) {
-  
-  slide_json_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
-}
-inline std::string* S_CreatePhotoSlide::_internal_mutable_slide_json() {
-  
-  return slide_json_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
-}
-inline std::string* S_CreatePhotoSlide::release_slide_json() {
-  // @@protoc_insertion_point(field_release:Protocol.S_CreatePhotoSlide.slide_json)
-  return slide_json_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
-}
-inline void S_CreatePhotoSlide::set_allocated_slide_json(std::string* slide_json) {
-  if (slide_json != nullptr) {
-    
-  } else {
-    
-  }
-  slide_json_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), slide_json,
-      GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:Protocol.S_CreatePhotoSlide.slide_json)
-}
-
-// -------------------------------------------------------------------
-
 // C_SocialLogin
 
 // string provider = 1;
@@ -63374,14 +61342,6 @@ inline void S_Error::set_allocated_message(std::string* message) {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
-// -------------------------------------------------------------------
-
-// -------------------------------------------------------------------
-
-// -------------------------------------------------------------------
-
-// -------------------------------------------------------------------
-
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

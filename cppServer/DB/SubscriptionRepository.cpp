@@ -1,148 +1,190 @@
 #include "pch.h"
 #include "SubscriptionRepository.h"
 
+#include <ctime>
 
 
-/*---------------------
-	Parsing
-------------------------*/
-
-uint64 SubscriptionRepository::ParseTimestamp(const mysqlx::Value& value)
+bool SubscriptionRepository::RecordTransaction(const string& userId, int planId,
+                                               const string& platform, const string& productId,
+                                               const string& transactionId, const string& purchaseToken)
 {
-	if (value.isNull()) return 0;
+    try {
+        auto& db = DBManager::GetInstance();
+        auto schema = db.GetSchema();
 
-	try {
-		string tsStr = value.get<string>(); // "YYYY-MM-DD HH:MM:SS"
-		struct tm timeinfo = {};
-		int year, mon, day, hour, min, sec;
+        time_t now = ::time(nullptr);
+        struct tm tmNow = {};
+        localtime_s(&tmNow, &now);
+        char nowStr[32];
+        strftime(nowStr, sizeof(nowStr), "%Y-%m-%d %H:%M:%S", &tmNow);
 
-		if (sscanf_s(tsStr.c_str(), "%d-%d-%d %d:%d:%d",
-			&year, &mon, &day, &hour, &min, &sec) == 6) {
+        schema.getTable("payment_transactions")
+            .insert("user_id", "plan_id", "platform", "product_id",
+                    "transaction_id", "purchase_token", "status", "verified_at")
+            .values(userId, planId, platform, productId,
+                    transactionId, purchaseToken, "verified", string(nowStr))
+            .execute();
 
-			timeinfo.tm_year = year - 1900;
-			timeinfo.tm_mon = mon - 1;
-			timeinfo.tm_mday = day;
-			timeinfo.tm_hour = hour;
-			timeinfo.tm_min = min;
-			timeinfo.tm_sec = sec;
-			return mktime(&timeinfo) * 1000; // 밀리초 단위 변환
-		}
-	}
-	catch (...) {}
-	return 0;
+        return true;
+    } catch (const mysqlx::Error& err) {
+        LOG_ERROR("[SubscriptionRepository] RecordTransaction 실패: {}", err.what());
+        return false;
+    }
 }
 
 
-vector<string> SubscriptionRepository::ParseFeaturesJson(const string& json)
+bool SubscriptionRepository::GetPlanInfo(int planId, SubscriptionPlanInfo& info)
 {
-	vector<string> features;
-	size_t pos = 0;
+    try {
+        auto& db = DBManager::GetInstance();
 
-	while ((pos = json.find('"', pos)) != string::npos) {
-		size_t end = json.find('"', pos + 1);
-		if (end == string::npos) break;
-		string feature = json.substr(pos + 1, end - pos - 1);
-		if (!feature.empty() && feature != "[" && feature != "]") {
-			features.push_back(feature);
-		}
-		pos = end + 1;
-	}
+        auto result = db.GetSchema().getTable("subscription_plans")
+            .select("grade", "storage_bytes")
+            .where("plan_id = :pid")
+            .bind("pid", planId)
+            .execute();
 
-	return features;
+        auto row = result.fetchOne();
+        if (!row) {
+            LOG_ERROR("[SubscriptionRepository] Plan not found: {}", planId);
+            return false;
+        }
+
+        info.grade        = row[0].get<int>();
+        info.storageBytes = row[1].get<int64>();
+        return true;
+    } catch (const mysqlx::Error& err) {
+        LOG_ERROR("[SubscriptionRepository] GetPlanInfo 실패: {}", err.what());
+        return false;
+    }
 }
 
 
-
-/*---------------------
-	Query
-------------------------*/
-
-bool SubscriptionRepository::GetActiveSubscription(const string& userId, cSubscriptionInfo& OUT info)
+bool SubscriptionRepository::UpsertSubscription(const string& userId, int planId, int64 expiresAtMs)
 {
-	try {
-		auto& db = DBManager::GetInstance();
-		auto schema = db.GetSchema();
+    try {
+        auto& db = DBManager::GetInstance();
+        auto schema = db.GetSchema();
 
-		auto subs = schema.getTable("subscriptions");
-		auto subResult = subs.select("plan_id", "expires_at", "auto_renew")
-			.where("user_id = :uid AND status = 'active'")
-			.orderBy("id DESC")
-			.limit(1)
-			.bind("uid", userId)
-			.execute();
+        time_t expSec = static_cast<time_t>(expiresAtMs / 1000);
+        struct tm tmExp = {};
+        gmtime_s(&tmExp, &expSec);
+        char expStr[32];
+        strftime(expStr, sizeof(expStr), "%Y-%m-%d %H:%M:%S", &tmExp);
 
-		auto row = subResult.fetchOne();
-		if (!row) return false;
+        auto subsTable = schema.getTable("subscriptions");
+        auto existing = subsTable.select("id")
+            .where("user_id = :uid AND status = 'active'")
+            .limit(1)
+            .bind("uid", userId)
+            .execute();
 
-		info.planId = row[0].get<int>();
-		info.expiresAt = ParseTimestamp(row[1]);
-		info.autoRenew = row[2].isNull() ? true : (row[2].get<int>() == 1);
+        auto row = existing.fetchOne();
+        if (row) {
+            subsTable.update()
+                .set("plan_id", planId)
+                .set("expires_at", string(expStr))
+                .set("status", "active")
+                .set("auto_renew", 1)
+                .where("id = :id")
+                .bind("id", row[0].get<int>())
+                .execute();
+        } else {
+            subsTable.insert("user_id", "plan_id", "expires_at", "auto_renew", "status")
+                .values(userId, planId, string(expStr), 1, "active")
+                .execute();
+        }
 
-		return true;
-	}
-	catch (const exception& e) {
-		LOG_ERROR("[SubscriptionRepository] GetActiveSubscription 실패: {}", e.what());
-		return false;
-	}
+        return true;
+    } catch (const mysqlx::Error& err) {
+        LOG_ERROR("[SubscriptionRepository] UpsertSubscription 실패: {}", err.what());
+        return false;
+    }
 }
 
 
-vector<cPlanInfo> SubscriptionRepository::GetAvailablePlans(const string& planType)
+bool SubscriptionRepository::CancelSubscription(const string& userId)
 {
-	vector<cPlanInfo> plans;
+    try {
+        auto& db = DBManager::GetInstance();
 
-	try {
-		auto& db = DBManager::GetInstance();
-		auto schema = db.GetSchema();
+        db.GetSchema().getTable("subscriptions")
+            .update()
+            .set("status", "cancelled")
+            .set("auto_renew", 0)
+            .where("user_id = :uid AND status = 'active'")
+            .bind("uid", userId)
+            .execute();
 
-		auto table = schema.getTable("subscription_plans");
-		auto result = table.select("plan_id", "plan_type", "name", "grade",
-				"storage_bytes", "max_file_size", "monthly_price", "features")
-			.where("plan_type = :pt AND is_active = 1")
-			.orderBy("grade ASC")
-			.bind("pt", planType)
-			.execute();
+        return true;
+    } catch (const mysqlx::Error& err) {
+        LOG_ERROR("[SubscriptionRepository] CancelSubscription 실패: {}", err.what());
+        return false;
+    }
+}
 
-		for (auto row = result.fetchOne(); row; row = result.fetchOne()) {
-			cPlanInfo plan;
-			plan.planId = row[0].get<int>();
-			plan.planType = row[1].get<string>();
-			plan.name = row[2].get<string>();
-			plan.grade = row[3].get<int>();
-			plan.storageBytes = row[4].get<int64>();
-			plan.maxFileSize = row[5].get<int64>();
 
-			// DECIMAL → double 직접 변환 (X DevAPI에서 string 변환 불가)
-			if (row[6].isNull()) {
-				plan.monthlyPrice = 0;
-			}
-			else {
-				try { plan.monthlyPrice = row[6].get<double>(); }
-				catch (...) {
-					try { plan.monthlyPrice = static_cast<double>(row[6].get<int>()); }
-					catch (...) { plan.monthlyPrice = 0; }
-				}
-			}
+bool SubscriptionRepository::GetActiveSubscription(const string& userId, cSubscriptionInfo& info)
+{
+    try {
+        auto& db = DBManager::GetInstance();
 
-			// JSON features (X DevAPI에서 JSON은 string 또는 raw bytes)
-			if (!row[7].isNull()) {
-				try { plan.features = ParseFeaturesJson(row[7].get<string>()); }
-				catch (...) {
-					try {
-						auto raw = row[7].getRawBytes();
-						string jsonStr(raw.first, raw.first + raw.second);
-						plan.features = ParseFeaturesJson(jsonStr);
-					}
-					catch (...) { /* features 파싱 실패 — 빈 배열 유지 */ }
-				}
-			}
+        auto result = db.GetSession().sql(
+            "SELECT UNIX_TIMESTAMP(expires_at) * 1000, auto_renew "
+            "FROM subscriptions "
+            "WHERE user_id = ? AND status = 'active' "
+            "LIMIT 1"
+        ).bind(userId).execute();
 
-			plans.push_back(plan);
-		}
-	}
-	catch (const exception& e) {
-		LOG_ERROR("[SubscriptionRepository] GetAvailablePlans 실패: {}", e.what());
-	}
+        auto row = result.fetchOne();
+        if (!row) return false;
 
-	return plans;
+        info.expiresAt = row[0].isNull() ? 0LL : static_cast<int64>(row[0].get<double>());
+        info.autoRenew = !row[1].isNull() && row[1].get<int>() != 0;
+        return true;
+    } catch (const mysqlx::Error& err) {
+        LOG_ERROR("[SubscriptionRepository] GetActiveSubscription 실패: {}", err.what());
+        return false;
+    }
+}
+
+
+vector<PlanDetail> SubscriptionRepository::GetAvailablePlans(const string& planType)
+{
+    vector<PlanDetail> plans;
+    try {
+        auto& db = DBManager::GetInstance();
+
+        auto result = db.GetSession().sql(
+            "SELECT plan_id, plan_type, name, grade, storage_bytes, max_file_size, monthly_price "
+            "FROM subscription_plans "
+            "WHERE plan_type = ? "
+            "ORDER BY grade ASC"
+        ).bind(planType).execute();
+
+        for (auto row = result.fetchOne(); row; row = result.fetchOne()) {
+            PlanDetail p;
+            p.planId       = row[0].get<int>();
+            p.planType     = row[1].get<string>();
+            p.name         = row[2].get<string>();
+            p.grade        = row[3].get<int>();
+            p.storageBytes = row[4].isNull() ? 0LL : static_cast<int64>(row[4].get<double>());
+            p.maxFileSize  = row[5].isNull() ? 0LL : static_cast<int64>(row[5].get<double>());
+            p.monthlyPrice = row[6].isNull() ? 0.0 : row[6].get<double>();
+
+            // 등급별 기능 설명 (DB에 features 컬럼 없으므로 하드코딩)
+            if (p.grade == 0) {
+                p.features = { "기본 채팅", "파일 7일 보관", "1GB 저장공간" };
+            } else if (p.grade == 1) {
+                p.features = { "기본 채팅", "파일 영구 보관", "10GB 저장공간", "우선 지원" };
+            } else {
+                p.features = { "기본 채팅", "파일 영구 보관", "100GB 저장공간", "우선 지원", "전용 기능" };
+            }
+
+            plans.push_back(std::move(p));
+        }
+    } catch (const mysqlx::Error& err) {
+        LOG_ERROR("[SubscriptionRepository] GetAvailablePlans 실패: {}", err.what());
+    }
+    return plans;
 }

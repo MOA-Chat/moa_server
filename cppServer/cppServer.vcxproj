@@ -219,7 +219,7 @@ copy /Y "$(SolutionDir)Libraries\mysql-connector-c++-9.5.0\lib64\libcrypto-3-x64
     <ClCompile Include="Service\BlockService.cpp" />
     <ClCompile Include="Service\AuthService.cpp" />
     <ClCompile Include="Service\ChatService.cpp" />
-    <ClCompile Include="Cloud\CloudStorageGCS.cpp" />
+    <ClCompile Include="Cloud\CloudStorageR2.cpp" />
     <ClCompile Include="CoreGlobal.cpp" />
     <ClCompile Include="DB\DBManager.cpp" />
     <ClCompile Include="DB\FileRepository.cpp" />
@@ -268,7 +268,7 @@ copy /Y "$(SolutionDir)Libraries\mysql-connector-c++-9.5.0\lib64\libcrypto-3-x64
     <ClInclude Include="Service\AuthService.h" />
     <ClInclude Include="Service\ChatService.h" />
     <ClInclude Include="Cloud\CloudStorage.h" />
-    <ClInclude Include="Cloud\CloudStorageGCS.h" />
+    <ClInclude Include="Cloud\CloudStorageR2.h" />
     <ClInclude Include="CoreGlobal.h" />
     <ClInclude Include="DB\DBManager.h" />
     <ClInclude Include="DB\FileRepository.h" />

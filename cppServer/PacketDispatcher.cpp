@@ -4,19 +4,19 @@
 
 #include "Service/UserManager.h"
 #include "Service/ChatService.h"
-#include "Service/FriendService.h"
+//#include "Service/FriendService.h"
 #include "Service/AuthService.h"
 #include "Service/FileService.h"
 #include "Service/GroupService.h"
 #include "Service/NotificationService.h"
 #include "Service/PaymentService.h"
-#include "Service/BlockService.h"
+//#include "Service/BlockService.h"
 #include "Service/AlbumService.h"
 #include "Service/LocationService.h"
 
 
 #include "DB/UserRepository.h"
-#include "DB/FriendRepository.h"
+//#include "DB/FriendRepository.h"
 #include "DB/MessageRepository.h"
 #include "DB/GroupRepository.h"
 #include "DB/FcmTokenRepository.h"
@@ -128,14 +128,6 @@ void PacketDispatcher::DispatchPacket(sessionPtr& session, Protocol::Envelope& e
 		Dispatch_C_RegisterFcmToken(session, envelope.request_id(), envelope.c_register_fcm_token());
 		break;
 
-		/* 이메일 인증 */
-	case Protocol::Envelope::kCReqEmailVerify:
-		Dispatch_C_ReqEmailVerify(session, envelope.request_id(), envelope.c_req_email_verify());
-		break;
-	case Protocol::Envelope::kCConfirmEmailVerify:
-		Dispatch_C_ConfirmEmailVerify(session, envelope.request_id(), envelope.c_confirm_email_verify());
-		break;
-
 		/* 계정 관리 (이메일/비밀번호 변경) */
 	case Protocol::Envelope::kCChangeEmail:
 		Dispatch_C_ChangeEmail(session, envelope.request_id(), envelope.c_change_email());
@@ -199,20 +191,17 @@ void PacketDispatcher::DispatchPacket(sessionPtr& session, Protocol::Envelope& e
 		break;
 	}
 
-	
-		/* 차단 / 신고 */
-	case Protocol::Envelope::kCBlockUser:
-		Dispatch_C_BlockUser(session, envelope.request_id(), envelope.c_block_user());
-		break;
-	case Protocol::Envelope::kCUnblockUser:
-		Dispatch_C_UnblockUser(session, envelope.request_id(), envelope.c_unblock_user());
-		break;
-	case Protocol::Envelope::kCGetBlockedList:
-		Dispatch_C_GetBlockedList(session, envelope.request_id(), envelope.c_get_blocked_list());
-		break;
-	case Protocol::Envelope::kCReportUser:
-		Dispatch_C_ReportUser(session, envelope.request_id(), envelope.c_report_user());
-		break;
+
+	// 차단 / 신고 (미사용 — 추후 활성화)
+	//case Protocol::Envelope::kCBlockUser:
+	//	Dispatch_C_BlockUser(session, envelope.request_id(), envelope.c_block_user()); break;
+	//case Protocol::Envelope::kCUnblockUser:
+	//	Dispatch_C_UnblockUser(session, envelope.request_id(), envelope.c_unblock_user()); break;
+	//case Protocol::Envelope::kCGetBlockedList:
+	//	Dispatch_C_GetBlockedList(session, envelope.request_id(), envelope.c_get_blocked_list()); break;
+	//case Protocol::Envelope::kCReportUser:
+	//	Dispatch_C_ReportUser(session, envelope.request_id(), envelope.c_report_user()); break;
+
 	case Protocol::Envelope::kCAddReaction:
 		Dispatch_C_AddReaction(session, envelope.request_id(), envelope.c_add_reaction());
 		break;
@@ -227,12 +216,6 @@ void PacketDispatcher::DispatchPacket(sessionPtr& session, Protocol::Envelope& e
 		break;
 	case Protocol::Envelope::kCSetAnnouncement:
 		Dispatch_C_SetAnnouncement(session, envelope.request_id(), envelope.c_set_announcement());
-		break;
-	case Protocol::Envelope::kCCreateBallDrop:
-		Dispatch_C_CreateBallDrop(session, envelope.request_id(), envelope.c_create_ball_drop());
-		break;
-	case Protocol::Envelope::kCCreatePhotoSlide:
-		Dispatch_C_CreatePhotoSlide(session, envelope.request_id(), envelope.c_create_photo_slide());
 		break;
 	case Protocol::Envelope::kCRefreshInviteCode:
 		Dispatch_C_RefreshInviteCode(session, envelope.request_id(), envelope.c_refresh_invite_code());
@@ -290,17 +273,13 @@ void PacketDispatcher::DispatchPacket(sessionPtr& session, Protocol::Envelope& e
 		Dispatch_C_DeleteVisit(session, envelope.request_id(), envelope.c_delete_visit());
 		break;
 
-		/* 친구 관련 */
-	case Protocol::Envelope::kCFriendAction:
-		Dispatch_C_FriendAction(session, envelope.request_id(), envelope.c_friend_action());
-		break;
-	case Protocol::Envelope::kCSearchUser:
-		Dispatch_C_SearchUser(session, envelope.request_id(), envelope.c_search_user());
-		break;
-	case Protocol::Envelope::kCFetchFriendData:
-		Dispatch_C_FetchFriendData(session, envelope.request_id(), envelope.c_fetch_friend_data());
-		break;
-
+	// 친구 관련 
+	//case Protocol::Envelope::kCFriendAction:
+	//	Dispatch_C_FriendAction(session, envelope.request_id(), envelope.c_friend_action()); break;
+	//case Protocol::Envelope::kCSearchUser:
+	//	Dispatch_C_SearchUser(session, envelope.request_id(), envelope.c_search_user()); break;
+	//case Protocol::Envelope::kCFetchFriendData:
+	//	Dispatch_C_FetchFriendData(session, envelope.request_id(), envelope.c_fetch_friend_data()); break;
 
 		/* 그룹 관련 */
 	case Protocol::Envelope::kCCreateGroup:
@@ -329,6 +308,9 @@ void PacketDispatcher::DispatchPacket(sessionPtr& session, Protocol::Envelope& e
 		break;
 
 	default:
+		LOG_WARN("[PacketDispatcher] 알 수 없는 패킷: payload_case={} userId={}",
+		    static_cast<int>(envelope.payload_case()),
+		    static_pointer_cast<ServerSession>(session)->GetUserId());
 		DispatchError(session, envelope.request_id(), ERR_INVALID_PACKET);
 		break;
 	}
@@ -363,7 +345,6 @@ void PacketDispatcher::SendEnvelope(sessionPtr& session, Protocol::Envelope& env
 
 void PacketDispatcher::DispatchError(sessionPtr& session, uint64 reqId, const string& errMessage)
 {
-	// 하위 호환성을 위해 기본 에러 코드 사용
 	DispatchError(session, reqId, ERR_UNKNOWN, errMessage);
 }
 
@@ -596,7 +577,6 @@ bool PacketDispatcher::Dispatch_C_SignUp(sessionPtr& session, uint64 reqId, cons
 	const string name = pkt.name();
 	const string email = pkt.email();
 
-	// AuthService로 위임
 	return GAuthService->SignUp(session, reqId, userId, password, name, email);
 }
 
@@ -797,53 +777,10 @@ bool PacketDispatcher::Dispatch_C_UploadFile(sessionPtr& session, uint64 reqId, 
 
 
 
-/*---------------------------------
-		Friend Request Handler
------------------------------------*/
-bool PacketDispatcher::Dispatch_C_SearchUser(sessionPtr& session, uint64 reqId, const Protocol::C_SearchUser& pkt)
-{
-	auto serverSession = static_pointer_cast<ServerSession>(session);
-	const string userId = serverSession->GetUserId();
-	if (userId.empty()) {
-		DispatchError(session, reqId, ERR_UNAUTHORIZED);
-		return false;
-	}
-
-	return GFriendService->SearchUser(session, reqId, pkt.user_id());
-}
-
-bool PacketDispatcher::Dispatch_C_FriendAction(sessionPtr& session, uint64 reqId, const Protocol::C_FriendAction& pkt)
-{
-	auto serverSession = static_pointer_cast<ServerSession>(session);
-	const string userId = serverSession->GetUserId();
-	if (userId.empty()) {
-		DispatchError(session, reqId, ERR_UNAUTHORIZED);
-		return false;
-	}
-
-	return GFriendService->HandleFriendAction(session, reqId, pkt.action(), pkt.target_user_id());
-}
-
-bool PacketDispatcher::Dispatch_C_FetchFriendData(sessionPtr& session, uint64 reqId, const Protocol::C_FetchFriendData& pkt)
-{
-	auto serverSession = static_pointer_cast<ServerSession>(session);
-	const string userId = serverSession->GetUserId();
-	if (userId.empty()) {
-		DispatchError(session, reqId, ERR_UNAUTHORIZED);
-		return false;
-	}
-
-	return GFriendService->FetchFriendData(session, reqId);
-}
-
-
-
-
-
-
-
-
-
+// 친구 관련 핸들러 
+//bool PacketDispatcher::Dispatch_C_SearchUser(...)     { return GFriendService->SearchUser(...); }
+//bool PacketDispatcher::Dispatch_C_FriendAction(...)   { return GFriendService->HandleFriendAction(...); }
+//bool PacketDispatcher::Dispatch_C_FetchFriendData(...){ return GFriendService->FetchFriendData(...); }
 
 
 
@@ -984,35 +921,6 @@ bool PacketDispatcher::Dispatch_C_RegisterFcmToken(sessionPtr& session, uint64 r
 	}
 
 	return GNotificationService->RegisterFcmToken(session, reqId, pkt);
-}
-
-
-/*---------------------------------
-	Email Verification Handler
------------------------------------*/
-
-bool PacketDispatcher::Dispatch_C_ReqEmailVerify(sessionPtr& session, uint64 reqId, const Protocol::C_RequestEmailVerify& pkt)
-{
-	auto serverSession = static_pointer_cast<ServerSession>(session);
-	const string userId = serverSession->GetUserId();
-	if (userId.empty()) {
-		DispatchError(session, reqId, ERR_UNAUTHORIZED);
-		return false;
-	}
-
-	return GAuthService->HandleReqEmailVerify(session, reqId, pkt.email());
-}
-
-bool PacketDispatcher::Dispatch_C_ConfirmEmailVerify(sessionPtr& session, uint64 reqId, const Protocol::C_ConfirmEmailVerify& pkt)
-{
-	auto serverSession = static_pointer_cast<ServerSession>(session);
-	const string userId = serverSession->GetUserId();
-	if (userId.empty()) {
-		DispatchError(session, reqId, ERR_UNAUTHORIZED);
-		return false;
-	}
-
-	return GAuthService->HandleConfirmEmailVerify(session, reqId, pkt.email(), pkt.code());
 }
 
 
@@ -1267,33 +1175,11 @@ bool PacketDispatcher::Dispatch_C_VerifyPurchase(sessionPtr& session, uint64 req
 }
 
 
-/*-----------------------------------
-    Block / Report (차단/신고)
------------------------------------*/
-
-bool PacketDispatcher::Dispatch_C_BlockUser(sessionPtr& session, uint64 reqId, const Protocol::C_BlockUser& pkt)
-{
-    if (!GBlockService) { DispatchError(session, reqId, ERR_SERVER_INTERNAL); return false; }
-    return GBlockService->HandleBlockUser(session, reqId, pkt);
-}
-
-bool PacketDispatcher::Dispatch_C_UnblockUser(sessionPtr& session, uint64 reqId, const Protocol::C_UnblockUser& pkt)
-{
-    if (!GBlockService) { DispatchError(session, reqId, ERR_SERVER_INTERNAL); return false; }
-    return GBlockService->HandleUnblockUser(session, reqId, pkt);
-}
-
-bool PacketDispatcher::Dispatch_C_GetBlockedList(sessionPtr& session, uint64 reqId, const Protocol::C_GetBlockedList& pkt)
-{
-    if (!GBlockService) { DispatchError(session, reqId, ERR_SERVER_INTERNAL); return false; }
-    return GBlockService->HandleGetBlockedList(session, reqId, pkt);
-}
-
-bool PacketDispatcher::Dispatch_C_ReportUser(sessionPtr& session, uint64 reqId, const Protocol::C_ReportUser& pkt)
-{
-    if (!GBlockService) { DispatchError(session, reqId, ERR_SERVER_INTERNAL); return false; }
-    return GBlockService->HandleReportUser(session, reqId, pkt);
-}
+// 차단/신고 핸들러
+//bool PacketDispatcher::Dispatch_C_BlockUser(...)     { return GBlockService->HandleBlockUser(...); }
+//bool PacketDispatcher::Dispatch_C_UnblockUser(...)   { return GBlockService->HandleUnblockUser(...); }
+//bool PacketDispatcher::Dispatch_C_GetBlockedList(...){ return GBlockService->HandleGetBlockedList(...); }
+//bool PacketDispatcher::Dispatch_C_ReportUser(...)    { return GBlockService->HandleReportUser(...); }
 
 
 /*---------------------------------
@@ -1359,34 +1245,6 @@ bool PacketDispatcher::Dispatch_C_SetAnnouncement(sessionPtr& session, uint64 re
 
     return GChatService->HandleSetAnnouncement(session, reqId, pkt);
 }
-
-bool PacketDispatcher::Dispatch_C_CreateBallDrop(sessionPtr& session, uint64 reqId, const Protocol::C_CreateBallDrop& pkt)
-{
-    auto serverSession = static_pointer_cast<ServerSession>(session);
-    const string userId = serverSession->GetUserId();
-    if (userId.empty()) {
-        DispatchError(session, reqId, ERR_UNAUTHORIZED);
-        return false;
-    }
-
-    return GChatService->HandleCreateBallDrop(session, reqId, pkt);
-}
-
-bool PacketDispatcher::Dispatch_C_CreatePhotoSlide(sessionPtr& session, uint64 reqId, const Protocol::C_CreatePhotoSlide& pkt)
-{
-    auto serverSession = static_pointer_cast<ServerSession>(session);
-    const string userId = serverSession->GetUserId();
-    if (userId.empty()) {
-        DispatchError(session, reqId, ERR_UNAUTHORIZED);
-        return false;
-    }
-
-    return GChatService->HandleCreatePhotoSlide(session, reqId, pkt);
-}
-
-/*======================
-    앨범 핸들러 (Album)
-=======================*/
 
 static bool CheckAlbumAuth(sessionPtr& session, uint64 reqId)
 {
@@ -1461,8 +1319,6 @@ bool PacketDispatcher::Dispatch_C_DeletePhotoComment(sessionPtr& session, uint64
     if (!CheckAlbumAuth(session, reqId)) return false;
     return GAlbumService->HandleDeletePhotoComment(session, reqId, pkt);
 }
-
-// ── 위치 히스토리 ─────────────────────────────────────────────────────────────
 
 static bool CheckLocationAuth(sessionPtr& session, uint64 reqId) {
     if (!GLocationService) {

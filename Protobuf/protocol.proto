@@ -95,10 +95,6 @@ message Envelope {
     S_Vote                  s_vote                    = 106;
     S_ClosePoll             s_close_poll              = 107;
     S_SetAnnouncement       s_set_announcement        = 108;
-    C_CreateBallDrop        c_create_ball_drop        = 109;
-    S_CreateBallDrop        s_create_ball_drop        = 110;
-    C_CreatePhotoSlide      c_create_photo_slide      = 111;
-    S_CreatePhotoSlide      s_create_photo_slide      = 112;
     C_RefreshInviteCode     c_refresh_invite_code     = 113;
     S_RefreshInviteCode     s_refresh_invite_code     = 114;
     C_SocialLogin           c_social_login            = 115;
@@ -773,45 +769,6 @@ message S_SetAnnouncement {
     string text        = 3;
     string sender_name = 4;
     string setter_id   = 5;   // 공지 설정한 사람
-}
-
-
-/*-------------
-    BALL DROP (숫자 뽑기)
----------------*/
-
-message C_CreateBallDrop {
-    string conv_id                  = 1;
-    repeated string participant_ids = 2;  // 비워두면 그룹 전체
-    repeated int32  ball_counts     = 3;  // participant_ids와 병렬 배열
-}
-
-message S_CreateBallDrop {
-    string conv_id     = 1;
-    int64  msg_seq     = 2;
-    string game_json   = 3;   // 전체 게임 데이터 JSON
-}
-
-/*-------------
-    PHOTO SLIDE (포토 슬라이드)
----------------*/
-
-message C_CreatePhotoSlide {
-    string conv_id                  = 1;
-    repeated string image_urls      = 2;  // GCS URLs (사전 업로드)
-    repeated string thumbnail_urls  = 3;  // 썸네일 URLs
-    string message                  = 4;  // 슬라이드 메시지 (사진 위 누적 표시)
-    string font_style               = 5;  // handwriting | elegant | casual
-    string text_position            = 6;  // (deprecated) 하위호환용
-    string bg_theme                 = 7;  // dark | light | gradient
-    string ending_message           = 8;  // 마무리 메시지 (엔딩 화면)
-    int32  font_size                = 9;  // 글꼴 크기 (18~40, 기본 26)
-}
-
-message S_CreatePhotoSlide {
-    string conv_id     = 1;
-    int64  msg_seq     = 2;
-    string slide_json  = 3;   // PhotoSlideData JSON 전체
 }
 
 

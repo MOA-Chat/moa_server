@@ -70,6 +70,15 @@ public:
     };
     static bool GetStorageInfo(const string& userId, StorageInfo& OUT info);
     static bool SaveUserAsset(const string& userId, int64 msgSeq, int64 fileSize, const string& fileType);
+    static bool DeleteUserAssetByGcsPath(const string& gcsPath);
+
+    // 이메일 인증
+    static bool SetEmailVerified(const string& userId);
+
+    // 구독 등급 관리
+    static int  GetSubscriptionGrade(const string& userId);
+    static bool UpdateSubscriptionGrade(const string& userId, int grade, int64 storageBytes);
+    static bool DowngradeToFree(const string& userId);
 
     // OAuth 관련
     static bool GetUserByOAuthProvider(const string& provider, const string& providerId, cUserInfo& OUT userInfo);

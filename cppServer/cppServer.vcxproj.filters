@@ -72,9 +72,6 @@
     <ClCompile Include="DB\FileRepository.cpp">
       <Filter>DB</Filter>
     </ClCompile>
-    <ClCompile Include="Cloud\CloudStorageGCS.cpp">
-      <Filter>Cloud</Filter>
-    </ClCompile>
     <ClCompile Include="Service\TokenManager.cpp">
       <Filter>Service</Filter>
     </ClCompile>
@@ -132,6 +129,9 @@
     <ClCompile Include="DB\LocationRepository.cpp">
       <Filter>DB</Filter>
     </ClCompile>
+    <ClCompile Include="Cloud\CloudStorageR2.cpp">
+      <Filter>Cloud</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -181,9 +181,6 @@
     </ClInclude>
     <ClInclude Include="DB\FileRepository.h">
       <Filter>DB</Filter>
-    </ClInclude>
-    <ClInclude Include="Cloud\CloudStorageGCS.h">
-      <Filter>Cloud</Filter>
     </ClInclude>
     <ClInclude Include="Cloud\CloudStorage.h">
       <Filter>Cloud</Filter>
@@ -241,6 +238,9 @@
     </ClInclude>
     <ClInclude Include="DB\LocationRepository.h">
       <Filter>DB</Filter>
+    </ClInclude>
+    <ClInclude Include="Cloud\CloudStorageR2.h">
+      <Filter>Cloud</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

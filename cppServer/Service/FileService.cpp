@@ -15,8 +15,7 @@
 using namespace Protocol;
 
 
-FileService::FileService(CloudStorage* cloudStorage)
-    : _cloudStorage(cloudStorage)
+FileService::FileService(CloudStorage* cloudStorage) : _cloudStorage(cloudStorage)
 {
 }
 
@@ -51,7 +50,7 @@ bool FileService::HandleUploadFileRequest(sessionPtr& session, uint64 reqId, con
         auto serverSession = static_pointer_cast<ServerSession>(session);
         string userId = serverSession->GetUserId();
 
-        // ─── 공통: 파일 크기 제한 (CoreGlobal 상수 fallback) ───
+        // 파일 크기 제한
         int64 maxFileSize = DEFAULT_MAX_FILE_SIZE;
         {
             UserRepository::StorageInfo storageInfo;
@@ -65,7 +64,7 @@ bool FileService::HandleUploadFileRequest(sessionPtr& session, uint64 reqId, con
             return false;
         }
 
-        // ─── 개인 채팅 파일: 누적 용량 체크 ───
+        // 개인 채팅 파일: 누적 용량 체크
         if (pkt.upload_type() == Protocol::C_UploadFile_UploadType_DIRECT_CHAT) {
             UserRepository::StorageInfo storageInfo;
             if (UserRepository::GetStorageInfo(userId, storageInfo)) {
@@ -77,7 +76,7 @@ bool FileService::HandleUploadFileRequest(sessionPtr& session, uint64 reqId, con
             }
         }
 
-        // ─── 그룹 채팅 파일: 그룹 누적 용량 체크 ───
+        // 그룹 채팅 파일: 그룹 누적 용량 체크
         if (pkt.upload_type() == Protocol::C_UploadFile_UploadType_GROUP_CHAT) {
             if (pkt.target_id().empty()) {
                 HandleErr(session, reqId, ERR_INVALID_ARGUMENT, "Group ID (target_id) is required.");
@@ -86,7 +85,11 @@ bool FileService::HandleUploadFileRequest(sessionPtr& session, uint64 reqId, con
 
             cGroupInfo groupInfo;
             if (GroupRepository::GetGroupInfoById(pkt.target_id(), groupInfo)) {
+                if (groupInfo.storageLimit == 0)
+                    GroupRepository::EnsureDefaultStorage(pkt.target_id(), DEFAULT_GROUP_STORAGE);
+
                 int64 groupLimit = groupInfo.storageLimit > 0 ? groupInfo.storageLimit : DEFAULT_GROUP_STORAGE;
+
                 if (groupInfo.storageUsage + pkt.size() > groupLimit) {
                     HandleErr(session, reqId, ERR_STORAGE_EXCEEDED, "그룹 저장 용량이 부족합니다.");
                     return false;

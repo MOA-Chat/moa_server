@@ -119,10 +119,6 @@ enum Envelope_Payload {
   sVote,
   sClosePoll,
   sSetAnnouncement,
-  cCreateBallDrop,
-  sCreateBallDrop,
-  cCreatePhotoSlide,
-  sCreatePhotoSlide,
   cRefreshInviteCode,
   sRefreshInviteCode,
   cSocialLogin,
@@ -268,10 +264,6 @@ class Envelope extends $pb.GeneratedMessage {
     S_Vote? sVote,
     S_ClosePoll? sClosePoll,
     S_SetAnnouncement? sSetAnnouncement,
-    C_CreateBallDrop? cCreateBallDrop,
-    S_CreateBallDrop? sCreateBallDrop,
-    C_CreatePhotoSlide? cCreatePhotoSlide,
-    S_CreatePhotoSlide? sCreatePhotoSlide,
     C_RefreshInviteCode? cRefreshInviteCode,
     S_RefreshInviteCode? sRefreshInviteCode,
     C_SocialLogin? cSocialLogin,
@@ -415,10 +407,6 @@ class Envelope extends $pb.GeneratedMessage {
     if (sVote != null) result.sVote = sVote;
     if (sClosePoll != null) result.sClosePoll = sClosePoll;
     if (sSetAnnouncement != null) result.sSetAnnouncement = sSetAnnouncement;
-    if (cCreateBallDrop != null) result.cCreateBallDrop = cCreateBallDrop;
-    if (sCreateBallDrop != null) result.sCreateBallDrop = sCreateBallDrop;
-    if (cCreatePhotoSlide != null) result.cCreatePhotoSlide = cCreatePhotoSlide;
-    if (sCreatePhotoSlide != null) result.sCreatePhotoSlide = sCreatePhotoSlide;
     if (cRefreshInviteCode != null)
       result.cRefreshInviteCode = cRefreshInviteCode;
     if (sRefreshInviteCode != null)
@@ -571,10 +559,6 @@ class Envelope extends $pb.GeneratedMessage {
     106: Envelope_Payload.sVote,
     107: Envelope_Payload.sClosePoll,
     108: Envelope_Payload.sSetAnnouncement,
-    109: Envelope_Payload.cCreateBallDrop,
-    110: Envelope_Payload.sCreateBallDrop,
-    111: Envelope_Payload.cCreatePhotoSlide,
-    112: Envelope_Payload.sCreatePhotoSlide,
     113: Envelope_Payload.cRefreshInviteCode,
     114: Envelope_Payload.sRefreshInviteCode,
     115: Envelope_Payload.cSocialLogin,
@@ -716,10 +700,6 @@ class Envelope extends $pb.GeneratedMessage {
       106,
       107,
       108,
-      109,
-      110,
-      111,
-      112,
       113,
       114,
       115,
@@ -955,14 +935,6 @@ class Envelope extends $pb.GeneratedMessage {
         subBuilder: S_ClosePoll.create)
     ..aOM<S_SetAnnouncement>(108, _omitFieldNames ? '' : 'sSetAnnouncement',
         subBuilder: S_SetAnnouncement.create)
-    ..aOM<C_CreateBallDrop>(109, _omitFieldNames ? '' : 'cCreateBallDrop',
-        subBuilder: C_CreateBallDrop.create)
-    ..aOM<S_CreateBallDrop>(110, _omitFieldNames ? '' : 'sCreateBallDrop',
-        subBuilder: S_CreateBallDrop.create)
-    ..aOM<C_CreatePhotoSlide>(111, _omitFieldNames ? '' : 'cCreatePhotoSlide',
-        subBuilder: C_CreatePhotoSlide.create)
-    ..aOM<S_CreatePhotoSlide>(112, _omitFieldNames ? '' : 'sCreatePhotoSlide',
-        subBuilder: S_CreatePhotoSlide.create)
     ..aOM<C_RefreshInviteCode>(113, _omitFieldNames ? '' : 'cRefreshInviteCode',
         subBuilder: C_RefreshInviteCode.create)
     ..aOM<S_RefreshInviteCode>(114, _omitFieldNames ? '' : 'sRefreshInviteCode',
@@ -1157,10 +1129,6 @@ class Envelope extends $pb.GeneratedMessage {
   @$pb.TagNumber(106)
   @$pb.TagNumber(107)
   @$pb.TagNumber(108)
-  @$pb.TagNumber(109)
-  @$pb.TagNumber(110)
-  @$pb.TagNumber(111)
-  @$pb.TagNumber(112)
   @$pb.TagNumber(113)
   @$pb.TagNumber(114)
   @$pb.TagNumber(115)
@@ -1296,10 +1264,6 @@ class Envelope extends $pb.GeneratedMessage {
   @$pb.TagNumber(106)
   @$pb.TagNumber(107)
   @$pb.TagNumber(108)
-  @$pb.TagNumber(109)
-  @$pb.TagNumber(110)
-  @$pb.TagNumber(111)
-  @$pb.TagNumber(112)
   @$pb.TagNumber(113)
   @$pb.TagNumber(114)
   @$pb.TagNumber(115)
@@ -2440,459 +2404,415 @@ class Envelope extends $pb.GeneratedMessage {
   @$pb.TagNumber(108)
   S_SetAnnouncement ensureSSetAnnouncement() => $_ensure(99);
 
-  @$pb.TagNumber(109)
-  C_CreateBallDrop get cCreateBallDrop => $_getN(100);
-  @$pb.TagNumber(109)
-  set cCreateBallDrop(C_CreateBallDrop value) => $_setField(109, value);
-  @$pb.TagNumber(109)
-  $core.bool hasCCreateBallDrop() => $_has(100);
-  @$pb.TagNumber(109)
-  void clearCCreateBallDrop() => $_clearField(109);
-  @$pb.TagNumber(109)
-  C_CreateBallDrop ensureCCreateBallDrop() => $_ensure(100);
-
-  @$pb.TagNumber(110)
-  S_CreateBallDrop get sCreateBallDrop => $_getN(101);
-  @$pb.TagNumber(110)
-  set sCreateBallDrop(S_CreateBallDrop value) => $_setField(110, value);
-  @$pb.TagNumber(110)
-  $core.bool hasSCreateBallDrop() => $_has(101);
-  @$pb.TagNumber(110)
-  void clearSCreateBallDrop() => $_clearField(110);
-  @$pb.TagNumber(110)
-  S_CreateBallDrop ensureSCreateBallDrop() => $_ensure(101);
-
-  @$pb.TagNumber(111)
-  C_CreatePhotoSlide get cCreatePhotoSlide => $_getN(102);
-  @$pb.TagNumber(111)
-  set cCreatePhotoSlide(C_CreatePhotoSlide value) => $_setField(111, value);
-  @$pb.TagNumber(111)
-  $core.bool hasCCreatePhotoSlide() => $_has(102);
-  @$pb.TagNumber(111)
-  void clearCCreatePhotoSlide() => $_clearField(111);
-  @$pb.TagNumber(111)
-  C_CreatePhotoSlide ensureCCreatePhotoSlide() => $_ensure(102);
-
-  @$pb.TagNumber(112)
-  S_CreatePhotoSlide get sCreatePhotoSlide => $_getN(103);
-  @$pb.TagNumber(112)
-  set sCreatePhotoSlide(S_CreatePhotoSlide value) => $_setField(112, value);
-  @$pb.TagNumber(112)
-  $core.bool hasSCreatePhotoSlide() => $_has(103);
-  @$pb.TagNumber(112)
-  void clearSCreatePhotoSlide() => $_clearField(112);
-  @$pb.TagNumber(112)
-  S_CreatePhotoSlide ensureSCreatePhotoSlide() => $_ensure(103);
-
   @$pb.TagNumber(113)
-  C_RefreshInviteCode get cRefreshInviteCode => $_getN(104);
+  C_RefreshInviteCode get cRefreshInviteCode => $_getN(100);
   @$pb.TagNumber(113)
   set cRefreshInviteCode(C_RefreshInviteCode value) => $_setField(113, value);
   @$pb.TagNumber(113)
-  $core.bool hasCRefreshInviteCode() => $_has(104);
+  $core.bool hasCRefreshInviteCode() => $_has(100);
   @$pb.TagNumber(113)
   void clearCRefreshInviteCode() => $_clearField(113);
   @$pb.TagNumber(113)
-  C_RefreshInviteCode ensureCRefreshInviteCode() => $_ensure(104);
+  C_RefreshInviteCode ensureCRefreshInviteCode() => $_ensure(100);
 
   @$pb.TagNumber(114)
-  S_RefreshInviteCode get sRefreshInviteCode => $_getN(105);
+  S_RefreshInviteCode get sRefreshInviteCode => $_getN(101);
   @$pb.TagNumber(114)
   set sRefreshInviteCode(S_RefreshInviteCode value) => $_setField(114, value);
   @$pb.TagNumber(114)
-  $core.bool hasSRefreshInviteCode() => $_has(105);
+  $core.bool hasSRefreshInviteCode() => $_has(101);
   @$pb.TagNumber(114)
   void clearSRefreshInviteCode() => $_clearField(114);
   @$pb.TagNumber(114)
-  S_RefreshInviteCode ensureSRefreshInviteCode() => $_ensure(105);
+  S_RefreshInviteCode ensureSRefreshInviteCode() => $_ensure(101);
 
   @$pb.TagNumber(115)
-  C_SocialLogin get cSocialLogin => $_getN(106);
+  C_SocialLogin get cSocialLogin => $_getN(102);
   @$pb.TagNumber(115)
   set cSocialLogin(C_SocialLogin value) => $_setField(115, value);
   @$pb.TagNumber(115)
-  $core.bool hasCSocialLogin() => $_has(106);
+  $core.bool hasCSocialLogin() => $_has(102);
   @$pb.TagNumber(115)
   void clearCSocialLogin() => $_clearField(115);
   @$pb.TagNumber(115)
-  C_SocialLogin ensureCSocialLogin() => $_ensure(106);
+  C_SocialLogin ensureCSocialLogin() => $_ensure(102);
 
   @$pb.TagNumber(116)
-  S_SocialLogin get sSocialLogin => $_getN(107);
+  S_SocialLogin get sSocialLogin => $_getN(103);
   @$pb.TagNumber(116)
   set sSocialLogin(S_SocialLogin value) => $_setField(116, value);
   @$pb.TagNumber(116)
-  $core.bool hasSSocialLogin() => $_has(107);
+  $core.bool hasSSocialLogin() => $_has(103);
   @$pb.TagNumber(116)
   void clearSSocialLogin() => $_clearField(116);
   @$pb.TagNumber(116)
-  S_SocialLogin ensureSSocialLogin() => $_ensure(107);
+  S_SocialLogin ensureSSocialLogin() => $_ensure(103);
 
   @$pb.TagNumber(117)
-  C_CompleteSocialSignup get cCompleteSocialSignup => $_getN(108);
+  C_CompleteSocialSignup get cCompleteSocialSignup => $_getN(104);
   @$pb.TagNumber(117)
   set cCompleteSocialSignup(C_CompleteSocialSignup value) =>
       $_setField(117, value);
   @$pb.TagNumber(117)
-  $core.bool hasCCompleteSocialSignup() => $_has(108);
+  $core.bool hasCCompleteSocialSignup() => $_has(104);
   @$pb.TagNumber(117)
   void clearCCompleteSocialSignup() => $_clearField(117);
   @$pb.TagNumber(117)
-  C_CompleteSocialSignup ensureCCompleteSocialSignup() => $_ensure(108);
+  C_CompleteSocialSignup ensureCCompleteSocialSignup() => $_ensure(104);
 
   /// ALBUM (120 ~ 131, 140 ~ 147)
   @$pb.TagNumber(120)
-  C_CreateAlbum get cCreateAlbum => $_getN(109);
+  C_CreateAlbum get cCreateAlbum => $_getN(105);
   @$pb.TagNumber(120)
   set cCreateAlbum(C_CreateAlbum value) => $_setField(120, value);
   @$pb.TagNumber(120)
-  $core.bool hasCCreateAlbum() => $_has(109);
+  $core.bool hasCCreateAlbum() => $_has(105);
   @$pb.TagNumber(120)
   void clearCCreateAlbum() => $_clearField(120);
   @$pb.TagNumber(120)
-  C_CreateAlbum ensureCCreateAlbum() => $_ensure(109);
+  C_CreateAlbum ensureCCreateAlbum() => $_ensure(105);
 
   @$pb.TagNumber(121)
-  S_CreateAlbum get sCreateAlbum => $_getN(110);
+  S_CreateAlbum get sCreateAlbum => $_getN(106);
   @$pb.TagNumber(121)
   set sCreateAlbum(S_CreateAlbum value) => $_setField(121, value);
   @$pb.TagNumber(121)
-  $core.bool hasSCreateAlbum() => $_has(110);
+  $core.bool hasSCreateAlbum() => $_has(106);
   @$pb.TagNumber(121)
   void clearSCreateAlbum() => $_clearField(121);
   @$pb.TagNumber(121)
-  S_CreateAlbum ensureSCreateAlbum() => $_ensure(110);
+  S_CreateAlbum ensureSCreateAlbum() => $_ensure(106);
 
   @$pb.TagNumber(122)
-  C_GetAlbums get cGetAlbums => $_getN(111);
+  C_GetAlbums get cGetAlbums => $_getN(107);
   @$pb.TagNumber(122)
   set cGetAlbums(C_GetAlbums value) => $_setField(122, value);
   @$pb.TagNumber(122)
-  $core.bool hasCGetAlbums() => $_has(111);
+  $core.bool hasCGetAlbums() => $_has(107);
   @$pb.TagNumber(122)
   void clearCGetAlbums() => $_clearField(122);
   @$pb.TagNumber(122)
-  C_GetAlbums ensureCGetAlbums() => $_ensure(111);
+  C_GetAlbums ensureCGetAlbums() => $_ensure(107);
 
   @$pb.TagNumber(123)
-  S_GetAlbums get sGetAlbums => $_getN(112);
+  S_GetAlbums get sGetAlbums => $_getN(108);
   @$pb.TagNumber(123)
   set sGetAlbums(S_GetAlbums value) => $_setField(123, value);
   @$pb.TagNumber(123)
-  $core.bool hasSGetAlbums() => $_has(112);
+  $core.bool hasSGetAlbums() => $_has(108);
   @$pb.TagNumber(123)
   void clearSGetAlbums() => $_clearField(123);
   @$pb.TagNumber(123)
-  S_GetAlbums ensureSGetAlbums() => $_ensure(112);
+  S_GetAlbums ensureSGetAlbums() => $_ensure(108);
 
   @$pb.TagNumber(124)
-  C_AddPhotoToAlbum get cAddPhotoToAlbum => $_getN(113);
+  C_AddPhotoToAlbum get cAddPhotoToAlbum => $_getN(109);
   @$pb.TagNumber(124)
   set cAddPhotoToAlbum(C_AddPhotoToAlbum value) => $_setField(124, value);
   @$pb.TagNumber(124)
-  $core.bool hasCAddPhotoToAlbum() => $_has(113);
+  $core.bool hasCAddPhotoToAlbum() => $_has(109);
   @$pb.TagNumber(124)
   void clearCAddPhotoToAlbum() => $_clearField(124);
   @$pb.TagNumber(124)
-  C_AddPhotoToAlbum ensureCAddPhotoToAlbum() => $_ensure(113);
+  C_AddPhotoToAlbum ensureCAddPhotoToAlbum() => $_ensure(109);
 
   @$pb.TagNumber(125)
-  S_AddPhotoToAlbum get sAddPhotoToAlbum => $_getN(114);
+  S_AddPhotoToAlbum get sAddPhotoToAlbum => $_getN(110);
   @$pb.TagNumber(125)
   set sAddPhotoToAlbum(S_AddPhotoToAlbum value) => $_setField(125, value);
   @$pb.TagNumber(125)
-  $core.bool hasSAddPhotoToAlbum() => $_has(114);
+  $core.bool hasSAddPhotoToAlbum() => $_has(110);
   @$pb.TagNumber(125)
   void clearSAddPhotoToAlbum() => $_clearField(125);
   @$pb.TagNumber(125)
-  S_AddPhotoToAlbum ensureSAddPhotoToAlbum() => $_ensure(114);
+  S_AddPhotoToAlbum ensureSAddPhotoToAlbum() => $_ensure(110);
 
   @$pb.TagNumber(126)
-  C_GetAlbumPhotos get cGetAlbumPhotos => $_getN(115);
+  C_GetAlbumPhotos get cGetAlbumPhotos => $_getN(111);
   @$pb.TagNumber(126)
   set cGetAlbumPhotos(C_GetAlbumPhotos value) => $_setField(126, value);
   @$pb.TagNumber(126)
-  $core.bool hasCGetAlbumPhotos() => $_has(115);
+  $core.bool hasCGetAlbumPhotos() => $_has(111);
   @$pb.TagNumber(126)
   void clearCGetAlbumPhotos() => $_clearField(126);
   @$pb.TagNumber(126)
-  C_GetAlbumPhotos ensureCGetAlbumPhotos() => $_ensure(115);
+  C_GetAlbumPhotos ensureCGetAlbumPhotos() => $_ensure(111);
 
   @$pb.TagNumber(127)
-  S_GetAlbumPhotos get sGetAlbumPhotos => $_getN(116);
+  S_GetAlbumPhotos get sGetAlbumPhotos => $_getN(112);
   @$pb.TagNumber(127)
   set sGetAlbumPhotos(S_GetAlbumPhotos value) => $_setField(127, value);
   @$pb.TagNumber(127)
-  $core.bool hasSGetAlbumPhotos() => $_has(116);
+  $core.bool hasSGetAlbumPhotos() => $_has(112);
   @$pb.TagNumber(127)
   void clearSGetAlbumPhotos() => $_clearField(127);
   @$pb.TagNumber(127)
-  S_GetAlbumPhotos ensureSGetAlbumPhotos() => $_ensure(116);
+  S_GetAlbumPhotos ensureSGetAlbumPhotos() => $_ensure(112);
 
   @$pb.TagNumber(128)
-  C_AddPhotoComment get cAddPhotoComment => $_getN(117);
+  C_AddPhotoComment get cAddPhotoComment => $_getN(113);
   @$pb.TagNumber(128)
   set cAddPhotoComment(C_AddPhotoComment value) => $_setField(128, value);
   @$pb.TagNumber(128)
-  $core.bool hasCAddPhotoComment() => $_has(117);
+  $core.bool hasCAddPhotoComment() => $_has(113);
   @$pb.TagNumber(128)
   void clearCAddPhotoComment() => $_clearField(128);
   @$pb.TagNumber(128)
-  C_AddPhotoComment ensureCAddPhotoComment() => $_ensure(117);
+  C_AddPhotoComment ensureCAddPhotoComment() => $_ensure(113);
 
   @$pb.TagNumber(129)
-  S_AddPhotoComment get sAddPhotoComment => $_getN(118);
+  S_AddPhotoComment get sAddPhotoComment => $_getN(114);
   @$pb.TagNumber(129)
   set sAddPhotoComment(S_AddPhotoComment value) => $_setField(129, value);
   @$pb.TagNumber(129)
-  $core.bool hasSAddPhotoComment() => $_has(118);
+  $core.bool hasSAddPhotoComment() => $_has(114);
   @$pb.TagNumber(129)
   void clearSAddPhotoComment() => $_clearField(129);
   @$pb.TagNumber(129)
-  S_AddPhotoComment ensureSAddPhotoComment() => $_ensure(118);
+  S_AddPhotoComment ensureSAddPhotoComment() => $_ensure(114);
 
   @$pb.TagNumber(130)
-  C_GetPhotoComments get cGetPhotoComments => $_getN(119);
+  C_GetPhotoComments get cGetPhotoComments => $_getN(115);
   @$pb.TagNumber(130)
   set cGetPhotoComments(C_GetPhotoComments value) => $_setField(130, value);
   @$pb.TagNumber(130)
-  $core.bool hasCGetPhotoComments() => $_has(119);
+  $core.bool hasCGetPhotoComments() => $_has(115);
   @$pb.TagNumber(130)
   void clearCGetPhotoComments() => $_clearField(130);
   @$pb.TagNumber(130)
-  C_GetPhotoComments ensureCGetPhotoComments() => $_ensure(119);
+  C_GetPhotoComments ensureCGetPhotoComments() => $_ensure(115);
 
   @$pb.TagNumber(131)
-  S_GetPhotoComments get sGetPhotoComments => $_getN(120);
+  S_GetPhotoComments get sGetPhotoComments => $_getN(116);
   @$pb.TagNumber(131)
   set sGetPhotoComments(S_GetPhotoComments value) => $_setField(131, value);
   @$pb.TagNumber(131)
-  $core.bool hasSGetPhotoComments() => $_has(120);
+  $core.bool hasSGetPhotoComments() => $_has(116);
   @$pb.TagNumber(131)
   void clearSGetPhotoComments() => $_clearField(131);
   @$pb.TagNumber(131)
-  S_GetPhotoComments ensureSGetPhotoComments() => $_ensure(120);
+  S_GetPhotoComments ensureSGetPhotoComments() => $_ensure(116);
 
   @$pb.TagNumber(140)
-  C_DeleteAlbum get cDeleteAlbum => $_getN(121);
+  C_DeleteAlbum get cDeleteAlbum => $_getN(117);
   @$pb.TagNumber(140)
   set cDeleteAlbum(C_DeleteAlbum value) => $_setField(140, value);
   @$pb.TagNumber(140)
-  $core.bool hasCDeleteAlbum() => $_has(121);
+  $core.bool hasCDeleteAlbum() => $_has(117);
   @$pb.TagNumber(140)
   void clearCDeleteAlbum() => $_clearField(140);
   @$pb.TagNumber(140)
-  C_DeleteAlbum ensureCDeleteAlbum() => $_ensure(121);
+  C_DeleteAlbum ensureCDeleteAlbum() => $_ensure(117);
 
   @$pb.TagNumber(141)
-  S_DeleteAlbum get sDeleteAlbum => $_getN(122);
+  S_DeleteAlbum get sDeleteAlbum => $_getN(118);
   @$pb.TagNumber(141)
   set sDeleteAlbum(S_DeleteAlbum value) => $_setField(141, value);
   @$pb.TagNumber(141)
-  $core.bool hasSDeleteAlbum() => $_has(122);
+  $core.bool hasSDeleteAlbum() => $_has(118);
   @$pb.TagNumber(141)
   void clearSDeleteAlbum() => $_clearField(141);
   @$pb.TagNumber(141)
-  S_DeleteAlbum ensureSDeleteAlbum() => $_ensure(122);
+  S_DeleteAlbum ensureSDeleteAlbum() => $_ensure(118);
 
   @$pb.TagNumber(142)
-  C_DeleteAlbumPhoto get cDeleteAlbumPhoto => $_getN(123);
+  C_DeleteAlbumPhoto get cDeleteAlbumPhoto => $_getN(119);
   @$pb.TagNumber(142)
   set cDeleteAlbumPhoto(C_DeleteAlbumPhoto value) => $_setField(142, value);
   @$pb.TagNumber(142)
-  $core.bool hasCDeleteAlbumPhoto() => $_has(123);
+  $core.bool hasCDeleteAlbumPhoto() => $_has(119);
   @$pb.TagNumber(142)
   void clearCDeleteAlbumPhoto() => $_clearField(142);
   @$pb.TagNumber(142)
-  C_DeleteAlbumPhoto ensureCDeleteAlbumPhoto() => $_ensure(123);
+  C_DeleteAlbumPhoto ensureCDeleteAlbumPhoto() => $_ensure(119);
 
   @$pb.TagNumber(143)
-  S_DeleteAlbumPhoto get sDeleteAlbumPhoto => $_getN(124);
+  S_DeleteAlbumPhoto get sDeleteAlbumPhoto => $_getN(120);
   @$pb.TagNumber(143)
   set sDeleteAlbumPhoto(S_DeleteAlbumPhoto value) => $_setField(143, value);
   @$pb.TagNumber(143)
-  $core.bool hasSDeleteAlbumPhoto() => $_has(124);
+  $core.bool hasSDeleteAlbumPhoto() => $_has(120);
   @$pb.TagNumber(143)
   void clearSDeleteAlbumPhoto() => $_clearField(143);
   @$pb.TagNumber(143)
-  S_DeleteAlbumPhoto ensureSDeleteAlbumPhoto() => $_ensure(124);
+  S_DeleteAlbumPhoto ensureSDeleteAlbumPhoto() => $_ensure(120);
 
   @$pb.TagNumber(144)
-  C_MovePhoto get cMovePhoto => $_getN(125);
+  C_MovePhoto get cMovePhoto => $_getN(121);
   @$pb.TagNumber(144)
   set cMovePhoto(C_MovePhoto value) => $_setField(144, value);
   @$pb.TagNumber(144)
-  $core.bool hasCMovePhoto() => $_has(125);
+  $core.bool hasCMovePhoto() => $_has(121);
   @$pb.TagNumber(144)
   void clearCMovePhoto() => $_clearField(144);
   @$pb.TagNumber(144)
-  C_MovePhoto ensureCMovePhoto() => $_ensure(125);
+  C_MovePhoto ensureCMovePhoto() => $_ensure(121);
 
   @$pb.TagNumber(145)
-  S_MovePhoto get sMovePhoto => $_getN(126);
+  S_MovePhoto get sMovePhoto => $_getN(122);
   @$pb.TagNumber(145)
   set sMovePhoto(S_MovePhoto value) => $_setField(145, value);
   @$pb.TagNumber(145)
-  $core.bool hasSMovePhoto() => $_has(126);
+  $core.bool hasSMovePhoto() => $_has(122);
   @$pb.TagNumber(145)
   void clearSMovePhoto() => $_clearField(145);
   @$pb.TagNumber(145)
-  S_MovePhoto ensureSMovePhoto() => $_ensure(126);
+  S_MovePhoto ensureSMovePhoto() => $_ensure(122);
 
   @$pb.TagNumber(146)
-  C_DeletePhotoComment get cDeletePhotoComment => $_getN(127);
+  C_DeletePhotoComment get cDeletePhotoComment => $_getN(123);
   @$pb.TagNumber(146)
   set cDeletePhotoComment(C_DeletePhotoComment value) => $_setField(146, value);
   @$pb.TagNumber(146)
-  $core.bool hasCDeletePhotoComment() => $_has(127);
+  $core.bool hasCDeletePhotoComment() => $_has(123);
   @$pb.TagNumber(146)
   void clearCDeletePhotoComment() => $_clearField(146);
   @$pb.TagNumber(146)
-  C_DeletePhotoComment ensureCDeletePhotoComment() => $_ensure(127);
+  C_DeletePhotoComment ensureCDeletePhotoComment() => $_ensure(123);
 
   @$pb.TagNumber(147)
-  S_DeletePhotoComment get sDeletePhotoComment => $_getN(128);
+  S_DeletePhotoComment get sDeletePhotoComment => $_getN(124);
   @$pb.TagNumber(147)
   set sDeletePhotoComment(S_DeletePhotoComment value) => $_setField(147, value);
   @$pb.TagNumber(147)
-  $core.bool hasSDeletePhotoComment() => $_has(128);
+  $core.bool hasSDeletePhotoComment() => $_has(124);
   @$pb.TagNumber(147)
   void clearSDeletePhotoComment() => $_clearField(147);
   @$pb.TagNumber(147)
-  S_DeletePhotoComment ensureSDeletePhotoComment() => $_ensure(128);
+  S_DeletePhotoComment ensureSDeletePhotoComment() => $_ensure(124);
 
   /// LOCATION HISTORY (148 ~ 159)
   @$pb.TagNumber(148)
-  C_SavePlace get cSavePlace => $_getN(129);
+  C_SavePlace get cSavePlace => $_getN(125);
   @$pb.TagNumber(148)
   set cSavePlace(C_SavePlace value) => $_setField(148, value);
   @$pb.TagNumber(148)
-  $core.bool hasCSavePlace() => $_has(129);
+  $core.bool hasCSavePlace() => $_has(125);
   @$pb.TagNumber(148)
   void clearCSavePlace() => $_clearField(148);
   @$pb.TagNumber(148)
-  C_SavePlace ensureCSavePlace() => $_ensure(129);
+  C_SavePlace ensureCSavePlace() => $_ensure(125);
 
   @$pb.TagNumber(149)
-  S_SavePlace get sSavePlace => $_getN(130);
+  S_SavePlace get sSavePlace => $_getN(126);
   @$pb.TagNumber(149)
   set sSavePlace(S_SavePlace value) => $_setField(149, value);
   @$pb.TagNumber(149)
-  $core.bool hasSSavePlace() => $_has(130);
+  $core.bool hasSSavePlace() => $_has(126);
   @$pb.TagNumber(149)
   void clearSSavePlace() => $_clearField(149);
   @$pb.TagNumber(149)
-  S_SavePlace ensureSSavePlace() => $_ensure(130);
+  S_SavePlace ensureSSavePlace() => $_ensure(126);
 
   @$pb.TagNumber(150)
-  C_GetPlaces get cGetPlaces => $_getN(131);
+  C_GetPlaces get cGetPlaces => $_getN(127);
   @$pb.TagNumber(150)
   set cGetPlaces(C_GetPlaces value) => $_setField(150, value);
   @$pb.TagNumber(150)
-  $core.bool hasCGetPlaces() => $_has(131);
+  $core.bool hasCGetPlaces() => $_has(127);
   @$pb.TagNumber(150)
   void clearCGetPlaces() => $_clearField(150);
   @$pb.TagNumber(150)
-  C_GetPlaces ensureCGetPlaces() => $_ensure(131);
+  C_GetPlaces ensureCGetPlaces() => $_ensure(127);
 
   @$pb.TagNumber(151)
-  S_GetPlaces get sGetPlaces => $_getN(132);
+  S_GetPlaces get sGetPlaces => $_getN(128);
   @$pb.TagNumber(151)
   set sGetPlaces(S_GetPlaces value) => $_setField(151, value);
   @$pb.TagNumber(151)
-  $core.bool hasSGetPlaces() => $_has(132);
+  $core.bool hasSGetPlaces() => $_has(128);
   @$pb.TagNumber(151)
   void clearSGetPlaces() => $_clearField(151);
   @$pb.TagNumber(151)
-  S_GetPlaces ensureSGetPlaces() => $_ensure(132);
+  S_GetPlaces ensureSGetPlaces() => $_ensure(128);
 
   @$pb.TagNumber(152)
-  C_SaveVisit get cSaveVisit => $_getN(133);
+  C_SaveVisit get cSaveVisit => $_getN(129);
   @$pb.TagNumber(152)
   set cSaveVisit(C_SaveVisit value) => $_setField(152, value);
   @$pb.TagNumber(152)
-  $core.bool hasCSaveVisit() => $_has(133);
+  $core.bool hasCSaveVisit() => $_has(129);
   @$pb.TagNumber(152)
   void clearCSaveVisit() => $_clearField(152);
   @$pb.TagNumber(152)
-  C_SaveVisit ensureCSaveVisit() => $_ensure(133);
+  C_SaveVisit ensureCSaveVisit() => $_ensure(129);
 
   @$pb.TagNumber(153)
-  S_SaveVisit get sSaveVisit => $_getN(134);
+  S_SaveVisit get sSaveVisit => $_getN(130);
   @$pb.TagNumber(153)
   set sSaveVisit(S_SaveVisit value) => $_setField(153, value);
   @$pb.TagNumber(153)
-  $core.bool hasSSaveVisit() => $_has(134);
+  $core.bool hasSSaveVisit() => $_has(130);
   @$pb.TagNumber(153)
   void clearSSaveVisit() => $_clearField(153);
   @$pb.TagNumber(153)
-  S_SaveVisit ensureSSaveVisit() => $_ensure(134);
+  S_SaveVisit ensureSSaveVisit() => $_ensure(130);
 
   @$pb.TagNumber(154)
-  C_DeletePlace get cDeletePlace => $_getN(135);
+  C_DeletePlace get cDeletePlace => $_getN(131);
   @$pb.TagNumber(154)
   set cDeletePlace(C_DeletePlace value) => $_setField(154, value);
   @$pb.TagNumber(154)
-  $core.bool hasCDeletePlace() => $_has(135);
+  $core.bool hasCDeletePlace() => $_has(131);
   @$pb.TagNumber(154)
   void clearCDeletePlace() => $_clearField(154);
   @$pb.TagNumber(154)
-  C_DeletePlace ensureCDeletePlace() => $_ensure(135);
+  C_DeletePlace ensureCDeletePlace() => $_ensure(131);
 
   @$pb.TagNumber(155)
-  S_DeletePlace get sDeletePlace => $_getN(136);
+  S_DeletePlace get sDeletePlace => $_getN(132);
   @$pb.TagNumber(155)
   set sDeletePlace(S_DeletePlace value) => $_setField(155, value);
   @$pb.TagNumber(155)
-  $core.bool hasSDeletePlace() => $_has(136);
+  $core.bool hasSDeletePlace() => $_has(132);
   @$pb.TagNumber(155)
   void clearSDeletePlace() => $_clearField(155);
   @$pb.TagNumber(155)
-  S_DeletePlace ensureSDeletePlace() => $_ensure(136);
+  S_DeletePlace ensureSDeletePlace() => $_ensure(132);
 
   @$pb.TagNumber(156)
-  C_UpdateVisit get cUpdateVisit => $_getN(137);
+  C_UpdateVisit get cUpdateVisit => $_getN(133);
   @$pb.TagNumber(156)
   set cUpdateVisit(C_UpdateVisit value) => $_setField(156, value);
   @$pb.TagNumber(156)
-  $core.bool hasCUpdateVisit() => $_has(137);
+  $core.bool hasCUpdateVisit() => $_has(133);
   @$pb.TagNumber(156)
   void clearCUpdateVisit() => $_clearField(156);
   @$pb.TagNumber(156)
-  C_UpdateVisit ensureCUpdateVisit() => $_ensure(137);
+  C_UpdateVisit ensureCUpdateVisit() => $_ensure(133);
 
   @$pb.TagNumber(157)
-  S_UpdateVisit get sUpdateVisit => $_getN(138);
+  S_UpdateVisit get sUpdateVisit => $_getN(134);
   @$pb.TagNumber(157)
   set sUpdateVisit(S_UpdateVisit value) => $_setField(157, value);
   @$pb.TagNumber(157)
-  $core.bool hasSUpdateVisit() => $_has(138);
+  $core.bool hasSUpdateVisit() => $_has(134);
   @$pb.TagNumber(157)
   void clearSUpdateVisit() => $_clearField(157);
   @$pb.TagNumber(157)
-  S_UpdateVisit ensureSUpdateVisit() => $_ensure(138);
+  S_UpdateVisit ensureSUpdateVisit() => $_ensure(134);
 
   @$pb.TagNumber(158)
-  C_DeleteVisit get cDeleteVisit => $_getN(139);
+  C_DeleteVisit get cDeleteVisit => $_getN(135);
   @$pb.TagNumber(158)
   set cDeleteVisit(C_DeleteVisit value) => $_setField(158, value);
   @$pb.TagNumber(158)
-  $core.bool hasCDeleteVisit() => $_has(139);
+  $core.bool hasCDeleteVisit() => $_has(135);
   @$pb.TagNumber(158)
   void clearCDeleteVisit() => $_clearField(158);
   @$pb.TagNumber(158)
-  C_DeleteVisit ensureCDeleteVisit() => $_ensure(139);
+  C_DeleteVisit ensureCDeleteVisit() => $_ensure(135);
 
   @$pb.TagNumber(159)
-  S_DeleteVisit get sDeleteVisit => $_getN(140);
+  S_DeleteVisit get sDeleteVisit => $_getN(136);
   @$pb.TagNumber(159)
   set sDeleteVisit(S_DeleteVisit value) => $_setField(159, value);
   @$pb.TagNumber(159)
-  $core.bool hasSDeleteVisit() => $_has(140);
+  $core.bool hasSDeleteVisit() => $_has(136);
   @$pb.TagNumber(159)
   void clearSDeleteVisit() => $_clearField(159);
   @$pb.TagNumber(159)
-  S_DeleteVisit ensureSDeleteVisit() => $_ensure(140);
+  S_DeleteVisit ensureSDeleteVisit() => $_ensure(136);
 }
 
 /// UserInfo
@@ -11425,366 +11345,6 @@ class S_SetAnnouncement extends $pb.GeneratedMessage {
   $core.bool hasSetterId() => $_has(4);
   @$pb.TagNumber(5)
   void clearSetterId() => $_clearField(5);
-}
-
-class C_CreateBallDrop extends $pb.GeneratedMessage {
-  factory C_CreateBallDrop({
-    $core.String? convId,
-    $core.Iterable<$core.String>? participantIds,
-    $core.Iterable<$core.int>? ballCounts,
-  }) {
-    final result = create();
-    if (convId != null) result.convId = convId;
-    if (participantIds != null) result.participantIds.addAll(participantIds);
-    if (ballCounts != null) result.ballCounts.addAll(ballCounts);
-    return result;
-  }
-
-  C_CreateBallDrop._();
-
-  factory C_CreateBallDrop.fromBuffer($core.List<$core.int> data,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
-  factory C_CreateBallDrop.fromJson($core.String json,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
-
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'C_CreateBallDrop',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'Protocol'),
-      createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'convId')
-    ..pPS(2, _omitFieldNames ? '' : 'participantIds')
-    ..p<$core.int>(3, _omitFieldNames ? '' : 'ballCounts', $pb.PbFieldType.K3)
-    ..hasRequiredFields = false;
-
-  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  C_CreateBallDrop clone() => deepCopy();
-  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  C_CreateBallDrop copyWith(void Function(C_CreateBallDrop) updates) =>
-      super.copyWith((message) => updates(message as C_CreateBallDrop))
-          as C_CreateBallDrop;
-
-  @$core.override
-  $pb.BuilderInfo get info_ => _i;
-
-  @$core.pragma('dart2js:noInline')
-  static C_CreateBallDrop create() => C_CreateBallDrop._();
-  @$core.override
-  C_CreateBallDrop createEmptyInstance() => create();
-  @$core.pragma('dart2js:noInline')
-  static C_CreateBallDrop getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<C_CreateBallDrop>(create);
-  static C_CreateBallDrop? _defaultInstance;
-
-  @$pb.TagNumber(1)
-  $core.String get convId => $_getSZ(0);
-  @$pb.TagNumber(1)
-  set convId($core.String value) => $_setString(0, value);
-  @$pb.TagNumber(1)
-  $core.bool hasConvId() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearConvId() => $_clearField(1);
-
-  @$pb.TagNumber(2)
-  $pb.PbList<$core.String> get participantIds => $_getList(1);
-
-  @$pb.TagNumber(3)
-  $pb.PbList<$core.int> get ballCounts => $_getList(2);
-}
-
-class S_CreateBallDrop extends $pb.GeneratedMessage {
-  factory S_CreateBallDrop({
-    $core.String? convId,
-    $fixnum.Int64? msgSeq,
-    $core.String? gameJson,
-  }) {
-    final result = create();
-    if (convId != null) result.convId = convId;
-    if (msgSeq != null) result.msgSeq = msgSeq;
-    if (gameJson != null) result.gameJson = gameJson;
-    return result;
-  }
-
-  S_CreateBallDrop._();
-
-  factory S_CreateBallDrop.fromBuffer($core.List<$core.int> data,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
-  factory S_CreateBallDrop.fromJson($core.String json,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
-
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'S_CreateBallDrop',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'Protocol'),
-      createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'convId')
-    ..aInt64(2, _omitFieldNames ? '' : 'msgSeq')
-    ..aOS(3, _omitFieldNames ? '' : 'gameJson')
-    ..hasRequiredFields = false;
-
-  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  S_CreateBallDrop clone() => deepCopy();
-  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  S_CreateBallDrop copyWith(void Function(S_CreateBallDrop) updates) =>
-      super.copyWith((message) => updates(message as S_CreateBallDrop))
-          as S_CreateBallDrop;
-
-  @$core.override
-  $pb.BuilderInfo get info_ => _i;
-
-  @$core.pragma('dart2js:noInline')
-  static S_CreateBallDrop create() => S_CreateBallDrop._();
-  @$core.override
-  S_CreateBallDrop createEmptyInstance() => create();
-  @$core.pragma('dart2js:noInline')
-  static S_CreateBallDrop getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<S_CreateBallDrop>(create);
-  static S_CreateBallDrop? _defaultInstance;
-
-  @$pb.TagNumber(1)
-  $core.String get convId => $_getSZ(0);
-  @$pb.TagNumber(1)
-  set convId($core.String value) => $_setString(0, value);
-  @$pb.TagNumber(1)
-  $core.bool hasConvId() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearConvId() => $_clearField(1);
-
-  @$pb.TagNumber(2)
-  $fixnum.Int64 get msgSeq => $_getI64(1);
-  @$pb.TagNumber(2)
-  set msgSeq($fixnum.Int64 value) => $_setInt64(1, value);
-  @$pb.TagNumber(2)
-  $core.bool hasMsgSeq() => $_has(1);
-  @$pb.TagNumber(2)
-  void clearMsgSeq() => $_clearField(2);
-
-  @$pb.TagNumber(3)
-  $core.String get gameJson => $_getSZ(2);
-  @$pb.TagNumber(3)
-  set gameJson($core.String value) => $_setString(2, value);
-  @$pb.TagNumber(3)
-  $core.bool hasGameJson() => $_has(2);
-  @$pb.TagNumber(3)
-  void clearGameJson() => $_clearField(3);
-}
-
-class C_CreatePhotoSlide extends $pb.GeneratedMessage {
-  factory C_CreatePhotoSlide({
-    $core.String? convId,
-    $core.Iterable<$core.String>? imageUrls,
-    $core.Iterable<$core.String>? thumbnailUrls,
-    $core.String? message,
-    $core.String? fontStyle,
-    $core.String? textPosition,
-    $core.String? bgTheme,
-    $core.String? endingMessage,
-    $core.int? fontSize,
-  }) {
-    final result = create();
-    if (convId != null) result.convId = convId;
-    if (imageUrls != null) result.imageUrls.addAll(imageUrls);
-    if (thumbnailUrls != null) result.thumbnailUrls.addAll(thumbnailUrls);
-    if (message != null) result.message = message;
-    if (fontStyle != null) result.fontStyle = fontStyle;
-    if (textPosition != null) result.textPosition = textPosition;
-    if (bgTheme != null) result.bgTheme = bgTheme;
-    if (endingMessage != null) result.endingMessage = endingMessage;
-    if (fontSize != null) result.fontSize = fontSize;
-    return result;
-  }
-
-  C_CreatePhotoSlide._();
-
-  factory C_CreatePhotoSlide.fromBuffer($core.List<$core.int> data,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
-  factory C_CreatePhotoSlide.fromJson($core.String json,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
-
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'C_CreatePhotoSlide',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'Protocol'),
-      createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'convId')
-    ..pPS(2, _omitFieldNames ? '' : 'imageUrls')
-    ..pPS(3, _omitFieldNames ? '' : 'thumbnailUrls')
-    ..aOS(4, _omitFieldNames ? '' : 'message')
-    ..aOS(5, _omitFieldNames ? '' : 'fontStyle')
-    ..aOS(6, _omitFieldNames ? '' : 'textPosition')
-    ..aOS(7, _omitFieldNames ? '' : 'bgTheme')
-    ..aOS(8, _omitFieldNames ? '' : 'endingMessage')
-    ..aI(9, _omitFieldNames ? '' : 'fontSize')
-    ..hasRequiredFields = false;
-
-  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  C_CreatePhotoSlide clone() => deepCopy();
-  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  C_CreatePhotoSlide copyWith(void Function(C_CreatePhotoSlide) updates) =>
-      super.copyWith((message) => updates(message as C_CreatePhotoSlide))
-          as C_CreatePhotoSlide;
-
-  @$core.override
-  $pb.BuilderInfo get info_ => _i;
-
-  @$core.pragma('dart2js:noInline')
-  static C_CreatePhotoSlide create() => C_CreatePhotoSlide._();
-  @$core.override
-  C_CreatePhotoSlide createEmptyInstance() => create();
-  @$core.pragma('dart2js:noInline')
-  static C_CreatePhotoSlide getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<C_CreatePhotoSlide>(create);
-  static C_CreatePhotoSlide? _defaultInstance;
-
-  @$pb.TagNumber(1)
-  $core.String get convId => $_getSZ(0);
-  @$pb.TagNumber(1)
-  set convId($core.String value) => $_setString(0, value);
-  @$pb.TagNumber(1)
-  $core.bool hasConvId() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearConvId() => $_clearField(1);
-
-  @$pb.TagNumber(2)
-  $pb.PbList<$core.String> get imageUrls => $_getList(1);
-
-  @$pb.TagNumber(3)
-  $pb.PbList<$core.String> get thumbnailUrls => $_getList(2);
-
-  @$pb.TagNumber(4)
-  $core.String get message => $_getSZ(3);
-  @$pb.TagNumber(4)
-  set message($core.String value) => $_setString(3, value);
-  @$pb.TagNumber(4)
-  $core.bool hasMessage() => $_has(3);
-  @$pb.TagNumber(4)
-  void clearMessage() => $_clearField(4);
-
-  @$pb.TagNumber(5)
-  $core.String get fontStyle => $_getSZ(4);
-  @$pb.TagNumber(5)
-  set fontStyle($core.String value) => $_setString(4, value);
-  @$pb.TagNumber(5)
-  $core.bool hasFontStyle() => $_has(4);
-  @$pb.TagNumber(5)
-  void clearFontStyle() => $_clearField(5);
-
-  @$pb.TagNumber(6)
-  $core.String get textPosition => $_getSZ(5);
-  @$pb.TagNumber(6)
-  set textPosition($core.String value) => $_setString(5, value);
-  @$pb.TagNumber(6)
-  $core.bool hasTextPosition() => $_has(5);
-  @$pb.TagNumber(6)
-  void clearTextPosition() => $_clearField(6);
-
-  @$pb.TagNumber(7)
-  $core.String get bgTheme => $_getSZ(6);
-  @$pb.TagNumber(7)
-  set bgTheme($core.String value) => $_setString(6, value);
-  @$pb.TagNumber(7)
-  $core.bool hasBgTheme() => $_has(6);
-  @$pb.TagNumber(7)
-  void clearBgTheme() => $_clearField(7);
-
-  @$pb.TagNumber(8)
-  $core.String get endingMessage => $_getSZ(7);
-  @$pb.TagNumber(8)
-  set endingMessage($core.String value) => $_setString(7, value);
-  @$pb.TagNumber(8)
-  $core.bool hasEndingMessage() => $_has(7);
-  @$pb.TagNumber(8)
-  void clearEndingMessage() => $_clearField(8);
-
-  @$pb.TagNumber(9)
-  $core.int get fontSize => $_getIZ(8);
-  @$pb.TagNumber(9)
-  set fontSize($core.int value) => $_setSignedInt32(8, value);
-  @$pb.TagNumber(9)
-  $core.bool hasFontSize() => $_has(8);
-  @$pb.TagNumber(9)
-  void clearFontSize() => $_clearField(9);
-}
-
-class S_CreatePhotoSlide extends $pb.GeneratedMessage {
-  factory S_CreatePhotoSlide({
-    $core.String? convId,
-    $fixnum.Int64? msgSeq,
-    $core.String? slideJson,
-  }) {
-    final result = create();
-    if (convId != null) result.convId = convId;
-    if (msgSeq != null) result.msgSeq = msgSeq;
-    if (slideJson != null) result.slideJson = slideJson;
-    return result;
-  }
-
-  S_CreatePhotoSlide._();
-
-  factory S_CreatePhotoSlide.fromBuffer($core.List<$core.int> data,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
-  factory S_CreatePhotoSlide.fromJson($core.String json,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
-
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'S_CreatePhotoSlide',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'Protocol'),
-      createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'convId')
-    ..aInt64(2, _omitFieldNames ? '' : 'msgSeq')
-    ..aOS(3, _omitFieldNames ? '' : 'slideJson')
-    ..hasRequiredFields = false;
-
-  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  S_CreatePhotoSlide clone() => deepCopy();
-  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  S_CreatePhotoSlide copyWith(void Function(S_CreatePhotoSlide) updates) =>
-      super.copyWith((message) => updates(message as S_CreatePhotoSlide))
-          as S_CreatePhotoSlide;
-
-  @$core.override
-  $pb.BuilderInfo get info_ => _i;
-
-  @$core.pragma('dart2js:noInline')
-  static S_CreatePhotoSlide create() => S_CreatePhotoSlide._();
-  @$core.override
-  S_CreatePhotoSlide createEmptyInstance() => create();
-  @$core.pragma('dart2js:noInline')
-  static S_CreatePhotoSlide getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<S_CreatePhotoSlide>(create);
-  static S_CreatePhotoSlide? _defaultInstance;
-
-  @$pb.TagNumber(1)
-  $core.String get convId => $_getSZ(0);
-  @$pb.TagNumber(1)
-  set convId($core.String value) => $_setString(0, value);
-  @$pb.TagNumber(1)
-  $core.bool hasConvId() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearConvId() => $_clearField(1);
-
-  @$pb.TagNumber(2)
-  $fixnum.Int64 get msgSeq => $_getI64(1);
-  @$pb.TagNumber(2)
-  set msgSeq($fixnum.Int64 value) => $_setInt64(1, value);
-  @$pb.TagNumber(2)
-  $core.bool hasMsgSeq() => $_has(1);
-  @$pb.TagNumber(2)
-  void clearMsgSeq() => $_clearField(2);
-
-  @$pb.TagNumber(3)
-  $core.String get slideJson => $_getSZ(2);
-  @$pb.TagNumber(3)
-  set slideJson($core.String value) => $_setString(2, value);
-  @$pb.TagNumber(3)
-  $core.bool hasSlideJson() => $_has(2);
-  @$pb.TagNumber(3)
-  void clearSlideJson() => $_clearField(3);
 }
 
 class C_SocialLogin extends $pb.GeneratedMessage {

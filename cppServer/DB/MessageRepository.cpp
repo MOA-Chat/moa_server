@@ -377,12 +377,6 @@ void MessageRepository::ParseChatPacket(Protocol::S_Chat& sChat, const mysqlx::R
     case 6: // AUDIO
         payload->mutable_audio()->set_url(row[5].isNull() ? "" : row[5].get<string>());
         break;
-    case 7: // GAME (ballDrop) — message 컬럼에 game JSON 저장, text payload로 전달
-        payload->mutable_text()->set_message(row[4].get<string>());
-        break;
-    case 8: // PHOTO_SLIDE — message 컬럼에 slide JSON 저장, text payload로 전달
-        payload->mutable_text()->set_message(row[4].get<string>());
-        break;
     }
 }
 
@@ -1082,6 +1076,41 @@ vector<MessageRepository::AnnouncementInfo> MessageRepository::GetAnnouncementsF
         LOG_ERROR("[MessageRepository] GetAnnouncementsForUser 실패: {}", e.what());
     }
     return result;
+}
+
+
+bool MessageRepository::RetainUserFiles(const string& userId)
+{
+    try {
+        auto& db = DBManager::GetInstance();
+        db.GetSession().sql(
+            "UPDATE messages SET file_retention_expires_at = NULL, file_status = 'active' "
+            "WHERE sender_id = ? AND file_status != 'expired' "
+            "AND (file_retention_expires_at IS NOT NULL OR file_status = 'expiring_soon')"
+        ).bind(userId).execute();
+        return true;
+    } catch (const mysqlx::Error& err) {
+        LOG_ERROR("[MessageRepository] RetainUserFiles 실패: {}", err.what());
+        return false;
+    }
+}
+
+
+bool MessageRepository::SetFilesExpiringSoon(const string& userId, int64 graceExpiresAt)
+{
+    try {
+        auto& db = DBManager::GetInstance();
+        db.GetSession().sql(
+            "UPDATE messages SET file_retention_expires_at = ?, file_status = 'expiring_soon' "
+            "WHERE sender_id = ? "
+            "AND (file_retention_expires_at IS NULL OR file_retention_expires_at > ?) "
+            "AND file_status = 'active'"
+        ).bind(graceExpiresAt, userId, graceExpiresAt).execute();
+        return true;
+    } catch (const mysqlx::Error& err) {
+        LOG_ERROR("[MessageRepository] SetFilesExpiringSoon 실패: {}", err.what());
+        return false;
+    }
 }
 
 

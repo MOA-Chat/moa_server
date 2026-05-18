@@ -11,7 +11,7 @@
 #include "Service/AuthService.h"
 #include "Service/FileService.h"
 #include "Service/NotificationService.h"
-#include "Cloud/CloudStorageGCS.h"
+#include "Cloud/CloudStorageR2.h"
 #include "Cloud/FcmClient.h"
 #include "Service/PaymentService.h"
 #include "Service/BlockService.h"
@@ -31,7 +31,7 @@ const int64 TIMEOUT_MS = 120 * 1000;
 const int32 MAX_GROUP_MEMBERS = 12;  // 그룹 최대 인원 수
 
 // ─── 저장공간 기본 제공량 ───
-const int64 DEFAULT_PERSONAL_STORAGE = 100LL * 1024 * 1024;       // 100MB
+const int64 DEFAULT_PERSONAL_STORAGE = 1LL * 1024 * 1024 * 1024;  // 1GB (무료 플랜 기본값)
 const int64 DEFAULT_GROUP_STORAGE    = 1LL * 1024 * 1024 * 1024;  // 1GB
 const int64 DEFAULT_MAX_FILE_SIZE    = 25LL * 1024 * 1024;        // 25MB
 
@@ -60,62 +60,111 @@ int64 Nowts()
     return duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
 }
 
-// ===== GCP 설정 파일 읽기 =====
-static bool LoadGCPConfig(string& projectId, string& bucketName, string& credentialsPath)
+// ===== Cloudflare R2 설정 파일 읽기 =====
+// config/r2_config.txt 형식:
+//   account_id=<Cloudflare Account ID>
+//   access_key_id=<R2 API 토큰 Access Key>
+//   secret_access_key=<R2 API 토큰 Secret Key>
+//   bucket_name=<버킷 이름>
+//   public_url=<공개 다운로드 URL 접두사, 예: https://pub-xxx.r2.dev>
+static bool LoadR2Config(string& accountId, string& bucketName,
+                          string& accessKeyId, string& secretAccessKey,
+                          string& publicUrl)
 {
     try {
-        ::filesystem::path configDir = "config";
-
-
-        ::filesystem::path adminFile = configDir / "googleCloud_admin.txt";
-        ifstream file(adminFile);
+        ::filesystem::path configFile = ::filesystem::path("config") / "r2_config.txt";
+        ifstream file(configFile);
         if (!file.is_open()) {
-            LOG_ERROR("[CoreGlobal] Failed to open: {}", adminFile.string());
+            LOG_ERROR("[CoreGlobal] R2 설정 파일을 찾을 수 없습니다: {}", configFile.string());
             return false;
         }
 
-        if (!getline(file, projectId) || !getline(file, bucketName)) {
-            LOG_ERROR("[CoreGlobal] 파일 비어있음");
-            return false;
+        auto trim = [](string& s) {
+            s.erase(0, s.find_first_not_of(" \t\r\n"));
+            if (!s.empty()) s.erase(s.find_last_not_of(" \t\r\n") + 1);
+        };
+
+        string line;
+        while (getline(file, line)) {
+            trim(line);
+            if (line.empty() || line[0] == '#') continue;
+            auto eq = line.find('=');
+            if (eq == string::npos) continue;
+            string key   = line.substr(0, eq);
+            string value = line.substr(eq + 1);
+            trim(key); trim(value);
+
+            if      (key == "account_id")        accountId        = value;
+            else if (key == "access_key_id")     accessKeyId      = value;
+            else if (key == "secret_access_key") secretAccessKey  = value;
+            else if (key == "bucket_name")       bucketName       = value;
+            else if (key == "public_url")        publicUrl        = value;
         }
         file.close();
 
-        // 공백 제거
-        projectId.erase(0, projectId.find_first_not_of(" \t\r\n"));
-        projectId.erase(projectId.find_last_not_of(" \t\r\n") + 1);
-        bucketName.erase(0, bucketName.find_first_not_of(" \t\r\n"));
-        bucketName.erase(bucketName.find_last_not_of(" \t\r\n") + 1);
-
-        if (projectId.empty() || bucketName.empty()) {
-            LOG_ERROR("[CoreGlobal] Project ID or bucket name is empty");
+        if (accountId.empty() || bucketName.empty() ||
+            accessKeyId.empty() || secretAccessKey.empty())
+        {
+            LOG_ERROR("[CoreGlobal] r2_config.txt 필수 항목 누락 (account_id / bucket_name / keys)");
             return false;
         }
 
-        // config 폴더에서 .json 파일 찾기
-        ::filesystem::path keyFile = configDir / "gcp_key.json";
-
-        if (!::filesystem::exists(keyFile)) {
-            LOG_ERROR("[CoreGlobal] GCP 인증 키 파일을 찾을 수 없습니다: {}", keyFile.string());
-            return false;
-        }
-
-        credentialsPath = keyFile.string();
-
-
-        LOG_INFO("[CoreGlobal] GCP Config loaded:");
-        LOG_INFO(" - Project ID: {}", projectId);
-        LOG_INFO(" - Bucket: {}", bucketName);
-        LOG_INFO(" - Key File: {}", credentialsPath);
+        LOG_INFO("[CoreGlobal] R2 Config loaded:");
+        LOG_INFO(" - Account ID : {}", accountId);
+        LOG_INFO(" - Bucket     : {}", bucketName);
+        LOG_INFO(" - Public URL : {}", publicUrl.empty() ? "(not set)" : publicUrl);
 
         return true;
     }
     catch (const exception& e) {
-        LOG_ERROR("[CoreGlobal] LoadGCPConfig error: {}", e.what());
+        LOG_ERROR("[CoreGlobal] LoadR2Config error: {}", e.what());
         return false;
     }
 }
 
 
+
+
+// ===== GCP 설정 파일 읽기 (FCM + PaymentService 전용) =====
+static bool LoadGCPConfig(string& projectId, string& credentialsPath)
+{
+    try {
+        ::filesystem::path configDir = "config";
+        ::filesystem::path adminFile = configDir / "googleCloud_admin.txt";
+        ifstream file(adminFile);
+        if (!file.is_open()) {
+            LOG_WARN("[CoreGlobal] GCP 설정 파일 없음 (FCM/Payment 비활성화): {}", adminFile.string());
+            return false;
+        }
+
+        string bucketIgnored;
+        if (!getline(file, projectId) || !getline(file, bucketIgnored)) {
+            LOG_WARN("[CoreGlobal] googleCloud_admin.txt 파일 비어있음");
+            return false;
+        }
+        file.close();
+
+        auto trim = [](string& s) {
+            s.erase(0, s.find_first_not_of(" \t\r\n"));
+            if (!s.empty()) s.erase(s.find_last_not_of(" \t\r\n") + 1);
+        };
+        trim(projectId);
+
+        ::filesystem::path keyFile = configDir / "gcp_key.json";
+        if (!::filesystem::exists(keyFile)) {
+            LOG_WARN("[CoreGlobal] GCP 인증 키 없음 (FCM/Payment 비활성화): {}", keyFile.string());
+            return false;
+        }
+
+        credentialsPath = keyFile.string();
+        LOG_INFO("[CoreGlobal] GCP Config loaded (FCM/Payment): projectId={}", projectId);
+        return true;
+    }
+    catch (const exception& e) {
+        LOG_WARN("[CoreGlobal] LoadGCPConfig error: {}", e.what());
+        return false;
+    }
+}
 
 
 CoreGlobal::CoreGlobal()
@@ -133,39 +182,48 @@ CoreGlobal::CoreGlobal()
     _albumService    = make_unique<AlbumService>(*_userManager);
     _locationService = make_unique<LocationService>(*_userManager);
 
-    // CloudStorage 초기화 (파일에서 설정 읽기)
-    string projectId, bucketName, credentialsPath;
-    if (!LoadGCPConfig(projectId, bucketName, credentialsPath)) {
-        LOG_ERROR("[CoreGlobal] Failed to load GCP config.");
-        _cloudStorage = nullptr;
-        _fileService = nullptr;
+    // Cloudflare R2 스토리지 초기화
+    {
+        string accountId, bucketName, accessKeyId, secretAccessKey, publicUrl;
+        if (!LoadR2Config(accountId, bucketName, accessKeyId, secretAccessKey, publicUrl)) {
+            LOG_ERROR("[CoreGlobal] Failed to load R2 config — file upload disabled.");
+            _cloudStorage = nullptr;
+            _fileService  = nullptr;
+        }
+        else {
+            _cloudStorage = make_unique<CloudStorageR2>(
+                accountId, bucketName, accessKeyId, secretAccessKey, publicUrl);
+
+            if (!_cloudStorage->Initialize()) {
+                LOG_ERROR("[CoreGlobal] CloudStorageR2 Initialize Failed");
+            }
+
+            _fileService = make_unique<FileService>(_cloudStorage.get());
+
+            _expirationBatchJob = make_unique<ExpirationBatchJob>(_cloudStorage.get());
+            _expirationBatchJob->Start();
+        }
     }
-    else {
-        _cloudStorage = make_unique<CloudStorageGCS>(projectId, bucketName, credentialsPath);
 
-        if (!_cloudStorage->Initialize()) {
-            LOG_ERROR("[CoreGlobal] CloudStorage Initialize Failed");
+    // FCM + PaymentService 초기화 (GCP credentials)
+    {
+        string projectId, credentialsPath;
+        if (LoadGCPConfig(projectId, credentialsPath)) {
+            _fcmClient = make_unique<FcmClient>(projectId, credentialsPath);
+            if (!_fcmClient->Initialize()) {
+                LOG_ERROR("[CoreGlobal] FcmClient Initialize Failed");
+                _fcmClient = nullptr;
+            }
+
+            _paymentService = make_unique<PaymentService>(*_userManager);
+            if (!_paymentService->Initialize(credentialsPath)) {
+                LOG_ERROR("[CoreGlobal] PaymentService Initialize Failed");
+                _paymentService = nullptr;
+            }
         }
-
-        _fileService = make_unique<FileService>(_cloudStorage.get());
-
-        // FCM Client 초기화 (같은 credentials 사용)
-        _fcmClient = make_unique<FcmClient>(projectId, credentialsPath);
-        if (!_fcmClient->Initialize()) {
-            LOG_ERROR("[CoreGlobal] FcmClient Initialize Failed");
-            _fcmClient = nullptr;
+        else {
+            LOG_WARN("[CoreGlobal] GCP config missing — FCM/Payment disabled");
         }
-
-        // PaymentService 초기화 (같은 credentials 사용)
-        _paymentService = make_unique<PaymentService>(*_userManager);
-        if (!_paymentService->Initialize(credentialsPath)) {
-            LOG_ERROR("[CoreGlobal] PaymentService Initialize Failed");
-            _paymentService = nullptr;
-        }
-
-        // 파일 만료 배치 잡 초기화
-        _expirationBatchJob = make_unique<ExpirationBatchJob>(_cloudStorage.get());
-        _expirationBatchJob->Start();
     }
 
     GUserManager = _userManager.get();
@@ -267,39 +325,48 @@ void CoreGlobal::Reset()
     _albumService    = make_unique<AlbumService>(*_userManager);
     _locationService = make_unique<LocationService>(*_userManager);
 
-    // CloudStorage 초기화 (파일에서 설정 읽기)
-    string projectId, bucketName, credentialsPath;
-    if (!LoadGCPConfig(projectId, bucketName, credentialsPath)) {
-        LOG_ERROR("[CoreGlobal] Failed to load GCP config.");
-        _cloudStorage = nullptr;
-        _fileService = nullptr;
+    // Cloudflare R2 스토리지 재초기화
+    {
+        string accountId, bucketName, accessKeyId, secretAccessKey, publicUrl;
+        if (!LoadR2Config(accountId, bucketName, accessKeyId, secretAccessKey, publicUrl)) {
+            LOG_ERROR("[CoreGlobal] Failed to load R2 config — file upload disabled.");
+            _cloudStorage = nullptr;
+            _fileService  = nullptr;
+        }
+        else {
+            _cloudStorage = make_unique<CloudStorageR2>(
+                accountId, bucketName, accessKeyId, secretAccessKey, publicUrl);
+
+            if (!_cloudStorage->Initialize()) {
+                LOG_ERROR("[CoreGlobal] CloudStorageR2 Initialize Failed");
+            }
+
+            _fileService = make_unique<FileService>(_cloudStorage.get());
+
+            _expirationBatchJob = make_unique<ExpirationBatchJob>(_cloudStorage.get());
+            _expirationBatchJob->Start();
+        }
     }
-    else {
-        _cloudStorage = make_unique<CloudStorageGCS>(projectId, bucketName, credentialsPath);
 
-        if (!_cloudStorage->Initialize()) {
-            LOG_ERROR("[CoreGlobal] CloudStorage Initialize Failed");
+    // FCM + PaymentService 재초기화 (GCP credentials)
+    {
+        string projectId, credentialsPath;
+        if (LoadGCPConfig(projectId, credentialsPath)) {
+            _fcmClient = make_unique<FcmClient>(projectId, credentialsPath);
+            if (!_fcmClient->Initialize()) {
+                LOG_ERROR("[CoreGlobal] FcmClient Initialize Failed");
+                _fcmClient = nullptr;
+            }
+
+            _paymentService = make_unique<PaymentService>(*_userManager);
+            if (!_paymentService->Initialize(credentialsPath)) {
+                LOG_ERROR("[CoreGlobal] PaymentService Initialize Failed");
+                _paymentService = nullptr;
+            }
         }
-
-        _fileService = make_unique<FileService>(_cloudStorage.get());
-
-        // FCM Client 초기화 (같은 credentials 사용)
-        _fcmClient = make_unique<FcmClient>(projectId, credentialsPath);
-        if (!_fcmClient->Initialize()) {
-            LOG_ERROR("[CoreGlobal] FcmClient Initialize Failed");
-            _fcmClient = nullptr;
+        else {
+            LOG_WARN("[CoreGlobal] GCP config missing — FCM/Payment disabled");
         }
-
-        // PaymentService 초기화 (같은 credentials 사용)
-        _paymentService = make_unique<PaymentService>(*_userManager);
-        if (!_paymentService->Initialize(credentialsPath)) {
-            LOG_ERROR("[CoreGlobal] PaymentService Initialize Failed");
-            _paymentService = nullptr;
-        }
-
-        // 파일 만료 배치 잡 재초기화
-        _expirationBatchJob = make_unique<ExpirationBatchJob>(_cloudStorage.get());
-        _expirationBatchJob->Start();
     }
 
     GUserManager = _userManager.get();

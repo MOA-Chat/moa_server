@@ -90,26 +90,28 @@ bool LocationRepository::UpdateVisit(const string& visitId, const string& userId
 
         // 본인 검증
         auto check = session.sql(
-            "SELECT user_id FROM location_visits WHERE id = ?"
+            "SELECT user_id, group_id FROM location_visits WHERE id = ?"
         ).bind(visitId).execute();
         if (check.count() == 0) return false;
-        if (check.fetchOne()[0].get<string>() != userId) return false;
+        auto checkRow = check.fetchOne();
+        if (checkRow[0].get<string>() != userId) return false;
+        string groupId = checkRow[1].get<string>();
 
         session.sql(
             "UPDATE location_visits SET rating=?, review=?, visited_at=? WHERE id=?"
         ).bind(rating, review, visitedAt, visitId).execute();
 
         // 사진 교체: 기존 삭제 후 재삽입
-        session.sql("DELETE FROM location_visit_photos WHERE visit_id=?").bind(visitId).execute();
+        session.sql("DELETE FROM location_photos WHERE visit_id=?").bind(visitId).execute();
+        int64 now = (int64)time(nullptr) * 1000LL;
         for (const auto& url : photoUrls) {
             string photoId = [&]() -> string {
-                // reuse GenerateUUID logic via UUID query
                 auto r = session.sql("SELECT UUID()").execute();
                 return r.fetchOne()[0].get<string>();
             }();
             session.sql(
-                "INSERT INTO location_visit_photos (id, visit_id, place_id, photo_url) VALUES (?,?,?,?)"
-            ).bind(photoId, visitId, placeId, url).execute();
+                "INSERT INTO location_photos (id, visit_id, place_id, group_id, photo_url, created_at) VALUES (?,?,?,?,?,?)"
+            ).bind(photoId, visitId, placeId, groupId, url, now).execute();
         }
 
         UpdatePlaceStats(placeId);
@@ -139,8 +141,7 @@ pair<bool,bool> LocationRepository::DeleteVisit(const string& visitId, const str
         ).bind(placeId).execute().fetchOne();
         int visitCount = (int)cntRow[0].get<int64_t>();
 
-        // 방문 삭제
-        session.sql("DELETE FROM location_visit_photos WHERE visit_id=?").bind(visitId).execute();
+        // 방문 삭제 (location_photos는 FK CASCADE로 자동 삭제됨)
         session.sql("DELETE FROM location_visits WHERE id=?").bind(visitId).execute();
 
         bool placeDeleted = false;

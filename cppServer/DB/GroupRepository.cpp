@@ -183,9 +183,12 @@ bool GroupRepository::SaveGroupAsset(const string& groupId, const string& userId
         auto& db = DBManager::GetInstance();
         auto& session = db.GetSession();
 
-        // group_assets에 INSERT (자동으로 트리거가 작동하여 groups.storage_usage 업데이트)
         session.sql("INSERT INTO group_assets (group_id, user_id, msg_seq, file_size, file_type) VALUES (?, ?, ?, ?, ?)")
             .bind(groupId, userId, msgSeq, fileSize, fileType)
+            .execute();
+
+        session.sql("UPDATE `groups` SET storage_usage_bytes = storage_usage_bytes + ? WHERE group_id = ?")
+            .bind(fileSize, groupId)
             .execute();
 
         LOG_INFO("[GroupRepository] Group Asset 저장 완료: Group={}, Size={} bytes", groupId, fileSize);
@@ -193,6 +196,51 @@ bool GroupRepository::SaveGroupAsset(const string& groupId, const string& userId
     }
     catch (const mysqlx::Error& err) {
         LOG_ERROR("[GroupRepository] 에셋 기록 실패: {}", err.what());
+        return false;
+    }
+}
+
+
+
+
+
+bool GroupRepository::DeleteGroupAssetByGcsPath(const string& gcsPath)
+{
+    if (gcsPath.empty()) return false;
+    try {
+        auto& db = DBManager::GetInstance();
+        auto& session = db.GetSession();
+
+        // 먼저 group_id + file_size 조회
+        auto res = session.sql(
+            "SELECT ga.group_id, ga.file_size FROM group_assets ga "
+            "JOIN messages m ON ga.group_id = m.group_id AND ga.msg_seq = m.msg_seq "
+            "WHERE m.gcs_path = ? LIMIT 1"
+        ).bind(gcsPath).execute();
+
+        auto row = res.fetchOne();
+        if (!row) return true; // already gone
+
+        string gid   = row[0].get<string>();
+        int64  fsize = row[1].get<int64_t>();
+
+        session.sql(
+            "DELETE ga FROM group_assets ga "
+            "JOIN messages m ON ga.group_id = m.group_id AND ga.msg_seq = m.msg_seq "
+            "WHERE m.gcs_path = ?"
+        ).bind(gcsPath).execute();
+
+        if (fsize > 0) {
+            session.sql(
+                "UPDATE `groups` SET storage_usage_bytes = GREATEST(0, storage_usage_bytes - ?) "
+                "WHERE group_id = ?"
+            ).bind(fsize, gid).execute();
+        }
+
+        return true;
+    }
+    catch (const mysqlx::Error& err) {
+        LOG_ERROR("[GroupRepository] DeleteGroupAssetByGcsPath failed: {}", err.what());
         return false;
     }
 }
@@ -346,9 +394,9 @@ vector<cGroupInfo> GroupRepository::GetUserGroups(const string& userId)
             if (!row[4].isNull()) info.description = row[4].get<string>();
             if (!row[5].isNull()) info.groupImageUrl = row[5].get<string>();
 
-            info.storageUsage = row[6].get<int64_t>();
-            info.storageLimit = row[7].get<int64_t>();
-            info.memberCount = row[8].get<int>();
+            info.storageUsage = !row[6].isNull() ? row[6].get<int64_t>() : 0;
+            info.storageLimit = !row[7].isNull() ? row[7].get<int64_t>() : 0;
+            info.memberCount  = !row[8].isNull() ? row[8].get<int>() : 0;
             info.createdAt = ParseTimestamp(row[9]);
             if (!row[10].isNull()) info.inviteCodeExpiresAt = row[10].get<int64_t>();
             result.push_back(info);
@@ -391,9 +439,9 @@ bool GroupRepository::GetGroupInfoById(const string& groupId, cGroupInfo& OUT in
         if (!row[4].isNull()) info.description = row[4].get<string>();
         if (!row[5].isNull()) info.groupImageUrl = row[5].get<string>();
 
-        info.storageUsage = row[6].get<int64_t>();
-        info.storageLimit = row[7].get<int64_t>();
-        info.memberCount = row[8].get<int>();
+        info.storageUsage = !row[6].isNull() ? row[6].get<int64_t>() : 0;
+        info.storageLimit = !row[7].isNull() ? row[7].get<int64_t>() : 0;
+        info.memberCount  = !row[8].isNull() ? row[8].get<int>() : 0;
         info.createdAt = ParseTimestamp(row[9]);
         if (!row[10].isNull()) info.inviteCodeExpiresAt = row[10].get<int64_t>();
 
@@ -565,6 +613,20 @@ bool GroupRepository::IsGroupCodeExists(const string& groupCode) {
     } catch (const mysqlx::Error& err) {
         LOG_ERROR("[GroupRepository] IsGroupCodeExists Failed: {}", err.what());
         return false;
+    }
+}
+
+
+void GroupRepository::EnsureDefaultStorage(const string& groupId, int64 defaultCapacity)
+{
+    try {
+        auto& db = DBManager::GetInstance();
+        db.GetSession().sql(
+            "UPDATE `groups` SET storage_capacity_bytes = ? "
+            "WHERE group_id = ? AND storage_capacity_bytes = 0"
+        ).bind(defaultCapacity, groupId).execute();
+    } catch (const mysqlx::Error& err) {
+        LOG_ERROR("[GroupRepository] EnsureDefaultStorage 실패: {}", err.what());
     }
 }
 
