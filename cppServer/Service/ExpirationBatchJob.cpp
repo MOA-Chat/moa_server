@@ -1,10 +1,14 @@
 #include "pch.h"
 #include "ExpirationBatchJob.h"
 #include "Cloud/CloudStorage.h"
+#include "ChatService.h"
 #include "../DB/FileRepository.h"
 #include "../DB/MessageRepository.h"
 #include "../DB/GroupRepository.h"
 #include "../DB/UserRepository.h"
+#include "../DB/AlbumRepository.h"
+#include "../DB/SubscriptionRepository.h"
+#include "../DB/PollRepository.h"
 #include "../CoreGlobal.h"
 
 #include <iostream>
@@ -41,6 +45,9 @@ void ExpirationBatchJob::Stop()
 void ExpirationBatchJob::RunOnce()
 {
     ProcessExpiredFiles();
+    ProcessSoftDeletedAlbumPhotos();
+    ProcessExpiredSubscriptions();
+    ProcessExpiredPolls();
 }
 
 void ExpirationBatchJob::RunLoop()
@@ -50,10 +57,18 @@ void ExpirationBatchJob::RunLoop()
 
     while (_running.load()) {
         ProcessExpiredFiles();
+        ProcessSoftDeletedAlbumPhotos();
+        ProcessExpiredSubscriptions();
+        ProcessExpiredPolls();
 
-        // Sleep in 1s chunks so Stop() signal is detected quickly
+        // Sleep in 1s chunks; check polls every 60s within the main 6-hour cycle
+        int pollTick = 0;
         for (int i = 0; i < _intervalSec && _running.load(); ++i) {
             this_thread::sleep_for(chrono::seconds(1));
+            if (++pollTick >= 60) {
+                ProcessExpiredPolls();
+                pollTick = 0;
+            }
         }
     }
 }
@@ -119,4 +134,78 @@ void ExpirationBatchJob::ProcessExpiredFiles()
     }
 
     LOG_INFO("[ExpirationBatchJob] Done: deleted={} failed={}", deleted, failed);
+}
+
+void ExpirationBatchJob::ProcessSoftDeletedAlbumPhotos()
+{
+    if (!_cloudStorage) return;
+
+    int64 now = Nowts();
+    const int64 THIRTY_DAYS_MS = 30LL * 24 * 3600 * 1000;
+    int64 cutoff = now - THIRTY_DAYS_MS;
+
+    auto photos = AlbumRepository::GetSoftDeletedPhotosOlderThan(cutoff);
+    if (photos.empty()) return;
+
+    LOG_INFO("[ExpirationBatchJob] 소프트딜리트 앨범사진 정리: {}개", photos.size());
+
+    for (const auto& p : photos) {
+        if (!p.gcsPath.empty()) {
+            _cloudStorage->RemoveFile(p.gcsPath);
+            // 썸네일 경로 파생 (확장자 앞에 _thumb 삽입)
+            auto dot = p.gcsPath.find_last_of('.');
+            string thumbPath = (dot != string::npos)
+                ? p.gcsPath.substr(0, dot) + "_thumb.jpg"
+                : p.gcsPath + "_thumb.jpg";
+            _cloudStorage->RemoveFile(thumbPath);
+        }
+        AlbumRepository::HardDeletePhoto(p.id);
+        LOG_INFO("[ExpirationBatchJob] 앨범사진 하드딜리트: id={}", p.id);
+    }
+}
+
+void ExpirationBatchJob::ProcessExpiredPolls()
+{
+    if (!GChatService) return;
+
+    int64 now = Nowts();
+    auto polls = PollRepository::GetAllExpiredActivePolls(now);
+    if (polls.empty()) return;
+
+    LOG_INFO("[ExpirationBatchJob] 만료된 투표 자동 종료: {}개", polls.size());
+    for (const auto& poll : polls) {
+        if (MessageRepository::PollClosedMessageExists(poll.convId, poll.pollId)) continue;
+        if (PollRepository::ClosePoll(poll.pollId, poll.creatorId)) {
+            GChatService->SendPollClosedNotification(poll.convId, poll.pollId, poll.creatorId, 0);
+            LOG_INFO("[ExpirationBatchJob] 투표 자동 종료 완료: pollId={}", poll.pollId);
+        }
+    }
+}
+
+
+void ExpirationBatchJob::ProcessExpiredSubscriptions()
+{
+    int64 now = Nowts();
+    const int64 GRACE_MS = 14LL * 24 * 3600 * 1000;
+
+    // 1) active 상태인데 expires_at 지난 구독 → grace로 전환
+    auto expiredGroups = SubscriptionRepository::GetExpiredActiveGroupIds(now);
+    for (const auto& groupId : expiredGroups) {
+        int64 graceExpiresAt = now + GRACE_MS;
+        SubscriptionRepository::SetGrace(groupId, graceExpiresAt);
+        LOG_INFO("[ExpirationBatchJob] 구독 grace 전환: group={} graceExpires={}", groupId, graceExpiresAt);
+    }
+
+    // 2) grace 상태인데 grace_expires_at 지난 구독 → 앨범 사진 전부 소프트딜리트 + 스토리지 초기화
+    auto graceExpiredGroups = SubscriptionRepository::GetExpiredGraceGroupIds(now);
+    for (const auto& groupId : graceExpiredGroups) {
+        AlbumRepository::SoftDeleteAllPhotosByGroup(groupId, now);
+        GroupRepository::ResetStorageToFree(groupId);
+        SubscriptionRepository::SetExpired(groupId);
+        LOG_INFO("[ExpirationBatchJob] 구독 만료 처리 완료: group={}", groupId);
+    }
+
+    if (!expiredGroups.empty() || !graceExpiredGroups.empty()) {
+        LOG_INFO("[ExpirationBatchJob] 구독 처리: grace전환={}건 만료={}건", expiredGroups.size(), graceExpiredGroups.size());
+    }
 }

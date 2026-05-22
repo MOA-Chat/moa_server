@@ -28,6 +28,9 @@ public:
 private:
     void RunLoop();
     void ProcessExpiredFiles();
+    void ProcessSoftDeletedAlbumPhotos();
+    void ProcessExpiredSubscriptions();
+    void ProcessExpiredPolls();
 
     CloudStorage*    _cloudStorage;
     int              _intervalSec;

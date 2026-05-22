@@ -41,4 +41,10 @@ public:
 
     // 대화방의 활성 투표 목록 (오프라인 동기화용)
     static vector<PollInfo> GetActivePollsForConv(const string& convId);
+
+    // 대화방의 전체 투표 목록 (로그인 시 상태 동기화용)
+    static vector<PollInfo> GetAllPollsForConv(const string& convId);
+
+    // 전체 대화방에서 만료 시각이 지난 active 투표 목록 (자동 종료 배치용)
+    static vector<PollInfo> GetAllExpiredActivePolls(int64 nowTs);
 };

@@ -238,6 +238,31 @@ bool MessageRepository::UpdateFileStatusByGcsPath(const string& gcsPath, const s
 
 
 
+bool MessageRepository::GetGcsPathAndFileSizeByMsgSeq(const string& convId, int64 msgSeq,
+                                                      string& outGcsPath, int64& outFileSize)
+{
+    try {
+        auto& session = DBManager::GetInstance().GetSession();
+        auto rows = session.sql(
+            "SELECT m.gcs_path, COALESCE(fu.file_size, 0) "
+            "FROM messages m "
+            "LEFT JOIN file_uploads fu ON fu.gcs_path = m.gcs_path "
+            "WHERE m.conv_id = ? AND m.msg_seq = ? LIMIT 1"
+        ).bind(convId, msgSeq).execute();
+
+        auto row = rows.fetchOne();
+        if (!row) return false;
+
+        outGcsPath  = row[0].isNull() ? "" : row[0].get<string>();
+        outFileSize = row[1].isNull() ? 0  : row[1].get<int64>();
+        return !outGcsPath.empty();
+    } catch (const mysqlx::Error& e) {
+        LOG_ERROR("[MessageRepository] GetGcsPathAndFileSizeByMsgSeq 실패: {}", e.what());
+        return false;
+    }
+}
+
+
 int64 MessageRepository::GetNextMessageSeq(const string& convId) 
 {
     try {
@@ -611,6 +636,112 @@ bool MessageRepository::EditMessage(const string& convId, int64 msgSeq, const st
     }
     catch (const mysqlx::Error& err) {
         LOG_ERROR("[MessageRepository] EditMessage 실패: {}", err.what());
+        return false;
+    }
+}
+
+
+bool MessageRepository::UpdatePollVotesInMessage(const string& convId, int64 msgSeq, const string& votesJson)
+{
+    try {
+        auto& session = DBManager::GetInstance().GetSession();
+
+        // JSON_SET은 키 순서를 알파벳으로 재정렬하므로 문자열 직접 교체
+        auto result = session.sql(
+            "SELECT message FROM messages WHERE conv_id = ? AND msg_seq = ? AND msg_type = 5")
+            .bind(convId, msgSeq)
+            .execute();
+        auto row = result.fetchOne();
+        if (!row) return false;
+
+        string msg = row[0].get<string>();
+
+        // "votes":{...} 구간을 찾아 새 값으로 교체
+        const string key = "\"votes\":";
+        size_t keyPos = msg.find(key);
+        if (keyPos == string::npos) return false;
+
+        size_t valueStart = keyPos + key.size();
+        while (valueStart < msg.size() && msg[valueStart] != '{') valueStart++;
+        if (valueStart >= msg.size()) return false;
+
+        int depth = 0;
+        size_t valueEnd = valueStart;
+        for (; valueEnd < msg.size(); valueEnd++) {
+            if (msg[valueEnd] == '{') depth++;
+            else if (msg[valueEnd] == '}') {
+                if (--depth == 0) { valueEnd++; break; }
+            }
+        }
+
+        string newMsg = msg.substr(0, valueStart) + votesJson + msg.substr(valueEnd);
+        session.sql("UPDATE messages SET message = ? WHERE conv_id = ? AND msg_seq = ? AND msg_type = 5")
+            .bind(newMsg, convId, msgSeq)
+            .execute();
+        return true;
+    }
+    catch (const std::exception& e) {
+        LOG_ERROR("[MessageRepository] UpdatePollVotesInMessage 실패: {}", e.what());
+        return false;
+    }
+}
+
+bool MessageRepository::PollClosedMessageExists(const string& convId, const string& pollId)
+{
+    try {
+        auto& session = DBManager::GetInstance().GetSession();
+        string pollIdPattern = "%" + pollId + "%";
+        string closedPattern = "%\"status\":\"closed\"%";
+        auto result = session.sql(
+            "SELECT COUNT(*) FROM messages "
+            "WHERE conv_id = ? AND msg_type = 5 "
+            "AND message LIKE ? "
+            "AND message LIKE ?")
+            .bind(convId, pollIdPattern, closedPattern)
+            .execute();
+        auto row = result.fetchOne();
+        if (!row) return false;
+        return row[0].get<int64>() > 0;
+    }
+    catch (const std::exception& e) {
+        LOG_ERROR("[MessageRepository] PollClosedMessageExists 실패: {}", e.what());
+        return false;
+    }
+}
+
+
+bool MessageRepository::UpdatePollStatusInMessage(const string& convId, int64 msgSeq, const string& status)
+{
+    try {
+        auto& session = DBManager::GetInstance().GetSession();
+
+        // JSON_SET은 키 순서를 알파벳으로 재정렬하므로 문자열 직접 교체
+        auto result = session.sql(
+            "SELECT message FROM messages WHERE conv_id = ? AND msg_seq = ? AND msg_type = 5")
+            .bind(convId, msgSeq)
+            .execute();
+        auto row = result.fetchOne();
+        if (!row) return false;
+
+        string msg = row[0].get<string>();
+
+        // "status":"..." 구간을 찾아 새 값으로 교체
+        const string key = "\"status\":\"";
+        size_t keyPos = msg.find(key);
+        if (keyPos == string::npos) return false;
+
+        size_t valueStart = keyPos + key.size();
+        size_t valueEnd = msg.find("\"", valueStart);
+        if (valueEnd == string::npos) return false;
+
+        string newMsg = msg.substr(0, valueStart) + status + msg.substr(valueEnd);
+        session.sql("UPDATE messages SET message = ? WHERE conv_id = ? AND msg_seq = ? AND msg_type = 5")
+            .bind(newMsg, convId, msgSeq)
+            .execute();
+        return true;
+    }
+    catch (const std::exception& e) {
+        LOG_ERROR("[MessageRepository] UpdatePollStatusInMessage 실패: {}", e.what());
         return false;
     }
 }

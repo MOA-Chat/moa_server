@@ -216,3 +216,77 @@ vector<PollInfo> PollRepository::GetActivePollsForConv(const string& convId)
     }
     return polls;
 }
+
+/*======================
+    GetAllPollsForConv
+========================*/
+vector<PollInfo> PollRepository::GetAllPollsForConv(const string& convId)
+{
+    vector<PollInfo> polls;
+    try {
+        auto& session = DBManager::GetInstance().GetSession();
+        auto result = session.sql(
+            "SELECT poll_id, conv_id, msg_seq, creator_id, question, options_json, "
+            "is_multi_select, is_anonymous, expires_at, status, created_at "
+            "FROM polls WHERE conv_id = ?")
+            .bind(convId)
+            .execute();
+
+        for (auto row : result) {
+            PollInfo info;
+            info.pollId = row[0].get<string>();
+            info.convId = row[1].get<string>();
+            info.msgSeq = row[2].get<int64_t>();
+            info.creatorId = row[3].get<string>();
+            info.question = row[4].get<string>();
+            info.optionsJson = row[5].get<string>();
+            info.isMultiSelect = row[6].get<int>() != 0;
+            info.isAnonymous = row[7].get<int>() != 0;
+            info.expiresAt = row[8].get<int64_t>();
+            info.status = row[9].get<string>();
+            info.createdAt = row[10].get<int64_t>();
+            polls.push_back(std::move(info));
+        }
+    }
+    catch (const std::exception& e) {
+        LOG_ERROR("[PollRepository] GetAllPollsForConv error: {}", e.what());
+    }
+    return polls;
+}
+
+/*======================
+    GetAllExpiredActivePolls
+========================*/
+vector<PollInfo> PollRepository::GetAllExpiredActivePolls(int64 nowTs)
+{
+    vector<PollInfo> polls;
+    try {
+        auto& session = DBManager::GetInstance().GetSession();
+        auto result = session.sql(
+            "SELECT poll_id, conv_id, msg_seq, creator_id, question, options_json, "
+            "is_multi_select, is_anonymous, expires_at, status, created_at "
+            "FROM polls WHERE status = 'active' AND expires_at > 0 AND expires_at < ?")
+            .bind(nowTs)
+            .execute();
+
+        for (auto row : result) {
+            PollInfo info;
+            info.pollId      = row[0].get<string>();
+            info.convId      = row[1].get<string>();
+            info.msgSeq      = row[2].get<int64_t>();
+            info.creatorId   = row[3].get<string>();
+            info.question    = row[4].get<string>();
+            info.optionsJson = row[5].get<string>();
+            info.isMultiSelect = row[6].get<int>() != 0;
+            info.isAnonymous   = row[7].get<int>() != 0;
+            info.expiresAt   = row[8].get<int64_t>();
+            info.status      = row[9].get<string>();
+            info.createdAt   = row[10].get<int64_t>();
+            polls.push_back(std::move(info));
+        }
+    }
+    catch (const std::exception& e) {
+        LOG_ERROR("[PollRepository] GetAllExpiredActivePolls error: {}", e.what());
+    }
+    return polls;
+}

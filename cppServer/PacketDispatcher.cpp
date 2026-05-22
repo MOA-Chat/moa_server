@@ -22,6 +22,7 @@
 #include "DB/FcmTokenRepository.h"
 #include "DB/SubscriptionRepository.h"
 #include "DB/DBManager.h"
+#include "DB/PollRepository.h"
 
 
 using namespace Protocol;
@@ -175,7 +176,7 @@ void PacketDispatcher::DispatchPacket(sessionPtr& session, Protocol::Envelope& e
 		break;
 
 	case Protocol::Envelope::kCCancelSubscription:
-		if (GPaymentService) GPaymentService->HandleCancelSubscription(session, envelope.request_id());
+		if (GPaymentService) GPaymentService->HandleCancelSubscription(session, envelope.request_id(), envelope.c_cancel_subscription());
 		break;
 
 	case Protocol::Envelope::kCUploadFile:
@@ -545,6 +546,62 @@ void PacketDispatcher::PushOfflineData(sessionPtr& session, uint64 reqId, const 
 	}
 	if (!announcements.empty()) {
 		LOG_INFO("[PacketDispatcher] 공지 동기화: {}개", announcements.size());
+	}
+
+	// 오프라인 중 누락된 투표 상태 동기화 (votes + close)
+	int pollSyncCount = 0;
+	for (const auto& group : groups) {
+		string convId = "group:" + group.groupId;
+		auto polls = PollRepository::GetAllPollsForConv(convId);
+		for (const auto& poll : polls) {
+			string votesJson = PollRepository::GetPollVotes(poll.pollId);
+
+			// messages 테이블 votes 최신화 (히스토리 조회 시 최신 votes 반환)
+			// status는 업데이트하지 않음: 원본 카드가 그대로 유지되도록
+			MessageRepository::UpdatePollVotesInMessage(convId, poll.msgSeq, votesJson);
+
+			// 서버 오프라인 중 만료된 투표: 종료 알림 메시지가 없으면 생성
+			bool isExpired = poll.status != "closed" && poll.expiresAt > 0 && Nowts() > poll.expiresAt;
+			bool needsClosedMsg = (poll.status == "closed" || isExpired)
+				&& !MessageRepository::PollClosedMessageExists(convId, poll.pollId);
+			if (needsClosedMsg) {
+				if (isExpired) {
+					PollRepository::ClosePoll(poll.pollId, poll.creatorId);
+				}
+				GChatService->SendPollClosedNotification(convId, poll.pollId, poll.creatorId, 0);
+			}
+
+			Protocol::S_Vote pkt_vote;
+			pkt_vote.set_conv_id(convId);
+			pkt_vote.set_poll_id(poll.pollId);
+			pkt_vote.set_msg_seq(poll.msgSeq);
+			pkt_vote.set_voter_id("");
+			pkt_vote.set_voter_name("");
+			pkt_vote.set_votes_json(votesJson);
+
+			Protocol::Envelope env_v;
+			env_v.set_version(GProtoVersion);
+			env_v.set_request_id(0);
+			*env_v.mutable_s_vote() = pkt_vote;
+			SendEnvelope(session, env_v);
+			pollSyncCount++;
+
+			if (poll.status == "closed") {
+				Protocol::S_ClosePoll pkt_close;
+				pkt_close.set_conv_id(convId);
+				pkt_close.set_poll_id(poll.pollId);
+				pkt_close.set_msg_seq(poll.msgSeq);
+
+				Protocol::Envelope env_c;
+				env_c.set_version(GProtoVersion);
+				env_c.set_request_id(0);
+				*env_c.mutable_s_close_poll() = pkt_close;
+				SendEnvelope(session, env_c);
+			}
+		}
+	}
+	if (pollSyncCount > 0) {
+		LOG_INFO("[PacketDispatcher] 투표 상태 동기화: {}개", pollSyncCount);
 	}
 
 }
@@ -1081,60 +1138,52 @@ bool PacketDispatcher::Dispatch_C_ReadReceipt(sessionPtr& session, uint64 reqId,
 bool PacketDispatcher::Dispatch_C_GetSubscription(sessionPtr& session, uint64 reqId, const Protocol::C_GetSubscription& pkt)
 {
 	auto serverSession = static_pointer_cast<ServerSession>(session);
-	const string userId = serverSession->GetUserId();
+	const string userId  = serverSession->GetUserId();
+	const string groupId = pkt.group_id();
+
 	if (userId.empty()) {
 		DispatchError(session, reqId, ERR_UNAUTHORIZED);
 		return false;
 	}
+	if (groupId.empty()) {
+		DispatchError(session, reqId, ERR_INVALID_ARGUMENT, "group_id 필요");
+		return false;
+	}
 
 	try {
-		// 1) 사용자 정보 조회
-		cUserInfo userInfo;
-		if (!UserRepository::GetUser(userId, userInfo)) {
-			DispatchError(session, reqId, ERR_USER_NOT_FOUND);
+		cGroupInfo gInfo;
+		if (!GroupRepository::GetGroupInfoById(groupId, gInfo)) {
+			DispatchError(session, reqId, ERR_INVALID_ARGUMENT, "그룹을 찾을 수 없습니다.");
 			return false;
 		}
 
 		Protocol::S_GetSubscription response;
 		response.set_success(true);
-		response.set_current_grade(static_cast<int32>(userInfo.subGrade));
-		response.set_storage_capacity_bytes(userInfo.storageCapacity);
-		response.set_storage_usage_bytes(userInfo.storageUsage);
+		response.set_storage_limit_bytes(gInfo.storageLimit);
+		response.set_storage_usage_bytes(gInfo.storageUsage);
 
-		// 2) 현재 구독 정보 조회 (SubscriptionRepository)
+		// storage_capacity_bytes로 현재 플랜 이름 결정
+		string planName = "Free";
+		if      (gInfo.storageLimit > 53687091200LL)  planName = "Max";   // >50GB
+		else if (gInfo.storageLimit > 10737418240LL)  planName = "Plus";  // >10GB
+		else if (gInfo.storageLimit > 1073741824LL)   planName = "Basic"; // >1GB
+
 		cSubscriptionInfo subInfo;
-		if (SubscriptionRepository::GetActiveSubscription(userId, subInfo)) {
-			if (subInfo.expiresAt > 0) {
-				response.set_expires_at(subInfo.expiresAt);
-			}
+		if (SubscriptionRepository::GetActiveSubscription(groupId, subInfo)) {
+			response.set_expires_at(subInfo.expiresAt);
 			response.set_auto_renew(subInfo.autoRenew);
+			if (subInfo.status == "grace") planName = "유예 중";
 		}
+		response.set_current_plan_name(planName);
 
-		// 3) 이용 가능한 플랜 목록 조회 (SubscriptionRepository)
-		auto plans = SubscriptionRepository::GetAvailablePlans("personal");
-		for (const auto& planInfo : plans) {
+		auto plans = SubscriptionRepository::GetAvailablePlans();
+		for (const auto& p : plans) {
 			auto* plan = response.add_available_plans();
-			plan->set_plan_id(planInfo.planId);
-			plan->set_plan_type(planInfo.planType);
-			plan->set_name(planInfo.name);
-			plan->set_grade(planInfo.grade);
-			plan->set_storage_bytes(planInfo.storageBytes);
-			plan->set_max_file_size(planInfo.maxFileSize);
-			plan->set_monthly_price(planInfo.monthlyPrice);
-
-			for (const auto& feature : planInfo.features) {
-				plan->add_features(feature);
-			}
-
-			// 현재 플랜 이름 매칭
-			if (planInfo.grade == static_cast<int>(userInfo.subGrade)) {
-				response.set_current_plan_name(planInfo.name);
-			}
-		}
-
-		// 무료 플랜인 경우 기본 이름
-		if (response.current_plan_name().empty()) {
-			response.set_current_plan_name("무료");
+			plan->set_plan_id(p.planId);
+			plan->set_name(p.name);
+			plan->set_storage_bytes(p.storageBytes);
+			plan->set_max_file_size(p.maxFileSize);
+			plan->set_monthly_price(static_cast<int64>(p.monthlyPrice));
 		}
 
 		Protocol::Envelope env;
