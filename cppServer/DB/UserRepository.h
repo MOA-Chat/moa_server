@@ -12,7 +12,6 @@ struct cUserInfo {
     string email;
     string status_message;
     string profileImageUrl;
-    string backgroundImageUrl;
 
     int64 subGrade = 0;        // 추가됨 (0: 일반, 1: 프로...)
     int64 storageCapacity = 0;
