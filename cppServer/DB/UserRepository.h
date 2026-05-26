@@ -10,7 +10,6 @@ struct cUserInfo {
 
     string name;
     string email;
-    string phone;
     string status_message;
     string profileImageUrl;
     string backgroundImageUrl;
@@ -70,7 +69,7 @@ public:
     };
     static bool GetStorageInfo(const string& userId, StorageInfo& OUT info);
     static bool SaveUserAsset(const string& userId, int64 msgSeq, int64 fileSize, const string& fileType);
-    static bool DeleteUserAssetByGcsPath(const string& gcsPath);
+    static bool DeleteUserAssetByFilePath(const string& filePath);
 
     // 이메일 인증
     static bool SetEmailVerified(const string& userId);
