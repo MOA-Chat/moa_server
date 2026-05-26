@@ -86,7 +86,7 @@ bool UserRepository::GetUser(const string& userId, cUserInfo& OUT userInfo) {
         auto users = schema.getTable("users");
 
         auto result = users.select("user_id", "auth_token", "name", "email",
-            "status_message", "profile_image_url",
+            "status_message", "profile_image_url", "background_image_url",
             "sub_grade", "storage_capacity_bytes", "storage_usage_bytes", "last_seen", "is_deleted",
             "is_email_verified", "oauth_provider", "oauth_provider_id")
             .where("user_id = :uid")
@@ -102,15 +102,16 @@ bool UserRepository::GetUser(const string& userId, cUserInfo& OUT userInfo) {
         if (!row[3].isNull()) userInfo.email = row[3].get<string>();
         if (!row[4].isNull()) userInfo.status_message = row[4].get<string>();
         if (!row[5].isNull()) userInfo.profileImageUrl = row[5].get<string>();
+        if (!row[6].isNull()) userInfo.backgroundImageUrl = row[6].get<string>();
 
-        userInfo.subGrade = row[6].get<int64>();
-        userInfo.storageCapacity = row[7].get<int64>();
-        userInfo.storageUsage = row[8].get<int64>();
-        userInfo.lastSeen = row[9].isNull() ? 0 : FriendRepository::ParseTimestamp(row[9]);
-        userInfo.isDeleted = row[10].isNull() ? false : (row[10].get<int>() == 1);
-        userInfo.isEmailVerified = row[11].isNull() ? false : (row[11].get<int>() == 1);
-        if (!row[12].isNull()) userInfo.oauthProvider = row[12].get<string>();
-        if (!row[13].isNull()) userInfo.oauthProviderId = row[13].get<string>();
+        userInfo.subGrade = row[7].get<int64>();
+        userInfo.storageCapacity = row[8].get<int64>();
+        userInfo.storageUsage = row[9].get<int64>();
+        userInfo.lastSeen = row[10].isNull() ? 0 : FriendRepository::ParseTimestamp(row[10]);
+        userInfo.isDeleted = row[11].isNull() ? false : (row[11].get<int>() == 1);
+        userInfo.isEmailVerified = row[12].isNull() ? false : (row[12].get<int>() == 1);
+        if (!row[13].isNull()) userInfo.oauthProvider = row[13].get<string>();
+        if (!row[14].isNull()) userInfo.oauthProviderId = row[14].get<string>();
 
         return true;
     } catch (const mysqlx::Error& err) {
@@ -130,7 +131,7 @@ bool UserRepository::GetUserWithPassword(const string& userId, cUserInfo& OUT us
         auto users = schema.getTable("users");
 
         auto result = users.select("user_id", "password_hash", "auth_token", "name", "email",
-            "status_message", "profile_image_url",
+            "status_message", "profile_image_url", "background_image_url",
             "sub_grade", "storage_capacity_bytes", "storage_usage_bytes", "last_seen", "is_deleted",
             "is_email_verified", "oauth_provider", "oauth_provider_id")
             .where("user_id = :uid")
@@ -149,15 +150,16 @@ bool UserRepository::GetUserWithPassword(const string& userId, cUserInfo& OUT us
         if (!row[4].isNull()) userInfo.email = row[4].get<string>();
         if (!row[5].isNull()) userInfo.status_message = row[5].get<string>();
         if (!row[6].isNull()) userInfo.profileImageUrl = row[6].get<string>();
+        if (!row[7].isNull()) userInfo.backgroundImageUrl = row[7].get<string>();
 
-        userInfo.subGrade = row[7].get<int64>();
-        userInfo.storageCapacity = row[8].get<int64>();
-        userInfo.storageUsage = row[9].get<int64>();
-        userInfo.lastSeen = row[10].isNull() ? 0 : FriendRepository::ParseTimestamp(row[10]);
-        userInfo.isDeleted = row[11].isNull() ? false : (row[11].get<int>() == 1);
-        userInfo.isEmailVerified = row[12].isNull() ? false : (row[12].get<int>() == 1);
-        if (!row[13].isNull()) userInfo.oauthProvider = row[13].get<string>();
-        if (!row[14].isNull()) userInfo.oauthProviderId = row[14].get<string>();
+        userInfo.subGrade = row[8].get<int64>();
+        userInfo.storageCapacity = row[9].get<int64>();
+        userInfo.storageUsage = row[10].get<int64>();
+        userInfo.lastSeen = row[11].isNull() ? 0 : FriendRepository::ParseTimestamp(row[11]);
+        userInfo.isDeleted = row[12].isNull() ? false : (row[12].get<int>() == 1);
+        userInfo.isEmailVerified = row[13].isNull() ? false : (row[13].get<int>() == 1);
+        if (!row[14].isNull()) userInfo.oauthProvider = row[14].get<string>();
+        if (!row[15].isNull()) userInfo.oauthProviderId = row[15].get<string>();
 
         return true;
     } catch (const mysqlx::Error& err) {
@@ -648,7 +650,7 @@ bool UserRepository::GetUserByOAuthProvider(const string& provider, const string
         auto users = schema.getTable("users");
 
         auto result = users.select("user_id", "auth_token", "name", "email",
-            "status_message", "profile_image_url",
+            "status_message", "profile_image_url", "background_image_url",
             "sub_grade", "storage_capacity_bytes", "storage_usage_bytes", "last_seen", "is_deleted",
             "is_email_verified", "oauth_provider", "oauth_provider_id")
             .where("oauth_provider = :prov AND oauth_provider_id = :pid AND is_deleted = 0")
@@ -665,14 +667,15 @@ bool UserRepository::GetUserByOAuthProvider(const string& provider, const string
         if (!row[3].isNull()) userInfo.email = row[3].get<string>();
         if (!row[4].isNull()) userInfo.status_message = row[4].get<string>();
         if (!row[5].isNull()) userInfo.profileImageUrl = row[5].get<string>();
-        userInfo.subGrade = row[6].get<int64>();
-        userInfo.storageCapacity = row[7].get<int64>();
-        userInfo.storageUsage = row[8].get<int64>();
-        userInfo.lastSeen = row[9].isNull() ? 0 : FriendRepository::ParseTimestamp(row[9]);
-        userInfo.isDeleted = row[10].isNull() ? false : (row[10].get<int>() == 1);
-        userInfo.isEmailVerified = row[11].isNull() ? false : (row[11].get<int>() == 1);
-        if (!row[12].isNull()) userInfo.oauthProvider = row[12].get<string>();
-        if (!row[13].isNull()) userInfo.oauthProviderId = row[13].get<string>();
+        if (!row[6].isNull()) userInfo.backgroundImageUrl = row[6].get<string>();
+        userInfo.subGrade = row[7].get<int64>();
+        userInfo.storageCapacity = row[8].get<int64>();
+        userInfo.storageUsage = row[9].get<int64>();
+        userInfo.lastSeen = row[10].isNull() ? 0 : FriendRepository::ParseTimestamp(row[10]);
+        userInfo.isDeleted = row[11].isNull() ? false : (row[11].get<int>() == 1);
+        userInfo.isEmailVerified = row[12].isNull() ? false : (row[12].get<int>() == 1);
+        if (!row[13].isNull()) userInfo.oauthProvider = row[13].get<string>();
+        if (!row[14].isNull()) userInfo.oauthProviderId = row[14].get<string>();
 
         return true;
     } catch (const mysqlx::Error& err) {
@@ -689,7 +692,7 @@ bool UserRepository::GetUserByEmail(const string& email, cUserInfo& OUT userInfo
         auto users = schema.getTable("users");
 
         auto result = users.select("user_id", "auth_token", "name", "email",
-            "status_message", "profile_image_url",
+            "status_message", "profile_image_url", "background_image_url",
             "sub_grade", "storage_capacity_bytes", "storage_usage_bytes", "last_seen", "is_deleted",
             "is_email_verified", "oauth_provider", "oauth_provider_id")
             .where("email = :email AND is_deleted = 0")
@@ -705,14 +708,15 @@ bool UserRepository::GetUserByEmail(const string& email, cUserInfo& OUT userInfo
         if (!row[3].isNull()) userInfo.email = row[3].get<string>();
         if (!row[4].isNull()) userInfo.status_message = row[4].get<string>();
         if (!row[5].isNull()) userInfo.profileImageUrl = row[5].get<string>();
-        userInfo.subGrade = row[6].get<int64>();
-        userInfo.storageCapacity = row[7].get<int64>();
-        userInfo.storageUsage = row[8].get<int64>();
-        userInfo.lastSeen = row[9].isNull() ? 0 : FriendRepository::ParseTimestamp(row[9]);
-        userInfo.isDeleted = row[10].isNull() ? false : (row[10].get<int>() == 1);
-        userInfo.isEmailVerified = row[11].isNull() ? false : (row[11].get<int>() == 1);
-        if (!row[12].isNull()) userInfo.oauthProvider = row[12].get<string>();
-        if (!row[13].isNull()) userInfo.oauthProviderId = row[13].get<string>();
+        if (!row[6].isNull()) userInfo.backgroundImageUrl = row[6].get<string>();
+        userInfo.subGrade = row[7].get<int64>();
+        userInfo.storageCapacity = row[8].get<int64>();
+        userInfo.storageUsage = row[9].get<int64>();
+        userInfo.lastSeen = row[10].isNull() ? 0 : FriendRepository::ParseTimestamp(row[10]);
+        userInfo.isDeleted = row[11].isNull() ? false : (row[11].get<int>() == 1);
+        userInfo.isEmailVerified = row[12].isNull() ? false : (row[12].get<int>() == 1);
+        if (!row[13].isNull()) userInfo.oauthProvider = row[13].get<string>();
+        if (!row[14].isNull()) userInfo.oauthProviderId = row[14].get<string>();
 
         return true;
     } catch (const mysqlx::Error& err) {
