@@ -14,17 +14,13 @@ struct cUserInfo {
     string profileImageUrl;
     string backgroundImageUrl;
 
-    int64 subGrade = 0;        // 추가됨 (0: 일반, 1: 프로...)
-    int64 storageCapacity = 0;
-    int64 storageUsage = 0;
+    int64 lastSeen = 0;
 
-    int64 lastSeen;
+    bool isDeleted = false;
+    bool isEmailVerified = false;
 
-    bool isDeleted = false;    // 탈퇴 여부
-    bool isEmailVerified = false; // 이메일 인증 여부
-
-    string oauthProvider;       // "google" | "apple" (빈 문자열이면 이메일/비밀번호 유저)
-    string oauthProviderId;     // OAuth provider sub/id
+    string oauthProvider;
+    string oauthProviderId;
 };
 
 

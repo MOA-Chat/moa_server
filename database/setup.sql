@@ -21,25 +21,22 @@ USE chat_server;
 -- ── 1. users ──────────────────────────────────────────────
 
 CREATE TABLE IF NOT EXISTS users (
-    user_id                 VARCHAR(100)  PRIMARY KEY,
-    password_hash           VARCHAR(255)  NULL,                 -- 소셜 로그인은 NULL
-    auth_token              VARCHAR(512),
-    name                    VARCHAR(100)  NOT NULL,
-    email                   VARCHAR(255)  UNIQUE,
-    profile_image_url       VARCHAR(500),
-    background_image_url    VARCHAR(500)  NULL,
-    status_message          VARCHAR(255)  DEFAULT '',
-    sub_grade               INT           DEFAULT 0,
-    storage_capacity_bytes  BIGINT        DEFAULT 1073741824,   -- 1GB
-    storage_usage_bytes     BIGINT        DEFAULT 0,
-    is_email_verified       TINYINT(1)    DEFAULT 0,
-    oauth_provider          VARCHAR(20)   DEFAULT NULL,
-    oauth_provider_id       VARCHAR(255)  DEFAULT NULL,
-    is_deleted              TINYINT(1)    DEFAULT 0,
-    deleted_at              TIMESTAMP     NULL,
-    last_seen               TIMESTAMP     NULL,
-    created_at              TIMESTAMP     DEFAULT CURRENT_TIMESTAMP,
-    updated_at              TIMESTAMP     DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    user_id               VARCHAR(100)  PRIMARY KEY,
+    password_hash         VARCHAR(255)  NULL,                 -- 소셜 로그인은 NULL
+    auth_token            VARCHAR(512),
+    name                  VARCHAR(100)  NOT NULL,
+    email                 VARCHAR(255)  UNIQUE,
+    profile_image_url     VARCHAR(500),
+    background_image_url  VARCHAR(500)  NULL,
+    status_message        VARCHAR(255)  DEFAULT '',
+    is_email_verified     TINYINT(1)    DEFAULT 0,
+    oauth_provider        VARCHAR(20)   DEFAULT NULL,
+    oauth_provider_id     VARCHAR(255)  DEFAULT NULL,
+    is_deleted            TINYINT(1)    DEFAULT 0,
+    deleted_at            TIMESTAMP     NULL,
+    last_seen             TIMESTAMP     NULL,
+    created_at            TIMESTAMP     DEFAULT CURRENT_TIMESTAMP,
+    updated_at            TIMESTAMP     DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     INDEX idx_auth_token        (auth_token),
     INDEX idx_oauth_provider    (oauth_provider, oauth_provider_id),
     INDEX idx_is_deleted        (is_deleted)
