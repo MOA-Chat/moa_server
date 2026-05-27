@@ -15,6 +15,9 @@ public:
     mysqlx::Session& GetSession();
     mysqlx::Schema GetSchema();
 
+    // CDK 에러 후 현재 스레드의 세션을 리셋 (다음 GetSession() 호출 시 재생성)
+    void ResetCurrentSession();
+
     bool IsConnected() const { return _initialized; }
 
 private:

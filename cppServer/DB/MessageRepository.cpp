@@ -105,7 +105,7 @@ bool MessageRepository::AddParticipants(const string& convId, const vector<strin
 =======================*/
 
 int64 MessageRepository::SaveMessage(const string& convId, const string& senderId, const Protocol::S_Chat& pkt,
-                                      const string& gcsPath, int64 fileRetentionExpiresAt,
+                                      const string& filePath, int64 fileRetentionExpiresAt,
                                       const string& mentionedUserIds, int8_t msgTypeOverride)
 {
     int8_t msg_type = 0; // 0:Text, 1:Image, 2:Video, 3:File, 4:System, 5:Poll
@@ -162,9 +162,13 @@ int64 MessageRepository::SaveMessage(const string& convId, const string& senderI
 
         session.startTransaction();
 
-        auto result = session.sql("SELECT COALESCE(MAX(msg_seq), 0) + 1 FROM messages WHERE conv_id = ? FOR UPDATE")
-            .bind(convId).execute();
-        int64 nextSeq = result.fetchOne()[0].get<int64>();
+        // fetchOne() 후 FetchDone 미소비 방지 → scope block으로 result 먼저 소멸
+        int64 nextSeq;
+        {
+            auto result = session.sql("SELECT COALESCE(MAX(msg_seq), 0) + 1 FROM messages WHERE conv_id = ? FOR UPDATE")
+                .bind(convId).execute();
+            nextSeq = result.fetchOne()[0].get<int64>();
+        } // result 소멸 → FetchDone 소비 완료
 
         int64 replyToSeq = pkt.reply_to_seq();
 
@@ -175,7 +179,7 @@ int64 MessageRepository::SaveMessage(const string& convId, const string& senderI
                 "file_name, timestamp, reply_to_seq, gcs_path, file_retention_expires_at, file_status, mentioned_user_ids) "
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")
                 .bind(convId, nextSeq, senderId, msg_type, content, media_url, thumbnail_url, file_name,
-                      pkt.ts_server(), replyToSeq, gcsPath, fileRetentionExpiresAt, fileStatus,
+                      pkt.ts_server(), replyToSeq, filePath, fileRetentionExpiresAt, fileStatus,
                       mentionVal.empty() ? mysqlx::Value() : mysqlx::Value(mentionVal))
                 .execute();
         } else {
@@ -184,7 +188,7 @@ int64 MessageRepository::SaveMessage(const string& convId, const string& senderI
                 "file_name, timestamp, reply_to_seq, gcs_path, file_retention_expires_at, file_status, mentioned_user_ids) "
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NULL, ?, ?)")
                 .bind(convId, nextSeq, senderId, msg_type, content, media_url, thumbnail_url, file_name,
-                      pkt.ts_server(), replyToSeq, gcsPath, fileStatus,
+                      pkt.ts_server(), replyToSeq, filePath, fileStatus,
                       mentionVal.empty() ? mysqlx::Value() : mysqlx::Value(mentionVal))
                 .execute();
         }
@@ -202,28 +206,27 @@ int64 MessageRepository::SaveMessage(const string& convId, const string& senderI
 }
 
 
-bool MessageRepository::UpdateFileStatusByGcsPath(const string& gcsPath, const string& fileStatus)
+bool MessageRepository::UpdateFileStatusByFilePath(const string& filePath, const string& fileStatus)
 {
-    if (gcsPath.empty()) return false;
+    if (filePath.empty()) return false;
     try {
         auto& db = DBManager::GetInstance();
         auto& session = db.GetSession();
 
-        // 만료 시 URL도 비움
         if (fileStatus == "expired") {
             session.sql(
                 "UPDATE messages SET file_status = ?, media_url = '', thumbnail_url = '' "
                 "WHERE gcs_path = ? AND is_deleted = 0")
-                .bind(fileStatus, gcsPath).execute();
+                .bind(fileStatus, filePath).execute();
         } else {
             session.sql(
                 "UPDATE messages SET file_status = ? WHERE gcs_path = ?")
-                .bind(fileStatus, gcsPath).execute();
+                .bind(fileStatus, filePath).execute();
         }
         return true;
     }
     catch (const mysqlx::Error& err) {
-        LOG_ERROR("[MessageRepository] UpdateFileStatusByGcsPath 실패: {}", err.what());
+        LOG_ERROR("[MessageRepository] UpdateFileStatusByFilePath 실패: {}", err.what());
         return false;
     }
 }
@@ -238,8 +241,8 @@ bool MessageRepository::UpdateFileStatusByGcsPath(const string& gcsPath, const s
 
 
 
-bool MessageRepository::GetGcsPathAndFileSizeByMsgSeq(const string& convId, int64 msgSeq,
-                                                      string& outGcsPath, int64& outFileSize)
+bool MessageRepository::GetFilePathAndFileSizeByMsgSeq(const string& convId, int64 msgSeq,
+                                                       string& outFilePath, int64& outFileSize)
 {
     try {
         auto& session = DBManager::GetInstance().GetSession();
@@ -253,11 +256,11 @@ bool MessageRepository::GetGcsPathAndFileSizeByMsgSeq(const string& convId, int6
         auto row = rows.fetchOne();
         if (!row) return false;
 
-        outGcsPath  = row[0].isNull() ? "" : row[0].get<string>();
+        outFilePath = row[0].isNull() ? "" : row[0].get<string>();
         outFileSize = row[1].isNull() ? 0  : row[1].get<int64>();
-        return !outGcsPath.empty();
+        return !outFilePath.empty();
     } catch (const mysqlx::Error& e) {
-        LOG_ERROR("[MessageRepository] GetGcsPathAndFileSizeByMsgSeq 실패: {}", e.what());
+        LOG_ERROR("[MessageRepository] GetFilePathAndFileSizeByMsgSeq 실패: {}", e.what());
         return false;
     }
 }
