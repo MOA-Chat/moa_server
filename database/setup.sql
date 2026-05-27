@@ -205,7 +205,7 @@ INSERT INTO subscription_plans (plan_type, name, grade, storage_bytes, max_file_
 ('group', 'Free',  0,   1073741824,   20971520,     0),
 ('group', 'Basic', 1,  10737418240,  104857600,  1100),
 ('group', 'Plus',  2,  53687091200,  524288000,  3300),
-('group', 'Max',   3, 128849018880, 1073741824, 11000);
+('group', 'Max',   3, 161061273600, 1073741824, 11000);
 
 CREATE TABLE IF NOT EXISTS subscriptions (
     id               INT PRIMARY KEY AUTO_INCREMENT,
