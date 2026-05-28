@@ -26,6 +26,7 @@ struct cLocationVisit {
     int32  rating    = 0;
     string review;
     int64  visitedAt = 0;
+    string historyId;
     vector<pair<string, string>> photos; // {id, url}
 };
 
@@ -37,7 +38,7 @@ public:
     static bool                   UpdateVisit(const string& visitId, const string& userId,
                                               int32 rating, const string& review,
                                               int64 visitedAt, const vector<string>& photoUrls,
-                                              const string& placeId);
+                                              const string& placeId, const string& historyId);
     static pair<bool,bool>        DeleteVisit(const string& visitId, const string& userId,
                                               const string& placeId); // {success, placeWasDeleted}
     static vector<cLocationPlace> GetPlacesByGroup(const string& groupId);
@@ -52,4 +53,7 @@ public:
     static bool AddVisitPhotos(const string& visitId, const string& placeId,
                                const string& groupId,
                                const vector<string>& photoUrls);
+
+    // 프로필 업데이트 동기화
+    static void UpdateVisitUserNames(const string& userId, const string& userName);
 };

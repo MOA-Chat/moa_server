@@ -317,3 +317,14 @@ bool LocationRepository::AddVisitPhotos(const string& visitId, const string& pla
         return false;
     }
 }
+
+void LocationRepository::UpdateVisitUserNames(const string& userId, const string& userName)
+{
+    try {
+        auto& session = DBManager::GetInstance().GetSession();
+        session.sql("UPDATE location_visits SET user_name = ? WHERE user_id = ?")
+            .bind(userName, userId).execute();
+    } catch (const mysqlx::Error& e) {
+        LOG_ERROR("[LocationRepository] UpdateVisitUserNames 실패: {}", e.what());
+    }
+}

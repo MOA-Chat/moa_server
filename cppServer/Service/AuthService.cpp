@@ -2,6 +2,7 @@
 #include "AuthService.h"
 #include "../DB/UserRepository.h"
 #include "../DB/GroupRepository.h"
+#include "../DB/LocationRepository.h"
 #include "../DB/FcmTokenRepository.h"
 #include "../DB/FileRepository.h"
 #include "UserManager.h"
@@ -321,7 +322,8 @@ bool AuthService::HandleEditMyInfo(sessionPtr& session, uint64 reqId, const Prot
 
     bool success = UserRepository::UpdateMyInfo(userId, pkt);
 
-
+    if (success && !pkt.name().empty())
+        LocationRepository::UpdateVisitUserNames(userId, pkt.name());
 
     cUserInfo userInfo;
     UserRepository::GetUser(userId, userInfo);
@@ -841,10 +843,11 @@ bool AuthService::SocialLogin(sessionPtr& session, uint64 reqId, const string& p
 bool AuthService::CompleteSocialSignup(sessionPtr& session, uint64 reqId, const string& provider,
                                         const string& idToken, const string& userId, const string& name)
 {
-    LOG_INFO("[AuthService] CompleteSocialSignup 요청: provider={}, userId={}", provider, userId);
+    // userId는 서버에서 UUID 자동 발급 (클라이언트 제공값 무시)
+    string finalUserId = GroupRepository::GenerateUUID();
+    LOG_INFO("[AuthService] CompleteSocialSignup 요청: provider={}, generatedUserId={}", provider, finalUserId);
 
     // 1. 입력 검증
-    if (userId.empty()) { HandleErr(session, reqId, ERR_USER_ID_REQUIRED); return false; }
     if (name.empty()) { HandleErr(session, reqId, ERR_NAME_REQUIRED); return false; }
 
     // 2. 토큰 재검증
@@ -854,22 +857,16 @@ bool AuthService::CompleteSocialSignup(sessionPtr& session, uint64 reqId, const 
         return false;
     }
 
-    // 3. userId 중복 체크
-    if (UserRepository::UserExists(userId)) {
-        HandleErr(session, reqId, ERR_USER_ALREADY_EXISTS, "user_id already exists");
-        return false;
-    }
-
-    // 4. 유저 생성
-    if (!UserRepository::CreateOAuthUser(userId, name, oauthResult.email, provider,
+    // 3. 유저 생성
+    if (!UserRepository::CreateOAuthUser(finalUserId, name, oauthResult.email, provider,
                                           oauthResult.providerId, oauthResult.profileImageUrl)) {
         HandleErr(session, reqId, ERR_SERVER_INTERNAL, "Failed to create OAuth user");
         return false;
     }
 
-    // 5. 로그인 처리
+    // 4. 로그인 처리
     cUserInfo userInfo;
-    if (!UserRepository::GetUser(userId, userInfo)) {
+    if (!UserRepository::GetUser(finalUserId, userInfo)) {
         HandleErr(session, reqId, ERR_SERVER_INTERNAL, "Failed to fetch created user");
         return false;
     }
