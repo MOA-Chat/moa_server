@@ -65,13 +65,12 @@ bool LocationRepository::DeletePlace(const string& placeId, const string& userId
     try {
         auto& session = DBManager::GetInstance().GetSession();
 
-        {
-            auto allCheck = session.sql(
-                "SELECT created_by FROM location_places WHERE id = ?"
-            ).bind(placeId).execute().fetchAll();
-            if (allCheck.empty()) return false;
-            if (allCheck[0][0].get<string>() != userId) return false;
-        }
+        auto check = session.sql(
+            "SELECT created_by FROM location_places WHERE id = ?"
+        ).bind(placeId).execute();
+        if (check.count() == 0) return false;
+        auto row = check.fetchOne();
+        if (row[0].get<string>() != userId) return false;
 
         session.sql("DELETE FROM location_places WHERE id = ?").bind(placeId).execute();
         return true;
@@ -90,15 +89,13 @@ bool LocationRepository::UpdateVisit(const string& visitId, const string& userId
         auto& session = DBManager::GetInstance().GetSession();
 
         // 본인 검증
-        string groupId;
-        {
-            auto allCheck = session.sql(
-                "SELECT user_id, group_id FROM location_visits WHERE id = ?"
-            ).bind(visitId).execute().fetchAll();
-            if (allCheck.empty()) return false;
-            if (allCheck[0][0].get<string>() != userId) return false;
-            groupId = allCheck[0][1].get<string>();
-        }
+        auto check = session.sql(
+            "SELECT user_id, group_id FROM location_visits WHERE id = ?"
+        ).bind(visitId).execute();
+        if (check.count() == 0) return false;
+        auto checkRow = check.fetchOne();
+        if (checkRow[0].get<string>() != userId) return false;
+        string groupId = checkRow[1].get<string>();
 
         session.sql(
             "UPDATE location_visits SET rating=?, review=?, visited_at=?, history_id=? WHERE id=?"
@@ -132,13 +129,11 @@ pair<bool,bool> LocationRepository::DeleteVisit(const string& visitId, const str
         auto& session = DBManager::GetInstance().GetSession();
 
         // 본인 검증
-        {
-            auto allCheck = session.sql(
-                "SELECT user_id FROM location_visits WHERE id = ?"
-            ).bind(visitId).execute().fetchAll();
-            if (allCheck.empty()) return {false, false};
-            if (allCheck[0][0].get<string>() != userId) return {false, false};
-        }
+        auto check = session.sql(
+            "SELECT user_id FROM location_visits WHERE id = ?"
+        ).bind(visitId).execute();
+        if (check.count() == 0) return {false, false};
+        if (check.fetchOne()[0].get<string>() != userId) return {false, false};
 
         // 이 장소의 방문 수 확인
         auto cntRow = session.sql(

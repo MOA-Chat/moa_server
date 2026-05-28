@@ -139,12 +139,13 @@ bool AlbumRepository::DeleteAlbum(const string& albumId, const string& userId)
         session.startTransaction();
 
         // 앨범 정보 + 권한 확인
-        auto allCheck = session.sql(
+        auto check = session.sql(
             "SELECT created_by, group_id FROM albums WHERE id = ?"
-        ).bind(albumId).execute().fetchAll();
-        if (allCheck.empty()) { session.rollback(); return false; }
-        string createdBy = allCheck[0][0].get<string>();
-        string groupId   = allCheck[0][1].get<string>();
+        ).bind(albumId).execute();
+        if (check.count() == 0) { session.rollback(); return false; }
+        auto row = check.fetchOne();
+        string createdBy = row[0].get<string>();
+        string groupId   = row[1].get<string>();
 
         // 생성자 또는 그룹 방장만 삭제 가능 (role 기반)
         bool isOwner = false;
@@ -202,14 +203,15 @@ bool AlbumRepository::UpdateCoverPhoto(const string& albumId)
 {
     try {
         auto& session = DBManager::GetInstance().GetSession();
+        auto rows = session.sql(
+            "SELECT COALESCE(thumbnail_url, photo_url) FROM album_photos "
+            "WHERE album_id = ? AND is_deleted = 0 ORDER BY uploaded_at ASC LIMIT 1"
+        ).bind(albumId).execute();
+
         string coverUrl;
-        {
-            auto allRows = session.sql(
-                "SELECT COALESCE(thumbnail_url, photo_url) FROM album_photos "
-                "WHERE album_id = ? AND is_deleted = 0 ORDER BY uploaded_at ASC LIMIT 1"
-            ).bind(albumId).execute().fetchAll();
-            if (!allRows.empty())
-                coverUrl = allRows[0][0].get<string>();
+        if (rows.count() > 0) {
+            auto row = rows.fetchOne();
+            coverUrl = row[0].get<string>();
         }
         session.sql("UPDATE albums SET cover_photo_url = ? WHERE id = ?")
             .bind(coverUrl.empty() ? mysqlx::nullvalue : mysqlx::Value(coverUrl), albumId)
@@ -299,16 +301,17 @@ bool AlbumRepository::DeletePhoto(const string& photoId, const string& userId,
         auto& session = DBManager::GetInstance().GetSession();
         session.startTransaction();
 
-        auto allCheck = session.sql(
+        auto check = session.sql(
             "SELECT uploader_id, album_id, COALESCE(gcs_path,''), COALESCE(file_size,0) "
             "FROM album_photos WHERE id = ? AND is_deleted = 0"
-        ).bind(photoId).execute().fetchAll();
-        if (allCheck.empty()) { session.rollback(); return false; }
+        ).bind(photoId).execute();
+        if (check.count() == 0) { session.rollback(); return false; }
+        auto row = check.fetchOne();
 
-        string uploaderId = allCheck[0][0].get<string>();
-        string albumId    = allCheck[0][1].get<string>();
-        string filePath   = allCheck[0][2].get<string>();
-        int64  fileSize   = allCheck[0][3].get<int64>();
+        string uploaderId = row[0].get<string>();
+        string albumId    = row[1].get<string>();
+        string filePath   = row[2].get<string>();
+        int64  fileSize   = row[3].get<int64>();
 
         // 업로더 또는 그룹 방장(role 기반)만 삭제 가능
         bool isOwner = false;
@@ -456,14 +459,11 @@ bool AlbumRepository::MovePhoto(const string& photoId, const string& toAlbumId)
     try {
         auto& session = DBManager::GetInstance().GetSession();
         // 원본 albumId 조회 (커버 갱신용)
-        string fromAlbumId;
-        {
-            auto allCheck = session.sql(
-                "SELECT album_id FROM album_photos WHERE id = ?"
-            ).bind(photoId).execute().fetchAll();
-            if (allCheck.empty()) return false;
-            fromAlbumId = allCheck[0][0].get<string>();
-        }
+        auto check = session.sql(
+            "SELECT album_id FROM album_photos WHERE id = ?"
+        ).bind(photoId).execute();
+        if (check.count() == 0) return false;
+        string fromAlbumId = check.fetchOne()[0].get<string>();
 
         session.sql("UPDATE album_photos SET album_id = ? WHERE id = ?")
             .bind(toAlbumId, photoId).execute();
@@ -530,13 +530,11 @@ bool AlbumRepository::DeleteComment(const string& commentId, const string& userI
 {
     try {
         auto& session = DBManager::GetInstance().GetSession();
-        {
-            auto allCheck = session.sql(
-                "SELECT sender_id FROM photo_comments WHERE id = ?"
-            ).bind(commentId).execute().fetchAll();
-            if (allCheck.empty()) return false;
-            if (allCheck[0][0].get<string>() != userId) return false;
-        }
+        auto check = session.sql(
+            "SELECT sender_id FROM photo_comments WHERE id = ?"
+        ).bind(commentId).execute();
+        if (check.count() == 0) return false;
+        if (check.fetchOne()[0].get<string>() != userId) return false;
 
         session.sql("DELETE FROM photo_comments WHERE id = ?").bind(commentId).execute();
         return true;

@@ -211,18 +211,17 @@ bool GroupRepository::DeleteGroupAssetByFilePath(const string& filePath)
         auto& db = DBManager::GetInstance();
         auto& session = db.GetSession();
 
-        string gid;
-        int64  fsize;
-        {
-            auto allRows = session.sql(
-                "SELECT ga.group_id, ga.file_size FROM group_assets ga "
-                "JOIN messages m ON ga.group_id = m.group_id AND ga.msg_seq = m.msg_seq "
-                "WHERE m.gcs_path = ? LIMIT 1"
-            ).bind(filePath).execute().fetchAll();
-            if (allRows.empty()) return true;
-            gid   = allRows[0][0].get<string>();
-            fsize = allRows[0][1].get<int64_t>();
-        }
+        auto res = session.sql(
+            "SELECT ga.group_id, ga.file_size FROM group_assets ga "
+            "JOIN messages m ON ga.group_id = m.group_id AND ga.msg_seq = m.msg_seq "
+            "WHERE m.gcs_path = ? LIMIT 1"
+        ).bind(filePath).execute();
+
+        auto row = res.fetchOne();
+        if (!row) return true;
+
+        string gid   = row[0].get<string>();
+        int64  fsize = row[1].get<int64_t>();
 
         session.sql(
             "DELETE ga FROM group_assets ga "
@@ -546,10 +545,10 @@ bool GroupRepository::GetGroupInfoById(const string& groupId, cGroupInfo& OUT in
             "FROM `groups` WHERE group_id = ?";
 
         // fetchAll()로 전체 결과 소비 → FetchDone 메시지까지 읽어 CDK 상태 정상화
-        auto allRows = session.sql(query).bind(groupId).execute().fetchAll();
+        std::list<mysqlx::Row> allRows = session.sql(query).bind(groupId).execute().fetchAll();
         if (allRows.empty()) return false;
 
-        auto& row = allRows[0];
+        auto& row = allRows.front();
         info.groupId = row[0].get<string>();
         info.groupName = row[1].get<string>();
         info.groupCode = row[2].get<string>();
@@ -582,7 +581,7 @@ bool GroupRepository::GetGroupInfoByCode(const string& groupCode, cGroupInfo& OU
         auto groups = db.GetSchema().getTable("groups");
 
 
-        auto allRows = groups.select(
+        auto rows = groups.select(
             "group_id", "group_name", "group_code", "creator_id",
             "description", "group_image_url",
             "storage_usage_bytes", "storage_capacity_bytes", "member_count", "created_at",
@@ -590,11 +589,11 @@ bool GroupRepository::GetGroupInfoByCode(const string& groupCode, cGroupInfo& OU
         )
             .where("group_code = :code")
             .bind("code", groupCode)
-            .execute().fetchAll();
+            .execute();
 
-        if (allRows.empty()) return false;
+        if (rows.count() == 0) return false;
 
-        auto& row = allRows[0];
+        auto row = rows.fetchOne();
 
         // 3. 인덱스 번호에 맞춰 정확하게 매핑 (row[0]은 group_id입니다)
         info.groupId = row[0].get<string>();
@@ -632,10 +631,11 @@ bool GroupRepository::IsMember(const string& groupId, const string& userId)
 {
     try {
         auto& session = DBManager::GetInstance().GetSession();
-        auto allRows = session.sql(
+        auto result = session.sql(
             "SELECT 1 FROM group_members WHERE group_id = ? AND user_id = ? LIMIT 1"
-        ).bind(groupId, userId).execute().fetchAll();
-        return !allRows.empty();
+        ).bind(groupId, userId).execute();
+        auto row = result.fetchOne();
+        return (bool)row;
     }
     catch (const mysqlx::Error& err)
     {
@@ -650,11 +650,11 @@ string GroupRepository::GetMemberRole(const string& groupId, const string& userI
 {
     try {
         auto& session = DBManager::GetInstance().GetSession();
-        auto allRows = session.sql(
+        auto result = session.sql(
             "SELECT role FROM group_members WHERE group_id = ? AND user_id = ? LIMIT 1"
-        ).bind(groupId, userId).execute().fetchAll();
-        if (!allRows.empty())
-            return allRows[0][0].get<string>();
+        ).bind(groupId, userId).execute();
+        auto row = result.fetchOne();
+        if (row) return row[0].get<string>();
     }
     catch (const mysqlx::Error& err)
     {
@@ -708,11 +708,17 @@ vector<cGroupMemberInfo> GroupRepository::GetGroupMembers(const string& groupId)
 
 bool GroupRepository::IsGroupCodeExists(const string& groupCode) {
     try {
-        auto& session = DBManager::GetInstance().GetSession();
-        auto allRows = session.sql(
-            "SELECT 1 FROM `groups` WHERE group_code = ? LIMIT 1"
-        ).bind(groupCode).execute().fetchAll();
-        return !allRows.empty();
+        auto& db = DBManager::GetInstance();
+        auto schema = db.GetSchema();
+        auto groups = schema.getTable("groups");
+
+        auto rows = groups.select("group_id")
+                          .where("group_code = :code")
+                          .bind("code", groupCode)
+                          .execute();
+
+        return rows.count() > 0;
+
     } catch (const mysqlx::Error& err) {
         LOG_ERROR("[GroupRepository] IsGroupCodeExists Failed: {}", err.what());
         return false;
