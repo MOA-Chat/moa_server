@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "AlbumRepository.h"
+#include "GroupRepository.h"
 
 #include <sstream>
 #include <iomanip>
@@ -66,7 +67,7 @@ vector<AlbumInfo> AlbumRepository::GetAlbums(const string& groupId)
         auto rows = session.sql(
             "SELECT a.id, a.group_id, a.name, COALESCE(a.cover_photo_url, '') AS cover_photo_url, "
             "       a.created_by, a.created_at, "
-            "       (SELECT COUNT(*) FROM album_photos WHERE album_id = a.id) AS photo_count "
+            "       (SELECT COUNT(*) FROM album_photos WHERE album_id = a.id AND is_deleted = 0) AS photo_count "
             "FROM albums a "
             "WHERE a.group_id = ? "
             "ORDER BY a.created_at ASC"
@@ -97,7 +98,7 @@ AlbumInfo AlbumRepository::GetAlbum(const string& albumId)
         auto rows = session.sql(
             "SELECT a.id, a.group_id, a.name, COALESCE(a.cover_photo_url, '') AS cover_photo_url, "
             "       a.created_by, a.created_at, "
-            "       (SELECT COUNT(*) FROM album_photos WHERE album_id = a.id) AS photo_count "
+            "       (SELECT COUNT(*) FROM album_photos WHERE album_id = a.id AND is_deleted = 0) AS photo_count "
             "FROM albums a WHERE a.id = ? LIMIT 1"
         ).bind(albumId).execute();
         if (auto row = rows.fetchOne()) {
@@ -115,30 +116,80 @@ AlbumInfo AlbumRepository::GetAlbum(const string& albumId)
     return info;
 }
 
+string AlbumRepository::GetPhotoGroupId(const string& photoId)
+{
+    try {
+        auto& session = DBManager::GetInstance().GetSession();
+        auto rows = session.sql(
+            "SELECT group_id FROM album_photos WHERE id = ? LIMIT 1"
+        ).bind(photoId).execute();
+        if (auto row = rows.fetchOne()) {
+            return row[0].get<string>();
+        }
+    } catch (const mysqlx::Error& e) {
+        LOG_ERROR("[AlbumRepository] GetPhotoGroupId 실패: {}", e.what());
+    }
+    return "";
+}
+
 bool AlbumRepository::DeleteAlbum(const string& albumId, const string& userId)
 {
     try {
         auto& session = DBManager::GetInstance().GetSession();
         session.startTransaction();
 
-        // 권한 확인
-        auto check = session.sql(
-            "SELECT created_by FROM albums WHERE id = ?"
-        ).bind(albumId).execute();
-        if (check.count() == 0) { session.rollback(); return false; }
-        auto row = check.fetchOne();
-        if (row[0].get<string>() != userId) { session.rollback(); return false; }
+        // 앨범 정보 + 권한 확인
+        auto allCheck = session.sql(
+            "SELECT created_by, group_id FROM albums WHERE id = ?"
+        ).bind(albumId).execute().fetchAll();
+        if (allCheck.empty()) { session.rollback(); return false; }
+        string createdBy = allCheck[0][0].get<string>();
+        string groupId   = allCheck[0][1].get<string>();
 
-        // 댓글 → 사진 → 앨범 순 삭제
+        // 생성자 또는 그룹 방장만 삭제 가능 (role 기반)
+        bool isOwner = false;
+        {
+            auto roleRow = session.sql(
+                "SELECT role FROM group_members WHERE group_id = ? AND user_id = ? LIMIT 1"
+            ).bind(groupId, userId).execute().fetchOne();
+            if (roleRow) isOwner = (roleRow[0].get<string>() == "owner");
+        }
+        if (createdBy != userId && !isOwner) { session.rollback(); return false; }
+
+        // 삭제할 사진들의 파일 크기 합산 (스토리지 차감용)
+        int64 totalFileSize = 0;
+        {
+            auto sizeRow = session.sql(
+                "SELECT COALESCE(SUM(file_size), 0) FROM album_photos WHERE album_id = ? AND is_deleted = 0"
+            ).bind(albumId).execute().fetchOne();
+            if (sizeRow && !sizeRow[0].isNull())
+                totalFileSize = static_cast<int64>(sizeRow[0].get<double>());
+        }
+
+        int64 now = NowMs();
+
+        // 사진 댓글 삭제
         session.sql(
             "DELETE pc FROM photo_comments pc "
             "INNER JOIN album_photos ap ON pc.photo_id = ap.id "
             "WHERE ap.album_id = ?"
         ).bind(albumId).execute();
-        session.sql("DELETE FROM album_photos WHERE album_id = ?").bind(albumId).execute();
+
+        // 사진 소프트 딜리트 (배치잡이 30일 후 R2 하드딜리트)
+        session.sql(
+            "UPDATE album_photos SET is_deleted = 1, deleted_at = ? WHERE album_id = ? AND is_deleted = 0"
+        ).bind(now, albumId).execute();
+
+        // 앨범 레코드 삭제
         session.sql("DELETE FROM albums WHERE id = ?").bind(albumId).execute();
 
         session.commit();
+
+        // 스토리지 차감 (트랜잭션 외부, 실패해도 롤백 불필요)
+        if (totalFileSize > 0) {
+            GroupRepository::DeductGroupStorage(groupId, totalFileSize);
+        }
+
         return true;
     } catch (const mysqlx::Error& e) {
         try { DBManager::GetInstance().GetSession().rollback(); } catch (...) {}
@@ -151,15 +202,14 @@ bool AlbumRepository::UpdateCoverPhoto(const string& albumId)
 {
     try {
         auto& session = DBManager::GetInstance().GetSession();
-        auto rows = session.sql(
-            "SELECT COALESCE(thumbnail_url, photo_url) FROM album_photos "
-            "WHERE album_id = ? ORDER BY uploaded_at ASC LIMIT 1"
-        ).bind(albumId).execute();
-
         string coverUrl;
-        if (rows.count() > 0) {
-            auto row = rows.fetchOne();
-            coverUrl = row[0].get<string>();
+        {
+            auto allRows = session.sql(
+                "SELECT COALESCE(thumbnail_url, photo_url) FROM album_photos "
+                "WHERE album_id = ? AND is_deleted = 0 ORDER BY uploaded_at ASC LIMIT 1"
+            ).bind(albumId).execute().fetchAll();
+            if (!allRows.empty())
+                coverUrl = allRows[0][0].get<string>();
         }
         session.sql("UPDATE albums SET cover_photo_url = ? WHERE id = ?")
             .bind(coverUrl.empty() ? mysqlx::nullvalue : mysqlx::Value(coverUrl), albumId)
@@ -178,7 +228,7 @@ bool AlbumRepository::UpdateCoverPhoto(const string& albumId)
 string AlbumRepository::AddPhoto(const string& albumId, const string& groupId,
                                   int64 msgSeq, const string& photoUrl,
                                   const string& thumbnailUrl, const string& uploaderId,
-                                  const string& source)
+                                  const string& source, const string& filePath, int64 fileSize)
 {
     try {
         auto& session = DBManager::GetInstance().GetSession();
@@ -188,18 +238,17 @@ string AlbumRepository::AddPhoto(const string& albumId, const string& groupId,
         if (msgSeq > 0) {
             session.sql(
                 "INSERT INTO album_photos "
-                "(id, album_id, group_id, msg_seq, photo_url, thumbnail_url, uploader_id, source, uploaded_at) "
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
-            ).bind(id, albumId, groupId, msgSeq, photoUrl, thumbnailUrl, uploaderId, source, now).execute();
+                "(id, album_id, group_id, msg_seq, photo_url, thumbnail_url, uploader_id, source, uploaded_at, gcs_path, file_size) "
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+            ).bind(id, albumId, groupId, msgSeq, photoUrl, thumbnailUrl, uploaderId, source, now, filePath, fileSize).execute();
         } else {
             session.sql(
                 "INSERT INTO album_photos "
-                "(id, album_id, group_id, msg_seq, photo_url, thumbnail_url, uploader_id, source, uploaded_at) "
-                "VALUES (?, ?, ?, NULL, ?, ?, ?, ?, ?)"
-            ).bind(id, albumId, groupId, photoUrl, thumbnailUrl, uploaderId, source, now).execute();
+                "(id, album_id, group_id, msg_seq, photo_url, thumbnail_url, uploader_id, source, uploaded_at, gcs_path, file_size) "
+                "VALUES (?, ?, ?, NULL, ?, ?, ?, ?, ?, ?, ?)"
+            ).bind(id, albumId, groupId, photoUrl, thumbnailUrl, uploaderId, source, now, filePath, fileSize).execute();
         }
 
-        // 커버 사진 자동 갱신 (첫 사진인 경우)
         UpdateCoverPhoto(albumId);
         return id;
     } catch (const mysqlx::Error& e) {
@@ -216,8 +265,9 @@ vector<AlbumPhotoInfo> AlbumRepository::GetPhotos(const string& albumId, bool la
         string order = latestFirst ? "DESC" : "ASC";
         auto rows = session.sql(
             "SELECT id, album_id, group_id, COALESCE(msg_seq, 0), "
-            "       photo_url, COALESCE(thumbnail_url, ''), uploader_id, source, uploaded_at "
-            "FROM album_photos WHERE album_id = ? "
+            "       photo_url, COALESCE(thumbnail_url, ''), uploader_id, source, uploaded_at, "
+            "       COALESCE(gcs_path, ''), COALESCE(file_size, 0) "
+            "FROM album_photos WHERE album_id = ? AND is_deleted = 0 "
             "ORDER BY uploaded_at " + order
         ).bind(albumId).execute();
 
@@ -232,6 +282,8 @@ vector<AlbumPhotoInfo> AlbumRepository::GetPhotos(const string& albumId, bool la
             info.uploaderId   = row[6].get<string>();
             info.source       = row[7].get<string>();
             info.uploadedAt   = row[8].get<int64>();
+            info.filePath     = row[9].get<string>();
+            info.fileSize     = row[10].get<int64>();
             result.push_back(info);
         }
     } catch (const mysqlx::Error& e) {
@@ -240,23 +292,48 @@ vector<AlbumPhotoInfo> AlbumRepository::GetPhotos(const string& albumId, bool la
     return result;
 }
 
-bool AlbumRepository::DeletePhoto(const string& photoId, const string& userId)
+bool AlbumRepository::DeletePhoto(const string& photoId, const string& userId,
+                                   const string& groupId)
 {
     try {
         auto& session = DBManager::GetInstance().GetSession();
         session.startTransaction();
 
-        auto check = session.sql(
-            "SELECT uploader_id, album_id FROM album_photos WHERE id = ?"
-        ).bind(photoId).execute();
-        if (check.count() == 0) { session.rollback(); return false; }
-        auto row = check.fetchOne();
-        if (row[0].get<string>() != userId) { session.rollback(); return false; }
-        string albumId = row[1].get<string>();
+        auto allCheck = session.sql(
+            "SELECT uploader_id, album_id, COALESCE(gcs_path,''), COALESCE(file_size,0) "
+            "FROM album_photos WHERE id = ? AND is_deleted = 0"
+        ).bind(photoId).execute().fetchAll();
+        if (allCheck.empty()) { session.rollback(); return false; }
 
-        session.sql("DELETE FROM photo_comments WHERE photo_id = ?").bind(photoId).execute();
-        session.sql("DELETE FROM album_photos WHERE id = ?").bind(photoId).execute();
+        string uploaderId = allCheck[0][0].get<string>();
+        string albumId    = allCheck[0][1].get<string>();
+        string filePath   = allCheck[0][2].get<string>();
+        int64  fileSize   = allCheck[0][3].get<int64>();
+
+        // 업로더 또는 그룹 방장(role 기반)만 삭제 가능
+        bool isOwner = false;
+        {
+            auto roleRow = session.sql(
+                "SELECT role FROM group_members WHERE group_id = ? AND user_id = ? LIMIT 1"
+            ).bind(groupId, userId).execute().fetchOne();
+            if (roleRow) isOwner = (roleRow[0].get<string>() == "owner");
+        }
+        if (uploaderId != userId && !isOwner) {
+            session.rollback();
+            return false;
+        }
+
+        // 소프트 딜리트
+        int64 now = NowMs();
+        session.sql(
+            "UPDATE album_photos SET is_deleted = 1, deleted_at = ? WHERE id = ?"
+        ).bind(now, photoId).execute();
         session.commit();
+
+        // 즉시 스토리지 차감
+        if (fileSize > 0) {
+            GroupRepository::DeductGroupStorage(groupId, fileSize);
+        }
 
         UpdateCoverPhoto(albumId);
         return true;
@@ -267,16 +344,126 @@ bool AlbumRepository::DeletePhoto(const string& photoId, const string& userId)
     }
 }
 
+
+vector<AlbumPhotoInfo> AlbumRepository::GetSoftDeletedPhotosOlderThan(int64 cutoffMs)
+{
+    vector<AlbumPhotoInfo> result;
+    try {
+        auto& session = DBManager::GetInstance().GetSession();
+        auto rows = session.sql(
+            "SELECT id, group_id, COALESCE(gcs_path,''), COALESCE(file_size,0) "
+            "FROM album_photos WHERE is_deleted = 1 AND deleted_at IS NOT NULL AND deleted_at < ? "
+            "LIMIT 200"
+        ).bind(cutoffMs).execute();
+
+        for (auto row : rows) {
+            AlbumPhotoInfo info;
+            info.id       = row[0].get<string>();
+            info.groupId  = row[1].get<string>();
+            info.filePath = row[2].get<string>();
+            info.fileSize = row[3].get<int64>();
+            result.push_back(info);
+        }
+    } catch (const mysqlx::Error& e) {
+        LOG_ERROR("[AlbumRepository] GetSoftDeletedPhotosOlderThan 실패: {}", e.what());
+    }
+    return result;
+}
+
+bool AlbumRepository::HardDeletePhoto(const string& photoId)
+{
+    try {
+        auto& session = DBManager::GetInstance().GetSession();
+        session.startTransaction();
+        session.sql("DELETE FROM photo_comments WHERE photo_id = ?").bind(photoId).execute();
+        session.sql("DELETE FROM album_photos WHERE id = ?").bind(photoId).execute();
+        session.commit();
+        return true;
+    } catch (const mysqlx::Error& e) {
+        try { DBManager::GetInstance().GetSession().rollback(); } catch (...) {}
+        LOG_ERROR("[AlbumRepository] HardDeletePhoto 실패: {}", e.what());
+        return false;
+    }
+}
+
+bool AlbumRepository::SoftDeleteAllPhotosByGroup(const string& groupId, int64 deletedAtMs)
+{
+    try {
+        auto& session = DBManager::GetInstance().GetSession();
+        session.sql(
+            "UPDATE album_photos SET is_deleted=1, deleted_at=? "
+            "WHERE group_id=? AND is_deleted=0"
+        ).bind(deletedAtMs, groupId).execute();
+        return true;
+    } catch (const mysqlx::Error& e) {
+        LOG_ERROR("[AlbumRepository] SoftDeleteAllPhotosByGroup 실패: {}", e.what());
+        return false;
+    }
+}
+
+int64 AlbumRepository::SoftDeleteOverQuotaPhotosByGroup(
+    const string& groupId, int64 quotaBytes, int64 deletedAtMs)
+{
+    try {
+        auto& session = DBManager::GetInstance().GetSession();
+
+        // 최신순으로 사진 목록 조회 (삭제되지 않은 것만)
+        auto rows = session.sql(
+            "SELECT id, COALESCE(file_size, 0) FROM album_photos "
+            "WHERE group_id = ? AND is_deleted = 0 "
+            "ORDER BY uploaded_at DESC"
+        ).bind(groupId).execute();
+
+        vector<string> toDelete;
+        int64 accumulated = 0;
+        int64 totalDeletedSize = 0;
+
+        for (auto row : rows) {
+            string photoId = row[0].get<string>();
+            int64 sz = row[1].get<int64>();
+            if (accumulated + sz <= quotaBytes) {
+                accumulated += sz;
+            } else {
+                toDelete.push_back(photoId);
+                totalDeletedSize += sz;
+            }
+        }
+
+        if (toDelete.empty()) return 0;
+
+        // IN 절 구성 — UUID는 안전한 hex+dash 문자만 포함
+        string inClause;
+        for (size_t i = 0; i < toDelete.size(); ++i) {
+            if (i > 0) inClause += ',';
+            inClause += '\'';
+            inClause += toDelete[i];
+            inClause += '\'';
+        }
+        session.sql(
+            "UPDATE album_photos SET is_deleted = 1, deleted_at = ? "
+            "WHERE id IN (" + inClause + ")"
+        ).bind(deletedAtMs).execute();
+
+        return totalDeletedSize;
+    } catch (const mysqlx::Error& e) {
+        LOG_ERROR("[AlbumRepository] SoftDeleteOverQuotaPhotosByGroup 실패: {}", e.what());
+        return -1;
+    }
+}
+
 bool AlbumRepository::MovePhoto(const string& photoId, const string& toAlbumId)
 {
     try {
         auto& session = DBManager::GetInstance().GetSession();
         // 원본 albumId 조회 (커버 갱신용)
-        auto check = session.sql(
-            "SELECT album_id FROM album_photos WHERE id = ?"
-        ).bind(photoId).execute();
-        if (check.count() == 0) return false;
-        string fromAlbumId = check.fetchOne()[0].get<string>();
+        string fromAlbumId;
+        {
+            auto allCheck = session.sql(
+                "SELECT album_id FROM album_photos WHERE id = ?"
+            ).bind(photoId).execute().fetchAll();
+            if (allCheck.empty()) return false;
+            fromAlbumId = allCheck[0][0].get<string>();
+        }
 
         session.sql("UPDATE album_photos SET album_id = ? WHERE id = ?")
             .bind(toAlbumId, photoId).execute();
@@ -343,11 +530,13 @@ bool AlbumRepository::DeleteComment(const string& commentId, const string& userI
 {
     try {
         auto& session = DBManager::GetInstance().GetSession();
-        auto check = session.sql(
-            "SELECT sender_id FROM photo_comments WHERE id = ?"
-        ).bind(commentId).execute();
-        if (check.count() == 0) return false;
-        if (check.fetchOne()[0].get<string>() != userId) return false;
+        {
+            auto allCheck = session.sql(
+                "SELECT sender_id FROM photo_comments WHERE id = ?"
+            ).bind(commentId).execute().fetchAll();
+            if (allCheck.empty()) return false;
+            if (allCheck[0][0].get<string>() != userId) return false;
+        }
 
         session.sql("DELETE FROM photo_comments WHERE id = ?").bind(commentId).execute();
         return true;

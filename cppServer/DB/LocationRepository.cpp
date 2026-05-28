@@ -65,12 +65,13 @@ bool LocationRepository::DeletePlace(const string& placeId, const string& userId
     try {
         auto& session = DBManager::GetInstance().GetSession();
 
-        auto check = session.sql(
-            "SELECT created_by FROM location_places WHERE id = ?"
-        ).bind(placeId).execute();
-        if (check.count() == 0) return false;
-        auto row = check.fetchOne();
-        if (row[0].get<string>() != userId) return false;
+        {
+            auto allCheck = session.sql(
+                "SELECT created_by FROM location_places WHERE id = ?"
+            ).bind(placeId).execute().fetchAll();
+            if (allCheck.empty()) return false;
+            if (allCheck[0][0].get<string>() != userId) return false;
+        }
 
         session.sql("DELETE FROM location_places WHERE id = ?").bind(placeId).execute();
         return true;
@@ -83,23 +84,25 @@ bool LocationRepository::DeletePlace(const string& placeId, const string& userId
 bool LocationRepository::UpdateVisit(const string& visitId, const string& userId,
                                      int32 rating, const string& review,
                                      int64 visitedAt, const vector<string>& photoUrls,
-                                     const string& placeId)
+                                     const string& placeId, const string& historyId)
 {
     try {
         auto& session = DBManager::GetInstance().GetSession();
 
         // 본인 검증
-        auto check = session.sql(
-            "SELECT user_id, group_id FROM location_visits WHERE id = ?"
-        ).bind(visitId).execute();
-        if (check.count() == 0) return false;
-        auto checkRow = check.fetchOne();
-        if (checkRow[0].get<string>() != userId) return false;
-        string groupId = checkRow[1].get<string>();
+        string groupId;
+        {
+            auto allCheck = session.sql(
+                "SELECT user_id, group_id FROM location_visits WHERE id = ?"
+            ).bind(visitId).execute().fetchAll();
+            if (allCheck.empty()) return false;
+            if (allCheck[0][0].get<string>() != userId) return false;
+            groupId = allCheck[0][1].get<string>();
+        }
 
         session.sql(
-            "UPDATE location_visits SET rating=?, review=?, visited_at=? WHERE id=?"
-        ).bind(rating, review, visitedAt, visitId).execute();
+            "UPDATE location_visits SET rating=?, review=?, visited_at=?, history_id=? WHERE id=?"
+        ).bind(rating, review, visitedAt, historyId, visitId).execute();
 
         // 사진 교체: 기존 삭제 후 재삽입
         session.sql("DELETE FROM location_photos WHERE visit_id=?").bind(visitId).execute();
@@ -129,11 +132,13 @@ pair<bool,bool> LocationRepository::DeleteVisit(const string& visitId, const str
         auto& session = DBManager::GetInstance().GetSession();
 
         // 본인 검증
-        auto check = session.sql(
-            "SELECT user_id FROM location_visits WHERE id = ?"
-        ).bind(visitId).execute();
-        if (check.count() == 0) return {false, false};
-        if (check.fetchOne()[0].get<string>() != userId) return {false, false};
+        {
+            auto allCheck = session.sql(
+                "SELECT user_id FROM location_visits WHERE id = ?"
+            ).bind(visitId).execute().fetchAll();
+            if (allCheck.empty()) return {false, false};
+            if (allCheck[0][0].get<string>() != userId) return {false, false};
+        }
 
         // 이 장소의 방문 수 확인
         auto cntRow = session.sql(
@@ -217,13 +222,14 @@ string LocationRepository::CreateVisit(const cLocationVisit& visit)
     try {
         auto& session = DBManager::GetInstance().GetSession();
         string id = GenerateUUID();
+        string hid = visit.historyId.empty() ? id : visit.historyId;
         session.sql(
             "INSERT INTO location_visits "
-            "(id, place_id, group_id, user_id, user_name, rating, review, visited_at) "
-            "VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
+            "(id, place_id, group_id, user_id, user_name, rating, review, visited_at, history_id) "
+            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
         ).bind(id, visit.placeId, visit.groupId, visit.userId,
                visit.userName, visit.rating, visit.review,
-               visit.visitedAt).execute();
+               visit.visitedAt, hid).execute();
         return id;
     } catch (const mysqlx::Error& e) {
         LOG_ERROR("[LocationRepository] CreateVisit 실패: {}", e.what());
@@ -238,7 +244,7 @@ vector<cLocationVisit> LocationRepository::GetVisitsByPlace(const string& placeI
         auto& session = DBManager::GetInstance().GetSession();
         auto rows = session.sql(
             "SELECT v.id, v.place_id, v.group_id, v.user_id, v.user_name, "
-            "       v.rating, v.review, v.visited_at, "
+            "       v.rating, v.review, v.visited_at, v.history_id, "
             "       COALESCE(p.id, '')        AS photo_id, "
             "       COALESCE(p.photo_url, '') AS photo_url "
             "FROM location_visits v "
@@ -259,12 +265,13 @@ vector<cLocationVisit> LocationRepository::GetVisitsByPlace(const string& placeI
                 v.rating    = row[5].get<int>();
                 v.review    = row[6].get<string>();
                 v.visitedAt = row[7].get<int64>();
+                v.historyId = row[8].get<string>();
                 result.push_back(move(v));
                 lastId = vid;
             }
-            string photoId = row[8].get<string>();
+            string photoId = row[9].get<string>();
             if (!photoId.empty()) {
-                result.back().photos.emplace_back(photoId, row[9].get<string>());
+                result.back().photos.emplace_back(photoId, row[10].get<string>());
             }
         }
     } catch (const mysqlx::Error& e) {
