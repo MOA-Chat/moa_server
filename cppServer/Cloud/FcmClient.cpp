@@ -92,7 +92,8 @@ bool FcmClient::SendPush(const string& fcmToken, const string& title, const stri
                                 {"body", body}
                             }},
                             {"sound", "default"},
-                            {"badge", 1}
+                            {"badge", 1},
+                            {"content-available", 1}
                         }}
                     }}
                 }}
