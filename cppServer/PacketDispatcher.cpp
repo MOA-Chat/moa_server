@@ -308,6 +308,10 @@ void PacketDispatcher::DispatchPacket(sessionPtr& session, Protocol::Envelope& e
 		Dispatch_C_DeleteGroup(session, envelope.request_id(), envelope.c_delete_group());
 		break;
 
+	case Protocol::Envelope::kCTransferOwnership:
+		Dispatch_C_TransferOwnership(session, envelope.request_id(), envelope.c_transfer_ownership());
+		break;
+
 	default:
 		LOG_WARN("[PacketDispatcher] 알 수 없는 패킷: payload_case={} userId={}",
 		    static_cast<int>(envelope.payload_case()),
@@ -459,8 +463,13 @@ void PacketDispatcher::PushOfflineData(sessionPtr& session, uint64 reqId, const 
 
 				if (tempChat.ParseFromString(msgInfo.messageData)) {
 					*sChat = tempChat;
-					// 시퀀스 번호 재확인
 					sChat->set_msg_seq(msgInfo.msgSeq);
+					// unread_count 재계산: 저장된 초기값 대신 현재 read_status 기반 실제 값
+					// (오프라인 중 읽힌 메시지도 정확히 반영)
+					if (sChat->unread_count() > 0) {
+						int actual = MessageRepository::GetMsgUnreadCount(convId, msgInfo.msgSeq);
+						sChat->set_unread_count(actual);
+					}
 					totalMessages++;
 				}
 			}
@@ -494,6 +503,11 @@ void PacketDispatcher::PushOfflineData(sessionPtr& session, uint64 reqId, const 
 				if (tempChat.ParseFromString(msgInfo.messageData)) {
 					*sChat = tempChat;
 					sChat->set_msg_seq(msgInfo.msgSeq);
+					// unread_count 재계산 (그룹 전용: group_members 기반으로 정확히 계산)
+					if (sChat->unread_count() > 0) {
+						int actual = MessageRepository::GetMsgUnreadCount(convId, msgInfo.msgSeq);
+						sChat->set_unread_count(actual);
+					}
 					totalMessages++;
 				}
 			}
@@ -961,6 +975,18 @@ bool PacketDispatcher::Dispatch_C_DeleteGroup(sessionPtr& session, uint64 reqId,
 	}
 
 	return GGroupService->DeleteGroup(session, reqId, pkt.group_id());
+}
+
+bool PacketDispatcher::Dispatch_C_TransferOwnership(sessionPtr& session, uint64 reqId, const Protocol::C_TransferOwnership& pkt)
+{
+	auto serverSession = static_pointer_cast<ServerSession>(session);
+	const string userId = serverSession->GetUserId();
+	if (userId.empty()) {
+		DispatchError(session, reqId, ERR_UNAUTHORIZED, "인증이 필요합니다.");
+		return false;
+	}
+
+	return GGroupService->TransferOwnership(session, reqId, pkt);
 }
 
 

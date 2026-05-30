@@ -880,18 +880,28 @@ int MessageRepository::GetUnreadCount(const string& userId, const string& convId
     }
 }
 
-// 특정 메시지의 안읽은 참여자 수
+// 특정 메시지의 안읽은 참여자 수 (그룹/DM 모두 정확하게 계산)
 int MessageRepository::GetMsgUnreadCount(const string& convId, int64 msgSeq)
 {
     try {
         auto& db = DBManager::GetInstance();
         auto& session = db.GetSession();
 
-        // 참여자 수
-        string totalQuery = "SELECT COUNT(*) FROM conversation_participants WHERE conv_id = ?";
-        auto totalResult = session.sql(totalQuery).bind(convId).execute();
-        auto totalRow = totalResult.fetchOne();
-        int totalCount = totalRow[0].isNull() ? 0 : totalRow[0].get<int>();
+        int totalCount = 0;
+
+        // 그룹 채팅은 group_members 사용 (conversation_participants는 DM 전용)
+        if (convId.find("group:") == 0) {
+            string groupId = convId.substr(6);
+            string totalQuery = "SELECT COUNT(*) FROM group_members WHERE group_id = ?";
+            auto totalResult = session.sql(totalQuery).bind(groupId).execute();
+            auto totalRow = totalResult.fetchOne();
+            totalCount = totalRow[0].isNull() ? 0 : totalRow[0].get<int>();
+        } else {
+            string totalQuery = "SELECT COUNT(*) FROM conversation_participants WHERE conv_id = ?";
+            auto totalResult = session.sql(totalQuery).bind(convId).execute();
+            auto totalRow = totalResult.fetchOne();
+            totalCount = totalRow[0].isNull() ? 0 : totalRow[0].get<int>();
+        }
 
         // 이 메시지 이상까지 읽은 사람 수
         string readQuery =
