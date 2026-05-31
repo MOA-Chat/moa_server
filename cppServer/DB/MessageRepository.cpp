@@ -903,12 +903,26 @@ int MessageRepository::GetMsgUnreadCount(const string& convId, int64 msgSeq)
             totalCount = totalRow[0].isNull() ? 0 : totalRow[0].get<int>();
         }
 
-        // 이 메시지 이상까지 읽은 사람 수
-        string readQuery =
-            "SELECT COUNT(*) FROM read_status WHERE conv_id = ? AND last_read_seq >= ?";
-        auto readResult = session.sql(readQuery).bind(convId, msgSeq).execute();
-        auto readRow = readResult.fetchOne();
-        int readCount = readRow[0].isNull() ? 0 : readRow[0].get<int>();
+        // 이 메시지 이상까지 읽은 사람 수 (현재 멤버만 — 탈퇴자 제외)
+        int readCount = 0;
+        if (convId.find("group:") == 0) {
+            string groupId = convId.substr(6);
+            string readQuery =
+                "SELECT COUNT(*) FROM read_status rs "
+                "INNER JOIN group_members gm ON rs.user_id = gm.user_id AND gm.group_id = ? "
+                "WHERE rs.conv_id = ? AND rs.last_read_seq >= ?";
+            auto readResult = session.sql(readQuery).bind(groupId, convId, msgSeq).execute();
+            auto readRow = readResult.fetchOne();
+            readCount = (readRow && !readRow[0].isNull()) ? readRow[0].get<int>() : 0;
+        } else {
+            string readQuery =
+                "SELECT COUNT(*) FROM read_status rs "
+                "INNER JOIN conversation_participants cp ON rs.user_id = cp.user_id AND cp.conv_id = ? "
+                "WHERE rs.conv_id = ? AND rs.last_read_seq >= ?";
+            auto readResult = session.sql(readQuery).bind(convId, convId, msgSeq).execute();
+            auto readRow = readResult.fetchOne();
+            readCount = (readRow && !readRow[0].isNull()) ? readRow[0].get<int>() : 0;
+        }
 
         int unread = totalCount - readCount;
         return unread > 0 ? unread : 0;
@@ -986,13 +1000,27 @@ vector<pair<int64, int>> MessageRepository::GetBatchMsgUnreadCounts(const string
 
         if (seqs.empty()) return results;
 
-        // 3) 각 메시지별 읽은 사람 수 계산
+        // 3) 각 메시지별 읽은 사람 수 계산 (현재 멤버만 — 탈퇴자 제외)
         for (int64 seq : seqs) {
-            string readQuery =
-                "SELECT COUNT(*) FROM read_status WHERE conv_id = ? AND last_read_seq >= ?";
-            auto readResult = session.sql(readQuery).bind(convId, seq).execute();
-            auto readRow = readResult.fetchOne();
-            int readCount = (readRow && !readRow[0].isNull()) ? readRow[0].get<int>() : 0;
+            int readCount = 0;
+            if (convId.find("group:") == 0) {
+                string groupId = convId.substr(6);
+                string readQuery =
+                    "SELECT COUNT(*) FROM read_status rs "
+                    "INNER JOIN group_members gm ON rs.user_id = gm.user_id AND gm.group_id = ? "
+                    "WHERE rs.conv_id = ? AND rs.last_read_seq >= ?";
+                auto readResult = session.sql(readQuery).bind(groupId, convId, seq).execute();
+                auto readRow = readResult.fetchOne();
+                readCount = (readRow && !readRow[0].isNull()) ? readRow[0].get<int>() : 0;
+            } else {
+                string readQuery =
+                    "SELECT COUNT(*) FROM read_status rs "
+                    "INNER JOIN conversation_participants cp ON rs.user_id = cp.user_id AND cp.conv_id = ? "
+                    "WHERE rs.conv_id = ? AND rs.last_read_seq >= ?";
+                auto readResult = session.sql(readQuery).bind(convId, convId, seq).execute();
+                auto readRow = readResult.fetchOne();
+                readCount = (readRow && !readRow[0].isNull()) ? readRow[0].get<int>() : 0;
+            }
             int unread = totalCount - readCount;
             results.push_back({ seq, unread > 0 ? unread : 0 });
         }
