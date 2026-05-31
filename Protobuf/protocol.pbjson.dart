@@ -78,6 +78,7 @@ const ErrorCode$json = {
     {'1': 'ERR_POLL_CLOSED', '2': 701},
     {'1': 'ERR_POLL_INVALID_OPTION', '2': 702},
     {'1': 'ERR_INVITE_EXPIRED', '2': 800},
+    {'1': 'ERR_GROUP_FULL', '2': 801},
     {'1': 'ERR_OAUTH_VERIFICATION_FAILED', '2': 120},
     {'1': 'ERR_OAUTH_PROVIDER_INVALID', '2': 121},
   ],
@@ -107,8 +108,8 @@ final $typed_data.Uint8List errorCodeDescriptor = $convert.base64Decode(
     'JfTk9UX0JMT0NLRUQQ2QQSGgoVRVJSX0NBTk5PVF9CTE9DS19TRUxGENoEEhkKFEVSUl9SRVBP'
     'UlRfRFVQTElDQVRFEOIEEhcKEkVSUl9QT0xMX05PVF9GT1VORBC8BRIUCg9FUlJfUE9MTF9DTE'
     '9TRUQQvQUSHAoXRVJSX1BPTExfSU5WQUxJRF9PUFRJT04QvgUSFwoSRVJSX0lOVklURV9FWFBJ'
-    'UkVEEKAGEiEKHUVSUl9PQVVUSF9WRVJJRklDQVRJT05fRkFJTEVEEHgSHgoaRVJSX09BVVRIX1'
-    'BST1ZJREVSX0lOVkFMSUQQeQ==');
+    'UkVEEKAGEhMKDkVSUl9HUk9VUF9GVUxMEKEGEiEKHUVSUl9PQVVUSF9WRVJJRklDQVRJT05fRk'
+    'FJTEVEEHgSHgoaRVJSX09BVVRIX1BST1ZJREVSX0lOVkFMSUQQeQ==');
 
 @$core.Deprecated('Use envelopeDescriptor instead')
 const Envelope$json = {
@@ -1117,6 +1118,24 @@ const Envelope$json = {
       '10': 'sDeleteVisit'
     },
     {
+      '1': 'c_transfer_ownership',
+      '3': 160,
+      '4': 1,
+      '5': 11,
+      '6': '.Protocol.C_TransferOwnership',
+      '9': 0,
+      '10': 'cTransferOwnership'
+    },
+    {
+      '1': 's_transfer_ownership',
+      '3': 161,
+      '4': 1,
+      '5': 11,
+      '6': '.Protocol.S_TransferOwnership',
+      '9': 0,
+      '10': 'sTransferOwnership'
+    },
+    {
       '1': 'c_create_group',
       '3': 80,
       '4': 1,
@@ -1466,33 +1485,36 @@ final $typed_data.Uint8List envelopeDescriptor = $convert.base64Decode(
     'VXBkYXRlVmlzaXQSQAoOc191cGRhdGVfdmlzaXQYnQEgASgLMhcuUHJvdG9jb2wuU19VcGRhdG'
     'VWaXNpdEgAUgxzVXBkYXRlVmlzaXQSQAoOY19kZWxldGVfdmlzaXQYngEgASgLMhcuUHJvdG9j'
     'b2wuQ19EZWxldGVWaXNpdEgAUgxjRGVsZXRlVmlzaXQSQAoOc19kZWxldGVfdmlzaXQYnwEgAS'
-    'gLMhcuUHJvdG9jb2wuU19EZWxldGVWaXNpdEgAUgxzRGVsZXRlVmlzaXQSPwoOY19jcmVhdGVf'
-    'Z3JvdXAYUCABKAsyFy5Qcm90b2NvbC5DX0NyZWF0ZUdyb3VwSABSDGNDcmVhdGVHcm91cBI/Cg'
-    '5zX2NyZWF0ZV9ncm91cBhRIAEoCzIXLlByb3RvY29sLlNfQ3JlYXRlR3JvdXBIAFIMc0NyZWF0'
-    'ZUdyb3VwEjkKDGNfZ3JvdXBfbGlzdBhSIAEoCzIVLlByb3RvY29sLkNfR3JvdXBMaXN0SABSCm'
-    'NHcm91cExpc3QSOQoMc19ncm91cF9saXN0GFMgASgLMhUuUHJvdG9jb2wuU19Hcm91cExpc3RI'
-    'AFIKc0dyb3VwTGlzdBI5CgxjX2pvaW5fZ3JvdXAYVCABKAsyFS5Qcm90b2NvbC5DX0pvaW5Hcm'
-    '91cEgAUgpjSm9pbkdyb3VwEjkKDHNfam9pbl9ncm91cBhVIAEoCzIVLlByb3RvY29sLlNfSm9p'
-    'bkdyb3VwSABSCnNKb2luR3JvdXASQgoPY19pbnZpdGVfZnJpZW5kGFYgASgLMhguUHJvdG9jb2'
-    'wuQ19JbnZpdGVGcmllbmRIAFINY0ludml0ZUZyaWVuZBJCCg9zX2ludml0ZV9mcmllbmQYVyAB'
-    'KAsyGC5Qcm90b2NvbC5TX0ludml0ZUZyaWVuZEgAUg1zSW52aXRlRnJpZW5kEjwKDWNfbGVhdm'
-    'VfZ3JvdXAYWCABKAsyFi5Qcm90b2NvbC5DX0xlYXZlR3JvdXBIAFILY0xlYXZlR3JvdXASPAoN'
-    'c19sZWF2ZV9ncm91cBhZIAEoCzIWLlByb3RvY29sLlNfTGVhdmVHcm91cEgAUgtzTGVhdmVHcm'
-    '91cBJMChNjX2dyb3VwX21lbWJlcl9saXN0GFogASgLMhsuUHJvdG9jb2wuQ19Hcm91cE1lbWJl'
-    'ckxpc3RIAFIQY0dyb3VwTWVtYmVyTGlzdBJMChNzX2dyb3VwX21lbWJlcl9saXN0GFsgASgLMh'
-    'suUHJvdG9jb2wuU19Hcm91cE1lbWJlckxpc3RIAFIQc0dyb3VwTWVtYmVyTGlzdBI5CgxjX2dy'
-    'b3VwX2luZm8YXCABKAsyFS5Qcm90b2NvbC5DX0dyb3VwSW5mb0gAUgpjR3JvdXBJbmZvEjkKDH'
-    'NfZ3JvdXBfaW5mbxhdIAEoCzIVLlByb3RvY29sLlNfR3JvdXBJbmZvSABSCnNHcm91cEluZm8S'
-    'OQoMY19lZGl0X2dyb3VwGF4gASgLMhUuUHJvdG9jb2wuQ19FZGl0R3JvdXBIAFIKY0VkaXRHcm'
-    '91cBI5CgxzX2VkaXRfZ3JvdXAYXyABKAsyFS5Qcm90b2NvbC5TX0VkaXRHcm91cEgAUgpzRWRp'
-    'dEdyb3VwEjUKCmNfd2l0aGRyYXcYYCABKAsyFC5Qcm90b2NvbC5DX1dpdGhkcmF3SABSCWNXaX'
-    'RoZHJhdxI1CgpzX3dpdGhkcmF3GGEgASgLMhQuUHJvdG9jb2wuU19XaXRoZHJhd0gAUglzV2l0'
-    'aGRyYXcSPwoOY19kZWxldGVfZ3JvdXAYYiABKAsyFy5Qcm90b2NvbC5DX0RlbGV0ZUdyb3VwSA'
-    'BSDGNEZWxldGVHcm91cBI/Cg5zX2RlbGV0ZV9ncm91cBhjIAEoCzIXLlByb3RvY29sLlNfRGVs'
-    'ZXRlR3JvdXBIAFIMc0RlbGV0ZUdyb3VwEiwKB3NfZXJyb3IYZCABKAsyES5Qcm90b2NvbC5TX0'
-    'Vycm9ySABSBnNFcnJvchI4CgtjX2hlYXJ0YmVhdBhlIAEoCzIVLlByb3RvY29sLkNfSGVhcnRi'
-    'ZWF0SABSCmNIZWFydGJlYXQSOAoLc19oZWFydGJlYXQYZiABKAsyFS5Qcm90b2NvbC5TX0hlYX'
-    'J0YmVhdEgAUgpzSGVhcnRiZWF0QgkKB3BheWxvYWQ=');
+    'gLMhcuUHJvdG9jb2wuU19EZWxldGVWaXNpdEgAUgxzRGVsZXRlVmlzaXQSUgoUY190cmFuc2Zl'
+    'cl9vd25lcnNoaXAYoAEgASgLMh0uUHJvdG9jb2wuQ19UcmFuc2Zlck93bmVyc2hpcEgAUhJjVH'
+    'JhbnNmZXJPd25lcnNoaXASUgoUc190cmFuc2Zlcl9vd25lcnNoaXAYoQEgASgLMh0uUHJvdG9j'
+    'b2wuU19UcmFuc2Zlck93bmVyc2hpcEgAUhJzVHJhbnNmZXJPd25lcnNoaXASPwoOY19jcmVhdG'
+    'VfZ3JvdXAYUCABKAsyFy5Qcm90b2NvbC5DX0NyZWF0ZUdyb3VwSABSDGNDcmVhdGVHcm91cBI/'
+    'Cg5zX2NyZWF0ZV9ncm91cBhRIAEoCzIXLlByb3RvY29sLlNfQ3JlYXRlR3JvdXBIAFIMc0NyZW'
+    'F0ZUdyb3VwEjkKDGNfZ3JvdXBfbGlzdBhSIAEoCzIVLlByb3RvY29sLkNfR3JvdXBMaXN0SABS'
+    'CmNHcm91cExpc3QSOQoMc19ncm91cF9saXN0GFMgASgLMhUuUHJvdG9jb2wuU19Hcm91cExpc3'
+    'RIAFIKc0dyb3VwTGlzdBI5CgxjX2pvaW5fZ3JvdXAYVCABKAsyFS5Qcm90b2NvbC5DX0pvaW5H'
+    'cm91cEgAUgpjSm9pbkdyb3VwEjkKDHNfam9pbl9ncm91cBhVIAEoCzIVLlByb3RvY29sLlNfSm'
+    '9pbkdyb3VwSABSCnNKb2luR3JvdXASQgoPY19pbnZpdGVfZnJpZW5kGFYgASgLMhguUHJvdG9j'
+    'b2wuQ19JbnZpdGVGcmllbmRIAFINY0ludml0ZUZyaWVuZBJCCg9zX2ludml0ZV9mcmllbmQYVy'
+    'ABKAsyGC5Qcm90b2NvbC5TX0ludml0ZUZyaWVuZEgAUg1zSW52aXRlRnJpZW5kEjwKDWNfbGVh'
+    'dmVfZ3JvdXAYWCABKAsyFi5Qcm90b2NvbC5DX0xlYXZlR3JvdXBIAFILY0xlYXZlR3JvdXASPA'
+    'oNc19sZWF2ZV9ncm91cBhZIAEoCzIWLlByb3RvY29sLlNfTGVhdmVHcm91cEgAUgtzTGVhdmVH'
+    'cm91cBJMChNjX2dyb3VwX21lbWJlcl9saXN0GFogASgLMhsuUHJvdG9jb2wuQ19Hcm91cE1lbW'
+    'Jlckxpc3RIAFIQY0dyb3VwTWVtYmVyTGlzdBJMChNzX2dyb3VwX21lbWJlcl9saXN0GFsgASgL'
+    'MhsuUHJvdG9jb2wuU19Hcm91cE1lbWJlckxpc3RIAFIQc0dyb3VwTWVtYmVyTGlzdBI5CgxjX2'
+    'dyb3VwX2luZm8YXCABKAsyFS5Qcm90b2NvbC5DX0dyb3VwSW5mb0gAUgpjR3JvdXBJbmZvEjkK'
+    'DHNfZ3JvdXBfaW5mbxhdIAEoCzIVLlByb3RvY29sLlNfR3JvdXBJbmZvSABSCnNHcm91cEluZm'
+    '8SOQoMY19lZGl0X2dyb3VwGF4gASgLMhUuUHJvdG9jb2wuQ19FZGl0R3JvdXBIAFIKY0VkaXRH'
+    'cm91cBI5CgxzX2VkaXRfZ3JvdXAYXyABKAsyFS5Qcm90b2NvbC5TX0VkaXRHcm91cEgAUgpzRW'
+    'RpdEdyb3VwEjUKCmNfd2l0aGRyYXcYYCABKAsyFC5Qcm90b2NvbC5DX1dpdGhkcmF3SABSCWNX'
+    'aXRoZHJhdxI1CgpzX3dpdGhkcmF3GGEgASgLMhQuUHJvdG9jb2wuU19XaXRoZHJhd0gAUglzV2'
+    'l0aGRyYXcSPwoOY19kZWxldGVfZ3JvdXAYYiABKAsyFy5Qcm90b2NvbC5DX0RlbGV0ZUdyb3Vw'
+    'SABSDGNEZWxldGVHcm91cBI/Cg5zX2RlbGV0ZV9ncm91cBhjIAEoCzIXLlByb3RvY29sLlNfRG'
+    'VsZXRlR3JvdXBIAFIMc0RlbGV0ZUdyb3VwEiwKB3NfZXJyb3IYZCABKAsyES5Qcm90b2NvbC5T'
+    'X0Vycm9ySABSBnNFcnJvchI4CgtjX2hlYXJ0YmVhdBhlIAEoCzIVLlByb3RvY29sLkNfSGVhcn'
+    'RiZWF0SABSCmNIZWFydGJlYXQSOAoLc19oZWFydGJlYXQYZiABKAsyFS5Qcm90b2NvbC5TX0hl'
+    'YXJ0YmVhdEgAUgpzSGVhcnRiZWF0QgkKB3BheWxvYWQ=');
 
 @$core.Deprecated('Use userInfoDescriptor instead')
 const UserInfo$json = {
@@ -2523,11 +2545,14 @@ final $typed_data.Uint8List s_MessageBatchDescriptor = $convert.base64Decode(
 @$core.Deprecated('Use c_GetSubscriptionDescriptor instead')
 const C_GetSubscription$json = {
   '1': 'C_GetSubscription',
+  '2': [
+    {'1': 'group_id', '3': 1, '4': 1, '5': 9, '10': 'groupId'},
+  ],
 };
 
 /// Descriptor for `C_GetSubscription`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List c_GetSubscriptionDescriptor =
-    $convert.base64Decode('ChFDX0dldFN1YnNjcmlwdGlvbg==');
+final $typed_data.Uint8List c_GetSubscriptionDescriptor = $convert.base64Decode(
+    'ChFDX0dldFN1YnNjcmlwdGlvbhIZCghncm91cF9pZBgBIAEoCVIHZ3JvdXBJZA==');
 
 @$core.Deprecated('Use subscriptionPlanDescriptor instead')
 const SubscriptionPlan$json = {
@@ -2557,14 +2582,13 @@ const S_GetSubscription$json = {
   '1': 'S_GetSubscription',
   '2': [
     {'1': 'success', '3': 1, '4': 1, '5': 8, '10': 'success'},
-    {'1': 'current_grade', '3': 2, '4': 1, '5': 5, '10': 'currentGrade'},
     {'1': 'current_plan_name', '3': 3, '4': 1, '5': 9, '10': 'currentPlanName'},
     {
-      '1': 'storage_capacity_bytes',
+      '1': 'storage_limit_bytes',
       '3': 4,
       '4': 1,
       '5': 3,
-      '10': 'storageCapacityBytes'
+      '10': 'storageLimitBytes'
     },
     {
       '1': 'storage_usage_bytes',
@@ -2588,13 +2612,12 @@ const S_GetSubscription$json = {
 
 /// Descriptor for `S_GetSubscription`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List s_GetSubscriptionDescriptor = $convert.base64Decode(
-    'ChFTX0dldFN1YnNjcmlwdGlvbhIYCgdzdWNjZXNzGAEgASgIUgdzdWNjZXNzEiMKDWN1cnJlbn'
-    'RfZ3JhZGUYAiABKAVSDGN1cnJlbnRHcmFkZRIqChFjdXJyZW50X3BsYW5fbmFtZRgDIAEoCVIP'
-    'Y3VycmVudFBsYW5OYW1lEjQKFnN0b3JhZ2VfY2FwYWNpdHlfYnl0ZXMYBCABKANSFHN0b3JhZ2'
-    'VDYXBhY2l0eUJ5dGVzEi4KE3N0b3JhZ2VfdXNhZ2VfYnl0ZXMYBSABKANSEXN0b3JhZ2VVc2Fn'
-    'ZUJ5dGVzEh0KCmV4cGlyZXNfYXQYBiABKANSCWV4cGlyZXNBdBIdCgphdXRvX3JlbmV3GAcgAS'
-    'gIUglhdXRvUmVuZXcSQwoPYXZhaWxhYmxlX3BsYW5zGAggAygLMhouUHJvdG9jb2wuU3Vic2Ny'
-    'aXB0aW9uUGxhblIOYXZhaWxhYmxlUGxhbnM=');
+    'ChFTX0dldFN1YnNjcmlwdGlvbhIYCgdzdWNjZXNzGAEgASgIUgdzdWNjZXNzEioKEWN1cnJlbn'
+    'RfcGxhbl9uYW1lGAMgASgJUg9jdXJyZW50UGxhbk5hbWUSLgoTc3RvcmFnZV9saW1pdF9ieXRl'
+    'cxgEIAEoA1IRc3RvcmFnZUxpbWl0Qnl0ZXMSLgoTc3RvcmFnZV91c2FnZV9ieXRlcxgFIAEoA1'
+    'IRc3RvcmFnZVVzYWdlQnl0ZXMSHQoKZXhwaXJlc19hdBgGIAEoA1IJZXhwaXJlc0F0Eh0KCmF1'
+    'dG9fcmVuZXcYByABKAhSCWF1dG9SZW5ldxJDCg9hdmFpbGFibGVfcGxhbnMYCCADKAsyGi5Qcm'
+    '90b2NvbC5TdWJzY3JpcHRpb25QbGFuUg5hdmFpbGFibGVQbGFucw==');
 
 @$core.Deprecated('Use c_VerifyPurchaseDescriptor instead')
 const C_VerifyPurchase$json = {
@@ -2604,6 +2627,7 @@ const C_VerifyPurchase$json = {
     {'1': 'product_id', '3': 2, '4': 1, '5': 9, '10': 'productId'},
     {'1': 'transaction_id', '3': 3, '4': 1, '5': 9, '10': 'transactionId'},
     {'1': 'purchase_token', '3': 4, '4': 1, '5': 9, '10': 'purchaseToken'},
+    {'1': 'group_id', '3': 5, '4': 1, '5': 9, '10': 'groupId'},
   ],
 };
 
@@ -2611,7 +2635,8 @@ const C_VerifyPurchase$json = {
 final $typed_data.Uint8List c_VerifyPurchaseDescriptor = $convert.base64Decode(
     'ChBDX1ZlcmlmeVB1cmNoYXNlEhoKCHBsYXRmb3JtGAEgASgJUghwbGF0Zm9ybRIdCgpwcm9kdW'
     'N0X2lkGAIgASgJUglwcm9kdWN0SWQSJQoOdHJhbnNhY3Rpb25faWQYAyABKAlSDXRyYW5zYWN0'
-    'aW9uSWQSJQoOcHVyY2hhc2VfdG9rZW4YBCABKAlSDXB1cmNoYXNlVG9rZW4=');
+    'aW9uSWQSJQoOcHVyY2hhc2VfdG9rZW4YBCABKAlSDXB1cmNoYXNlVG9rZW4SGQoIZ3JvdXBfaW'
+    'QYBSABKAlSB2dyb3VwSWQ=');
 
 @$core.Deprecated('Use s_VerifyPurchaseDescriptor instead')
 const S_VerifyPurchase$json = {
@@ -2619,27 +2644,43 @@ const S_VerifyPurchase$json = {
   '2': [
     {'1': 'success', '3': 1, '4': 1, '5': 8, '10': 'success'},
     {'1': 'message', '3': 2, '4': 1, '5': 9, '10': 'message'},
-    {'1': 'new_grade', '3': 3, '4': 1, '5': 5, '10': 'newGrade'},
     {'1': 'expires_at', '3': 4, '4': 1, '5': 3, '10': 'expiresAt'},
-    {'1': 'storage_capacity', '3': 5, '4': 1, '5': 3, '10': 'storageCapacity'},
+    {
+      '1': 'storage_limit_bytes',
+      '3': 5,
+      '4': 1,
+      '5': 3,
+      '10': 'storageLimitBytes'
+    },
+    {
+      '1': 'storage_usage_bytes',
+      '3': 6,
+      '4': 1,
+      '5': 3,
+      '10': 'storageUsageBytes'
+    },
   ],
 };
 
 /// Descriptor for `S_VerifyPurchase`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List s_VerifyPurchaseDescriptor = $convert.base64Decode(
     'ChBTX1ZlcmlmeVB1cmNoYXNlEhgKB3N1Y2Nlc3MYASABKAhSB3N1Y2Nlc3MSGAoHbWVzc2FnZR'
-    'gCIAEoCVIHbWVzc2FnZRIbCgluZXdfZ3JhZGUYAyABKAVSCG5ld0dyYWRlEh0KCmV4cGlyZXNf'
-    'YXQYBCABKANSCWV4cGlyZXNBdBIpChBzdG9yYWdlX2NhcGFjaXR5GAUgASgDUg9zdG9yYWdlQ2'
-    'FwYWNpdHk=');
+    'gCIAEoCVIHbWVzc2FnZRIdCgpleHBpcmVzX2F0GAQgASgDUglleHBpcmVzQXQSLgoTc3RvcmFn'
+    'ZV9saW1pdF9ieXRlcxgFIAEoA1IRc3RvcmFnZUxpbWl0Qnl0ZXMSLgoTc3RvcmFnZV91c2FnZV'
+    '9ieXRlcxgGIAEoA1IRc3RvcmFnZVVzYWdlQnl0ZXM=');
 
 @$core.Deprecated('Use c_CancelSubscriptionDescriptor instead')
 const C_CancelSubscription$json = {
   '1': 'C_CancelSubscription',
+  '2': [
+    {'1': 'group_id', '3': 1, '4': 1, '5': 9, '10': 'groupId'},
+  ],
 };
 
 /// Descriptor for `C_CancelSubscription`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List c_CancelSubscriptionDescriptor =
-    $convert.base64Decode('ChRDX0NhbmNlbFN1YnNjcmlwdGlvbg==');
+    $convert.base64Decode(
+        'ChRDX0NhbmNlbFN1YnNjcmlwdGlvbhIZCghncm91cF9pZBgBIAEoCVIHZ3JvdXBJZA==');
 
 @$core.Deprecated('Use s_CancelSubscriptionDescriptor instead')
 const S_CancelSubscription$json = {
@@ -3274,6 +3315,34 @@ const S_DeleteGroup$json = {
 final $typed_data.Uint8List s_DeleteGroupDescriptor = $convert
     .base64Decode('Cg1TX0RlbGV0ZUdyb3VwEhgKB3N1Y2Nlc3MYASABKAhSB3N1Y2Nlc3M=');
 
+@$core.Deprecated('Use c_TransferOwnershipDescriptor instead')
+const C_TransferOwnership$json = {
+  '1': 'C_TransferOwnership',
+  '2': [
+    {'1': 'group_id', '3': 1, '4': 1, '5': 9, '10': 'groupId'},
+    {'1': 'target_user_id', '3': 2, '4': 1, '5': 9, '10': 'targetUserId'},
+  ],
+};
+
+/// Descriptor for `C_TransferOwnership`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List c_TransferOwnershipDescriptor = $convert.base64Decode(
+    'ChNDX1RyYW5zZmVyT3duZXJzaGlwEhkKCGdyb3VwX2lkGAEgASgJUgdncm91cElkEiQKDnRhcm'
+    'dldF91c2VyX2lkGAIgASgJUgx0YXJnZXRVc2VySWQ=');
+
+@$core.Deprecated('Use s_TransferOwnershipDescriptor instead')
+const S_TransferOwnership$json = {
+  '1': 'S_TransferOwnership',
+  '2': [
+    {'1': 'success', '3': 1, '4': 1, '5': 8, '10': 'success'},
+    {'1': 'new_owner_id', '3': 2, '4': 1, '5': 9, '10': 'newOwnerId'},
+  ],
+};
+
+/// Descriptor for `S_TransferOwnership`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List s_TransferOwnershipDescriptor = $convert.base64Decode(
+    'ChNTX1RyYW5zZmVyT3duZXJzaGlwEhgKB3N1Y2Nlc3MYASABKAhSB3N1Y2Nlc3MSIAoMbmV3X2'
+    '93bmVyX2lkGAIgASgJUgpuZXdPd25lcklk');
+
 @$core.Deprecated('Use blockedUserInfoDescriptor instead')
 const BlockedUserInfo$json = {
   '1': 'BlockedUserInfo',
@@ -3465,6 +3534,8 @@ const S_CreatePoll$json = {
     {'1': 'is_anonymous', '3': 9, '4': 1, '5': 8, '10': 'isAnonymous'},
     {'1': 'expires_at', '3': 10, '4': 1, '5': 3, '10': 'expiresAt'},
     {'1': 'ts_server', '3': 11, '4': 1, '5': 3, '10': 'tsServer'},
+    {'1': 'status', '3': 12, '4': 1, '5': 9, '10': 'status'},
+    {'1': 'votes_json', '3': 13, '4': 1, '5': 9, '10': 'votesJson'},
   ],
 };
 
@@ -3476,7 +3547,8 @@ final $typed_data.Uint8List s_CreatePollDescriptor = $convert.base64Decode(
     '4YBiABKAlSCHF1ZXN0aW9uEhgKB29wdGlvbnMYByADKAlSB29wdGlvbnMSJgoPaXNfbXVsdGlf'
     'c2VsZWN0GAggASgIUg1pc011bHRpU2VsZWN0EiEKDGlzX2Fub255bW91cxgJIAEoCFILaXNBbm'
     '9ueW1vdXMSHQoKZXhwaXJlc19hdBgKIAEoA1IJZXhwaXJlc0F0EhsKCXRzX3NlcnZlchgLIAEo'
-    'A1IIdHNTZXJ2ZXI=');
+    'A1IIdHNTZXJ2ZXISFgoGc3RhdHVzGAwgASgJUgZzdGF0dXMSHQoKdm90ZXNfanNvbhgNIAEoCV'
+    'IJdm90ZXNKc29u');
 
 @$core.Deprecated('Use c_VoteDescriptor instead')
 const C_Vote$json = {
@@ -4129,6 +4201,7 @@ const LocationVisitInfo$json = {
       '6': '.Protocol.LocationPhoto',
       '10': 'photos'
     },
+    {'1': 'history_id', '3': 8, '4': 1, '5': 9, '10': 'historyId'},
   ],
 };
 
@@ -4137,7 +4210,8 @@ final $typed_data.Uint8List locationVisitInfoDescriptor = $convert.base64Decode(
     'ChFMb2NhdGlvblZpc2l0SW5mbxIOCgJpZBgBIAEoCVICaWQSFwoHdXNlcl9pZBgCIAEoCVIGdX'
     'NlcklkEhsKCXVzZXJfbmFtZRgDIAEoCVIIdXNlck5hbWUSFgoGcmF0aW5nGAQgASgFUgZyYXRp'
     'bmcSFgoGcmV2aWV3GAUgASgJUgZyZXZpZXcSHQoKdmlzaXRlZF9hdBgGIAEoA1IJdmlzaXRlZE'
-    'F0Ei8KBnBob3RvcxgHIAMoCzIXLlByb3RvY29sLkxvY2F0aW9uUGhvdG9SBnBob3Rvcw==');
+    'F0Ei8KBnBob3RvcxgHIAMoCzIXLlByb3RvY29sLkxvY2F0aW9uUGhvdG9SBnBob3RvcxIdCgpo'
+    'aXN0b3J5X2lkGAggASgJUgloaXN0b3J5SWQ=');
 
 @$core.Deprecated('Use locationPlaceInfoDescriptor instead')
 const LocationPlaceInfo$json = {
@@ -4267,6 +4341,7 @@ const C_SaveVisit$json = {
     {'1': 'review', '3': 6, '4': 1, '5': 9, '10': 'review'},
     {'1': 'photo_urls', '3': 7, '4': 3, '5': 9, '10': 'photoUrls'},
     {'1': 'visited_at', '3': 8, '4': 1, '5': 3, '10': 'visitedAt'},
+    {'1': 'history_id', '3': 9, '4': 1, '5': 9, '10': 'historyId'},
   ],
 };
 
@@ -4276,7 +4351,7 @@ final $typed_data.Uint8List c_SaveVisitDescriptor = $convert.base64Decode(
     'EoCVIHZ3JvdXBJZBIXCgd1c2VyX2lkGAMgASgJUgZ1c2VySWQSGwoJdXNlcl9uYW1lGAQgASgJ'
     'Ugh1c2VyTmFtZRIWCgZyYXRpbmcYBSABKAVSBnJhdGluZxIWCgZyZXZpZXcYBiABKAlSBnJldm'
     'lldxIdCgpwaG90b191cmxzGAcgAygJUglwaG90b1VybHMSHQoKdmlzaXRlZF9hdBgIIAEoA1IJ'
-    'dmlzaXRlZEF0');
+    'dmlzaXRlZEF0Eh0KCmhpc3RvcnlfaWQYCSABKAlSCWhpc3RvcnlJZA==');
 
 @$core.Deprecated('Use s_SaveVisitDescriptor instead')
 const S_SaveVisit$json = {
@@ -4355,6 +4430,7 @@ const C_UpdateVisit$json = {
     {'1': 'review', '3': 6, '4': 1, '5': 9, '10': 'review'},
     {'1': 'photo_urls', '3': 7, '4': 3, '5': 9, '10': 'photoUrls'},
     {'1': 'visited_at', '3': 8, '4': 1, '5': 3, '10': 'visitedAt'},
+    {'1': 'history_id', '3': 9, '4': 1, '5': 9, '10': 'historyId'},
   ],
 };
 
@@ -4364,7 +4440,7 @@ final $typed_data.Uint8List c_UpdateVisitDescriptor = $convert.base64Decode(
     'IgASgJUgdwbGFjZUlkEhkKCGdyb3VwX2lkGAMgASgJUgdncm91cElkEhcKB3VzZXJfaWQYBCAB'
     'KAlSBnVzZXJJZBIWCgZyYXRpbmcYBSABKAVSBnJhdGluZxIWCgZyZXZpZXcYBiABKAlSBnJldm'
     'lldxIdCgpwaG90b191cmxzGAcgAygJUglwaG90b1VybHMSHQoKdmlzaXRlZF9hdBgIIAEoA1IJ'
-    'dmlzaXRlZEF0');
+    'dmlzaXRlZEF0Eh0KCmhpc3RvcnlfaWQYCSABKAlSCWhpc3RvcnlJZA==');
 
 @$core.Deprecated('Use s_UpdateVisitDescriptor instead')
 const S_UpdateVisit$json = {

@@ -36,13 +36,17 @@ public:
 
     /* 저장 */ //저장된 msg_seq (실패 시 -1)
     static int64 SaveMessage(const string& convId, const string& senderId, const Protocol::S_Chat& sChat,
-                             const string& gcsPath = "",
+                             const string& filePath = "",
                              int64 fileRetentionExpiresAt = 0,
                              const string& mentionedUserIds = "",
                              int8_t msgTypeOverride = -1);
 
-    // 파일 만료 배치 잡: gcs_path로 메시지 file_status 업데이트
-    static bool UpdateFileStatusByGcsPath(const string& gcsPath, const string& fileStatus);
+    // 파일 만료 배치 잡: file_path로 메시지 file_status 업데이트
+    static bool UpdateFileStatusByFilePath(const string& filePath, const string& fileStatus);
+
+    // 앨범 저장 시 file_path + file_size 조회 (messages + file_uploads JOIN)
+    static bool GetFilePathAndFileSizeByMsgSeq(const string& convId, int64 msgSeq,
+                                               string& outFilePath, int64& outFileSize);
     
 
     /* 조회 */
@@ -63,6 +67,13 @@ public:
 
     // 메시지 수정
     static bool EditMessage(const string& convId, int64 msgSeq, const string& senderId, const string& newText, int64 editedAt);
+
+    // 투표 메시지 내용 업데이트 (votes/status 변경 시 history fetch 동기화)
+    static bool UpdatePollVotesInMessage(const string& convId, int64 msgSeq, const string& votesJson);
+    static bool UpdatePollStatusInMessage(const string& convId, int64 msgSeq, const string& status);
+
+    // 종료 알림 메시지 존재 여부 (서버 오프라인 중 만료된 투표 재생성 방지)
+    static bool PollClosedMessageExists(const string& convId, const string& pollId);
 
     // 특정 seq의 메시지 조회 (답장 원본 조회용)
     struct ReplyInfo {
@@ -122,7 +133,7 @@ public:
     static void MigrateGroupDMConvIds();
 
 protected:
-    // 메시지를 메모장에 즉시 추가
+    // 메시지를 메모장에 추가.
     static bool AppendMessageToLog(const string& convId, const string& senderId,
         const Protocol::S_Chat& sChat);
 

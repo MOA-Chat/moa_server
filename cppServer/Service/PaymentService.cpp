@@ -3,10 +3,9 @@
 #include "../CoreGlobal.h"
 #include "../PacketDispatcher.h"
 #include "../ServerSession.h"
-#include "../DB/UserRepository.h"
-#include "../DB/FileRepository.h"
-#include "../DB/MessageRepository.h"
+#include "../DB/GroupRepository.h"
 #include "../DB/SubscriptionRepository.h"
+#include "../DB/AlbumRepository.h"
 
 #include <fstream>
 #include <sstream>
@@ -25,17 +24,8 @@ PaymentService* GPaymentService = nullptr;
 PaymentService::PaymentService(UserManager& userManager)
     : _userManager(userManager)
 {
-    _googleClient = make_unique<httplib::Client>("https://androidpublisher.googleapis.com");
-    _googleClient->set_connection_timeout(10, 0);
-    _googleClient->set_read_timeout(30, 0);
-
-    _appleClient = make_unique<httplib::Client>("https://buy.itunes.apple.com");
-    _appleClient->set_connection_timeout(10, 0);
-    _appleClient->set_read_timeout(30, 0);
-
-    _appleSandboxClient = make_unique<httplib::Client>("https://sandbox.itunes.apple.com");
-    _appleSandboxClient->set_connection_timeout(10, 0);
-    _appleSandboxClient->set_read_timeout(30, 0);
+    // httplib::Client는 thread-safe하지 않으므로 멤버로 보관하지 않음
+    // VerifyGooglePurchase / VerifyApplePurchase에서 요청마다 로컬 생성
 }
 
 
@@ -87,63 +77,64 @@ bool PaymentService::HandleVerifyPurchase(sessionPtr& session, uint64 reqId,
                                            const Protocol::C_VerifyPurchase& pkt)
 {
     auto serverSession = static_pointer_cast<ServerSession>(session);
-    const string userId = serverSession->GetUserId();
+    const string userId  = serverSession->GetUserId();
+    const string groupId = pkt.group_id();
 
-    const string& platform = pkt.platform();
-    const string& productId = pkt.product_id();
+    const string& platform      = pkt.platform();
+    const string& productId     = pkt.product_id();
     const string& transactionId = pkt.transaction_id();
     const string& purchaseToken = pkt.purchase_token();
 
-    // 입력값 검증
+    if (groupId.empty()) {
+        PacketDispatcher::DispatchError(session, reqId, Protocol::ERR_INVALID_ARGUMENT, "group_id 필요");
+        return false;
+    }
     if (platform.length() > 10 || productId.length() > 200 ||
         transactionId.length() > 500 || purchaseToken.length() > 5000) {
-        PacketDispatcher::DispatchError(session, reqId, Protocol::ERR_PAYMENT_FAILED,
-                                         "잘못된 결제 정보입니다.");
+        PacketDispatcher::DispatchError(session, reqId, Protocol::ERR_PAYMENT_FAILED, "잘못된 결제 정보");
         return false;
     }
 
-    LOG_INFO("[PaymentService] VerifyPurchase: user={} platform={} product={} txn={}", userId, platform, productId, transactionId);
+    // 방장 확인
+    if (GroupRepository::GetMemberRole(groupId, userId) != "owner") {
+        PacketDispatcher::DispatchError(session, reqId, Protocol::ERR_NO_PERMISSION, "방장만 구독할 수 있습니다.");
+        return false;
+    }
+
+    LOG_INFO("[PaymentService] VerifyPurchase: group={} user={} platform={} product={}", groupId, userId, platform, productId);
 
     int planId = 0;
     int64 expiresAt = 0;
     bool verified = false;
 
     if (platform == "android") {
-        verified = VerifyGooglePurchase(userId, productId, purchaseToken, planId, expiresAt);
-    }
-    else if (platform == "ios") {
-        verified = VerifyApplePurchase(userId, productId, purchaseToken, planId, expiresAt);
-    }
-    else {
-        PacketDispatcher::DispatchError(session, reqId, Protocol::ERR_PAYMENT_FAILED,
-                                         "지원하지 않는 플랫폼입니다.");
+        verified = VerifyGooglePurchase(productId, purchaseToken, planId, expiresAt);
+    } else if (platform == "ios") {
+        verified = VerifyApplePurchase(productId, purchaseToken, planId, expiresAt);
+    } else {
+        PacketDispatcher::DispatchError(session, reqId, Protocol::ERR_PAYMENT_FAILED, "지원하지 않는 플랫폼");
         return false;
     }
 
     if (!verified) {
-        PacketDispatcher::DispatchError(session, reqId, Protocol::ERR_RECEIPT_INVALID,
-                                         "영수증 검증에 실패했습니다.");
+        PacketDispatcher::DispatchError(session, reqId, Protocol::ERR_RECEIPT_INVALID, "영수증 검증 실패");
         return false;
     }
 
-    // DB 업데이트
-    if (!UpdateSubscription(userId, planId, platform, productId, transactionId, purchaseToken, expiresAt)) {
-        PacketDispatcher::DispatchError(session, reqId, Protocol::ERR_SERVER_INTERNAL,
-                                         "구독 업데이트에 실패했습니다.");
+    if (!UpdateSubscription(groupId, planId, platform, productId, transactionId, purchaseToken, expiresAt)) {
+        PacketDispatcher::DispatchError(session, reqId, Protocol::ERR_SERVER_INTERNAL, "구독 업데이트 실패");
         return false;
     }
 
-    // 사용자 정보 재조회
-    cUserInfo userInfo;
-    UserRepository::GetUser(userId, userInfo);
+    cGroupInfo gInfo;
+    GroupRepository::GetGroupInfoById(groupId, gInfo);
 
-    // 응답
     Protocol::S_VerifyPurchase response;
     response.set_success(true);
     response.set_message("구독이 활성화되었습니다.");
-    response.set_new_grade(static_cast<int32>(userInfo.subGrade));
     response.set_expires_at(expiresAt);
-    response.set_storage_capacity(userInfo.storageCapacity);
+    response.set_storage_limit_bytes(gInfo.storageLimit);
+    response.set_storage_usage_bytes(gInfo.storageUsage);
 
     Protocol::Envelope env;
     env.set_version(GProtoVersion);
@@ -151,12 +142,12 @@ bool PaymentService::HandleVerifyPurchase(sessionPtr& session, uint64 reqId,
     *env.mutable_s_verify_purchase() = response;
     PacketDispatcher::SendEnvelope(session, env);
 
-    LOG_INFO("[PaymentService] VerifyPurchase 성공: user={} grade={}", userId, userInfo.subGrade);
+    LOG_INFO("[PaymentService] VerifyPurchase 성공: group={} planId={} expires={}", groupId, planId, expiresAt);
     return true;
 }
 
 
-bool PaymentService::VerifyGooglePurchase(const string& userId, const string& productId,
+bool PaymentService::VerifyGooglePurchase(const string& productId,
                                             const string& purchaseToken, int& outPlanId,
                                             int64& outExpiresAt)
 {
@@ -165,17 +156,28 @@ bool PaymentService::VerifyGooglePurchase(const string& userId, const string& pr
         return false;
     }
 
+    // 토큰을 복사한 뒤 뮤텍스 해제 후 HTTP 호출 (I/O 중 lock 보유 방지)
+    string accessToken;
+    {
+        lock_guard<mutex> lock(_tokenMutex);
+        accessToken = _accessToken;
+    }
+
     try {
-        // Google Play Developer API v3 - subscriptions v2
+        // 요청마다 로컬 클라이언트 생성 (httplib::Client는 thread-safe 아님)
+        httplib::Client googleClient("https://androidpublisher.googleapis.com");
+        googleClient.set_connection_timeout(10, 0);
+        googleClient.set_read_timeout(30, 0);
+
         string url = "/androidpublisher/v3/applications/" + _packageName +
                      "/purchases/subscriptionsv2/tokens/" + purchaseToken;
 
         httplib::Headers headers = {
-            {"Authorization", "Bearer " + _accessToken},
+            {"Authorization", "Bearer " + accessToken},
             {"Content-Type", "application/json"}
         };
 
-        auto res = _googleClient->Get(url.c_str(), headers);
+        auto res = googleClient.Get(url.c_str(), headers);
 
         if (!res) {
             HandleErr("VerifyGooglePurchase", "HTTP request failed");
@@ -205,14 +207,23 @@ bool PaymentService::VerifyGooglePurchase(const string& userId, const string& pr
                 // ISO 8601 → Unix timestamp ms (간단 파싱)
                 // 형식: "2026-03-16T18:00:00.000Z"
                 struct tm tm = {};
-                sscanf(expiryTimeStr.c_str(), "%d-%d-%dT%d:%d:%d",
-                       &tm.tm_year, &tm.tm_mon, &tm.tm_mday,
-                       &tm.tm_hour, &tm.tm_min, &tm.tm_sec);
+                int parsed = sscanf(expiryTimeStr.c_str(), "%d-%d-%dT%d:%d:%d",
+                                    &tm.tm_year, &tm.tm_mon, &tm.tm_mday,
+                                    &tm.tm_hour, &tm.tm_min, &tm.tm_sec);
+                if (parsed < 6) {
+                    HandleErr("VerifyGooglePurchase", "expiryTime 파싱 실패: " + expiryTimeStr);
+                    return false;
+                }
                 tm.tm_year -= 1900;
                 tm.tm_mon -= 1;
                 time_t t = _mkgmtime(&tm);
                 outExpiresAt = static_cast<int64>(t) * 1000;
             }
+        }
+
+        if (outExpiresAt == 0) {
+            HandleErr("VerifyGooglePurchase", "expiryTime 없음 — 만료일 불명확");
+            return false;
         }
 
         outPlanId = GetPlanIdFromProductId(productId);
@@ -227,7 +238,7 @@ bool PaymentService::VerifyGooglePurchase(const string& userId, const string& pr
 }
 
 
-bool PaymentService::VerifyApplePurchase(const string& userId, const string& productId,
+bool PaymentService::VerifyApplePurchase(const string& productId,
                                            const string& receiptData, int& outPlanId,
                                            int64& outExpiresAt)
 {
@@ -240,8 +251,12 @@ bool PaymentService::VerifyApplePurchase(const string& userId, const string& pro
 
         string jsonStr = requestBody.dump();
 
-        // 먼저 production 서버에 요청
-        auto res = _appleClient->Post("/verifyReceipt", jsonStr, "application/json");
+        // 요청마다 로컬 클라이언트 생성 (httplib::Client는 thread-safe 아님)
+        httplib::Client appleClient("https://buy.itunes.apple.com");
+        appleClient.set_connection_timeout(10, 0);
+        appleClient.set_read_timeout(30, 0);
+
+        auto res = appleClient.Post("/verifyReceipt", jsonStr, "application/json");
 
         if (!res) {
             HandleErr("VerifyApplePurchase", "HTTP request failed");
@@ -253,7 +268,10 @@ bool PaymentService::VerifyApplePurchase(const string& userId, const string& pro
 
         // status 21007 → sandbox 영수증이므로 sandbox 서버로 재요청
         if (status == 21007) {
-            res = _appleSandboxClient->Post("/verifyReceipt", jsonStr, "application/json");
+            httplib::Client sandboxClient("https://sandbox.itunes.apple.com");
+            sandboxClient.set_connection_timeout(10, 0);
+            sandboxClient.set_read_timeout(30, 0);
+            res = sandboxClient.Post("/verifyReceipt", jsonStr, "application/json");
             if (!res) {
                 HandleErr("VerifyApplePurchase", "Sandbox HTTP request failed");
                 return false;
@@ -279,6 +297,11 @@ bool PaymentService::VerifyApplePurchase(const string& userId, const string& pro
             }
         }
 
+        if (outExpiresAt == 0) {
+            HandleErr("VerifyApplePurchase", "expires_date_ms 없음 — 만료일 불명확");
+            return false;
+        }
+
         outPlanId = GetPlanIdFromProductId(productId);
 
         LOG_INFO("[PaymentService] Apple 검증 성공: product={} expires={}", productId, outExpiresAt);
@@ -291,13 +314,13 @@ bool PaymentService::VerifyApplePurchase(const string& userId, const string& pro
 }
 
 
-bool PaymentService::UpdateSubscription(const string& userId, int planId,
+bool PaymentService::UpdateSubscription(const string& groupId, int planId,
                                           const string& platform, const string& productId,
                                           const string& transactionId,
                                           const string& purchaseToken, int64 expiresAt)
 {
     try {
-        if (!SubscriptionRepository::RecordTransaction(userId, planId, platform, productId, transactionId, purchaseToken)) {
+        if (!SubscriptionRepository::RecordTransaction(groupId, planId, platform, productId, transactionId, purchaseToken)) {
             HandleErr("UpdateSubscription", "RecordTransaction failed");
             return false;
         }
@@ -308,23 +331,28 @@ bool PaymentService::UpdateSubscription(const string& userId, int planId,
             return false;
         }
 
-        if (!SubscriptionRepository::UpsertSubscription(userId, planId, expiresAt)) {
+        if (!SubscriptionRepository::UpsertSubscription(groupId, planId, expiresAt)) {
             HandleErr("UpdateSubscription", "UpsertSubscription failed");
             return false;
         }
 
-        if (!UserRepository::UpdateSubscriptionGrade(userId, planInfo.grade, planInfo.storageBytes)) {
-            HandleErr("UpdateSubscription", "UpdateSubscriptionGrade failed");
+        if (!GroupRepository::UpdateStorageCapacity(groupId, planInfo.storageBytes)) {
+            HandleErr("UpdateSubscription", "UpdateStorageCapacity failed");
             return false;
         }
 
-        if (planInfo.grade > 0) {
-            FileRepository::UpdateUserFilesRetentionExpiry(userId, 0);
-            MessageRepository::RetainUserFiles(userId);
-            LOG_INFO("[PaymentService] 파일 영구 보관 전환: userId={}", userId);
+        // 플랜 변경 후 쿼터 초과 사진 정리 (다운그레이드 시 오래된 사진 소프트딜리트)
+        // 업그레이드 시에는 deletedSize=0 으로 무해하게 처리됨
+        int64 nowMs = chrono::duration_cast<chrono::milliseconds>(
+            chrono::system_clock::now().time_since_epoch()).count();
+        int64 deletedSize = AlbumRepository::SoftDeleteOverQuotaPhotosByGroup(
+            groupId, planInfo.storageBytes, nowMs);
+        if (deletedSize > 0) {
+            GroupRepository::DeductGroupStorage(groupId, deletedSize);
+            LOG_INFO("[PaymentService] 플랜 변경 후 초과 사진 정리: group={} deletedBytes={}", groupId, deletedSize);
         }
 
-        LOG_INFO("[PaymentService] 구독 업데이트 완료: user={} grade={} storage={}", userId, planInfo.grade, planInfo.storageBytes);
+        LOG_INFO("[PaymentService] 구독 업데이트 완료: group={} planId={} storage={}", groupId, planId, planInfo.storageBytes);
         return true;
     }
     catch (const exception& e) {
@@ -334,23 +362,26 @@ bool PaymentService::UpdateSubscription(const string& userId, int planId,
 }
 
 
-bool PaymentService::HandleCancelSubscription(sessionPtr& session, uint64 reqId)
+bool PaymentService::HandleCancelSubscription(sessionPtr& session, uint64 reqId,
+                                               const Protocol::C_CancelSubscription& pkt)
 {
     auto serverSession = static_pointer_cast<ServerSession>(session);
-    const string userId = serverSession->GetUserId();
-    if (userId.empty()) {
-        PacketDispatcher::DispatchError(session, reqId, Protocol::ERR_INVALID_TOKEN);
+    const string userId  = serverSession->GetUserId();
+    const string groupId = pkt.group_id();
+
+    if (groupId.empty()) {
+        PacketDispatcher::DispatchError(session, reqId, Protocol::ERR_INVALID_ARGUMENT, "group_id 필요");
+        return false;
+    }
+
+    if (GroupRepository::GetMemberRole(groupId, userId) != "owner") {
+        PacketDispatcher::DispatchError(session, reqId, Protocol::ERR_NO_PERMISSION, "방장만 구독을 해지할 수 있습니다.");
         return false;
     }
 
     try {
-        int grade = UserRepository::GetSubscriptionGrade(userId);
-        if (grade < 0) {
-            PacketDispatcher::DispatchError(session, reqId, Protocol::ERR_USER_NOT_FOUND);
-            return false;
-        }
-
-        if (grade == 0) {
+        cSubscriptionInfo subInfo;
+        if (!SubscriptionRepository::GetActiveSubscription(groupId, subInfo)) {
             Protocol::S_CancelSubscription resp;
             resp.set_success(false);
             resp.set_message("구독 중인 플랜이 없습니다.");
@@ -366,16 +397,15 @@ bool PaymentService::HandleCancelSubscription(sessionPtr& session, uint64 reqId)
         const int64 GRACE_PERIOD_MS = 14LL * 24 * 3600 * 1000;
         int64 graceExpiresAt = Nowts() + GRACE_PERIOD_MS;
 
-        SubscriptionRepository::CancelSubscription(userId);
-        UserRepository::DowngradeToFree(userId);
-        FileRepository::UpdateUserFilesRetentionExpiry(userId, graceExpiresAt);
-        MessageRepository::SetFilesExpiringSoon(userId, graceExpiresAt);
+        // SetGrace: status='active' → 'grace' + grace_expires_at 세팅
+        // CancelSubscription을 먼저 호출하면 status='cancelled'가 되어 SetGrace의 WHERE status='active' 조건에 안 걸림
+        SubscriptionRepository::SetGrace(groupId, graceExpiresAt);
 
-        LOG_INFO("[PaymentService] 구독 해지: userId={}, 유예기간 만료={}", userId, graceExpiresAt);
+        LOG_INFO("[PaymentService] 구독 해지: group={} 유예만료={}", groupId, graceExpiresAt);
 
         Protocol::S_CancelSubscription resp;
         resp.set_success(true);
-        resp.set_message("구독이 해지되었습니다. 14일간 기존 파일에 접근 가능합니다.");
+        resp.set_message("구독이 해지되었습니다. 14일 후 앨범 사진이 삭제됩니다.");
         resp.set_grace_expires_at(graceExpiresAt);
 
         Protocol::Envelope env;
@@ -396,8 +426,9 @@ bool PaymentService::HandleCancelSubscription(sessionPtr& session, uint64 reqId)
 
 int PaymentService::GetPlanIdFromProductId(const string& productId)
 {
-    if (productId == "moa_pro_monthly")     return 2;
-    if (productId == "moa_premium_monthly") return 3;
+    if (productId == "basic_monthly") return 2;
+    if (productId == "plus_monthly")  return 3;
+    if (productId == "max_monthly")   return 4;
     LOG_WARN("[PaymentService] Unknown productId: {}", productId);
     return 1;
 }
@@ -487,7 +518,10 @@ bool PaymentService::RefreshAccessToken()
 
 bool PaymentService::CheckValidToken()
 {
-    if (_accessToken.empty() || Nowts() >= _tokenExpiresTime) {
+    lock_guard<mutex> lock(_tokenMutex);
+    // 5분 버퍼: 만료 5분 전부터 갱신 (토큰 만료 직전 요청 실패 방지)
+    const int64 BUFFER_MS = 5LL * 60 * 1000;
+    if (_accessToken.empty() || Nowts() >= (_tokenExpiresTime - BUFFER_MS)) {
         return RefreshAccessToken();
     }
     return true;

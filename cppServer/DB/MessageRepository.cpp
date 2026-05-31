@@ -105,7 +105,7 @@ bool MessageRepository::AddParticipants(const string& convId, const vector<strin
 =======================*/
 
 int64 MessageRepository::SaveMessage(const string& convId, const string& senderId, const Protocol::S_Chat& pkt,
-                                      const string& gcsPath, int64 fileRetentionExpiresAt,
+                                      const string& filePath, int64 fileRetentionExpiresAt,
                                       const string& mentionedUserIds, int8_t msgTypeOverride)
 {
     int8_t msg_type = 0; // 0:Text, 1:Image, 2:Video, 3:File, 4:System, 5:Poll
@@ -162,9 +162,13 @@ int64 MessageRepository::SaveMessage(const string& convId, const string& senderI
 
         session.startTransaction();
 
-        auto result = session.sql("SELECT COALESCE(MAX(msg_seq), 0) + 1 FROM messages WHERE conv_id = ? FOR UPDATE")
-            .bind(convId).execute();
-        int64 nextSeq = result.fetchOne()[0].get<int64>();
+        // fetchOne() 후 FetchDone 미소비 방지 → scope block으로 result 먼저 소멸
+        int64 nextSeq;
+        {
+            auto result = session.sql("SELECT COALESCE(MAX(msg_seq), 0) + 1 FROM messages WHERE conv_id = ? FOR UPDATE")
+                .bind(convId).execute();
+            nextSeq = result.fetchOne()[0].get<int64>();
+        } // result 소멸 → FetchDone 소비 완료
 
         int64 replyToSeq = pkt.reply_to_seq();
 
@@ -175,7 +179,7 @@ int64 MessageRepository::SaveMessage(const string& convId, const string& senderI
                 "file_name, timestamp, reply_to_seq, gcs_path, file_retention_expires_at, file_status, mentioned_user_ids) "
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")
                 .bind(convId, nextSeq, senderId, msg_type, content, media_url, thumbnail_url, file_name,
-                      pkt.ts_server(), replyToSeq, gcsPath, fileRetentionExpiresAt, fileStatus,
+                      pkt.ts_server(), replyToSeq, filePath, fileRetentionExpiresAt, fileStatus,
                       mentionVal.empty() ? mysqlx::Value() : mysqlx::Value(mentionVal))
                 .execute();
         } else {
@@ -184,7 +188,7 @@ int64 MessageRepository::SaveMessage(const string& convId, const string& senderI
                 "file_name, timestamp, reply_to_seq, gcs_path, file_retention_expires_at, file_status, mentioned_user_ids) "
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NULL, ?, ?)")
                 .bind(convId, nextSeq, senderId, msg_type, content, media_url, thumbnail_url, file_name,
-                      pkt.ts_server(), replyToSeq, gcsPath, fileStatus,
+                      pkt.ts_server(), replyToSeq, filePath, fileStatus,
                       mentionVal.empty() ? mysqlx::Value() : mysqlx::Value(mentionVal))
                 .execute();
         }
@@ -202,28 +206,27 @@ int64 MessageRepository::SaveMessage(const string& convId, const string& senderI
 }
 
 
-bool MessageRepository::UpdateFileStatusByGcsPath(const string& gcsPath, const string& fileStatus)
+bool MessageRepository::UpdateFileStatusByFilePath(const string& filePath, const string& fileStatus)
 {
-    if (gcsPath.empty()) return false;
+    if (filePath.empty()) return false;
     try {
         auto& db = DBManager::GetInstance();
         auto& session = db.GetSession();
 
-        // 만료 시 URL도 비움
         if (fileStatus == "expired") {
             session.sql(
                 "UPDATE messages SET file_status = ?, media_url = '', thumbnail_url = '' "
                 "WHERE gcs_path = ? AND is_deleted = 0")
-                .bind(fileStatus, gcsPath).execute();
+                .bind(fileStatus, filePath).execute();
         } else {
             session.sql(
                 "UPDATE messages SET file_status = ? WHERE gcs_path = ?")
-                .bind(fileStatus, gcsPath).execute();
+                .bind(fileStatus, filePath).execute();
         }
         return true;
     }
     catch (const mysqlx::Error& err) {
-        LOG_ERROR("[MessageRepository] UpdateFileStatusByGcsPath 실패: {}", err.what());
+        LOG_ERROR("[MessageRepository] UpdateFileStatusByFilePath 실패: {}", err.what());
         return false;
     }
 }
@@ -236,6 +239,31 @@ bool MessageRepository::UpdateFileStatusByGcsPath(const string& gcsPath, const s
 
 
 
+
+
+bool MessageRepository::GetFilePathAndFileSizeByMsgSeq(const string& convId, int64 msgSeq,
+                                                       string& outFilePath, int64& outFileSize)
+{
+    try {
+        auto& session = DBManager::GetInstance().GetSession();
+        auto rows = session.sql(
+            "SELECT m.gcs_path, COALESCE(fu.file_size, 0) "
+            "FROM messages m "
+            "LEFT JOIN file_uploads fu ON fu.gcs_path = m.gcs_path "
+            "WHERE m.conv_id = ? AND m.msg_seq = ? LIMIT 1"
+        ).bind(convId, msgSeq).execute();
+
+        auto row = rows.fetchOne();
+        if (!row) return false;
+
+        outFilePath = row[0].isNull() ? "" : row[0].get<string>();
+        outFileSize = row[1].isNull() ? 0  : row[1].get<int64>();
+        return !outFilePath.empty();
+    } catch (const mysqlx::Error& e) {
+        LOG_ERROR("[MessageRepository] GetFilePathAndFileSizeByMsgSeq 실패: {}", e.what());
+        return false;
+    }
+}
 
 
 int64 MessageRepository::GetNextMessageSeq(const string& convId) 
@@ -444,7 +472,7 @@ vector<MessageInfo> MessageRepository::GetMessagesAfter(const string& convId, in
             "SELECT m.conv_id, m.msg_seq, m.sender_id, m.msg_type, m.message, m.media_url, m.thumbnail_url, m.timestamp, u.name, m.reply_to_seq, m.is_deleted, m.is_edited, m.edited_at, m.file_retention_expires_at, m.file_status, m.mentioned_user_ids "
             "FROM messages m "
             "LEFT JOIN users u ON m.sender_id = u.user_id "
-            "WHERE m.conv_id = ? AND m.timestamp > ? "
+            "WHERE m.conv_id = ? AND m.timestamp >= ? "
             "ORDER BY m.timestamp ASC "
             "LIMIT ?";
 
@@ -616,6 +644,112 @@ bool MessageRepository::EditMessage(const string& convId, int64 msgSeq, const st
 }
 
 
+bool MessageRepository::UpdatePollVotesInMessage(const string& convId, int64 msgSeq, const string& votesJson)
+{
+    try {
+        auto& session = DBManager::GetInstance().GetSession();
+
+        // JSON_SET은 키 순서를 알파벳으로 재정렬하므로 문자열 직접 교체
+        auto result = session.sql(
+            "SELECT message FROM messages WHERE conv_id = ? AND msg_seq = ? AND msg_type = 5")
+            .bind(convId, msgSeq)
+            .execute();
+        auto row = result.fetchOne();
+        if (!row) return false;
+
+        string msg = row[0].get<string>();
+
+        // "votes":{...} 구간을 찾아 새 값으로 교체
+        const string key = "\"votes\":";
+        size_t keyPos = msg.find(key);
+        if (keyPos == string::npos) return false;
+
+        size_t valueStart = keyPos + key.size();
+        while (valueStart < msg.size() && msg[valueStart] != '{') valueStart++;
+        if (valueStart >= msg.size()) return false;
+
+        int depth = 0;
+        size_t valueEnd = valueStart;
+        for (; valueEnd < msg.size(); valueEnd++) {
+            if (msg[valueEnd] == '{') depth++;
+            else if (msg[valueEnd] == '}') {
+                if (--depth == 0) { valueEnd++; break; }
+            }
+        }
+
+        string newMsg = msg.substr(0, valueStart) + votesJson + msg.substr(valueEnd);
+        session.sql("UPDATE messages SET message = ? WHERE conv_id = ? AND msg_seq = ? AND msg_type = 5")
+            .bind(newMsg, convId, msgSeq)
+            .execute();
+        return true;
+    }
+    catch (const std::exception& e) {
+        LOG_ERROR("[MessageRepository] UpdatePollVotesInMessage 실패: {}", e.what());
+        return false;
+    }
+}
+
+bool MessageRepository::PollClosedMessageExists(const string& convId, const string& pollId)
+{
+    try {
+        auto& session = DBManager::GetInstance().GetSession();
+        string pollIdPattern = "%" + pollId + "%";
+        string closedPattern = "%\"status\":\"closed\"%";
+        auto result = session.sql(
+            "SELECT COUNT(*) FROM messages "
+            "WHERE conv_id = ? AND msg_type = 5 "
+            "AND message LIKE ? "
+            "AND message LIKE ?")
+            .bind(convId, pollIdPattern, closedPattern)
+            .execute();
+        auto row = result.fetchOne();
+        if (!row) return false;
+        return row[0].get<int64>() > 0;
+    }
+    catch (const std::exception& e) {
+        LOG_ERROR("[MessageRepository] PollClosedMessageExists 실패: {}", e.what());
+        return false;
+    }
+}
+
+
+bool MessageRepository::UpdatePollStatusInMessage(const string& convId, int64 msgSeq, const string& status)
+{
+    try {
+        auto& session = DBManager::GetInstance().GetSession();
+
+        // JSON_SET은 키 순서를 알파벳으로 재정렬하므로 문자열 직접 교체
+        auto result = session.sql(
+            "SELECT message FROM messages WHERE conv_id = ? AND msg_seq = ? AND msg_type = 5")
+            .bind(convId, msgSeq)
+            .execute();
+        auto row = result.fetchOne();
+        if (!row) return false;
+
+        string msg = row[0].get<string>();
+
+        // "status":"..." 구간을 찾아 새 값으로 교체
+        const string key = "\"status\":\"";
+        size_t keyPos = msg.find(key);
+        if (keyPos == string::npos) return false;
+
+        size_t valueStart = keyPos + key.size();
+        size_t valueEnd = msg.find("\"", valueStart);
+        if (valueEnd == string::npos) return false;
+
+        string newMsg = msg.substr(0, valueStart) + status + msg.substr(valueEnd);
+        session.sql("UPDATE messages SET message = ? WHERE conv_id = ? AND msg_seq = ? AND msg_type = 5")
+            .bind(newMsg, convId, msgSeq)
+            .execute();
+        return true;
+    }
+    catch (const std::exception& e) {
+        LOG_ERROR("[MessageRepository] UpdatePollStatusInMessage 실패: {}", e.what());
+        return false;
+    }
+}
+
+
 MessageRepository::ReplyInfo MessageRepository::GetMessageBySeq(const string& convId, int64 msgSeq)
 {
     ReplyInfo info;
@@ -746,18 +880,28 @@ int MessageRepository::GetUnreadCount(const string& userId, const string& convId
     }
 }
 
-// 특정 메시지의 안읽은 참여자 수
+// 특정 메시지의 안읽은 참여자 수 (그룹/DM 모두 정확하게 계산)
 int MessageRepository::GetMsgUnreadCount(const string& convId, int64 msgSeq)
 {
     try {
         auto& db = DBManager::GetInstance();
         auto& session = db.GetSession();
 
-        // 참여자 수
-        string totalQuery = "SELECT COUNT(*) FROM conversation_participants WHERE conv_id = ?";
-        auto totalResult = session.sql(totalQuery).bind(convId).execute();
-        auto totalRow = totalResult.fetchOne();
-        int totalCount = totalRow[0].isNull() ? 0 : totalRow[0].get<int>();
+        int totalCount = 0;
+
+        // 그룹 채팅은 group_members 사용 (conversation_participants는 DM 전용)
+        if (convId.find("group:") == 0) {
+            string groupId = convId.substr(6);
+            string totalQuery = "SELECT COUNT(*) FROM group_members WHERE group_id = ?";
+            auto totalResult = session.sql(totalQuery).bind(groupId).execute();
+            auto totalRow = totalResult.fetchOne();
+            totalCount = totalRow[0].isNull() ? 0 : totalRow[0].get<int>();
+        } else {
+            string totalQuery = "SELECT COUNT(*) FROM conversation_participants WHERE conv_id = ?";
+            auto totalResult = session.sql(totalQuery).bind(convId).execute();
+            auto totalRow = totalResult.fetchOne();
+            totalCount = totalRow[0].isNull() ? 0 : totalRow[0].get<int>();
+        }
 
         // 이 메시지 이상까지 읽은 사람 수
         string readQuery =
@@ -770,7 +914,13 @@ int MessageRepository::GetMsgUnreadCount(const string& convId, int64 msgSeq)
         return unread > 0 ? unread : 0;
     }
     catch (const mysqlx::Error& err) {
-        LOG_ERROR("[MessageRepository] GetMsgUnreadCount 실패: {}", err.what());
+        LOG_ERROR("[MessageRepository] GetMsgUnreadCount mysqlx 실패: {}", err.what());
+        DBManager::GetInstance().ResetCurrentSession();
+        return 0;
+    }
+    catch (const std::exception& e) {
+        LOG_ERROR("[MessageRepository] GetMsgUnreadCount 예외: {}", e.what());
+        DBManager::GetInstance().ResetCurrentSession();
         return 0;
     }
 }

@@ -29,6 +29,15 @@ bool ChatService::SendGroupDM(sessionPtr& senderSession, uint64 reqId, const str
     const string senderId = session->GetUserId();
     string senderName = GetUserNameWithId(senderId);
 
+    if (!GroupRepository::IsMember(groupId, senderId)) {
+        PacketDispatcher::DispatchError(senderSession, reqId, ERR_UNAUTHORIZED, "그룹 멤버가 아닙니다.");
+        return false;
+    }
+    if (senderId != receiverId && !GroupRepository::IsMember(groupId, receiverId)) {
+        PacketDispatcher::DispatchError(senderSession, reqId, ERR_UNAUTHORIZED, "수신자가 그룹 멤버가 아닙니다.");
+        return false;
+    }
+
     // 차단 관계 확인
     if (BlockRepository::IsBlockedEither(senderId, receiverId)) {
         PacketDispatcher::DispatchError(senderSession, reqId, ERR_NOT_A_FRIEND, "차단된 사용자입니다.");
@@ -38,12 +47,12 @@ bool ChatService::SendGroupDM(sessionPtr& senderSession, uint64 reqId, const str
     const string convId = MessageRepository::CreateGroupDMConvId(groupId, senderId, receiverId);
     MessageRepository::CreateOrGetConversation(convId, "groupdm", senderId, receiverId);
 
-    // GCS 경로 검증 (path traversal 방지)
-    string gcsPath = pkt.gcs_path();
-    if (!gcsPath.empty()) {
-        if (gcsPath.find("..") != string::npos || gcsPath.find("//") != string::npos ||
-            gcsPath.length() > 512) {
-            gcsPath = "";
+    // 파일 경로 검증 (path traversal 방지)
+    string filePath = pkt.gcs_path();
+    if (!filePath.empty()) {
+        if (filePath.find("..") != string::npos || filePath.find("//") != string::npos ||
+            filePath.length() > 512) {
+            filePath = "";
         }
     }
 
@@ -51,7 +60,6 @@ bool ChatService::SendGroupDM(sessionPtr& senderSession, uint64 reqId, const str
     string fileType;
     int64 fileRetentionExpiresAt = 0;
     auto pkt_s_chat = Build_S_Chat(convId, senderId, fileSize, fileType, fileRetentionExpiresAt, pkt);
-    // mentionedUserIds → JSON 배열 문자열 (최대 50명, userId 100자 제한)
     string mentionJson;
     int mentionCount = min(pkt.mentioned_user_ids_size(), 50);
     if (mentionCount > 0) {
@@ -69,7 +77,7 @@ bool ChatService::SendGroupDM(sessionPtr& senderSession, uint64 reqId, const str
     }
 
     int64 msgSeq = MessageRepository::SaveMessage(convId, senderId, pkt_s_chat,
-                                                   gcsPath, fileRetentionExpiresAt, mentionJson);
+                                                   filePath, fileRetentionExpiresAt, mentionJson);
 
     // server_msg_id를 실제 msg_seq로 설정
     if (msgSeq >= 0) {
@@ -95,48 +103,50 @@ bool ChatService::SendGroupDM(sessionPtr& senderSession, uint64 reqId, const str
 
     /* To receiver */
     if (msgSeq >= 0) {
+        // 메시지 미리보기 (TCP/FCM 공용)
+        string dmPreview = "[메시지]";
+        if (pkt_s_chat.has_payload() && pkt_s_chat.payload().has_text()) {
+            dmPreview = pkt_s_chat.payload().text().message();
+            if (dmPreview.length() > 50) dmPreview = dmPreview.substr(0, 50) + "...";
+        } else if (pkt_s_chat.has_payload() && pkt_s_chat.payload().has_image()) {
+            dmPreview = "[사진]";
+        } else if (pkt_s_chat.has_payload() && pkt_s_chat.payload().has_file()) {
+            dmPreview = "[파일]";
+        } else if (pkt_s_chat.has_payload() && pkt_s_chat.payload().has_audio()) {
+            dmPreview = "[음성 메시지]";
+        }
+        map<string, string> dmData = {
+            {"type", "groupdm"}, {"conv_id", convId},
+            {"group_id", groupId}, {"sender_id", senderId}
+        };
+
         if (auto target = _userManager.FindSession(receiverId)) {
             // 온라인 - 소켓으로 전송
             PushEnvelope(target, 0, pkt_s_chat);
+            // iOS: TCP와 별개로 FCM 병행 발송 (앱 서스펜드 시 알림 누락 방지)
+            if (GFcmClient) {
+                auto tokens = FcmTokenRepository::GetUserTokens(receiverId);
+                for (const auto& tokenInfo : tokens) {
+                    if (tokenInfo.platform == "ios") {
+                        bool invalid = false;
+                        GFcmClient->SendPush(tokenInfo.fcmToken, senderName, dmPreview, dmData, &invalid);
+                        if (invalid) FcmTokenRepository::DeleteToken(receiverId, tokenInfo.fcmToken);
+                    }
+                }
+            }
         }
         else if (GFcmClient) {
             // 오프라인 - FCM 푸시 발송
             LOG_INFO("[ChatService] SendGroupDM FCM: sender={}, receiver={}, group={}", senderId, receiverId, groupId);
             auto tokens = FcmTokenRepository::GetUserTokens(receiverId);
             LOG_INFO("[ChatService] Found {} FCM tokens for {}", tokens.size(), receiverId);
-            if (!tokens.empty()) {
-                string msgPreview = "[메시지]";
-                if (pkt_s_chat.has_payload() && pkt_s_chat.payload().has_text()) {
-                    msgPreview = pkt_s_chat.payload().text().message();
-                    if (msgPreview.length() > 50) {
-                        msgPreview = msgPreview.substr(0, 50) + "...";
-                    }
-                }
-                else if (pkt_s_chat.has_payload() && pkt_s_chat.payload().has_image()) {
-                    msgPreview = "[사진]";
-                }
-                else if (pkt_s_chat.has_payload() && pkt_s_chat.payload().has_file()) {
-                    msgPreview = "[파일]";
-                }
-                else if (pkt_s_chat.has_payload() && pkt_s_chat.payload().has_audio()) {
-                    msgPreview = "[음성 메시지]";
-                }
-
-                map<string, string> data = {
-                    {"type", "groupdm"},
-                    {"conv_id", convId},
-                    {"group_id", groupId},
-                    {"sender_id", senderId}
-                };
-
-                for (const auto& tokenInfo : tokens) {
-                    LOG_INFO("[ChatService] Sending FCM to userId={}, token={}...", tokenInfo.userId, tokenInfo.fcmToken.substr(0, 20));
-                    bool invalidToken = false;
-                    bool ok = GFcmClient->SendPush(tokenInfo.fcmToken, senderName, msgPreview, data, &invalidToken);
-                    if (!ok && invalidToken) {
-                        LOG_INFO("[ChatService] Deleting stale FCM token for {}", tokenInfo.userId);
-                        FcmTokenRepository::DeleteToken(tokenInfo.userId, tokenInfo.fcmToken);
-                    }
+            for (const auto& tokenInfo : tokens) {
+                LOG_INFO("[ChatService] Sending FCM to userId={}, token={}...", tokenInfo.userId, tokenInfo.fcmToken.substr(0, 20));
+                bool invalidToken = false;
+                bool ok = GFcmClient->SendPush(tokenInfo.fcmToken, senderName, dmPreview, dmData, &invalidToken);
+                if (!ok && invalidToken) {
+                    LOG_INFO("[ChatService] Deleting stale FCM token for {}", tokenInfo.userId);
+                    FcmTokenRepository::DeleteToken(tokenInfo.userId, tokenInfo.fcmToken);
                 }
             }
         }
@@ -155,15 +165,20 @@ bool ChatService::SendGroup(sessionPtr& senderSession, uint64 reqId, const strin
     const string senderId = session->GetUserId();
     string senderName = GetUserNameWithId(senderId);
 
+    if (!GroupRepository::IsMember(groupId, senderId)) {
+        HandleErr(senderSession, reqId, ERR_UNAUTHORIZED, "그룹 멤버가 아닙니다.");
+        return false;
+    }
+
     const string convId = "group:" + groupId;
     MessageRepository::CreateOrGetConversation(convId, "group");
 
-    // GCS 경로 검증 (path traversal 방지)
-    string gcsPath = pkt.gcs_path();
-    if (!gcsPath.empty()) {
-        if (gcsPath.find("..") != string::npos || gcsPath.find("//") != string::npos ||
-            gcsPath.length() > 512) {
-            gcsPath = "";
+    // 파일 경로 검증 (path traversal 방지)
+    string filePath = pkt.gcs_path();
+    if (!filePath.empty()) {
+        if (filePath.find("..") != string::npos || filePath.find("//") != string::npos ||
+            filePath.length() > 512) {
+            filePath = "";
         }
     }
 
@@ -172,10 +187,8 @@ bool ChatService::SendGroup(sessionPtr& senderSession, uint64 reqId, const strin
     int64 fileRetentionExpiresAt = 0;
     auto pkt_s_chat = Build_S_Chat(convId, senderId, fileSize, fileType, fileRetentionExpiresAt, pkt);
 
-    /* To Group (멤버 목록 먼저 조회 — unread count 계산에도 활용) */
     auto members = GroupRepository::GetGroupMembers(groupId);
 
-    // mentionedUserIds → JSON 배열 문자열 (최대 50명, userId 100자 제한)
     string mentionJsonGroup;
     int mentionCountGroup = min(pkt.mentioned_user_ids_size(), 50);
     if (mentionCountGroup > 0) {
@@ -185,7 +198,6 @@ bool ChatService::SendGroup(sessionPtr& senderSession, uint64 reqId, const strin
             const auto& uid = pkt.mentioned_user_ids(i);
             if (uid.length() > 100) continue;
             if (!first) mentionJsonGroup += ",";
-            // JSON 이스케이프: nlohmann::json으로 안전하게 직렬화
             nlohmann::json uidJson = uid;
             mentionJsonGroup += uidJson.dump();
             first = false;
@@ -194,7 +206,7 @@ bool ChatService::SendGroup(sessionPtr& senderSession, uint64 reqId, const strin
     }
 
     int64 msgSeq = MessageRepository::SaveMessage(convId, senderId, pkt_s_chat,
-                                                   gcsPath, fileRetentionExpiresAt, mentionJsonGroup);
+                                                   filePath, fileRetentionExpiresAt, mentionJsonGroup);
     if (msgSeq >= 0) {
         pkt_s_chat.set_msg_seq(msgSeq);
 
@@ -235,29 +247,37 @@ bool ChatService::SendGroup(sessionPtr& senderSession, uint64 reqId, const strin
         msgPreview = "[음성 메시지]";
     }
 
+    string fcmTitle = groupName + " - " + senderName;
+    map<string, string> fcmData = {
+        {"type", "chat"}, {"conv_id", convId},
+        {"sender_id", senderId}, {"group_id", groupId}
+    };
+
     for (const auto& member : members) {
         if (member.userId == senderId) continue;
 
         if (auto target = _userManager.FindSession(member.userId)) {
             // 온라인 - 소켓으로 전송
             PushEnvelope(target, 0, pkt_s_chat);
+            // iOS: TCP와 별개로 FCM 병행 발송 (앱 서스펜드 시 TCP 무응답 → 알림 누락 방지)
+            if (GFcmClient) {
+                auto tokens = FcmTokenRepository::GetUserTokens(member.userId);
+                for (const auto& tokenInfo : tokens) {
+                    if (tokenInfo.platform == "ios") {
+                        bool invalid = false;
+                        GFcmClient->SendPush(tokenInfo.fcmToken, fcmTitle, msgPreview, fcmData, &invalid);
+                        if (invalid) FcmTokenRepository::DeleteToken(member.userId, tokenInfo.fcmToken);
+                    }
+                }
+            }
         }
         else if (GFcmClient) {
-            // 오프라인 - FCM 푸시 발송
+            // 오프라인 - FCM 푸시 발송 (전 플랫폼)
             auto tokens = FcmTokenRepository::GetUserTokens(member.userId);
             if (!tokens.empty()) {
-                string title = groupName + " - " + senderName;
-
-                map<string, string> data = {
-                    {"type", "chat"},
-                    {"conv_id", convId},
-                    {"sender_id", senderId},
-                    {"group_id", groupId}
-                };
-
                 for (const auto& tokenInfo : tokens) {
                     bool invalidToken = false;
-                    bool ok = GFcmClient->SendPush(tokenInfo.fcmToken, title, msgPreview, data, &invalidToken);
+                    bool ok = GFcmClient->SendPush(tokenInfo.fcmToken, fcmTitle, msgPreview, fcmData, &invalidToken);
                     if (!ok && invalidToken) {
                         LOG_INFO("[ChatService] Deleting stale FCM token for {}", tokenInfo.userId);
                         FcmTokenRepository::DeleteToken(tokenInfo.userId, tokenInfo.fcmToken);
@@ -353,12 +373,50 @@ bool ChatService::HandleAck(sessionPtr& session, uint64 reqId, PacketDispatcher:
 
 bool ChatService::HandleReqHistory(sessionPtr& session, uint64 reqId, const Protocol::C_ReqHistory& pkt)
 {
+    auto serverSession = static_pointer_cast<ServerSession>(session);
+    const string userId = serverSession->GetUserId();
+    if (userId.empty()) { HandleErr(session, reqId, ERR_UNAUTHORIZED); return false; }
+
     string convId = pkt.conv_id();
+    if (convId.empty()) { HandleErr(session, reqId, ERR_INVALID_PACKET, "conv_id 필요"); return false; }
+
+    // 멤버십 확인
+    auto dmPos = convId.find(":dm:");
+    if (dmPos != string::npos) {
+        string groupId  = convId.substr(0, dmPos);
+        string pairPart = convId.substr(dmPos + 4);
+        auto underPos   = pairPart.find('_');
+        if (underPos != string::npos) {
+            // 정규화된 형식 (userA_userB) — 본인이 포함된 DM인지 확인
+            string userA = pairPart.substr(0, underPos);
+            string userB = pairPart.substr(underPos + 1);
+            if (userId != userA && userId != userB) {
+                HandleErr(session, reqId, ERR_UNAUTHORIZED, "접근 권한이 없습니다.");
+                return false;
+            }
+        } else {
+            // 미정규화 형식 — 그룹 멤버십으로 대체 검증
+            if (!GroupRepository::IsMember(groupId, userId)) {
+                HandleErr(session, reqId, ERR_UNAUTHORIZED, "그룹 멤버가 아닙니다.");
+                return false;
+            }
+        }
+    } else if (convId.find("group:") == 0) {
+        string groupId = convId.substr(6);
+        if (!GroupRepository::IsMember(groupId, userId)) {
+            HandleErr(session, reqId, ERR_UNAUTHORIZED, "그룹 멤버가 아닙니다.");
+            return false;
+        }
+    } else {
+        HandleErr(session, reqId, ERR_INVALID_PACKET, "잘못된 conv_id");
+        return false;
+    }
+
     int64 lastSeq = pkt.last_msg_seq();
     int limit = pkt.limit();
 
-    if (limit <= 0) limit = 30; // 기본값
-    if (limit > 100) limit = 100; // 최대값 방어
+    if (limit <= 0) limit = 30;
+    if (limit > 100) limit = 100;
 
     auto history = MessageRepository::GetHistoryMessages(convId, lastSeq, limit);
 
@@ -465,9 +523,7 @@ Protocol::S_Chat ChatService::Build_S_Chat(const string& convId, const string& s
         pkt_s_chat.set_file_expires_at(fileRetentionExpiresAt);
         pkt_s_chat.set_file_status("active");
 
-        // 클라이언트가 GCS 업로드를 완료하고 C_Chat을 보낸 시점 → completed로 마킹
-        string bucketName = GCloudStorage ? GCloudStorage->GetBucketName() : "";
-        FileRepository::MarkCompletedByGcsPath(pkt.gcs_path(), bucketName);
+        FileRepository::MarkCompletedByFilePath(pkt.gcs_path());
     }
 
     return pkt_s_chat;
@@ -515,7 +571,17 @@ bool ChatService::HandleDeleteMessage(sessionPtr& session, uint64 reqId, const P
     if (dmPos_del != string::npos) {
         string groupId  = clientConvId.substr(0, dmPos_del);
         string targetId = clientConvId.substr(dmPos_del + 4);
+        if (!GroupRepository::IsMember(groupId, senderId)) {
+            HandleErr(session, reqId, ERR_UNAUTHORIZED, "그룹 멤버가 아닙니다.");
+            return false;
+        }
         convId = MessageRepository::CreateGroupDMConvId(groupId, senderId, targetId);
+    } else if (clientConvId.find("group:") == 0) {
+        string groupId = clientConvId.substr(6);
+        if (!GroupRepository::IsMember(groupId, senderId)) {
+            HandleErr(session, reqId, ERR_UNAUTHORIZED, "그룹 멤버가 아닙니다.");
+            return false;
+        }
     }
 
     bool success = MessageRepository::SoftDeleteMessage(convId, msgSeq, senderId);
@@ -594,7 +660,17 @@ bool ChatService::HandleEditMessage(sessionPtr& session, uint64 reqId, const Pro
     if (dmPos_edit != string::npos) {
         string groupId  = clientConvId.substr(0, dmPos_edit);
         string targetId = clientConvId.substr(dmPos_edit + 4);
+        if (!GroupRepository::IsMember(groupId, senderId)) {
+            HandleErr(session, reqId, ERR_UNAUTHORIZED, "그룹 멤버가 아닙니다.");
+            return false;
+        }
         convId = MessageRepository::CreateGroupDMConvId(groupId, senderId, targetId);
+    } else if (clientConvId.find("group:") == 0) {
+        string groupId = clientConvId.substr(6);
+        if (!GroupRepository::IsMember(groupId, senderId)) {
+            HandleErr(session, reqId, ERR_UNAUTHORIZED, "그룹 멤버가 아닙니다.");
+            return false;
+        }
     }
 
     int64 editedAt = Nowts();
@@ -738,13 +814,23 @@ bool ChatService::HandleAddReaction(sessionPtr& session, uint64 reqId, const Pro
     const string& emoji = pkt.emoji();
 
     string convId = clientConvId;
-    string dmTargetId; // GroupDM일 때 상대방 userId
+    string dmTargetId;
     string dmGroupId;
     auto dmPos_react = clientConvId.find(":dm:");
     if (dmPos_react != string::npos) {
         dmGroupId  = clientConvId.substr(0, dmPos_react);
         dmTargetId = clientConvId.substr(dmPos_react + 4);
+        if (!GroupRepository::IsMember(dmGroupId, userId)) {
+            HandleErr(session, reqId, ERR_UNAUTHORIZED, "그룹 멤버가 아닙니다.");
+            return false;
+        }
         convId = MessageRepository::CreateGroupDMConvId(dmGroupId, userId, dmTargetId);
+    } else if (clientConvId.find("group:") == 0) {
+        string groupId = clientConvId.substr(6);
+        if (!GroupRepository::IsMember(groupId, userId)) {
+            HandleErr(session, reqId, ERR_UNAUTHORIZED, "그룹 멤버가 아닙니다.");
+            return false;
+        }
     }
 
     bool outRemoved = false;
@@ -811,11 +897,13 @@ bool ChatService::HandleCreatePoll(sessionPtr& session, uint64 reqId, const Prot
     string groupId = clientConvId.substr(6);
     string convId = clientConvId;
 
-    // pollId 생성: "poll_" + timestamp + random
+    if (!GroupRepository::IsMember(groupId, userId)) {
+        HandleErr(session, reqId, ERR_UNAUTHORIZED, "그룹 멤버가 아닙니다.");
+        return false;
+    }
+
     int64 now = Nowts();
-    std::ostringstream pollIdStream;
-    pollIdStream << "poll_" << now << "_" << (rand() % 100000);
-    string pollId = pollIdStream.str();
+    string pollId = GroupRepository::GenerateUUID();
 
     // options -> JSON 배열
     std::ostringstream optionsOss;
@@ -895,6 +983,10 @@ bool ChatService::HandleCreatePoll(sessionPtr& session, uint64 reqId, const Prot
     pkt_res.set_expires_at(pkt.expires_at());
     pkt_res.set_ts_server(now);
 
+    cGroupInfo groupInfoFcm;
+    GroupRepository::GetGroupInfoById(groupId, groupInfoFcm);
+    string groupNameFcm = groupInfoFcm.groupName.empty() ? "그룹" : groupInfoFcm.groupName;
+
     auto members = GroupRepository::GetGroupMembers(groupId);
     for (const auto& member : members) {
         if (auto memberSession = _userManager.FindSession(member.userId)) {
@@ -903,6 +995,22 @@ bool ChatService::HandleCreatePoll(sessionPtr& session, uint64 reqId, const Prot
             env.set_request_id(member.userId == userId ? reqId : 0);
             *env.mutable_s_create_poll() = pkt_res;
             PacketDispatcher::SendEnvelope(memberSession, env);
+        } else if (member.userId != userId && GFcmClient) {
+            auto tokens = FcmTokenRepository::GetUserTokens(member.userId);
+            if (!tokens.empty()) {
+                string title = groupNameFcm + " - " + pkt_res.creator_name();
+                string body = "투표: " + pkt.question();
+                if (body.length() > 60) body = body.substr(0, 60) + "...";
+                map<string, string> data = {
+                    {"type", "poll_created"}, {"conv_id", clientConvId},
+                    {"group_id", groupId}, {"poll_id", pollId}, {"sender_id", userId}
+                };
+                for (const auto& tokenInfo : tokens) {
+                    bool invalidToken = false;
+                    GFcmClient->SendPush(tokenInfo.fcmToken, title, body, data, &invalidToken);
+                    if (invalidToken) FcmTokenRepository::DeleteToken(tokenInfo.userId, tokenInfo.fcmToken);
+                }
+            }
         }
     }
 
@@ -921,6 +1029,18 @@ bool ChatService::HandleVote(sessionPtr& session, uint64 reqId, const Protocol::
 
     const string& pollId = pkt.poll_id();
 
+    // 그룹 멤버십 확인
+    {
+        string clientConvId = pkt.conv_id();
+        if (clientConvId.find("group:") == 0) {
+            string groupId = clientConvId.substr(6);
+            if (!GroupRepository::IsMember(groupId, userId)) {
+                HandleErr(session, reqId, ERR_UNAUTHORIZED, "그룹 멤버가 아닙니다.");
+                return false;
+            }
+        }
+    }
+
     // 투표 존재 + 상태 확인
     PollInfo pollInfo = PollRepository::GetPollInfo(pollId);
     if (pollInfo.pollId.empty()) {
@@ -934,7 +1054,10 @@ bool ChatService::HandleVote(sessionPtr& session, uint64 reqId, const Protocol::
 
     // 자동 만료 체크
     if (pollInfo.expiresAt > 0 && Nowts() > pollInfo.expiresAt) {
-        PollRepository::ClosePoll(pollId, pollInfo.creatorId);
+        if (PollRepository::ClosePoll(pollId, pollInfo.creatorId)) {
+            // 최초 만료 종료 시 한 번만 알림 메시지 전송
+            SendPollClosedNotification(pkt.conv_id(), pollId, pollInfo.creatorId, 0);
+        }
         HandleErr(session, reqId, ERR_POLL_CLOSED, "만료된 투표");
         return false;
     }
@@ -953,6 +1076,9 @@ bool ChatService::HandleVote(sessionPtr& session, uint64 reqId, const Protocol::
 
     // 최신 투표 현황
     string votesJson = PollRepository::GetPollVotes(pollId);
+
+    // messages 테이블의 poll JSON 업데이트 (오프라인 B가 history fetch 시 최신 상태 수신)
+    MessageRepository::UpdatePollVotesInMessage(pkt.conv_id(), pkt.msg_seq(), votesJson);
 
     // S_Vote 브로드캐스트
     Protocol::S_Vote pkt_res;
@@ -996,18 +1122,33 @@ bool ChatService::HandleClosePoll(sessionPtr& session, uint64 reqId, const Proto
 
     const string& pollId = pkt.poll_id();
 
+    // 그룹 멤버십 확인
+    {
+        string clientConvId = pkt.conv_id();
+        if (clientConvId.find("group:") == 0) {
+            string groupId = clientConvId.substr(6);
+            if (!GroupRepository::IsMember(groupId, userId)) {
+                HandleErr(session, reqId, ERR_UNAUTHORIZED, "그룹 멤버가 아닙니다.");
+                return false;
+            }
+        }
+    }
+
     if (!PollRepository::ClosePoll(pollId, userId)) {
         HandleErr(session, reqId, ERR_NO_PERMISSION, "투표 종료 권한 없음 또는 이미 종료됨");
         return false;
     }
 
-    // S_ClosePoll 브로드캐스트
+    // S_ClosePoll 브로드캐스트 (PollDetailScreen 실시간 반영)
+    string clientConvId = pkt.conv_id();
     Protocol::S_ClosePoll pkt_res;
-    pkt_res.set_conv_id(pkt.conv_id());
+    pkt_res.set_conv_id(clientConvId);
     pkt_res.set_poll_id(pollId);
     pkt_res.set_msg_seq(pkt.msg_seq());
 
-    string clientConvId = pkt.conv_id();
+    // 종료 알림 새 메시지 전송
+    SendPollClosedNotification(clientConvId, pollId, userId, reqId);
+
     if (clientConvId.find("group:") == 0) {
         string groupId = clientConvId.substr(6);
         auto members = GroupRepository::GetGroupMembers(groupId);
@@ -1026,6 +1167,105 @@ bool ChatService::HandleClosePoll(sessionPtr& session, uint64 reqId, const Proto
     return true;
 }
 
+void ChatService::SendPollClosedNotification(const string& clientConvId, const string& pollId,
+                                              const string& closedByUserId, uint64 reqId)
+{
+    string convId = clientConvId;
+    string groupId;
+    if (clientConvId.find("group:") == 0) {
+        groupId = clientConvId.substr(6);
+    } else {
+        return;
+    }
+
+    PollInfo info = PollRepository::GetPollInfo(pollId);
+    if (info.pollId.empty()) return;
+
+    string votesJson = PollRepository::GetPollVotes(pollId);
+    int64 now = Nowts();
+
+    // 새 메시지 seq 생성
+    int64 newMsgSeq = MessageRepository::GetNextMessageSeq(convId);
+    if (newMsgSeq < 0) return;
+
+    // closed poll JSON 구성
+    std::ostringstream oss;
+    oss << "{\"pollId\":\"" << info.pollId << "\""
+        << ",\"question\":\"";
+    for (char c : info.question) {
+        if (c == '"') oss << "\\\"";
+        else if (c == '\\') oss << "\\\\";
+        else oss << c;
+    }
+    oss << "\",\"options\":" << info.optionsJson
+        << ",\"isMultiSelect\":" << (info.isMultiSelect ? "true" : "false")
+        << ",\"isAnonymous\":" << (info.isAnonymous ? "true" : "false")
+        << ",\"expiresAt\":" << info.expiresAt
+        << ",\"creatorId\":\"" << info.creatorId << "\""
+        << ",\"status\":\"closed\""
+        << ",\"votes\":" << votesJson << "}";
+    string closedPollJson = oss.str();
+
+    // messages 테이블에 저장
+    Protocol::S_Chat sChat;
+    sChat.set_conv_id(convId);
+    sChat.set_sender_id(info.creatorId);
+    sChat.set_sender_name(GetUserNameWithId(info.creatorId));
+    sChat.set_ts_server(now);
+    sChat.set_msg_seq(newMsgSeq);
+    sChat.mutable_payload()->mutable_text()->set_message(closedPollJson);
+    MessageRepository::SaveMessage(convId, info.creatorId, sChat, "", 0, "", 5);
+
+    // S_CreatePoll로 브로드캐스트 (status="closed")
+    Protocol::S_CreatePoll notify;
+    notify.set_conv_id(clientConvId);
+    notify.set_poll_id(info.pollId);
+    notify.set_msg_seq(newMsgSeq);
+    notify.set_creator_id(info.creatorId);
+    notify.set_creator_name(GetUserNameWithId(info.creatorId));
+    notify.set_question(info.question);
+    for (const auto& opt : nlohmann::json::parse(info.optionsJson)) {
+        notify.add_options(opt.get<string>());
+    }
+    notify.set_is_multi_select(info.isMultiSelect);
+    notify.set_is_anonymous(info.isAnonymous);
+    notify.set_expires_at(info.expiresAt);
+    notify.set_ts_server(now);
+    notify.set_status("closed");
+    notify.set_votes_json(votesJson);
+
+    cGroupInfo groupInfoClosed;
+    GroupRepository::GetGroupInfoById(groupId, groupInfoClosed);
+    string groupNameClosed = groupInfoClosed.groupName.empty() ? "그룹" : groupInfoClosed.groupName;
+
+    auto members = GroupRepository::GetGroupMembers(groupId);
+    for (const auto& member : members) {
+        if (auto memberSession = _userManager.FindSession(member.userId)) {
+            Protocol::Envelope env;
+            env.set_version(GProtoVersion);
+            env.set_request_id(0);
+            *env.mutable_s_create_poll() = notify;
+            PacketDispatcher::SendEnvelope(memberSession, env);
+        } else if (GFcmClient) {
+            auto tokens = FcmTokenRepository::GetUserTokens(member.userId);
+            if (!tokens.empty()) {
+                string title = groupNameClosed;
+                string body = "투표가 종료되었습니다: " + info.question;
+                if (body.length() > 60) body = body.substr(0, 60) + "...";
+                map<string, string> data = {
+                    {"type", "poll_closed"}, {"conv_id", clientConvId},
+                    {"group_id", groupId}, {"poll_id", pollId}
+                };
+                for (const auto& tokenInfo : tokens) {
+                    bool invalidToken = false;
+                    GFcmClient->SendPush(tokenInfo.fcmToken, title, body, data, &invalidToken);
+                    if (invalidToken) FcmTokenRepository::DeleteToken(tokenInfo.userId, tokenInfo.fcmToken);
+                }
+            }
+        }
+    }
+}
+
 
 bool ChatService::HandleSetAnnouncement(sessionPtr& session, uint64 reqId, const Protocol::C_SetAnnouncement& pkt)
 {
@@ -1040,6 +1280,24 @@ bool ChatService::HandleSetAnnouncement(sessionPtr& session, uint64 reqId, const
     int64 msgSeq = pkt.msg_seq();
     const string& text = pkt.text();
     const string& senderName = pkt.sender_name();
+
+    // 멤버십 확인
+    {
+        auto dmPos_ann_check = clientConvId.find(":dm:");
+        if (dmPos_ann_check != string::npos) {
+            string groupId = clientConvId.substr(0, dmPos_ann_check);
+            if (!GroupRepository::IsMember(groupId, userId)) {
+                HandleErr(session, reqId, ERR_UNAUTHORIZED, "그룹 멤버가 아닙니다.");
+                return false;
+            }
+        } else if (clientConvId.find("group:") == 0) {
+            string groupId = clientConvId.substr(6);
+            if (!GroupRepository::IsMember(groupId, userId)) {
+                HandleErr(session, reqId, ERR_UNAUTHORIZED, "그룹 멤버가 아닙니다.");
+                return false;
+            }
+        }
+    }
 
     string convId = clientConvId;
     auto dmPos_ann = clientConvId.find(":dm:");

@@ -43,10 +43,11 @@ public:
     static bool AddMember(const string& groupId, const string& userId, const string& role);
     static bool RemoveMember(const string& groupId, const string& userId);
     static bool SaveGroupAsset(const string& groupId, const string& userId, int64 msgSeq, int64 fileSize, const string& fileType);
-    static bool DeleteGroupAssetByGcsPath(const string& gcsPath);
+    static bool DeleteGroupAssetByFilePath(const string& filePath);
     static bool UpdateGroupInfo(const string& groupId, const string& newName, const string& newImageUrl);
     static bool RefreshInviteCode(const string& groupId, string& OUT newCode, int64& OUT expiresAt);
     static bool DeleteGroup(const string& groupId);
+    static bool TransferOwnership(const string& groupId, const string& fromUserId, const string& toUserId);
 
     /* Query */
     static vector<cGroupInfo> GetUserGroups(const string& userId);
@@ -58,6 +59,15 @@ public:
     static vector<cGroupMemberInfo> GetGroupMembers(const string& groupId);
 
     static void EnsureDefaultStorage(const string& groupId, int64 defaultCapacity);
+    static bool UpdateStorageCapacity(const string& groupId, int64 capacityBytes);
+    static bool SetStorageCapacityOnly(const string& groupId, int64 capacityBytes); // usage 건드리지 않음
+    static bool ResetStorageToFree(const string& groupId);
+
+    // 앨범 사진 저장/삭제 시 그룹 스토리지 직접 조정
+    static bool AddGroupStorage(const string& groupId, int64 fileSize);
+    static bool DeductGroupStorage(const string& groupId, int64 fileSize);
+    // 쿼터 초과 시 false 반환 (원자적 체크+증가)
+    static bool TryAddGroupStorageAtomic(const string& groupId, int64 addBytes);
 
 
 private:

@@ -83,7 +83,7 @@ bool LocationRepository::DeletePlace(const string& placeId, const string& userId
 bool LocationRepository::UpdateVisit(const string& visitId, const string& userId,
                                      int32 rating, const string& review,
                                      int64 visitedAt, const vector<string>& photoUrls,
-                                     const string& placeId)
+                                     const string& placeId, const string& historyId)
 {
     try {
         auto& session = DBManager::GetInstance().GetSession();
@@ -98,8 +98,8 @@ bool LocationRepository::UpdateVisit(const string& visitId, const string& userId
         string groupId = checkRow[1].get<string>();
 
         session.sql(
-            "UPDATE location_visits SET rating=?, review=?, visited_at=? WHERE id=?"
-        ).bind(rating, review, visitedAt, visitId).execute();
+            "UPDATE location_visits SET rating=?, review=?, visited_at=?, history_id=? WHERE id=?"
+        ).bind(rating, review, visitedAt, historyId, visitId).execute();
 
         // 사진 교체: 기존 삭제 후 재삽입
         session.sql("DELETE FROM location_photos WHERE visit_id=?").bind(visitId).execute();
@@ -217,13 +217,14 @@ string LocationRepository::CreateVisit(const cLocationVisit& visit)
     try {
         auto& session = DBManager::GetInstance().GetSession();
         string id = GenerateUUID();
+        string hid = visit.historyId.empty() ? id : visit.historyId;
         session.sql(
             "INSERT INTO location_visits "
-            "(id, place_id, group_id, user_id, user_name, rating, review, visited_at) "
-            "VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
+            "(id, place_id, group_id, user_id, user_name, rating, review, visited_at, history_id) "
+            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
         ).bind(id, visit.placeId, visit.groupId, visit.userId,
                visit.userName, visit.rating, visit.review,
-               visit.visitedAt).execute();
+               visit.visitedAt, hid).execute();
         return id;
     } catch (const mysqlx::Error& e) {
         LOG_ERROR("[LocationRepository] CreateVisit 실패: {}", e.what());
@@ -238,7 +239,7 @@ vector<cLocationVisit> LocationRepository::GetVisitsByPlace(const string& placeI
         auto& session = DBManager::GetInstance().GetSession();
         auto rows = session.sql(
             "SELECT v.id, v.place_id, v.group_id, v.user_id, v.user_name, "
-            "       v.rating, v.review, v.visited_at, "
+            "       v.rating, v.review, v.visited_at, v.history_id, "
             "       COALESCE(p.id, '')        AS photo_id, "
             "       COALESCE(p.photo_url, '') AS photo_url "
             "FROM location_visits v "
@@ -259,12 +260,13 @@ vector<cLocationVisit> LocationRepository::GetVisitsByPlace(const string& placeI
                 v.rating    = row[5].get<int>();
                 v.review    = row[6].get<string>();
                 v.visitedAt = row[7].get<int64>();
+                v.historyId = row[8].get<string>();
                 result.push_back(move(v));
                 lastId = vid;
             }
-            string photoId = row[8].get<string>();
+            string photoId = row[9].get<string>();
             if (!photoId.empty()) {
-                result.back().photos.emplace_back(photoId, row[9].get<string>());
+                result.back().photos.emplace_back(photoId, row[10].get<string>());
             }
         }
     } catch (const mysqlx::Error& e) {
@@ -313,5 +315,16 @@ bool LocationRepository::AddVisitPhotos(const string& visitId, const string& pla
     } catch (const mysqlx::Error& e) {
         LOG_ERROR("[LocationRepository] AddVisitPhotos 실패: {}", e.what());
         return false;
+    }
+}
+
+void LocationRepository::UpdateVisitUserNames(const string& userId, const string& userName)
+{
+    try {
+        auto& session = DBManager::GetInstance().GetSession();
+        session.sql("UPDATE location_visits SET user_name = ? WHERE user_id = ?")
+            .bind(userName, userId).execute();
+    } catch (const mysqlx::Error& e) {
+        LOG_ERROR("[LocationRepository] UpdateVisitUserNames 실패: {}", e.what());
     }
 }

@@ -7,6 +7,8 @@
 #define CPPHTTPLIB_OPENSSL_SUPPORT
 #include "httplib.h"
 
+#include <mutex>
+
 using sessionPtr = shared_ptr<Session>;
 
 class UserManager;
@@ -20,27 +22,25 @@ public:
     bool Initialize(const string& credentialsPath);
 
     bool HandleVerifyPurchase(sessionPtr& session, uint64 reqId, const Protocol::C_VerifyPurchase& pkt);
-    bool HandleCancelSubscription(sessionPtr& session, uint64 reqId);
+    bool HandleCancelSubscription(sessionPtr& session, uint64 reqId, const Protocol::C_CancelSubscription& pkt);
 
 private:
-    bool VerifyGooglePurchase(const string& userId, const string& productId,
-                               const string& purchaseToken, int& outPlanId,
-                               int64& outExpiresAt);
+    bool VerifyGooglePurchase(const string& productId, const string& purchaseToken,
+                               int& outPlanId, int64& outExpiresAt);
 
-    bool VerifyApplePurchase(const string& userId, const string& productId,
-                              const string& receiptData, int& outPlanId,
-                              int64& outExpiresAt);
+    bool VerifyApplePurchase(const string& productId, const string& receiptData,
+                              int& outPlanId, int64& outExpiresAt);
 
-    bool UpdateSubscription(const string& userId, int planId, const string& platform,
+    bool UpdateSubscription(const string& groupId, int planId, const string& platform,
                              const string& productId, const string& transactionId,
                              const string& purchaseToken, int64 expiresAt);
 
     int GetPlanIdFromProductId(const string& productId);
 
-    // OAuth2 (GCP 서비스 계정 재사용)
+    // OAuth2 (GCP 서비스 계정)
     bool LoadServiceAccountJson(const string& filePath);
-    bool RefreshAccessToken();
-    bool CheckValidToken();
+    bool RefreshAccessToken();    // _tokenMutex 잠금 상태에서 호출
+    bool CheckValidToken();       // 내부적으로 _tokenMutex 획득
     string CreateJWT();
     string SignString(const string& data);
     string Base64Encode(const vector<uint8>& data);
@@ -57,18 +57,14 @@ private:
 private:
     UserManager& _userManager;
 
-    // OAuth2
+    // OAuth2 — _tokenMutex로 보호 (IOCP 멀티스레드 동시 접근)
+    mutex  _tokenMutex;
     string _accessToken;
-    int64 _tokenExpiresTime = 0;
+    int64  _tokenExpiresTime = 0;
     string _serviceAccountEmail;
     string _privateKey;
 
-    // HTTP Clients
-    unique_ptr<httplib::Client> _googleClient;
-    unique_ptr<httplib::Client> _appleClient;
-    unique_ptr<httplib::Client> _appleSandboxClient;
-
-    string _packageName;  // Android package name
+    string _packageName;
     string _appleSharedSecret;
 };
 

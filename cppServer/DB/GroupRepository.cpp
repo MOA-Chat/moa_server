@@ -123,7 +123,7 @@ bool GroupRepository::AddMember(const string& groupId, const string& userId, con
             .values(groupId, userId, role)
             .execute();
 
-        // 2. 그룹 테이블 카운트 증가
+        // 2. 그룹 테이블 카운트 증가 (트리거 제거 후 코드에서 직접 처리)
         session.sql("UPDATE `groups` SET member_count = member_count + 1 WHERE group_id = ?")
             .bind(groupId)
             .execute();
@@ -131,10 +131,10 @@ bool GroupRepository::AddMember(const string& groupId, const string& userId, con
         session.commit();
         return true;
     }
-    catch (const mysqlx::Error& err) 
-    { 
+    catch (const mysqlx::Error& err)
+    {
         LOG_ERROR("[GroupRepo] AddMember Failed: {}", err.what());
-        return false; 
+        return false;
     }
 }
 
@@ -156,7 +156,7 @@ bool GroupRepository::RemoveMember(const string& groupId, const string& userId)
             .bind("uid", userId)
             .execute();
 
-        // 2. 그룹 테이블 카운트 감소
+        // 2. 그룹 테이블 카운트 감소 (트리거 제거 후 코드에서 직접 처리)
         session.sql("UPDATE `groups` SET member_count = member_count - 1 WHERE group_id = ? AND member_count > 0")
             .bind(groupId)
             .execute();
@@ -204,22 +204,21 @@ bool GroupRepository::SaveGroupAsset(const string& groupId, const string& userId
 
 
 
-bool GroupRepository::DeleteGroupAssetByGcsPath(const string& gcsPath)
+bool GroupRepository::DeleteGroupAssetByFilePath(const string& filePath)
 {
-    if (gcsPath.empty()) return false;
+    if (filePath.empty()) return false;
     try {
         auto& db = DBManager::GetInstance();
         auto& session = db.GetSession();
 
-        // 먼저 group_id + file_size 조회
         auto res = session.sql(
             "SELECT ga.group_id, ga.file_size FROM group_assets ga "
             "JOIN messages m ON ga.group_id = m.group_id AND ga.msg_seq = m.msg_seq "
             "WHERE m.gcs_path = ? LIMIT 1"
-        ).bind(gcsPath).execute();
+        ).bind(filePath).execute();
 
         auto row = res.fetchOne();
-        if (!row) return true; // already gone
+        if (!row) return true;
 
         string gid   = row[0].get<string>();
         int64  fsize = row[1].get<int64_t>();
@@ -228,7 +227,7 @@ bool GroupRepository::DeleteGroupAssetByGcsPath(const string& gcsPath)
             "DELETE ga FROM group_assets ga "
             "JOIN messages m ON ga.group_id = m.group_id AND ga.msg_seq = m.msg_seq "
             "WHERE m.gcs_path = ?"
-        ).bind(gcsPath).execute();
+        ).bind(filePath).execute();
 
         if (fsize > 0) {
             session.sql(
@@ -246,6 +245,53 @@ bool GroupRepository::DeleteGroupAssetByGcsPath(const string& gcsPath)
 }
 
 
+
+bool GroupRepository::AddGroupStorage(const string& groupId, int64 fileSize)
+{
+    if (fileSize <= 0) return true;
+    try {
+        auto& session = DBManager::GetInstance().GetSession();
+        session.sql("UPDATE `groups` SET storage_usage_bytes = storage_usage_bytes + ? WHERE group_id = ?")
+            .bind(fileSize, groupId).execute();
+        return true;
+    } catch (const mysqlx::Error& e) {
+        LOG_ERROR("[GroupRepository] AddGroupStorage 실패: {}", e.what());
+        return false;
+    }
+}
+
+bool GroupRepository::DeductGroupStorage(const string& groupId, int64 fileSize)
+{
+    if (fileSize <= 0) return true;
+    try {
+        auto& session = DBManager::GetInstance().GetSession();
+        session.sql(
+            "UPDATE `groups` SET storage_usage_bytes = GREATEST(0, storage_usage_bytes - ?) "
+            "WHERE group_id = ?"
+        ).bind(fileSize, groupId).execute();
+        return true;
+    } catch (const mysqlx::Error& e) {
+        LOG_ERROR("[GroupRepository] DeductGroupStorage 실패: {}", e.what());
+        return false;
+    }
+}
+
+
+bool GroupRepository::TryAddGroupStorageAtomic(const string& groupId, int64 addBytes)
+{
+    if (addBytes <= 0) return true;
+    try {
+        auto& session = DBManager::GetInstance().GetSession();
+        auto result = session.sql(
+            "UPDATE `groups` SET storage_usage_bytes = storage_usage_bytes + ? "
+            "WHERE group_id = ? AND storage_usage_bytes + ? <= storage_capacity_bytes"
+        ).bind(addBytes, groupId, addBytes).execute();
+        return result.getAffectedItemsCount() > 0;
+    } catch (const mysqlx::Error& e) {
+        LOG_ERROR("[GroupRepository] TryAddGroupStorageAtomic 실패: {}", e.what());
+        return false;
+    }
+}
 
 bool GroupRepository::UpdateGroupInfo(const string& groupId, const string& newName, const string& newImageUrl)
 {
@@ -314,29 +360,71 @@ bool GroupRepository::DeleteGroup(const string& groupId)
 
         session.startTransaction();
 
-        const string convId = "group:" + groupId;
+        const string convId  = "group:" + groupId;
+        const string dmLike  = groupId + ":dm:%";
 
-        // 1. 메시지 삭제
+        // 1. 그룹 채팅 메시지 삭제
         session.sql("DELETE FROM `messages` WHERE conv_id = ?")
             .bind(convId)
             .execute();
 
-        // 2. read_status 삭제
+        // 2. 그룹 채팅 read_status 삭제
         session.sql("DELETE FROM `read_status` WHERE conv_id = ?")
             .bind(convId)
             .execute();
 
-        // 3. group_assets 삭제
+        // 3. GroupDM 메시지 삭제 (groupId:dm:userA_userB 형식)
+        session.sql("DELETE FROM `messages` WHERE conv_id LIKE ?")
+            .bind(dmLike)
+            .execute();
+
+        // 4. GroupDM read_status 삭제
+        session.sql("DELETE FROM `read_status` WHERE conv_id LIKE ?")
+            .bind(dmLike)
+            .execute();
+
+        // 5. group_assets 삭제
         session.sql("DELETE FROM `group_assets` WHERE group_id = ?")
             .bind(groupId)
             .execute();
 
-        // 4. group_members 삭제
+        // 6. 앨범 관련 삭제 (photo_comments → album_photos → albums 순)
+        session.sql(
+            "DELETE pc FROM `photo_comments` pc "
+            "JOIN `album_photos` ap ON pc.photo_id = ap.id "
+            "JOIN `albums` a ON ap.album_id = a.id "
+            "WHERE a.group_id = ?"
+        ).bind(groupId).execute();
+
+        session.sql(
+            "DELETE ap FROM `album_photos` ap "
+            "JOIN `albums` a ON ap.album_id = a.id "
+            "WHERE a.group_id = ?"
+        ).bind(groupId).execute();
+
+        session.sql("DELETE FROM `albums` WHERE group_id = ?")
+            .bind(groupId)
+            .execute();
+
+        // 7. 위치 히스토리 삭제 (location_photos → location_visits → location_places 순)
+        session.sql("DELETE FROM `location_photos` WHERE group_id = ?")
+            .bind(groupId)
+            .execute();
+
+        session.sql("DELETE FROM `location_visits` WHERE group_id = ?")
+            .bind(groupId)
+            .execute();
+
+        session.sql("DELETE FROM `location_places` WHERE group_id = ?")
+            .bind(groupId)
+            .execute();
+
+        // 8. group_members 삭제
         session.sql("DELETE FROM `group_members` WHERE group_id = ?")
             .bind(groupId)
             .execute();
 
-        // 5. groups 삭제
+        // 9. groups 삭제
         session.sql("DELETE FROM `groups` WHERE group_id = ?")
             .bind(groupId)
             .execute();
@@ -351,6 +439,35 @@ bool GroupRepository::DeleteGroup(const string& groupId)
     }
     catch (const std::exception& e) {
         LOG_ERROR("[GroupRepository] DeleteGroup Exception: {}", e.what());
+        return false;
+    }
+}
+
+
+bool GroupRepository::TransferOwnership(const string& groupId, const string& fromUserId, const string& toUserId)
+{
+    try {
+        auto& db = DBManager::GetInstance();
+        auto& session = db.GetSession();
+
+        session.startTransaction();
+
+        session.sql("UPDATE `group_members` SET role = 'owner' WHERE group_id = ? AND user_id = ?")
+            .bind(groupId)
+            .bind(toUserId)
+            .execute();
+
+        session.sql("UPDATE `group_members` SET role = 'member' WHERE group_id = ? AND user_id = ?")
+            .bind(groupId)
+            .bind(fromUserId)
+            .execute();
+
+        session.commit();
+        LOG_INFO("[GroupRepository] 방장 이전: {} -> {} in group {}", fromUserId, toUserId, groupId);
+        return true;
+    }
+    catch (const mysqlx::Error& err) {
+        LOG_ERROR("[GroupRepository] TransferOwnership Error: {}", err.what());
         return false;
     }
 }
@@ -405,6 +522,7 @@ vector<cGroupInfo> GroupRepository::GetUserGroups(const string& userId)
     catch (const mysqlx::Error& err)
     {
         LOG_ERROR("[GroupRepo] GetUserGroups Error: {}", err.what());
+        DBManager::GetInstance().ResetCurrentSession();
     }
 
     return result;
@@ -416,22 +534,21 @@ bool GroupRepository::GetGroupInfoById(const string& groupId, cGroupInfo& OUT in
 {
     try {
         auto& db = DBManager::GetInstance();
-        auto groups = db.GetSchema().getTable("groups");
+        // session.sql() 사용 통일 (GetSchema() 혼용 시 같은 세션을 이중 사용할 수 있음)
+        auto& session = db.GetSession();
 
+        string query =
+            "SELECT group_id, group_name, group_code, creator_id, "
+            "description, group_image_url, "
+            "storage_usage_bytes, storage_capacity_bytes, member_count, created_at, "
+            "invite_code_expires_at "
+            "FROM `groups` WHERE group_id = ?";
 
-        auto rows = groups.select("group_id", "group_name", "group_code", "creator_id",
-            "description", "group_image_url",
-            "storage_usage_bytes", "storage_capacity_bytes", "member_count", "created_at",
-            "invite_code_expires_at")
-            .where("group_id = :id")
-            .bind("id", groupId)
-            .execute();
+        // fetchAll()로 전체 결과 소비 → FetchDone 메시지까지 읽어 CDK 상태 정상화
+        std::list<mysqlx::Row> allRows = session.sql(query).bind(groupId).execute().fetchAll();
+        if (allRows.empty()) return false;
 
-
-
-        if (rows.count() == 0) return false;
-
-        auto row = rows.fetchOne();
+        auto& row = allRows.front();
         info.groupId = row[0].get<string>();
         info.groupName = row[1].get<string>();
         info.groupCode = row[2].get<string>();
@@ -450,6 +567,7 @@ bool GroupRepository::GetGroupInfoById(const string& groupId, cGroupInfo& OUT in
     catch (const mysqlx::Error& err)
     {
         LOG_ERROR("[GroupRepo] GetGroupInfoById Error: {}", err.what());
+        DBManager::GetInstance().ResetCurrentSession();
     }
     return false;
 }
@@ -473,9 +591,7 @@ bool GroupRepository::GetGroupInfoByCode(const string& groupCode, cGroupInfo& OU
             .bind("code", groupCode)
             .execute();
 
-
         if (rows.count() == 0) return false;
-
 
         auto row = rows.fetchOne();
 
@@ -514,20 +630,17 @@ bool GroupRepository::GetGroupInfoByCode(const string& groupCode, cGroupInfo& OU
 bool GroupRepository::IsMember(const string& groupId, const string& userId)
 {
     try {
-        auto& db = DBManager::GetInstance();
-        auto members = db.GetSchema().getTable("group_members");
-
-        auto res = members.select("id")
-            .where("group_id = :gid AND user_id = :uid")
-            .bind("gid", groupId)
-            .bind("uid", userId)
-            .execute();
-
-        return res.count() > 0;
+        auto& session = DBManager::GetInstance().GetSession();
+        auto result = session.sql(
+            "SELECT 1 FROM group_members WHERE group_id = ? AND user_id = ? LIMIT 1"
+        ).bind(groupId, userId).execute();
+        auto row = result.fetchOne();
+        return (bool)row;
     }
     catch (const mysqlx::Error& err)
     {
-        LOG_ERROR("[GroupRepo] GetUserGroups Error: {}", err.what());
+        LOG_ERROR("[GroupRepo] IsMember Error: {}", err.what());
+        DBManager::GetInstance().ResetCurrentSession();
     }
     return false;
 }
@@ -536,21 +649,17 @@ bool GroupRepository::IsMember(const string& groupId, const string& userId)
 string GroupRepository::GetMemberRole(const string& groupId, const string& userId)
 {
     try {
-        auto& db = DBManager::GetInstance();
-        auto members = db.GetSchema().getTable("group_members");
-
-        auto rows = members.select("role")
-            .where("group_id = :gid AND user_id = :uid")
-            .bind("gid", groupId)
-            .bind("uid", userId)
-            .execute();
-
-        if (rows.count() > 0) 
-            return rows.fetchOne()[0].get<string>();
+        auto& session = DBManager::GetInstance().GetSession();
+        auto result = session.sql(
+            "SELECT role FROM group_members WHERE group_id = ? AND user_id = ? LIMIT 1"
+        ).bind(groupId, userId).execute();
+        auto row = result.fetchOne();
+        if (row) return row[0].get<string>();
     }
     catch (const mysqlx::Error& err)
     {
-        LOG_ERROR("[GroupRepo] GetUserGroups Error: {}", err.what());
+        LOG_ERROR("[GroupRepo] GetMemberRole Error: {}", err.what());
+        DBManager::GetInstance().ResetCurrentSession();
     }
     return "";
 }
@@ -564,9 +673,14 @@ vector<cGroupMemberInfo> GroupRepository::GetGroupMembers(const string& groupId)
         auto& db = DBManager::GetInstance();
         auto& session = db.GetSession();
 
-        string query = "SELECT m.user_id, m.role, m.joined_at, u.name, u.status_message, u.profile_image_url "
+        // LEFT JOIN: users 테이블에 없는 멤버도 포함 (orphan row 방어)
+        // 이전 INNER JOIN은 users 미등록 멤버를 누락시켜 unreadCount 계산 오류 발생
+        string query = "SELECT m.user_id, m.role, m.joined_at, "
+            "COALESCE(u.name, m.user_id) as name, "
+            "COALESCE(u.status_message, '') as status_message, "
+            "COALESCE(u.profile_image_url, '') as profile_image_url "
             "FROM group_members m "
-            "JOIN users u ON m.user_id = u.user_id "
+            "LEFT JOIN users u ON m.user_id = u.user_id "
             "WHERE m.group_id = ?";
 
         auto rows = session.sql(query).bind(groupId).execute();
@@ -602,12 +716,12 @@ bool GroupRepository::IsGroupCodeExists(const string& groupCode) {
         auto& db = DBManager::GetInstance();
         auto schema = db.GetSchema();
         auto groups = schema.getTable("groups");
-        
+
         auto rows = groups.select("group_id")
                           .where("group_code = :code")
                           .bind("code", groupCode)
                           .execute();
-        
+
         return rows.count() > 0;
 
     } catch (const mysqlx::Error& err) {
@@ -627,6 +741,50 @@ void GroupRepository::EnsureDefaultStorage(const string& groupId, int64 defaultC
         ).bind(defaultCapacity, groupId).execute();
     } catch (const mysqlx::Error& err) {
         LOG_ERROR("[GroupRepository] EnsureDefaultStorage 실패: {}", err.what());
+    }
+}
+
+bool GroupRepository::UpdateStorageCapacity(const string& groupId, int64 capacityBytes)
+{
+    try {
+        auto& db = DBManager::GetInstance();
+        db.GetSession().sql(
+            "UPDATE `groups` SET storage_capacity_bytes = ? WHERE group_id = ?"
+        ).bind(capacityBytes, groupId).execute();
+        return true;
+    } catch (const mysqlx::Error& err) {
+        LOG_ERROR("[GroupRepository] UpdateStorageCapacity 실패: {}", err.what());
+        return false;
+    }
+}
+
+bool GroupRepository::SetStorageCapacityOnly(const string& groupId, int64 capacityBytes)
+{
+    try {
+        auto& db = DBManager::GetInstance();
+        db.GetSession().sql(
+            "UPDATE `groups` SET storage_capacity_bytes = ? WHERE group_id = ?"
+        ).bind(capacityBytes, groupId).execute();
+        return true;
+    } catch (const mysqlx::Error& err) {
+        LOG_ERROR("[GroupRepository] SetStorageCapacityOnly 실패: {}", err.what());
+        return false;
+    }
+}
+
+bool GroupRepository::ResetStorageToFree(const string& groupId)
+{
+    // 1GB 기본 플랜으로 초기화, 사용량도 0으로 리셋
+    const int64 FREE_CAPACITY = 1073741824LL;
+    try {
+        auto& db = DBManager::GetInstance();
+        db.GetSession().sql(
+            "UPDATE `groups` SET storage_capacity_bytes = ?, storage_usage_bytes = 0 WHERE group_id = ?"
+        ).bind(FREE_CAPACITY, groupId).execute();
+        return true;
+    } catch (const mysqlx::Error& err) {
+        LOG_ERROR("[GroupRepository] ResetStorageToFree 실패: {}", err.what());
+        return false;
     }
 }
 

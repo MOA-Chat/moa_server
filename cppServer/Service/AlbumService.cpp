@@ -2,10 +2,14 @@
 #include "AlbumService.h"
 
 #include "UserManager.h"
+#include "ServerSession.h"
 #include "../PacketDispatcher.h"
 #include "../CoreGlobal.h"
 #include "../DB/AlbumRepository.h"
 #include "../DB/GroupRepository.h"
+#include "../DB/MessageRepository.h"
+#include "../DB/FileRepository.h"
+#include "../DB/UserRepository.h"
 
 using namespace Protocol;
 
@@ -66,14 +70,19 @@ void AlbumService::HandleErr(sessionPtr& session, uint64 reqId, Protocol::ErrorC
 
 bool AlbumService::HandleCreateAlbum(sessionPtr& session, uint64 reqId, const C_CreateAlbum& pkt)
 {
-    const string& groupId   = pkt.group_id();
-    const string& name      = pkt.name();
-    const string& createdBy = pkt.created_by();
+    const string userId = static_pointer_cast<ServerSession>(session)->GetUserId();
+    const string& groupId = pkt.group_id();
+    const string& name    = pkt.name();
 
-    if (groupId.empty() || name.empty() || createdBy.empty()) {
+    if (groupId.empty() || name.empty() || userId.empty()) {
         HandleErr(session, reqId, ERR_INVALID_PACKET);
         return false;
     }
+    if (!GroupRepository::IsMember(groupId, userId)) {
+        HandleErr(session, reqId, ERR_UNAUTHORIZED, "그룹 멤버가 아닙니다.");
+        return false;
+    }
+    const string& createdBy = userId;
 
     string albumId = AlbumRepository::CreateAlbum(groupId, name, createdBy);
     if (albumId.empty()) {
@@ -100,7 +109,13 @@ bool AlbumService::HandleCreateAlbum(sessionPtr& session, uint64 reqId, const C_
 
 bool AlbumService::HandleGetAlbums(sessionPtr& session, uint64 reqId, const C_GetAlbums& pkt)
 {
+    const string userId = static_pointer_cast<ServerSession>(session)->GetUserId();
     const string& groupId = pkt.group_id();
+
+    if (!GroupRepository::IsMember(groupId, userId)) {
+        HandleErr(session, reqId, ERR_UNAUTHORIZED, "그룹 멤버가 아닙니다.");
+        return false;
+    }
 
     auto albums = AlbumRepository::GetAlbums(groupId);
 
@@ -116,9 +131,25 @@ bool AlbumService::HandleGetAlbums(sessionPtr& session, uint64 reqId, const C_Ge
 
 bool AlbumService::HandleDeleteAlbum(sessionPtr& session, uint64 reqId, const C_DeleteAlbum& pkt)
 {
+    const string userId   = static_pointer_cast<ServerSession>(session)->GetUserId();
     const string& albumId = pkt.album_id();
-    const string& userId  = pkt.user_id();
     const string& groupId = pkt.group_id();
+
+    if (!GroupRepository::IsMember(groupId, userId)) {
+        HandleErr(session, reqId, ERR_UNAUTHORIZED, "그룹 멤버가 아닙니다.");
+        return false;
+    }
+
+    // 앨범이 실제로 이 그룹 소속인지 확인 (크로스그룹 공격 방지)
+    AlbumInfo albumMeta = AlbumRepository::GetAlbum(albumId);
+    if (albumMeta.id.empty()) {
+        HandleErr(session, reqId, ERR_INVALID_PACKET, "앨범을 찾을 수 없습니다.");
+        return false;
+    }
+    if (albumMeta.groupId != groupId) {
+        HandleErr(session, reqId, ERR_UNAUTHORIZED, "해당 그룹의 앨범이 아닙니다.");
+        return false;
+    }
 
     bool ok = AlbumRepository::DeleteAlbum(albumId, userId);
     if (!ok) {
@@ -140,22 +171,49 @@ bool AlbumService::HandleDeleteAlbum(sessionPtr& session, uint64 reqId, const C_
 
 bool AlbumService::HandleAddPhotoToAlbum(sessionPtr& session, uint64 reqId, const C_AddPhotoToAlbum& pkt)
 {
-    const string& albumId    = pkt.album_id();
-    const string& groupId    = pkt.group_id();
-    int64  msgSeq            = pkt.msg_seq();
-    const string& photoUrl   = pkt.photo_url();
-    const string& thumbUrl   = pkt.thumbnail_url();
-    const string& uploaderId = pkt.uploader_id();
+    const string uploaderId = static_pointer_cast<ServerSession>(session)->GetUserId();
+    const string& albumId   = pkt.album_id();
+    const string& groupId   = pkt.group_id();
+    int64  msgSeq           = pkt.msg_seq();
+    const string& photoUrl  = pkt.photo_url();
+    const string& thumbUrl  = pkt.thumbnail_url();
 
     if (albumId.empty() || photoUrl.empty() || uploaderId.empty()) {
         HandleErr(session, reqId, ERR_INVALID_PACKET);
         return false;
     }
+    if (!GroupRepository::IsMember(groupId, uploaderId)) {
+        HandleErr(session, reqId, ERR_UNAUTHORIZED, "그룹 멤버가 아닙니다.");
+        return false;
+    }
 
-    string photoId = AlbumRepository::AddPhoto(albumId, groupId, msgSeq, photoUrl, thumbUrl, uploaderId, "chat");
+    // 채팅 메시지에서 file_path + file_size 조회
+    string filePath;
+    int64  fileSize = 0;
+    if (msgSeq > 0) {
+        string convId = "group:" + groupId;
+        MessageRepository::GetFilePathAndFileSizeByMsgSeq(convId, msgSeq, filePath, fileSize);
+    }
+
+    // 그룹 스토리지 쿼터 원자적 체크 + 증가
+    if (fileSize > 0) {
+        GroupRepository::EnsureDefaultStorage(groupId, DEFAULT_GROUP_STORAGE);
+        if (!GroupRepository::TryAddGroupStorageAtomic(groupId, fileSize)) {
+            HandleErr(session, reqId, ERR_STORAGE_EXCEEDED, "그룹 저장 용량이 부족합니다.");
+            return false;
+        }
+    }
+
+    string photoId = AlbumRepository::AddPhoto(albumId, groupId, msgSeq, photoUrl, thumbUrl,
+                                               uploaderId, "chat", filePath, fileSize);
     if (photoId.empty()) {
+        if (fileSize > 0) GroupRepository::DeductGroupStorage(groupId, fileSize);
         HandleErr(session, reqId, ERR_SERVER_INTERNAL, "사진 추가 실패");
         return false;
+    }
+
+    if (!filePath.empty()) {
+        FileRepository::ClearRetentionByFilePath(filePath);
     }
 
     AlbumPhotoInfo info;
@@ -186,7 +244,14 @@ bool AlbumService::HandleAddPhotoToAlbum(sessionPtr& session, uint64 reqId, cons
 
 bool AlbumService::HandleGetAlbumPhotos(sessionPtr& session, uint64 reqId, const C_GetAlbumPhotos& pkt)
 {
+    const string userId   = static_pointer_cast<ServerSession>(session)->GetUserId();
     const string& albumId = pkt.album_id();
+
+    AlbumInfo albumMeta = AlbumRepository::GetAlbum(albumId);
+    if (!albumMeta.id.empty() && !GroupRepository::IsMember(albumMeta.groupId, userId)) {
+        HandleErr(session, reqId, ERR_UNAUTHORIZED, "그룹 멤버가 아닙니다.");
+        return false;
+    }
     bool latestFirst = pkt.latest_first();
 
     auto photos = AlbumRepository::GetPhotos(albumId, latestFirst);
@@ -204,12 +269,17 @@ bool AlbumService::HandleGetAlbumPhotos(sessionPtr& session, uint64 reqId, const
 
 bool AlbumService::HandleDeleteAlbumPhoto(sessionPtr& session, uint64 reqId, const C_DeleteAlbumPhoto& pkt)
 {
+    const string userId   = static_pointer_cast<ServerSession>(session)->GetUserId();
     const string& photoId = pkt.photo_id();
-    const string& userId  = pkt.user_id();
     const string& groupId = pkt.group_id();
     const string& albumId = pkt.album_id();
 
-    bool ok = AlbumRepository::DeletePhoto(photoId, userId);
+    if (!GroupRepository::IsMember(groupId, userId)) {
+        HandleErr(session, reqId, ERR_UNAUTHORIZED, "그룹 멤버가 아닙니다.");
+        return false;
+    }
+
+    bool ok = AlbumRepository::DeletePhoto(photoId, userId, groupId);
     if (!ok) {
         HandleErr(session, reqId, ERR_UNAUTHORIZED, "삭제 권한이 없거나 사진이 존재하지 않습니다.");
         return false;
@@ -232,10 +302,28 @@ bool AlbumService::HandleDeleteAlbumPhoto(sessionPtr& session, uint64 reqId, con
 
 bool AlbumService::HandleMovePhoto(sessionPtr& session, uint64 reqId, const C_MovePhoto& pkt)
 {
+    const string userId       = static_pointer_cast<ServerSession>(session)->GetUserId();
     const string& photoId     = pkt.photo_id();
     const string& fromAlbumId = pkt.from_album_id();
     const string& toAlbumId   = pkt.to_album_id();
     const string& groupId     = pkt.group_id();
+
+    if (!GroupRepository::IsMember(groupId, userId)) {
+        HandleErr(session, reqId, ERR_UNAUTHORIZED, "그룹 멤버가 아닙니다.");
+        return false;
+    }
+
+    // 크로스그룹 이동 방지: fromAlbum과 toAlbum 모두 이 그룹 소속이어야 함
+    AlbumInfo fromAlbumCheck = AlbumRepository::GetAlbum(fromAlbumId);
+    AlbumInfo toAlbumCheck   = AlbumRepository::GetAlbum(toAlbumId);
+    if (fromAlbumCheck.id.empty() || toAlbumCheck.id.empty()) {
+        HandleErr(session, reqId, ERR_INVALID_PACKET, "앨범을 찾을 수 없습니다.");
+        return false;
+    }
+    if (fromAlbumCheck.groupId != groupId || toAlbumCheck.groupId != groupId) {
+        HandleErr(session, reqId, ERR_UNAUTHORIZED, "다른 그룹 앨범으로 이동할 수 없습니다.");
+        return false;
+    }
 
     bool ok = AlbumRepository::MovePhoto(photoId, toAlbumId);
     if (!ok) {
@@ -243,6 +331,7 @@ bool AlbumService::HandleMovePhoto(sessionPtr& session, uint64 reqId, const C_Mo
         return false;
     }
 
+    // 커버 갱신 후 최신 album 상태 재조회
     AlbumInfo fromAlbum = AlbumRepository::GetAlbum(fromAlbumId);
     AlbumInfo toAlbum   = AlbumRepository::GetAlbum(toAlbumId);
 
@@ -263,16 +352,26 @@ bool AlbumService::HandleMovePhoto(sessionPtr& session, uint64 reqId, const C_Mo
 
 bool AlbumService::HandleAddPhotoComment(sessionPtr& session, uint64 reqId, const C_AddPhotoComment& pkt)
 {
-    const string& photoId    = pkt.photo_id();
-    const string& senderId   = pkt.sender_id();
-    const string& senderName = pkt.sender_name();
-    const string& text       = pkt.text();
-    const string& groupId    = pkt.group_id();
+    const string senderId = static_pointer_cast<ServerSession>(session)->GetUserId();
+    const string& photoId  = pkt.photo_id();
+    const string& text     = pkt.text();
+    const string& groupId  = pkt.group_id();
 
     if (photoId.empty() || senderId.empty() || text.empty()) {
         HandleErr(session, reqId, ERR_INVALID_PACKET);
         return false;
     }
+    if (text.size() > 100) {
+        HandleErr(session, reqId, ERR_INVALID_PACKET, "댓글은 100자 이하로 입력해주세요.");
+        return false;
+    }
+    if (!GroupRepository::IsMember(groupId, senderId)) {
+        HandleErr(session, reqId, ERR_UNAUTHORIZED, "그룹 멤버가 아닙니다.");
+        return false;
+    }
+
+    string senderName;
+    UserRepository::GetUserNameWithId(senderId, senderName);
 
     string commentId = AlbumRepository::AddComment(photoId, senderId, senderName, text);
     if (commentId.empty()) {
@@ -301,7 +400,14 @@ bool AlbumService::HandleAddPhotoComment(sessionPtr& session, uint64 reqId, cons
 
 bool AlbumService::HandleGetPhotoComments(sessionPtr& session, uint64 reqId, const C_GetPhotoComments& pkt)
 {
+    const string userId   = static_pointer_cast<ServerSession>(session)->GetUserId();
     const string& photoId = pkt.photo_id();
+
+    string groupId = AlbumRepository::GetPhotoGroupId(photoId);
+    if (!groupId.empty() && !GroupRepository::IsMember(groupId, userId)) {
+        HandleErr(session, reqId, ERR_UNAUTHORIZED, "그룹 멤버가 아닙니다.");
+        return false;
+    }
 
     auto comments = AlbumRepository::GetComments(photoId);
 
@@ -318,10 +424,15 @@ bool AlbumService::HandleGetPhotoComments(sessionPtr& session, uint64 reqId, con
 
 bool AlbumService::HandleDeletePhotoComment(sessionPtr& session, uint64 reqId, const C_DeletePhotoComment& pkt)
 {
+    const string userId     = static_pointer_cast<ServerSession>(session)->GetUserId();
     const string& commentId = pkt.comment_id();
-    const string& userId    = pkt.user_id();
     const string& groupId   = pkt.group_id();
     const string& photoId   = pkt.photo_id();
+
+    if (!GroupRepository::IsMember(groupId, userId)) {
+        HandleErr(session, reqId, ERR_UNAUTHORIZED, "그룹 멤버가 아닙니다.");
+        return false;
+    }
 
     bool ok = AlbumRepository::DeleteComment(commentId, userId);
     if (!ok) {

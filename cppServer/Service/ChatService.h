@@ -30,6 +30,8 @@ public:
 	bool HandleCreatePoll(sessionPtr& session, uint64 reqId, const Protocol::C_CreatePoll& pkt);
 	bool HandleVote(sessionPtr& session, uint64 reqId, const Protocol::C_Vote& pkt);
 	bool HandleClosePoll(sessionPtr& session, uint64 reqId, const Protocol::C_ClosePoll& pkt);
+	void SendPollClosedNotification(const string& clientConvId, const string& pollId,
+	                                const string& closedByUserId, uint64 reqId);
 
 	bool HandleSetAnnouncement(sessionPtr& session, uint64 reqId, const Protocol::C_SetAnnouncement& pkt);
 

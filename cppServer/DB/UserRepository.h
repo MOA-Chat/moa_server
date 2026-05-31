@@ -10,22 +10,17 @@ struct cUserInfo {
 
     string name;
     string email;
-    string phone;
     string status_message;
     string profileImageUrl;
     string backgroundImageUrl;
 
-    int64 subGrade = 0;        // 추가됨 (0: 일반, 1: 프로...)
-    int64 storageCapacity = 0;
-    int64 storageUsage = 0;
+    int64 lastSeen = 0;
 
-    int64 lastSeen;
+    bool isDeleted = false;
+    bool isEmailVerified = false;
 
-    bool isDeleted = false;    // 탈퇴 여부
-    bool isEmailVerified = false; // 이메일 인증 여부
-
-    string oauthProvider;       // "google" | "apple" (빈 문자열이면 이메일/비밀번호 유저)
-    string oauthProviderId;     // OAuth provider sub/id
+    string oauthProvider;
+    string oauthProviderId;
 };
 
 
@@ -65,12 +60,12 @@ public:
     struct StorageInfo {
         int64 storageCapacity = 0;
         int64 storageUsage = 0;
-        int64 maxFileSize = 26214400; // 기본 25MB
+        int64 maxFileSize = 300LL * 1024 * 1024; // 기본 300MB
         int64 subGrade = 0;           // 구독 등급 (0=무료, 1=Pro, 2=Premium)
     };
     static bool GetStorageInfo(const string& userId, StorageInfo& OUT info);
     static bool SaveUserAsset(const string& userId, int64 msgSeq, int64 fileSize, const string& fileType);
-    static bool DeleteUserAssetByGcsPath(const string& gcsPath);
+    static bool DeleteUserAssetByFilePath(const string& filePath);
 
     // 이메일 인증
     static bool SetEmailVerified(const string& userId);

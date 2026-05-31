@@ -2,10 +2,12 @@
 #include "LocationService.h"
 
 #include "UserManager.h"
+#include "ServerSession.h"
 #include "../PacketDispatcher.h"
 #include "../CoreGlobal.h"
 #include "../DB/LocationRepository.h"
 #include "../DB/GroupRepository.h"
+#include "../DB/UserRepository.h"
 
 #include <chrono>
 
@@ -33,6 +35,7 @@ void FillVisitProto(Protocol::LocationVisitInfo* proto, const cLocationVisit& v)
     proto->set_rating(v.rating);
     proto->set_review(v.review);
     proto->set_visited_at(v.visitedAt);
+    proto->set_history_id(v.historyId);
     for (const auto& [id, url] : v.photos) {
         auto* ph = proto->add_photos();
         ph->set_id(id);
@@ -71,9 +74,14 @@ void LocationService::HandleErr(sessionPtr& session, uint64 reqId, ErrorCode cod
 
 bool LocationService::HandleGetPlaces(sessionPtr& session, uint64 reqId, const C_GetPlaces& pkt)
 {
+    const string userId   = static_pointer_cast<ServerSession>(session)->GetUserId();
     const string& groupId = pkt.group_id();
     if (groupId.empty()) {
         HandleErr(session, reqId, ERR_INVALID_PACKET);
+        return false;
+    }
+    if (!GroupRepository::IsMember(groupId, userId)) {
+        HandleErr(session, reqId, ERR_UNAUTHORIZED, "그룹 멤버가 아닙니다.");
         return false;
     }
 
@@ -96,8 +104,13 @@ bool LocationService::HandleGetPlaces(sessionPtr& session, uint64 reqId, const C
 
 bool LocationService::HandleSavePlace(sessionPtr& session, uint64 reqId, const C_SavePlace& pkt)
 {
-    if (pkt.group_id().empty() || pkt.name().empty() || pkt.user_id().empty()) {
+    const string userId = static_pointer_cast<ServerSession>(session)->GetUserId();
+    if (pkt.group_id().empty() || pkt.name().empty() || userId.empty()) {
         HandleErr(session, reqId, ERR_INVALID_PACKET);
+        return false;
+    }
+    if (!GroupRepository::IsMember(pkt.group_id(), userId)) {
+        HandleErr(session, reqId, ERR_UNAUTHORIZED, "그룹 멤버가 아닙니다.");
         return false;
     }
 
@@ -108,7 +121,7 @@ bool LocationService::HandleSavePlace(sessionPtr& session, uint64 reqId, const C
     place.category  = pkt.category().empty() ? "etc" : pkt.category();
     place.lat       = pkt.lat();
     place.lng       = pkt.lng();
-    place.createdBy = pkt.user_id();
+    place.createdBy = userId;
 
     string placeId = LocationRepository::CreatePlace(place);
     if (placeId.empty()) {
@@ -132,8 +145,21 @@ bool LocationService::HandleSavePlace(sessionPtr& session, uint64 reqId, const C
 
 bool LocationService::HandleSaveVisit(sessionPtr& session, uint64 reqId, const C_SaveVisit& pkt)
 {
-    if (pkt.place_id().empty() || pkt.group_id().empty() || pkt.user_id().empty()) {
+    const string userId = static_pointer_cast<ServerSession>(session)->GetUserId();
+    if (pkt.place_id().empty() || pkt.group_id().empty() || userId.empty()) {
         HandleErr(session, reqId, ERR_INVALID_PACKET);
+        return false;
+    }
+    if (!GroupRepository::IsMember(pkt.group_id(), userId)) {
+        HandleErr(session, reqId, ERR_UNAUTHORIZED, "그룹 멤버가 아닙니다.");
+        return false;
+    }
+    if (pkt.rating() < 0 || pkt.rating() > 5) {
+        HandleErr(session, reqId, ERR_INVALID_PACKET, "별점은 0~5 사이여야 합니다.");
+        return false;
+    }
+    if (pkt.photo_urls_size() > 5) {
+        HandleErr(session, reqId, ERR_INVALID_PACKET, "사진은 최대 5장까지 등록 가능합니다.");
         return false;
     }
 
@@ -142,13 +168,17 @@ bool LocationService::HandleSaveVisit(sessionPtr& session, uint64 reqId, const C
         return false;
     }
 
+    string userName;
+    UserRepository::GetUserNameWithId(userId, userName);
+
     cLocationVisit visit;
     visit.placeId   = pkt.place_id();
     visit.groupId   = pkt.group_id();
-    visit.userId    = pkt.user_id();
-    visit.userName  = pkt.user_name();
+    visit.userId    = userId;
+    visit.userName  = userName.empty() ? pkt.user_name() : userName;
     visit.rating    = pkt.rating();
     visit.review    = pkt.review();
+    visit.historyId = pkt.history_id();
     visit.visitedAt = pkt.visited_at() > 0 ? pkt.visited_at() :
         chrono::duration_cast<chrono::milliseconds>(
             chrono::system_clock::now().time_since_epoch()).count();
@@ -174,6 +204,9 @@ bool LocationService::HandleSaveVisit(sessionPtr& session, uint64 reqId, const C
     for (const auto& p : LocationRepository::GetPlacesByGroup(pkt.group_id())) {
         if (p.id == pkt.place_id()) { updatedPlace = p; break; }
     }
+    if (updatedPlace.id.empty()) {
+        LOG_ERROR("[LocationService] 방문 저장 후 장소 조회 실패: place_id={}", pkt.place_id());
+    }
 
     Envelope resp;
     resp.set_request_id(static_cast<uint32>(reqId));
@@ -181,7 +214,7 @@ bool LocationService::HandleSaveVisit(sessionPtr& session, uint64 reqId, const C
     s->set_success(true);
     s->set_place_id(pkt.place_id());
     FillVisitProto(s->mutable_visit(), visit);
-    FillPlaceProto(s->mutable_place(), updatedPlace);
+    if (!updatedPlace.id.empty()) FillPlaceProto(s->mutable_place(), updatedPlace);
 
     BroadcastToGroup(visit.groupId, resp, _userManager);
     LOG_INFO("[LocationService] 방문 기록: place={} by={} rating={}", visit.placeId, visit.userId, visit.rating);
@@ -192,12 +225,17 @@ bool LocationService::HandleSaveVisit(sessionPtr& session, uint64 reqId, const C
 
 bool LocationService::HandleDeletePlace(sessionPtr& session, uint64 reqId, const C_DeletePlace& pkt)
 {
-    if (pkt.place_id().empty() || pkt.user_id().empty()) {
+    const string userId = static_pointer_cast<ServerSession>(session)->GetUserId();
+    if (pkt.place_id().empty() || userId.empty()) {
         HandleErr(session, reqId, ERR_INVALID_PACKET);
         return false;
     }
+    if (!GroupRepository::IsMember(pkt.group_id(), userId)) {
+        HandleErr(session, reqId, ERR_UNAUTHORIZED, "그룹 멤버가 아닙니다.");
+        return false;
+    }
 
-    if (!LocationRepository::DeletePlace(pkt.place_id(), pkt.user_id())) {
+    if (!LocationRepository::DeletePlace(pkt.place_id(), userId)) {
         HandleErr(session, reqId, ERR_NO_PERMISSION, "삭제 권한이 없거나 장소를 찾을 수 없습니다");
         return false;
     }
@@ -218,8 +256,21 @@ bool LocationService::HandleDeletePlace(sessionPtr& session, uint64 reqId, const
 
 bool LocationService::HandleUpdateVisit(sessionPtr& session, uint64 reqId, const C_UpdateVisit& pkt)
 {
-    if (pkt.visit_id().empty() || pkt.place_id().empty() || pkt.group_id().empty() || pkt.user_id().empty()) {
+    const string userId = static_pointer_cast<ServerSession>(session)->GetUserId();
+    if (pkt.visit_id().empty() || pkt.place_id().empty() || pkt.group_id().empty() || userId.empty()) {
         HandleErr(session, reqId, ERR_INVALID_PACKET);
+        return false;
+    }
+    if (!GroupRepository::IsMember(pkt.group_id(), userId)) {
+        HandleErr(session, reqId, ERR_UNAUTHORIZED, "그룹 멤버가 아닙니다.");
+        return false;
+    }
+    if (pkt.rating() < 0 || pkt.rating() > 5) {
+        HandleErr(session, reqId, ERR_INVALID_PACKET, "별점은 0~5 사이여야 합니다.");
+        return false;
+    }
+    if (pkt.photo_urls_size() > 5) {
+        HandleErr(session, reqId, ERR_INVALID_PACKET, "사진은 최대 5장까지 등록 가능합니다.");
         return false;
     }
 
@@ -229,28 +280,36 @@ bool LocationService::HandleUpdateVisit(sessionPtr& session, uint64 reqId, const
 
     vector<string> photos(pkt.photo_urls().begin(), pkt.photo_urls().end());
     bool ok = LocationRepository::UpdateVisit(
-        pkt.visit_id(), pkt.user_id(),
-        pkt.rating(), pkt.review(), visitedAt, photos, pkt.place_id()
+        pkt.visit_id(), userId,
+        pkt.rating(), pkt.review(), visitedAt, photos, pkt.place_id(), pkt.history_id()
     );
     if (!ok) {
         HandleErr(session, reqId, ERR_NO_PERMISSION, "수정 권한이 없거나 방문 기록을 찾을 수 없습니다");
         return false;
     }
 
+    string userName;
+    UserRepository::GetUserNameWithId(userId, userName);
+
     // 갱신된 방문 + 장소 조회
     cLocationVisit updatedVisit;
     updatedVisit.id        = pkt.visit_id();
     updatedVisit.placeId   = pkt.place_id();
     updatedVisit.groupId   = pkt.group_id();
-    updatedVisit.userId    = pkt.user_id();
+    updatedVisit.userId    = userId;
+    updatedVisit.userName  = userName.empty() ? userId : userName;
     updatedVisit.rating    = pkt.rating();
     updatedVisit.review    = pkt.review();
     updatedVisit.visitedAt = visitedAt;
+    updatedVisit.historyId = pkt.history_id();
     for (const auto& url : photos) updatedVisit.photos.emplace_back("", url);
 
     cLocationPlace updatedPlace;
     for (const auto& p : LocationRepository::GetPlacesByGroup(pkt.group_id())) {
         if (p.id == pkt.place_id()) { updatedPlace = p; break; }
+    }
+    if (updatedPlace.id.empty()) {
+        LOG_ERROR("[LocationService] 방문 수정 후 장소 조회 실패: place_id={}", pkt.place_id());
     }
 
     Envelope resp;
@@ -258,7 +317,7 @@ bool LocationService::HandleUpdateVisit(sessionPtr& session, uint64 reqId, const
     auto* s = resp.mutable_s_update_visit();
     s->set_success(true);
     FillVisitProto(s->mutable_visit(), updatedVisit);
-    FillPlaceProto(s->mutable_place(), updatedPlace);
+    if (!updatedPlace.id.empty()) FillPlaceProto(s->mutable_place(), updatedPlace);
 
     BroadcastToGroup(pkt.group_id(), resp, _userManager);
     LOG_INFO("[LocationService] 방문 수정: visit={} by={}", pkt.visit_id(), pkt.user_id());
@@ -269,12 +328,17 @@ bool LocationService::HandleUpdateVisit(sessionPtr& session, uint64 reqId, const
 
 bool LocationService::HandleDeleteVisit(sessionPtr& session, uint64 reqId, const C_DeleteVisit& pkt)
 {
-    if (pkt.visit_id().empty() || pkt.place_id().empty() || pkt.group_id().empty() || pkt.user_id().empty()) {
+    const string userId = static_pointer_cast<ServerSession>(session)->GetUserId();
+    if (pkt.visit_id().empty() || pkt.place_id().empty() || pkt.group_id().empty() || userId.empty()) {
         HandleErr(session, reqId, ERR_INVALID_PACKET);
         return false;
     }
+    if (!GroupRepository::IsMember(pkt.group_id(), userId)) {
+        HandleErr(session, reqId, ERR_UNAUTHORIZED, "그룹 멤버가 아닙니다.");
+        return false;
+    }
 
-    auto [success, placeDeleted] = LocationRepository::DeleteVisit(pkt.visit_id(), pkt.user_id(), pkt.place_id());
+    auto [success, placeDeleted] = LocationRepository::DeleteVisit(pkt.visit_id(), userId, pkt.place_id());
     if (!success) {
         HandleErr(session, reqId, ERR_NO_PERMISSION, "삭제 권한이 없거나 방문 기록을 찾을 수 없습니다");
         return false;

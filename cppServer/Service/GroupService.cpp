@@ -6,6 +6,7 @@
 #include "../DB/GroupRepository.h"
 #include "../DB/UserRepository.h"
 #include "../DB/MessageRepository.h"
+#include "../DB/SubscriptionRepository.h"
 
 #include "ChatService.h"
 
@@ -117,8 +118,7 @@ bool GroupService::JoinGroup(sessionPtr& session, uint64 reqId, const string& gr
 
 	// 그룹 인원 제한 체크
 	if (groupInfo.memberCount >= MAX_GROUP_MEMBERS) {
-		HandleErr(session, reqId, Protocol::ERR_INVALID_PACKET,
-			"그룹 인원이 가득 찼습니다. (최대 " + to_string(MAX_GROUP_MEMBERS) + "명)");
+		HandleErr(session, reqId, Protocol::ERR_GROUP_FULL, "최대 인원입니다.");
 		return false;
 	}
 
@@ -158,7 +158,9 @@ bool GroupService::JoinGroup(sessionPtr& session, uint64 reqId, const string& gr
 
 	LOG_INFO("[GroupService] User({}) Joined Group({})", userId, groupInfo.groupId);
 
-	GChatService->SendSystemMessage(groupInfo.groupId, userId + " 님이 입장하셨습니다.");
+	string joinUserName;
+	if (!UserRepository::GetUserNameWithId(userId, joinUserName)) joinUserName = userId;
+	GChatService->SendSystemMessage(groupInfo.groupId, joinUserName + " 님이 입장하셨습니다.");
 
 	return true;
 }
@@ -213,8 +215,25 @@ bool GroupService::LeaveGroup(sessionPtr& session, uint64 reqId, const string& g
 	}
 
 	if (role == "owner") {
-		HandleErr(session, reqId, Protocol::ERR_UNAUTHORIZED, "방장은 그룹을 나갈 수 없습니다. (그룹 삭제 필요)");
-		return false;
+		cGroupInfo info;
+		GroupRepository::GetGroupInfoById(groupId, info);
+		if (info.memberCount > 1) {
+			HandleErr(session, reqId, Protocol::ERR_UNAUTHORIZED, "방장은 다른 멤버에게 방장을 넘긴 후 나갈 수 있습니다.");
+			return false;
+		}
+		// 혼자 남은 방장 → 그룹 삭제 후 나가기
+		if (!GroupRepository::DeleteGroup(groupId)) {
+			HandleErr(session, reqId, Protocol::ERR_SERVER_INTERNAL, "그룹 삭제 실패");
+			return false;
+		}
+		Protocol::S_LeaveGroup pkt_leave;
+		pkt_leave.set_success(true);
+		Protocol::Envelope env;
+		env.set_version(GProtoVersion);
+		env.set_request_id(reqId);
+		*env.mutable_s_leave_group() = pkt_leave;
+		PacketDispatcher::SendEnvelope(session, env);
+		return true;
 	}
 
 	if (!GroupRepository::RemoveMember(groupId, userId)) {
@@ -231,7 +250,9 @@ bool GroupService::LeaveGroup(sessionPtr& session, uint64 reqId, const string& g
 	*env.mutable_s_leave_group() = pkt_leave;
 	PacketDispatcher::SendEnvelope(session, env);
 
-	GChatService->SendSystemMessage(groupId, userId + " 님이 퇴장하셨습니다.");
+	string leaveUserName;
+	if (!UserRepository::GetUserNameWithId(userId, leaveUserName)) leaveUserName = userId;
+	GChatService->SendSystemMessage(groupId, leaveUserName + " 님이 퇴장하셨습니다.");
 
 	return true;
 }
@@ -337,6 +358,13 @@ bool GroupService::DeleteGroup(sessionPtr& session, uint64 reqId, const string& 
 		return false;
 	}
 
+	cGroupInfo groupInfo;
+	GroupRepository::GetGroupInfoById(groupId, groupInfo);
+	if (groupInfo.memberCount > 1) {
+		HandleErr(session, reqId, Protocol::ERR_UNAUTHORIZED, "다른 멤버가 있는 그룹은 삭제할 수 없습니다. 방장 이전 후 나가도록 하세요.");
+		return false;
+	}
+
 	if (!GroupRepository::DeleteGroup(groupId)) {
 		HandleErr(session, reqId, Protocol::ERR_SERVER_INTERNAL, "그룹 삭제에 실패했습니다.");
 		return false;
@@ -416,6 +444,69 @@ bool GroupService::GetGroupMemberList(sessionPtr& session, uint64 reqId, const s
 
 
 
+
+
+bool GroupService::TransferOwnership(sessionPtr& session, uint64 reqId, const Protocol::C_TransferOwnership& pkt)
+{
+	auto serverSession = static_pointer_cast<ServerSession>(session);
+	const string userId = serverSession->GetUserId();
+	if (userId.empty()) return false;
+
+	const string& groupId = pkt.group_id();
+	const string& targetId = pkt.target_user_id();
+
+	if (targetId.empty() || targetId == userId) {
+		HandleErr(session, reqId, Protocol::ERR_INVALID_PACKET, "유효하지 않은 대상입니다.");
+		return false;
+	}
+
+	string role = GroupRepository::GetMemberRole(groupId, userId);
+	if (role != "owner") {
+		HandleErr(session, reqId, Protocol::ERR_UNAUTHORIZED, "방장만 방장을 이전할 수 있습니다.");
+		return false;
+	}
+
+	if (!GroupRepository::IsMember(groupId, targetId)) {
+		HandleErr(session, reqId, Protocol::ERR_INVALID_PACKET, "대상이 그룹 멤버가 아닙니다.");
+		return false;
+	}
+
+	if (!GroupRepository::TransferOwnership(groupId, userId, targetId)) {
+		HandleErr(session, reqId, Protocol::ERR_SERVER_INTERNAL, "방장 이전 실패");
+		return false;
+	}
+
+	Protocol::S_TransferOwnership pkt_res;
+	pkt_res.set_success(true);
+	pkt_res.set_new_owner_id(targetId);
+
+	Protocol::Envelope env;
+	env.set_version(GProtoVersion);
+	env.set_request_id(reqId);
+	*env.mutable_s_transfer_ownership() = pkt_res;
+	PacketDispatcher::SendEnvelope(session, env);
+
+	string newOwnerName;
+	if (!UserRepository::GetUserNameWithId(targetId, newOwnerName)) newOwnerName = targetId;
+	GChatService->SendSystemMessage(groupId, newOwnerName + " 님이 새 방장이 되었습니다.");
+
+	// 구독 상태 확인 후 새 방장에게 안내 메시지
+	{
+		cSubscriptionInfo subInfo;
+		if (SubscriptionRepository::GetActiveSubscription(groupId, subInfo)) {
+			string subMsg;
+			if (subInfo.status == "grace") {
+				subMsg = "[구독 알림] 구독이 유예 기간 중입니다. 새 방장이 기간 내 재구독하지 않으면 앨범 사진이 삭제됩니다.";
+			} else {
+				subMsg = "[구독 알림] 기존 구독은 만료일까지 유지됩니다. 이후 자동으로 무료 플랜으로 전환됩니다.";
+			}
+			GChatService->SendSystemMessage(groupId, subMsg);
+		}
+	}
+
+	LOG_INFO("[GroupService] 방장 이전: {} -> {} in group {}", userId, targetId, groupId);
+	return true;
+}
 
 
 void GroupService::HandleErr(sessionPtr& session, uint64 reqId, Protocol::ErrorCode errorCode, const string& errMessage)

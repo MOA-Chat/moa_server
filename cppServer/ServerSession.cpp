@@ -4,6 +4,7 @@
 #include "PacketDispatcher.h"
 
 #include "Service/UserManager.h"
+#include "DB/DBManager.h"
 
 void ServerSession::OnConnected()
 {
@@ -23,30 +24,46 @@ void ServerSession::OnDisconnected()
 
 void ServerSession::OnRecv(BYTE* buffer, int32 len)
 {
-	SetLastActiveTime();	// 하트비트
+	try {
+		SetLastActiveTime();	// 하트비트
 
-	if (len < 4) { Disconnect(); return; }
+		if (len < 4) { Disconnect(); return; }
 
-	uint32 bodyPos = 0;
-	::memcpy(&bodyPos, buffer, 4);
-	const uint32 bodyLen = bodyPos;
+		uint32 bodyPos = 0;
+		::memcpy(&bodyPos, buffer, 4);
+		const uint32 bodyLen = bodyPos;
 
-	if (len < 4 + static_cast<int32>(bodyLen)) {
-		// 프레임이 덜 왔음(누적 버퍼에서 이어서 받는 구조라면 여기서 return)
-		return;
+		if (len < 4 + static_cast<int32>(bodyLen)) {
+			// 프레임이 덜 왔음(누적 버퍼에서 이어서 받는 구조라면 여기서 return)
+			return;
+		}
+
+		// Protobuf Parsing
+		Protocol::Envelope envelope;
+		if (envelope.ParseFromArray(buffer + 4, bodyLen) == false)
+		{
+			LOG_ERROR("[ServerSession] Envelope 파싱 실패");
+			Disconnect();
+			return;
+		}
+
+		auto session = static_pointer_cast<Session>(shared_from_this());
+		PacketDispatcher::DispatchPacket(session, envelope);
 	}
-
-	// Protobuf Parsing
-	Protocol::Envelope envelope;
-	if (envelope.ParseFromArray(buffer + 4, bodyLen) == false)
-	{
-		LOG_ERROR("[ServerSession] Envelope 파싱 실패");
+	catch (const mysqlx::Error& err) {
+		LOG_ERROR("[ServerSession] OnRecv mysqlx 오류: {}", err.what());
+		DBManager::GetInstance().ResetCurrentSession();
 		Disconnect();
-		return;
 	}
-
-	auto session = static_pointer_cast<Session>(shared_from_this());
-	PacketDispatcher::DispatchPacket(session, envelope);
+	catch (const std::exception& e) {
+		LOG_ERROR("[ServerSession] OnRecv 예외: {}", e.what());
+		DBManager::GetInstance().ResetCurrentSession();
+		Disconnect();
+	}
+	catch (...) {
+		LOG_ERROR("[ServerSession] OnRecv 알 수 없는 예외");
+		Disconnect();
+	}
 }
 
 
