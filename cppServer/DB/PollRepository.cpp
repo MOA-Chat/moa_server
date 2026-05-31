@@ -287,6 +287,7 @@ vector<PollInfo> PollRepository::GetAllExpiredActivePolls(int64 nowTs)
     }
     catch (const std::exception& e) {
         LOG_ERROR("[PollRepository] GetAllExpiredActivePolls error: {}", e.what());
+        DBManager::GetInstance().ResetCurrentSession();
     }
     return polls;
 }
