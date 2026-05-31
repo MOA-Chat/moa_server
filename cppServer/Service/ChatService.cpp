@@ -763,6 +763,9 @@ bool ChatService::HandleReadReceipt(sessionPtr& session, uint64 reqId, const Pro
 
     // 범위 내 각 메시지의 정확한 unread_count 계산
     auto unreadUpdates = MessageRepository::GetBatchMsgUnreadCounts(convId, prevReadSeq, lastReadSeq);
+    for (const auto& [seq, unread] : unreadUpdates) {
+        LOG_INFO("[ChatService] ReadReceipt unread: seq={} unread={}", seq, unread);
+    }
 
     // S_ReadReceipt 구성 (unread_updates 포함)
     Protocol::S_ReadReceipt sReadReceipt;
