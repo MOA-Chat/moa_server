@@ -76,24 +76,11 @@ bool FileService::HandleUploadFileRequest(sessionPtr& session, uint64 reqId, con
             }
         }
 
-        // 그룹 채팅 파일: 그룹 누적 용량 체크
+        // 그룹 채팅 파일: target_id 유효성만 체크 (쿼터는 앨범 저장 시에만 차감)
         if (pkt.upload_type() == Protocol::C_UploadFile_UploadType_GROUP_CHAT) {
             if (pkt.target_id().empty()) {
                 HandleErr(session, reqId, ERR_INVALID_ARGUMENT, "Group ID (target_id) is required.");
                 return false;
-            }
-
-            cGroupInfo groupInfo;
-            if (GroupRepository::GetGroupInfoById(pkt.target_id(), groupInfo)) {
-                if (groupInfo.storageLimit == 0)
-                    GroupRepository::EnsureDefaultStorage(pkt.target_id(), DEFAULT_GROUP_STORAGE);
-
-                int64 groupLimit = groupInfo.storageLimit > 0 ? groupInfo.storageLimit : DEFAULT_GROUP_STORAGE;
-
-                if (groupInfo.storageUsage + pkt.size() > groupLimit) {
-                    HandleErr(session, reqId, ERR_STORAGE_EXCEEDED, "그룹 저장 용량이 부족합니다.");
-                    return false;
-                }
             }
         }
 
@@ -201,7 +188,12 @@ bool FileService::HandleUploadFileRequest(sessionPtr& session, uint64 reqId, con
 
         int64 urlExpiresAt = Nowts() + (expiresTime * 1000);
 
-        int64 fileRetentionExpiresAt = 0; // 영구 보관
+        // 채팅 업로드는 14일 후 만료 (앨범 저장 시 영구 전환)
+        int64 fileRetentionExpiresAt = 0;
+        if (pkt.upload_type() == Protocol::C_UploadFile_UploadType_GROUP_CHAT ||
+            pkt.upload_type() == Protocol::C_UploadFile_UploadType_DIRECT_CHAT) {
+            fileRetentionExpiresAt = Nowts() + (14LL * 24 * 3600 * 1000);
+        }
 
         // file_uploads DB에 파일 메타데이터 저장
         FileInfo fi;
@@ -210,16 +202,14 @@ bool FileService::HandleUploadFileRequest(sessionPtr& session, uint64 reqId, con
         fi.groupId                = (pkt.upload_type() == Protocol::C_UploadFile_UploadType_GROUP_CHAT)
                                     ? pkt.target_id() : "";
         fi.originalFilename       = pkt.filename();
-        fi.gcsBucket              = _cloudStorage->GetBucketName();
-        fi.gcsPath                = path;
+        fi.filePath               = path;
         fi.fileSize               = pkt.size();
         fi.mimeType               = pkt.mime_type();
         fi.isImage                = pkt.is_image();
-        fi.thumbnailGcsPath       = thumbPath;
+        fi.thumbnailPath          = thumbPath;
         fi.uploadStatus           = "pending";
         fi.createdAt              = Nowts();
         fi.uploadedAt             = 0;
-        fi.expiresAt              = urlExpiresAt;
         fi.fileRetentionExpiresAt = fileRetentionExpiresAt;
         FileRepository::SaveFileMetadata(fi);
 

@@ -9,7 +9,7 @@ class CloudStorage;
 /**
  * 파일 보관 만료 배치 잡
  * - 주기적으로 DB의 file_retention_expires_at < NOW 파일을 조회
- * - GCS에서 실제 파일 삭제 → DB file_uploads.upload_status = 'deleted'
+ * - R2에서 실제 파일 삭제 → DB file_uploads.upload_status = 'deleted'
  * - messages.file_status = 'expired' (media_url 무효화)
  */
 class ExpirationBatchJob

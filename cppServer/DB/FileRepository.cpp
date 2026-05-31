@@ -13,15 +13,16 @@ bool FileRepository::SaveFileMetadata(const FileInfo& fileInfo) {
         // 파일 메타데이터 저장
         // created_at: DEFAULT CURRENT_TIMESTAMP 사용 (int64 ms 직접 삽입 시 TIMESTAMP 범위 초과)
         // uploaded_at, expires_at: NULL (TIMESTAMP 컬럼, ms 값 삽입 불가)
-        files.insert("file_id", "user_id", "group_id", "original_filename", "gcs_bucket", "gcs_path",
+        files.insert("file_id", "user_id", "group_id", "original_filename", "gcs_path",
                     "file_size", "mime_type", "is_image", "thumbnail_gcs_path",
-                    "upload_status")
+                    "upload_status", "file_retention_expires_at")
             .values(fileInfo.fileId, fileInfo.userId,
                     fileInfo.groupId.empty() ? mysqlx::nullvalue : mysqlx::Value(fileInfo.groupId),
                     fileInfo.originalFilename,
-                    fileInfo.gcsBucket, fileInfo.gcsPath, fileInfo.fileSize,
-                    fileInfo.mimeType, fileInfo.isImage, fileInfo.thumbnailGcsPath,
-                    fileInfo.uploadStatus)
+                    fileInfo.filePath, fileInfo.fileSize,
+                    fileInfo.mimeType, fileInfo.isImage, fileInfo.thumbnailPath,
+                    fileInfo.uploadStatus,
+                    fileInfo.fileRetentionExpiresAt <= 0 ? mysqlx::nullvalue : mysqlx::Value(fileInfo.fileRetentionExpiresAt))
             .execute();
         
         LOG_INFO("[FileRepository] 파일 메타데이터 저장 완료: fileId={}, userId={}", fileInfo.fileId, fileInfo.userId);
@@ -40,33 +41,30 @@ bool FileRepository::GetFileMetadata(const string& fileId, FileInfo& fileInfo) {
         auto files = schema.getTable("file_uploads");
         
         // 파일 ID로 메타데이터 조회
-        auto result = files.select("file_id", "user_id", "original_filename", "gcs_bucket", 
+        auto result = files.select("file_id", "user_id", "original_filename",
                                    "gcs_path", "file_size", "mime_type", "is_image",
                                    "thumbnail_gcs_path", "upload_status", "created_at",
-                                   "uploaded_at", "expires_at")
+                                   "uploaded_at")
                            .where("file_id = :fid")
                            .bind("fid", fileId)
                            .execute();
-        
+
         auto row = result.fetchOne();
         if (!row) {
             return false;
         }
-        
-        // 결과를 FileInfo에 채우기
+
         fileInfo.fileId = row[0].get<string>();
         fileInfo.userId = row[1].get<string>();
         fileInfo.originalFilename = row[2].get<string>();
-        fileInfo.gcsBucket = row[3].get<string>();
-        fileInfo.gcsPath = row[4].get<string>();
-        fileInfo.fileSize = row[5].get<int64>();
-        if (!row[6].isNull()) fileInfo.mimeType = row[6].get<string>();
-        fileInfo.isImage = row[7].get<int>() != 0;
-        if (!row[8].isNull()) fileInfo.thumbnailGcsPath = row[8].get<string>();
-        if (!row[9].isNull()) fileInfo.uploadStatus = row[9].get<string>();
-        if (!row[10].isNull()) {
-            // created_at을 타임스탬프로 변환
-            auto tsValue = row[10];
+        fileInfo.filePath = row[3].get<string>();
+        fileInfo.fileSize = row[4].get<int64>();
+        if (!row[5].isNull()) fileInfo.mimeType = row[5].get<string>();
+        fileInfo.isImage = row[6].get<int>() != 0;
+        if (!row[7].isNull()) fileInfo.thumbnailPath = row[7].get<string>();
+        if (!row[8].isNull()) fileInfo.uploadStatus = row[8].get<string>();
+        if (!row[9].isNull()) {
+            auto tsValue = row[9];
             if (tsValue.getType() == mysqlx::Value::STRING) {
                 string tsStr = tsValue.get<string>();
                 struct tm timeinfo = {};
@@ -80,14 +78,14 @@ bool FileRepository::GetFileMetadata(const string& fileId, FileInfo& fileInfo) {
                     timeinfo.tm_min = min;
                     timeinfo.tm_sec = sec;
                     time_t t = mktime(&timeinfo);
-                    fileInfo.createdAt = t * 1000;  // 밀리초로 변환
+                    fileInfo.createdAt = t * 1000;
                 }
             } else {
                 fileInfo.createdAt = tsValue.get<int64>();
             }
         }
-        if (!row[11].isNull()) {
-            auto tsValue = row[11];
+        if (!row[10].isNull()) {
+            auto tsValue = row[10];
             if (tsValue.getType() == mysqlx::Value::STRING) {
                 string tsStr = tsValue.get<string>();
                 struct tm timeinfo = {};
@@ -105,27 +103,6 @@ bool FileRepository::GetFileMetadata(const string& fileId, FileInfo& fileInfo) {
                 }
             } else {
                 fileInfo.uploadedAt = tsValue.get<int64>();
-            }
-        }
-        if (!row[12].isNull()) {
-            auto tsValue = row[12];
-            if (tsValue.getType() == mysqlx::Value::STRING) {
-                string tsStr = tsValue.get<string>();
-                struct tm timeinfo = {};
-                int year, mon, day, hour, min, sec;
-                if (sscanf_s(tsStr.c_str(), "%d-%d-%d %d:%d:%d",
-                        &year, &mon, &day, &hour, &min, &sec) == 6) {
-                    timeinfo.tm_year = year - 1900;
-                    timeinfo.tm_mon = mon - 1;
-                    timeinfo.tm_mday = day;
-                    timeinfo.tm_hour = hour;
-                    timeinfo.tm_min = min;
-                    timeinfo.tm_sec = sec;
-                    time_t t = mktime(&timeinfo);
-                    fileInfo.expiresAt = t * 1000;
-                }
-            } else {
-                fileInfo.expiresAt = tsValue.get<int64>();
             }
         }
         
@@ -180,7 +157,7 @@ bool FileRepository::UpdateUploadStatus(const string& fileId, const string& stat
     }
 }
 
-bool FileRepository::MarkCompletedByGcsPath(const string& gcsPath, const string& gcsBucket) {
+bool FileRepository::MarkCompletedByFilePath(const string& filePath) {
     try {
         auto& db = DBManager::GetInstance();
         auto schema = db.GetSchema();
@@ -189,12 +166,11 @@ bool FileRepository::MarkCompletedByGcsPath(const string& gcsPath, const string&
         files.update()
             .set("upload_status", "completed")
             .set("uploaded_at", mysqlx::expr("NOW()"))
-            .set("gcs_bucket", gcsBucket)
             .where("gcs_path = :p AND upload_status = 'pending'")
-            .bind("p", gcsPath)
+            .bind("p", filePath)
             .execute();
 
-        LOG_INFO("[FileRepository] MarkCompleted: gcsPath={}", gcsPath);
+        LOG_INFO("[FileRepository] MarkCompleted: filePath={}", filePath);
         return true;
     } catch (const mysqlx::Error& err) {
         LOG_ERROR("[FileRepository] MarkCompleted 실패: {}", err.what());
@@ -232,10 +208,10 @@ vector<FileInfo> FileRepository::GetExpiredFiles(int64 currentTime) {
 
         // file_retention_expires_at < currentTime AND upload_status != 'deleted'
         string sql =
-            "SELECT file_id, user_id, original_filename, gcs_bucket, gcs_path, "
+            "SELECT file_id, user_id, original_filename, gcs_path, "
             "       file_size, mime_type, is_image, thumbnail_gcs_path, upload_status, "
             "       UNIX_TIMESTAMP(created_at)*1000, UNIX_TIMESTAMP(uploaded_at)*1000, "
-            "       UNIX_TIMESTAMP(expires_at)*1000, file_retention_expires_at "
+            "       file_retention_expires_at "
             "FROM file_uploads "
             "WHERE file_retention_expires_at IS NOT NULL "
             "  AND file_retention_expires_at < ? "
@@ -249,17 +225,15 @@ vector<FileInfo> FileRepository::GetExpiredFiles(int64 currentTime) {
             fi.fileId              = row[0].isNull() ? "" : row[0].get<string>();
             fi.userId              = row[1].isNull() ? "" : row[1].get<string>();
             fi.originalFilename    = row[2].isNull() ? "" : row[2].get<string>();
-            fi.gcsBucket           = row[3].isNull() ? "" : row[3].get<string>();
-            fi.gcsPath             = row[4].isNull() ? "" : row[4].get<string>();
-            fi.fileSize            = row[5].isNull() ? 0  : row[5].get<int64>();
-            fi.mimeType            = row[6].isNull() ? "" : row[6].get<string>();
-            fi.isImage             = row[7].isNull() ? false : (row[7].get<int>() != 0);
-            fi.thumbnailGcsPath    = row[8].isNull() ? "" : row[8].get<string>();
-            fi.uploadStatus        = row[9].isNull() ? "" : row[9].get<string>();
-            fi.createdAt           = row[10].isNull() ? 0 : row[10].get<int64>();
-            fi.uploadedAt          = row[11].isNull() ? 0 : row[11].get<int64>();
-            fi.expiresAt           = row[12].isNull() ? 0 : row[12].get<int64>();
-            fi.fileRetentionExpiresAt = row[13].isNull() ? 0 : row[13].get<int64>();
+            fi.filePath            = row[3].isNull() ? "" : row[3].get<string>();
+            fi.fileSize            = row[4].isNull() ? 0  : row[4].get<int64>();
+            fi.mimeType            = row[5].isNull() ? "" : row[5].get<string>();
+            fi.isImage             = row[6].isNull() ? false : (row[6].get<int>() != 0);
+            fi.thumbnailPath       = row[7].isNull() ? "" : row[7].get<string>();
+            fi.uploadStatus        = row[8].isNull() ? "" : row[8].get<string>();
+            fi.createdAt           = row[9].isNull() ? 0 : row[9].get<int64>();
+            fi.uploadedAt          = row[10].isNull() ? 0 : row[10].get<int64>();
+            fi.fileRetentionExpiresAt = row[11].isNull() ? 0 : row[11].get<int64>();
             result.push_back(fi);
         }
 
@@ -288,6 +262,23 @@ bool FileRepository::UpdateFileRetentionExpiry(const string& fileId, int64 expir
         return true;
     } catch (const exception& e) {
         LOG_ERROR("[FileRepository] UpdateFileRetentionExpiry 실패: {}", e.what());
+        return false;
+    }
+}
+
+
+bool FileRepository::ClearRetentionByFilePath(const string& filePath) {
+    if (filePath.empty()) return false;
+    try {
+        auto& session = DBManager::GetInstance().GetSession();
+        session.sql(
+            "UPDATE file_uploads SET file_retention_expires_at = NULL "
+            "WHERE gcs_path = ? AND upload_status != 'deleted'"
+        ).bind(filePath).execute();
+        LOG_INFO("[FileRepository] ClearRetention: {}", filePath);
+        return true;
+    } catch (const exception& e) {
+        LOG_ERROR("[FileRepository] ClearRetentionByFilePath 실패: {}", e.what());
         return false;
     }
 }

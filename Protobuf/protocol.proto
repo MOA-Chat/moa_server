@@ -136,6 +136,8 @@ message Envelope {
     S_UpdateVisit           s_update_visit            = 157;
     C_DeleteVisit           c_delete_visit            = 158;
     S_DeleteVisit           s_delete_visit            = 159;
+    C_TransferOwnership     c_transfer_ownership      = 160;
+    S_TransferOwnership     s_transfer_ownership      = 161;
 
     // GROUPS (80 ~ 99)
     C_CreateGroup           c_create_group            = 80;
@@ -473,7 +475,9 @@ message S_MessageBatch {
     SUBSCRIPTION
 ---------------*/
 
-message C_GetSubscription {}
+message C_GetSubscription {
+    string group_id = 1;
+}
 
 message SubscriptionPlan {
     int32            plan_id       = 1;
@@ -488,9 +492,8 @@ message SubscriptionPlan {
 
 message S_GetSubscription {
     bool                      success                = 1;
-    int32                     current_grade          = 2;
     string                    current_plan_name      = 3;
-    int64                     storage_capacity_bytes = 4;
+    int64                     storage_limit_bytes    = 4;
     int64                     storage_usage_bytes    = 5;
     int64                     expires_at             = 6;
     bool                      auto_renew             = 7;
@@ -502,16 +505,19 @@ message C_VerifyPurchase {
     string product_id     = 2;
     string transaction_id = 3;
     string purchase_token = 4;
+    string group_id       = 5;
 }
 message S_VerifyPurchase {
-    bool   success          = 1;
-    string message          = 2;
-    int32  new_grade        = 3;
-    int64  expires_at       = 4;
-    int64  storage_capacity = 5;
+    bool   success             = 1;
+    string message             = 2;
+    int64  expires_at          = 4;
+    int64  storage_limit_bytes = 5;
+    int64  storage_usage_bytes = 6;
 }
 
-message C_CancelSubscription {}
+message C_CancelSubscription {
+    string group_id = 1;
+}
 message S_CancelSubscription {
     bool   success          = 1;
     string message          = 2;
@@ -652,6 +658,15 @@ message S_EditGroup { bool success = 1; GroupInfo group = 2; }
 message C_DeleteGroup { string group_id = 1; }
 message S_DeleteGroup { bool success = 1; }
 
+message C_TransferOwnership {
+    string group_id       = 1;
+    string target_user_id = 2;
+}
+message S_TransferOwnership {
+    bool   success      = 1;
+    string new_owner_id = 2;
+}
+
 /*-------------
     BLOCK / REPORT
 ---------------*/
@@ -722,6 +737,8 @@ message S_CreatePoll {
     bool            is_anonymous    = 9;
     int64           expires_at      = 10;
     int64           ts_server       = 11;
+    string          status          = 12;  // "" or "active"(default) or "closed"
+    string          votes_json      = 13;  // 종료 시 현재 투표 현황
 }
 
 message C_Vote {
@@ -884,6 +901,7 @@ message LocationVisitInfo {
     string review                = 5;
     int64  visited_at            = 6;
     repeated LocationPhoto photos = 7;
+    string history_id            = 8;
 }
 
 message LocationPlaceInfo {
@@ -935,6 +953,7 @@ message C_SaveVisit {
     string review                = 6;
     repeated string photo_urls   = 7;
     int64  visited_at            = 8;
+    string history_id            = 9;
 }
 message S_SaveVisit {
     bool              success    = 1;
@@ -965,6 +984,7 @@ message C_UpdateVisit {
     string review                = 6;
     repeated string photo_urls   = 7;
     int64  visited_at            = 8;
+    string history_id            = 9;
 }
 message S_UpdateVisit {
     bool              success    = 1;
@@ -1048,6 +1068,7 @@ enum ErrorCode {
     ERR_POLL_INVALID_OPTION = 702;
 
     ERR_INVITE_EXPIRED = 800;
+    ERR_GROUP_FULL     = 801;
 
     ERR_OAUTH_VERIFICATION_FAILED = 120;
     ERR_OAUTH_PROVIDER_INVALID    = 121;

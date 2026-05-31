@@ -88,6 +88,7 @@ protected:
     static bool Dispatch_C_GroupInfo(sessionPtr& session, uint64 reqId, const Protocol::C_GroupInfo& pkt);
     static bool Dispatch_C_EditGroup(sessionPtr& session, uint64 reqId, const Protocol::C_EditGroup& pkt);
     static bool Dispatch_C_DeleteGroup(sessionPtr& session, uint64 reqId, const Protocol::C_DeleteGroup& pkt);
+    static bool Dispatch_C_TransferOwnership(sessionPtr& session, uint64 reqId, const Protocol::C_TransferOwnership& pkt);
 
     // FCM Token Handler
     static bool Dispatch_C_RegisterFcmToken(sessionPtr& session, uint64 reqId, const Protocol::C_RegisterFcmToken& pkt);

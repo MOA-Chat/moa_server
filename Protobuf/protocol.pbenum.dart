@@ -127,6 +127,8 @@ class ErrorCode extends $pb.ProtobufEnum {
       ErrorCode._(702, _omitEnumNames ? '' : 'ERR_POLL_INVALID_OPTION');
   static const ErrorCode ERR_INVITE_EXPIRED =
       ErrorCode._(800, _omitEnumNames ? '' : 'ERR_INVITE_EXPIRED');
+  static const ErrorCode ERR_GROUP_FULL =
+      ErrorCode._(801, _omitEnumNames ? '' : 'ERR_GROUP_FULL');
   static const ErrorCode ERR_OAUTH_VERIFICATION_FAILED =
       ErrorCode._(120, _omitEnumNames ? '' : 'ERR_OAUTH_VERIFICATION_FAILED');
   static const ErrorCode ERR_OAUTH_PROVIDER_INVALID =
@@ -179,6 +181,7 @@ class ErrorCode extends $pb.ProtobufEnum {
     ERR_POLL_CLOSED,
     ERR_POLL_INVALID_OPTION,
     ERR_INVITE_EXPIRED,
+    ERR_GROUP_FULL,
     ERR_OAUTH_VERIFICATION_FAILED,
     ERR_OAUTH_PROVIDER_INVALID,
   ];

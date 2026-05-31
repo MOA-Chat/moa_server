@@ -39,7 +39,7 @@ extern VerificationManager* GVerificationManager;
 
 extern AuthService* GAuthService;
 extern FileService* GFileService;
-extern CloudStorage* GCloudStorage;
+extern CloudStorage* GStorage;
 extern NotificationService* GNotificationService;
 extern PaymentService* GPaymentService;
 extern BlockService* GBlockService;

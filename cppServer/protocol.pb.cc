@@ -781,7 +781,8 @@ struct S_MessageBatchDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT S_MessageBatchDefaultTypeInternal _S_MessageBatch_default_instance_;
 constexpr C_GetSubscription::C_GetSubscription(
-  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized){}
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : group_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
 struct C_GetSubscriptionDefaultTypeInternal {
   constexpr C_GetSubscriptionDefaultTypeInternal()
     : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
@@ -814,12 +815,11 @@ constexpr S_GetSubscription::S_GetSubscription(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
   : available_plans_()
   , current_plan_name_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
-  , current_grade_(0)
-  , success_(false)
-  , auto_renew_(false)
-  , storage_capacity_bytes_(int64_t{0})
+  , storage_limit_bytes_(int64_t{0})
   , storage_usage_bytes_(int64_t{0})
-  , expires_at_(int64_t{0}){}
+  , expires_at_(int64_t{0})
+  , success_(false)
+  , auto_renew_(false){}
 struct S_GetSubscriptionDefaultTypeInternal {
   constexpr S_GetSubscriptionDefaultTypeInternal()
     : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
@@ -834,7 +834,8 @@ constexpr C_VerifyPurchase::C_VerifyPurchase(
   : platform_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
   , product_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
   , transaction_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
-  , purchase_token_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
+  , purchase_token_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , group_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
 struct C_VerifyPurchaseDefaultTypeInternal {
   constexpr C_VerifyPurchaseDefaultTypeInternal()
     : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
@@ -847,10 +848,10 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT C_VerifyPurchaseDefaultTypeInte
 constexpr S_VerifyPurchase::S_VerifyPurchase(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
   : message_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
-  , success_(false)
-  , new_grade_(0)
   , expires_at_(int64_t{0})
-  , storage_capacity_(int64_t{0}){}
+  , storage_limit_bytes_(int64_t{0})
+  , storage_usage_bytes_(int64_t{0})
+  , success_(false){}
 struct S_VerifyPurchaseDefaultTypeInternal {
   constexpr S_VerifyPurchaseDefaultTypeInternal()
     : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
@@ -861,7 +862,8 @@ struct S_VerifyPurchaseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT S_VerifyPurchaseDefaultTypeInternal _S_VerifyPurchase_default_instance_;
 constexpr C_CancelSubscription::C_CancelSubscription(
-  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized){}
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : group_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
 struct C_CancelSubscriptionDefaultTypeInternal {
   constexpr C_CancelSubscriptionDefaultTypeInternal()
     : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
@@ -1305,6 +1307,32 @@ struct S_DeleteGroupDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT S_DeleteGroupDefaultTypeInternal _S_DeleteGroup_default_instance_;
+constexpr C_TransferOwnership::C_TransferOwnership(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : group_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , target_user_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
+struct C_TransferOwnershipDefaultTypeInternal {
+  constexpr C_TransferOwnershipDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~C_TransferOwnershipDefaultTypeInternal() {}
+  union {
+    C_TransferOwnership _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT C_TransferOwnershipDefaultTypeInternal _C_TransferOwnership_default_instance_;
+constexpr S_TransferOwnership::S_TransferOwnership(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : new_owner_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , success_(false){}
+struct S_TransferOwnershipDefaultTypeInternal {
+  constexpr S_TransferOwnershipDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~S_TransferOwnershipDefaultTypeInternal() {}
+  union {
+    S_TransferOwnership _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT S_TransferOwnershipDefaultTypeInternal _S_TransferOwnership_default_instance_;
 constexpr BlockedUserInfo::BlockedUserInfo(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
   : user_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
@@ -1473,6 +1501,8 @@ constexpr S_CreatePoll::S_CreatePoll(
   , creator_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
   , creator_name_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
   , question_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , status_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , votes_json_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
   , msg_seq_(int64_t{0})
   , expires_at_(int64_t{0})
   , ts_server_(int64_t{0})
@@ -1992,6 +2022,7 @@ constexpr LocationVisitInfo::LocationVisitInfo(
   , user_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
   , user_name_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
   , review_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , history_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
   , visited_at_(int64_t{0})
   , rating_(0){}
 struct LocationVisitInfoDefaultTypeInternal {
@@ -2093,6 +2124,7 @@ constexpr C_SaveVisit::C_SaveVisit(
   , user_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
   , user_name_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
   , review_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , history_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
   , visited_at_(int64_t{0})
   , rating_(0){}
 struct C_SaveVisitDefaultTypeInternal {
@@ -2157,6 +2189,7 @@ constexpr C_UpdateVisit::C_UpdateVisit(
   , group_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
   , user_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
   , review_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , history_id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
   , visited_at_(int64_t{0})
   , rating_(0){}
 struct C_UpdateVisitDefaultTypeInternal {
@@ -2253,7 +2286,7 @@ struct S_HeartbeatDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT S_HeartbeatDefaultTypeInternal _S_Heartbeat_default_instance_;
 }  // namespace Protocol
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_protocol_2eproto[156];
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_protocol_2eproto[158];
 static const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* file_level_enum_descriptors_protocol_2eproto[5];
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_protocol_2eproto = nullptr;
 
@@ -2266,6 +2299,8 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_protocol_2eproto::offsets[] PR
   PROTOBUF_FIELD_OFFSET(::Protocol::Envelope, version_),
   PROTOBUF_FIELD_OFFSET(::Protocol::Envelope, request_id_),
   PROTOBUF_FIELD_OFFSET(::Protocol::Envelope, auth_token_),
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
   ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
   ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
   ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
@@ -2841,6 +2876,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_protocol_2eproto::offsets[] PR
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_GetSubscription, group_id_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::Protocol::SubscriptionPlan, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -2860,9 +2896,8 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_protocol_2eproto::offsets[] PR
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::Protocol::S_GetSubscription, success_),
-  PROTOBUF_FIELD_OFFSET(::Protocol::S_GetSubscription, current_grade_),
   PROTOBUF_FIELD_OFFSET(::Protocol::S_GetSubscription, current_plan_name_),
-  PROTOBUF_FIELD_OFFSET(::Protocol::S_GetSubscription, storage_capacity_bytes_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_GetSubscription, storage_limit_bytes_),
   PROTOBUF_FIELD_OFFSET(::Protocol::S_GetSubscription, storage_usage_bytes_),
   PROTOBUF_FIELD_OFFSET(::Protocol::S_GetSubscription, expires_at_),
   PROTOBUF_FIELD_OFFSET(::Protocol::S_GetSubscription, auto_renew_),
@@ -2876,6 +2911,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_protocol_2eproto::offsets[] PR
   PROTOBUF_FIELD_OFFSET(::Protocol::C_VerifyPurchase, product_id_),
   PROTOBUF_FIELD_OFFSET(::Protocol::C_VerifyPurchase, transaction_id_),
   PROTOBUF_FIELD_OFFSET(::Protocol::C_VerifyPurchase, purchase_token_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_VerifyPurchase, group_id_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::Protocol::S_VerifyPurchase, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -2883,14 +2919,15 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_protocol_2eproto::offsets[] PR
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::Protocol::S_VerifyPurchase, success_),
   PROTOBUF_FIELD_OFFSET(::Protocol::S_VerifyPurchase, message_),
-  PROTOBUF_FIELD_OFFSET(::Protocol::S_VerifyPurchase, new_grade_),
   PROTOBUF_FIELD_OFFSET(::Protocol::S_VerifyPurchase, expires_at_),
-  PROTOBUF_FIELD_OFFSET(::Protocol::S_VerifyPurchase, storage_capacity_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_VerifyPurchase, storage_limit_bytes_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_VerifyPurchase, storage_usage_bytes_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::Protocol::C_CancelSubscription, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_CancelSubscription, group_id_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::Protocol::S_CancelSubscription, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -3124,6 +3161,20 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_protocol_2eproto::offsets[] PR
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::Protocol::S_DeleteGroup, success_),
   ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_TransferOwnership, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_TransferOwnership, group_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_TransferOwnership, target_user_id_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_TransferOwnership, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_TransferOwnership, success_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_TransferOwnership, new_owner_id_),
+  ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::Protocol::BlockedUserInfo, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
@@ -3227,6 +3278,8 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_protocol_2eproto::offsets[] PR
   PROTOBUF_FIELD_OFFSET(::Protocol::S_CreatePoll, is_anonymous_),
   PROTOBUF_FIELD_OFFSET(::Protocol::S_CreatePoll, expires_at_),
   PROTOBUF_FIELD_OFFSET(::Protocol::S_CreatePoll, ts_server_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_CreatePoll, status_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_CreatePoll, votes_json_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::Protocol::C_Vote, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -3537,6 +3590,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_protocol_2eproto::offsets[] PR
   PROTOBUF_FIELD_OFFSET(::Protocol::LocationVisitInfo, review_),
   PROTOBUF_FIELD_OFFSET(::Protocol::LocationVisitInfo, visited_at_),
   PROTOBUF_FIELD_OFFSET(::Protocol::LocationVisitInfo, photos_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::LocationVisitInfo, history_id_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::Protocol::LocationPlaceInfo, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -3602,6 +3656,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_protocol_2eproto::offsets[] PR
   PROTOBUF_FIELD_OFFSET(::Protocol::C_SaveVisit, review_),
   PROTOBUF_FIELD_OFFSET(::Protocol::C_SaveVisit, photo_urls_),
   PROTOBUF_FIELD_OFFSET(::Protocol::C_SaveVisit, visited_at_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_SaveVisit, history_id_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::Protocol::S_SaveVisit, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -3642,6 +3697,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_protocol_2eproto::offsets[] PR
   PROTOBUF_FIELD_OFFSET(::Protocol::C_UpdateVisit, review_),
   PROTOBUF_FIELD_OFFSET(::Protocol::C_UpdateVisit, photo_urls_),
   PROTOBUF_FIELD_OFFSET(::Protocol::C_UpdateVisit, visited_at_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_UpdateVisit, history_id_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::Protocol::S_UpdateVisit, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -3692,161 +3748,163 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_protocol_2eproto::offsets[] PR
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::Protocol::Envelope)},
-  { 143, -1, sizeof(::Protocol::UserInfo)},
-  { 162, -1, sizeof(::Protocol::DeviceInfo)},
-  { 174, -1, sizeof(::Protocol::C_CheckId)},
-  { 180, -1, sizeof(::Protocol::S_CheckId)},
-  { 186, -1, sizeof(::Protocol::C_CheckEmail)},
-  { 192, -1, sizeof(::Protocol::S_CheckEmail)},
-  { 198, -1, sizeof(::Protocol::C_RequestEmailVerify)},
-  { 204, -1, sizeof(::Protocol::S_RequestEmailVerify)},
-  { 211, -1, sizeof(::Protocol::C_ConfirmEmailVerify)},
-  { 218, -1, sizeof(::Protocol::S_ConfirmEmailVerify)},
-  { 224, -1, sizeof(::Protocol::C_SignUp)},
-  { 233, -1, sizeof(::Protocol::S_SignUp)},
-  { 241, -1, sizeof(::Protocol::C_Login)},
-  { 248, -1, sizeof(::Protocol::S_Login)},
-  { 256, -1, sizeof(::Protocol::C_Logout)},
-  { 263, -1, sizeof(::Protocol::S_Logout)},
-  { 269, -1, sizeof(::Protocol::C_GetMyDevices)},
-  { 274, -1, sizeof(::Protocol::S_GetMyDevices)},
-  { 280, -1, sizeof(::Protocol::C_RemoveDevice)},
-  { 286, -1, sizeof(::Protocol::S_RemoveDevice)},
-  { 293, -1, sizeof(::Protocol::C_FetchMyInfo)},
-  { 298, -1, sizeof(::Protocol::S_FetchMyInfo)},
-  { 304, -1, sizeof(::Protocol::C_EditMyInfo)},
-  { 314, -1, sizeof(::Protocol::S_EditMyInfo)},
-  { 322, -1, sizeof(::Protocol::C_RegisterFcmToken)},
-  { 332, -1, sizeof(::Protocol::S_RegisterFcmToken)},
-  { 339, -1, sizeof(::Protocol::C_ChangeEmail)},
-  { 345, -1, sizeof(::Protocol::S_ChangeEmail)},
-  { 353, -1, sizeof(::Protocol::C_ChangePassword)},
-  { 360, -1, sizeof(::Protocol::S_ChangePassword)},
-  { 367, -1, sizeof(::Protocol::Text)},
-  { 373, -1, sizeof(::Protocol::Image)},
-  { 381, -1, sizeof(::Protocol::Video)},
-  { 390, -1, sizeof(::Protocol::File)},
-  { 399, -1, sizeof(::Protocol::SystemMsg)},
-  { 407, -1, sizeof(::Protocol::Audio)},
-  { 415, -1, sizeof(::Protocol::ChatPayload)},
-  { 427, -1, sizeof(::Protocol::C_Chat)},
-  { 439, -1, sizeof(::Protocol::S_Chat)},
-  { 460, -1, sizeof(::Protocol::C_ReadReceipt)},
-  { 467, -1, sizeof(::Protocol::S_ReadReceipt)},
-  { 475, -1, sizeof(::Protocol::C_DeleteMessage)},
-  { 482, -1, sizeof(::Protocol::S_DeleteMessage)},
-  { 490, -1, sizeof(::Protocol::C_EditMessage)},
-  { 498, -1, sizeof(::Protocol::S_EditMessage)},
-  { 508, -1, sizeof(::Protocol::C_ReqHistory)},
-  { 516, -1, sizeof(::Protocol::S_ReqHistory)},
-  { 524, -1, sizeof(::Protocol::C_UploadFile)},
-  { 535, -1, sizeof(::Protocol::S_UploadFile)},
-  { 550, -1, sizeof(::Protocol::C_Ack)},
-  { 557, -1, sizeof(::Protocol::C_FetchOffline)},
-  { 563, -1, sizeof(::Protocol::S_MessageBatch_ConversationBatch)},
-  { 572, -1, sizeof(::Protocol::S_MessageBatch)},
-  { 578, -1, sizeof(::Protocol::C_GetSubscription)},
-  { 583, -1, sizeof(::Protocol::SubscriptionPlan)},
-  { 596, -1, sizeof(::Protocol::S_GetSubscription)},
-  { 609, -1, sizeof(::Protocol::C_VerifyPurchase)},
-  { 618, -1, sizeof(::Protocol::S_VerifyPurchase)},
-  { 628, -1, sizeof(::Protocol::C_CancelSubscription)},
-  { 633, -1, sizeof(::Protocol::S_CancelSubscription)},
-  { 641, -1, sizeof(::Protocol::C_Withdraw)},
-  { 648, -1, sizeof(::Protocol::S_Withdraw)},
-  { 655, -1, sizeof(::Protocol::C_SearchUser)},
-  { 661, -1, sizeof(::Protocol::S_SearchUser)},
-  { 670, -1, sizeof(::Protocol::FriendRequest)},
-  { 678, -1, sizeof(::Protocol::C_FriendAction)},
-  { 685, -1, sizeof(::Protocol::S_FriendAction)},
-  { 693, -1, sizeof(::Protocol::C_FetchFriendData)},
-  { 698, -1, sizeof(::Protocol::S_FetchFriendData)},
-  { 706, -1, sizeof(::Protocol::S_FriendPush)},
-  { 713, -1, sizeof(::Protocol::GroupMemberInfo)},
-  { 721, -1, sizeof(::Protocol::GroupInfo)},
-  { 735, -1, sizeof(::Protocol::C_CreateGroup)},
-  { 741, -1, sizeof(::Protocol::S_CreateGroup)},
-  { 748, -1, sizeof(::Protocol::C_GroupList)},
-  { 753, -1, sizeof(::Protocol::S_GroupList)},
-  { 759, -1, sizeof(::Protocol::C_GroupInfo)},
-  { 765, -1, sizeof(::Protocol::S_GroupInfo)},
-  { 772, -1, sizeof(::Protocol::C_InviteFriend)},
-  { 779, -1, sizeof(::Protocol::S_InviteFriend)},
-  { 785, -1, sizeof(::Protocol::C_JoinGroup)},
-  { 791, -1, sizeof(::Protocol::S_JoinGroup)},
-  { 798, -1, sizeof(::Protocol::C_RefreshInviteCode)},
-  { 804, -1, sizeof(::Protocol::S_RefreshInviteCode)},
-  { 812, -1, sizeof(::Protocol::C_GroupMemberList)},
-  { 818, -1, sizeof(::Protocol::S_GroupMemberList)},
-  { 825, -1, sizeof(::Protocol::C_LeaveGroup)},
-  { 831, -1, sizeof(::Protocol::S_LeaveGroup)},
-  { 837, -1, sizeof(::Protocol::C_EditGroup)},
-  { 846, -1, sizeof(::Protocol::S_EditGroup)},
-  { 853, -1, sizeof(::Protocol::C_DeleteGroup)},
-  { 859, -1, sizeof(::Protocol::S_DeleteGroup)},
-  { 865, -1, sizeof(::Protocol::BlockedUserInfo)},
-  { 874, -1, sizeof(::Protocol::C_BlockUser)},
-  { 880, -1, sizeof(::Protocol::S_BlockUser)},
-  { 887, -1, sizeof(::Protocol::C_UnblockUser)},
-  { 893, -1, sizeof(::Protocol::S_UnblockUser)},
-  { 899, -1, sizeof(::Protocol::C_GetBlockedList)},
-  { 904, -1, sizeof(::Protocol::S_GetBlockedList)},
-  { 910, -1, sizeof(::Protocol::C_ReportUser)},
-  { 918, -1, sizeof(::Protocol::S_ReportUser)},
-  { 924, -1, sizeof(::Protocol::C_AddReaction)},
-  { 932, -1, sizeof(::Protocol::S_AddReaction)},
-  { 942, -1, sizeof(::Protocol::C_CreatePoll)},
-  { 953, -1, sizeof(::Protocol::S_CreatePoll)},
-  { 969, -1, sizeof(::Protocol::C_Vote)},
-  { 978, -1, sizeof(::Protocol::S_Vote)},
-  { 990, -1, sizeof(::Protocol::C_ClosePoll)},
-  { 998, -1, sizeof(::Protocol::S_ClosePoll)},
-  { 1006, -1, sizeof(::Protocol::C_SetAnnouncement)},
-  { 1015, -1, sizeof(::Protocol::S_SetAnnouncement)},
-  { 1025, -1, sizeof(::Protocol::C_SocialLogin)},
-  { 1032, -1, sizeof(::Protocol::S_SocialLogin)},
-  { 1041, -1, sizeof(::Protocol::C_CompleteSocialSignup)},
-  { 1050, -1, sizeof(::Protocol::Album)},
-  { 1062, -1, sizeof(::Protocol::AlbumPhoto)},
-  { 1076, -1, sizeof(::Protocol::PhotoComment)},
-  { 1087, -1, sizeof(::Protocol::C_CreateAlbum)},
-  { 1095, -1, sizeof(::Protocol::S_CreateAlbum)},
-  { 1103, -1, sizeof(::Protocol::C_GetAlbums)},
-  { 1109, -1, sizeof(::Protocol::S_GetAlbums)},
-  { 1115, -1, sizeof(::Protocol::C_AddPhotoToAlbum)},
-  { 1126, -1, sizeof(::Protocol::S_AddPhotoToAlbum)},
-  { 1136, -1, sizeof(::Protocol::C_GetAlbumPhotos)},
-  { 1143, -1, sizeof(::Protocol::S_GetAlbumPhotos)},
-  { 1150, -1, sizeof(::Protocol::C_DeleteAlbum)},
-  { 1158, -1, sizeof(::Protocol::S_DeleteAlbum)},
-  { 1167, -1, sizeof(::Protocol::C_DeleteAlbumPhoto)},
-  { 1176, -1, sizeof(::Protocol::S_DeleteAlbumPhoto)},
-  { 1187, -1, sizeof(::Protocol::C_MovePhoto)},
-  { 1197, -1, sizeof(::Protocol::S_MovePhoto)},
-  { 1210, -1, sizeof(::Protocol::C_AddPhotoComment)},
-  { 1220, -1, sizeof(::Protocol::S_AddPhotoComment)},
-  { 1228, -1, sizeof(::Protocol::C_GetPhotoComments)},
-  { 1234, -1, sizeof(::Protocol::S_GetPhotoComments)},
-  { 1241, -1, sizeof(::Protocol::C_DeletePhotoComment)},
-  { 1250, -1, sizeof(::Protocol::S_DeletePhotoComment)},
-  { 1260, -1, sizeof(::Protocol::LocationPhoto)},
-  { 1267, -1, sizeof(::Protocol::LocationVisitInfo)},
-  { 1279, -1, sizeof(::Protocol::LocationPlaceInfo)},
-  { 1297, -1, sizeof(::Protocol::C_SavePlace)},
-  { 1310, -1, sizeof(::Protocol::S_SavePlace)},
-  { 1318, -1, sizeof(::Protocol::C_GetPlaces)},
-  { 1324, -1, sizeof(::Protocol::S_GetPlaces)},
-  { 1331, -1, sizeof(::Protocol::C_SaveVisit)},
-  { 1344, -1, sizeof(::Protocol::S_SaveVisit)},
-  { 1354, -1, sizeof(::Protocol::C_DeletePlace)},
-  { 1362, -1, sizeof(::Protocol::S_DeletePlace)},
-  { 1371, -1, sizeof(::Protocol::C_UpdateVisit)},
-  { 1384, -1, sizeof(::Protocol::S_UpdateVisit)},
-  { 1393, -1, sizeof(::Protocol::C_DeleteVisit)},
-  { 1402, -1, sizeof(::Protocol::S_DeleteVisit)},
-  { 1413, -1, sizeof(::Protocol::S_Error)},
-  { 1421, -1, sizeof(::Protocol::C_Heartbeat)},
-  { 1426, -1, sizeof(::Protocol::S_Heartbeat)},
+  { 145, -1, sizeof(::Protocol::UserInfo)},
+  { 164, -1, sizeof(::Protocol::DeviceInfo)},
+  { 176, -1, sizeof(::Protocol::C_CheckId)},
+  { 182, -1, sizeof(::Protocol::S_CheckId)},
+  { 188, -1, sizeof(::Protocol::C_CheckEmail)},
+  { 194, -1, sizeof(::Protocol::S_CheckEmail)},
+  { 200, -1, sizeof(::Protocol::C_RequestEmailVerify)},
+  { 206, -1, sizeof(::Protocol::S_RequestEmailVerify)},
+  { 213, -1, sizeof(::Protocol::C_ConfirmEmailVerify)},
+  { 220, -1, sizeof(::Protocol::S_ConfirmEmailVerify)},
+  { 226, -1, sizeof(::Protocol::C_SignUp)},
+  { 235, -1, sizeof(::Protocol::S_SignUp)},
+  { 243, -1, sizeof(::Protocol::C_Login)},
+  { 250, -1, sizeof(::Protocol::S_Login)},
+  { 258, -1, sizeof(::Protocol::C_Logout)},
+  { 265, -1, sizeof(::Protocol::S_Logout)},
+  { 271, -1, sizeof(::Protocol::C_GetMyDevices)},
+  { 276, -1, sizeof(::Protocol::S_GetMyDevices)},
+  { 282, -1, sizeof(::Protocol::C_RemoveDevice)},
+  { 288, -1, sizeof(::Protocol::S_RemoveDevice)},
+  { 295, -1, sizeof(::Protocol::C_FetchMyInfo)},
+  { 300, -1, sizeof(::Protocol::S_FetchMyInfo)},
+  { 306, -1, sizeof(::Protocol::C_EditMyInfo)},
+  { 316, -1, sizeof(::Protocol::S_EditMyInfo)},
+  { 324, -1, sizeof(::Protocol::C_RegisterFcmToken)},
+  { 334, -1, sizeof(::Protocol::S_RegisterFcmToken)},
+  { 341, -1, sizeof(::Protocol::C_ChangeEmail)},
+  { 347, -1, sizeof(::Protocol::S_ChangeEmail)},
+  { 355, -1, sizeof(::Protocol::C_ChangePassword)},
+  { 362, -1, sizeof(::Protocol::S_ChangePassword)},
+  { 369, -1, sizeof(::Protocol::Text)},
+  { 375, -1, sizeof(::Protocol::Image)},
+  { 383, -1, sizeof(::Protocol::Video)},
+  { 392, -1, sizeof(::Protocol::File)},
+  { 401, -1, sizeof(::Protocol::SystemMsg)},
+  { 409, -1, sizeof(::Protocol::Audio)},
+  { 417, -1, sizeof(::Protocol::ChatPayload)},
+  { 429, -1, sizeof(::Protocol::C_Chat)},
+  { 441, -1, sizeof(::Protocol::S_Chat)},
+  { 462, -1, sizeof(::Protocol::C_ReadReceipt)},
+  { 469, -1, sizeof(::Protocol::S_ReadReceipt)},
+  { 477, -1, sizeof(::Protocol::C_DeleteMessage)},
+  { 484, -1, sizeof(::Protocol::S_DeleteMessage)},
+  { 492, -1, sizeof(::Protocol::C_EditMessage)},
+  { 500, -1, sizeof(::Protocol::S_EditMessage)},
+  { 510, -1, sizeof(::Protocol::C_ReqHistory)},
+  { 518, -1, sizeof(::Protocol::S_ReqHistory)},
+  { 526, -1, sizeof(::Protocol::C_UploadFile)},
+  { 537, -1, sizeof(::Protocol::S_UploadFile)},
+  { 552, -1, sizeof(::Protocol::C_Ack)},
+  { 559, -1, sizeof(::Protocol::C_FetchOffline)},
+  { 565, -1, sizeof(::Protocol::S_MessageBatch_ConversationBatch)},
+  { 574, -1, sizeof(::Protocol::S_MessageBatch)},
+  { 580, -1, sizeof(::Protocol::C_GetSubscription)},
+  { 586, -1, sizeof(::Protocol::SubscriptionPlan)},
+  { 599, -1, sizeof(::Protocol::S_GetSubscription)},
+  { 611, -1, sizeof(::Protocol::C_VerifyPurchase)},
+  { 621, -1, sizeof(::Protocol::S_VerifyPurchase)},
+  { 631, -1, sizeof(::Protocol::C_CancelSubscription)},
+  { 637, -1, sizeof(::Protocol::S_CancelSubscription)},
+  { 645, -1, sizeof(::Protocol::C_Withdraw)},
+  { 652, -1, sizeof(::Protocol::S_Withdraw)},
+  { 659, -1, sizeof(::Protocol::C_SearchUser)},
+  { 665, -1, sizeof(::Protocol::S_SearchUser)},
+  { 674, -1, sizeof(::Protocol::FriendRequest)},
+  { 682, -1, sizeof(::Protocol::C_FriendAction)},
+  { 689, -1, sizeof(::Protocol::S_FriendAction)},
+  { 697, -1, sizeof(::Protocol::C_FetchFriendData)},
+  { 702, -1, sizeof(::Protocol::S_FetchFriendData)},
+  { 710, -1, sizeof(::Protocol::S_FriendPush)},
+  { 717, -1, sizeof(::Protocol::GroupMemberInfo)},
+  { 725, -1, sizeof(::Protocol::GroupInfo)},
+  { 739, -1, sizeof(::Protocol::C_CreateGroup)},
+  { 745, -1, sizeof(::Protocol::S_CreateGroup)},
+  { 752, -1, sizeof(::Protocol::C_GroupList)},
+  { 757, -1, sizeof(::Protocol::S_GroupList)},
+  { 763, -1, sizeof(::Protocol::C_GroupInfo)},
+  { 769, -1, sizeof(::Protocol::S_GroupInfo)},
+  { 776, -1, sizeof(::Protocol::C_InviteFriend)},
+  { 783, -1, sizeof(::Protocol::S_InviteFriend)},
+  { 789, -1, sizeof(::Protocol::C_JoinGroup)},
+  { 795, -1, sizeof(::Protocol::S_JoinGroup)},
+  { 802, -1, sizeof(::Protocol::C_RefreshInviteCode)},
+  { 808, -1, sizeof(::Protocol::S_RefreshInviteCode)},
+  { 816, -1, sizeof(::Protocol::C_GroupMemberList)},
+  { 822, -1, sizeof(::Protocol::S_GroupMemberList)},
+  { 829, -1, sizeof(::Protocol::C_LeaveGroup)},
+  { 835, -1, sizeof(::Protocol::S_LeaveGroup)},
+  { 841, -1, sizeof(::Protocol::C_EditGroup)},
+  { 850, -1, sizeof(::Protocol::S_EditGroup)},
+  { 857, -1, sizeof(::Protocol::C_DeleteGroup)},
+  { 863, -1, sizeof(::Protocol::S_DeleteGroup)},
+  { 869, -1, sizeof(::Protocol::C_TransferOwnership)},
+  { 876, -1, sizeof(::Protocol::S_TransferOwnership)},
+  { 883, -1, sizeof(::Protocol::BlockedUserInfo)},
+  { 892, -1, sizeof(::Protocol::C_BlockUser)},
+  { 898, -1, sizeof(::Protocol::S_BlockUser)},
+  { 905, -1, sizeof(::Protocol::C_UnblockUser)},
+  { 911, -1, sizeof(::Protocol::S_UnblockUser)},
+  { 917, -1, sizeof(::Protocol::C_GetBlockedList)},
+  { 922, -1, sizeof(::Protocol::S_GetBlockedList)},
+  { 928, -1, sizeof(::Protocol::C_ReportUser)},
+  { 936, -1, sizeof(::Protocol::S_ReportUser)},
+  { 942, -1, sizeof(::Protocol::C_AddReaction)},
+  { 950, -1, sizeof(::Protocol::S_AddReaction)},
+  { 960, -1, sizeof(::Protocol::C_CreatePoll)},
+  { 971, -1, sizeof(::Protocol::S_CreatePoll)},
+  { 989, -1, sizeof(::Protocol::C_Vote)},
+  { 998, -1, sizeof(::Protocol::S_Vote)},
+  { 1010, -1, sizeof(::Protocol::C_ClosePoll)},
+  { 1018, -1, sizeof(::Protocol::S_ClosePoll)},
+  { 1026, -1, sizeof(::Protocol::C_SetAnnouncement)},
+  { 1035, -1, sizeof(::Protocol::S_SetAnnouncement)},
+  { 1045, -1, sizeof(::Protocol::C_SocialLogin)},
+  { 1052, -1, sizeof(::Protocol::S_SocialLogin)},
+  { 1061, -1, sizeof(::Protocol::C_CompleteSocialSignup)},
+  { 1070, -1, sizeof(::Protocol::Album)},
+  { 1082, -1, sizeof(::Protocol::AlbumPhoto)},
+  { 1096, -1, sizeof(::Protocol::PhotoComment)},
+  { 1107, -1, sizeof(::Protocol::C_CreateAlbum)},
+  { 1115, -1, sizeof(::Protocol::S_CreateAlbum)},
+  { 1123, -1, sizeof(::Protocol::C_GetAlbums)},
+  { 1129, -1, sizeof(::Protocol::S_GetAlbums)},
+  { 1135, -1, sizeof(::Protocol::C_AddPhotoToAlbum)},
+  { 1146, -1, sizeof(::Protocol::S_AddPhotoToAlbum)},
+  { 1156, -1, sizeof(::Protocol::C_GetAlbumPhotos)},
+  { 1163, -1, sizeof(::Protocol::S_GetAlbumPhotos)},
+  { 1170, -1, sizeof(::Protocol::C_DeleteAlbum)},
+  { 1178, -1, sizeof(::Protocol::S_DeleteAlbum)},
+  { 1187, -1, sizeof(::Protocol::C_DeleteAlbumPhoto)},
+  { 1196, -1, sizeof(::Protocol::S_DeleteAlbumPhoto)},
+  { 1207, -1, sizeof(::Protocol::C_MovePhoto)},
+  { 1217, -1, sizeof(::Protocol::S_MovePhoto)},
+  { 1230, -1, sizeof(::Protocol::C_AddPhotoComment)},
+  { 1240, -1, sizeof(::Protocol::S_AddPhotoComment)},
+  { 1248, -1, sizeof(::Protocol::C_GetPhotoComments)},
+  { 1254, -1, sizeof(::Protocol::S_GetPhotoComments)},
+  { 1261, -1, sizeof(::Protocol::C_DeletePhotoComment)},
+  { 1270, -1, sizeof(::Protocol::S_DeletePhotoComment)},
+  { 1280, -1, sizeof(::Protocol::LocationPhoto)},
+  { 1287, -1, sizeof(::Protocol::LocationVisitInfo)},
+  { 1300, -1, sizeof(::Protocol::LocationPlaceInfo)},
+  { 1318, -1, sizeof(::Protocol::C_SavePlace)},
+  { 1331, -1, sizeof(::Protocol::S_SavePlace)},
+  { 1339, -1, sizeof(::Protocol::C_GetPlaces)},
+  { 1345, -1, sizeof(::Protocol::S_GetPlaces)},
+  { 1352, -1, sizeof(::Protocol::C_SaveVisit)},
+  { 1366, -1, sizeof(::Protocol::S_SaveVisit)},
+  { 1376, -1, sizeof(::Protocol::C_DeletePlace)},
+  { 1384, -1, sizeof(::Protocol::S_DeletePlace)},
+  { 1393, -1, sizeof(::Protocol::C_UpdateVisit)},
+  { 1407, -1, sizeof(::Protocol::S_UpdateVisit)},
+  { 1416, -1, sizeof(::Protocol::C_DeleteVisit)},
+  { 1425, -1, sizeof(::Protocol::S_DeleteVisit)},
+  { 1436, -1, sizeof(::Protocol::S_Error)},
+  { 1444, -1, sizeof(::Protocol::C_Heartbeat)},
+  { 1449, -1, sizeof(::Protocol::S_Heartbeat)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -3943,6 +4001,8 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_S_EditGroup_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_C_DeleteGroup_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_S_DeleteGroup_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_C_TransferOwnership_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_S_TransferOwnership_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_BlockedUserInfo_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_C_BlockUser_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_S_BlockUser_default_instance_),
@@ -4009,7 +4069,7 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
 };
 
 const char descriptor_table_protodef_protocol_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\016protocol.proto\022\010Protocol\"\3636\n\010Envelope\022"
+  "\n\016protocol.proto\022\010Protocol\"\3637\n\010Envelope\022"
   "\017\n\007version\030\001 \001(\r\022\022\n\nrequest_id\030\002 \001(\r\022\022\n\n"
   "auth_token\030\003 \001(\t\022)\n\nc_check_id\030\n \001(\0132\023.P"
   "rotocol.C_CheckIdH\000\022)\n\ns_check_id\030\013 \001(\0132"
@@ -4157,418 +4217,428 @@ const char descriptor_table_protodef_protocol_2eproto[] PROTOBUF_SECTION_VARIABL
   "col.S_UpdateVisitH\000\0222\n\016c_delete_visit\030\236\001"
   " \001(\0132\027.Protocol.C_DeleteVisitH\000\0222\n\016s_del"
   "ete_visit\030\237\001 \001(\0132\027.Protocol.S_DeleteVisi"
-  "tH\000\0221\n\016c_create_group\030P \001(\0132\027.Protocol.C"
-  "_CreateGroupH\000\0221\n\016s_create_group\030Q \001(\0132\027"
-  ".Protocol.S_CreateGroupH\000\022-\n\014c_group_lis"
-  "t\030R \001(\0132\025.Protocol.C_GroupListH\000\022-\n\014s_gr"
-  "oup_list\030S \001(\0132\025.Protocol.S_GroupListH\000\022"
-  "-\n\014c_join_group\030T \001(\0132\025.Protocol.C_JoinG"
-  "roupH\000\022-\n\014s_join_group\030U \001(\0132\025.Protocol."
-  "S_JoinGroupH\000\0223\n\017c_invite_friend\030V \001(\0132\030"
-  ".Protocol.C_InviteFriendH\000\0223\n\017s_invite_f"
-  "riend\030W \001(\0132\030.Protocol.S_InviteFriendH\000\022"
-  "/\n\rc_leave_group\030X \001(\0132\026.Protocol.C_Leav"
-  "eGroupH\000\022/\n\rs_leave_group\030Y \001(\0132\026.Protoc"
-  "ol.S_LeaveGroupH\000\022:\n\023c_group_member_list"
-  "\030Z \001(\0132\033.Protocol.C_GroupMemberListH\000\022:\n"
-  "\023s_group_member_list\030[ \001(\0132\033.Protocol.S_"
-  "GroupMemberListH\000\022-\n\014c_group_info\030\\ \001(\0132"
-  "\025.Protocol.C_GroupInfoH\000\022-\n\014s_group_info"
-  "\030] \001(\0132\025.Protocol.S_GroupInfoH\000\022-\n\014c_edi"
-  "t_group\030^ \001(\0132\025.Protocol.C_EditGroupH\000\022-"
-  "\n\014s_edit_group\030_ \001(\0132\025.Protocol.S_EditGr"
-  "oupH\000\022*\n\nc_withdraw\030` \001(\0132\024.Protocol.C_W"
-  "ithdrawH\000\022*\n\ns_withdraw\030a \001(\0132\024.Protocol"
-  ".S_WithdrawH\000\0221\n\016c_delete_group\030b \001(\0132\027."
-  "Protocol.C_DeleteGroupH\000\0221\n\016s_delete_gro"
-  "up\030c \001(\0132\027.Protocol.S_DeleteGroupH\000\022$\n\007s"
-  "_error\030d \001(\0132\021.Protocol.S_ErrorH\000\022,\n\013c_h"
-  "eartbeat\030e \001(\0132\025.Protocol.C_HeartbeatH\000\022"
-  ",\n\013s_heartbeat\030f \001(\0132\025.Protocol.S_Heartb"
-  "eatH\000B\t\n\007payload\"\276\002\n\010UserInfo\022\017\n\007user_id"
-  "\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\026\n\016status_message\030\003"
-  " \001(\t\022\031\n\021profile_image_url\030\004 \001(\t\022\034\n\024backg"
-  "round_image_url\030\005 \001(\t\022\r\n\005email\030\006 \001(\t\022\r\n\005"
-  "phone\030\007 \001(\t\022\021\n\tsub_grade\030\010 \001(\r\022\036\n\026storag"
-  "e_capacity_bytes\030\t \001(\003\022\033\n\023storage_usage_"
-  "bytes\030\n \001(\003\022\021\n\tlast_seen\030\013 \001(\003\022\016\n\006status"
-  "\030\014 \001(\t\022\031\n\021is_email_verified\030\r \001(\010\022\026\n\016oau"
-  "th_provider\030\016 \001(\t\"\233\001\n\nDeviceInfo\022\021\n\tdevi"
-  "ce_id\030\001 \001(\t\022\023\n\013device_name\030\002 \001(\t\022\020\n\010plat"
-  "form\030\003 \001(\t\022\023\n\013last_active\030\004 \001(\003\022\025\n\rregis"
-  "tered_at\030\005 \001(\003\022\023\n\013app_version\030\006 \001(\t\022\022\n\ni"
-  "s_current\030\007 \001(\010\"\034\n\tC_CheckId\022\017\n\007user_id\030"
-  "\001 \001(\t\"!\n\tS_CheckId\022\024\n\014is_available\030\001 \001(\010"
-  "\"\035\n\014C_CheckEmail\022\r\n\005email\030\001 \001(\t\"$\n\014S_Che"
-  "ckEmail\022\024\n\014is_available\030\001 \001(\010\"%\n\024C_Reque"
-  "stEmailVerify\022\r\n\005email\030\001 \001(\t\"8\n\024S_Reques"
-  "tEmailVerify\022\017\n\007success\030\001 \001(\010\022\017\n\007message"
-  "\030\002 \001(\t\"3\n\024C_ConfirmEmailVerify\022\r\n\005email\030"
-  "\001 \001(\t\022\014\n\004code\030\002 \001(\t\"\'\n\024S_ConfirmEmailVer"
-  "ify\022\017\n\007success\030\001 \001(\010\"J\n\010C_SignUp\022\017\n\007user"
-  "_id\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\022\014\n\004name\030\003 \001("
-  "\t\022\r\n\005email\030\004 \001(\t\"=\n\010S_SignUp\022\017\n\007success\030"
-  "\001 \001(\010\022\017\n\007message\030\002 \001(\t\022\017\n\007user_id\030\003 \001(\t\""
-  ",\n\007C_Login\022\017\n\007user_id\030\001 \001(\t\022\020\n\010password\030"
-  "\002 \001(\t\"S\n\007S_Login\022\017\n\007success\030\001 \001(\010\022\022\n\naut"
-  "h_token\030\002 \001(\t\022#\n\007my_info\030\003 \001(\0132\022.Protoco"
-  "l.UserInfo\"0\n\010C_Logout\022\021\n\tfcm_token\030\001 \001("
-  "\t\022\021\n\tdevice_id\030\002 \001(\t\"\033\n\010S_Logout\022\017\n\007succ"
-  "ess\030\001 \001(\010\"\020\n\016C_GetMyDevices\"7\n\016S_GetMyDe"
-  "vices\022%\n\007devices\030\001 \003(\0132\024.Protocol.Device"
-  "Info\"#\n\016C_RemoveDevice\022\021\n\tdevice_id\030\001 \001("
-  "\t\"2\n\016S_RemoveDevice\022\017\n\007success\030\001 \001(\010\022\017\n\007"
-  "message\030\002 \001(\t\"\017\n\rC_FetchMyInfo\"4\n\rS_Fetc"
-  "hMyInfo\022#\n\007my_info\030\001 \001(\0132\022.Protocol.User"
-  "Info\"|\n\014C_EditMyInfo\022\014\n\004name\030\001 \001(\t\022\026\n\016st"
-  "atus_message\030\002 \001(\t\022\031\n\021profile_image_url\030"
-  "\003 \001(\t\022\034\n\024background_image_url\030\004 \001(\t\022\r\n\005p"
-  "hone\030\005 \001(\t\"Z\n\014S_EditMyInfo\022\017\n\007success\030\001 "
-  "\001(\010\022\017\n\007message\030\002 \001(\t\022(\n\014updated_info\030\003 \001"
-  "(\0132\022.Protocol.UserInfo\"v\n\022C_RegisterFcmT"
-  "oken\022\021\n\tfcm_token\030\001 \001(\t\022\020\n\010platform\030\002 \001("
-  "\t\022\021\n\tdevice_id\030\003 \001(\t\022\023\n\013device_name\030\004 \001("
-  "\t\022\023\n\013app_version\030\005 \001(\t\"6\n\022S_RegisterFcmT"
-  "oken\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\t\"\""
-  "\n\rC_ChangeEmail\022\021\n\tnew_email\030\001 \001(\t\"[\n\rS_"
-  "ChangeEmail\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030"
-  "\002 \001(\t\022(\n\014updated_info\030\003 \001(\0132\022.Protocol.U"
-  "serInfo\"B\n\020C_ChangePassword\022\030\n\020current_p"
-  "assword\030\001 \001(\t\022\024\n\014new_password\030\002 \001(\t\"4\n\020S"
-  "_ChangePassword\022\017\n\007success\030\001 \001(\010\022\017\n\007mess"
-  "age\030\002 \001(\t\"\027\n\004Text\022\017\n\007message\030\001 \001(\t\"5\n\005Im"
-  "age\022\013\n\003url\030\001 \001(\t\022\021\n\tthumbnail\030\002 \001(\t\022\014\n\004s"
-  "ize\030\003 \001(\003\"K\n\005Video\022\013\n\003url\030\001 \001(\t\022\021\n\tthumb"
-  "nail\030\002 \001(\t\022\024\n\014duration_sec\030\003 \001(\005\022\014\n\004size"
-  "\030\004 \001(\003\"F\n\004File\022\013\n\003url\030\001 \001(\t\022\020\n\010filename\030"
-  "\002 \001(\t\022\014\n\004size\030\003 \001(\003\022\021\n\tmime_type\030\004 \001(\t\"C"
-  "\n\tSystemMsg\022\017\n\007message\030\001 \001(\t\022\014\n\004type\030\002 \001"
-  "(\005\022\027\n\017invite_group_id\030\003 \001(\t\"8\n\005Audio\022\013\n\003"
-  "url\030\001 \001(\t\022\024\n\014duration_sec\030\002 \001(\005\022\014\n\004size\030"
-  "\003 \001(\003\"\345\001\n\013ChatPayload\022\036\n\004text\030\001 \001(\0132\016.Pr"
-  "otocol.TextH\000\022 \n\005image\030\002 \001(\0132\017.Protocol."
-  "ImageH\000\022 \n\005video\030\003 \001(\0132\017.Protocol.VideoH"
-  "\000\022\036\n\004file\030\004 \001(\0132\016.Protocol.FileH\000\022%\n\006sys"
-  "tem\030\005 \001(\0132\023.Protocol.SystemMsgH\000\022 \n\005audi"
-  "o\030\006 \001(\0132\017.Protocol.AudioH\000B\t\n\007content\"\257\001"
-  "\n\006C_Chat\022\017\n\007conv_id\030\001 \001(\t\022\025\n\rclient_msg_"
-  "id\030\002 \001(\005\022&\n\007payload\030\003 \001(\0132\025.Protocol.Cha"
-  "tPayload\022\021\n\tts_client\030\004 \001(\003\022\024\n\014reply_to_"
-  "seq\030\005 \001(\003\022\020\n\010gcs_path\030\006 \001(\t\022\032\n\022mentioned"
-  "_user_ids\030\007 \003(\t\"\366\002\n\006S_Chat\022\017\n\007conv_id\030\001 "
-  "\001(\t\022\025\n\rclient_msg_id\030\002 \001(\005\022\017\n\007msg_seq\030\003 "
-  "\001(\003\022\021\n\tsender_id\030\004 \001(\t\022\023\n\013sender_name\030\005 "
-  "\001(\t\022&\n\007payload\030\006 \001(\0132\025.Protocol.ChatPayl"
-  "oad\022\021\n\tts_server\030\007 \001(\003\022\024\n\014reply_to_seq\030\010"
-  " \001(\003\022\034\n\024reply_to_sender_name\030\t \001(\t\022\025\n\rre"
-  "ply_to_text\030\n \001(\t\022\022\n\nis_deleted\030\013 \001(\010\022\021\n"
-  "\tis_edited\030\014 \001(\010\022\024\n\014unread_count\030\r \001(\005\022\027"
-  "\n\017file_expires_at\030\016 \001(\003\022\023\n\013file_status\030\017"
-  " \001(\t\022\032\n\022mentioned_user_ids\030\020 \003(\t\"7\n\rC_Re"
-  "adReceipt\022\017\n\007conv_id\030\001 \001(\t\022\025\n\rlast_read_"
-  "seq\030\002 \001(\003\"J\n\rS_ReadReceipt\022\017\n\007conv_id\030\001 "
-  "\001(\t\022\021\n\treader_id\030\002 \001(\t\022\025\n\rlast_read_seq\030"
-  "\003 \001(\003\"3\n\017C_DeleteMessage\022\017\n\007conv_id\030\001 \001("
-  "\t\022\017\n\007msg_seq\030\002 \001(\003\"D\n\017S_DeleteMessage\022\017\n"
-  "\007success\030\001 \001(\010\022\017\n\007conv_id\030\002 \001(\t\022\017\n\007msg_s"
-  "eq\030\003 \001(\003\"C\n\rC_EditMessage\022\017\n\007conv_id\030\001 \001"
-  "(\t\022\017\n\007msg_seq\030\002 \001(\003\022\020\n\010new_text\030\003 \001(\t\"g\n"
-  "\rS_EditMessage\022\017\n\007success\030\001 \001(\010\022\017\n\007conv_"
-  "id\030\002 \001(\t\022\017\n\007msg_seq\030\003 \001(\003\022\020\n\010new_text\030\004 "
-  "\001(\t\022\021\n\tedited_at\030\005 \001(\003\"D\n\014C_ReqHistory\022\017"
-  "\n\007conv_id\030\001 \001(\t\022\024\n\014last_msg_seq\030\002 \001(\003\022\r\n"
-  "\005limit\030\003 \001(\005\"S\n\014S_ReqHistory\022\017\n\007conv_id\030"
-  "\001 \001(\t\022\"\n\010messages\030\002 \003(\0132\020.Protocol.S_Cha"
-  "t\022\016\n\006is_end\030\003 \001(\010\"\211\002\n\014C_UploadFile\022\020\n\010fi"
-  "lename\030\001 \001(\t\022\014\n\004size\030\002 \001(\003\022\021\n\tmime_type\030"
-  "\003 \001(\t\022\020\n\010is_image\030\004 \001(\010\0226\n\013upload_type\030\005"
-  " \001(\0162!.Protocol.C_UploadFile.UploadType\022"
-  "\021\n\ttarget_id\030\006 \001(\t\"i\n\nUploadType\022\017\n\013DIRE"
-  "CT_CHAT\020\000\022\016\n\nGROUP_CHAT\020\001\022\017\n\013PROFILE_IMG"
-  "\020\002\022\025\n\021GROUP_PROFILE_IMG\020\003\022\022\n\016BACKGROUND_"
-  "IMG\020\004\"\341\001\n\014S_UploadFile\022\017\n\007success\030\001 \001(\010\022"
-  "\017\n\007message\030\002 \001(\t\022\017\n\007file_id\030\003 \001(\t\022\022\n\nupl"
-  "oad_url\030\004 \001(\t\022\024\n\014download_url\030\005 \001(\t\022\030\n\020t"
-  "humb_upload_url\030\006 \001(\t\022\025\n\rthumbnail_url\030\007"
-  " \001(\t\022\022\n\nexpires_at\030\010 \001(\003\022\014\n\004path\030\t \001(\t\022!"
-  "\n\031file_retention_expires_at\030\n \001(\003\")\n\005C_A"
-  "ck\022\017\n\007conv_id\030\001 \001(\t\022\017\n\007msg_seq\030\002 \001(\003\"\"\n\016"
-  "C_FetchOffline\022\020\n\010since_ts\030\001 \001(\003\"\304\001\n\016S_M"
-  "essageBatch\022;\n\007batches\030\001 \003(\0132*.Protocol."
-  "S_MessageBatch.ConversationBatch\032u\n\021Conv"
-  "ersationBatch\022\017\n\007conv_id\030\001 \001(\t\022\"\n\010messag"
-  "es\030\002 \003(\0132\020.Protocol.S_Chat\022\024\n\014unread_cou"
-  "nt\030\003 \001(\005\022\025\n\rlast_read_seq\030\004 \001(\003\"\023\n\021C_Get"
-  "Subscription\"\252\001\n\020SubscriptionPlan\022\017\n\007pla"
-  "n_id\030\001 \001(\005\022\021\n\tplan_type\030\002 \001(\t\022\014\n\004name\030\003 "
-  "\001(\t\022\r\n\005grade\030\004 \001(\005\022\025\n\rstorage_bytes\030\005 \001("
-  "\003\022\025\n\rmax_file_size\030\006 \001(\003\022\025\n\rmonthly_pric"
-  "e\030\007 \001(\003\022\020\n\010features\030\010 \003(\t\"\360\001\n\021S_GetSubsc"
-  "ription\022\017\n\007success\030\001 \001(\010\022\025\n\rcurrent_grad"
-  "e\030\002 \001(\005\022\031\n\021current_plan_name\030\003 \001(\t\022\036\n\026st"
-  "orage_capacity_bytes\030\004 \001(\003\022\033\n\023storage_us"
+  "tH\000\022>\n\024c_transfer_ownership\030\240\001 \001(\0132\035.Pro"
+  "tocol.C_TransferOwnershipH\000\022>\n\024s_transfe"
+  "r_ownership\030\241\001 \001(\0132\035.Protocol.S_Transfer"
+  "OwnershipH\000\0221\n\016c_create_group\030P \001(\0132\027.Pr"
+  "otocol.C_CreateGroupH\000\0221\n\016s_create_group"
+  "\030Q \001(\0132\027.Protocol.S_CreateGroupH\000\022-\n\014c_g"
+  "roup_list\030R \001(\0132\025.Protocol.C_GroupListH\000"
+  "\022-\n\014s_group_list\030S \001(\0132\025.Protocol.S_Grou"
+  "pListH\000\022-\n\014c_join_group\030T \001(\0132\025.Protocol"
+  ".C_JoinGroupH\000\022-\n\014s_join_group\030U \001(\0132\025.P"
+  "rotocol.S_JoinGroupH\000\0223\n\017c_invite_friend"
+  "\030V \001(\0132\030.Protocol.C_InviteFriendH\000\0223\n\017s_"
+  "invite_friend\030W \001(\0132\030.Protocol.S_InviteF"
+  "riendH\000\022/\n\rc_leave_group\030X \001(\0132\026.Protoco"
+  "l.C_LeaveGroupH\000\022/\n\rs_leave_group\030Y \001(\0132"
+  "\026.Protocol.S_LeaveGroupH\000\022:\n\023c_group_mem"
+  "ber_list\030Z \001(\0132\033.Protocol.C_GroupMemberL"
+  "istH\000\022:\n\023s_group_member_list\030[ \001(\0132\033.Pro"
+  "tocol.S_GroupMemberListH\000\022-\n\014c_group_inf"
+  "o\030\\ \001(\0132\025.Protocol.C_GroupInfoH\000\022-\n\014s_gr"
+  "oup_info\030] \001(\0132\025.Protocol.S_GroupInfoH\000\022"
+  "-\n\014c_edit_group\030^ \001(\0132\025.Protocol.C_EditG"
+  "roupH\000\022-\n\014s_edit_group\030_ \001(\0132\025.Protocol."
+  "S_EditGroupH\000\022*\n\nc_withdraw\030` \001(\0132\024.Prot"
+  "ocol.C_WithdrawH\000\022*\n\ns_withdraw\030a \001(\0132\024."
+  "Protocol.S_WithdrawH\000\0221\n\016c_delete_group\030"
+  "b \001(\0132\027.Protocol.C_DeleteGroupH\000\0221\n\016s_de"
+  "lete_group\030c \001(\0132\027.Protocol.S_DeleteGrou"
+  "pH\000\022$\n\007s_error\030d \001(\0132\021.Protocol.S_ErrorH"
+  "\000\022,\n\013c_heartbeat\030e \001(\0132\025.Protocol.C_Hear"
+  "tbeatH\000\022,\n\013s_heartbeat\030f \001(\0132\025.Protocol."
+  "S_HeartbeatH\000B\t\n\007payload\"\276\002\n\010UserInfo\022\017\n"
+  "\007user_id\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\026\n\016status_m"
+  "essage\030\003 \001(\t\022\031\n\021profile_image_url\030\004 \001(\t\022"
+  "\034\n\024background_image_url\030\005 \001(\t\022\r\n\005email\030\006"
+  " \001(\t\022\r\n\005phone\030\007 \001(\t\022\021\n\tsub_grade\030\010 \001(\r\022\036"
+  "\n\026storage_capacity_bytes\030\t \001(\003\022\033\n\023storag"
+  "e_usage_bytes\030\n \001(\003\022\021\n\tlast_seen\030\013 \001(\003\022\016"
+  "\n\006status\030\014 \001(\t\022\031\n\021is_email_verified\030\r \001("
+  "\010\022\026\n\016oauth_provider\030\016 \001(\t\"\233\001\n\nDeviceInfo"
+  "\022\021\n\tdevice_id\030\001 \001(\t\022\023\n\013device_name\030\002 \001(\t"
+  "\022\020\n\010platform\030\003 \001(\t\022\023\n\013last_active\030\004 \001(\003\022"
+  "\025\n\rregistered_at\030\005 \001(\003\022\023\n\013app_version\030\006 "
+  "\001(\t\022\022\n\nis_current\030\007 \001(\010\"\034\n\tC_CheckId\022\017\n\007"
+  "user_id\030\001 \001(\t\"!\n\tS_CheckId\022\024\n\014is_availab"
+  "le\030\001 \001(\010\"\035\n\014C_CheckEmail\022\r\n\005email\030\001 \001(\t\""
+  "$\n\014S_CheckEmail\022\024\n\014is_available\030\001 \001(\010\"%\n"
+  "\024C_RequestEmailVerify\022\r\n\005email\030\001 \001(\t\"8\n\024"
+  "S_RequestEmailVerify\022\017\n\007success\030\001 \001(\010\022\017\n"
+  "\007message\030\002 \001(\t\"3\n\024C_ConfirmEmailVerify\022\r"
+  "\n\005email\030\001 \001(\t\022\014\n\004code\030\002 \001(\t\"\'\n\024S_Confirm"
+  "EmailVerify\022\017\n\007success\030\001 \001(\010\"J\n\010C_SignUp"
+  "\022\017\n\007user_id\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\022\014\n\004n"
+  "ame\030\003 \001(\t\022\r\n\005email\030\004 \001(\t\"=\n\010S_SignUp\022\017\n\007"
+  "success\030\001 \001(\010\022\017\n\007message\030\002 \001(\t\022\017\n\007user_i"
+  "d\030\003 \001(\t\",\n\007C_Login\022\017\n\007user_id\030\001 \001(\t\022\020\n\010p"
+  "assword\030\002 \001(\t\"S\n\007S_Login\022\017\n\007success\030\001 \001("
+  "\010\022\022\n\nauth_token\030\002 \001(\t\022#\n\007my_info\030\003 \001(\0132\022"
+  ".Protocol.UserInfo\"0\n\010C_Logout\022\021\n\tfcm_to"
+  "ken\030\001 \001(\t\022\021\n\tdevice_id\030\002 \001(\t\"\033\n\010S_Logout"
+  "\022\017\n\007success\030\001 \001(\010\"\020\n\016C_GetMyDevices\"7\n\016S"
+  "_GetMyDevices\022%\n\007devices\030\001 \003(\0132\024.Protoco"
+  "l.DeviceInfo\"#\n\016C_RemoveDevice\022\021\n\tdevice"
+  "_id\030\001 \001(\t\"2\n\016S_RemoveDevice\022\017\n\007success\030\001"
+  " \001(\010\022\017\n\007message\030\002 \001(\t\"\017\n\rC_FetchMyInfo\"4"
+  "\n\rS_FetchMyInfo\022#\n\007my_info\030\001 \001(\0132\022.Proto"
+  "col.UserInfo\"|\n\014C_EditMyInfo\022\014\n\004name\030\001 \001"
+  "(\t\022\026\n\016status_message\030\002 \001(\t\022\031\n\021profile_im"
+  "age_url\030\003 \001(\t\022\034\n\024background_image_url\030\004 "
+  "\001(\t\022\r\n\005phone\030\005 \001(\t\"Z\n\014S_EditMyInfo\022\017\n\007su"
+  "ccess\030\001 \001(\010\022\017\n\007message\030\002 \001(\t\022(\n\014updated_"
+  "info\030\003 \001(\0132\022.Protocol.UserInfo\"v\n\022C_Regi"
+  "sterFcmToken\022\021\n\tfcm_token\030\001 \001(\t\022\020\n\010platf"
+  "orm\030\002 \001(\t\022\021\n\tdevice_id\030\003 \001(\t\022\023\n\013device_n"
+  "ame\030\004 \001(\t\022\023\n\013app_version\030\005 \001(\t\"6\n\022S_Regi"
+  "sterFcmToken\022\017\n\007success\030\001 \001(\010\022\017\n\007message"
+  "\030\002 \001(\t\"\"\n\rC_ChangeEmail\022\021\n\tnew_email\030\001 \001"
+  "(\t\"[\n\rS_ChangeEmail\022\017\n\007success\030\001 \001(\010\022\017\n\007"
+  "message\030\002 \001(\t\022(\n\014updated_info\030\003 \001(\0132\022.Pr"
+  "otocol.UserInfo\"B\n\020C_ChangePassword\022\030\n\020c"
+  "urrent_password\030\001 \001(\t\022\024\n\014new_password\030\002 "
+  "\001(\t\"4\n\020S_ChangePassword\022\017\n\007success\030\001 \001(\010"
+  "\022\017\n\007message\030\002 \001(\t\"\027\n\004Text\022\017\n\007message\030\001 \001"
+  "(\t\"5\n\005Image\022\013\n\003url\030\001 \001(\t\022\021\n\tthumbnail\030\002 "
+  "\001(\t\022\014\n\004size\030\003 \001(\003\"K\n\005Video\022\013\n\003url\030\001 \001(\t\022"
+  "\021\n\tthumbnail\030\002 \001(\t\022\024\n\014duration_sec\030\003 \001(\005"
+  "\022\014\n\004size\030\004 \001(\003\"F\n\004File\022\013\n\003url\030\001 \001(\t\022\020\n\010f"
+  "ilename\030\002 \001(\t\022\014\n\004size\030\003 \001(\003\022\021\n\tmime_type"
+  "\030\004 \001(\t\"C\n\tSystemMsg\022\017\n\007message\030\001 \001(\t\022\014\n\004"
+  "type\030\002 \001(\005\022\027\n\017invite_group_id\030\003 \001(\t\"8\n\005A"
+  "udio\022\013\n\003url\030\001 \001(\t\022\024\n\014duration_sec\030\002 \001(\005\022"
+  "\014\n\004size\030\003 \001(\003\"\345\001\n\013ChatPayload\022\036\n\004text\030\001 "
+  "\001(\0132\016.Protocol.TextH\000\022 \n\005image\030\002 \001(\0132\017.P"
+  "rotocol.ImageH\000\022 \n\005video\030\003 \001(\0132\017.Protoco"
+  "l.VideoH\000\022\036\n\004file\030\004 \001(\0132\016.Protocol.FileH"
+  "\000\022%\n\006system\030\005 \001(\0132\023.Protocol.SystemMsgH\000"
+  "\022 \n\005audio\030\006 \001(\0132\017.Protocol.AudioH\000B\t\n\007co"
+  "ntent\"\257\001\n\006C_Chat\022\017\n\007conv_id\030\001 \001(\t\022\025\n\rcli"
+  "ent_msg_id\030\002 \001(\005\022&\n\007payload\030\003 \001(\0132\025.Prot"
+  "ocol.ChatPayload\022\021\n\tts_client\030\004 \001(\003\022\024\n\014r"
+  "eply_to_seq\030\005 \001(\003\022\020\n\010gcs_path\030\006 \001(\t\022\032\n\022m"
+  "entioned_user_ids\030\007 \003(\t\"\366\002\n\006S_Chat\022\017\n\007co"
+  "nv_id\030\001 \001(\t\022\025\n\rclient_msg_id\030\002 \001(\005\022\017\n\007ms"
+  "g_seq\030\003 \001(\003\022\021\n\tsender_id\030\004 \001(\t\022\023\n\013sender"
+  "_name\030\005 \001(\t\022&\n\007payload\030\006 \001(\0132\025.Protocol."
+  "ChatPayload\022\021\n\tts_server\030\007 \001(\003\022\024\n\014reply_"
+  "to_seq\030\010 \001(\003\022\034\n\024reply_to_sender_name\030\t \001"
+  "(\t\022\025\n\rreply_to_text\030\n \001(\t\022\022\n\nis_deleted\030"
+  "\013 \001(\010\022\021\n\tis_edited\030\014 \001(\010\022\024\n\014unread_count"
+  "\030\r \001(\005\022\027\n\017file_expires_at\030\016 \001(\003\022\023\n\013file_"
+  "status\030\017 \001(\t\022\032\n\022mentioned_user_ids\030\020 \003(\t"
+  "\"7\n\rC_ReadReceipt\022\017\n\007conv_id\030\001 \001(\t\022\025\n\rla"
+  "st_read_seq\030\002 \001(\003\"J\n\rS_ReadReceipt\022\017\n\007co"
+  "nv_id\030\001 \001(\t\022\021\n\treader_id\030\002 \001(\t\022\025\n\rlast_r"
+  "ead_seq\030\003 \001(\003\"3\n\017C_DeleteMessage\022\017\n\007conv"
+  "_id\030\001 \001(\t\022\017\n\007msg_seq\030\002 \001(\003\"D\n\017S_DeleteMe"
+  "ssage\022\017\n\007success\030\001 \001(\010\022\017\n\007conv_id\030\002 \001(\t\022"
+  "\017\n\007msg_seq\030\003 \001(\003\"C\n\rC_EditMessage\022\017\n\007con"
+  "v_id\030\001 \001(\t\022\017\n\007msg_seq\030\002 \001(\003\022\020\n\010new_text\030"
+  "\003 \001(\t\"g\n\rS_EditMessage\022\017\n\007success\030\001 \001(\010\022"
+  "\017\n\007conv_id\030\002 \001(\t\022\017\n\007msg_seq\030\003 \001(\003\022\020\n\010new"
+  "_text\030\004 \001(\t\022\021\n\tedited_at\030\005 \001(\003\"D\n\014C_ReqH"
+  "istory\022\017\n\007conv_id\030\001 \001(\t\022\024\n\014last_msg_seq\030"
+  "\002 \001(\003\022\r\n\005limit\030\003 \001(\005\"S\n\014S_ReqHistory\022\017\n\007"
+  "conv_id\030\001 \001(\t\022\"\n\010messages\030\002 \003(\0132\020.Protoc"
+  "ol.S_Chat\022\016\n\006is_end\030\003 \001(\010\"\211\002\n\014C_UploadFi"
+  "le\022\020\n\010filename\030\001 \001(\t\022\014\n\004size\030\002 \001(\003\022\021\n\tmi"
+  "me_type\030\003 \001(\t\022\020\n\010is_image\030\004 \001(\010\0226\n\013uploa"
+  "d_type\030\005 \001(\0162!.Protocol.C_UploadFile.Upl"
+  "oadType\022\021\n\ttarget_id\030\006 \001(\t\"i\n\nUploadType"
+  "\022\017\n\013DIRECT_CHAT\020\000\022\016\n\nGROUP_CHAT\020\001\022\017\n\013PRO"
+  "FILE_IMG\020\002\022\025\n\021GROUP_PROFILE_IMG\020\003\022\022\n\016BAC"
+  "KGROUND_IMG\020\004\"\341\001\n\014S_UploadFile\022\017\n\007succes"
+  "s\030\001 \001(\010\022\017\n\007message\030\002 \001(\t\022\017\n\007file_id\030\003 \001("
+  "\t\022\022\n\nupload_url\030\004 \001(\t\022\024\n\014download_url\030\005 "
+  "\001(\t\022\030\n\020thumb_upload_url\030\006 \001(\t\022\025\n\rthumbna"
+  "il_url\030\007 \001(\t\022\022\n\nexpires_at\030\010 \001(\003\022\014\n\004path"
+  "\030\t \001(\t\022!\n\031file_retention_expires_at\030\n \001("
+  "\003\")\n\005C_Ack\022\017\n\007conv_id\030\001 \001(\t\022\017\n\007msg_seq\030\002"
+  " \001(\003\"\"\n\016C_FetchOffline\022\020\n\010since_ts\030\001 \001(\003"
+  "\"\304\001\n\016S_MessageBatch\022;\n\007batches\030\001 \003(\0132*.P"
+  "rotocol.S_MessageBatch.ConversationBatch"
+  "\032u\n\021ConversationBatch\022\017\n\007conv_id\030\001 \001(\t\022\""
+  "\n\010messages\030\002 \003(\0132\020.Protocol.S_Chat\022\024\n\014un"
+  "read_count\030\003 \001(\005\022\025\n\rlast_read_seq\030\004 \001(\003\""
+  "%\n\021C_GetSubscription\022\020\n\010group_id\030\001 \001(\t\"\252"
+  "\001\n\020SubscriptionPlan\022\017\n\007plan_id\030\001 \001(\005\022\021\n\t"
+  "plan_type\030\002 \001(\t\022\014\n\004name\030\003 \001(\t\022\r\n\005grade\030\004"
+  " \001(\005\022\025\n\rstorage_bytes\030\005 \001(\003\022\025\n\rmax_file_"
+  "size\030\006 \001(\003\022\025\n\rmonthly_price\030\007 \001(\003\022\020\n\010fea"
+  "tures\030\010 \003(\t\"\326\001\n\021S_GetSubscription\022\017\n\007suc"
+  "cess\030\001 \001(\010\022\031\n\021current_plan_name\030\003 \001(\t\022\033\n"
+  "\023storage_limit_bytes\030\004 \001(\003\022\033\n\023storage_us"
   "age_bytes\030\005 \001(\003\022\022\n\nexpires_at\030\006 \001(\003\022\022\n\na"
   "uto_renew\030\007 \001(\010\0223\n\017available_plans\030\010 \003(\013"
-  "2\032.Protocol.SubscriptionPlan\"h\n\020C_Verify"
+  "2\032.Protocol.SubscriptionPlan\"z\n\020C_Verify"
   "Purchase\022\020\n\010platform\030\001 \001(\t\022\022\n\nproduct_id"
   "\030\002 \001(\t\022\026\n\016transaction_id\030\003 \001(\t\022\026\n\016purcha"
-  "se_token\030\004 \001(\t\"u\n\020S_VerifyPurchase\022\017\n\007su"
-  "ccess\030\001 \001(\010\022\017\n\007message\030\002 \001(\t\022\021\n\tnew_grad"
-  "e\030\003 \001(\005\022\022\n\nexpires_at\030\004 \001(\003\022\030\n\020storage_c"
-  "apacity\030\005 \001(\003\"\026\n\024C_CancelSubscription\"R\n"
-  "\024S_CancelSubscription\022\017\n\007success\030\001 \001(\010\022\017"
-  "\n\007message\030\002 \001(\t\022\030\n\020grace_expires_at\030\003 \001("
-  "\003\".\n\nC_Withdraw\022\020\n\010password\030\001 \001(\t\022\016\n\006rea"
-  "son\030\002 \001(\t\".\n\nS_Withdraw\022\017\n\007success\030\001 \001(\010"
-  "\022\017\n\007message\030\002 \001(\t\"\037\n\014C_SearchUser\022\017\n\007use"
-  "r_id\030\001 \001(\t\"s\n\014S_SearchUser\022\017\n\007success\030\001 "
-  "\001(\010\022%\n\tuser_info\030\002 \001(\0132\022.Protocol.UserIn"
-  "fo\022\021\n\tis_friend\030\003 \001(\010\022\030\n\020has_sent_reques"
-  "t\030\004 \001(\010\"a\n\rFriendRequest\022%\n\trequester\030\001 "
-  "\001(\0132\022.Protocol.UserInfo\022\024\n\014requested_at\030"
-  "\002 \001(\003\022\023\n\013is_received\030\003 \001(\010\"\314\001\n\016C_FriendA"
-  "ction\0223\n\006action\030\001 \001(\0162#.Protocol.C_Frien"
-  "dAction.ActionType\022\026\n\016target_user_id\030\002 \001"
-  "(\t\"m\n\nActionType\022\020\n\014SEND_REQUEST\020\000\022\022\n\016CA"
-  "NCEL_REQUEST\020\001\022\022\n\016ACCEPT_REQUEST\020\002\022\022\n\016RE"
-  "JECT_REQUEST\020\003\022\021\n\rDELETE_FRIEND\020\004\"^\n\016S_F"
-  "riendAction\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030"
-  "\002 \001(\t\022*\n\016updated_friend\030\003 \001(\0132\022.Protocol"
-  ".UserInfo\"\023\n\021C_FetchFriendData\"\234\001\n\021S_Fet"
-  "chFriendData\022#\n\007friends\030\001 \003(\0132\022.Protocol"
-  ".UserInfo\0222\n\021received_requests\030\002 \003(\0132\027.P"
-  "rotocol.FriendRequest\022.\n\rsent_requests\030\003"
-  " \003(\0132\027.Protocol.FriendRequest\"\241\001\n\014S_Frie"
-  "ndPush\0222\n\tpush_type\030\001 \001(\0162\037.Protocol.S_F"
-  "riendPush.PushType\022%\n\tuser_info\030\002 \001(\0132\022."
-  "Protocol.UserInfo\"6\n\010PushType\022\017\n\013NEW_REQ"
-  "UEST\020\000\022\014\n\010ACCEPTED\020\001\022\013\n\007DELETED\020\002\"n\n\017Gro"
-  "upMemberInfo\022%\n\tuser_info\030\001 \001(\0132\022.Protoc"
-  "ol.UserInfo\022!\n\004role\030\002 \001(\0162\023.Protocol.Gro"
-  "upRole\022\021\n\tjoined_at\030\003 \001(\003\"\346\001\n\tGroupInfo\022"
-  "\020\n\010group_id\030\001 \001(\t\022\022\n\ngroup_name\030\002 \001(\t\022\022\n"
-  "\ngroup_code\030\003 \001(\t\022\023\n\013description\030\004 \001(\t\022\027"
-  "\n\017group_image_url\030\005 \001(\t\022\024\n\014member_count\030"
-  "\006 \001(\005\022\036\n\026storage_capacity_bytes\030\007 \001(\003\022\033\n"
-  "\023storage_usage_bytes\030\010 \001(\003\022\036\n\026invite_cod"
-  "e_expires_at\030\t \001(\003\"#\n\rC_CreateGroup\022\022\n\ng"
-  "roup_name\030\001 \001(\t\"D\n\rS_CreateGroup\022\017\n\007succ"
-  "ess\030\001 \001(\010\022\"\n\005group\030\002 \001(\0132\023.Protocol.Grou"
-  "pInfo\"\r\n\013C_GroupList\"2\n\013S_GroupList\022#\n\006g"
-  "roups\030\001 \003(\0132\023.Protocol.GroupInfo\"\037\n\013C_Gr"
-  "oupInfo\022\020\n\010group_id\030\001 \001(\t\"W\n\013S_GroupInfo"
-  "\022\"\n\005group\030\001 \001(\0132\023.Protocol.GroupInfo\022$\n\007"
-  "my_role\030\002 \001(\0162\023.Protocol.GroupRole\";\n\016C_"
-  "InviteFriend\022\020\n\010group_id\030\001 \001(\t\022\027\n\017friend"
-  "_user_ids\030\002 \003(\t\"!\n\016S_InviteFriend\022\017\n\007suc"
-  "cess\030\001 \001(\010\"!\n\013C_JoinGroup\022\022\n\ngroup_code\030"
-  "\001 \001(\t\"B\n\013S_JoinGroup\022\017\n\007success\030\001 \001(\010\022\"\n"
-  "\005group\030\002 \001(\0132\023.Protocol.GroupInfo\"\'\n\023C_R"
-  "efreshInviteCode\022\020\n\010group_id\030\001 \001(\t\"N\n\023S_"
-  "RefreshInviteCode\022\017\n\007success\030\001 \001(\010\022\022\n\ngr"
-  "oup_code\030\002 \001(\t\022\022\n\nexpires_at\030\003 \001(\003\"%\n\021C_"
-  "GroupMemberList\022\020\n\010group_id\030\001 \001(\t\"Q\n\021S_G"
-  "roupMemberList\022\020\n\010group_id\030\001 \001(\t\022*\n\007memb"
-  "ers\030\002 \003(\0132\031.Protocol.GroupMemberInfo\" \n\014"
-  "C_LeaveGroup\022\020\n\010group_id\030\001 \001(\t\"\037\n\014S_Leav"
-  "eGroup\022\017\n\007success\030\001 \001(\010\"a\n\013C_EditGroup\022\020"
-  "\n\010group_id\030\001 \001(\t\022\020\n\010new_name\030\002 \001(\t\022\027\n\017ne"
-  "w_description\030\003 \001(\t\022\025\n\rnew_image_url\030\004 \001"
-  "(\t\"B\n\013S_EditGroup\022\017\n\007success\030\001 \001(\010\022\"\n\005gr"
-  "oup\030\002 \001(\0132\023.Protocol.GroupInfo\"!\n\rC_Dele"
-  "teGroup\022\020\n\010group_id\030\001 \001(\t\" \n\rS_DeleteGro"
-  "up\022\017\n\007success\030\001 \001(\010\"Y\n\017BlockedUserInfo\022\017"
-  "\n\007user_id\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\023\n\013profile"
-  "_img\030\003 \001(\t\022\022\n\nblocked_at\030\004 \001(\003\"%\n\013C_Bloc"
-  "kUser\022\026\n\016target_user_id\030\001 \001(\t\"/\n\013S_Block"
-  "User\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\t\"\'"
-  "\n\rC_UnblockUser\022\026\n\016target_user_id\030\001 \001(\t\""
-  " \n\rS_UnblockUser\022\017\n\007success\030\001 \001(\010\"\022\n\020C_G"
-  "etBlockedList\"D\n\020S_GetBlockedList\0220\n\rblo"
-  "cked_users\030\001 \003(\0132\031.Protocol.BlockedUserI"
-  "nfo\"F\n\014C_ReportUser\022\026\n\016target_user_id\030\001 "
-  "\001(\t\022\016\n\006reason\030\002 \001(\t\022\016\n\006detail\030\003 \001(\t\"\037\n\014S"
-  "_ReportUser\022\017\n\007success\030\001 \001(\010\"@\n\rC_AddRea"
-  "ction\022\017\n\007conv_id\030\001 \001(\t\022\017\n\007msg_seq\030\002 \001(\003\022"
-  "\r\n\005emoji\030\003 \001(\t\"b\n\rS_AddReaction\022\017\n\007conv_"
-  "id\030\001 \001(\t\022\017\n\007msg_seq\030\002 \001(\003\022\017\n\007user_id\030\003 \001"
-  "(\t\022\r\n\005emoji\030\004 \001(\t\022\017\n\007removed\030\005 \001(\010\"\205\001\n\014C"
-  "_CreatePoll\022\017\n\007conv_id\030\001 \001(\t\022\020\n\010question"
-  "\030\002 \001(\t\022\017\n\007options\030\003 \003(\t\022\027\n\017is_multi_sele"
-  "ct\030\004 \001(\010\022\024\n\014is_anonymous\030\005 \001(\010\022\022\n\nexpire"
-  "s_at\030\006 \001(\003\"\344\001\n\014S_CreatePoll\022\017\n\007conv_id\030\001"
-  " \001(\t\022\017\n\007poll_id\030\002 \001(\t\022\017\n\007msg_seq\030\003 \001(\003\022\022"
-  "\n\ncreator_id\030\004 \001(\t\022\024\n\014creator_name\030\005 \001(\t"
-  "\022\020\n\010question\030\006 \001(\t\022\017\n\007options\030\007 \003(\t\022\027\n\017i"
-  "s_multi_select\030\010 \001(\010\022\024\n\014is_anonymous\030\t \001"
-  "(\010\022\022\n\nexpires_at\030\n \001(\003\022\021\n\tts_server\030\013 \001("
-  "\003\"U\n\006C_Vote\022\017\n\007conv_id\030\001 \001(\t\022\017\n\007poll_id\030"
-  "\002 \001(\t\022\017\n\007msg_seq\030\003 \001(\003\022\030\n\020selected_optio"
-  "ns\030\004 \003(\005\"\217\001\n\006S_Vote\022\017\n\007conv_id\030\001 \001(\t\022\017\n\007"
-  "poll_id\030\002 \001(\t\022\017\n\007msg_seq\030\003 \001(\003\022\020\n\010voter_"
-  "id\030\004 \001(\t\022\022\n\nvoter_name\030\005 \001(\t\022\030\n\020selected"
-  "_options\030\006 \003(\005\022\022\n\nvotes_json\030\007 \001(\t\"@\n\013C_"
-  "ClosePoll\022\017\n\007conv_id\030\001 \001(\t\022\017\n\007poll_id\030\002 "
-  "\001(\t\022\017\n\007msg_seq\030\003 \001(\003\"@\n\013S_ClosePoll\022\017\n\007c"
-  "onv_id\030\001 \001(\t\022\017\n\007poll_id\030\002 \001(\t\022\017\n\007msg_seq"
-  "\030\003 \001(\003\"X\n\021C_SetAnnouncement\022\017\n\007conv_id\030\001"
-  " \001(\t\022\017\n\007msg_seq\030\002 \001(\003\022\014\n\004text\030\003 \001(\t\022\023\n\013s"
-  "ender_name\030\004 \001(\t\"k\n\021S_SetAnnouncement\022\017\n"
-  "\007conv_id\030\001 \001(\t\022\017\n\007msg_seq\030\002 \001(\003\022\014\n\004text\030"
-  "\003 \001(\t\022\023\n\013sender_name\030\004 \001(\t\022\021\n\tsetter_id\030"
-  "\005 \001(\t\"3\n\rC_SocialLogin\022\020\n\010provider\030\001 \001(\t"
-  "\022\020\n\010id_token\030\002 \001(\t\"c\n\rS_SocialLogin\022\032\n\022n"
-  "eeds_registration\030\001 \001(\010\022\r\n\005email\030\002 \001(\t\022\014"
-  "\n\004name\030\003 \001(\t\022\031\n\021profile_image_url\030\004 \001(\t\""
-  "[\n\026C_CompleteSocialSignup\022\020\n\010provider\030\001 "
-  "\001(\t\022\020\n\010id_token\030\002 \001(\t\022\017\n\007user_id\030\003 \001(\t\022\014"
-  "\n\004name\030\004 \001(\t\"\211\001\n\005Album\022\n\n\002id\030\001 \001(\t\022\020\n\010gr"
-  "oup_id\030\002 \001(\t\022\014\n\004name\030\003 \001(\t\022\027\n\017cover_phot"
-  "o_url\030\004 \001(\t\022\022\n\ncreated_by\030\005 \001(\t\022\022\n\ncreat"
-  "ed_at\030\006 \001(\003\022\023\n\013photo_count\030\007 \001(\005\"\261\001\n\nAlb"
-  "umPhoto\022\n\n\002id\030\001 \001(\t\022\020\n\010album_id\030\002 \001(\t\022\020\n"
-  "\010group_id\030\003 \001(\t\022\017\n\007msg_seq\030\004 \001(\003\022\021\n\tphot"
-  "o_url\030\005 \001(\t\022\025\n\rthumbnail_url\030\006 \001(\t\022\023\n\013up"
-  "loader_id\030\007 \001(\t\022\016\n\006source\030\010 \001(\t\022\023\n\013uploa"
-  "ded_at\030\t \001(\003\"v\n\014PhotoComment\022\n\n\002id\030\001 \001(\t"
-  "\022\020\n\010photo_id\030\002 \001(\t\022\021\n\tsender_id\030\003 \001(\t\022\023\n"
-  "\013sender_name\030\004 \001(\t\022\014\n\004text\030\005 \001(\t\022\022\n\ncrea"
-  "ted_at\030\006 \001(\003\"C\n\rC_CreateAlbum\022\020\n\010group_i"
-  "d\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\022\n\ncreated_by\030\003 \001("
-  "\t\"O\n\rS_CreateAlbum\022\017\n\007success\030\001 \001(\010\022\036\n\005a"
-  "lbum\030\002 \001(\0132\017.Protocol.Album\022\r\n\005error\030\003 \001"
-  "(\t\"\037\n\013C_GetAlbums\022\020\n\010group_id\030\001 \001(\t\".\n\013S"
-  "_GetAlbums\022\037\n\006albums\030\001 \003(\0132\017.Protocol.Al"
-  "bum\"\207\001\n\021C_AddPhotoToAlbum\022\020\n\010album_id\030\001 "
-  "\001(\t\022\020\n\010group_id\030\002 \001(\t\022\017\n\007msg_seq\030\003 \001(\003\022\021"
-  "\n\tphoto_url\030\004 \001(\t\022\025\n\rthumbnail_url\030\005 \001(\t"
-  "\022\023\n\013uploader_id\030\006 \001(\t\"\212\001\n\021S_AddPhotoToAl"
-  "bum\022\017\n\007success\030\001 \001(\010\022\020\n\010album_id\030\002 \001(\t\022#"
-  "\n\005photo\030\003 \001(\0132\024.Protocol.AlbumPhoto\022\r\n\005e"
-  "rror\030\004 \001(\t\022\036\n\005album\030\005 \001(\0132\017.Protocol.Alb"
-  "um\":\n\020C_GetAlbumPhotos\022\020\n\010album_id\030\001 \001(\t"
-  "\022\024\n\014latest_first\030\002 \001(\010\"J\n\020S_GetAlbumPhot"
-  "os\022\020\n\010album_id\030\001 \001(\t\022$\n\006photos\030\002 \003(\0132\024.P"
-  "rotocol.AlbumPhoto\"D\n\rC_DeleteAlbum\022\020\n\010a"
-  "lbum_id\030\001 \001(\t\022\017\n\007user_id\030\002 \001(\t\022\020\n\010group_"
-  "id\030\003 \001(\t\"S\n\rS_DeleteAlbum\022\017\n\007success\030\001 \001"
-  "(\010\022\020\n\010album_id\030\002 \001(\t\022\020\n\010group_id\030\003 \001(\t\022\r"
-  "\n\005error\030\004 \001(\t\"[\n\022C_DeleteAlbumPhoto\022\020\n\010p"
-  "hoto_id\030\001 \001(\t\022\017\n\007user_id\030\002 \001(\t\022\020\n\010album_"
-  "id\030\003 \001(\t\022\020\n\010group_id\030\004 \001(\t\"\212\001\n\022S_DeleteA"
-  "lbumPhoto\022\017\n\007success\030\001 \001(\010\022\020\n\010photo_id\030\002"
-  " \001(\t\022\020\n\010album_id\030\003 \001(\t\022\020\n\010group_id\030\004 \001(\t"
-  "\022\r\n\005error\030\005 \001(\t\022\036\n\005album\030\006 \001(\0132\017.Protoco"
-  "l.Album\"n\n\013C_MovePhoto\022\020\n\010photo_id\030\001 \001(\t"
-  "\022\025\n\rfrom_album_id\030\002 \001(\t\022\023\n\013to_album_id\030\003"
-  " \001(\t\022\020\n\010group_id\030\004 \001(\t\022\017\n\007user_id\030\005 \001(\t\""
-  "\305\001\n\013S_MovePhoto\022\017\n\007success\030\001 \001(\010\022\020\n\010phot"
-  "o_id\030\002 \001(\t\022\025\n\rfrom_album_id\030\003 \001(\t\022\023\n\013to_"
-  "album_id\030\004 \001(\t\022\020\n\010group_id\030\005 \001(\t\022\r\n\005erro"
-  "r\030\006 \001(\t\022#\n\nfrom_album\030\007 \001(\0132\017.Protocol.A"
-  "lbum\022!\n\010to_album\030\010 \001(\0132\017.Protocol.Album\""
-  "m\n\021C_AddPhotoComment\022\020\n\010photo_id\030\001 \001(\t\022\021"
-  "\n\tsender_id\030\002 \001(\t\022\023\n\013sender_name\030\003 \001(\t\022\014"
-  "\n\004text\030\004 \001(\t\022\020\n\010group_id\030\005 \001(\t\"\\\n\021S_AddP"
-  "hotoComment\022\017\n\007success\030\001 \001(\010\022\'\n\007comment\030"
-  "\002 \001(\0132\026.Protocol.PhotoComment\022\r\n\005error\030\003"
-  " \001(\t\"&\n\022C_GetPhotoComments\022\020\n\010photo_id\030\001"
-  " \001(\t\"P\n\022S_GetPhotoComments\022\020\n\010photo_id\030\001"
-  " \001(\t\022(\n\010comments\030\002 \003(\0132\026.Protocol.PhotoC"
-  "omment\"_\n\024C_DeletePhotoComment\022\022\n\ncommen"
-  "t_id\030\001 \001(\t\022\017\n\007user_id\030\002 \001(\t\022\020\n\010group_id\030"
-  "\003 \001(\t\022\020\n\010photo_id\030\004 \001(\t\"n\n\024S_DeletePhoto"
-  "Comment\022\017\n\007success\030\001 \001(\010\022\022\n\ncomment_id\030\002"
-  " \001(\t\022\020\n\010photo_id\030\003 \001(\t\022\020\n\010group_id\030\004 \001(\t"
-  "\022\r\n\005error\030\005 \001(\t\".\n\rLocationPhoto\022\n\n\002id\030\001"
-  " \001(\t\022\021\n\tphoto_url\030\002 \001(\t\"\240\001\n\021LocationVisi"
-  "tInfo\022\n\n\002id\030\001 \001(\t\022\017\n\007user_id\030\002 \001(\t\022\021\n\tus"
-  "er_name\030\003 \001(\t\022\016\n\006rating\030\004 \001(\005\022\016\n\006review\030"
-  "\005 \001(\t\022\022\n\nvisited_at\030\006 \001(\003\022\'\n\006photos\030\007 \003("
-  "\0132\027.Protocol.LocationPhoto\"\224\002\n\021LocationP"
-  "laceInfo\022\n\n\002id\030\001 \001(\t\022\020\n\010group_id\030\002 \001(\t\022\014"
-  "\n\004name\030\003 \001(\t\022\017\n\007address\030\004 \001(\t\022\020\n\010categor"
-  "y\030\005 \001(\t\022\013\n\003lat\030\006 \001(\001\022\013\n\003lng\030\007 \001(\001\022\022\n\ncre"
-  "ated_by\030\010 \001(\t\022\022\n\ncreated_at\030\t \001(\003\022\023\n\013vis"
-  "it_count\030\n \001(\005\022\022\n\navg_rating\030\013 \001(\002\022\030\n\020re"
-  "cent_photo_url\030\014 \001(\t\022+\n\006visits\030\r \003(\0132\033.P"
-  "rotocol.LocationVisitInfo\"\216\001\n\013C_SavePlac"
-  "e\022\020\n\010group_id\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\017\n\007add"
-  "ress\030\003 \001(\t\022\020\n\010category\030\004 \001(\t\022\013\n\003lat\030\005 \001("
-  "\001\022\013\n\003lng\030\006 \001(\001\022\017\n\007user_id\030\007 \001(\t\022\021\n\tuser_"
-  "name\030\010 \001(\t\"^\n\013S_SavePlace\022\017\n\007success\030\001 \001"
-  "(\010\022*\n\005place\030\002 \001(\0132\033.Protocol.LocationPla"
-  "ceInfo\022\022\n\nerror_code\030\003 \001(\005\"\037\n\013C_GetPlace"
-  "s\022\020\n\010group_id\030\001 \001(\t\"L\n\013S_GetPlaces\022\020\n\010gr"
-  "oup_id\030\001 \001(\t\022+\n\006places\030\002 \003(\0132\033.Protocol."
-  "LocationPlaceInfo\"\235\001\n\013C_SaveVisit\022\020\n\010pla"
-  "ce_id\030\001 \001(\t\022\020\n\010group_id\030\002 \001(\t\022\017\n\007user_id"
-  "\030\003 \001(\t\022\021\n\tuser_name\030\004 \001(\t\022\016\n\006rating\030\005 \001("
-  "\005\022\016\n\006review\030\006 \001(\t\022\022\n\nphoto_urls\030\007 \003(\t\022\022\n"
-  "\nvisited_at\030\010 \001(\003\"\234\001\n\013S_SaveVisit\022\017\n\007suc"
-  "cess\030\001 \001(\010\022\020\n\010place_id\030\002 \001(\t\022*\n\005visit\030\003 "
-  "\001(\0132\033.Protocol.LocationVisitInfo\022*\n\005plac"
-  "e\030\004 \001(\0132\033.Protocol.LocationPlaceInfo\022\022\n\n"
-  "error_code\030\005 \001(\005\"D\n\rC_DeletePlace\022\020\n\010pla"
-  "ce_id\030\001 \001(\t\022\020\n\010group_id\030\002 \001(\t\022\017\n\007user_id"
-  "\030\003 \001(\t\"X\n\rS_DeletePlace\022\017\n\007success\030\001 \001(\010"
-  "\022\020\n\010place_id\030\002 \001(\t\022\020\n\010group_id\030\003 \001(\t\022\022\n\n"
-  "error_code\030\004 \001(\005\"\236\001\n\rC_UpdateVisit\022\020\n\010vi"
-  "sit_id\030\001 \001(\t\022\020\n\010place_id\030\002 \001(\t\022\020\n\010group_"
-  "id\030\003 \001(\t\022\017\n\007user_id\030\004 \001(\t\022\016\n\006rating\030\005 \001("
-  "\005\022\016\n\006review\030\006 \001(\t\022\022\n\nphoto_urls\030\007 \003(\t\022\022\n"
-  "\nvisited_at\030\010 \001(\003\"\214\001\n\rS_UpdateVisit\022\017\n\007s"
-  "uccess\030\001 \001(\010\022*\n\005visit\030\002 \001(\0132\033.Protocol.L"
-  "ocationVisitInfo\022*\n\005place\030\003 \001(\0132\033.Protoc"
-  "ol.LocationPlaceInfo\022\022\n\nerror_code\030\004 \001(\005"
-  "\"V\n\rC_DeleteVisit\022\020\n\010visit_id\030\001 \001(\t\022\020\n\010p"
-  "lace_id\030\002 \001(\t\022\020\n\010group_id\030\003 \001(\t\022\017\n\007user_"
-  "id\030\004 \001(\t\"\201\001\n\rS_DeleteVisit\022\017\n\007success\030\001 "
-  "\001(\010\022\020\n\010visit_id\030\002 \001(\t\022\020\n\010place_id\030\003 \001(\t\022"
-  "\020\n\010group_id\030\004 \001(\t\022\025\n\rplace_deleted\030\005 \001(\010"
-  "\022\022\n\nerror_code\030\006 \001(\005\"Q\n\007S_Error\022\'\n\nerror"
-  "_code\030\001 \001(\0162\023.Protocol.ErrorCode\022\014\n\004code"
-  "\030\002 \001(\r\022\017\n\007message\030\003 \001(\t\"\r\n\013C_Heartbeat\"\r"
-  "\n\013S_Heartbeat*-\n\tGroupRole\022\n\n\006MEMBER\020\000\022\t"
-  "\n\005ADMIN\020\001\022\t\n\005OWNER\020\002*\216\n\n\tErrorCode\022\017\n\013ER"
-  "R_SUCCESS\020\000\022\017\n\013ERR_UNKNOWN\020\001\022\027\n\023ERR_SERV"
-  "ER_INTERNAL\020\002\022\026\n\022ERR_INVALID_PACKET\020\003\022\030\n"
-  "\024ERR_VERSION_MISMATCH\020\004\022\024\n\020ERR_UNAUTHORI"
-  "ZED\020\005\022\025\n\021ERR_INVALID_TOKEN\020\006\022\025\n\021ERR_USER"
-  "_ID_EMPTY\020d\022\030\n\024ERR_USER_ID_REQUIRED\020e\022\031\n"
-  "\025ERR_PASSWORD_REQUIRED\020f\022\025\n\021ERR_NAME_REQ"
-  "UIRED\020g\022\026\n\022ERR_EMAIL_REQUIRED\020h\022\026\n\022ERR_U"
-  "SER_NOT_FOUND\020i\022\030\n\024ERR_INVALID_PASSWORD\020"
-  "j\022\033\n\027ERR_USER_ALREADY_EXISTS\020k\022\034\n\030ERR_EM"
-  "AIL_ALREADY_EXISTS\020l\022\032\n\026ERR_EMAIL_NOT_VE"
-  "RIFIED\020m\022\026\n\021ERR_PAYLOAD_EMPTY\020\310\001\022\030\n\023ERR_"
-  "INVALID_CONV_ID\020\311\001\022\034\n\027ERR_INVALID_RECEIV"
-  "ER_ID\020\312\001\022\024\n\017ERR_INVALID_ACK\020\313\001\022\037\n\032ERR_IN"
-  "VALID_FRIEND_USER_ID\020\254\002\022\030\n\023ERR_CANNOT_AD"
-  "D_SELF\020\255\002\022\025\n\020ERR_NOT_A_FRIEND\020\256\002\022!\n\034ERR_"
-  "FRIEND_REQUEST_NOT_FOUND\020\257\002\022%\n ERR_FILE_"
-  "SERVICE_NOT_INITIALIZED\020\220\003\022&\n!ERR_CLOUD_"
-  "STORAGE_NOT_INITIALIZED\020\221\003\022\032\n\025ERR_FILENA"
-  "ME_REQUIRED\020\222\003\022\032\n\025ERR_INVALID_FILE_SIZE\020"
-  "\223\003\022\033\n\026ERR_MIME_TYPE_REQUIRED\020\224\003\022\037\n\032ERR_F"
-  "AILED_TO_GENERATE_URL\020\225\003\022\031\n\024ERR_INVALID_"
-  "FILE_URL\020\226\003\022\031\n\024ERR_INVALID_ARGUMENT\020\227\003\022\031"
-  "\n\024ERR_STORAGE_EXCEEDED\020\230\003\022\027\n\022ERR_FILE_TO"
-  "O_LARGE\020\231\003\022\027\n\022ERR_PAYMENT_FAILED\020\232\003\022\030\n\023E"
-  "RR_RECEIPT_INVALID\020\233\003\022\026\n\021ERR_NO_PERMISSI"
-  "ON\020\364\003\022\030\n\023ERR_ALREADY_BLOCKED\020\330\004\022\024\n\017ERR_N"
-  "OT_BLOCKED\020\331\004\022\032\n\025ERR_CANNOT_BLOCK_SELF\020\332"
-  "\004\022\031\n\024ERR_REPORT_DUPLICATE\020\342\004\022\027\n\022ERR_POLL"
-  "_NOT_FOUND\020\274\005\022\024\n\017ERR_POLL_CLOSED\020\275\005\022\034\n\027E"
-  "RR_POLL_INVALID_OPTION\020\276\005\022\027\n\022ERR_INVITE_"
-  "EXPIRED\020\240\006\022!\n\035ERR_OAUTH_VERIFICATION_FAI"
-  "LED\020x\022\036\n\032ERR_OAUTH_PROVIDER_INVALID\020yb\006p"
-  "roto3"
+  "se_token\030\004 \001(\t\022\020\n\010group_id\030\005 \001(\t\"\202\001\n\020S_V"
+  "erifyPurchase\022\017\n\007success\030\001 \001(\010\022\017\n\007messag"
+  "e\030\002 \001(\t\022\022\n\nexpires_at\030\004 \001(\003\022\033\n\023storage_l"
+  "imit_bytes\030\005 \001(\003\022\033\n\023storage_usage_bytes\030"
+  "\006 \001(\003\"(\n\024C_CancelSubscription\022\020\n\010group_i"
+  "d\030\001 \001(\t\"R\n\024S_CancelSubscription\022\017\n\007succe"
+  "ss\030\001 \001(\010\022\017\n\007message\030\002 \001(\t\022\030\n\020grace_expir"
+  "es_at\030\003 \001(\003\".\n\nC_Withdraw\022\020\n\010password\030\001 "
+  "\001(\t\022\016\n\006reason\030\002 \001(\t\".\n\nS_Withdraw\022\017\n\007suc"
+  "cess\030\001 \001(\010\022\017\n\007message\030\002 \001(\t\"\037\n\014C_SearchU"
+  "ser\022\017\n\007user_id\030\001 \001(\t\"s\n\014S_SearchUser\022\017\n\007"
+  "success\030\001 \001(\010\022%\n\tuser_info\030\002 \001(\0132\022.Proto"
+  "col.UserInfo\022\021\n\tis_friend\030\003 \001(\010\022\030\n\020has_s"
+  "ent_request\030\004 \001(\010\"a\n\rFriendRequest\022%\n\tre"
+  "quester\030\001 \001(\0132\022.Protocol.UserInfo\022\024\n\014req"
+  "uested_at\030\002 \001(\003\022\023\n\013is_received\030\003 \001(\010\"\314\001\n"
+  "\016C_FriendAction\0223\n\006action\030\001 \001(\0162#.Protoc"
+  "ol.C_FriendAction.ActionType\022\026\n\016target_u"
+  "ser_id\030\002 \001(\t\"m\n\nActionType\022\020\n\014SEND_REQUE"
+  "ST\020\000\022\022\n\016CANCEL_REQUEST\020\001\022\022\n\016ACCEPT_REQUE"
+  "ST\020\002\022\022\n\016REJECT_REQUEST\020\003\022\021\n\rDELETE_FRIEN"
+  "D\020\004\"^\n\016S_FriendAction\022\017\n\007success\030\001 \001(\010\022\017"
+  "\n\007message\030\002 \001(\t\022*\n\016updated_friend\030\003 \001(\0132"
+  "\022.Protocol.UserInfo\"\023\n\021C_FetchFriendData"
+  "\"\234\001\n\021S_FetchFriendData\022#\n\007friends\030\001 \003(\0132"
+  "\022.Protocol.UserInfo\0222\n\021received_requests"
+  "\030\002 \003(\0132\027.Protocol.FriendRequest\022.\n\rsent_"
+  "requests\030\003 \003(\0132\027.Protocol.FriendRequest\""
+  "\241\001\n\014S_FriendPush\0222\n\tpush_type\030\001 \001(\0162\037.Pr"
+  "otocol.S_FriendPush.PushType\022%\n\tuser_inf"
+  "o\030\002 \001(\0132\022.Protocol.UserInfo\"6\n\010PushType\022"
+  "\017\n\013NEW_REQUEST\020\000\022\014\n\010ACCEPTED\020\001\022\013\n\007DELETE"
+  "D\020\002\"n\n\017GroupMemberInfo\022%\n\tuser_info\030\001 \001("
+  "\0132\022.Protocol.UserInfo\022!\n\004role\030\002 \001(\0162\023.Pr"
+  "otocol.GroupRole\022\021\n\tjoined_at\030\003 \001(\003\"\346\001\n\t"
+  "GroupInfo\022\020\n\010group_id\030\001 \001(\t\022\022\n\ngroup_nam"
+  "e\030\002 \001(\t\022\022\n\ngroup_code\030\003 \001(\t\022\023\n\013descripti"
+  "on\030\004 \001(\t\022\027\n\017group_image_url\030\005 \001(\t\022\024\n\014mem"
+  "ber_count\030\006 \001(\005\022\036\n\026storage_capacity_byte"
+  "s\030\007 \001(\003\022\033\n\023storage_usage_bytes\030\010 \001(\003\022\036\n\026"
+  "invite_code_expires_at\030\t \001(\003\"#\n\rC_Create"
+  "Group\022\022\n\ngroup_name\030\001 \001(\t\"D\n\rS_CreateGro"
+  "up\022\017\n\007success\030\001 \001(\010\022\"\n\005group\030\002 \001(\0132\023.Pro"
+  "tocol.GroupInfo\"\r\n\013C_GroupList\"2\n\013S_Grou"
+  "pList\022#\n\006groups\030\001 \003(\0132\023.Protocol.GroupIn"
+  "fo\"\037\n\013C_GroupInfo\022\020\n\010group_id\030\001 \001(\t\"W\n\013S"
+  "_GroupInfo\022\"\n\005group\030\001 \001(\0132\023.Protocol.Gro"
+  "upInfo\022$\n\007my_role\030\002 \001(\0162\023.Protocol.Group"
+  "Role\";\n\016C_InviteFriend\022\020\n\010group_id\030\001 \001(\t"
+  "\022\027\n\017friend_user_ids\030\002 \003(\t\"!\n\016S_InviteFri"
+  "end\022\017\n\007success\030\001 \001(\010\"!\n\013C_JoinGroup\022\022\n\ng"
+  "roup_code\030\001 \001(\t\"B\n\013S_JoinGroup\022\017\n\007succes"
+  "s\030\001 \001(\010\022\"\n\005group\030\002 \001(\0132\023.Protocol.GroupI"
+  "nfo\"\'\n\023C_RefreshInviteCode\022\020\n\010group_id\030\001"
+  " \001(\t\"N\n\023S_RefreshInviteCode\022\017\n\007success\030\001"
+  " \001(\010\022\022\n\ngroup_code\030\002 \001(\t\022\022\n\nexpires_at\030\003"
+  " \001(\003\"%\n\021C_GroupMemberList\022\020\n\010group_id\030\001 "
+  "\001(\t\"Q\n\021S_GroupMemberList\022\020\n\010group_id\030\001 \001"
+  "(\t\022*\n\007members\030\002 \003(\0132\031.Protocol.GroupMemb"
+  "erInfo\" \n\014C_LeaveGroup\022\020\n\010group_id\030\001 \001(\t"
+  "\"\037\n\014S_LeaveGroup\022\017\n\007success\030\001 \001(\010\"a\n\013C_E"
+  "ditGroup\022\020\n\010group_id\030\001 \001(\t\022\020\n\010new_name\030\002"
+  " \001(\t\022\027\n\017new_description\030\003 \001(\t\022\025\n\rnew_ima"
+  "ge_url\030\004 \001(\t\"B\n\013S_EditGroup\022\017\n\007success\030\001"
+  " \001(\010\022\"\n\005group\030\002 \001(\0132\023.Protocol.GroupInfo"
+  "\"!\n\rC_DeleteGroup\022\020\n\010group_id\030\001 \001(\t\" \n\rS"
+  "_DeleteGroup\022\017\n\007success\030\001 \001(\010\"\?\n\023C_Trans"
+  "ferOwnership\022\020\n\010group_id\030\001 \001(\t\022\026\n\016target"
+  "_user_id\030\002 \001(\t\"<\n\023S_TransferOwnership\022\017\n"
+  "\007success\030\001 \001(\010\022\024\n\014new_owner_id\030\002 \001(\t\"Y\n\017"
+  "BlockedUserInfo\022\017\n\007user_id\030\001 \001(\t\022\014\n\004name"
+  "\030\002 \001(\t\022\023\n\013profile_img\030\003 \001(\t\022\022\n\nblocked_a"
+  "t\030\004 \001(\003\"%\n\013C_BlockUser\022\026\n\016target_user_id"
+  "\030\001 \001(\t\"/\n\013S_BlockUser\022\017\n\007success\030\001 \001(\010\022\017"
+  "\n\007message\030\002 \001(\t\"\'\n\rC_UnblockUser\022\026\n\016targ"
+  "et_user_id\030\001 \001(\t\" \n\rS_UnblockUser\022\017\n\007suc"
+  "cess\030\001 \001(\010\"\022\n\020C_GetBlockedList\"D\n\020S_GetB"
+  "lockedList\0220\n\rblocked_users\030\001 \003(\0132\031.Prot"
+  "ocol.BlockedUserInfo\"F\n\014C_ReportUser\022\026\n\016"
+  "target_user_id\030\001 \001(\t\022\016\n\006reason\030\002 \001(\t\022\016\n\006"
+  "detail\030\003 \001(\t\"\037\n\014S_ReportUser\022\017\n\007success\030"
+  "\001 \001(\010\"@\n\rC_AddReaction\022\017\n\007conv_id\030\001 \001(\t\022"
+  "\017\n\007msg_seq\030\002 \001(\003\022\r\n\005emoji\030\003 \001(\t\"b\n\rS_Add"
+  "Reaction\022\017\n\007conv_id\030\001 \001(\t\022\017\n\007msg_seq\030\002 \001"
+  "(\003\022\017\n\007user_id\030\003 \001(\t\022\r\n\005emoji\030\004 \001(\t\022\017\n\007re"
+  "moved\030\005 \001(\010\"\205\001\n\014C_CreatePoll\022\017\n\007conv_id\030"
+  "\001 \001(\t\022\020\n\010question\030\002 \001(\t\022\017\n\007options\030\003 \003(\t"
+  "\022\027\n\017is_multi_select\030\004 \001(\010\022\024\n\014is_anonymou"
+  "s\030\005 \001(\010\022\022\n\nexpires_at\030\006 \001(\003\"\210\002\n\014S_Create"
+  "Poll\022\017\n\007conv_id\030\001 \001(\t\022\017\n\007poll_id\030\002 \001(\t\022\017"
+  "\n\007msg_seq\030\003 \001(\003\022\022\n\ncreator_id\030\004 \001(\t\022\024\n\014c"
+  "reator_name\030\005 \001(\t\022\020\n\010question\030\006 \001(\t\022\017\n\007o"
+  "ptions\030\007 \003(\t\022\027\n\017is_multi_select\030\010 \001(\010\022\024\n"
+  "\014is_anonymous\030\t \001(\010\022\022\n\nexpires_at\030\n \001(\003\022"
+  "\021\n\tts_server\030\013 \001(\003\022\016\n\006status\030\014 \001(\t\022\022\n\nvo"
+  "tes_json\030\r \001(\t\"U\n\006C_Vote\022\017\n\007conv_id\030\001 \001("
+  "\t\022\017\n\007poll_id\030\002 \001(\t\022\017\n\007msg_seq\030\003 \001(\003\022\030\n\020s"
+  "elected_options\030\004 \003(\005\"\217\001\n\006S_Vote\022\017\n\007conv"
+  "_id\030\001 \001(\t\022\017\n\007poll_id\030\002 \001(\t\022\017\n\007msg_seq\030\003 "
+  "\001(\003\022\020\n\010voter_id\030\004 \001(\t\022\022\n\nvoter_name\030\005 \001("
+  "\t\022\030\n\020selected_options\030\006 \003(\005\022\022\n\nvotes_jso"
+  "n\030\007 \001(\t\"@\n\013C_ClosePoll\022\017\n\007conv_id\030\001 \001(\t\022"
+  "\017\n\007poll_id\030\002 \001(\t\022\017\n\007msg_seq\030\003 \001(\003\"@\n\013S_C"
+  "losePoll\022\017\n\007conv_id\030\001 \001(\t\022\017\n\007poll_id\030\002 \001"
+  "(\t\022\017\n\007msg_seq\030\003 \001(\003\"X\n\021C_SetAnnouncement"
+  "\022\017\n\007conv_id\030\001 \001(\t\022\017\n\007msg_seq\030\002 \001(\003\022\014\n\004te"
+  "xt\030\003 \001(\t\022\023\n\013sender_name\030\004 \001(\t\"k\n\021S_SetAn"
+  "nouncement\022\017\n\007conv_id\030\001 \001(\t\022\017\n\007msg_seq\030\002"
+  " \001(\003\022\014\n\004text\030\003 \001(\t\022\023\n\013sender_name\030\004 \001(\t\022"
+  "\021\n\tsetter_id\030\005 \001(\t\"3\n\rC_SocialLogin\022\020\n\010p"
+  "rovider\030\001 \001(\t\022\020\n\010id_token\030\002 \001(\t\"c\n\rS_Soc"
+  "ialLogin\022\032\n\022needs_registration\030\001 \001(\010\022\r\n\005"
+  "email\030\002 \001(\t\022\014\n\004name\030\003 \001(\t\022\031\n\021profile_ima"
+  "ge_url\030\004 \001(\t\"[\n\026C_CompleteSocialSignup\022\020"
+  "\n\010provider\030\001 \001(\t\022\020\n\010id_token\030\002 \001(\t\022\017\n\007us"
+  "er_id\030\003 \001(\t\022\014\n\004name\030\004 \001(\t\"\211\001\n\005Album\022\n\n\002i"
+  "d\030\001 \001(\t\022\020\n\010group_id\030\002 \001(\t\022\014\n\004name\030\003 \001(\t\022"
+  "\027\n\017cover_photo_url\030\004 \001(\t\022\022\n\ncreated_by\030\005"
+  " \001(\t\022\022\n\ncreated_at\030\006 \001(\003\022\023\n\013photo_count\030"
+  "\007 \001(\005\"\261\001\n\nAlbumPhoto\022\n\n\002id\030\001 \001(\t\022\020\n\010albu"
+  "m_id\030\002 \001(\t\022\020\n\010group_id\030\003 \001(\t\022\017\n\007msg_seq\030"
+  "\004 \001(\003\022\021\n\tphoto_url\030\005 \001(\t\022\025\n\rthumbnail_ur"
+  "l\030\006 \001(\t\022\023\n\013uploader_id\030\007 \001(\t\022\016\n\006source\030\010"
+  " \001(\t\022\023\n\013uploaded_at\030\t \001(\003\"v\n\014PhotoCommen"
+  "t\022\n\n\002id\030\001 \001(\t\022\020\n\010photo_id\030\002 \001(\t\022\021\n\tsende"
+  "r_id\030\003 \001(\t\022\023\n\013sender_name\030\004 \001(\t\022\014\n\004text\030"
+  "\005 \001(\t\022\022\n\ncreated_at\030\006 \001(\003\"C\n\rC_CreateAlb"
+  "um\022\020\n\010group_id\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\022\n\ncr"
+  "eated_by\030\003 \001(\t\"O\n\rS_CreateAlbum\022\017\n\007succe"
+  "ss\030\001 \001(\010\022\036\n\005album\030\002 \001(\0132\017.Protocol.Album"
+  "\022\r\n\005error\030\003 \001(\t\"\037\n\013C_GetAlbums\022\020\n\010group_"
+  "id\030\001 \001(\t\".\n\013S_GetAlbums\022\037\n\006albums\030\001 \003(\0132"
+  "\017.Protocol.Album\"\207\001\n\021C_AddPhotoToAlbum\022\020"
+  "\n\010album_id\030\001 \001(\t\022\020\n\010group_id\030\002 \001(\t\022\017\n\007ms"
+  "g_seq\030\003 \001(\003\022\021\n\tphoto_url\030\004 \001(\t\022\025\n\rthumbn"
+  "ail_url\030\005 \001(\t\022\023\n\013uploader_id\030\006 \001(\t\"\212\001\n\021S"
+  "_AddPhotoToAlbum\022\017\n\007success\030\001 \001(\010\022\020\n\010alb"
+  "um_id\030\002 \001(\t\022#\n\005photo\030\003 \001(\0132\024.Protocol.Al"
+  "bumPhoto\022\r\n\005error\030\004 \001(\t\022\036\n\005album\030\005 \001(\0132\017"
+  ".Protocol.Album\":\n\020C_GetAlbumPhotos\022\020\n\010a"
+  "lbum_id\030\001 \001(\t\022\024\n\014latest_first\030\002 \001(\010\"J\n\020S"
+  "_GetAlbumPhotos\022\020\n\010album_id\030\001 \001(\t\022$\n\006pho"
+  "tos\030\002 \003(\0132\024.Protocol.AlbumPhoto\"D\n\rC_Del"
+  "eteAlbum\022\020\n\010album_id\030\001 \001(\t\022\017\n\007user_id\030\002 "
+  "\001(\t\022\020\n\010group_id\030\003 \001(\t\"S\n\rS_DeleteAlbum\022\017"
+  "\n\007success\030\001 \001(\010\022\020\n\010album_id\030\002 \001(\t\022\020\n\010gro"
+  "up_id\030\003 \001(\t\022\r\n\005error\030\004 \001(\t\"[\n\022C_DeleteAl"
+  "bumPhoto\022\020\n\010photo_id\030\001 \001(\t\022\017\n\007user_id\030\002 "
+  "\001(\t\022\020\n\010album_id\030\003 \001(\t\022\020\n\010group_id\030\004 \001(\t\""
+  "\212\001\n\022S_DeleteAlbumPhoto\022\017\n\007success\030\001 \001(\010\022"
+  "\020\n\010photo_id\030\002 \001(\t\022\020\n\010album_id\030\003 \001(\t\022\020\n\010g"
+  "roup_id\030\004 \001(\t\022\r\n\005error\030\005 \001(\t\022\036\n\005album\030\006 "
+  "\001(\0132\017.Protocol.Album\"n\n\013C_MovePhoto\022\020\n\010p"
+  "hoto_id\030\001 \001(\t\022\025\n\rfrom_album_id\030\002 \001(\t\022\023\n\013"
+  "to_album_id\030\003 \001(\t\022\020\n\010group_id\030\004 \001(\t\022\017\n\007u"
+  "ser_id\030\005 \001(\t\"\305\001\n\013S_MovePhoto\022\017\n\007success\030"
+  "\001 \001(\010\022\020\n\010photo_id\030\002 \001(\t\022\025\n\rfrom_album_id"
+  "\030\003 \001(\t\022\023\n\013to_album_id\030\004 \001(\t\022\020\n\010group_id\030"
+  "\005 \001(\t\022\r\n\005error\030\006 \001(\t\022#\n\nfrom_album\030\007 \001(\013"
+  "2\017.Protocol.Album\022!\n\010to_album\030\010 \001(\0132\017.Pr"
+  "otocol.Album\"m\n\021C_AddPhotoComment\022\020\n\010pho"
+  "to_id\030\001 \001(\t\022\021\n\tsender_id\030\002 \001(\t\022\023\n\013sender"
+  "_name\030\003 \001(\t\022\014\n\004text\030\004 \001(\t\022\020\n\010group_id\030\005 "
+  "\001(\t\"\\\n\021S_AddPhotoComment\022\017\n\007success\030\001 \001("
+  "\010\022\'\n\007comment\030\002 \001(\0132\026.Protocol.PhotoComme"
+  "nt\022\r\n\005error\030\003 \001(\t\"&\n\022C_GetPhotoComments\022"
+  "\020\n\010photo_id\030\001 \001(\t\"P\n\022S_GetPhotoComments\022"
+  "\020\n\010photo_id\030\001 \001(\t\022(\n\010comments\030\002 \003(\0132\026.Pr"
+  "otocol.PhotoComment\"_\n\024C_DeletePhotoComm"
+  "ent\022\022\n\ncomment_id\030\001 \001(\t\022\017\n\007user_id\030\002 \001(\t"
+  "\022\020\n\010group_id\030\003 \001(\t\022\020\n\010photo_id\030\004 \001(\t\"n\n\024"
+  "S_DeletePhotoComment\022\017\n\007success\030\001 \001(\010\022\022\n"
+  "\ncomment_id\030\002 \001(\t\022\020\n\010photo_id\030\003 \001(\t\022\020\n\010g"
+  "roup_id\030\004 \001(\t\022\r\n\005error\030\005 \001(\t\".\n\rLocation"
+  "Photo\022\n\n\002id\030\001 \001(\t\022\021\n\tphoto_url\030\002 \001(\t\"\264\001\n"
+  "\021LocationVisitInfo\022\n\n\002id\030\001 \001(\t\022\017\n\007user_i"
+  "d\030\002 \001(\t\022\021\n\tuser_name\030\003 \001(\t\022\016\n\006rating\030\004 \001"
+  "(\005\022\016\n\006review\030\005 \001(\t\022\022\n\nvisited_at\030\006 \001(\003\022\'"
+  "\n\006photos\030\007 \003(\0132\027.Protocol.LocationPhoto\022"
+  "\022\n\nhistory_id\030\010 \001(\t\"\224\002\n\021LocationPlaceInf"
+  "o\022\n\n\002id\030\001 \001(\t\022\020\n\010group_id\030\002 \001(\t\022\014\n\004name\030"
+  "\003 \001(\t\022\017\n\007address\030\004 \001(\t\022\020\n\010category\030\005 \001(\t"
+  "\022\013\n\003lat\030\006 \001(\001\022\013\n\003lng\030\007 \001(\001\022\022\n\ncreated_by"
+  "\030\010 \001(\t\022\022\n\ncreated_at\030\t \001(\003\022\023\n\013visit_coun"
+  "t\030\n \001(\005\022\022\n\navg_rating\030\013 \001(\002\022\030\n\020recent_ph"
+  "oto_url\030\014 \001(\t\022+\n\006visits\030\r \003(\0132\033.Protocol"
+  ".LocationVisitInfo\"\216\001\n\013C_SavePlace\022\020\n\010gr"
+  "oup_id\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\017\n\007address\030\003 "
+  "\001(\t\022\020\n\010category\030\004 \001(\t\022\013\n\003lat\030\005 \001(\001\022\013\n\003ln"
+  "g\030\006 \001(\001\022\017\n\007user_id\030\007 \001(\t\022\021\n\tuser_name\030\010 "
+  "\001(\t\"^\n\013S_SavePlace\022\017\n\007success\030\001 \001(\010\022*\n\005p"
+  "lace\030\002 \001(\0132\033.Protocol.LocationPlaceInfo\022"
+  "\022\n\nerror_code\030\003 \001(\005\"\037\n\013C_GetPlaces\022\020\n\010gr"
+  "oup_id\030\001 \001(\t\"L\n\013S_GetPlaces\022\020\n\010group_id\030"
+  "\001 \001(\t\022+\n\006places\030\002 \003(\0132\033.Protocol.Locatio"
+  "nPlaceInfo\"\261\001\n\013C_SaveVisit\022\020\n\010place_id\030\001"
+  " \001(\t\022\020\n\010group_id\030\002 \001(\t\022\017\n\007user_id\030\003 \001(\t\022"
+  "\021\n\tuser_name\030\004 \001(\t\022\016\n\006rating\030\005 \001(\005\022\016\n\006re"
+  "view\030\006 \001(\t\022\022\n\nphoto_urls\030\007 \003(\t\022\022\n\nvisite"
+  "d_at\030\010 \001(\003\022\022\n\nhistory_id\030\t \001(\t\"\234\001\n\013S_Sav"
+  "eVisit\022\017\n\007success\030\001 \001(\010\022\020\n\010place_id\030\002 \001("
+  "\t\022*\n\005visit\030\003 \001(\0132\033.Protocol.LocationVisi"
+  "tInfo\022*\n\005place\030\004 \001(\0132\033.Protocol.Location"
+  "PlaceInfo\022\022\n\nerror_code\030\005 \001(\005\"D\n\rC_Delet"
+  "ePlace\022\020\n\010place_id\030\001 \001(\t\022\020\n\010group_id\030\002 \001"
+  "(\t\022\017\n\007user_id\030\003 \001(\t\"X\n\rS_DeletePlace\022\017\n\007"
+  "success\030\001 \001(\010\022\020\n\010place_id\030\002 \001(\t\022\020\n\010group"
+  "_id\030\003 \001(\t\022\022\n\nerror_code\030\004 \001(\005\"\262\001\n\rC_Upda"
+  "teVisit\022\020\n\010visit_id\030\001 \001(\t\022\020\n\010place_id\030\002 "
+  "\001(\t\022\020\n\010group_id\030\003 \001(\t\022\017\n\007user_id\030\004 \001(\t\022\016"
+  "\n\006rating\030\005 \001(\005\022\016\n\006review\030\006 \001(\t\022\022\n\nphoto_"
+  "urls\030\007 \003(\t\022\022\n\nvisited_at\030\010 \001(\003\022\022\n\nhistor"
+  "y_id\030\t \001(\t\"\214\001\n\rS_UpdateVisit\022\017\n\007success\030"
+  "\001 \001(\010\022*\n\005visit\030\002 \001(\0132\033.Protocol.Location"
+  "VisitInfo\022*\n\005place\030\003 \001(\0132\033.Protocol.Loca"
+  "tionPlaceInfo\022\022\n\nerror_code\030\004 \001(\005\"V\n\rC_D"
+  "eleteVisit\022\020\n\010visit_id\030\001 \001(\t\022\020\n\010place_id"
+  "\030\002 \001(\t\022\020\n\010group_id\030\003 \001(\t\022\017\n\007user_id\030\004 \001("
+  "\t\"\201\001\n\rS_DeleteVisit\022\017\n\007success\030\001 \001(\010\022\020\n\010"
+  "visit_id\030\002 \001(\t\022\020\n\010place_id\030\003 \001(\t\022\020\n\010grou"
+  "p_id\030\004 \001(\t\022\025\n\rplace_deleted\030\005 \001(\010\022\022\n\nerr"
+  "or_code\030\006 \001(\005\"Q\n\007S_Error\022\'\n\nerror_code\030\001"
+  " \001(\0162\023.Protocol.ErrorCode\022\014\n\004code\030\002 \001(\r\022"
+  "\017\n\007message\030\003 \001(\t\"\r\n\013C_Heartbeat\"\r\n\013S_Hea"
+  "rtbeat*-\n\tGroupRole\022\n\n\006MEMBER\020\000\022\t\n\005ADMIN"
+  "\020\001\022\t\n\005OWNER\020\002*\243\n\n\tErrorCode\022\017\n\013ERR_SUCCE"
+  "SS\020\000\022\017\n\013ERR_UNKNOWN\020\001\022\027\n\023ERR_SERVER_INTE"
+  "RNAL\020\002\022\026\n\022ERR_INVALID_PACKET\020\003\022\030\n\024ERR_VE"
+  "RSION_MISMATCH\020\004\022\024\n\020ERR_UNAUTHORIZED\020\005\022\025"
+  "\n\021ERR_INVALID_TOKEN\020\006\022\025\n\021ERR_USER_ID_EMP"
+  "TY\020d\022\030\n\024ERR_USER_ID_REQUIRED\020e\022\031\n\025ERR_PA"
+  "SSWORD_REQUIRED\020f\022\025\n\021ERR_NAME_REQUIRED\020g"
+  "\022\026\n\022ERR_EMAIL_REQUIRED\020h\022\026\n\022ERR_USER_NOT"
+  "_FOUND\020i\022\030\n\024ERR_INVALID_PASSWORD\020j\022\033\n\027ER"
+  "R_USER_ALREADY_EXISTS\020k\022\034\n\030ERR_EMAIL_ALR"
+  "EADY_EXISTS\020l\022\032\n\026ERR_EMAIL_NOT_VERIFIED\020"
+  "m\022\026\n\021ERR_PAYLOAD_EMPTY\020\310\001\022\030\n\023ERR_INVALID"
+  "_CONV_ID\020\311\001\022\034\n\027ERR_INVALID_RECEIVER_ID\020\312"
+  "\001\022\024\n\017ERR_INVALID_ACK\020\313\001\022\037\n\032ERR_INVALID_F"
+  "RIEND_USER_ID\020\254\002\022\030\n\023ERR_CANNOT_ADD_SELF\020"
+  "\255\002\022\025\n\020ERR_NOT_A_FRIEND\020\256\002\022!\n\034ERR_FRIEND_"
+  "REQUEST_NOT_FOUND\020\257\002\022%\n ERR_FILE_SERVICE"
+  "_NOT_INITIALIZED\020\220\003\022&\n!ERR_CLOUD_STORAGE"
+  "_NOT_INITIALIZED\020\221\003\022\032\n\025ERR_FILENAME_REQU"
+  "IRED\020\222\003\022\032\n\025ERR_INVALID_FILE_SIZE\020\223\003\022\033\n\026E"
+  "RR_MIME_TYPE_REQUIRED\020\224\003\022\037\n\032ERR_FAILED_T"
+  "O_GENERATE_URL\020\225\003\022\031\n\024ERR_INVALID_FILE_UR"
+  "L\020\226\003\022\031\n\024ERR_INVALID_ARGUMENT\020\227\003\022\031\n\024ERR_S"
+  "TORAGE_EXCEEDED\020\230\003\022\027\n\022ERR_FILE_TOO_LARGE"
+  "\020\231\003\022\027\n\022ERR_PAYMENT_FAILED\020\232\003\022\030\n\023ERR_RECE"
+  "IPT_INVALID\020\233\003\022\026\n\021ERR_NO_PERMISSION\020\364\003\022\030"
+  "\n\023ERR_ALREADY_BLOCKED\020\330\004\022\024\n\017ERR_NOT_BLOC"
+  "KED\020\331\004\022\032\n\025ERR_CANNOT_BLOCK_SELF\020\332\004\022\031\n\024ER"
+  "R_REPORT_DUPLICATE\020\342\004\022\027\n\022ERR_POLL_NOT_FO"
+  "UND\020\274\005\022\024\n\017ERR_POLL_CLOSED\020\275\005\022\034\n\027ERR_POLL"
+  "_INVALID_OPTION\020\276\005\022\027\n\022ERR_INVITE_EXPIRED"
+  "\020\240\006\022\023\n\016ERR_GROUP_FULL\020\241\006\022!\n\035ERR_OAUTH_VE"
+  "RIFICATION_FAILED\020x\022\036\n\032ERR_OAUTH_PROVIDE"
+  "R_INVALID\020yb\006proto3"
   ;
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_protocol_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_protocol_2eproto = {
-  false, false, 22165, descriptor_table_protodef_protocol_2eproto, "protocol.proto", 
-  &descriptor_table_protocol_2eproto_once, nullptr, 0, 156,
+  false, false, 22579, descriptor_table_protodef_protocol_2eproto, "protocol.proto", 
+  &descriptor_table_protocol_2eproto_once, nullptr, 0, 158,
   schemas, file_default_instances, TableStruct_protocol_2eproto::offsets,
   file_level_metadata_protocol_2eproto, file_level_enum_descriptors_protocol_2eproto, file_level_service_descriptors_protocol_2eproto,
 };
@@ -4725,6 +4795,7 @@ bool ErrorCode_IsValid(int value) {
     case 701:
     case 702:
     case 800:
+    case 801:
       return true;
     default:
       return false;
@@ -4847,6 +4918,8 @@ class Envelope::_Internal {
   static const ::Protocol::S_UpdateVisit& s_update_visit(const Envelope* msg);
   static const ::Protocol::C_DeleteVisit& c_delete_visit(const Envelope* msg);
   static const ::Protocol::S_DeleteVisit& s_delete_visit(const Envelope* msg);
+  static const ::Protocol::C_TransferOwnership& c_transfer_ownership(const Envelope* msg);
+  static const ::Protocol::S_TransferOwnership& s_transfer_ownership(const Envelope* msg);
   static const ::Protocol::C_CreateGroup& c_create_group(const Envelope* msg);
   static const ::Protocol::S_CreateGroup& s_create_group(const Envelope* msg);
   static const ::Protocol::C_GroupList& c_group_list(const Envelope* msg);
@@ -5315,6 +5388,14 @@ Envelope::_Internal::c_delete_visit(const Envelope* msg) {
 const ::Protocol::S_DeleteVisit&
 Envelope::_Internal::s_delete_visit(const Envelope* msg) {
   return *msg->payload_.s_delete_visit_;
+}
+const ::Protocol::C_TransferOwnership&
+Envelope::_Internal::c_transfer_ownership(const Envelope* msg) {
+  return *msg->payload_.c_transfer_ownership_;
+}
+const ::Protocol::S_TransferOwnership&
+Envelope::_Internal::s_transfer_ownership(const Envelope* msg) {
+  return *msg->payload_.s_transfer_ownership_;
 }
 const ::Protocol::C_CreateGroup&
 Envelope::_Internal::c_create_group(const Envelope* msg) {
@@ -7073,6 +7154,36 @@ void Envelope::set_allocated_s_delete_visit(::Protocol::S_DeleteVisit* s_delete_
   }
   // @@protoc_insertion_point(field_set_allocated:Protocol.Envelope.s_delete_visit)
 }
+void Envelope::set_allocated_c_transfer_ownership(::Protocol::C_TransferOwnership* c_transfer_ownership) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  clear_payload();
+  if (c_transfer_ownership) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::Protocol::C_TransferOwnership>::GetOwningArena(c_transfer_ownership);
+    if (message_arena != submessage_arena) {
+      c_transfer_ownership = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, c_transfer_ownership, submessage_arena);
+    }
+    set_has_c_transfer_ownership();
+    payload_.c_transfer_ownership_ = c_transfer_ownership;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Protocol.Envelope.c_transfer_ownership)
+}
+void Envelope::set_allocated_s_transfer_ownership(::Protocol::S_TransferOwnership* s_transfer_ownership) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  clear_payload();
+  if (s_transfer_ownership) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::Protocol::S_TransferOwnership>::GetOwningArena(s_transfer_ownership);
+    if (message_arena != submessage_arena) {
+      s_transfer_ownership = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, s_transfer_ownership, submessage_arena);
+    }
+    set_has_s_transfer_ownership();
+    payload_.s_transfer_ownership_ = s_transfer_ownership;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Protocol.Envelope.s_transfer_ownership)
+}
 void Envelope::set_allocated_c_create_group(::Protocol::C_CreateGroup* c_create_group) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
   clear_payload();
@@ -7881,6 +7992,14 @@ Envelope::Envelope(const Envelope& from)
       _internal_mutable_s_delete_visit()->::Protocol::S_DeleteVisit::MergeFrom(from._internal_s_delete_visit());
       break;
     }
+    case kCTransferOwnership: {
+      _internal_mutable_c_transfer_ownership()->::Protocol::C_TransferOwnership::MergeFrom(from._internal_c_transfer_ownership());
+      break;
+    }
+    case kSTransferOwnership: {
+      _internal_mutable_s_transfer_ownership()->::Protocol::S_TransferOwnership::MergeFrom(from._internal_s_transfer_ownership());
+      break;
+    }
     case kCCreateGroup: {
       _internal_mutable_c_create_group()->::Protocol::C_CreateGroup::MergeFrom(from._internal_c_create_group());
       break;
@@ -8679,6 +8798,18 @@ void Envelope::clear_payload() {
     case kSDeleteVisit: {
       if (GetArenaForAllocation() == nullptr) {
         delete payload_.s_delete_visit_;
+      }
+      break;
+    }
+    case kCTransferOwnership: {
+      if (GetArenaForAllocation() == nullptr) {
+        delete payload_.c_transfer_ownership_;
+      }
+      break;
+    }
+    case kSTransferOwnership: {
+      if (GetArenaForAllocation() == nullptr) {
+        delete payload_.s_transfer_ownership_;
       }
       break;
     }
@@ -9809,6 +9940,20 @@ const char* Envelope::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::i
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
+      // .Protocol.C_TransferOwnership c_transfer_ownership = 160;
+      case 160:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 2)) {
+          ptr = ctx->ParseMessage(_internal_mutable_c_transfer_ownership(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .Protocol.S_TransferOwnership s_transfer_ownership = 161;
+      case 161:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_s_transfer_ownership(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       default: {
       handle_unusual:
         if ((tag == 0) || ((tag & 7) == 4)) {
@@ -10932,6 +11077,22 @@ failure:
         159, _Internal::s_delete_visit(this), target, stream);
   }
 
+  // .Protocol.C_TransferOwnership c_transfer_ownership = 160;
+  if (_internal_has_c_transfer_ownership()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        160, _Internal::c_transfer_ownership(this), target, stream);
+  }
+
+  // .Protocol.S_TransferOwnership s_transfer_ownership = 161;
+  if (_internal_has_s_transfer_ownership()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        161, _Internal::s_transfer_ownership(this), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -11747,6 +11908,20 @@ size_t Envelope::ByteSizeLong() const {
           *payload_.s_delete_visit_);
       break;
     }
+    // .Protocol.C_TransferOwnership c_transfer_ownership = 160;
+    case kCTransferOwnership: {
+      total_size += 2 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *payload_.c_transfer_ownership_);
+      break;
+    }
+    // .Protocol.S_TransferOwnership s_transfer_ownership = 161;
+    case kSTransferOwnership: {
+      total_size += 2 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *payload_.s_transfer_ownership_);
+      break;
+    }
     // .Protocol.C_CreateGroup c_create_group = 80;
     case kCCreateGroup: {
       total_size += 2 +
@@ -12395,6 +12570,14 @@ void Envelope::MergeFrom(const Envelope& from) {
     }
     case kSDeleteVisit: {
       _internal_mutable_s_delete_visit()->::Protocol::S_DeleteVisit::MergeFrom(from._internal_s_delete_visit());
+      break;
+    }
+    case kCTransferOwnership: {
+      _internal_mutable_c_transfer_ownership()->::Protocol::C_TransferOwnership::MergeFrom(from._internal_c_transfer_ownership());
+      break;
+    }
+    case kSTransferOwnership: {
+      _internal_mutable_s_transfer_ownership()->::Protocol::S_TransferOwnership::MergeFrom(from._internal_s_transfer_ownership());
       break;
     }
     case kCCreateGroup: {
@@ -27460,10 +27643,16 @@ C_GetSubscription::C_GetSubscription(::PROTOBUF_NAMESPACE_ID::Arena* arena)
 C_GetSubscription::C_GetSubscription(const C_GetSubscription& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_group_id().empty()) {
+    group_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_group_id(), 
+      GetArenaForAllocation());
+  }
   // @@protoc_insertion_point(copy_constructor:Protocol.C_GetSubscription)
 }
 
 void C_GetSubscription::SharedCtor() {
+group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
 C_GetSubscription::~C_GetSubscription() {
@@ -27474,6 +27663,7 @@ C_GetSubscription::~C_GetSubscription() {
 
 void C_GetSubscription::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  group_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
 void C_GetSubscription::ArenaDtor(void* object) {
@@ -27492,6 +27682,7 @@ void C_GetSubscription::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  group_id_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -27500,6 +27691,18 @@ const char* C_GetSubscription::_InternalParse(const char* ptr, ::PROTOBUF_NAMESP
   while (!ctx->Done(&ptr)) {
     ::PROTOBUF_NAMESPACE_ID::uint32 tag;
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string group_id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_group_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_GetSubscription.group_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
         if ((tag == 0) || ((tag & 7) == 4)) {
           CHK_(ptr);
           ctx->SetLastTag(tag);
@@ -27510,6 +27713,8 @@ const char* C_GetSubscription::_InternalParse(const char* ptr, ::PROTOBUF_NAMESP
             ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
+      }
+    }  // switch
   }  // while
 success:
   return ptr;
@@ -27524,6 +27729,16 @@ failure:
   // @@protoc_insertion_point(serialize_to_array_start:Protocol.C_GetSubscription)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
+
+  // string group_id = 1;
+  if (!this->group_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_group_id().data(), static_cast<int>(this->_internal_group_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_GetSubscription.group_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_group_id(), target);
+  }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -27540,6 +27755,13 @@ size_t C_GetSubscription::ByteSizeLong() const {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
+
+  // string group_id = 1;
+  if (!this->group_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_group_id());
+  }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
@@ -27572,6 +27794,9 @@ void C_GetSubscription::MergeFrom(const C_GetSubscription& from) {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
+  if (!from.group_id().empty()) {
+    _internal_set_group_id(from._internal_group_id());
+  }
 }
 
 void C_GetSubscription::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
@@ -27595,6 +27820,11 @@ bool C_GetSubscription::IsInitialized() const {
 void C_GetSubscription::InternalSwap(C_GetSubscription* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &group_id_, GetArenaForAllocation(),
+      &other->group_id_, other->GetArenaForAllocation()
+  );
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata C_GetSubscription::GetMetadata() const {
@@ -28040,18 +28270,18 @@ S_GetSubscription::S_GetSubscription(const S_GetSubscription& from)
     current_plan_name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_current_plan_name(), 
       GetArenaForAllocation());
   }
-  ::memcpy(&current_grade_, &from.current_grade_,
-    static_cast<size_t>(reinterpret_cast<char*>(&expires_at_) -
-    reinterpret_cast<char*>(&current_grade_)) + sizeof(expires_at_));
+  ::memcpy(&storage_limit_bytes_, &from.storage_limit_bytes_,
+    static_cast<size_t>(reinterpret_cast<char*>(&auto_renew_) -
+    reinterpret_cast<char*>(&storage_limit_bytes_)) + sizeof(auto_renew_));
   // @@protoc_insertion_point(copy_constructor:Protocol.S_GetSubscription)
 }
 
 void S_GetSubscription::SharedCtor() {
 current_plan_name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&current_grade_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&expires_at_) -
-    reinterpret_cast<char*>(&current_grade_)) + sizeof(expires_at_));
+    reinterpret_cast<char*>(&storage_limit_bytes_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&auto_renew_) -
+    reinterpret_cast<char*>(&storage_limit_bytes_)) + sizeof(auto_renew_));
 }
 
 S_GetSubscription::~S_GetSubscription() {
@@ -28083,9 +28313,9 @@ void S_GetSubscription::Clear() {
 
   available_plans_.Clear();
   current_plan_name_.ClearToEmpty();
-  ::memset(&current_grade_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&expires_at_) -
-      reinterpret_cast<char*>(&current_grade_)) + sizeof(expires_at_));
+  ::memset(&storage_limit_bytes_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&auto_renew_) -
+      reinterpret_cast<char*>(&storage_limit_bytes_)) + sizeof(auto_renew_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -28102,13 +28332,6 @@ const char* S_GetSubscription::_InternalParse(const char* ptr, ::PROTOBUF_NAMESP
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // int32 current_grade = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
-          current_grade_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
       // string current_plan_name = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
@@ -28118,10 +28341,10 @@ const char* S_GetSubscription::_InternalParse(const char* ptr, ::PROTOBUF_NAMESP
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // int64 storage_capacity_bytes = 4;
+      // int64 storage_limit_bytes = 4;
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 32)) {
-          storage_capacity_bytes_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          storage_limit_bytes_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -28193,12 +28416,6 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(1, this->_internal_success(), target);
   }
 
-  // int32 current_grade = 2;
-  if (this->current_grade() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(2, this->_internal_current_grade(), target);
-  }
-
   // string current_plan_name = 3;
   if (!this->current_plan_name().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
@@ -28209,10 +28426,10 @@ failure:
         3, this->_internal_current_plan_name(), target);
   }
 
-  // int64 storage_capacity_bytes = 4;
-  if (this->storage_capacity_bytes() != 0) {
+  // int64 storage_limit_bytes = 4;
+  if (this->storage_limit_bytes() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(4, this->_internal_storage_capacity_bytes(), target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(4, this->_internal_storage_limit_bytes(), target);
   }
 
   // int64 storage_usage_bytes = 5;
@@ -28271,28 +28488,11 @@ size_t S_GetSubscription::ByteSizeLong() const {
         this->_internal_current_plan_name());
   }
 
-  // int32 current_grade = 2;
-  if (this->current_grade() != 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
-        this->_internal_current_grade());
-  }
-
-  // bool success = 1;
-  if (this->success() != 0) {
-    total_size += 1 + 1;
-  }
-
-  // bool auto_renew = 7;
-  if (this->auto_renew() != 0) {
-    total_size += 1 + 1;
-  }
-
-  // int64 storage_capacity_bytes = 4;
-  if (this->storage_capacity_bytes() != 0) {
+  // int64 storage_limit_bytes = 4;
+  if (this->storage_limit_bytes() != 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64Size(
-        this->_internal_storage_capacity_bytes());
+        this->_internal_storage_limit_bytes());
   }
 
   // int64 storage_usage_bytes = 5;
@@ -28307,6 +28507,16 @@ size_t S_GetSubscription::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64Size(
         this->_internal_expires_at());
+  }
+
+  // bool success = 1;
+  if (this->success() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // bool auto_renew = 7;
+  if (this->auto_renew() != 0) {
+    total_size += 1 + 1;
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -28344,23 +28554,20 @@ void S_GetSubscription::MergeFrom(const S_GetSubscription& from) {
   if (!from.current_plan_name().empty()) {
     _internal_set_current_plan_name(from._internal_current_plan_name());
   }
-  if (from.current_grade() != 0) {
-    _internal_set_current_grade(from._internal_current_grade());
-  }
-  if (from.success() != 0) {
-    _internal_set_success(from._internal_success());
-  }
-  if (from.auto_renew() != 0) {
-    _internal_set_auto_renew(from._internal_auto_renew());
-  }
-  if (from.storage_capacity_bytes() != 0) {
-    _internal_set_storage_capacity_bytes(from._internal_storage_capacity_bytes());
+  if (from.storage_limit_bytes() != 0) {
+    _internal_set_storage_limit_bytes(from._internal_storage_limit_bytes());
   }
   if (from.storage_usage_bytes() != 0) {
     _internal_set_storage_usage_bytes(from._internal_storage_usage_bytes());
   }
   if (from.expires_at() != 0) {
     _internal_set_expires_at(from._internal_expires_at());
+  }
+  if (from.success() != 0) {
+    _internal_set_success(from._internal_success());
+  }
+  if (from.auto_renew() != 0) {
+    _internal_set_auto_renew(from._internal_auto_renew());
   }
 }
 
@@ -28392,11 +28599,11 @@ void S_GetSubscription::InternalSwap(S_GetSubscription* other) {
       &other->current_plan_name_, other->GetArenaForAllocation()
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(S_GetSubscription, expires_at_)
-      + sizeof(S_GetSubscription::expires_at_)
-      - PROTOBUF_FIELD_OFFSET(S_GetSubscription, current_grade_)>(
-          reinterpret_cast<char*>(&current_grade_),
-          reinterpret_cast<char*>(&other->current_grade_));
+      PROTOBUF_FIELD_OFFSET(S_GetSubscription, auto_renew_)
+      + sizeof(S_GetSubscription::auto_renew_)
+      - PROTOBUF_FIELD_OFFSET(S_GetSubscription, storage_limit_bytes_)>(
+          reinterpret_cast<char*>(&storage_limit_bytes_),
+          reinterpret_cast<char*>(&other->storage_limit_bytes_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata S_GetSubscription::GetMetadata() const {
@@ -28440,6 +28647,11 @@ C_VerifyPurchase::C_VerifyPurchase(const C_VerifyPurchase& from)
     purchase_token_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_purchase_token(), 
       GetArenaForAllocation());
   }
+  group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_group_id().empty()) {
+    group_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_group_id(), 
+      GetArenaForAllocation());
+  }
   // @@protoc_insertion_point(copy_constructor:Protocol.C_VerifyPurchase)
 }
 
@@ -28448,6 +28660,7 @@ platform_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlr
 product_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 transaction_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 purchase_token_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
 C_VerifyPurchase::~C_VerifyPurchase() {
@@ -28462,6 +28675,7 @@ void C_VerifyPurchase::SharedDtor() {
   product_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   transaction_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   purchase_token_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  group_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
 void C_VerifyPurchase::ArenaDtor(void* object) {
@@ -28484,6 +28698,7 @@ void C_VerifyPurchase::Clear() {
   product_id_.ClearToEmpty();
   transaction_id_.ClearToEmpty();
   purchase_token_.ClearToEmpty();
+  group_id_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -28526,6 +28741,15 @@ const char* C_VerifyPurchase::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPA
           auto str = _internal_mutable_purchase_token();
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_VerifyPurchase.purchase_token"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string group_id = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 42)) {
+          auto str = _internal_mutable_group_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_VerifyPurchase.group_id"));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -28598,6 +28822,16 @@ failure:
         4, this->_internal_purchase_token(), target);
   }
 
+  // string group_id = 5;
+  if (!this->group_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_group_id().data(), static_cast<int>(this->_internal_group_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_VerifyPurchase.group_id");
+    target = stream->WriteStringMaybeAliased(
+        5, this->_internal_group_id(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -28640,6 +28874,13 @@ size_t C_VerifyPurchase::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_purchase_token());
+  }
+
+  // string group_id = 5;
+  if (!this->group_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_group_id());
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -28685,6 +28926,9 @@ void C_VerifyPurchase::MergeFrom(const C_VerifyPurchase& from) {
   if (!from.purchase_token().empty()) {
     _internal_set_purchase_token(from._internal_purchase_token());
   }
+  if (!from.group_id().empty()) {
+    _internal_set_group_id(from._internal_group_id());
+  }
 }
 
 void C_VerifyPurchase::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
@@ -28728,6 +28972,11 @@ void C_VerifyPurchase::InternalSwap(C_VerifyPurchase* other) {
       &purchase_token_, GetArenaForAllocation(),
       &other->purchase_token_, other->GetArenaForAllocation()
   );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &group_id_, GetArenaForAllocation(),
+      &other->group_id_, other->GetArenaForAllocation()
+  );
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata C_VerifyPurchase::GetMetadata() const {
@@ -28756,18 +29005,18 @@ S_VerifyPurchase::S_VerifyPurchase(const S_VerifyPurchase& from)
     message_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_message(), 
       GetArenaForAllocation());
   }
-  ::memcpy(&success_, &from.success_,
-    static_cast<size_t>(reinterpret_cast<char*>(&storage_capacity_) -
-    reinterpret_cast<char*>(&success_)) + sizeof(storage_capacity_));
+  ::memcpy(&expires_at_, &from.expires_at_,
+    static_cast<size_t>(reinterpret_cast<char*>(&success_) -
+    reinterpret_cast<char*>(&expires_at_)) + sizeof(success_));
   // @@protoc_insertion_point(copy_constructor:Protocol.S_VerifyPurchase)
 }
 
 void S_VerifyPurchase::SharedCtor() {
 message_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&success_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&storage_capacity_) -
-    reinterpret_cast<char*>(&success_)) + sizeof(storage_capacity_));
+    reinterpret_cast<char*>(&expires_at_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&success_) -
+    reinterpret_cast<char*>(&expires_at_)) + sizeof(success_));
 }
 
 S_VerifyPurchase::~S_VerifyPurchase() {
@@ -28798,9 +29047,9 @@ void S_VerifyPurchase::Clear() {
   (void) cached_has_bits;
 
   message_.ClearToEmpty();
-  ::memset(&success_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&storage_capacity_) -
-      reinterpret_cast<char*>(&success_)) + sizeof(storage_capacity_));
+  ::memset(&expires_at_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&success_) -
+      reinterpret_cast<char*>(&expires_at_)) + sizeof(success_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -28826,13 +29075,6 @@ const char* S_VerifyPurchase::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPA
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // int32 new_grade = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
-          new_grade_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
       // int64 expires_at = 4;
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 32)) {
@@ -28840,10 +29082,17 @@ const char* S_VerifyPurchase::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPA
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // int64 storage_capacity = 5;
+      // int64 storage_limit_bytes = 5;
       case 5:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 40)) {
-          storage_capacity_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          storage_limit_bytes_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // int64 storage_usage_bytes = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 48)) {
+          storage_usage_bytes_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -28892,22 +29141,22 @@ failure:
         2, this->_internal_message(), target);
   }
 
-  // int32 new_grade = 3;
-  if (this->new_grade() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(3, this->_internal_new_grade(), target);
-  }
-
   // int64 expires_at = 4;
   if (this->expires_at() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(4, this->_internal_expires_at(), target);
   }
 
-  // int64 storage_capacity = 5;
-  if (this->storage_capacity() != 0) {
+  // int64 storage_limit_bytes = 5;
+  if (this->storage_limit_bytes() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(5, this->_internal_storage_capacity(), target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(5, this->_internal_storage_limit_bytes(), target);
+  }
+
+  // int64 storage_usage_bytes = 6;
+  if (this->storage_usage_bytes() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(6, this->_internal_storage_usage_bytes(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -28933,18 +29182,6 @@ size_t S_VerifyPurchase::ByteSizeLong() const {
         this->_internal_message());
   }
 
-  // bool success = 1;
-  if (this->success() != 0) {
-    total_size += 1 + 1;
-  }
-
-  // int32 new_grade = 3;
-  if (this->new_grade() != 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
-        this->_internal_new_grade());
-  }
-
   // int64 expires_at = 4;
   if (this->expires_at() != 0) {
     total_size += 1 +
@@ -28952,11 +29189,23 @@ size_t S_VerifyPurchase::ByteSizeLong() const {
         this->_internal_expires_at());
   }
 
-  // int64 storage_capacity = 5;
-  if (this->storage_capacity() != 0) {
+  // int64 storage_limit_bytes = 5;
+  if (this->storage_limit_bytes() != 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64Size(
-        this->_internal_storage_capacity());
+        this->_internal_storage_limit_bytes());
+  }
+
+  // int64 storage_usage_bytes = 6;
+  if (this->storage_usage_bytes() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64Size(
+        this->_internal_storage_usage_bytes());
+  }
+
+  // bool success = 1;
+  if (this->success() != 0) {
+    total_size += 1 + 1;
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -28993,17 +29242,17 @@ void S_VerifyPurchase::MergeFrom(const S_VerifyPurchase& from) {
   if (!from.message().empty()) {
     _internal_set_message(from._internal_message());
   }
-  if (from.success() != 0) {
-    _internal_set_success(from._internal_success());
-  }
-  if (from.new_grade() != 0) {
-    _internal_set_new_grade(from._internal_new_grade());
-  }
   if (from.expires_at() != 0) {
     _internal_set_expires_at(from._internal_expires_at());
   }
-  if (from.storage_capacity() != 0) {
-    _internal_set_storage_capacity(from._internal_storage_capacity());
+  if (from.storage_limit_bytes() != 0) {
+    _internal_set_storage_limit_bytes(from._internal_storage_limit_bytes());
+  }
+  if (from.storage_usage_bytes() != 0) {
+    _internal_set_storage_usage_bytes(from._internal_storage_usage_bytes());
+  }
+  if (from.success() != 0) {
+    _internal_set_success(from._internal_success());
   }
 }
 
@@ -29034,11 +29283,11 @@ void S_VerifyPurchase::InternalSwap(S_VerifyPurchase* other) {
       &other->message_, other->GetArenaForAllocation()
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(S_VerifyPurchase, storage_capacity_)
-      + sizeof(S_VerifyPurchase::storage_capacity_)
-      - PROTOBUF_FIELD_OFFSET(S_VerifyPurchase, success_)>(
-          reinterpret_cast<char*>(&success_),
-          reinterpret_cast<char*>(&other->success_));
+      PROTOBUF_FIELD_OFFSET(S_VerifyPurchase, success_)
+      + sizeof(S_VerifyPurchase::success_)
+      - PROTOBUF_FIELD_OFFSET(S_VerifyPurchase, expires_at_)>(
+          reinterpret_cast<char*>(&expires_at_),
+          reinterpret_cast<char*>(&other->expires_at_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata S_VerifyPurchase::GetMetadata() const {
@@ -29062,10 +29311,16 @@ C_CancelSubscription::C_CancelSubscription(::PROTOBUF_NAMESPACE_ID::Arena* arena
 C_CancelSubscription::C_CancelSubscription(const C_CancelSubscription& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_group_id().empty()) {
+    group_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_group_id(), 
+      GetArenaForAllocation());
+  }
   // @@protoc_insertion_point(copy_constructor:Protocol.C_CancelSubscription)
 }
 
 void C_CancelSubscription::SharedCtor() {
+group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
 C_CancelSubscription::~C_CancelSubscription() {
@@ -29076,6 +29331,7 @@ C_CancelSubscription::~C_CancelSubscription() {
 
 void C_CancelSubscription::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  group_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
 void C_CancelSubscription::ArenaDtor(void* object) {
@@ -29094,6 +29350,7 @@ void C_CancelSubscription::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  group_id_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -29102,6 +29359,18 @@ const char* C_CancelSubscription::_InternalParse(const char* ptr, ::PROTOBUF_NAM
   while (!ctx->Done(&ptr)) {
     ::PROTOBUF_NAMESPACE_ID::uint32 tag;
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string group_id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_group_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_CancelSubscription.group_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
         if ((tag == 0) || ((tag & 7) == 4)) {
           CHK_(ptr);
           ctx->SetLastTag(tag);
@@ -29112,6 +29381,8 @@ const char* C_CancelSubscription::_InternalParse(const char* ptr, ::PROTOBUF_NAM
             ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
+      }
+    }  // switch
   }  // while
 success:
   return ptr;
@@ -29126,6 +29397,16 @@ failure:
   // @@protoc_insertion_point(serialize_to_array_start:Protocol.C_CancelSubscription)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
+
+  // string group_id = 1;
+  if (!this->group_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_group_id().data(), static_cast<int>(this->_internal_group_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_CancelSubscription.group_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_group_id(), target);
+  }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -29142,6 +29423,13 @@ size_t C_CancelSubscription::ByteSizeLong() const {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
+
+  // string group_id = 1;
+  if (!this->group_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_group_id());
+  }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
@@ -29174,6 +29462,9 @@ void C_CancelSubscription::MergeFrom(const C_CancelSubscription& from) {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
+  if (!from.group_id().empty()) {
+    _internal_set_group_id(from._internal_group_id());
+  }
 }
 
 void C_CancelSubscription::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
@@ -29197,6 +29488,11 @@ bool C_CancelSubscription::IsInitialized() const {
 void C_CancelSubscription::InternalSwap(C_CancelSubscription* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &group_id_, GetArenaForAllocation(),
+      &other->group_id_, other->GetArenaForAllocation()
+  );
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata C_CancelSubscription::GetMetadata() const {
@@ -36987,6 +37283,483 @@ void S_DeleteGroup::InternalSwap(S_DeleteGroup* other) {
 
 // ===================================================================
 
+class C_TransferOwnership::_Internal {
+ public:
+};
+
+C_TransferOwnership::C_TransferOwnership(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Protocol.C_TransferOwnership)
+}
+C_TransferOwnership::C_TransferOwnership(const C_TransferOwnership& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_group_id().empty()) {
+    group_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_group_id(), 
+      GetArenaForAllocation());
+  }
+  target_user_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_target_user_id().empty()) {
+    target_user_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_target_user_id(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:Protocol.C_TransferOwnership)
+}
+
+void C_TransferOwnership::SharedCtor() {
+group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+target_user_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+C_TransferOwnership::~C_TransferOwnership() {
+  // @@protoc_insertion_point(destructor:Protocol.C_TransferOwnership)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void C_TransferOwnership::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  group_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  target_user_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void C_TransferOwnership::ArenaDtor(void* object) {
+  C_TransferOwnership* _this = reinterpret_cast< C_TransferOwnership* >(object);
+  (void)_this;
+}
+void C_TransferOwnership::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void C_TransferOwnership::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void C_TransferOwnership::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.C_TransferOwnership)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  group_id_.ClearToEmpty();
+  target_user_id_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* C_TransferOwnership::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string group_id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_group_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_TransferOwnership.group_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string target_user_id = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_target_user_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_TransferOwnership.target_user_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* C_TransferOwnership::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.C_TransferOwnership)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string group_id = 1;
+  if (!this->group_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_group_id().data(), static_cast<int>(this->_internal_group_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_TransferOwnership.group_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_group_id(), target);
+  }
+
+  // string target_user_id = 2;
+  if (!this->target_user_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_target_user_id().data(), static_cast<int>(this->_internal_target_user_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_TransferOwnership.target_user_id");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_target_user_id(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.C_TransferOwnership)
+  return target;
+}
+
+size_t C_TransferOwnership::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Protocol.C_TransferOwnership)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string group_id = 1;
+  if (!this->group_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_group_id());
+  }
+
+  // string target_user_id = 2;
+  if (!this->target_user_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_target_user_id());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void C_TransferOwnership::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Protocol.C_TransferOwnership)
+  GOOGLE_DCHECK_NE(&from, this);
+  const C_TransferOwnership* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<C_TransferOwnership>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Protocol.C_TransferOwnership)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Protocol.C_TransferOwnership)
+    MergeFrom(*source);
+  }
+}
+
+void C_TransferOwnership::MergeFrom(const C_TransferOwnership& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Protocol.C_TransferOwnership)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from.group_id().empty()) {
+    _internal_set_group_id(from._internal_group_id());
+  }
+  if (!from.target_user_id().empty()) {
+    _internal_set_target_user_id(from._internal_target_user_id());
+  }
+}
+
+void C_TransferOwnership::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Protocol.C_TransferOwnership)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void C_TransferOwnership::CopyFrom(const C_TransferOwnership& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.C_TransferOwnership)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool C_TransferOwnership::IsInitialized() const {
+  return true;
+}
+
+void C_TransferOwnership::InternalSwap(C_TransferOwnership* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &group_id_, GetArenaForAllocation(),
+      &other->group_id_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &target_user_id_, GetArenaForAllocation(),
+      &other->target_user_id_, other->GetArenaForAllocation()
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata C_TransferOwnership::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
+      file_level_metadata_protocol_2eproto[93]);
+}
+
+// ===================================================================
+
+class S_TransferOwnership::_Internal {
+ public:
+};
+
+S_TransferOwnership::S_TransferOwnership(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Protocol.S_TransferOwnership)
+}
+S_TransferOwnership::S_TransferOwnership(const S_TransferOwnership& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  new_owner_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_new_owner_id().empty()) {
+    new_owner_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_new_owner_id(), 
+      GetArenaForAllocation());
+  }
+  success_ = from.success_;
+  // @@protoc_insertion_point(copy_constructor:Protocol.S_TransferOwnership)
+}
+
+void S_TransferOwnership::SharedCtor() {
+new_owner_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+success_ = false;
+}
+
+S_TransferOwnership::~S_TransferOwnership() {
+  // @@protoc_insertion_point(destructor:Protocol.S_TransferOwnership)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void S_TransferOwnership::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  new_owner_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void S_TransferOwnership::ArenaDtor(void* object) {
+  S_TransferOwnership* _this = reinterpret_cast< S_TransferOwnership* >(object);
+  (void)_this;
+}
+void S_TransferOwnership::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void S_TransferOwnership::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void S_TransferOwnership::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.S_TransferOwnership)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  new_owner_id_.ClearToEmpty();
+  success_ = false;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* S_TransferOwnership::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // bool success = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          success_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string new_owner_id = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_new_owner_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.S_TransferOwnership.new_owner_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* S_TransferOwnership::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.S_TransferOwnership)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bool success = 1;
+  if (this->success() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(1, this->_internal_success(), target);
+  }
+
+  // string new_owner_id = 2;
+  if (!this->new_owner_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_new_owner_id().data(), static_cast<int>(this->_internal_new_owner_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.S_TransferOwnership.new_owner_id");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_new_owner_id(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.S_TransferOwnership)
+  return target;
+}
+
+size_t S_TransferOwnership::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Protocol.S_TransferOwnership)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string new_owner_id = 2;
+  if (!this->new_owner_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_new_owner_id());
+  }
+
+  // bool success = 1;
+  if (this->success() != 0) {
+    total_size += 1 + 1;
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void S_TransferOwnership::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Protocol.S_TransferOwnership)
+  GOOGLE_DCHECK_NE(&from, this);
+  const S_TransferOwnership* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<S_TransferOwnership>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Protocol.S_TransferOwnership)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Protocol.S_TransferOwnership)
+    MergeFrom(*source);
+  }
+}
+
+void S_TransferOwnership::MergeFrom(const S_TransferOwnership& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Protocol.S_TransferOwnership)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from.new_owner_id().empty()) {
+    _internal_set_new_owner_id(from._internal_new_owner_id());
+  }
+  if (from.success() != 0) {
+    _internal_set_success(from._internal_success());
+  }
+}
+
+void S_TransferOwnership::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Protocol.S_TransferOwnership)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void S_TransferOwnership::CopyFrom(const S_TransferOwnership& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.S_TransferOwnership)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool S_TransferOwnership::IsInitialized() const {
+  return true;
+}
+
+void S_TransferOwnership::InternalSwap(S_TransferOwnership* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &new_owner_id_, GetArenaForAllocation(),
+      &other->new_owner_id_, other->GetArenaForAllocation()
+  );
+  swap(success_, other->success_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata S_TransferOwnership::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
+      file_level_metadata_protocol_2eproto[94]);
+}
+
+// ===================================================================
+
 class BlockedUserInfo::_Internal {
  public:
 };
@@ -37298,7 +38071,7 @@ void BlockedUserInfo::InternalSwap(BlockedUserInfo* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata BlockedUserInfo::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[93]);
+      file_level_metadata_protocol_2eproto[95]);
 }
 
 // ===================================================================
@@ -37503,7 +38276,7 @@ void C_BlockUser::InternalSwap(C_BlockUser* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata C_BlockUser::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[94]);
+      file_level_metadata_protocol_2eproto[96]);
 }
 
 // ===================================================================
@@ -37733,7 +38506,7 @@ void S_BlockUser::InternalSwap(S_BlockUser* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata S_BlockUser::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[95]);
+      file_level_metadata_protocol_2eproto[97]);
 }
 
 // ===================================================================
@@ -37938,7 +38711,7 @@ void C_UnblockUser::InternalSwap(C_UnblockUser* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata C_UnblockUser::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[96]);
+      file_level_metadata_protocol_2eproto[98]);
 }
 
 // ===================================================================
@@ -38126,7 +38899,7 @@ void S_UnblockUser::InternalSwap(S_UnblockUser* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata S_UnblockUser::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[97]);
+      file_level_metadata_protocol_2eproto[99]);
 }
 
 // ===================================================================
@@ -38284,7 +39057,7 @@ void C_GetBlockedList::InternalSwap(C_GetBlockedList* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata C_GetBlockedList::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[98]);
+      file_level_metadata_protocol_2eproto[100]);
 }
 
 // ===================================================================
@@ -38479,7 +39252,7 @@ void S_GetBlockedList::InternalSwap(S_GetBlockedList* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata S_GetBlockedList::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[99]);
+      file_level_metadata_protocol_2eproto[101]);
 }
 
 // ===================================================================
@@ -38768,7 +39541,7 @@ void C_ReportUser::InternalSwap(C_ReportUser* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata C_ReportUser::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[100]);
+      file_level_metadata_protocol_2eproto[102]);
 }
 
 // ===================================================================
@@ -38956,7 +39729,7 @@ void S_ReportUser::InternalSwap(S_ReportUser* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata S_ReportUser::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[101]);
+      file_level_metadata_protocol_2eproto[103]);
 }
 
 // ===================================================================
@@ -39230,7 +40003,7 @@ void C_AddReaction::InternalSwap(C_AddReaction* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata C_AddReaction::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[102]);
+      file_level_metadata_protocol_2eproto[104]);
 }
 
 // ===================================================================
@@ -39579,7 +40352,7 @@ void S_AddReaction::InternalSwap(S_AddReaction* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata S_AddReaction::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[103]);
+      file_level_metadata_protocol_2eproto[105]);
 }
 
 // ===================================================================
@@ -39944,7 +40717,7 @@ void C_CreatePoll::InternalSwap(C_CreatePoll* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata C_CreatePoll::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[104]);
+      file_level_metadata_protocol_2eproto[106]);
 }
 
 // ===================================================================
@@ -39989,6 +40762,16 @@ S_CreatePoll::S_CreatePoll(const S_CreatePoll& from)
     question_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_question(), 
       GetArenaForAllocation());
   }
+  status_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_status().empty()) {
+    status_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_status(), 
+      GetArenaForAllocation());
+  }
+  votes_json_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_votes_json().empty()) {
+    votes_json_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_votes_json(), 
+      GetArenaForAllocation());
+  }
   ::memcpy(&msg_seq_, &from.msg_seq_,
     static_cast<size_t>(reinterpret_cast<char*>(&is_anonymous_) -
     reinterpret_cast<char*>(&msg_seq_)) + sizeof(is_anonymous_));
@@ -40001,6 +40784,8 @@ poll_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlre
 creator_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 creator_name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 question_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+status_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+votes_json_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
     reinterpret_cast<char*>(&msg_seq_) - reinterpret_cast<char*>(this)),
     0, static_cast<size_t>(reinterpret_cast<char*>(&is_anonymous_) -
@@ -40020,6 +40805,8 @@ void S_CreatePoll::SharedDtor() {
   creator_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   creator_name_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   question_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  status_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  votes_json_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
 void S_CreatePoll::ArenaDtor(void* object) {
@@ -40044,6 +40831,8 @@ void S_CreatePoll::Clear() {
   creator_id_.ClearToEmpty();
   creator_name_.ClearToEmpty();
   question_.ClearToEmpty();
+  status_.ClearToEmpty();
+  votes_json_.ClearToEmpty();
   ::memset(&msg_seq_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&is_anonymous_) -
       reinterpret_cast<char*>(&msg_seq_)) + sizeof(is_anonymous_));
@@ -40147,6 +40936,24 @@ const char* S_CreatePoll::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
       case 11:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 88)) {
           ts_server_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string status = 12;
+      case 12:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 98)) {
+          auto str = _internal_mutable_status();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.S_CreatePoll.status"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string votes_json = 13;
+      case 13:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 106)) {
+          auto str = _internal_mutable_votes_json();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.S_CreatePoll.votes_json"));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -40269,6 +41076,26 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(11, this->_internal_ts_server(), target);
   }
 
+  // string status = 12;
+  if (!this->status().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_status().data(), static_cast<int>(this->_internal_status().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.S_CreatePoll.status");
+    target = stream->WriteStringMaybeAliased(
+        12, this->_internal_status(), target);
+  }
+
+  // string votes_json = 13;
+  if (!this->votes_json().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_votes_json().data(), static_cast<int>(this->_internal_votes_json().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.S_CreatePoll.votes_json");
+    target = stream->WriteStringMaybeAliased(
+        13, this->_internal_votes_json(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -40326,6 +41153,20 @@ size_t S_CreatePoll::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_question());
+  }
+
+  // string status = 12;
+  if (!this->status().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_status());
+  }
+
+  // string votes_json = 13;
+  if (!this->votes_json().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_votes_json());
   }
 
   // int64 msg_seq = 3;
@@ -40406,6 +41247,12 @@ void S_CreatePoll::MergeFrom(const S_CreatePoll& from) {
   if (!from.question().empty()) {
     _internal_set_question(from._internal_question());
   }
+  if (!from.status().empty()) {
+    _internal_set_status(from._internal_status());
+  }
+  if (!from.votes_json().empty()) {
+    _internal_set_votes_json(from._internal_votes_json());
+  }
   if (from.msg_seq() != 0) {
     _internal_set_msg_seq(from._internal_msg_seq());
   }
@@ -40470,6 +41317,16 @@ void S_CreatePoll::InternalSwap(S_CreatePoll* other) {
       &question_, GetArenaForAllocation(),
       &other->question_, other->GetArenaForAllocation()
   );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &status_, GetArenaForAllocation(),
+      &other->status_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &votes_json_, GetArenaForAllocation(),
+      &other->votes_json_, other->GetArenaForAllocation()
+  );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(S_CreatePoll, is_anonymous_)
       + sizeof(S_CreatePoll::is_anonymous_)
@@ -40481,7 +41338,7 @@ void S_CreatePoll::InternalSwap(S_CreatePoll* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata S_CreatePoll::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[105]);
+      file_level_metadata_protocol_2eproto[107]);
 }
 
 // ===================================================================
@@ -40794,7 +41651,7 @@ void C_Vote::InternalSwap(C_Vote* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata C_Vote::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[106]);
+      file_level_metadata_protocol_2eproto[108]);
 }
 
 // ===================================================================
@@ -41233,7 +42090,7 @@ void S_Vote::InternalSwap(S_Vote* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata S_Vote::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[107]);
+      file_level_metadata_protocol_2eproto[109]);
 }
 
 // ===================================================================
@@ -41507,7 +42364,7 @@ void C_ClosePoll::InternalSwap(C_ClosePoll* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata C_ClosePoll::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[108]);
+      file_level_metadata_protocol_2eproto[110]);
 }
 
 // ===================================================================
@@ -41781,7 +42638,7 @@ void S_ClosePoll::InternalSwap(S_ClosePoll* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata S_ClosePoll::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[109]);
+      file_level_metadata_protocol_2eproto[111]);
 }
 
 // ===================================================================
@@ -42097,7 +42954,7 @@ void C_SetAnnouncement::InternalSwap(C_SetAnnouncement* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata C_SetAnnouncement::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[110]);
+      file_level_metadata_protocol_2eproto[112]);
 }
 
 // ===================================================================
@@ -42455,7 +43312,7 @@ void S_SetAnnouncement::InternalSwap(S_SetAnnouncement* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata S_SetAnnouncement::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[111]);
+      file_level_metadata_protocol_2eproto[113]);
 }
 
 // ===================================================================
@@ -42702,7 +43559,7 @@ void C_SocialLogin::InternalSwap(C_SocialLogin* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata C_SocialLogin::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[112]);
+      file_level_metadata_protocol_2eproto[114]);
 }
 
 // ===================================================================
@@ -43016,7 +43873,7 @@ void S_SocialLogin::InternalSwap(S_SocialLogin* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata S_SocialLogin::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[113]);
+      file_level_metadata_protocol_2eproto[115]);
 }
 
 // ===================================================================
@@ -43347,7 +44204,7 @@ void C_CompleteSocialSignup::InternalSwap(C_CompleteSocialSignup* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata C_CompleteSocialSignup::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[114]);
+      file_level_metadata_protocol_2eproto[116]);
 }
 
 // ===================================================================
@@ -43782,7 +44639,7 @@ void Album::InternalSwap(Album* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Album::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[115]);
+      file_level_metadata_protocol_2eproto[117]);
 }
 
 // ===================================================================
@@ -44301,7 +45158,7 @@ void AlbumPhoto::InternalSwap(AlbumPhoto* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata AlbumPhoto::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[116]);
+      file_level_metadata_protocol_2eproto[118]);
 }
 
 // ===================================================================
@@ -44701,7 +45558,7 @@ void PhotoComment::InternalSwap(PhotoComment* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata PhotoComment::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[117]);
+      file_level_metadata_protocol_2eproto[119]);
 }
 
 // ===================================================================
@@ -44990,7 +45847,7 @@ void C_CreateAlbum::InternalSwap(C_CreateAlbum* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata C_CreateAlbum::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[118]);
+      file_level_metadata_protocol_2eproto[120]);
 }
 
 // ===================================================================
@@ -45268,7 +46125,7 @@ void S_CreateAlbum::InternalSwap(S_CreateAlbum* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata S_CreateAlbum::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[119]);
+      file_level_metadata_protocol_2eproto[121]);
 }
 
 // ===================================================================
@@ -45473,7 +46330,7 @@ void C_GetAlbums::InternalSwap(C_GetAlbums* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata C_GetAlbums::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[120]);
+      file_level_metadata_protocol_2eproto[122]);
 }
 
 // ===================================================================
@@ -45668,7 +46525,7 @@ void S_GetAlbums::InternalSwap(S_GetAlbums* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata S_GetAlbums::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[121]);
+      file_level_metadata_protocol_2eproto[123]);
 }
 
 // ===================================================================
@@ -46068,7 +46925,7 @@ void C_AddPhotoToAlbum::InternalSwap(C_AddPhotoToAlbum* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata C_AddPhotoToAlbum::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[122]);
+      file_level_metadata_protocol_2eproto[124]);
 }
 
 // ===================================================================
@@ -46428,7 +47285,7 @@ void S_AddPhotoToAlbum::InternalSwap(S_AddPhotoToAlbum* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata S_AddPhotoToAlbum::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[123]);
+      file_level_metadata_protocol_2eproto[125]);
 }
 
 // ===================================================================
@@ -46658,7 +47515,7 @@ void C_GetAlbumPhotos::InternalSwap(C_GetAlbumPhotos* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata C_GetAlbumPhotos::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[124]);
+      file_level_metadata_protocol_2eproto[126]);
 }
 
 // ===================================================================
@@ -46895,7 +47752,7 @@ void S_GetAlbumPhotos::InternalSwap(S_GetAlbumPhotos* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata S_GetAlbumPhotos::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[125]);
+      file_level_metadata_protocol_2eproto[127]);
 }
 
 // ===================================================================
@@ -47184,7 +48041,7 @@ void C_DeleteAlbum::InternalSwap(C_DeleteAlbum* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata C_DeleteAlbum::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[126]);
+      file_level_metadata_protocol_2eproto[128]);
 }
 
 // ===================================================================
@@ -47498,7 +48355,7 @@ void S_DeleteAlbum::InternalSwap(S_DeleteAlbum* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata S_DeleteAlbum::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[127]);
+      file_level_metadata_protocol_2eproto[129]);
 }
 
 // ===================================================================
@@ -47829,7 +48686,7 @@ void C_DeleteAlbumPhoto::InternalSwap(C_DeleteAlbumPhoto* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata C_DeleteAlbumPhoto::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[128]);
+      file_level_metadata_protocol_2eproto[130]);
 }
 
 // ===================================================================
@@ -48233,7 +49090,7 @@ void S_DeleteAlbumPhoto::InternalSwap(S_DeleteAlbumPhoto* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata S_DeleteAlbumPhoto::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[129]);
+      file_level_metadata_protocol_2eproto[131]);
 }
 
 // ===================================================================
@@ -48606,7 +49463,7 @@ void C_MovePhoto::InternalSwap(C_MovePhoto* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata C_MovePhoto::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[130]);
+      file_level_metadata_protocol_2eproto[132]);
 }
 
 // ===================================================================
@@ -49092,7 +49949,7 @@ void S_MovePhoto::InternalSwap(S_MovePhoto* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata S_MovePhoto::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[131]);
+      file_level_metadata_protocol_2eproto[133]);
 }
 
 // ===================================================================
@@ -49465,7 +50322,7 @@ void C_AddPhotoComment::InternalSwap(C_AddPhotoComment* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata C_AddPhotoComment::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[132]);
+      file_level_metadata_protocol_2eproto[134]);
 }
 
 // ===================================================================
@@ -49743,7 +50600,7 @@ void S_AddPhotoComment::InternalSwap(S_AddPhotoComment* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata S_AddPhotoComment::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[133]);
+      file_level_metadata_protocol_2eproto[135]);
 }
 
 // ===================================================================
@@ -49948,7 +50805,7 @@ void C_GetPhotoComments::InternalSwap(C_GetPhotoComments* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata C_GetPhotoComments::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[134]);
+      file_level_metadata_protocol_2eproto[136]);
 }
 
 // ===================================================================
@@ -50185,7 +51042,7 @@ void S_GetPhotoComments::InternalSwap(S_GetPhotoComments* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata S_GetPhotoComments::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[135]);
+      file_level_metadata_protocol_2eproto[137]);
 }
 
 // ===================================================================
@@ -50516,7 +51373,7 @@ void C_DeletePhotoComment::InternalSwap(C_DeletePhotoComment* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata C_DeletePhotoComment::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[136]);
+      file_level_metadata_protocol_2eproto[138]);
 }
 
 // ===================================================================
@@ -50872,7 +51729,7 @@ void S_DeletePhotoComment::InternalSwap(S_DeletePhotoComment* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata S_DeletePhotoComment::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[137]);
+      file_level_metadata_protocol_2eproto[139]);
 }
 
 // ===================================================================
@@ -51119,7 +51976,7 @@ void LocationPhoto::InternalSwap(LocationPhoto* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata LocationPhoto::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[138]);
+      file_level_metadata_protocol_2eproto[140]);
 }
 
 // ===================================================================
@@ -51159,6 +52016,11 @@ LocationVisitInfo::LocationVisitInfo(const LocationVisitInfo& from)
     review_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_review(), 
       GetArenaForAllocation());
   }
+  history_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_history_id().empty()) {
+    history_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_history_id(), 
+      GetArenaForAllocation());
+  }
   ::memcpy(&visited_at_, &from.visited_at_,
     static_cast<size_t>(reinterpret_cast<char*>(&rating_) -
     reinterpret_cast<char*>(&visited_at_)) + sizeof(rating_));
@@ -51170,6 +52032,7 @@ id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyIn
 user_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 user_name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 review_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+history_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
     reinterpret_cast<char*>(&visited_at_) - reinterpret_cast<char*>(this)),
     0, static_cast<size_t>(reinterpret_cast<char*>(&rating_) -
@@ -51188,6 +52051,7 @@ void LocationVisitInfo::SharedDtor() {
   user_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   user_name_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   review_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  history_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
 void LocationVisitInfo::ArenaDtor(void* object) {
@@ -51211,6 +52075,7 @@ void LocationVisitInfo::Clear() {
   user_id_.ClearToEmpty();
   user_name_.ClearToEmpty();
   review_.ClearToEmpty();
+  history_id_.ClearToEmpty();
   ::memset(&visited_at_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&rating_) -
       reinterpret_cast<char*>(&visited_at_)) + sizeof(rating_));
@@ -51283,6 +52148,15 @@ const char* LocationVisitInfo::_InternalParse(const char* ptr, ::PROTOBUF_NAMESP
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<58>(ptr));
+        } else goto handle_unusual;
+        continue;
+      // string history_id = 8;
+      case 8:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 66)) {
+          auto str = _internal_mutable_history_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.LocationVisitInfo.history_id"));
+          CHK_(ptr);
         } else goto handle_unusual;
         continue;
       default: {
@@ -51374,6 +52248,16 @@ failure:
       InternalWriteMessage(7, this->_internal_photos(i), target, stream);
   }
 
+  // string history_id = 8;
+  if (!this->history_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_history_id().data(), static_cast<int>(this->_internal_history_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.LocationVisitInfo.history_id");
+    target = stream->WriteStringMaybeAliased(
+        8, this->_internal_history_id(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -51423,6 +52307,13 @@ size_t LocationVisitInfo::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_review());
+  }
+
+  // string history_id = 8;
+  if (!this->history_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_history_id());
   }
 
   // int64 visited_at = 6;
@@ -51483,6 +52374,9 @@ void LocationVisitInfo::MergeFrom(const LocationVisitInfo& from) {
   if (!from.review().empty()) {
     _internal_set_review(from._internal_review());
   }
+  if (!from.history_id().empty()) {
+    _internal_set_history_id(from._internal_history_id());
+  }
   if (from.visited_at() != 0) {
     _internal_set_visited_at(from._internal_visited_at());
   }
@@ -51533,6 +52427,11 @@ void LocationVisitInfo::InternalSwap(LocationVisitInfo* other) {
       &review_, GetArenaForAllocation(),
       &other->review_, other->GetArenaForAllocation()
   );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &history_id_, GetArenaForAllocation(),
+      &other->history_id_, other->GetArenaForAllocation()
+  );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(LocationVisitInfo, rating_)
       + sizeof(LocationVisitInfo::rating_)
@@ -51544,7 +52443,7 @@ void LocationVisitInfo::InternalSwap(LocationVisitInfo* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata LocationVisitInfo::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[139]);
+      file_level_metadata_protocol_2eproto[141]);
 }
 
 // ===================================================================
@@ -52158,7 +53057,7 @@ void LocationPlaceInfo::InternalSwap(LocationPlaceInfo* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata LocationPlaceInfo::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[140]);
+      file_level_metadata_protocol_2eproto[142]);
 }
 
 // ===================================================================
@@ -52631,7 +53530,7 @@ void C_SavePlace::InternalSwap(C_SavePlace* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata C_SavePlace::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[141]);
+      file_level_metadata_protocol_2eproto[143]);
 }
 
 // ===================================================================
@@ -52894,7 +53793,7 @@ void S_SavePlace::InternalSwap(S_SavePlace* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata S_SavePlace::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[142]);
+      file_level_metadata_protocol_2eproto[144]);
 }
 
 // ===================================================================
@@ -53099,7 +53998,7 @@ void C_GetPlaces::InternalSwap(C_GetPlaces* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata C_GetPlaces::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[143]);
+      file_level_metadata_protocol_2eproto[145]);
 }
 
 // ===================================================================
@@ -53336,7 +54235,7 @@ void S_GetPlaces::InternalSwap(S_GetPlaces* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata S_GetPlaces::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[144]);
+      file_level_metadata_protocol_2eproto[146]);
 }
 
 // ===================================================================
@@ -53381,6 +54280,11 @@ C_SaveVisit::C_SaveVisit(const C_SaveVisit& from)
     review_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_review(), 
       GetArenaForAllocation());
   }
+  history_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_history_id().empty()) {
+    history_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_history_id(), 
+      GetArenaForAllocation());
+  }
   ::memcpy(&visited_at_, &from.visited_at_,
     static_cast<size_t>(reinterpret_cast<char*>(&rating_) -
     reinterpret_cast<char*>(&visited_at_)) + sizeof(rating_));
@@ -53393,6 +54297,7 @@ group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlr
 user_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 user_name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 review_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+history_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
     reinterpret_cast<char*>(&visited_at_) - reinterpret_cast<char*>(this)),
     0, static_cast<size_t>(reinterpret_cast<char*>(&rating_) -
@@ -53412,6 +54317,7 @@ void C_SaveVisit::SharedDtor() {
   user_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   user_name_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   review_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  history_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
 void C_SaveVisit::ArenaDtor(void* object) {
@@ -53436,6 +54342,7 @@ void C_SaveVisit::Clear() {
   user_id_.ClearToEmpty();
   user_name_.ClearToEmpty();
   review_.ClearToEmpty();
+  history_id_.ClearToEmpty();
   ::memset(&visited_at_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&rating_) -
       reinterpret_cast<char*>(&visited_at_)) + sizeof(rating_));
@@ -53518,6 +54425,15 @@ const char* C_SaveVisit::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID
       case 8:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 64)) {
           visited_at_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string history_id = 9;
+      case 9:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 74)) {
+          auto str = _internal_mutable_history_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_SaveVisit.history_id"));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -53622,6 +54538,16 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(8, this->_internal_visited_at(), target);
   }
 
+  // string history_id = 9;
+  if (!this->history_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_history_id().data(), static_cast<int>(this->_internal_history_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_SaveVisit.history_id");
+    target = stream->WriteStringMaybeAliased(
+        9, this->_internal_history_id(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -53679,6 +54605,13 @@ size_t C_SaveVisit::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_review());
+  }
+
+  // string history_id = 9;
+  if (!this->history_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_history_id());
   }
 
   // int64 visited_at = 8;
@@ -53742,6 +54675,9 @@ void C_SaveVisit::MergeFrom(const C_SaveVisit& from) {
   if (!from.review().empty()) {
     _internal_set_review(from._internal_review());
   }
+  if (!from.history_id().empty()) {
+    _internal_set_history_id(from._internal_history_id());
+  }
   if (from.visited_at() != 0) {
     _internal_set_visited_at(from._internal_visited_at());
   }
@@ -53797,6 +54733,11 @@ void C_SaveVisit::InternalSwap(C_SaveVisit* other) {
       &review_, GetArenaForAllocation(),
       &other->review_, other->GetArenaForAllocation()
   );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &history_id_, GetArenaForAllocation(),
+      &other->history_id_, other->GetArenaForAllocation()
+  );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(C_SaveVisit, rating_)
       + sizeof(C_SaveVisit::rating_)
@@ -53808,7 +54749,7 @@ void C_SaveVisit::InternalSwap(C_SaveVisit* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata C_SaveVisit::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[145]);
+      file_level_metadata_protocol_2eproto[147]);
 }
 
 // ===================================================================
@@ -54153,7 +55094,7 @@ void S_SaveVisit::InternalSwap(S_SaveVisit* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata S_SaveVisit::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[146]);
+      file_level_metadata_protocol_2eproto[148]);
 }
 
 // ===================================================================
@@ -54442,7 +55383,7 @@ void C_DeletePlace::InternalSwap(C_DeletePlace* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata C_DeletePlace::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[147]);
+      file_level_metadata_protocol_2eproto[149]);
 }
 
 // ===================================================================
@@ -54749,7 +55690,7 @@ void S_DeletePlace::InternalSwap(S_DeletePlace* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata S_DeletePlace::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[148]);
+      file_level_metadata_protocol_2eproto[150]);
 }
 
 // ===================================================================
@@ -54794,6 +55735,11 @@ C_UpdateVisit::C_UpdateVisit(const C_UpdateVisit& from)
     review_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_review(), 
       GetArenaForAllocation());
   }
+  history_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_history_id().empty()) {
+    history_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_history_id(), 
+      GetArenaForAllocation());
+  }
   ::memcpy(&visited_at_, &from.visited_at_,
     static_cast<size_t>(reinterpret_cast<char*>(&rating_) -
     reinterpret_cast<char*>(&visited_at_)) + sizeof(rating_));
@@ -54806,6 +55752,7 @@ place_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlr
 group_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 user_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 review_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+history_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
     reinterpret_cast<char*>(&visited_at_) - reinterpret_cast<char*>(this)),
     0, static_cast<size_t>(reinterpret_cast<char*>(&rating_) -
@@ -54825,6 +55772,7 @@ void C_UpdateVisit::SharedDtor() {
   group_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   user_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   review_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  history_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
 void C_UpdateVisit::ArenaDtor(void* object) {
@@ -54849,6 +55797,7 @@ void C_UpdateVisit::Clear() {
   group_id_.ClearToEmpty();
   user_id_.ClearToEmpty();
   review_.ClearToEmpty();
+  history_id_.ClearToEmpty();
   ::memset(&visited_at_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&rating_) -
       reinterpret_cast<char*>(&visited_at_)) + sizeof(rating_));
@@ -54931,6 +55880,15 @@ const char* C_UpdateVisit::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_
       case 8:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 64)) {
           visited_at_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string history_id = 9;
+      case 9:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 74)) {
+          auto str = _internal_mutable_history_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Protocol.C_UpdateVisit.history_id"));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -55035,6 +55993,16 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(8, this->_internal_visited_at(), target);
   }
 
+  // string history_id = 9;
+  if (!this->history_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_history_id().data(), static_cast<int>(this->_internal_history_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_UpdateVisit.history_id");
+    target = stream->WriteStringMaybeAliased(
+        9, this->_internal_history_id(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -55092,6 +56060,13 @@ size_t C_UpdateVisit::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_review());
+  }
+
+  // string history_id = 9;
+  if (!this->history_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_history_id());
   }
 
   // int64 visited_at = 8;
@@ -55155,6 +56130,9 @@ void C_UpdateVisit::MergeFrom(const C_UpdateVisit& from) {
   if (!from.review().empty()) {
     _internal_set_review(from._internal_review());
   }
+  if (!from.history_id().empty()) {
+    _internal_set_history_id(from._internal_history_id());
+  }
   if (from.visited_at() != 0) {
     _internal_set_visited_at(from._internal_visited_at());
   }
@@ -55210,6 +56188,11 @@ void C_UpdateVisit::InternalSwap(C_UpdateVisit* other) {
       &review_, GetArenaForAllocation(),
       &other->review_, other->GetArenaForAllocation()
   );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &history_id_, GetArenaForAllocation(),
+      &other->history_id_, other->GetArenaForAllocation()
+  );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(C_UpdateVisit, rating_)
       + sizeof(C_UpdateVisit::rating_)
@@ -55221,7 +56204,7 @@ void C_UpdateVisit::InternalSwap(C_UpdateVisit* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata C_UpdateVisit::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[149]);
+      file_level_metadata_protocol_2eproto[151]);
 }
 
 // ===================================================================
@@ -55524,7 +56507,7 @@ void S_UpdateVisit::InternalSwap(S_UpdateVisit* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata S_UpdateVisit::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[150]);
+      file_level_metadata_protocol_2eproto[152]);
 }
 
 // ===================================================================
@@ -55855,7 +56838,7 @@ void C_DeleteVisit::InternalSwap(C_DeleteVisit* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata C_DeleteVisit::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[151]);
+      file_level_metadata_protocol_2eproto[153]);
 }
 
 // ===================================================================
@@ -56225,7 +57208,7 @@ void S_DeleteVisit::InternalSwap(S_DeleteVisit* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata S_DeleteVisit::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[152]);
+      file_level_metadata_protocol_2eproto[154]);
 }
 
 // ===================================================================
@@ -56493,7 +57476,7 @@ void S_Error::InternalSwap(S_Error* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata S_Error::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[153]);
+      file_level_metadata_protocol_2eproto[155]);
 }
 
 // ===================================================================
@@ -56651,7 +57634,7 @@ void C_Heartbeat::InternalSwap(C_Heartbeat* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata C_Heartbeat::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[154]);
+      file_level_metadata_protocol_2eproto[156]);
 }
 
 // ===================================================================
@@ -56809,7 +57792,7 @@ void S_Heartbeat::InternalSwap(S_Heartbeat* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata S_Heartbeat::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_protocol_2eproto_getter, &descriptor_table_protocol_2eproto_once,
-      file_level_metadata_protocol_2eproto[155]);
+      file_level_metadata_protocol_2eproto[157]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
@@ -57093,6 +58076,12 @@ template<> PROTOBUF_NOINLINE ::Protocol::C_DeleteGroup* Arena::CreateMaybeMessag
 }
 template<> PROTOBUF_NOINLINE ::Protocol::S_DeleteGroup* Arena::CreateMaybeMessage< ::Protocol::S_DeleteGroup >(Arena* arena) {
   return Arena::CreateMessageInternal< ::Protocol::S_DeleteGroup >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Protocol::C_TransferOwnership* Arena::CreateMaybeMessage< ::Protocol::C_TransferOwnership >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::C_TransferOwnership >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Protocol::S_TransferOwnership* Arena::CreateMaybeMessage< ::Protocol::S_TransferOwnership >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::S_TransferOwnership >(arena);
 }
 template<> PROTOBUF_NOINLINE ::Protocol::BlockedUserInfo* Arena::CreateMaybeMessage< ::Protocol::BlockedUserInfo >(Arena* arena) {
   return Arena::CreateMessageInternal< ::Protocol::BlockedUserInfo >(arena);

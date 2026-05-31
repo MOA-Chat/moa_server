@@ -35,3 +35,6 @@ CREATE TABLE IF NOT EXISTS users (
     INDEX idx_last_seen  (last_seen),
     INDEX idx_is_deleted (is_deleted)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+select * from users;

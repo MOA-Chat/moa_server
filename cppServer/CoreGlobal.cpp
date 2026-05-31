@@ -33,7 +33,7 @@ const int32 MAX_GROUP_MEMBERS = 12;  // 그룹 최대 인원 수
 // ─── 저장공간 기본 제공량 ───
 const int64 DEFAULT_PERSONAL_STORAGE = 1LL * 1024 * 1024 * 1024;  // 1GB (무료 플랜 기본값)
 const int64 DEFAULT_GROUP_STORAGE    = 1LL * 1024 * 1024 * 1024;  // 1GB
-const int64 DEFAULT_MAX_FILE_SIZE    = 25LL * 1024 * 1024;        // 25MB
+const int64 DEFAULT_MAX_FILE_SIZE    = 300LL * 1024 * 1024;       // 300MB
 
 UserManager* GUserManager = nullptr;
 ChatService* GChatService = nullptr;
@@ -43,7 +43,7 @@ VerificationManager* GVerificationManager = nullptr;
 
 AuthService* GAuthService = nullptr;
 FileService* GFileService = nullptr;
-CloudStorage* GCloudStorage = nullptr;
+CloudStorage* GStorage = nullptr;
 NotificationService* GNotificationService = nullptr;
 BlockService* GBlockService = nullptr;
 ExpirationBatchJob* GExpirationBatchJob = nullptr;
@@ -234,7 +234,7 @@ CoreGlobal::CoreGlobal()
 
     GAuthService = _authService.get();
     GFileService = _fileService.get();
-    GCloudStorage = _cloudStorage.get();
+    GStorage = _cloudStorage.get();
     GNotificationService = _notificationService.get();
     GPaymentService = _paymentService.get();
     GBlockService = _blockService.get();
@@ -253,7 +253,7 @@ CoreGlobal::~CoreGlobal()
     GPaymentService = nullptr;
     GBlockService = nullptr;
     GNotificationService = nullptr;
-    GCloudStorage = nullptr;
+    GStorage = nullptr;
     GFileService = nullptr;
     GAuthService = nullptr;
 
@@ -303,7 +303,7 @@ void CoreGlobal::Reset()
     GPaymentService = nullptr;
     GBlockService = nullptr;
     GNotificationService = nullptr;
-    GCloudStorage = nullptr;
+    GStorage = nullptr;
     GFileService = nullptr;
     GAuthService = nullptr;
     GFriendService = nullptr;
@@ -377,7 +377,7 @@ void CoreGlobal::Reset()
 
     GAuthService = _authService.get();
     GFileService = _fileService.get();
-    GCloudStorage = _cloudStorage.get();
+    GStorage = _cloudStorage.get();
     GNotificationService = _notificationService.get();
     GPaymentService = _paymentService.get();
     GBlockService = _blockService.get();

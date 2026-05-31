@@ -96,6 +96,7 @@ export enum ErrorCode {
   ERR_POLL_CLOSED = 701,
   ERR_POLL_INVALID_OPTION = 702,
   ERR_INVITE_EXPIRED = 800,
+  ERR_GROUP_FULL = 801,
   ERR_OAUTH_VERIFICATION_FAILED = 120,
   ERR_OAUTH_PROVIDER_INVALID = 121,
   UNRECOGNIZED = -1,
@@ -241,6 +242,9 @@ export function errorCodeFromJSON(object: any): ErrorCode {
     case 800:
     case "ERR_INVITE_EXPIRED":
       return ErrorCode.ERR_INVITE_EXPIRED;
+    case 801:
+    case "ERR_GROUP_FULL":
+      return ErrorCode.ERR_GROUP_FULL;
     case 120:
     case "ERR_OAUTH_VERIFICATION_FAILED":
       return ErrorCode.ERR_OAUTH_VERIFICATION_FAILED;
@@ -348,6 +352,8 @@ export function errorCodeToJSON(object: ErrorCode): string {
       return "ERR_POLL_INVALID_OPTION";
     case ErrorCode.ERR_INVITE_EXPIRED:
       return "ERR_INVITE_EXPIRED";
+    case ErrorCode.ERR_GROUP_FULL:
+      return "ERR_GROUP_FULL";
     case ErrorCode.ERR_OAUTH_VERIFICATION_FAILED:
       return "ERR_OAUTH_VERIFICATION_FAILED";
     case ErrorCode.ERR_OAUTH_PROVIDER_INVALID:
@@ -496,8 +502,10 @@ export interface Envelope {
   cUpdateVisit?: CUpdateVisit | undefined;
   sUpdateVisit?: SUpdateVisit | undefined;
   cDeleteVisit?: CDeleteVisit | undefined;
-  sDeleteVisit?:
-    | SDeleteVisit
+  sDeleteVisit?: SDeleteVisit | undefined;
+  cTransferOwnership?: CTransferOwnership | undefined;
+  sTransferOwnership?:
+    | STransferOwnership
     | undefined;
   /** GROUPS (80 ~ 99) */
   cCreateGroup?: CCreateGroup | undefined;
@@ -909,6 +917,7 @@ export interface SMessageBatch_ConversationBatch {
 }
 
 export interface CGetSubscription {
+  groupId: string;
 }
 
 export interface SubscriptionPlan {
@@ -924,9 +933,8 @@ export interface SubscriptionPlan {
 
 export interface SGetSubscription {
   success: boolean;
-  currentGrade: number;
   currentPlanName: string;
-  storageCapacityBytes: number;
+  storageLimitBytes: number;
   storageUsageBytes: number;
   expiresAt: number;
   autoRenew: boolean;
@@ -938,17 +946,19 @@ export interface CVerifyPurchase {
   productId: string;
   transactionId: string;
   purchaseToken: string;
+  groupId: string;
 }
 
 export interface SVerifyPurchase {
   success: boolean;
   message: string;
-  newGrade: number;
   expiresAt: number;
-  storageCapacity: number;
+  storageLimitBytes: number;
+  storageUsageBytes: number;
 }
 
 export interface CCancelSubscription {
+  groupId: string;
 }
 
 export interface SCancelSubscription {
@@ -1207,6 +1217,16 @@ export interface SDeleteGroup {
   success: boolean;
 }
 
+export interface CTransferOwnership {
+  groupId: string;
+  targetUserId: string;
+}
+
+export interface STransferOwnership {
+  success: boolean;
+  newOwnerId: string;
+}
+
 export interface BlockedUserInfo {
   userId: string;
   name: string;
@@ -1283,6 +1303,10 @@ export interface SCreatePoll {
   isAnonymous: boolean;
   expiresAt: number;
   tsServer: number;
+  /** "" or "active"(default) or "closed" */
+  status: string;
+  /** 종료 시 현재 투표 현황 */
+  votesJson: string;
 }
 
 export interface CVote {
@@ -1535,6 +1559,7 @@ export interface LocationVisitInfo {
   review: string;
   visitedAt: number;
   photos: LocationPhoto[];
+  historyId: string;
 }
 
 export interface LocationPlaceInfo {
@@ -1588,6 +1613,7 @@ export interface CSaveVisit {
   review: string;
   photoUrls: string[];
   visitedAt: number;
+  historyId: string;
 }
 
 export interface SSaveVisit {
@@ -1620,6 +1646,7 @@ export interface CUpdateVisit {
   review: string;
   photoUrls: string[];
   visitedAt: number;
+  historyId: string;
 }
 
 export interface SUpdateVisit {
@@ -1773,6 +1800,8 @@ function createBaseEnvelope(): Envelope {
     sUpdateVisit: undefined,
     cDeleteVisit: undefined,
     sDeleteVisit: undefined,
+    cTransferOwnership: undefined,
+    sTransferOwnership: undefined,
     cCreateGroup: undefined,
     sCreateGroup: undefined,
     cGroupList: undefined,
@@ -2142,6 +2171,12 @@ export const Envelope = {
     }
     if (message.sDeleteVisit !== undefined) {
       SDeleteVisit.encode(message.sDeleteVisit, writer.uint32(1274).fork()).ldelim();
+    }
+    if (message.cTransferOwnership !== undefined) {
+      CTransferOwnership.encode(message.cTransferOwnership, writer.uint32(1282).fork()).ldelim();
+    }
+    if (message.sTransferOwnership !== undefined) {
+      STransferOwnership.encode(message.sTransferOwnership, writer.uint32(1290).fork()).ldelim();
     }
     if (message.cCreateGroup !== undefined) {
       CCreateGroup.encode(message.cCreateGroup, writer.uint32(642).fork()).ldelim();
@@ -3020,6 +3055,20 @@ export const Envelope = {
 
           message.sDeleteVisit = SDeleteVisit.decode(reader, reader.uint32());
           continue;
+        case 160:
+          if (tag !== 1282) {
+            break;
+          }
+
+          message.cTransferOwnership = CTransferOwnership.decode(reader, reader.uint32());
+          continue;
+        case 161:
+          if (tag !== 1290) {
+            break;
+          }
+
+          message.sTransferOwnership = STransferOwnership.decode(reader, reader.uint32());
+          continue;
         case 80:
           if (tag !== 642) {
             break;
@@ -3336,6 +3385,12 @@ export const Envelope = {
       sUpdateVisit: isSet(object.sUpdateVisit) ? SUpdateVisit.fromJSON(object.sUpdateVisit) : undefined,
       cDeleteVisit: isSet(object.cDeleteVisit) ? CDeleteVisit.fromJSON(object.cDeleteVisit) : undefined,
       sDeleteVisit: isSet(object.sDeleteVisit) ? SDeleteVisit.fromJSON(object.sDeleteVisit) : undefined,
+      cTransferOwnership: isSet(object.cTransferOwnership)
+        ? CTransferOwnership.fromJSON(object.cTransferOwnership)
+        : undefined,
+      sTransferOwnership: isSet(object.sTransferOwnership)
+        ? STransferOwnership.fromJSON(object.sTransferOwnership)
+        : undefined,
       cCreateGroup: isSet(object.cCreateGroup) ? CCreateGroup.fromJSON(object.cCreateGroup) : undefined,
       sCreateGroup: isSet(object.sCreateGroup) ? SCreateGroup.fromJSON(object.sCreateGroup) : undefined,
       cGroupList: isSet(object.cGroupList) ? CGroupList.fromJSON(object.cGroupList) : undefined,
@@ -3705,6 +3760,12 @@ export const Envelope = {
     }
     if (message.sDeleteVisit !== undefined) {
       obj.sDeleteVisit = SDeleteVisit.toJSON(message.sDeleteVisit);
+    }
+    if (message.cTransferOwnership !== undefined) {
+      obj.cTransferOwnership = CTransferOwnership.toJSON(message.cTransferOwnership);
+    }
+    if (message.sTransferOwnership !== undefined) {
+      obj.sTransferOwnership = STransferOwnership.toJSON(message.sTransferOwnership);
     }
     if (message.cCreateGroup !== undefined) {
       obj.cCreateGroup = CCreateGroup.toJSON(message.cCreateGroup);
@@ -4109,6 +4170,12 @@ export const Envelope = {
       : undefined;
     message.sDeleteVisit = (object.sDeleteVisit !== undefined && object.sDeleteVisit !== null)
       ? SDeleteVisit.fromPartial(object.sDeleteVisit)
+      : undefined;
+    message.cTransferOwnership = (object.cTransferOwnership !== undefined && object.cTransferOwnership !== null)
+      ? CTransferOwnership.fromPartial(object.cTransferOwnership)
+      : undefined;
+    message.sTransferOwnership = (object.sTransferOwnership !== undefined && object.sTransferOwnership !== null)
+      ? STransferOwnership.fromPartial(object.sTransferOwnership)
       : undefined;
     message.cCreateGroup = (object.cCreateGroup !== undefined && object.cCreateGroup !== null)
       ? CCreateGroup.fromPartial(object.cCreateGroup)
@@ -9108,11 +9175,14 @@ export const SMessageBatch_ConversationBatch = {
 };
 
 function createBaseCGetSubscription(): CGetSubscription {
-  return {};
+  return { groupId: "" };
 }
 
 export const CGetSubscription = {
-  encode(_: CGetSubscription, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(message: CGetSubscription, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.groupId !== "") {
+      writer.uint32(10).string(message.groupId);
+    }
     return writer;
   },
 
@@ -9123,6 +9193,13 @@ export const CGetSubscription = {
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.groupId = reader.string();
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -9132,20 +9209,24 @@ export const CGetSubscription = {
     return message;
   },
 
-  fromJSON(_: any): CGetSubscription {
-    return {};
+  fromJSON(object: any): CGetSubscription {
+    return { groupId: isSet(object.groupId) ? globalThis.String(object.groupId) : "" };
   },
 
-  toJSON(_: CGetSubscription): unknown {
+  toJSON(message: CGetSubscription): unknown {
     const obj: any = {};
+    if (message.groupId !== "") {
+      obj.groupId = message.groupId;
+    }
     return obj;
   },
 
   create<I extends Exact<DeepPartial<CGetSubscription>, I>>(base?: I): CGetSubscription {
     return CGetSubscription.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<CGetSubscription>, I>>(_: I): CGetSubscription {
+  fromPartial<I extends Exact<DeepPartial<CGetSubscription>, I>>(object: I): CGetSubscription {
     const message = createBaseCGetSubscription();
+    message.groupId = object.groupId ?? "";
     return message;
   },
 };
@@ -9326,9 +9407,8 @@ export const SubscriptionPlan = {
 function createBaseSGetSubscription(): SGetSubscription {
   return {
     success: false,
-    currentGrade: 0,
     currentPlanName: "",
-    storageCapacityBytes: 0,
+    storageLimitBytes: 0,
     storageUsageBytes: 0,
     expiresAt: 0,
     autoRenew: false,
@@ -9341,14 +9421,11 @@ export const SGetSubscription = {
     if (message.success !== false) {
       writer.uint32(8).bool(message.success);
     }
-    if (message.currentGrade !== 0) {
-      writer.uint32(16).int32(message.currentGrade);
-    }
     if (message.currentPlanName !== "") {
       writer.uint32(26).string(message.currentPlanName);
     }
-    if (message.storageCapacityBytes !== 0) {
-      writer.uint32(32).int64(message.storageCapacityBytes);
+    if (message.storageLimitBytes !== 0) {
+      writer.uint32(32).int64(message.storageLimitBytes);
     }
     if (message.storageUsageBytes !== 0) {
       writer.uint32(40).int64(message.storageUsageBytes);
@@ -9379,13 +9456,6 @@ export const SGetSubscription = {
 
           message.success = reader.bool();
           continue;
-        case 2:
-          if (tag !== 16) {
-            break;
-          }
-
-          message.currentGrade = reader.int32();
-          continue;
         case 3:
           if (tag !== 26) {
             break;
@@ -9398,7 +9468,7 @@ export const SGetSubscription = {
             break;
           }
 
-          message.storageCapacityBytes = longToNumber(reader.int64() as Long);
+          message.storageLimitBytes = longToNumber(reader.int64() as Long);
           continue;
         case 5:
           if (tag !== 40) {
@@ -9440,9 +9510,8 @@ export const SGetSubscription = {
   fromJSON(object: any): SGetSubscription {
     return {
       success: isSet(object.success) ? globalThis.Boolean(object.success) : false,
-      currentGrade: isSet(object.currentGrade) ? globalThis.Number(object.currentGrade) : 0,
       currentPlanName: isSet(object.currentPlanName) ? globalThis.String(object.currentPlanName) : "",
-      storageCapacityBytes: isSet(object.storageCapacityBytes) ? globalThis.Number(object.storageCapacityBytes) : 0,
+      storageLimitBytes: isSet(object.storageLimitBytes) ? globalThis.Number(object.storageLimitBytes) : 0,
       storageUsageBytes: isSet(object.storageUsageBytes) ? globalThis.Number(object.storageUsageBytes) : 0,
       expiresAt: isSet(object.expiresAt) ? globalThis.Number(object.expiresAt) : 0,
       autoRenew: isSet(object.autoRenew) ? globalThis.Boolean(object.autoRenew) : false,
@@ -9457,14 +9526,11 @@ export const SGetSubscription = {
     if (message.success !== false) {
       obj.success = message.success;
     }
-    if (message.currentGrade !== 0) {
-      obj.currentGrade = Math.round(message.currentGrade);
-    }
     if (message.currentPlanName !== "") {
       obj.currentPlanName = message.currentPlanName;
     }
-    if (message.storageCapacityBytes !== 0) {
-      obj.storageCapacityBytes = Math.round(message.storageCapacityBytes);
+    if (message.storageLimitBytes !== 0) {
+      obj.storageLimitBytes = Math.round(message.storageLimitBytes);
     }
     if (message.storageUsageBytes !== 0) {
       obj.storageUsageBytes = Math.round(message.storageUsageBytes);
@@ -9487,9 +9553,8 @@ export const SGetSubscription = {
   fromPartial<I extends Exact<DeepPartial<SGetSubscription>, I>>(object: I): SGetSubscription {
     const message = createBaseSGetSubscription();
     message.success = object.success ?? false;
-    message.currentGrade = object.currentGrade ?? 0;
     message.currentPlanName = object.currentPlanName ?? "";
-    message.storageCapacityBytes = object.storageCapacityBytes ?? 0;
+    message.storageLimitBytes = object.storageLimitBytes ?? 0;
     message.storageUsageBytes = object.storageUsageBytes ?? 0;
     message.expiresAt = object.expiresAt ?? 0;
     message.autoRenew = object.autoRenew ?? false;
@@ -9499,7 +9564,7 @@ export const SGetSubscription = {
 };
 
 function createBaseCVerifyPurchase(): CVerifyPurchase {
-  return { platform: "", productId: "", transactionId: "", purchaseToken: "" };
+  return { platform: "", productId: "", transactionId: "", purchaseToken: "", groupId: "" };
 }
 
 export const CVerifyPurchase = {
@@ -9515,6 +9580,9 @@ export const CVerifyPurchase = {
     }
     if (message.purchaseToken !== "") {
       writer.uint32(34).string(message.purchaseToken);
+    }
+    if (message.groupId !== "") {
+      writer.uint32(42).string(message.groupId);
     }
     return writer;
   },
@@ -9554,6 +9622,13 @@ export const CVerifyPurchase = {
 
           message.purchaseToken = reader.string();
           continue;
+        case 5:
+          if (tag !== 42) {
+            break;
+          }
+
+          message.groupId = reader.string();
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -9569,6 +9644,7 @@ export const CVerifyPurchase = {
       productId: isSet(object.productId) ? globalThis.String(object.productId) : "",
       transactionId: isSet(object.transactionId) ? globalThis.String(object.transactionId) : "",
       purchaseToken: isSet(object.purchaseToken) ? globalThis.String(object.purchaseToken) : "",
+      groupId: isSet(object.groupId) ? globalThis.String(object.groupId) : "",
     };
   },
 
@@ -9586,6 +9662,9 @@ export const CVerifyPurchase = {
     if (message.purchaseToken !== "") {
       obj.purchaseToken = message.purchaseToken;
     }
+    if (message.groupId !== "") {
+      obj.groupId = message.groupId;
+    }
     return obj;
   },
 
@@ -9598,12 +9677,13 @@ export const CVerifyPurchase = {
     message.productId = object.productId ?? "";
     message.transactionId = object.transactionId ?? "";
     message.purchaseToken = object.purchaseToken ?? "";
+    message.groupId = object.groupId ?? "";
     return message;
   },
 };
 
 function createBaseSVerifyPurchase(): SVerifyPurchase {
-  return { success: false, message: "", newGrade: 0, expiresAt: 0, storageCapacity: 0 };
+  return { success: false, message: "", expiresAt: 0, storageLimitBytes: 0, storageUsageBytes: 0 };
 }
 
 export const SVerifyPurchase = {
@@ -9614,14 +9694,14 @@ export const SVerifyPurchase = {
     if (message.message !== "") {
       writer.uint32(18).string(message.message);
     }
-    if (message.newGrade !== 0) {
-      writer.uint32(24).int32(message.newGrade);
-    }
     if (message.expiresAt !== 0) {
       writer.uint32(32).int64(message.expiresAt);
     }
-    if (message.storageCapacity !== 0) {
-      writer.uint32(40).int64(message.storageCapacity);
+    if (message.storageLimitBytes !== 0) {
+      writer.uint32(40).int64(message.storageLimitBytes);
+    }
+    if (message.storageUsageBytes !== 0) {
+      writer.uint32(48).int64(message.storageUsageBytes);
     }
     return writer;
   },
@@ -9647,13 +9727,6 @@ export const SVerifyPurchase = {
 
           message.message = reader.string();
           continue;
-        case 3:
-          if (tag !== 24) {
-            break;
-          }
-
-          message.newGrade = reader.int32();
-          continue;
         case 4:
           if (tag !== 32) {
             break;
@@ -9666,7 +9739,14 @@ export const SVerifyPurchase = {
             break;
           }
 
-          message.storageCapacity = longToNumber(reader.int64() as Long);
+          message.storageLimitBytes = longToNumber(reader.int64() as Long);
+          continue;
+        case 6:
+          if (tag !== 48) {
+            break;
+          }
+
+          message.storageUsageBytes = longToNumber(reader.int64() as Long);
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -9681,9 +9761,9 @@ export const SVerifyPurchase = {
     return {
       success: isSet(object.success) ? globalThis.Boolean(object.success) : false,
       message: isSet(object.message) ? globalThis.String(object.message) : "",
-      newGrade: isSet(object.newGrade) ? globalThis.Number(object.newGrade) : 0,
       expiresAt: isSet(object.expiresAt) ? globalThis.Number(object.expiresAt) : 0,
-      storageCapacity: isSet(object.storageCapacity) ? globalThis.Number(object.storageCapacity) : 0,
+      storageLimitBytes: isSet(object.storageLimitBytes) ? globalThis.Number(object.storageLimitBytes) : 0,
+      storageUsageBytes: isSet(object.storageUsageBytes) ? globalThis.Number(object.storageUsageBytes) : 0,
     };
   },
 
@@ -9695,14 +9775,14 @@ export const SVerifyPurchase = {
     if (message.message !== "") {
       obj.message = message.message;
     }
-    if (message.newGrade !== 0) {
-      obj.newGrade = Math.round(message.newGrade);
-    }
     if (message.expiresAt !== 0) {
       obj.expiresAt = Math.round(message.expiresAt);
     }
-    if (message.storageCapacity !== 0) {
-      obj.storageCapacity = Math.round(message.storageCapacity);
+    if (message.storageLimitBytes !== 0) {
+      obj.storageLimitBytes = Math.round(message.storageLimitBytes);
+    }
+    if (message.storageUsageBytes !== 0) {
+      obj.storageUsageBytes = Math.round(message.storageUsageBytes);
     }
     return obj;
   },
@@ -9714,19 +9794,22 @@ export const SVerifyPurchase = {
     const message = createBaseSVerifyPurchase();
     message.success = object.success ?? false;
     message.message = object.message ?? "";
-    message.newGrade = object.newGrade ?? 0;
     message.expiresAt = object.expiresAt ?? 0;
-    message.storageCapacity = object.storageCapacity ?? 0;
+    message.storageLimitBytes = object.storageLimitBytes ?? 0;
+    message.storageUsageBytes = object.storageUsageBytes ?? 0;
     return message;
   },
 };
 
 function createBaseCCancelSubscription(): CCancelSubscription {
-  return {};
+  return { groupId: "" };
 }
 
 export const CCancelSubscription = {
-  encode(_: CCancelSubscription, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(message: CCancelSubscription, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.groupId !== "") {
+      writer.uint32(10).string(message.groupId);
+    }
     return writer;
   },
 
@@ -9737,6 +9820,13 @@ export const CCancelSubscription = {
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.groupId = reader.string();
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -9746,20 +9836,24 @@ export const CCancelSubscription = {
     return message;
   },
 
-  fromJSON(_: any): CCancelSubscription {
-    return {};
+  fromJSON(object: any): CCancelSubscription {
+    return { groupId: isSet(object.groupId) ? globalThis.String(object.groupId) : "" };
   },
 
-  toJSON(_: CCancelSubscription): unknown {
+  toJSON(message: CCancelSubscription): unknown {
     const obj: any = {};
+    if (message.groupId !== "") {
+      obj.groupId = message.groupId;
+    }
     return obj;
   },
 
   create<I extends Exact<DeepPartial<CCancelSubscription>, I>>(base?: I): CCancelSubscription {
     return CCancelSubscription.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<CCancelSubscription>, I>>(_: I): CCancelSubscription {
+  fromPartial<I extends Exact<DeepPartial<CCancelSubscription>, I>>(object: I): CCancelSubscription {
     const message = createBaseCCancelSubscription();
+    message.groupId = object.groupId ?? "";
     return message;
   },
 };
@@ -12233,6 +12327,154 @@ export const SDeleteGroup = {
   },
 };
 
+function createBaseCTransferOwnership(): CTransferOwnership {
+  return { groupId: "", targetUserId: "" };
+}
+
+export const CTransferOwnership = {
+  encode(message: CTransferOwnership, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.groupId !== "") {
+      writer.uint32(10).string(message.groupId);
+    }
+    if (message.targetUserId !== "") {
+      writer.uint32(18).string(message.targetUserId);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): CTransferOwnership {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseCTransferOwnership();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.groupId = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.targetUserId = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): CTransferOwnership {
+    return {
+      groupId: isSet(object.groupId) ? globalThis.String(object.groupId) : "",
+      targetUserId: isSet(object.targetUserId) ? globalThis.String(object.targetUserId) : "",
+    };
+  },
+
+  toJSON(message: CTransferOwnership): unknown {
+    const obj: any = {};
+    if (message.groupId !== "") {
+      obj.groupId = message.groupId;
+    }
+    if (message.targetUserId !== "") {
+      obj.targetUserId = message.targetUserId;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<CTransferOwnership>, I>>(base?: I): CTransferOwnership {
+    return CTransferOwnership.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<CTransferOwnership>, I>>(object: I): CTransferOwnership {
+    const message = createBaseCTransferOwnership();
+    message.groupId = object.groupId ?? "";
+    message.targetUserId = object.targetUserId ?? "";
+    return message;
+  },
+};
+
+function createBaseSTransferOwnership(): STransferOwnership {
+  return { success: false, newOwnerId: "" };
+}
+
+export const STransferOwnership = {
+  encode(message: STransferOwnership, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.success !== false) {
+      writer.uint32(8).bool(message.success);
+    }
+    if (message.newOwnerId !== "") {
+      writer.uint32(18).string(message.newOwnerId);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): STransferOwnership {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseSTransferOwnership();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+
+          message.success = reader.bool();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.newOwnerId = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): STransferOwnership {
+    return {
+      success: isSet(object.success) ? globalThis.Boolean(object.success) : false,
+      newOwnerId: isSet(object.newOwnerId) ? globalThis.String(object.newOwnerId) : "",
+    };
+  },
+
+  toJSON(message: STransferOwnership): unknown {
+    const obj: any = {};
+    if (message.success !== false) {
+      obj.success = message.success;
+    }
+    if (message.newOwnerId !== "") {
+      obj.newOwnerId = message.newOwnerId;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<STransferOwnership>, I>>(base?: I): STransferOwnership {
+    return STransferOwnership.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<STransferOwnership>, I>>(object: I): STransferOwnership {
+    const message = createBaseSTransferOwnership();
+    message.success = object.success ?? false;
+    message.newOwnerId = object.newOwnerId ?? "";
+    return message;
+  },
+};
+
 function createBaseBlockedUserInfo(): BlockedUserInfo {
   return { userId: "", name: "", profileImg: "", blockedAt: 0 };
 }
@@ -13187,6 +13429,8 @@ function createBaseSCreatePoll(): SCreatePoll {
     isAnonymous: false,
     expiresAt: 0,
     tsServer: 0,
+    status: "",
+    votesJson: "",
   };
 }
 
@@ -13224,6 +13468,12 @@ export const SCreatePoll = {
     }
     if (message.tsServer !== 0) {
       writer.uint32(88).int64(message.tsServer);
+    }
+    if (message.status !== "") {
+      writer.uint32(98).string(message.status);
+    }
+    if (message.votesJson !== "") {
+      writer.uint32(106).string(message.votesJson);
     }
     return writer;
   },
@@ -13312,6 +13562,20 @@ export const SCreatePoll = {
 
           message.tsServer = longToNumber(reader.int64() as Long);
           continue;
+        case 12:
+          if (tag !== 98) {
+            break;
+          }
+
+          message.status = reader.string();
+          continue;
+        case 13:
+          if (tag !== 106) {
+            break;
+          }
+
+          message.votesJson = reader.string();
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -13334,6 +13598,8 @@ export const SCreatePoll = {
       isAnonymous: isSet(object.isAnonymous) ? globalThis.Boolean(object.isAnonymous) : false,
       expiresAt: isSet(object.expiresAt) ? globalThis.Number(object.expiresAt) : 0,
       tsServer: isSet(object.tsServer) ? globalThis.Number(object.tsServer) : 0,
+      status: isSet(object.status) ? globalThis.String(object.status) : "",
+      votesJson: isSet(object.votesJson) ? globalThis.String(object.votesJson) : "",
     };
   },
 
@@ -13372,6 +13638,12 @@ export const SCreatePoll = {
     if (message.tsServer !== 0) {
       obj.tsServer = Math.round(message.tsServer);
     }
+    if (message.status !== "") {
+      obj.status = message.status;
+    }
+    if (message.votesJson !== "") {
+      obj.votesJson = message.votesJson;
+    }
     return obj;
   },
 
@@ -13391,6 +13663,8 @@ export const SCreatePoll = {
     message.isAnonymous = object.isAnonymous ?? false;
     message.expiresAt = object.expiresAt ?? 0;
     message.tsServer = object.tsServer ?? 0;
+    message.status = object.status ?? "";
+    message.votesJson = object.votesJson ?? "";
     return message;
   },
 };
@@ -16894,7 +17168,7 @@ export const LocationPhoto = {
 };
 
 function createBaseLocationVisitInfo(): LocationVisitInfo {
-  return { id: "", userId: "", userName: "", rating: 0, review: "", visitedAt: 0, photos: [] };
+  return { id: "", userId: "", userName: "", rating: 0, review: "", visitedAt: 0, photos: [], historyId: "" };
 }
 
 export const LocationVisitInfo = {
@@ -16919,6 +17193,9 @@ export const LocationVisitInfo = {
     }
     for (const v of message.photos) {
       LocationPhoto.encode(v!, writer.uint32(58).fork()).ldelim();
+    }
+    if (message.historyId !== "") {
+      writer.uint32(66).string(message.historyId);
     }
     return writer;
   },
@@ -16979,6 +17256,13 @@ export const LocationVisitInfo = {
 
           message.photos.push(LocationPhoto.decode(reader, reader.uint32()));
           continue;
+        case 8:
+          if (tag !== 66) {
+            break;
+          }
+
+          message.historyId = reader.string();
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -16997,6 +17281,7 @@ export const LocationVisitInfo = {
       review: isSet(object.review) ? globalThis.String(object.review) : "",
       visitedAt: isSet(object.visitedAt) ? globalThis.Number(object.visitedAt) : 0,
       photos: globalThis.Array.isArray(object?.photos) ? object.photos.map((e: any) => LocationPhoto.fromJSON(e)) : [],
+      historyId: isSet(object.historyId) ? globalThis.String(object.historyId) : "",
     };
   },
 
@@ -17023,6 +17308,9 @@ export const LocationVisitInfo = {
     if (message.photos?.length) {
       obj.photos = message.photos.map((e) => LocationPhoto.toJSON(e));
     }
+    if (message.historyId !== "") {
+      obj.historyId = message.historyId;
+    }
     return obj;
   },
 
@@ -17038,6 +17326,7 @@ export const LocationVisitInfo = {
     message.review = object.review ?? "";
     message.visitedAt = object.visitedAt ?? 0;
     message.photos = object.photos?.map((e) => LocationPhoto.fromPartial(e)) || [];
+    message.historyId = object.historyId ?? "";
     return message;
   },
 };
@@ -17686,7 +17975,17 @@ export const SGetPlaces = {
 };
 
 function createBaseCSaveVisit(): CSaveVisit {
-  return { placeId: "", groupId: "", userId: "", userName: "", rating: 0, review: "", photoUrls: [], visitedAt: 0 };
+  return {
+    placeId: "",
+    groupId: "",
+    userId: "",
+    userName: "",
+    rating: 0,
+    review: "",
+    photoUrls: [],
+    visitedAt: 0,
+    historyId: "",
+  };
 }
 
 export const CSaveVisit = {
@@ -17714,6 +18013,9 @@ export const CSaveVisit = {
     }
     if (message.visitedAt !== 0) {
       writer.uint32(64).int64(message.visitedAt);
+    }
+    if (message.historyId !== "") {
+      writer.uint32(74).string(message.historyId);
     }
     return writer;
   },
@@ -17781,6 +18083,13 @@ export const CSaveVisit = {
 
           message.visitedAt = longToNumber(reader.int64() as Long);
           continue;
+        case 9:
+          if (tag !== 74) {
+            break;
+          }
+
+          message.historyId = reader.string();
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -17802,6 +18111,7 @@ export const CSaveVisit = {
         ? object.photoUrls.map((e: any) => globalThis.String(e))
         : [],
       visitedAt: isSet(object.visitedAt) ? globalThis.Number(object.visitedAt) : 0,
+      historyId: isSet(object.historyId) ? globalThis.String(object.historyId) : "",
     };
   },
 
@@ -17831,6 +18141,9 @@ export const CSaveVisit = {
     if (message.visitedAt !== 0) {
       obj.visitedAt = Math.round(message.visitedAt);
     }
+    if (message.historyId !== "") {
+      obj.historyId = message.historyId;
+    }
     return obj;
   },
 
@@ -17847,6 +18160,7 @@ export const CSaveVisit = {
     message.review = object.review ?? "";
     message.photoUrls = object.photoUrls?.map((e) => e) || [];
     message.visitedAt = object.visitedAt ?? 0;
+    message.historyId = object.historyId ?? "";
     return message;
   },
 };
@@ -18168,7 +18482,17 @@ export const SDeletePlace = {
 };
 
 function createBaseCUpdateVisit(): CUpdateVisit {
-  return { visitId: "", placeId: "", groupId: "", userId: "", rating: 0, review: "", photoUrls: [], visitedAt: 0 };
+  return {
+    visitId: "",
+    placeId: "",
+    groupId: "",
+    userId: "",
+    rating: 0,
+    review: "",
+    photoUrls: [],
+    visitedAt: 0,
+    historyId: "",
+  };
 }
 
 export const CUpdateVisit = {
@@ -18196,6 +18520,9 @@ export const CUpdateVisit = {
     }
     if (message.visitedAt !== 0) {
       writer.uint32(64).int64(message.visitedAt);
+    }
+    if (message.historyId !== "") {
+      writer.uint32(74).string(message.historyId);
     }
     return writer;
   },
@@ -18263,6 +18590,13 @@ export const CUpdateVisit = {
 
           message.visitedAt = longToNumber(reader.int64() as Long);
           continue;
+        case 9:
+          if (tag !== 74) {
+            break;
+          }
+
+          message.historyId = reader.string();
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -18284,6 +18618,7 @@ export const CUpdateVisit = {
         ? object.photoUrls.map((e: any) => globalThis.String(e))
         : [],
       visitedAt: isSet(object.visitedAt) ? globalThis.Number(object.visitedAt) : 0,
+      historyId: isSet(object.historyId) ? globalThis.String(object.historyId) : "",
     };
   },
 
@@ -18313,6 +18648,9 @@ export const CUpdateVisit = {
     if (message.visitedAt !== 0) {
       obj.visitedAt = Math.round(message.visitedAt);
     }
+    if (message.historyId !== "") {
+      obj.historyId = message.historyId;
+    }
     return obj;
   },
 
@@ -18329,6 +18667,7 @@ export const CUpdateVisit = {
     message.review = object.review ?? "";
     message.photoUrls = object.photoUrls?.map((e) => e) || [];
     message.visitedAt = object.visitedAt ?? 0;
+    message.historyId = object.historyId ?? "";
     return message;
   },
 };

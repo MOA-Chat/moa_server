@@ -36,17 +36,17 @@ public:
 
     /* 저장 */ //저장된 msg_seq (실패 시 -1)
     static int64 SaveMessage(const string& convId, const string& senderId, const Protocol::S_Chat& sChat,
-                             const string& gcsPath = "",
+                             const string& filePath = "",
                              int64 fileRetentionExpiresAt = 0,
                              const string& mentionedUserIds = "",
                              int8_t msgTypeOverride = -1);
 
-    // 파일 만료 배치 잡: gcs_path로 메시지 file_status 업데이트
-    static bool UpdateFileStatusByGcsPath(const string& gcsPath, const string& fileStatus);
+    // 파일 만료 배치 잡: file_path로 메시지 file_status 업데이트
+    static bool UpdateFileStatusByFilePath(const string& filePath, const string& fileStatus);
 
-    // 앨범 저장 시 gcs_path + file_size 조회 (messages + file_uploads JOIN)
-    static bool GetGcsPathAndFileSizeByMsgSeq(const string& convId, int64 msgSeq,
-                                              string& outGcsPath, int64& outFileSize);
+    // 앨범 저장 시 file_path + file_size 조회 (messages + file_uploads JOIN)
+    static bool GetFilePathAndFileSizeByMsgSeq(const string& convId, int64 msgSeq,
+                                               string& outFilePath, int64& outFileSize);
     
 
     /* 조회 */

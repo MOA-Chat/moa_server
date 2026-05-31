@@ -83,19 +83,8 @@ CREATE TABLE IF NOT EXISTS group_assets (
     CONSTRAINT fk_assets_group FOREIGN KEY (group_id) REFERENCES `groups`(group_id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- member_count 트리거 (스토리지 트리거는 코드로 처리)
-DELIMITER $$
-CREATE TRIGGER trg_group_member_add
-AFTER INSERT ON group_members FOR EACH ROW
-BEGIN
-    UPDATE `groups` SET member_count = member_count + 1 WHERE group_id = NEW.group_id;
-END$$
-CREATE TRIGGER trg_group_member_remove
-AFTER DELETE ON group_members FOR EACH ROW
-BEGIN
-    UPDATE `groups` SET member_count = member_count - 1 WHERE group_id = OLD.group_id;
-END$$
-DELIMITER ;
+-- member_count 트리거 제거됨 (30_fix_member_count.sql)
+-- AddMember/RemoveMember에서 명시적 UPDATE로 직접 처리
 
 -- ── 3. conversations / messages / read_status ─────────────
 
@@ -384,3 +373,11 @@ CREATE TABLE IF NOT EXISTS location_photos (
     INDEX idx_lpho_place (place_id),
     FOREIGN KEY (visit_id) REFERENCES location_visits(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+
+ALTER TABLE users ADD COLUMN background_image_url VARCHAR(500) NULL AFTER profile_image_url;
+
+  SET SQL_SAFE_UPDATES = 0;
+  UPDATE subscription_plans SET storage_bytes = 161061273600 WHERE name = 'Max' AND plan_type = 'group';
+  SET SQL_SAFE_UPDATES = 1;

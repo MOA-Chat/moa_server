@@ -156,6 +156,8 @@ enum Envelope_Payload {
   sUpdateVisit,
   cDeleteVisit,
   sDeleteVisit,
+  cTransferOwnership,
+  sTransferOwnership,
   notSet
 }
 
@@ -301,6 +303,8 @@ class Envelope extends $pb.GeneratedMessage {
     S_UpdateVisit? sUpdateVisit,
     C_DeleteVisit? cDeleteVisit,
     S_DeleteVisit? sDeleteVisit,
+    C_TransferOwnership? cTransferOwnership,
+    S_TransferOwnership? sTransferOwnership,
   }) {
     final result = create();
     if (version != null) result.version = version;
@@ -449,6 +453,10 @@ class Envelope extends $pb.GeneratedMessage {
     if (sUpdateVisit != null) result.sUpdateVisit = sUpdateVisit;
     if (cDeleteVisit != null) result.cDeleteVisit = cDeleteVisit;
     if (sDeleteVisit != null) result.sDeleteVisit = sDeleteVisit;
+    if (cTransferOwnership != null)
+      result.cTransferOwnership = cTransferOwnership;
+    if (sTransferOwnership != null)
+      result.sTransferOwnership = sTransferOwnership;
     return result;
   }
 
@@ -596,6 +604,8 @@ class Envelope extends $pb.GeneratedMessage {
     157: Envelope_Payload.sUpdateVisit,
     158: Envelope_Payload.cDeleteVisit,
     159: Envelope_Payload.sDeleteVisit,
+    160: Envelope_Payload.cTransferOwnership,
+    161: Envelope_Payload.sTransferOwnership,
     0: Envelope_Payload.notSet
   };
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
@@ -736,7 +746,9 @@ class Envelope extends $pb.GeneratedMessage {
       156,
       157,
       158,
-      159
+      159,
+      160,
+      161
     ])
     ..aI(1, _omitFieldNames ? '' : 'version', fieldType: $pb.PbFieldType.OU3)
     ..aI(2, _omitFieldNames ? '' : 'requestId', fieldType: $pb.PbFieldType.OU3)
@@ -1012,6 +1024,10 @@ class Envelope extends $pb.GeneratedMessage {
         subBuilder: C_DeleteVisit.create)
     ..aOM<S_DeleteVisit>(159, _omitFieldNames ? '' : 'sDeleteVisit',
         subBuilder: S_DeleteVisit.create)
+    ..aOM<C_TransferOwnership>(160, _omitFieldNames ? '' : 'cTransferOwnership',
+        subBuilder: C_TransferOwnership.create)
+    ..aOM<S_TransferOwnership>(161, _omitFieldNames ? '' : 'sTransferOwnership',
+        subBuilder: S_TransferOwnership.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -1166,6 +1182,8 @@ class Envelope extends $pb.GeneratedMessage {
   @$pb.TagNumber(157)
   @$pb.TagNumber(158)
   @$pb.TagNumber(159)
+  @$pb.TagNumber(160)
+  @$pb.TagNumber(161)
   Envelope_Payload whichPayload() => _Envelope_PayloadByTag[$_whichOneof(0)]!;
   @$pb.TagNumber(10)
   @$pb.TagNumber(11)
@@ -1301,6 +1319,8 @@ class Envelope extends $pb.GeneratedMessage {
   @$pb.TagNumber(157)
   @$pb.TagNumber(158)
   @$pb.TagNumber(159)
+  @$pb.TagNumber(160)
+  @$pb.TagNumber(161)
   void clearPayload() => $_clearField($_whichOneof(0));
 
   @$pb.TagNumber(1)
@@ -2813,6 +2833,28 @@ class Envelope extends $pb.GeneratedMessage {
   void clearSDeleteVisit() => $_clearField(159);
   @$pb.TagNumber(159)
   S_DeleteVisit ensureSDeleteVisit() => $_ensure(136);
+
+  @$pb.TagNumber(160)
+  C_TransferOwnership get cTransferOwnership => $_getN(137);
+  @$pb.TagNumber(160)
+  set cTransferOwnership(C_TransferOwnership value) => $_setField(160, value);
+  @$pb.TagNumber(160)
+  $core.bool hasCTransferOwnership() => $_has(137);
+  @$pb.TagNumber(160)
+  void clearCTransferOwnership() => $_clearField(160);
+  @$pb.TagNumber(160)
+  C_TransferOwnership ensureCTransferOwnership() => $_ensure(137);
+
+  @$pb.TagNumber(161)
+  S_TransferOwnership get sTransferOwnership => $_getN(138);
+  @$pb.TagNumber(161)
+  set sTransferOwnership(S_TransferOwnership value) => $_setField(161, value);
+  @$pb.TagNumber(161)
+  $core.bool hasSTransferOwnership() => $_has(138);
+  @$pb.TagNumber(161)
+  void clearSTransferOwnership() => $_clearField(161);
+  @$pb.TagNumber(161)
+  S_TransferOwnership ensureSTransferOwnership() => $_ensure(138);
 }
 
 /// UserInfo
@@ -7084,7 +7126,13 @@ class S_MessageBatch extends $pb.GeneratedMessage {
 }
 
 class C_GetSubscription extends $pb.GeneratedMessage {
-  factory C_GetSubscription() => create();
+  factory C_GetSubscription({
+    $core.String? groupId,
+  }) {
+    final result = create();
+    if (groupId != null) result.groupId = groupId;
+    return result;
+  }
 
   C_GetSubscription._();
 
@@ -7099,6 +7147,7 @@ class C_GetSubscription extends $pb.GeneratedMessage {
       _omitMessageNames ? '' : 'C_GetSubscription',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'Protocol'),
       createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'groupId')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -7119,6 +7168,15 @@ class C_GetSubscription extends $pb.GeneratedMessage {
   static C_GetSubscription getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<C_GetSubscription>(create);
   static C_GetSubscription? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get groupId => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set groupId($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasGroupId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearGroupId() => $_clearField(1);
 }
 
 class SubscriptionPlan extends $pb.GeneratedMessage {
@@ -7256,9 +7314,8 @@ class SubscriptionPlan extends $pb.GeneratedMessage {
 class S_GetSubscription extends $pb.GeneratedMessage {
   factory S_GetSubscription({
     $core.bool? success,
-    $core.int? currentGrade,
     $core.String? currentPlanName,
-    $fixnum.Int64? storageCapacityBytes,
+    $fixnum.Int64? storageLimitBytes,
     $fixnum.Int64? storageUsageBytes,
     $fixnum.Int64? expiresAt,
     $core.bool? autoRenew,
@@ -7266,10 +7323,8 @@ class S_GetSubscription extends $pb.GeneratedMessage {
   }) {
     final result = create();
     if (success != null) result.success = success;
-    if (currentGrade != null) result.currentGrade = currentGrade;
     if (currentPlanName != null) result.currentPlanName = currentPlanName;
-    if (storageCapacityBytes != null)
-      result.storageCapacityBytes = storageCapacityBytes;
+    if (storageLimitBytes != null) result.storageLimitBytes = storageLimitBytes;
     if (storageUsageBytes != null) result.storageUsageBytes = storageUsageBytes;
     if (expiresAt != null) result.expiresAt = expiresAt;
     if (autoRenew != null) result.autoRenew = autoRenew;
@@ -7291,9 +7346,8 @@ class S_GetSubscription extends $pb.GeneratedMessage {
       package: const $pb.PackageName(_omitMessageNames ? '' : 'Protocol'),
       createEmptyInstance: create)
     ..aOB(1, _omitFieldNames ? '' : 'success')
-    ..aI(2, _omitFieldNames ? '' : 'currentGrade')
     ..aOS(3, _omitFieldNames ? '' : 'currentPlanName')
-    ..aInt64(4, _omitFieldNames ? '' : 'storageCapacityBytes')
+    ..aInt64(4, _omitFieldNames ? '' : 'storageLimitBytes')
     ..aInt64(5, _omitFieldNames ? '' : 'storageUsageBytes')
     ..aInt64(6, _omitFieldNames ? '' : 'expiresAt')
     ..aOB(7, _omitFieldNames ? '' : 'autoRenew')
@@ -7329,62 +7383,53 @@ class S_GetSubscription extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   void clearSuccess() => $_clearField(1);
 
-  @$pb.TagNumber(2)
-  $core.int get currentGrade => $_getIZ(1);
-  @$pb.TagNumber(2)
-  set currentGrade($core.int value) => $_setSignedInt32(1, value);
-  @$pb.TagNumber(2)
-  $core.bool hasCurrentGrade() => $_has(1);
-  @$pb.TagNumber(2)
-  void clearCurrentGrade() => $_clearField(2);
-
   @$pb.TagNumber(3)
-  $core.String get currentPlanName => $_getSZ(2);
+  $core.String get currentPlanName => $_getSZ(1);
   @$pb.TagNumber(3)
-  set currentPlanName($core.String value) => $_setString(2, value);
+  set currentPlanName($core.String value) => $_setString(1, value);
   @$pb.TagNumber(3)
-  $core.bool hasCurrentPlanName() => $_has(2);
+  $core.bool hasCurrentPlanName() => $_has(1);
   @$pb.TagNumber(3)
   void clearCurrentPlanName() => $_clearField(3);
 
   @$pb.TagNumber(4)
-  $fixnum.Int64 get storageCapacityBytes => $_getI64(3);
+  $fixnum.Int64 get storageLimitBytes => $_getI64(2);
   @$pb.TagNumber(4)
-  set storageCapacityBytes($fixnum.Int64 value) => $_setInt64(3, value);
+  set storageLimitBytes($fixnum.Int64 value) => $_setInt64(2, value);
   @$pb.TagNumber(4)
-  $core.bool hasStorageCapacityBytes() => $_has(3);
+  $core.bool hasStorageLimitBytes() => $_has(2);
   @$pb.TagNumber(4)
-  void clearStorageCapacityBytes() => $_clearField(4);
+  void clearStorageLimitBytes() => $_clearField(4);
 
   @$pb.TagNumber(5)
-  $fixnum.Int64 get storageUsageBytes => $_getI64(4);
+  $fixnum.Int64 get storageUsageBytes => $_getI64(3);
   @$pb.TagNumber(5)
-  set storageUsageBytes($fixnum.Int64 value) => $_setInt64(4, value);
+  set storageUsageBytes($fixnum.Int64 value) => $_setInt64(3, value);
   @$pb.TagNumber(5)
-  $core.bool hasStorageUsageBytes() => $_has(4);
+  $core.bool hasStorageUsageBytes() => $_has(3);
   @$pb.TagNumber(5)
   void clearStorageUsageBytes() => $_clearField(5);
 
   @$pb.TagNumber(6)
-  $fixnum.Int64 get expiresAt => $_getI64(5);
+  $fixnum.Int64 get expiresAt => $_getI64(4);
   @$pb.TagNumber(6)
-  set expiresAt($fixnum.Int64 value) => $_setInt64(5, value);
+  set expiresAt($fixnum.Int64 value) => $_setInt64(4, value);
   @$pb.TagNumber(6)
-  $core.bool hasExpiresAt() => $_has(5);
+  $core.bool hasExpiresAt() => $_has(4);
   @$pb.TagNumber(6)
   void clearExpiresAt() => $_clearField(6);
 
   @$pb.TagNumber(7)
-  $core.bool get autoRenew => $_getBF(6);
+  $core.bool get autoRenew => $_getBF(5);
   @$pb.TagNumber(7)
-  set autoRenew($core.bool value) => $_setBool(6, value);
+  set autoRenew($core.bool value) => $_setBool(5, value);
   @$pb.TagNumber(7)
-  $core.bool hasAutoRenew() => $_has(6);
+  $core.bool hasAutoRenew() => $_has(5);
   @$pb.TagNumber(7)
   void clearAutoRenew() => $_clearField(7);
 
   @$pb.TagNumber(8)
-  $pb.PbList<SubscriptionPlan> get availablePlans => $_getList(7);
+  $pb.PbList<SubscriptionPlan> get availablePlans => $_getList(6);
 }
 
 class C_VerifyPurchase extends $pb.GeneratedMessage {
@@ -7393,12 +7438,14 @@ class C_VerifyPurchase extends $pb.GeneratedMessage {
     $core.String? productId,
     $core.String? transactionId,
     $core.String? purchaseToken,
+    $core.String? groupId,
   }) {
     final result = create();
     if (platform != null) result.platform = platform;
     if (productId != null) result.productId = productId;
     if (transactionId != null) result.transactionId = transactionId;
     if (purchaseToken != null) result.purchaseToken = purchaseToken;
+    if (groupId != null) result.groupId = groupId;
     return result;
   }
 
@@ -7419,6 +7466,7 @@ class C_VerifyPurchase extends $pb.GeneratedMessage {
     ..aOS(2, _omitFieldNames ? '' : 'productId')
     ..aOS(3, _omitFieldNames ? '' : 'transactionId')
     ..aOS(4, _omitFieldNames ? '' : 'purchaseToken')
+    ..aOS(5, _omitFieldNames ? '' : 'groupId')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -7475,22 +7523,31 @@ class C_VerifyPurchase extends $pb.GeneratedMessage {
   $core.bool hasPurchaseToken() => $_has(3);
   @$pb.TagNumber(4)
   void clearPurchaseToken() => $_clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.String get groupId => $_getSZ(4);
+  @$pb.TagNumber(5)
+  set groupId($core.String value) => $_setString(4, value);
+  @$pb.TagNumber(5)
+  $core.bool hasGroupId() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearGroupId() => $_clearField(5);
 }
 
 class S_VerifyPurchase extends $pb.GeneratedMessage {
   factory S_VerifyPurchase({
     $core.bool? success,
     $core.String? message,
-    $core.int? newGrade,
     $fixnum.Int64? expiresAt,
-    $fixnum.Int64? storageCapacity,
+    $fixnum.Int64? storageLimitBytes,
+    $fixnum.Int64? storageUsageBytes,
   }) {
     final result = create();
     if (success != null) result.success = success;
     if (message != null) result.message = message;
-    if (newGrade != null) result.newGrade = newGrade;
     if (expiresAt != null) result.expiresAt = expiresAt;
-    if (storageCapacity != null) result.storageCapacity = storageCapacity;
+    if (storageLimitBytes != null) result.storageLimitBytes = storageLimitBytes;
+    if (storageUsageBytes != null) result.storageUsageBytes = storageUsageBytes;
     return result;
   }
 
@@ -7509,9 +7566,9 @@ class S_VerifyPurchase extends $pb.GeneratedMessage {
       createEmptyInstance: create)
     ..aOB(1, _omitFieldNames ? '' : 'success')
     ..aOS(2, _omitFieldNames ? '' : 'message')
-    ..aI(3, _omitFieldNames ? '' : 'newGrade')
     ..aInt64(4, _omitFieldNames ? '' : 'expiresAt')
-    ..aInt64(5, _omitFieldNames ? '' : 'storageCapacity')
+    ..aInt64(5, _omitFieldNames ? '' : 'storageLimitBytes')
+    ..aInt64(6, _omitFieldNames ? '' : 'storageUsageBytes')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -7551,36 +7608,42 @@ class S_VerifyPurchase extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   void clearMessage() => $_clearField(2);
 
-  @$pb.TagNumber(3)
-  $core.int get newGrade => $_getIZ(2);
-  @$pb.TagNumber(3)
-  set newGrade($core.int value) => $_setSignedInt32(2, value);
-  @$pb.TagNumber(3)
-  $core.bool hasNewGrade() => $_has(2);
-  @$pb.TagNumber(3)
-  void clearNewGrade() => $_clearField(3);
-
   @$pb.TagNumber(4)
-  $fixnum.Int64 get expiresAt => $_getI64(3);
+  $fixnum.Int64 get expiresAt => $_getI64(2);
   @$pb.TagNumber(4)
-  set expiresAt($fixnum.Int64 value) => $_setInt64(3, value);
+  set expiresAt($fixnum.Int64 value) => $_setInt64(2, value);
   @$pb.TagNumber(4)
-  $core.bool hasExpiresAt() => $_has(3);
+  $core.bool hasExpiresAt() => $_has(2);
   @$pb.TagNumber(4)
   void clearExpiresAt() => $_clearField(4);
 
   @$pb.TagNumber(5)
-  $fixnum.Int64 get storageCapacity => $_getI64(4);
+  $fixnum.Int64 get storageLimitBytes => $_getI64(3);
   @$pb.TagNumber(5)
-  set storageCapacity($fixnum.Int64 value) => $_setInt64(4, value);
+  set storageLimitBytes($fixnum.Int64 value) => $_setInt64(3, value);
   @$pb.TagNumber(5)
-  $core.bool hasStorageCapacity() => $_has(4);
+  $core.bool hasStorageLimitBytes() => $_has(3);
   @$pb.TagNumber(5)
-  void clearStorageCapacity() => $_clearField(5);
+  void clearStorageLimitBytes() => $_clearField(5);
+
+  @$pb.TagNumber(6)
+  $fixnum.Int64 get storageUsageBytes => $_getI64(4);
+  @$pb.TagNumber(6)
+  set storageUsageBytes($fixnum.Int64 value) => $_setInt64(4, value);
+  @$pb.TagNumber(6)
+  $core.bool hasStorageUsageBytes() => $_has(4);
+  @$pb.TagNumber(6)
+  void clearStorageUsageBytes() => $_clearField(6);
 }
 
 class C_CancelSubscription extends $pb.GeneratedMessage {
-  factory C_CancelSubscription() => create();
+  factory C_CancelSubscription({
+    $core.String? groupId,
+  }) {
+    final result = create();
+    if (groupId != null) result.groupId = groupId;
+    return result;
+  }
 
   C_CancelSubscription._();
 
@@ -7595,6 +7658,7 @@ class C_CancelSubscription extends $pb.GeneratedMessage {
       _omitMessageNames ? '' : 'C_CancelSubscription',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'Protocol'),
       createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'groupId')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -7615,6 +7679,15 @@ class C_CancelSubscription extends $pb.GeneratedMessage {
   static C_CancelSubscription getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<C_CancelSubscription>(create);
   static C_CancelSubscription? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get groupId => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set groupId($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasGroupId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearGroupId() => $_clearField(1);
 }
 
 class S_CancelSubscription extends $pb.GeneratedMessage {
@@ -9799,6 +9872,138 @@ class S_DeleteGroup extends $pb.GeneratedMessage {
   void clearSuccess() => $_clearField(1);
 }
 
+class C_TransferOwnership extends $pb.GeneratedMessage {
+  factory C_TransferOwnership({
+    $core.String? groupId,
+    $core.String? targetUserId,
+  }) {
+    final result = create();
+    if (groupId != null) result.groupId = groupId;
+    if (targetUserId != null) result.targetUserId = targetUserId;
+    return result;
+  }
+
+  C_TransferOwnership._();
+
+  factory C_TransferOwnership.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory C_TransferOwnership.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'C_TransferOwnership',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'Protocol'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'groupId')
+    ..aOS(2, _omitFieldNames ? '' : 'targetUserId')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  C_TransferOwnership clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  C_TransferOwnership copyWith(void Function(C_TransferOwnership) updates) =>
+      super.copyWith((message) => updates(message as C_TransferOwnership))
+          as C_TransferOwnership;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static C_TransferOwnership create() => C_TransferOwnership._();
+  @$core.override
+  C_TransferOwnership createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static C_TransferOwnership getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<C_TransferOwnership>(create);
+  static C_TransferOwnership? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get groupId => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set groupId($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasGroupId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearGroupId() => $_clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get targetUserId => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set targetUserId($core.String value) => $_setString(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasTargetUserId() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearTargetUserId() => $_clearField(2);
+}
+
+class S_TransferOwnership extends $pb.GeneratedMessage {
+  factory S_TransferOwnership({
+    $core.bool? success,
+    $core.String? newOwnerId,
+  }) {
+    final result = create();
+    if (success != null) result.success = success;
+    if (newOwnerId != null) result.newOwnerId = newOwnerId;
+    return result;
+  }
+
+  S_TransferOwnership._();
+
+  factory S_TransferOwnership.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory S_TransferOwnership.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'S_TransferOwnership',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'Protocol'),
+      createEmptyInstance: create)
+    ..aOB(1, _omitFieldNames ? '' : 'success')
+    ..aOS(2, _omitFieldNames ? '' : 'newOwnerId')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  S_TransferOwnership clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  S_TransferOwnership copyWith(void Function(S_TransferOwnership) updates) =>
+      super.copyWith((message) => updates(message as S_TransferOwnership))
+          as S_TransferOwnership;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static S_TransferOwnership create() => S_TransferOwnership._();
+  @$core.override
+  S_TransferOwnership createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static S_TransferOwnership getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<S_TransferOwnership>(create);
+  static S_TransferOwnership? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.bool get success => $_getBF(0);
+  @$pb.TagNumber(1)
+  set success($core.bool value) => $_setBool(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasSuccess() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearSuccess() => $_clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get newOwnerId => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set newOwnerId($core.String value) => $_setString(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasNewOwnerId() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearNewOwnerId() => $_clearField(2);
+}
+
 class BlockedUserInfo extends $pb.GeneratedMessage {
   factory BlockedUserInfo({
     $core.String? userId,
@@ -10637,6 +10842,8 @@ class S_CreatePoll extends $pb.GeneratedMessage {
     $core.bool? isAnonymous,
     $fixnum.Int64? expiresAt,
     $fixnum.Int64? tsServer,
+    $core.String? status,
+    $core.String? votesJson,
   }) {
     final result = create();
     if (convId != null) result.convId = convId;
@@ -10650,6 +10857,8 @@ class S_CreatePoll extends $pb.GeneratedMessage {
     if (isAnonymous != null) result.isAnonymous = isAnonymous;
     if (expiresAt != null) result.expiresAt = expiresAt;
     if (tsServer != null) result.tsServer = tsServer;
+    if (status != null) result.status = status;
+    if (votesJson != null) result.votesJson = votesJson;
     return result;
   }
 
@@ -10677,6 +10886,8 @@ class S_CreatePoll extends $pb.GeneratedMessage {
     ..aOB(9, _omitFieldNames ? '' : 'isAnonymous')
     ..aInt64(10, _omitFieldNames ? '' : 'expiresAt')
     ..aInt64(11, _omitFieldNames ? '' : 'tsServer')
+    ..aOS(12, _omitFieldNames ? '' : 'status')
+    ..aOS(13, _omitFieldNames ? '' : 'votesJson')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -10790,6 +11001,24 @@ class S_CreatePoll extends $pb.GeneratedMessage {
   $core.bool hasTsServer() => $_has(10);
   @$pb.TagNumber(11)
   void clearTsServer() => $_clearField(11);
+
+  @$pb.TagNumber(12)
+  $core.String get status => $_getSZ(11);
+  @$pb.TagNumber(12)
+  set status($core.String value) => $_setString(11, value);
+  @$pb.TagNumber(12)
+  $core.bool hasStatus() => $_has(11);
+  @$pb.TagNumber(12)
+  void clearStatus() => $_clearField(12);
+
+  @$pb.TagNumber(13)
+  $core.String get votesJson => $_getSZ(12);
+  @$pb.TagNumber(13)
+  set votesJson($core.String value) => $_setString(12, value);
+  @$pb.TagNumber(13)
+  $core.bool hasVotesJson() => $_has(12);
+  @$pb.TagNumber(13)
+  void clearVotesJson() => $_clearField(13);
 }
 
 class C_Vote extends $pb.GeneratedMessage {
@@ -13774,6 +14003,7 @@ class LocationVisitInfo extends $pb.GeneratedMessage {
     $core.String? review,
     $fixnum.Int64? visitedAt,
     $core.Iterable<LocationPhoto>? photos,
+    $core.String? historyId,
   }) {
     final result = create();
     if (id != null) result.id = id;
@@ -13783,6 +14013,7 @@ class LocationVisitInfo extends $pb.GeneratedMessage {
     if (review != null) result.review = review;
     if (visitedAt != null) result.visitedAt = visitedAt;
     if (photos != null) result.photos.addAll(photos);
+    if (historyId != null) result.historyId = historyId;
     return result;
   }
 
@@ -13807,6 +14038,7 @@ class LocationVisitInfo extends $pb.GeneratedMessage {
     ..aInt64(6, _omitFieldNames ? '' : 'visitedAt')
     ..pPM<LocationPhoto>(7, _omitFieldNames ? '' : 'photos',
         subBuilder: LocationPhoto.create)
+    ..aOS(8, _omitFieldNames ? '' : 'historyId')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -13884,6 +14116,15 @@ class LocationVisitInfo extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(7)
   $pb.PbList<LocationPhoto> get photos => $_getList(6);
+
+  @$pb.TagNumber(8)
+  $core.String get historyId => $_getSZ(7);
+  @$pb.TagNumber(8)
+  set historyId($core.String value) => $_setString(7, value);
+  @$pb.TagNumber(8)
+  $core.bool hasHistoryId() => $_has(7);
+  @$pb.TagNumber(8)
+  void clearHistoryId() => $_clearField(8);
 }
 
 class LocationPlaceInfo extends $pb.GeneratedMessage {
@@ -14423,6 +14664,7 @@ class C_SaveVisit extends $pb.GeneratedMessage {
     $core.String? review,
     $core.Iterable<$core.String>? photoUrls,
     $fixnum.Int64? visitedAt,
+    $core.String? historyId,
   }) {
     final result = create();
     if (placeId != null) result.placeId = placeId;
@@ -14433,6 +14675,7 @@ class C_SaveVisit extends $pb.GeneratedMessage {
     if (review != null) result.review = review;
     if (photoUrls != null) result.photoUrls.addAll(photoUrls);
     if (visitedAt != null) result.visitedAt = visitedAt;
+    if (historyId != null) result.historyId = historyId;
     return result;
   }
 
@@ -14457,6 +14700,7 @@ class C_SaveVisit extends $pb.GeneratedMessage {
     ..aOS(6, _omitFieldNames ? '' : 'review')
     ..pPS(7, _omitFieldNames ? '' : 'photoUrls')
     ..aInt64(8, _omitFieldNames ? '' : 'visitedAt')
+    ..aOS(9, _omitFieldNames ? '' : 'historyId')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -14543,6 +14787,15 @@ class C_SaveVisit extends $pb.GeneratedMessage {
   $core.bool hasVisitedAt() => $_has(7);
   @$pb.TagNumber(8)
   void clearVisitedAt() => $_clearField(8);
+
+  @$pb.TagNumber(9)
+  $core.String get historyId => $_getSZ(8);
+  @$pb.TagNumber(9)
+  set historyId($core.String value) => $_setString(8, value);
+  @$pb.TagNumber(9)
+  $core.bool hasHistoryId() => $_has(8);
+  @$pb.TagNumber(9)
+  void clearHistoryId() => $_clearField(9);
 }
 
 class S_SaveVisit extends $pb.GeneratedMessage {
@@ -14831,6 +15084,7 @@ class C_UpdateVisit extends $pb.GeneratedMessage {
     $core.String? review,
     $core.Iterable<$core.String>? photoUrls,
     $fixnum.Int64? visitedAt,
+    $core.String? historyId,
   }) {
     final result = create();
     if (visitId != null) result.visitId = visitId;
@@ -14841,6 +15095,7 @@ class C_UpdateVisit extends $pb.GeneratedMessage {
     if (review != null) result.review = review;
     if (photoUrls != null) result.photoUrls.addAll(photoUrls);
     if (visitedAt != null) result.visitedAt = visitedAt;
+    if (historyId != null) result.historyId = historyId;
     return result;
   }
 
@@ -14865,6 +15120,7 @@ class C_UpdateVisit extends $pb.GeneratedMessage {
     ..aOS(6, _omitFieldNames ? '' : 'review')
     ..pPS(7, _omitFieldNames ? '' : 'photoUrls')
     ..aInt64(8, _omitFieldNames ? '' : 'visitedAt')
+    ..aOS(9, _omitFieldNames ? '' : 'historyId')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -14951,6 +15207,15 @@ class C_UpdateVisit extends $pb.GeneratedMessage {
   $core.bool hasVisitedAt() => $_has(7);
   @$pb.TagNumber(8)
   void clearVisitedAt() => $_clearField(8);
+
+  @$pb.TagNumber(9)
+  $core.String get historyId => $_getSZ(8);
+  @$pb.TagNumber(9)
+  set historyId($core.String value) => $_setString(8, value);
+  @$pb.TagNumber(9)
+  $core.bool hasHistoryId() => $_has(8);
+  @$pb.TagNumber(9)
+  void clearHistoryId() => $_clearField(9);
 }
 
 class S_UpdateVisit extends $pb.GeneratedMessage {

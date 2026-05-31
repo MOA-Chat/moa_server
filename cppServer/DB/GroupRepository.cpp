@@ -123,7 +123,7 @@ bool GroupRepository::AddMember(const string& groupId, const string& userId, con
             .values(groupId, userId, role)
             .execute();
 
-        // 2. 그룹 테이블 카운트 증가
+        // 2. 그룹 테이블 카운트 증가 (트리거 제거 후 코드에서 직접 처리)
         session.sql("UPDATE `groups` SET member_count = member_count + 1 WHERE group_id = ?")
             .bind(groupId)
             .execute();
@@ -131,10 +131,10 @@ bool GroupRepository::AddMember(const string& groupId, const string& userId, con
         session.commit();
         return true;
     }
-    catch (const mysqlx::Error& err) 
-    { 
+    catch (const mysqlx::Error& err)
+    {
         LOG_ERROR("[GroupRepo] AddMember Failed: {}", err.what());
-        return false; 
+        return false;
     }
 }
 
@@ -156,7 +156,7 @@ bool GroupRepository::RemoveMember(const string& groupId, const string& userId)
             .bind("uid", userId)
             .execute();
 
-        // 2. 그룹 테이블 카운트 감소
+        // 2. 그룹 테이블 카운트 감소 (트리거 제거 후 코드에서 직접 처리)
         session.sql("UPDATE `groups` SET member_count = member_count - 1 WHERE group_id = ? AND member_count > 0")
             .bind(groupId)
             .execute();
@@ -673,9 +673,14 @@ vector<cGroupMemberInfo> GroupRepository::GetGroupMembers(const string& groupId)
         auto& db = DBManager::GetInstance();
         auto& session = db.GetSession();
 
-        string query = "SELECT m.user_id, m.role, m.joined_at, u.name, u.status_message, u.profile_image_url "
+        // LEFT JOIN: users 테이블에 없는 멤버도 포함 (orphan row 방어)
+        // 이전 INNER JOIN은 users 미등록 멤버를 누락시켜 unreadCount 계산 오류 발생
+        string query = "SELECT m.user_id, m.role, m.joined_at, "
+            "COALESCE(u.name, m.user_id) as name, "
+            "COALESCE(u.status_message, '') as status_message, "
+            "COALESCE(u.profile_image_url, '') as profile_image_url "
             "FROM group_members m "
-            "JOIN users u ON m.user_id = u.user_id "
+            "LEFT JOIN users u ON m.user_id = u.user_id "
             "WHERE m.group_id = ?";
 
         auto rows = session.sql(query).bind(groupId).execute();

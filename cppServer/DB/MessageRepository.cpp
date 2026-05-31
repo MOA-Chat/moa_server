@@ -914,7 +914,13 @@ int MessageRepository::GetMsgUnreadCount(const string& convId, int64 msgSeq)
         return unread > 0 ? unread : 0;
     }
     catch (const mysqlx::Error& err) {
-        LOG_ERROR("[MessageRepository] GetMsgUnreadCount 실패: {}", err.what());
+        LOG_ERROR("[MessageRepository] GetMsgUnreadCount mysqlx 실패: {}", err.what());
+        DBManager::GetInstance().ResetCurrentSession();
+        return 0;
+    }
+    catch (const std::exception& e) {
+        LOG_ERROR("[MessageRepository] GetMsgUnreadCount 예외: {}", e.what());
+        DBManager::GetInstance().ResetCurrentSession();
         return 0;
     }
 }

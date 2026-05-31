@@ -30,6 +30,8 @@ using namespace Protocol;
 
 void PacketDispatcher::DispatchPacket(sessionPtr& session, Protocol::Envelope& envelope)
 {
+	try {
+
 	/* Version Check */
 	if (envelope.version() != GProtoVersion) {
 		DispatchError(session, envelope.request_id(), ERR_VERSION_MISMATCH);
@@ -319,6 +321,25 @@ void PacketDispatcher::DispatchPacket(sessionPtr& session, Protocol::Envelope& e
 		DispatchError(session, envelope.request_id(), ERR_INVALID_PACKET);
 		break;
 	}
+
+	} // end try
+	catch (const mysqlx::Error& err) {
+		LOG_ERROR("[PacketDispatcher] DispatchPacket mysqlx 오류: {} userId={}",
+		    err.what(), static_pointer_cast<ServerSession>(session)->GetUserId());
+		DBManager::GetInstance().ResetCurrentSession();
+		DispatchError(session, envelope.request_id(), ERR_SERVER_INTERNAL);
+	}
+	catch (const std::exception& e) {
+		LOG_ERROR("[PacketDispatcher] DispatchPacket 예외: {} userId={}",
+		    e.what(), static_pointer_cast<ServerSession>(session)->GetUserId());
+		DBManager::GetInstance().ResetCurrentSession();
+		DispatchError(session, envelope.request_id(), ERR_SERVER_INTERNAL);
+	}
+	catch (...) {
+		LOG_ERROR("[PacketDispatcher] DispatchPacket 알 수 없는 예외 userId={}",
+		    static_pointer_cast<ServerSession>(session)->GetUserId());
+		DispatchError(session, envelope.request_id(), ERR_SERVER_INTERNAL);
+	}
 }
 
 
@@ -429,6 +450,8 @@ void PacketDispatcher::DispatchError(sessionPtr& session, uint64 reqId, ErrorCod
 void PacketDispatcher::PushOfflineData(sessionPtr& session, uint64 reqId, const string& userId, int64_t since_ts)
 {
 	LOG_INFO("[PacketDispatcher] PushOfflineData: userId = {}", userId);
+
+	try {
 
 	int totalMessages = 0;
 	const int INIT_LIMIT = 50;
@@ -618,6 +641,19 @@ void PacketDispatcher::PushOfflineData(sessionPtr& session, uint64 reqId, const 
 		LOG_INFO("[PacketDispatcher] 투표 상태 동기화: {}개", pollSyncCount);
 	}
 
+	} // end try
+	catch (const mysqlx::Error& err) {
+		LOG_ERROR("[PacketDispatcher] PushOfflineData mysqlx 오류: {} - userId={}", err.what(), userId);
+		DBManager::GetInstance().ResetCurrentSession();
+	}
+	catch (const std::exception& e) {
+		LOG_ERROR("[PacketDispatcher] PushOfflineData 예외: {} - userId={}", e.what(), userId);
+		DBManager::GetInstance().ResetCurrentSession();
+	}
+	catch (...) {
+		LOG_ERROR("[PacketDispatcher] PushOfflineData 알 수 없는 예외 - userId={}", userId);
+		DBManager::GetInstance().ResetCurrentSession();
+	}
 }
 
 

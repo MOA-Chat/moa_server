@@ -26,6 +26,7 @@ public:
 	bool InviteFriend(sessionPtr& session, const Protocol::C_InviteFriend& pkt);
 
 	bool GetGroupMemberList(sessionPtr& session, uint64 reqId, const string& groupId);
+	bool TransferOwnership(sessionPtr& session, uint64 reqId, const Protocol::C_TransferOwnership& pkt);
 
 private:
 	UserManager& _userManager;
