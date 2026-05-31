@@ -109,6 +109,12 @@ public:
     // 특정 메시지의 읽지 않은 참여자 수 (참여자 수 - 읽은 사람 수)
     static int GetMsgUnreadCount(const string& convId, int64 msgSeq);
 
+    // 읽음 처리 전 기존 last_read_seq 조회 (범위 계산용)
+    static int64 GetPrevReadSeq(const string& userId, const string& convId);
+
+    // fromSeq < msg_seq <= toSeq 범위의 각 메시지 unread_count 배치 계산 (최대 maxCount개)
+    static vector<pair<int64, int>> GetBatchMsgUnreadCounts(const string& convId, int64 fromSeq, int64 toSeq, int maxCount = 100);
+
     /* 공지 */
     struct AnnouncementInfo {
         string convId;

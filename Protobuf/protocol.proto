@@ -386,10 +386,16 @@ message C_ReadReceipt {
     int64  last_read_seq = 2;
 }
 
+message MessageUnreadUpdate {
+    int64 msg_seq      = 1;
+    int32 unread_count = 2;
+}
+
 message S_ReadReceipt {
     string conv_id       = 1;
     string reader_id     = 2;
     int64  last_read_seq = 3;
+    repeated MessageUnreadUpdate unread_updates = 4;
 }
 
 message C_DeleteMessage {

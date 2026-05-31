@@ -752,17 +752,28 @@ bool ChatService::HandleReadReceipt(sessionPtr& session, uint64 reqId, const Pro
         }
     }
 
+    // 업데이트 전 기존 last_read_seq 조회 (unread 범위 계산용)
+    int64 prevReadSeq = MessageRepository::GetPrevReadSeq(userId, convId);
+
     // DB 업데이트
     bool ok = MessageRepository::UpdateReadStatus(userId, convId, lastReadSeq);
     if (!ok) return false;
 
-    LOG_INFO("[ChatService] ReadReceipt: user={} conv={} seq={}", userId, convId, lastReadSeq);
+    LOG_INFO("[ChatService] ReadReceipt: user={} conv={} seq={} prevSeq={}", userId, convId, lastReadSeq, prevReadSeq);
 
-    // S_ReadReceipt 브로드캐스트 (본인 제외 참여자들에게)
+    // 범위 내 각 메시지의 정확한 unread_count 계산
+    auto unreadUpdates = MessageRepository::GetBatchMsgUnreadCounts(convId, prevReadSeq, lastReadSeq);
+
+    // S_ReadReceipt 구성 (unread_updates 포함)
     Protocol::S_ReadReceipt sReadReceipt;
     sReadReceipt.set_conv_id(convId);
     sReadReceipt.set_reader_id(userId);
     sReadReceipt.set_last_read_seq(lastReadSeq);
+    for (const auto& [seq, unread] : unreadUpdates) {
+        auto* update = sReadReceipt.add_unread_updates();
+        update->set_msg_seq(seq);
+        update->set_unread_count(unread);
+    }
 
     Protocol::Envelope env;
     env.set_version(GProtoVersion);
@@ -771,24 +782,27 @@ bool ChatService::HandleReadReceipt(sessionPtr& session, uint64 reqId, const Pro
 
     auto dmPos_rr = convId.find(":dm:");
     if (dmPos_rr != string::npos) {
-        // groupId:dm:userA_userB — 상대방에게 전송
+        // groupId:dm:userA_userB — 본인 + 상대방에게 전송
         string pair = convId.substr(dmPos_rr + 4);
         auto underPos = pair.find('_');
         if (underPos != string::npos) {
             string userA = pair.substr(0, underPos);
             string userB = pair.substr(underPos + 1);
             string targetId = (userA == userId) ? userB : userA;
+            // 본인에게도 전송 (UI 갱신용)
+            if (auto mySession = _userManager.FindSession(userId)) {
+                PacketDispatcher::SendEnvelope(mySession, env);
+            }
             if (auto targetSession = _userManager.FindSession(targetId)) {
                 PacketDispatcher::SendEnvelope(targetSession, env);
             }
         }
     }
     else if (convId.find("group:") == 0) {
-        // 그룹 채팅: 본인 제외 모든 온라인 멤버에게 전송
+        // 그룹 채팅: 본인 포함 모든 온라인 멤버에게 전송
         string groupId = convId.substr(6);
         auto members = GroupRepository::GetGroupMembers(groupId);
         for (const auto& member : members) {
-            if (member.userId == userId) continue;
             auto memberSession = _userManager.FindSession(member.userId);
             if (memberSession) {
                 PacketDispatcher::SendEnvelope(memberSession, env);

@@ -925,7 +925,87 @@ int MessageRepository::GetMsgUnreadCount(const string& convId, int64 msgSeq)
     }
 }
 
+int64 MessageRepository::GetPrevReadSeq(const string& userId, const string& convId)
+{
+    try {
+        auto& db = DBManager::GetInstance();
+        auto& session = db.GetSession();
+        string query = "SELECT last_read_seq FROM read_status WHERE user_id = ? AND conv_id = ?";
+        auto result = session.sql(query).bind(userId, convId).execute();
+        auto row = result.fetchOne();
+        if (row && !row[0].isNull()) {
+            return row[0].get<int64>();
+        }
+        return 0;
+    }
+    catch (const mysqlx::Error& err) {
+        LOG_ERROR("[MessageRepository] GetPrevReadSeq 실패: {}", err.what());
+        DBManager::GetInstance().ResetCurrentSession();
+        return 0;
+    }
+    catch (const std::exception& e) {
+        LOG_ERROR("[MessageRepository] GetPrevReadSeq 예외: {}", e.what());
+        return 0;
+    }
+}
 
+vector<pair<int64, int>> MessageRepository::GetBatchMsgUnreadCounts(const string& convId, int64 fromSeq, int64 toSeq, int maxCount)
+{
+    vector<pair<int64, int>> results;
+    try {
+        auto& db = DBManager::GetInstance();
+        auto& session = db.GetSession();
+
+        // 1) 전체 멤버 수 계산
+        int totalCount = 0;
+        if (convId.find("group:") == 0) {
+            string groupId = convId.substr(6);
+            string totalQuery = "SELECT COUNT(*) FROM group_members WHERE group_id = ?";
+            auto totalResult = session.sql(totalQuery).bind(groupId).execute();
+            auto totalRow = totalResult.fetchOne();
+            totalCount = (totalRow && !totalRow[0].isNull()) ? totalRow[0].get<int>() : 0;
+        } else {
+            string totalQuery = "SELECT COUNT(*) FROM conversation_participants WHERE conv_id = ?";
+            auto totalResult = session.sql(totalQuery).bind(convId).execute();
+            auto totalRow = totalResult.fetchOne();
+            totalCount = (totalRow && !totalRow[0].isNull()) ? totalRow[0].get<int>() : 0;
+        }
+
+        if (totalCount <= 0) return results;
+
+        // 2) 범위 내 메시지 seq 목록 조회 (최신 maxCount개)
+        string seqQuery =
+            "SELECT msg_seq FROM messages WHERE conv_id = ? AND msg_seq > ? AND msg_seq <= ? "
+            "ORDER BY msg_seq DESC LIMIT ?";
+        auto seqResult = session.sql(seqQuery).bind(convId, fromSeq, toSeq, maxCount).execute();
+
+        vector<int64> seqs;
+        for (auto row = seqResult.fetchOne(); row; row = seqResult.fetchOne()) {
+            seqs.push_back(row[0].get<int64>());
+        }
+
+        if (seqs.empty()) return results;
+
+        // 3) 각 메시지별 읽은 사람 수 계산
+        for (int64 seq : seqs) {
+            string readQuery =
+                "SELECT COUNT(*) FROM read_status WHERE conv_id = ? AND last_read_seq >= ?";
+            auto readResult = session.sql(readQuery).bind(convId, seq).execute();
+            auto readRow = readResult.fetchOne();
+            int readCount = (readRow && !readRow[0].isNull()) ? readRow[0].get<int>() : 0;
+            int unread = totalCount - readCount;
+            results.push_back({ seq, unread > 0 ? unread : 0 });
+        }
+    }
+    catch (const mysqlx::Error& err) {
+        LOG_ERROR("[MessageRepository] GetBatchMsgUnreadCounts mysqlx 실패: {}", err.what());
+        DBManager::GetInstance().ResetCurrentSession();
+    }
+    catch (const std::exception& e) {
+        LOG_ERROR("[MessageRepository] GetBatchMsgUnreadCounts 예외: {}", e.what());
+    }
+    return results;
+}
 
 
 
