@@ -487,12 +487,10 @@ void PacketDispatcher::PushOfflineData(sessionPtr& session, uint64 reqId, const 
 				if (tempChat.ParseFromString(msgInfo.messageData)) {
 					*sChat = tempChat;
 					sChat->set_msg_seq(msgInfo.msgSeq);
-					// unread_count 재계산: 저장된 초기값 대신 현재 read_status 기반 실제 값
-					// (오프라인 중 읽힌 메시지도 정확히 반영)
-					if (sChat->unread_count() > 0) {
-						int actual = MessageRepository::GetMsgUnreadCount(convId, msgInfo.msgSeq);
-						sChat->set_unread_count(actual);
-					}
+					// SaveMessage가 set_unread_count 이전에 호출되므로 blob의 unread_count는 항상 0
+					// → 조건 없이 항상 read_status 기반으로 재계산
+					int actual = MessageRepository::GetMsgUnreadCount(convId, msgInfo.msgSeq);
+					sChat->set_unread_count(actual);
 					totalMessages++;
 				}
 			}
@@ -526,11 +524,10 @@ void PacketDispatcher::PushOfflineData(sessionPtr& session, uint64 reqId, const 
 				if (tempChat.ParseFromString(msgInfo.messageData)) {
 					*sChat = tempChat;
 					sChat->set_msg_seq(msgInfo.msgSeq);
-					// unread_count 재계산 (그룹 전용: group_members 기반으로 정확히 계산)
-					if (sChat->unread_count() > 0) {
-						int actual = MessageRepository::GetMsgUnreadCount(convId, msgInfo.msgSeq);
-						sChat->set_unread_count(actual);
-					}
+					// SaveMessage가 set_unread_count 이전에 호출되므로 blob의 unread_count는 항상 0
+					// → 조건 없이 항상 read_status 기반으로 재계산
+					int actual = MessageRepository::GetMsgUnreadCount(convId, msgInfo.msgSeq);
+					sChat->set_unread_count(actual);
 					totalMessages++;
 				}
 			}
