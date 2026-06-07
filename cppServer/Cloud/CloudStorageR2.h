@@ -28,6 +28,7 @@ public:
     bool RemoveFile(const string& path) override;
     bool FileExists(const string& path) override;
     string GetBucketName() const override { return _bucketName; }
+    string GetPublicUrlPrefix() const override { return _publicUrlPrefix; }
 
 private:
     // AWS Sig V4 헬퍼

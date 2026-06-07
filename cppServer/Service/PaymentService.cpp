@@ -89,19 +89,20 @@ bool PaymentService::HandleVerifyPurchase(sessionPtr& session, uint64 reqId,
         PacketDispatcher::DispatchError(session, reqId, Protocol::ERR_INVALID_ARGUMENT, "group_id 필요");
         return false;
     }
+    // iOS transactionReceipt는 base64 영수증으로 수KB 가능 → 100KB 허용
     if (platform.length() > 10 || productId.length() > 200 ||
-        transactionId.length() > 500 || purchaseToken.length() > 5000) {
+        transactionId.length() > 500 || purchaseToken.length() > 102400) {
         PacketDispatcher::DispatchError(session, reqId, Protocol::ERR_PAYMENT_FAILED, "잘못된 결제 정보");
         return false;
     }
+
+    LOG_INFO("[PaymentService] VerifyPurchase: group={} user={} platform={} product={} tokenLen={}", groupId, userId, platform, productId, purchaseToken.length());
 
     // 방장 확인
     if (GroupRepository::GetMemberRole(groupId, userId) != "owner") {
         PacketDispatcher::DispatchError(session, reqId, Protocol::ERR_NO_PERMISSION, "방장만 구독할 수 있습니다.");
         return false;
     }
-
-    LOG_INFO("[PaymentService] VerifyPurchase: group={} user={} platform={} product={}", groupId, userId, platform, productId);
 
     int planId = 0;
     int64 expiresAt = 0;
@@ -121,7 +122,8 @@ bool PaymentService::HandleVerifyPurchase(sessionPtr& session, uint64 reqId,
         return false;
     }
 
-    if (!UpdateSubscription(groupId, planId, platform, productId, transactionId, purchaseToken, expiresAt)) {
+    auto upd = UpdateSubscription(groupId, userId, planId, platform, productId, transactionId, purchaseToken, expiresAt);
+    if (!upd.success) {
         PacketDispatcher::DispatchError(session, reqId, Protocol::ERR_SERVER_INTERNAL, "구독 업데이트 실패");
         return false;
     }
@@ -131,8 +133,19 @@ bool PaymentService::HandleVerifyPurchase(sessionPtr& session, uint64 reqId,
 
     Protocol::S_VerifyPurchase response;
     response.set_success(true);
-    response.set_message("구독이 활성화되었습니다.");
-    response.set_expires_at(expiresAt);
+    if (upd.isDowngrade) {
+        // 다운그레이드: 만료일 포맷팅
+        time_t t = static_cast<time_t>(upd.currentExpiresAt / 1000);
+        struct tm tmBuf = {};
+        gmtime_s(&tmBuf, &t);
+        char buf[32];
+        strftime(buf, sizeof(buf), "%Y-%m-%d", &tmBuf);
+        response.set_message(string(buf) + "에 " + upd.pendingPlanName + " 플랜으로 전환됩니다.");
+        response.set_expires_at(upd.currentExpiresAt);
+    } else {
+        response.set_message("구독이 활성화되었습니다.");
+        response.set_expires_at(expiresAt);
+    }
     response.set_storage_limit_bytes(gInfo.storageLimit);
     response.set_storage_usage_bytes(gInfo.storageUsage);
 
@@ -314,50 +327,65 @@ bool PaymentService::VerifyApplePurchase(const string& productId,
 }
 
 
-bool PaymentService::UpdateSubscription(const string& groupId, int planId,
-                                          const string& platform, const string& productId,
-                                          const string& transactionId,
-                                          const string& purchaseToken, int64 expiresAt)
+PaymentService::UpdateResult PaymentService::UpdateSubscription(
+    const string& groupId, const string& userId, int planId,
+    const string& platform, const string& productId,
+    const string& transactionId, const string& purchaseToken, int64 expiresAt)
 {
+    UpdateResult result;
     try {
-        if (!SubscriptionRepository::RecordTransaction(groupId, planId, platform, productId, transactionId, purchaseToken)) {
-            HandleErr("UpdateSubscription", "RecordTransaction failed");
-            return false;
-        }
-
-        SubscriptionPlanInfo planInfo;
-        if (!SubscriptionRepository::GetPlanInfo(planId, planInfo)) {
+        SubscriptionPlanInfo newPlanInfo;
+        if (!SubscriptionRepository::GetPlanInfo(planId, newPlanInfo)) {
             HandleErr("UpdateSubscription", "GetPlanInfo failed: planId=" + to_string(planId));
-            return false;
+            return result;
         }
 
-        if (!SubscriptionRepository::UpsertSubscription(groupId, planId, expiresAt)) {
-            HandleErr("UpdateSubscription", "UpsertSubscription failed");
-            return false;
+        // 현재 구독 조회 → 업그레이드/다운그레이드 판별
+        cSubscriptionInfo currentSub;
+        bool hasCurrent = SubscriptionRepository::GetActiveSubscription(groupId, currentSub);
+        bool isDowngrade = false;
+
+        if (hasCurrent && currentSub.planId > 0) {
+            SubscriptionPlanInfo currentPlanInfo;
+            if (SubscriptionRepository::GetPlanInfo(currentSub.planId, currentPlanInfo)) {
+                isDowngrade = (newPlanInfo.grade < currentPlanInfo.grade);
+            }
         }
 
-        if (!GroupRepository::UpdateStorageCapacity(groupId, planInfo.storageBytes)) {
-            HandleErr("UpdateSubscription", "UpdateStorageCapacity failed");
-            return false;
+        if (!SubscriptionRepository::RecordTransaction(groupId, userId, planId, platform, productId, transactionId, purchaseToken)) {
+            HandleErr("UpdateSubscription", "RecordTransaction failed");
+            return result;
         }
 
-        // 플랜 변경 후 쿼터 초과 사진 정리 (다운그레이드 시 오래된 사진 소프트딜리트)
-        // 업그레이드 시에는 deletedSize=0 으로 무해하게 처리됨
-        int64 nowMs = chrono::duration_cast<chrono::milliseconds>(
-            chrono::system_clock::now().time_since_epoch()).count();
-        int64 deletedSize = AlbumRepository::SoftDeleteOverQuotaPhotosByGroup(
-            groupId, planInfo.storageBytes, nowMs);
-        if (deletedSize > 0) {
-            GroupRepository::DeductGroupStorage(groupId, deletedSize);
-            LOG_INFO("[PaymentService] 플랜 변경 후 초과 사진 정리: group={} deletedBytes={}", groupId, deletedSize);
+        if (isDowngrade) {
+            // 다운그레이드: 현재 기간 끝날 때까지 기존 플랜 유지, pending_plan_id만 세팅
+            if (!SubscriptionRepository::SetPendingPlan(groupId, planId)) {
+                HandleErr("UpdateSubscription", "SetPendingPlan failed");
+                return result;
+            }
+            result.isDowngrade       = true;
+            result.pendingPlanName   = newPlanInfo.name;
+            result.currentExpiresAt  = currentSub.expiresAt;
+            LOG_INFO("[PaymentService] 다운그레이드 예약: group={} pendingPlan={} expires={}", groupId, newPlanInfo.name, currentSub.expiresAt);
+        } else {
+            // 업그레이드 또는 신규 구독: 즉시 적용 (cancel/pending 플래그 자동 초기화)
+            if (!SubscriptionRepository::UpsertSubscription(groupId, planId, expiresAt)) {
+                HandleErr("UpdateSubscription", "UpsertSubscription failed");
+                return result;
+            }
+            if (!GroupRepository::UpdateStorageCapacity(groupId, newPlanInfo.storageBytes)) {
+                HandleErr("UpdateSubscription", "UpdateStorageCapacity failed");
+                return result;
+            }
+            LOG_INFO("[PaymentService] 구독 활성화: group={} planId={} storage={}", groupId, planId, newPlanInfo.storageBytes);
         }
 
-        LOG_INFO("[PaymentService] 구독 업데이트 완료: group={} planId={} storage={}", groupId, planId, planInfo.storageBytes);
-        return true;
+        result.success = true;
+        return result;
     }
     catch (const exception& e) {
         HandleErr("UpdateSubscription", e.what());
-        return false;
+        return result;
     }
 }
 
@@ -394,19 +422,36 @@ bool PaymentService::HandleCancelSubscription(sessionPtr& session, uint64 reqId,
             return true;
         }
 
-        const int64 GRACE_PERIOD_MS = 14LL * 24 * 3600 * 1000;
-        int64 graceExpiresAt = Nowts() + GRACE_PERIOD_MS;
+        if (subInfo.cancelAtPeriodEnd) {
+            // 이미 해지 예약됨
+            Protocol::S_CancelSubscription resp;
+            resp.set_success(false);
+            resp.set_message("이미 해지가 예정된 구독입니다.");
+            resp.set_grace_expires_at(subInfo.expiresAt);
+            Protocol::Envelope env;
+            env.set_version(GProtoVersion);
+            env.set_request_id(reqId);
+            *env.mutable_s_cancel_subscription() = resp;
+            PacketDispatcher::SendEnvelope(session, env);
+            return true;
+        }
 
-        // SetGrace: status='active' → 'grace' + grace_expires_at 세팅
-        // CancelSubscription을 먼저 호출하면 status='cancelled'가 되어 SetGrace의 WHERE status='active' 조건에 안 걸림
-        SubscriptionRepository::SetGrace(groupId, graceExpiresAt);
+        // 해지 예약: 기간 끝날 때까지 유지
+        SubscriptionRepository::SetCancelAtPeriodEnd(groupId);
 
-        LOG_INFO("[PaymentService] 구독 해지: group={} 유예만료={}", groupId, graceExpiresAt);
+        // 만료일 포맷
+        time_t t = static_cast<time_t>(subInfo.expiresAt / 1000);
+        struct tm tmBuf = {};
+        gmtime_s(&tmBuf, &t);
+        char dateBuf[32];
+        strftime(dateBuf, sizeof(dateBuf), "%Y-%m-%d", &tmBuf);
+
+        LOG_INFO("[PaymentService] 구독 해지 예약: group={} 만료={}", groupId, subInfo.expiresAt);
 
         Protocol::S_CancelSubscription resp;
         resp.set_success(true);
-        resp.set_message("구독이 해지되었습니다. 14일 후 앨범 사진이 삭제됩니다.");
-        resp.set_grace_expires_at(graceExpiresAt);
+        resp.set_message(string(dateBuf) + "까지 이용 가능합니다.");
+        resp.set_grace_expires_at(subInfo.expiresAt); // 클라이언트에서 만료일로 사용
 
         Protocol::Envelope env;
         env.set_version(GProtoVersion);

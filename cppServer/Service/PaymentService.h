@@ -31,9 +31,16 @@ private:
     bool VerifyApplePurchase(const string& productId, const string& receiptData,
                               int& outPlanId, int64& outExpiresAt);
 
-    bool UpdateSubscription(const string& groupId, int planId, const string& platform,
-                             const string& productId, const string& transactionId,
-                             const string& purchaseToken, int64 expiresAt);
+    struct UpdateResult {
+        bool   success      = false;
+        bool   isDowngrade  = false;
+        string pendingPlanName;
+        int64  currentExpiresAt = 0;
+        int64  currentStorageLimit = 0;
+    };
+    UpdateResult UpdateSubscription(const string& groupId, const string& userId, int planId,
+                                    const string& platform, const string& productId,
+                                    const string& transactionId, const string& purchaseToken, int64 expiresAt);
 
     int GetPlanIdFromProductId(const string& productId);
 

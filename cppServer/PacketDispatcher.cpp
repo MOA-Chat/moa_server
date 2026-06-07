@@ -234,6 +234,9 @@ void PacketDispatcher::DispatchPacket(sessionPtr& session, Protocol::Envelope& e
 	case Protocol::Envelope::kCDeleteAlbum:
 		Dispatch_C_DeleteAlbum(session, envelope.request_id(), envelope.c_delete_album());
 		break;
+	case Protocol::Envelope::kCEditAlbum:
+		Dispatch_C_EditAlbum(session, envelope.request_id(), envelope.c_edit_album());
+		break;
 	case Protocol::Envelope::kCAddPhotoToAlbum:
 		Dispatch_C_AddPhotoToAlbum(session, envelope.request_id(), envelope.c_add_photo_to_album());
 		break;
@@ -1231,7 +1234,20 @@ bool PacketDispatcher::Dispatch_C_GetSubscription(sessionPtr& session, uint64 re
 		if (SubscriptionRepository::GetActiveSubscription(groupId, subInfo)) {
 			response.set_expires_at(subInfo.expiresAt);
 			response.set_auto_renew(subInfo.autoRenew);
-			if (subInfo.status == "grace") planName = "유예 중";
+
+			if (subInfo.status == "grace") {
+				// "Basic|grace" 형태 — 클라이언트에서 플랜명 표시 + (!) 아이콘
+				planName += "|grace";
+			} else if (subInfo.cancelAtPeriodEnd) {
+				// 해지 예약: "Max|cancel" 형태
+				planName += "|cancel";
+			} else if (subInfo.pendingPlanId > 0) {
+				// 다운그레이드 예약: "Max|pending:Basic" 형태
+				SubscriptionPlanInfo pendingInfo;
+				if (SubscriptionRepository::GetPlanInfo(subInfo.pendingPlanId, pendingInfo) && !pendingInfo.name.empty()) {
+					planName += "|pending:" + pendingInfo.name;
+				}
+			}
 		}
 		response.set_current_plan_name(planName);
 
@@ -1384,6 +1400,12 @@ bool PacketDispatcher::Dispatch_C_DeleteAlbum(sessionPtr& session, uint64 reqId,
 {
     if (!CheckAlbumAuth(session, reqId)) return false;
     return GAlbumService->HandleDeleteAlbum(session, reqId, pkt);
+}
+
+bool PacketDispatcher::Dispatch_C_EditAlbum(sessionPtr& session, uint64 reqId, const Protocol::C_EditAlbum& pkt)
+{
+    if (!CheckAlbumAuth(session, reqId)) return false;
+    return GAlbumService->HandleEditAlbum(session, reqId, pkt);
 }
 
 bool PacketDispatcher::Dispatch_C_AddPhotoToAlbum(sessionPtr& session, uint64 reqId, const Protocol::C_AddPhotoToAlbum& pkt)

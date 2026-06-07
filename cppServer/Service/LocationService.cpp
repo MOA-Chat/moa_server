@@ -8,6 +8,8 @@
 #include "../DB/LocationRepository.h"
 #include "../DB/GroupRepository.h"
 #include "../DB/UserRepository.h"
+#include "../DB/FileRepository.h"
+#include "Cloud/CloudStorage.h"
 
 #include <chrono>
 
@@ -58,6 +60,9 @@ void FillPlaceProto(Protocol::LocationPlaceInfo* proto, const cLocationPlace& p,
     proto->set_visit_count(p.visitCount);
     proto->set_avg_rating(p.avgRating);
     proto->set_recent_photo_url(p.recentPhotoUrl);
+    if (!p.canonicalId.empty()) {
+        proto->set_canonical_id(p.canonicalId);
+    }
     for (const auto& v : visits) {
         FillVisitProto(proto->add_visits(), v);
     }
@@ -193,8 +198,19 @@ bool LocationService::HandleSaveVisit(sessionPtr& session, uint64 reqId, const C
     if (pkt.photo_urls_size() > 0) {
         vector<string> urls(pkt.photo_urls().begin(), pkt.photo_urls().end());
         LocationRepository::AddVisitPhotos(visit.id, visit.placeId, visit.groupId, urls);
-        for (const auto& url : urls)
+        for (const auto& url : urls) {
             visit.photos.emplace_back("", url);
+            // 위치 사진은 GROUP_CHAT으로 업로드되어 14일 retention이 걸림 → 영구 전환
+            if (GStorage) {
+                const string& prefix = GStorage->GetPublicUrlPrefix();
+                if (!prefix.empty() && url.substr(0, prefix.size()) == prefix) {
+                    string gcsPath = url.substr(prefix.size() + 1);
+                    auto q = gcsPath.find('?');
+                    if (q != string::npos) gcsPath = gcsPath.substr(0, q);
+                    FileRepository::ClearRetentionByFilePath(gcsPath);
+                }
+            }
+        }
     }
 
     LocationRepository::UpdatePlaceStats(visit.placeId);
@@ -286,6 +302,19 @@ bool LocationService::HandleUpdateVisit(sessionPtr& session, uint64 reqId, const
     if (!ok) {
         HandleErr(session, reqId, ERR_NO_PERMISSION, "수정 권한이 없거나 방문 기록을 찾을 수 없습니다");
         return false;
+    }
+
+    // 위치 사진 retention 영구 전환 (UpdateVisit은 기존 사진 삭제 후 재삽입)
+    if (GStorage && !photos.empty()) {
+        const string& prefix = GStorage->GetPublicUrlPrefix();
+        for (const auto& url : photos) {
+            if (!prefix.empty() && url.substr(0, prefix.size()) == prefix) {
+                string gcsPath = url.substr(prefix.size() + 1);
+                auto q = gcsPath.find('?');
+                if (q != string::npos) gcsPath = gcsPath.substr(0, q);
+                FileRepository::ClearRetentionByFilePath(gcsPath);
+            }
+        }
     }
 
     string userName;

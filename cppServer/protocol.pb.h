@@ -47,7 +47,7 @@ struct TableStruct_protocol_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[158]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[161]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -139,6 +139,9 @@ extern C_DeletePlaceDefaultTypeInternal _C_DeletePlace_default_instance_;
 class C_DeleteVisit;
 struct C_DeleteVisitDefaultTypeInternal;
 extern C_DeleteVisitDefaultTypeInternal _C_DeleteVisit_default_instance_;
+class C_EditAlbum;
+struct C_EditAlbumDefaultTypeInternal;
+extern C_EditAlbumDefaultTypeInternal _C_EditAlbum_default_instance_;
 class C_EditGroup;
 struct C_EditGroupDefaultTypeInternal;
 extern C_EditGroupDefaultTypeInternal _C_EditGroup_default_instance_;
@@ -304,6 +307,9 @@ extern LocationPlaceInfoDefaultTypeInternal _LocationPlaceInfo_default_instance_
 class LocationVisitInfo;
 struct LocationVisitInfoDefaultTypeInternal;
 extern LocationVisitInfoDefaultTypeInternal _LocationVisitInfo_default_instance_;
+class MessageUnreadUpdate;
+struct MessageUnreadUpdateDefaultTypeInternal;
+extern MessageUnreadUpdateDefaultTypeInternal _MessageUnreadUpdate_default_instance_;
 class PhotoComment;
 struct PhotoCommentDefaultTypeInternal;
 extern PhotoCommentDefaultTypeInternal _PhotoComment_default_instance_;
@@ -373,6 +379,9 @@ extern S_DeletePlaceDefaultTypeInternal _S_DeletePlace_default_instance_;
 class S_DeleteVisit;
 struct S_DeleteVisitDefaultTypeInternal;
 extern S_DeleteVisitDefaultTypeInternal _S_DeleteVisit_default_instance_;
+class S_EditAlbum;
+struct S_EditAlbumDefaultTypeInternal;
+extern S_EditAlbumDefaultTypeInternal _S_EditAlbum_default_instance_;
 class S_EditGroup;
 struct S_EditGroupDefaultTypeInternal;
 extern S_EditGroupDefaultTypeInternal _S_EditGroup_default_instance_;
@@ -559,6 +568,7 @@ template<> ::Protocol::C_DeleteMessage* Arena::CreateMaybeMessage<::Protocol::C_
 template<> ::Protocol::C_DeletePhotoComment* Arena::CreateMaybeMessage<::Protocol::C_DeletePhotoComment>(Arena*);
 template<> ::Protocol::C_DeletePlace* Arena::CreateMaybeMessage<::Protocol::C_DeletePlace>(Arena*);
 template<> ::Protocol::C_DeleteVisit* Arena::CreateMaybeMessage<::Protocol::C_DeleteVisit>(Arena*);
+template<> ::Protocol::C_EditAlbum* Arena::CreateMaybeMessage<::Protocol::C_EditAlbum>(Arena*);
 template<> ::Protocol::C_EditGroup* Arena::CreateMaybeMessage<::Protocol::C_EditGroup>(Arena*);
 template<> ::Protocol::C_EditMessage* Arena::CreateMaybeMessage<::Protocol::C_EditMessage>(Arena*);
 template<> ::Protocol::C_EditMyInfo* Arena::CreateMaybeMessage<::Protocol::C_EditMyInfo>(Arena*);
@@ -614,6 +624,7 @@ template<> ::Protocol::Image* Arena::CreateMaybeMessage<::Protocol::Image>(Arena
 template<> ::Protocol::LocationPhoto* Arena::CreateMaybeMessage<::Protocol::LocationPhoto>(Arena*);
 template<> ::Protocol::LocationPlaceInfo* Arena::CreateMaybeMessage<::Protocol::LocationPlaceInfo>(Arena*);
 template<> ::Protocol::LocationVisitInfo* Arena::CreateMaybeMessage<::Protocol::LocationVisitInfo>(Arena*);
+template<> ::Protocol::MessageUnreadUpdate* Arena::CreateMaybeMessage<::Protocol::MessageUnreadUpdate>(Arena*);
 template<> ::Protocol::PhotoComment* Arena::CreateMaybeMessage<::Protocol::PhotoComment>(Arena*);
 template<> ::Protocol::S_AddPhotoComment* Arena::CreateMaybeMessage<::Protocol::S_AddPhotoComment>(Arena*);
 template<> ::Protocol::S_AddPhotoToAlbum* Arena::CreateMaybeMessage<::Protocol::S_AddPhotoToAlbum>(Arena*);
@@ -637,6 +648,7 @@ template<> ::Protocol::S_DeleteMessage* Arena::CreateMaybeMessage<::Protocol::S_
 template<> ::Protocol::S_DeletePhotoComment* Arena::CreateMaybeMessage<::Protocol::S_DeletePhotoComment>(Arena*);
 template<> ::Protocol::S_DeletePlace* Arena::CreateMaybeMessage<::Protocol::S_DeletePlace>(Arena*);
 template<> ::Protocol::S_DeleteVisit* Arena::CreateMaybeMessage<::Protocol::S_DeleteVisit>(Arena*);
+template<> ::Protocol::S_EditAlbum* Arena::CreateMaybeMessage<::Protocol::S_EditAlbum>(Arena*);
 template<> ::Protocol::S_EditGroup* Arena::CreateMaybeMessage<::Protocol::S_EditGroup>(Arena*);
 template<> ::Protocol::S_EditMessage* Arena::CreateMaybeMessage<::Protocol::S_EditMessage>(Arena*);
 template<> ::Protocol::S_EditMyInfo* Arena::CreateMaybeMessage<::Protocol::S_EditMyInfo>(Arena*);
@@ -1027,6 +1039,8 @@ class Envelope final :
     kSDeleteVisit = 159,
     kCTransferOwnership = 160,
     kSTransferOwnership = 161,
+    kCEditAlbum = 162,
+    kSEditAlbum = 163,
     kCCreateGroup = 80,
     kSCreateGroup = 81,
     kCGroupList = 82,
@@ -1238,6 +1252,8 @@ class Envelope final :
     kSDeleteVisitFieldNumber = 159,
     kCTransferOwnershipFieldNumber = 160,
     kSTransferOwnershipFieldNumber = 161,
+    kCEditAlbumFieldNumber = 162,
+    kSEditAlbumFieldNumber = 163,
     kCCreateGroupFieldNumber = 80,
     kSCreateGroupFieldNumber = 81,
     kCGroupListFieldNumber = 82,
@@ -3328,6 +3344,42 @@ class Envelope final :
       ::Protocol::S_TransferOwnership* s_transfer_ownership);
   ::Protocol::S_TransferOwnership* unsafe_arena_release_s_transfer_ownership();
 
+  // .Protocol.C_EditAlbum c_edit_album = 162;
+  bool has_c_edit_album() const;
+  private:
+  bool _internal_has_c_edit_album() const;
+  public:
+  void clear_c_edit_album();
+  const ::Protocol::C_EditAlbum& c_edit_album() const;
+  PROTOBUF_FUTURE_MUST_USE_RESULT ::Protocol::C_EditAlbum* release_c_edit_album();
+  ::Protocol::C_EditAlbum* mutable_c_edit_album();
+  void set_allocated_c_edit_album(::Protocol::C_EditAlbum* c_edit_album);
+  private:
+  const ::Protocol::C_EditAlbum& _internal_c_edit_album() const;
+  ::Protocol::C_EditAlbum* _internal_mutable_c_edit_album();
+  public:
+  void unsafe_arena_set_allocated_c_edit_album(
+      ::Protocol::C_EditAlbum* c_edit_album);
+  ::Protocol::C_EditAlbum* unsafe_arena_release_c_edit_album();
+
+  // .Protocol.S_EditAlbum s_edit_album = 163;
+  bool has_s_edit_album() const;
+  private:
+  bool _internal_has_s_edit_album() const;
+  public:
+  void clear_s_edit_album();
+  const ::Protocol::S_EditAlbum& s_edit_album() const;
+  PROTOBUF_FUTURE_MUST_USE_RESULT ::Protocol::S_EditAlbum* release_s_edit_album();
+  ::Protocol::S_EditAlbum* mutable_s_edit_album();
+  void set_allocated_s_edit_album(::Protocol::S_EditAlbum* s_edit_album);
+  private:
+  const ::Protocol::S_EditAlbum& _internal_s_edit_album() const;
+  ::Protocol::S_EditAlbum* _internal_mutable_s_edit_album();
+  public:
+  void unsafe_arena_set_allocated_s_edit_album(
+      ::Protocol::S_EditAlbum* s_edit_album);
+  ::Protocol::S_EditAlbum* unsafe_arena_release_s_edit_album();
+
   // .Protocol.C_CreateGroup c_create_group = 80;
   bool has_c_create_group() const;
   private:
@@ -3860,6 +3912,8 @@ class Envelope final :
   void set_has_s_delete_visit();
   void set_has_c_transfer_ownership();
   void set_has_s_transfer_ownership();
+  void set_has_c_edit_album();
+  void set_has_s_edit_album();
   void set_has_c_create_group();
   void set_has_s_create_group();
   void set_has_c_group_list();
@@ -4009,6 +4063,8 @@ class Envelope final :
     ::Protocol::S_DeleteVisit* s_delete_visit_;
     ::Protocol::C_TransferOwnership* c_transfer_ownership_;
     ::Protocol::S_TransferOwnership* s_transfer_ownership_;
+    ::Protocol::C_EditAlbum* c_edit_album_;
+    ::Protocol::S_EditAlbum* s_edit_album_;
     ::Protocol::C_CreateGroup* c_create_group_;
     ::Protocol::S_CreateGroup* s_create_group_;
     ::Protocol::C_GroupList* c_group_list_;
@@ -10748,6 +10804,149 @@ class C_ReadReceipt final :
 };
 // -------------------------------------------------------------------
 
+class MessageUnreadUpdate final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Protocol.MessageUnreadUpdate) */ {
+ public:
+  inline MessageUnreadUpdate() : MessageUnreadUpdate(nullptr) {}
+  ~MessageUnreadUpdate() override;
+  explicit constexpr MessageUnreadUpdate(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  MessageUnreadUpdate(const MessageUnreadUpdate& from);
+  MessageUnreadUpdate(MessageUnreadUpdate&& from) noexcept
+    : MessageUnreadUpdate() {
+    *this = ::std::move(from);
+  }
+
+  inline MessageUnreadUpdate& operator=(const MessageUnreadUpdate& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline MessageUnreadUpdate& operator=(MessageUnreadUpdate&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const MessageUnreadUpdate& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const MessageUnreadUpdate* internal_default_instance() {
+    return reinterpret_cast<const MessageUnreadUpdate*>(
+               &_MessageUnreadUpdate_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    41;
+
+  friend void swap(MessageUnreadUpdate& a, MessageUnreadUpdate& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(MessageUnreadUpdate* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(MessageUnreadUpdate* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline MessageUnreadUpdate* New() const final {
+    return new MessageUnreadUpdate();
+  }
+
+  MessageUnreadUpdate* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<MessageUnreadUpdate>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const MessageUnreadUpdate& from);
+  void MergeFrom(const MessageUnreadUpdate& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(MessageUnreadUpdate* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "Protocol.MessageUnreadUpdate";
+  }
+  protected:
+  explicit MessageUnreadUpdate(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kMsgSeqFieldNumber = 1,
+    kUnreadCountFieldNumber = 2,
+  };
+  // int64 msg_seq = 1;
+  void clear_msg_seq();
+  ::PROTOBUF_NAMESPACE_ID::int64 msg_seq() const;
+  void set_msg_seq(::PROTOBUF_NAMESPACE_ID::int64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int64 _internal_msg_seq() const;
+  void _internal_set_msg_seq(::PROTOBUF_NAMESPACE_ID::int64 value);
+  public:
+
+  // int32 unread_count = 2;
+  void clear_unread_count();
+  ::PROTOBUF_NAMESPACE_ID::int32 unread_count() const;
+  void set_unread_count(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_unread_count() const;
+  void _internal_set_unread_count(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:Protocol.MessageUnreadUpdate)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::int64 msg_seq_;
+  ::PROTOBUF_NAMESPACE_ID::int32 unread_count_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_protocol_2eproto;
+};
+// -------------------------------------------------------------------
+
 class S_ReadReceipt final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Protocol.S_ReadReceipt) */ {
  public:
@@ -10792,7 +10991,7 @@ class S_ReadReceipt final :
                &_S_ReadReceipt_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    41;
+    42;
 
   friend void swap(S_ReadReceipt& a, S_ReadReceipt& b) {
     a.Swap(&b);
@@ -10856,10 +11055,29 @@ class S_ReadReceipt final :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kUnreadUpdatesFieldNumber = 4,
     kConvIdFieldNumber = 1,
     kReaderIdFieldNumber = 2,
     kLastReadSeqFieldNumber = 3,
   };
+  // repeated .Protocol.MessageUnreadUpdate unread_updates = 4;
+  int unread_updates_size() const;
+  private:
+  int _internal_unread_updates_size() const;
+  public:
+  void clear_unread_updates();
+  ::Protocol::MessageUnreadUpdate* mutable_unread_updates(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Protocol::MessageUnreadUpdate >*
+      mutable_unread_updates();
+  private:
+  const ::Protocol::MessageUnreadUpdate& _internal_unread_updates(int index) const;
+  ::Protocol::MessageUnreadUpdate* _internal_add_unread_updates();
+  public:
+  const ::Protocol::MessageUnreadUpdate& unread_updates(int index) const;
+  ::Protocol::MessageUnreadUpdate* add_unread_updates();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Protocol::MessageUnreadUpdate >&
+      unread_updates() const;
+
   // string conv_id = 1;
   void clear_conv_id();
   const std::string& conv_id() const;
@@ -10904,6 +11122,7 @@ class S_ReadReceipt final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Protocol::MessageUnreadUpdate > unread_updates_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr conv_id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr reader_id_;
   ::PROTOBUF_NAMESPACE_ID::int64 last_read_seq_;
@@ -10956,7 +11175,7 @@ class C_DeleteMessage final :
                &_C_DeleteMessage_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    42;
+    43;
 
   friend void swap(C_DeleteMessage& a, C_DeleteMessage& b) {
     a.Swap(&b);
@@ -11104,7 +11323,7 @@ class S_DeleteMessage final :
                &_S_DeleteMessage_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    43;
+    44;
 
   friend void swap(S_DeleteMessage& a, S_DeleteMessage& b) {
     a.Swap(&b);
@@ -11263,7 +11482,7 @@ class C_EditMessage final :
                &_C_EditMessage_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    44;
+    45;
 
   friend void swap(C_EditMessage& a, C_EditMessage& b) {
     a.Swap(&b);
@@ -11427,7 +11646,7 @@ class S_EditMessage final :
                &_S_EditMessage_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    45;
+    46;
 
   friend void swap(S_EditMessage& a, S_EditMessage& b) {
     a.Swap(&b);
@@ -11613,7 +11832,7 @@ class C_ReqHistory final :
                &_C_ReqHistory_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    46;
+    47;
 
   friend void swap(C_ReqHistory& a, C_ReqHistory& b) {
     a.Swap(&b);
@@ -11772,7 +11991,7 @@ class S_ReqHistory final :
                &_S_ReqHistory_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    47;
+    48;
 
   friend void swap(S_ReqHistory& a, S_ReqHistory& b) {
     a.Swap(&b);
@@ -11940,7 +12159,7 @@ class C_UploadFile final :
                &_C_UploadFile_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    48;
+    49;
 
   friend void swap(C_UploadFile& a, C_UploadFile& b) {
     a.Swap(&b);
@@ -12178,7 +12397,7 @@ class S_UploadFile final :
                &_S_UploadFile_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    49;
+    50;
 
   friend void swap(S_UploadFile& a, S_UploadFile& b) {
     a.Swap(&b);
@@ -12444,7 +12663,7 @@ class C_Ack final :
                &_C_Ack_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    50;
+    51;
 
   friend void swap(C_Ack& a, C_Ack& b) {
     a.Swap(&b);
@@ -12592,7 +12811,7 @@ class C_FetchOffline final :
                &_C_FetchOffline_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    51;
+    52;
 
   friend void swap(C_FetchOffline& a, C_FetchOffline& b) {
     a.Swap(&b);
@@ -12724,7 +12943,7 @@ class S_MessageBatch_ConversationBatch final :
                &_S_MessageBatch_ConversationBatch_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    52;
+    53;
 
   friend void swap(S_MessageBatch_ConversationBatch& a, S_MessageBatch_ConversationBatch& b) {
     a.Swap(&b);
@@ -12903,7 +13122,7 @@ class S_MessageBatch final :
                &_S_MessageBatch_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    53;
+    54;
 
   friend void swap(S_MessageBatch& a, S_MessageBatch& b) {
     a.Swap(&b);
@@ -13046,7 +13265,7 @@ class C_GetSubscription final :
                &_C_GetSubscription_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    54;
+    55;
 
   friend void swap(C_GetSubscription& a, C_GetSubscription& b) {
     a.Swap(&b);
@@ -13183,7 +13402,7 @@ class SubscriptionPlan final :
                &_SubscriptionPlan_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    55;
+    56;
 
   friend void swap(SubscriptionPlan& a, SubscriptionPlan& b) {
     a.Swap(&b);
@@ -13417,7 +13636,7 @@ class S_GetSubscription final :
                &_S_GetSubscription_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    56;
+    57;
 
   friend void swap(S_GetSubscription& a, S_GetSubscription& b) {
     a.Swap(&b);
@@ -13629,7 +13848,7 @@ class C_VerifyPurchase final :
                &_C_VerifyPurchase_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    57;
+    58;
 
   friend void swap(C_VerifyPurchase& a, C_VerifyPurchase& b) {
     a.Swap(&b);
@@ -13830,7 +14049,7 @@ class S_VerifyPurchase final :
                &_S_VerifyPurchase_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    58;
+    59;
 
   friend void swap(S_VerifyPurchase& a, S_VerifyPurchase& b) {
     a.Swap(&b);
@@ -14011,7 +14230,7 @@ class C_CancelSubscription final :
                &_C_CancelSubscription_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    59;
+    60;
 
   friend void swap(C_CancelSubscription& a, C_CancelSubscription& b) {
     a.Swap(&b);
@@ -14148,7 +14367,7 @@ class S_CancelSubscription final :
                &_S_CancelSubscription_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    60;
+    61;
 
   friend void swap(S_CancelSubscription& a, S_CancelSubscription& b) {
     a.Swap(&b);
@@ -14307,7 +14526,7 @@ class C_Withdraw final :
                &_C_Withdraw_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    61;
+    62;
 
   friend void swap(C_Withdraw& a, C_Withdraw& b) {
     a.Swap(&b);
@@ -14460,7 +14679,7 @@ class S_Withdraw final :
                &_S_Withdraw_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    62;
+    63;
 
   friend void swap(S_Withdraw& a, S_Withdraw& b) {
     a.Swap(&b);
@@ -14608,7 +14827,7 @@ class C_SearchUser final :
                &_C_SearchUser_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    63;
+    64;
 
   friend void swap(C_SearchUser& a, C_SearchUser& b) {
     a.Swap(&b);
@@ -14745,7 +14964,7 @@ class S_SearchUser final :
                &_S_SearchUser_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    64;
+    65;
 
   friend void swap(S_SearchUser& a, S_SearchUser& b) {
     a.Swap(&b);
@@ -14919,7 +15138,7 @@ class FriendRequest final :
                &_FriendRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    65;
+    66;
 
   friend void swap(FriendRequest& a, FriendRequest& b) {
     a.Swap(&b);
@@ -15082,7 +15301,7 @@ class C_FriendAction final :
                &_C_FriendAction_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    66;
+    67;
 
   friend void swap(C_FriendAction& a, C_FriendAction& b) {
     a.Swap(&b);
@@ -15266,7 +15485,7 @@ class S_FriendAction final :
                &_S_FriendAction_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    67;
+    68;
 
   friend void swap(S_FriendAction& a, S_FriendAction& b) {
     a.Swap(&b);
@@ -15434,7 +15653,7 @@ class C_FetchFriendData final :
                &_C_FetchFriendData_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    68;
+    69;
 
   friend void swap(C_FetchFriendData& a, C_FetchFriendData& b) {
     a.Swap(&b);
@@ -15553,7 +15772,7 @@ class S_FetchFriendData final :
                &_S_FetchFriendData_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    69;
+    70;
 
   friend void swap(S_FetchFriendData& a, S_FetchFriendData& b) {
     a.Swap(&b);
@@ -15734,7 +15953,7 @@ class S_FriendPush final :
                &_S_FriendPush_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    70;
+    71;
 
   friend void swap(S_FriendPush& a, S_FriendPush& b) {
     a.Swap(&b);
@@ -15918,7 +16137,7 @@ class GroupMemberInfo final :
                &_GroupMemberInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    71;
+    72;
 
   friend void swap(GroupMemberInfo& a, GroupMemberInfo& b) {
     a.Swap(&b);
@@ -16081,7 +16300,7 @@ class GroupInfo final :
                &_GroupInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    72;
+    73;
 
   friend void swap(GroupInfo& a, GroupInfo& b) {
     a.Swap(&b);
@@ -16326,7 +16545,7 @@ class C_CreateGroup final :
                &_C_CreateGroup_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    73;
+    74;
 
   friend void swap(C_CreateGroup& a, C_CreateGroup& b) {
     a.Swap(&b);
@@ -16463,7 +16682,7 @@ class S_CreateGroup final :
                &_S_CreateGroup_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    74;
+    75;
 
   friend void swap(S_CreateGroup& a, S_CreateGroup& b) {
     a.Swap(&b);
@@ -16615,7 +16834,7 @@ class C_GroupList final :
                &_C_GroupList_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    75;
+    76;
 
   friend void swap(C_GroupList& a, C_GroupList& b) {
     a.Swap(&b);
@@ -16734,7 +16953,7 @@ class S_GroupList final :
                &_S_GroupList_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    76;
+    77;
 
   friend void swap(S_GroupList& a, S_GroupList& b) {
     a.Swap(&b);
@@ -16875,7 +17094,7 @@ class C_GroupInfo final :
                &_C_GroupInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    77;
+    78;
 
   friend void swap(C_GroupInfo& a, C_GroupInfo& b) {
     a.Swap(&b);
@@ -17012,7 +17231,7 @@ class S_GroupInfo final :
                &_S_GroupInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    78;
+    79;
 
   friend void swap(S_GroupInfo& a, S_GroupInfo& b) {
     a.Swap(&b);
@@ -17164,7 +17383,7 @@ class C_InviteFriend final :
                &_C_InviteFriend_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    79;
+    80;
 
   friend void swap(C_InviteFriend& a, C_InviteFriend& b) {
     a.Swap(&b);
@@ -17327,7 +17546,7 @@ class S_InviteFriend final :
                &_S_InviteFriend_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    80;
+    81;
 
   friend void swap(S_InviteFriend& a, S_InviteFriend& b) {
     a.Swap(&b);
@@ -17459,7 +17678,7 @@ class C_JoinGroup final :
                &_C_JoinGroup_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    81;
+    82;
 
   friend void swap(C_JoinGroup& a, C_JoinGroup& b) {
     a.Swap(&b);
@@ -17596,7 +17815,7 @@ class S_JoinGroup final :
                &_S_JoinGroup_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    82;
+    83;
 
   friend void swap(S_JoinGroup& a, S_JoinGroup& b) {
     a.Swap(&b);
@@ -17748,7 +17967,7 @@ class C_RefreshInviteCode final :
                &_C_RefreshInviteCode_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    83;
+    84;
 
   friend void swap(C_RefreshInviteCode& a, C_RefreshInviteCode& b) {
     a.Swap(&b);
@@ -17885,7 +18104,7 @@ class S_RefreshInviteCode final :
                &_S_RefreshInviteCode_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    84;
+    85;
 
   friend void swap(S_RefreshInviteCode& a, S_RefreshInviteCode& b) {
     a.Swap(&b);
@@ -18044,7 +18263,7 @@ class C_GroupMemberList final :
                &_C_GroupMemberList_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    85;
+    86;
 
   friend void swap(C_GroupMemberList& a, C_GroupMemberList& b) {
     a.Swap(&b);
@@ -18181,7 +18400,7 @@ class S_GroupMemberList final :
                &_S_GroupMemberList_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    86;
+    87;
 
   friend void swap(S_GroupMemberList& a, S_GroupMemberList& b) {
     a.Swap(&b);
@@ -18338,7 +18557,7 @@ class C_LeaveGroup final :
                &_C_LeaveGroup_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    87;
+    88;
 
   friend void swap(C_LeaveGroup& a, C_LeaveGroup& b) {
     a.Swap(&b);
@@ -18475,7 +18694,7 @@ class S_LeaveGroup final :
                &_S_LeaveGroup_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    88;
+    89;
 
   friend void swap(S_LeaveGroup& a, S_LeaveGroup& b) {
     a.Swap(&b);
@@ -18607,7 +18826,7 @@ class C_EditGroup final :
                &_C_EditGroup_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    89;
+    90;
 
   friend void swap(C_EditGroup& a, C_EditGroup& b) {
     a.Swap(&b);
@@ -18792,7 +19011,7 @@ class S_EditGroup final :
                &_S_EditGroup_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    90;
+    91;
 
   friend void swap(S_EditGroup& a, S_EditGroup& b) {
     a.Swap(&b);
@@ -18944,7 +19163,7 @@ class C_DeleteGroup final :
                &_C_DeleteGroup_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    91;
+    92;
 
   friend void swap(C_DeleteGroup& a, C_DeleteGroup& b) {
     a.Swap(&b);
@@ -19081,7 +19300,7 @@ class S_DeleteGroup final :
                &_S_DeleteGroup_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    92;
+    93;
 
   friend void swap(S_DeleteGroup& a, S_DeleteGroup& b) {
     a.Swap(&b);
@@ -19213,7 +19432,7 @@ class C_TransferOwnership final :
                &_C_TransferOwnership_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    93;
+    94;
 
   friend void swap(C_TransferOwnership& a, C_TransferOwnership& b) {
     a.Swap(&b);
@@ -19366,7 +19585,7 @@ class S_TransferOwnership final :
                &_S_TransferOwnership_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    94;
+    95;
 
   friend void swap(S_TransferOwnership& a, S_TransferOwnership& b) {
     a.Swap(&b);
@@ -19470,6 +19689,355 @@ class S_TransferOwnership final :
 };
 // -------------------------------------------------------------------
 
+class C_EditAlbum final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Protocol.C_EditAlbum) */ {
+ public:
+  inline C_EditAlbum() : C_EditAlbum(nullptr) {}
+  ~C_EditAlbum() override;
+  explicit constexpr C_EditAlbum(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  C_EditAlbum(const C_EditAlbum& from);
+  C_EditAlbum(C_EditAlbum&& from) noexcept
+    : C_EditAlbum() {
+    *this = ::std::move(from);
+  }
+
+  inline C_EditAlbum& operator=(const C_EditAlbum& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline C_EditAlbum& operator=(C_EditAlbum&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const C_EditAlbum& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const C_EditAlbum* internal_default_instance() {
+    return reinterpret_cast<const C_EditAlbum*>(
+               &_C_EditAlbum_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    96;
+
+  friend void swap(C_EditAlbum& a, C_EditAlbum& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(C_EditAlbum* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(C_EditAlbum* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline C_EditAlbum* New() const final {
+    return new C_EditAlbum();
+  }
+
+  C_EditAlbum* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<C_EditAlbum>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const C_EditAlbum& from);
+  void MergeFrom(const C_EditAlbum& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(C_EditAlbum* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "Protocol.C_EditAlbum";
+  }
+  protected:
+  explicit C_EditAlbum(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kAlbumIdFieldNumber = 1,
+    kGroupIdFieldNumber = 2,
+    kNameFieldNumber = 3,
+  };
+  // string album_id = 1;
+  void clear_album_id();
+  const std::string& album_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_album_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_album_id();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_album_id();
+  void set_allocated_album_id(std::string* album_id);
+  private:
+  const std::string& _internal_album_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_album_id(const std::string& value);
+  std::string* _internal_mutable_album_id();
+  public:
+
+  // string group_id = 2;
+  void clear_group_id();
+  const std::string& group_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_group_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_group_id();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_group_id();
+  void set_allocated_group_id(std::string* group_id);
+  private:
+  const std::string& _internal_group_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_group_id(const std::string& value);
+  std::string* _internal_mutable_group_id();
+  public:
+
+  // string name = 3;
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // @@protoc_insertion_point(class_scope:Protocol.C_EditAlbum)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr album_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr group_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_protocol_2eproto;
+};
+// -------------------------------------------------------------------
+
+class S_EditAlbum final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Protocol.S_EditAlbum) */ {
+ public:
+  inline S_EditAlbum() : S_EditAlbum(nullptr) {}
+  ~S_EditAlbum() override;
+  explicit constexpr S_EditAlbum(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  S_EditAlbum(const S_EditAlbum& from);
+  S_EditAlbum(S_EditAlbum&& from) noexcept
+    : S_EditAlbum() {
+    *this = ::std::move(from);
+  }
+
+  inline S_EditAlbum& operator=(const S_EditAlbum& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline S_EditAlbum& operator=(S_EditAlbum&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const S_EditAlbum& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const S_EditAlbum* internal_default_instance() {
+    return reinterpret_cast<const S_EditAlbum*>(
+               &_S_EditAlbum_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    97;
+
+  friend void swap(S_EditAlbum& a, S_EditAlbum& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(S_EditAlbum* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(S_EditAlbum* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline S_EditAlbum* New() const final {
+    return new S_EditAlbum();
+  }
+
+  S_EditAlbum* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<S_EditAlbum>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const S_EditAlbum& from);
+  void MergeFrom(const S_EditAlbum& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(S_EditAlbum* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "Protocol.S_EditAlbum";
+  }
+  protected:
+  explicit S_EditAlbum(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kAlbumIdFieldNumber = 2,
+    kNameFieldNumber = 3,
+    kErrorFieldNumber = 4,
+    kSuccessFieldNumber = 1,
+  };
+  // string album_id = 2;
+  void clear_album_id();
+  const std::string& album_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_album_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_album_id();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_album_id();
+  void set_allocated_album_id(std::string* album_id);
+  private:
+  const std::string& _internal_album_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_album_id(const std::string& value);
+  std::string* _internal_mutable_album_id();
+  public:
+
+  // string name = 3;
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // string error = 4;
+  void clear_error();
+  const std::string& error() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_error(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_error();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_error();
+  void set_allocated_error(std::string* error);
+  private:
+  const std::string& _internal_error() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_error(const std::string& value);
+  std::string* _internal_mutable_error();
+  public:
+
+  // bool success = 1;
+  void clear_success();
+  bool success() const;
+  void set_success(bool value);
+  private:
+  bool _internal_success() const;
+  void _internal_set_success(bool value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:Protocol.S_EditAlbum)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr album_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr error_;
+  bool success_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_protocol_2eproto;
+};
+// -------------------------------------------------------------------
+
 class BlockedUserInfo final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Protocol.BlockedUserInfo) */ {
  public:
@@ -19514,7 +20082,7 @@ class BlockedUserInfo final :
                &_BlockedUserInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    95;
+    98;
 
   friend void swap(BlockedUserInfo& a, BlockedUserInfo& b) {
     a.Swap(&b);
@@ -19694,7 +20262,7 @@ class C_BlockUser final :
                &_C_BlockUser_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    96;
+    99;
 
   friend void swap(C_BlockUser& a, C_BlockUser& b) {
     a.Swap(&b);
@@ -19831,7 +20399,7 @@ class S_BlockUser final :
                &_S_BlockUser_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    97;
+    100;
 
   friend void swap(S_BlockUser& a, S_BlockUser& b) {
     a.Swap(&b);
@@ -19979,7 +20547,7 @@ class C_UnblockUser final :
                &_C_UnblockUser_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    98;
+    101;
 
   friend void swap(C_UnblockUser& a, C_UnblockUser& b) {
     a.Swap(&b);
@@ -20116,7 +20684,7 @@ class S_UnblockUser final :
                &_S_UnblockUser_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    99;
+    102;
 
   friend void swap(S_UnblockUser& a, S_UnblockUser& b) {
     a.Swap(&b);
@@ -20248,7 +20816,7 @@ class C_GetBlockedList final :
                &_C_GetBlockedList_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    100;
+    103;
 
   friend void swap(C_GetBlockedList& a, C_GetBlockedList& b) {
     a.Swap(&b);
@@ -20367,7 +20935,7 @@ class S_GetBlockedList final :
                &_S_GetBlockedList_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    101;
+    104;
 
   friend void swap(S_GetBlockedList& a, S_GetBlockedList& b) {
     a.Swap(&b);
@@ -20508,7 +21076,7 @@ class C_ReportUser final :
                &_C_ReportUser_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    102;
+    105;
 
   friend void swap(C_ReportUser& a, C_ReportUser& b) {
     a.Swap(&b);
@@ -20677,7 +21245,7 @@ class S_ReportUser final :
                &_S_ReportUser_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    103;
+    106;
 
   friend void swap(S_ReportUser& a, S_ReportUser& b) {
     a.Swap(&b);
@@ -20809,7 +21377,7 @@ class C_AddReaction final :
                &_C_AddReaction_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    104;
+    107;
 
   friend void swap(C_AddReaction& a, C_AddReaction& b) {
     a.Swap(&b);
@@ -20973,7 +21541,7 @@ class S_AddReaction final :
                &_S_AddReaction_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    105;
+    108;
 
   friend void swap(S_AddReaction& a, S_AddReaction& b) {
     a.Swap(&b);
@@ -21164,7 +21732,7 @@ class C_CreatePoll final :
                &_C_CreatePoll_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    106;
+    109;
 
   friend void swap(C_CreatePoll& a, C_CreatePoll& b) {
     a.Swap(&b);
@@ -21376,7 +21944,7 @@ class S_CreatePoll final :
                &_S_CreatePoll_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    107;
+    110;
 
   friend void swap(S_CreatePoll& a, S_CreatePoll& b) {
     a.Swap(&b);
@@ -21690,7 +22258,7 @@ class C_Vote final :
                &_C_Vote_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    108;
+    111;
 
   friend void swap(C_Vote& a, C_Vote& b) {
     a.Swap(&b);
@@ -21879,7 +22447,7 @@ class S_Vote final :
                &_S_Vote_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    109;
+    112;
 
   friend void swap(S_Vote& a, S_Vote& b) {
     a.Swap(&b);
@@ -22116,7 +22684,7 @@ class C_ClosePoll final :
                &_C_ClosePoll_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    110;
+    113;
 
   friend void swap(C_ClosePoll& a, C_ClosePoll& b) {
     a.Swap(&b);
@@ -22280,7 +22848,7 @@ class S_ClosePoll final :
                &_S_ClosePoll_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    111;
+    114;
 
   friend void swap(S_ClosePoll& a, S_ClosePoll& b) {
     a.Swap(&b);
@@ -22444,7 +23012,7 @@ class C_SetAnnouncement final :
                &_C_SetAnnouncement_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    112;
+    115;
 
   friend void swap(C_SetAnnouncement& a, C_SetAnnouncement& b) {
     a.Swap(&b);
@@ -22624,7 +23192,7 @@ class S_SetAnnouncement final :
                &_S_SetAnnouncement_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    113;
+    116;
 
   friend void swap(S_SetAnnouncement& a, S_SetAnnouncement& b) {
     a.Swap(&b);
@@ -22820,7 +23388,7 @@ class C_SocialLogin final :
                &_C_SocialLogin_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    114;
+    117;
 
   friend void swap(C_SocialLogin& a, C_SocialLogin& b) {
     a.Swap(&b);
@@ -22973,7 +23541,7 @@ class S_SocialLogin final :
                &_S_SocialLogin_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    115;
+    118;
 
   friend void swap(S_SocialLogin& a, S_SocialLogin& b) {
     a.Swap(&b);
@@ -23153,7 +23721,7 @@ class C_CompleteSocialSignup final :
                &_C_CompleteSocialSignup_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    116;
+    119;
 
   friend void swap(C_CompleteSocialSignup& a, C_CompleteSocialSignup& b) {
     a.Swap(&b);
@@ -23338,7 +23906,7 @@ class Album final :
                &_Album_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    117;
+    120;
 
   friend void swap(Album& a, Album& b) {
     a.Swap(&b);
@@ -23561,7 +24129,7 @@ class AlbumPhoto final :
                &_AlbumPhoto_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    118;
+    121;
 
   friend void swap(AlbumPhoto& a, AlbumPhoto& b) {
     a.Swap(&b);
@@ -23816,7 +24384,7 @@ class PhotoComment final :
                &_PhotoComment_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    119;
+    122;
 
   friend void swap(PhotoComment& a, PhotoComment& b) {
     a.Swap(&b);
@@ -24028,7 +24596,7 @@ class C_CreateAlbum final :
                &_C_CreateAlbum_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    120;
+    123;
 
   friend void swap(C_CreateAlbum& a, C_CreateAlbum& b) {
     a.Swap(&b);
@@ -24197,7 +24765,7 @@ class S_CreateAlbum final :
                &_S_CreateAlbum_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    121;
+    124;
 
   friend void swap(S_CreateAlbum& a, S_CreateAlbum& b) {
     a.Swap(&b);
@@ -24365,7 +24933,7 @@ class C_GetAlbums final :
                &_C_GetAlbums_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    122;
+    125;
 
   friend void swap(C_GetAlbums& a, C_GetAlbums& b) {
     a.Swap(&b);
@@ -24502,7 +25070,7 @@ class S_GetAlbums final :
                &_S_GetAlbums_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    123;
+    126;
 
   friend void swap(S_GetAlbums& a, S_GetAlbums& b) {
     a.Swap(&b);
@@ -24643,7 +25211,7 @@ class C_AddPhotoToAlbum final :
                &_C_AddPhotoToAlbum_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    124;
+    127;
 
   friend void swap(C_AddPhotoToAlbum& a, C_AddPhotoToAlbum& b) {
     a.Swap(&b);
@@ -24855,7 +25423,7 @@ class S_AddPhotoToAlbum final :
                &_S_AddPhotoToAlbum_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    125;
+    128;
 
   friend void swap(S_AddPhotoToAlbum& a, S_AddPhotoToAlbum& b) {
     a.Swap(&b);
@@ -25059,7 +25627,7 @@ class C_GetAlbumPhotos final :
                &_C_GetAlbumPhotos_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    126;
+    129;
 
   friend void swap(C_GetAlbumPhotos& a, C_GetAlbumPhotos& b) {
     a.Swap(&b);
@@ -25207,7 +25775,7 @@ class S_GetAlbumPhotos final :
                &_S_GetAlbumPhotos_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    127;
+    130;
 
   friend void swap(S_GetAlbumPhotos& a, S_GetAlbumPhotos& b) {
     a.Swap(&b);
@@ -25364,7 +25932,7 @@ class C_DeleteAlbum final :
                &_C_DeleteAlbum_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    128;
+    131;
 
   friend void swap(C_DeleteAlbum& a, C_DeleteAlbum& b) {
     a.Swap(&b);
@@ -25533,7 +26101,7 @@ class S_DeleteAlbum final :
                &_S_DeleteAlbum_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    129;
+    132;
 
   friend void swap(S_DeleteAlbum& a, S_DeleteAlbum& b) {
     a.Swap(&b);
@@ -25713,7 +26281,7 @@ class C_DeleteAlbumPhoto final :
                &_C_DeleteAlbumPhoto_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    130;
+    133;
 
   friend void swap(C_DeleteAlbumPhoto& a, C_DeleteAlbumPhoto& b) {
     a.Swap(&b);
@@ -25898,7 +26466,7 @@ class S_DeleteAlbumPhoto final :
                &_S_DeleteAlbumPhoto_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    131;
+    134;
 
   friend void swap(S_DeleteAlbumPhoto& a, S_DeleteAlbumPhoto& b) {
     a.Swap(&b);
@@ -26114,7 +26682,7 @@ class C_MovePhoto final :
                &_C_MovePhoto_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    132;
+    135;
 
   friend void swap(C_MovePhoto& a, C_MovePhoto& b) {
     a.Swap(&b);
@@ -26315,7 +26883,7 @@ class S_MovePhoto final :
                &_S_MovePhoto_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    133;
+    136;
 
   friend void swap(S_MovePhoto& a, S_MovePhoto& b) {
     a.Swap(&b);
@@ -26567,7 +27135,7 @@ class C_AddPhotoComment final :
                &_C_AddPhotoComment_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    134;
+    137;
 
   friend void swap(C_AddPhotoComment& a, C_AddPhotoComment& b) {
     a.Swap(&b);
@@ -26768,7 +27336,7 @@ class S_AddPhotoComment final :
                &_S_AddPhotoComment_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    135;
+    138;
 
   friend void swap(S_AddPhotoComment& a, S_AddPhotoComment& b) {
     a.Swap(&b);
@@ -26936,7 +27504,7 @@ class C_GetPhotoComments final :
                &_C_GetPhotoComments_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    136;
+    139;
 
   friend void swap(C_GetPhotoComments& a, C_GetPhotoComments& b) {
     a.Swap(&b);
@@ -27073,7 +27641,7 @@ class S_GetPhotoComments final :
                &_S_GetPhotoComments_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    137;
+    140;
 
   friend void swap(S_GetPhotoComments& a, S_GetPhotoComments& b) {
     a.Swap(&b);
@@ -27230,7 +27798,7 @@ class C_DeletePhotoComment final :
                &_C_DeletePhotoComment_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    138;
+    141;
 
   friend void swap(C_DeletePhotoComment& a, C_DeletePhotoComment& b) {
     a.Swap(&b);
@@ -27415,7 +27983,7 @@ class S_DeletePhotoComment final :
                &_S_DeletePhotoComment_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    139;
+    142;
 
   friend void swap(S_DeletePhotoComment& a, S_DeletePhotoComment& b) {
     a.Swap(&b);
@@ -27611,7 +28179,7 @@ class LocationPhoto final :
                &_LocationPhoto_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    140;
+    143;
 
   friend void swap(LocationPhoto& a, LocationPhoto& b) {
     a.Swap(&b);
@@ -27764,7 +28332,7 @@ class LocationVisitInfo final :
                &_LocationVisitInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    141;
+    144;
 
   friend void swap(LocationVisitInfo& a, LocationVisitInfo& b) {
     a.Swap(&b);
@@ -28007,7 +28575,7 @@ class LocationPlaceInfo final :
                &_LocationPlaceInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    142;
+    145;
 
   friend void swap(LocationPlaceInfo& a, LocationPlaceInfo& b) {
     a.Swap(&b);
@@ -28079,6 +28647,7 @@ class LocationPlaceInfo final :
     kCategoryFieldNumber = 5,
     kCreatedByFieldNumber = 8,
     kRecentPhotoUrlFieldNumber = 12,
+    kCanonicalIdFieldNumber = 14,
     kLatFieldNumber = 6,
     kLngFieldNumber = 7,
     kCreatedAtFieldNumber = 9,
@@ -28201,6 +28770,20 @@ class LocationPlaceInfo final :
   std::string* _internal_mutable_recent_photo_url();
   public:
 
+  // string canonical_id = 14;
+  void clear_canonical_id();
+  const std::string& canonical_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_canonical_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_canonical_id();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_canonical_id();
+  void set_allocated_canonical_id(std::string* canonical_id);
+  private:
+  const std::string& _internal_canonical_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_canonical_id(const std::string& value);
+  std::string* _internal_mutable_canonical_id();
+  public:
+
   // double lat = 6;
   void clear_lat();
   double lat() const;
@@ -28261,6 +28844,7 @@ class LocationPlaceInfo final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr category_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr created_by_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr recent_photo_url_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr canonical_id_;
   double lat_;
   double lng_;
   ::PROTOBUF_NAMESPACE_ID::int64 created_at_;
@@ -28315,7 +28899,7 @@ class C_SavePlace final :
                &_C_SavePlace_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    143;
+    146;
 
   friend void swap(C_SavePlace& a, C_SavePlace& b) {
     a.Swap(&b);
@@ -28554,7 +29138,7 @@ class S_SavePlace final :
                &_S_SavePlace_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    144;
+    147;
 
   friend void swap(S_SavePlace& a, S_SavePlace& b) {
     a.Swap(&b);
@@ -28717,7 +29301,7 @@ class C_GetPlaces final :
                &_C_GetPlaces_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    145;
+    148;
 
   friend void swap(C_GetPlaces& a, C_GetPlaces& b) {
     a.Swap(&b);
@@ -28854,7 +29438,7 @@ class S_GetPlaces final :
                &_S_GetPlaces_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    146;
+    149;
 
   friend void swap(S_GetPlaces& a, S_GetPlaces& b) {
     a.Swap(&b);
@@ -29011,7 +29595,7 @@ class C_SaveVisit final :
                &_C_SaveVisit_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    147;
+    150;
 
   friend void swap(C_SaveVisit& a, C_SaveVisit& b) {
     a.Swap(&b);
@@ -29276,7 +29860,7 @@ class S_SaveVisit final :
                &_S_SaveVisit_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    148;
+    151;
 
   friend void swap(S_SaveVisit& a, S_SaveVisit& b) {
     a.Swap(&b);
@@ -29475,7 +30059,7 @@ class C_DeletePlace final :
                &_C_DeletePlace_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    149;
+    152;
 
   friend void swap(C_DeletePlace& a, C_DeletePlace& b) {
     a.Swap(&b);
@@ -29644,7 +30228,7 @@ class S_DeletePlace final :
                &_S_DeletePlace_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    150;
+    153;
 
   friend void swap(S_DeletePlace& a, S_DeletePlace& b) {
     a.Swap(&b);
@@ -29819,7 +30403,7 @@ class C_UpdateVisit final :
                &_C_UpdateVisit_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    151;
+    154;
 
   friend void swap(C_UpdateVisit& a, C_UpdateVisit& b) {
     a.Swap(&b);
@@ -30084,7 +30668,7 @@ class S_UpdateVisit final :
                &_S_UpdateVisit_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    152;
+    155;
 
   friend void swap(S_UpdateVisit& a, S_UpdateVisit& b) {
     a.Swap(&b);
@@ -30267,7 +30851,7 @@ class C_DeleteVisit final :
                &_C_DeleteVisit_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    153;
+    156;
 
   friend void swap(C_DeleteVisit& a, C_DeleteVisit& b) {
     a.Swap(&b);
@@ -30452,7 +31036,7 @@ class S_DeleteVisit final :
                &_S_DeleteVisit_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    154;
+    157;
 
   friend void swap(S_DeleteVisit& a, S_DeleteVisit& b) {
     a.Swap(&b);
@@ -30654,7 +31238,7 @@ class S_Error final :
                &_S_Error_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    155;
+    158;
 
   friend void swap(S_Error& a, S_Error& b) {
     a.Swap(&b);
@@ -30813,7 +31397,7 @@ class C_Heartbeat final :
                &_C_Heartbeat_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    156;
+    159;
 
   friend void swap(C_Heartbeat& a, C_Heartbeat& b) {
     a.Swap(&b);
@@ -30932,7 +31516,7 @@ class S_Heartbeat final :
                &_S_Heartbeat_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    157;
+    160;
 
   friend void swap(S_Heartbeat& a, S_Heartbeat& b) {
     a.Swap(&b);
@@ -39350,6 +39934,152 @@ inline ::Protocol::S_TransferOwnership* Envelope::mutable_s_transfer_ownership()
   return _internal_mutable_s_transfer_ownership();
 }
 
+// .Protocol.C_EditAlbum c_edit_album = 162;
+inline bool Envelope::_internal_has_c_edit_album() const {
+  return payload_case() == kCEditAlbum;
+}
+inline bool Envelope::has_c_edit_album() const {
+  return _internal_has_c_edit_album();
+}
+inline void Envelope::set_has_c_edit_album() {
+  _oneof_case_[0] = kCEditAlbum;
+}
+inline void Envelope::clear_c_edit_album() {
+  if (_internal_has_c_edit_album()) {
+    if (GetArenaForAllocation() == nullptr) {
+      delete payload_.c_edit_album_;
+    }
+    clear_has_payload();
+  }
+}
+inline ::Protocol::C_EditAlbum* Envelope::release_c_edit_album() {
+  // @@protoc_insertion_point(field_release:Protocol.Envelope.c_edit_album)
+  if (_internal_has_c_edit_album()) {
+    clear_has_payload();
+      ::Protocol::C_EditAlbum* temp = payload_.c_edit_album_;
+    if (GetArenaForAllocation() != nullptr) {
+      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+    }
+    payload_.c_edit_album_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::Protocol::C_EditAlbum& Envelope::_internal_c_edit_album() const {
+  return _internal_has_c_edit_album()
+      ? *payload_.c_edit_album_
+      : reinterpret_cast< ::Protocol::C_EditAlbum&>(::Protocol::_C_EditAlbum_default_instance_);
+}
+inline const ::Protocol::C_EditAlbum& Envelope::c_edit_album() const {
+  // @@protoc_insertion_point(field_get:Protocol.Envelope.c_edit_album)
+  return _internal_c_edit_album();
+}
+inline ::Protocol::C_EditAlbum* Envelope::unsafe_arena_release_c_edit_album() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:Protocol.Envelope.c_edit_album)
+  if (_internal_has_c_edit_album()) {
+    clear_has_payload();
+    ::Protocol::C_EditAlbum* temp = payload_.c_edit_album_;
+    payload_.c_edit_album_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void Envelope::unsafe_arena_set_allocated_c_edit_album(::Protocol::C_EditAlbum* c_edit_album) {
+  clear_payload();
+  if (c_edit_album) {
+    set_has_c_edit_album();
+    payload_.c_edit_album_ = c_edit_album;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Protocol.Envelope.c_edit_album)
+}
+inline ::Protocol::C_EditAlbum* Envelope::_internal_mutable_c_edit_album() {
+  if (!_internal_has_c_edit_album()) {
+    clear_payload();
+    set_has_c_edit_album();
+    payload_.c_edit_album_ = CreateMaybeMessage< ::Protocol::C_EditAlbum >(GetArenaForAllocation());
+  }
+  return payload_.c_edit_album_;
+}
+inline ::Protocol::C_EditAlbum* Envelope::mutable_c_edit_album() {
+  // @@protoc_insertion_point(field_mutable:Protocol.Envelope.c_edit_album)
+  return _internal_mutable_c_edit_album();
+}
+
+// .Protocol.S_EditAlbum s_edit_album = 163;
+inline bool Envelope::_internal_has_s_edit_album() const {
+  return payload_case() == kSEditAlbum;
+}
+inline bool Envelope::has_s_edit_album() const {
+  return _internal_has_s_edit_album();
+}
+inline void Envelope::set_has_s_edit_album() {
+  _oneof_case_[0] = kSEditAlbum;
+}
+inline void Envelope::clear_s_edit_album() {
+  if (_internal_has_s_edit_album()) {
+    if (GetArenaForAllocation() == nullptr) {
+      delete payload_.s_edit_album_;
+    }
+    clear_has_payload();
+  }
+}
+inline ::Protocol::S_EditAlbum* Envelope::release_s_edit_album() {
+  // @@protoc_insertion_point(field_release:Protocol.Envelope.s_edit_album)
+  if (_internal_has_s_edit_album()) {
+    clear_has_payload();
+      ::Protocol::S_EditAlbum* temp = payload_.s_edit_album_;
+    if (GetArenaForAllocation() != nullptr) {
+      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+    }
+    payload_.s_edit_album_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::Protocol::S_EditAlbum& Envelope::_internal_s_edit_album() const {
+  return _internal_has_s_edit_album()
+      ? *payload_.s_edit_album_
+      : reinterpret_cast< ::Protocol::S_EditAlbum&>(::Protocol::_S_EditAlbum_default_instance_);
+}
+inline const ::Protocol::S_EditAlbum& Envelope::s_edit_album() const {
+  // @@protoc_insertion_point(field_get:Protocol.Envelope.s_edit_album)
+  return _internal_s_edit_album();
+}
+inline ::Protocol::S_EditAlbum* Envelope::unsafe_arena_release_s_edit_album() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:Protocol.Envelope.s_edit_album)
+  if (_internal_has_s_edit_album()) {
+    clear_has_payload();
+    ::Protocol::S_EditAlbum* temp = payload_.s_edit_album_;
+    payload_.s_edit_album_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void Envelope::unsafe_arena_set_allocated_s_edit_album(::Protocol::S_EditAlbum* s_edit_album) {
+  clear_payload();
+  if (s_edit_album) {
+    set_has_s_edit_album();
+    payload_.s_edit_album_ = s_edit_album;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Protocol.Envelope.s_edit_album)
+}
+inline ::Protocol::S_EditAlbum* Envelope::_internal_mutable_s_edit_album() {
+  if (!_internal_has_s_edit_album()) {
+    clear_payload();
+    set_has_s_edit_album();
+    payload_.s_edit_album_ = CreateMaybeMessage< ::Protocol::S_EditAlbum >(GetArenaForAllocation());
+  }
+  return payload_.s_edit_album_;
+}
+inline ::Protocol::S_EditAlbum* Envelope::mutable_s_edit_album() {
+  // @@protoc_insertion_point(field_mutable:Protocol.Envelope.s_edit_album)
+  return _internal_mutable_s_edit_album();
+}
+
 // .Protocol.C_CreateGroup c_create_group = 80;
 inline bool Envelope::_internal_has_c_create_group() const {
   return payload_case() == kCCreateGroup;
@@ -46217,6 +46947,50 @@ inline void C_ReadReceipt::set_last_read_seq(::PROTOBUF_NAMESPACE_ID::int64 valu
 
 // -------------------------------------------------------------------
 
+// MessageUnreadUpdate
+
+// int64 msg_seq = 1;
+inline void MessageUnreadUpdate::clear_msg_seq() {
+  msg_seq_ = int64_t{0};
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 MessageUnreadUpdate::_internal_msg_seq() const {
+  return msg_seq_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 MessageUnreadUpdate::msg_seq() const {
+  // @@protoc_insertion_point(field_get:Protocol.MessageUnreadUpdate.msg_seq)
+  return _internal_msg_seq();
+}
+inline void MessageUnreadUpdate::_internal_set_msg_seq(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  
+  msg_seq_ = value;
+}
+inline void MessageUnreadUpdate::set_msg_seq(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _internal_set_msg_seq(value);
+  // @@protoc_insertion_point(field_set:Protocol.MessageUnreadUpdate.msg_seq)
+}
+
+// int32 unread_count = 2;
+inline void MessageUnreadUpdate::clear_unread_count() {
+  unread_count_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 MessageUnreadUpdate::_internal_unread_count() const {
+  return unread_count_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 MessageUnreadUpdate::unread_count() const {
+  // @@protoc_insertion_point(field_get:Protocol.MessageUnreadUpdate.unread_count)
+  return _internal_unread_count();
+}
+inline void MessageUnreadUpdate::_internal_set_unread_count(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  unread_count_ = value;
+}
+inline void MessageUnreadUpdate::set_unread_count(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_unread_count(value);
+  // @@protoc_insertion_point(field_set:Protocol.MessageUnreadUpdate.unread_count)
+}
+
+// -------------------------------------------------------------------
+
 // S_ReadReceipt
 
 // string conv_id = 1;
@@ -46327,6 +47101,45 @@ inline void S_ReadReceipt::_internal_set_last_read_seq(::PROTOBUF_NAMESPACE_ID::
 inline void S_ReadReceipt::set_last_read_seq(::PROTOBUF_NAMESPACE_ID::int64 value) {
   _internal_set_last_read_seq(value);
   // @@protoc_insertion_point(field_set:Protocol.S_ReadReceipt.last_read_seq)
+}
+
+// repeated .Protocol.MessageUnreadUpdate unread_updates = 4;
+inline int S_ReadReceipt::_internal_unread_updates_size() const {
+  return unread_updates_.size();
+}
+inline int S_ReadReceipt::unread_updates_size() const {
+  return _internal_unread_updates_size();
+}
+inline void S_ReadReceipt::clear_unread_updates() {
+  unread_updates_.Clear();
+}
+inline ::Protocol::MessageUnreadUpdate* S_ReadReceipt::mutable_unread_updates(int index) {
+  // @@protoc_insertion_point(field_mutable:Protocol.S_ReadReceipt.unread_updates)
+  return unread_updates_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Protocol::MessageUnreadUpdate >*
+S_ReadReceipt::mutable_unread_updates() {
+  // @@protoc_insertion_point(field_mutable_list:Protocol.S_ReadReceipt.unread_updates)
+  return &unread_updates_;
+}
+inline const ::Protocol::MessageUnreadUpdate& S_ReadReceipt::_internal_unread_updates(int index) const {
+  return unread_updates_.Get(index);
+}
+inline const ::Protocol::MessageUnreadUpdate& S_ReadReceipt::unread_updates(int index) const {
+  // @@protoc_insertion_point(field_get:Protocol.S_ReadReceipt.unread_updates)
+  return _internal_unread_updates(index);
+}
+inline ::Protocol::MessageUnreadUpdate* S_ReadReceipt::_internal_add_unread_updates() {
+  return unread_updates_.Add();
+}
+inline ::Protocol::MessageUnreadUpdate* S_ReadReceipt::add_unread_updates() {
+  // @@protoc_insertion_point(field_add:Protocol.S_ReadReceipt.unread_updates)
+  return _internal_add_unread_updates();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Protocol::MessageUnreadUpdate >&
+S_ReadReceipt::unread_updates() const {
+  // @@protoc_insertion_point(field_list:Protocol.S_ReadReceipt.unread_updates)
+  return unread_updates_;
 }
 
 // -------------------------------------------------------------------
@@ -51705,6 +52518,304 @@ inline void S_TransferOwnership::set_allocated_new_owner_id(std::string* new_own
   new_owner_id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), new_owner_id,
       GetArenaForAllocation());
   // @@protoc_insertion_point(field_set_allocated:Protocol.S_TransferOwnership.new_owner_id)
+}
+
+// -------------------------------------------------------------------
+
+// C_EditAlbum
+
+// string album_id = 1;
+inline void C_EditAlbum::clear_album_id() {
+  album_id_.ClearToEmpty();
+}
+inline const std::string& C_EditAlbum::album_id() const {
+  // @@protoc_insertion_point(field_get:Protocol.C_EditAlbum.album_id)
+  return _internal_album_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void C_EditAlbum::set_album_id(ArgT0&& arg0, ArgT... args) {
+ 
+ album_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Protocol.C_EditAlbum.album_id)
+}
+inline std::string* C_EditAlbum::mutable_album_id() {
+  // @@protoc_insertion_point(field_mutable:Protocol.C_EditAlbum.album_id)
+  return _internal_mutable_album_id();
+}
+inline const std::string& C_EditAlbum::_internal_album_id() const {
+  return album_id_.Get();
+}
+inline void C_EditAlbum::_internal_set_album_id(const std::string& value) {
+  
+  album_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* C_EditAlbum::_internal_mutable_album_id() {
+  
+  return album_id_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* C_EditAlbum::release_album_id() {
+  // @@protoc_insertion_point(field_release:Protocol.C_EditAlbum.album_id)
+  return album_id_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void C_EditAlbum::set_allocated_album_id(std::string* album_id) {
+  if (album_id != nullptr) {
+    
+  } else {
+    
+  }
+  album_id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), album_id,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:Protocol.C_EditAlbum.album_id)
+}
+
+// string group_id = 2;
+inline void C_EditAlbum::clear_group_id() {
+  group_id_.ClearToEmpty();
+}
+inline const std::string& C_EditAlbum::group_id() const {
+  // @@protoc_insertion_point(field_get:Protocol.C_EditAlbum.group_id)
+  return _internal_group_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void C_EditAlbum::set_group_id(ArgT0&& arg0, ArgT... args) {
+ 
+ group_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Protocol.C_EditAlbum.group_id)
+}
+inline std::string* C_EditAlbum::mutable_group_id() {
+  // @@protoc_insertion_point(field_mutable:Protocol.C_EditAlbum.group_id)
+  return _internal_mutable_group_id();
+}
+inline const std::string& C_EditAlbum::_internal_group_id() const {
+  return group_id_.Get();
+}
+inline void C_EditAlbum::_internal_set_group_id(const std::string& value) {
+  
+  group_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* C_EditAlbum::_internal_mutable_group_id() {
+  
+  return group_id_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* C_EditAlbum::release_group_id() {
+  // @@protoc_insertion_point(field_release:Protocol.C_EditAlbum.group_id)
+  return group_id_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void C_EditAlbum::set_allocated_group_id(std::string* group_id) {
+  if (group_id != nullptr) {
+    
+  } else {
+    
+  }
+  group_id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), group_id,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:Protocol.C_EditAlbum.group_id)
+}
+
+// string name = 3;
+inline void C_EditAlbum::clear_name() {
+  name_.ClearToEmpty();
+}
+inline const std::string& C_EditAlbum::name() const {
+  // @@protoc_insertion_point(field_get:Protocol.C_EditAlbum.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void C_EditAlbum::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Protocol.C_EditAlbum.name)
+}
+inline std::string* C_EditAlbum::mutable_name() {
+  // @@protoc_insertion_point(field_mutable:Protocol.C_EditAlbum.name)
+  return _internal_mutable_name();
+}
+inline const std::string& C_EditAlbum::_internal_name() const {
+  return name_.Get();
+}
+inline void C_EditAlbum::_internal_set_name(const std::string& value) {
+  
+  name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* C_EditAlbum::_internal_mutable_name() {
+  
+  return name_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* C_EditAlbum::release_name() {
+  // @@protoc_insertion_point(field_release:Protocol.C_EditAlbum.name)
+  return name_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void C_EditAlbum::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), name,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:Protocol.C_EditAlbum.name)
+}
+
+// -------------------------------------------------------------------
+
+// S_EditAlbum
+
+// bool success = 1;
+inline void S_EditAlbum::clear_success() {
+  success_ = false;
+}
+inline bool S_EditAlbum::_internal_success() const {
+  return success_;
+}
+inline bool S_EditAlbum::success() const {
+  // @@protoc_insertion_point(field_get:Protocol.S_EditAlbum.success)
+  return _internal_success();
+}
+inline void S_EditAlbum::_internal_set_success(bool value) {
+  
+  success_ = value;
+}
+inline void S_EditAlbum::set_success(bool value) {
+  _internal_set_success(value);
+  // @@protoc_insertion_point(field_set:Protocol.S_EditAlbum.success)
+}
+
+// string album_id = 2;
+inline void S_EditAlbum::clear_album_id() {
+  album_id_.ClearToEmpty();
+}
+inline const std::string& S_EditAlbum::album_id() const {
+  // @@protoc_insertion_point(field_get:Protocol.S_EditAlbum.album_id)
+  return _internal_album_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void S_EditAlbum::set_album_id(ArgT0&& arg0, ArgT... args) {
+ 
+ album_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Protocol.S_EditAlbum.album_id)
+}
+inline std::string* S_EditAlbum::mutable_album_id() {
+  // @@protoc_insertion_point(field_mutable:Protocol.S_EditAlbum.album_id)
+  return _internal_mutable_album_id();
+}
+inline const std::string& S_EditAlbum::_internal_album_id() const {
+  return album_id_.Get();
+}
+inline void S_EditAlbum::_internal_set_album_id(const std::string& value) {
+  
+  album_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* S_EditAlbum::_internal_mutable_album_id() {
+  
+  return album_id_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* S_EditAlbum::release_album_id() {
+  // @@protoc_insertion_point(field_release:Protocol.S_EditAlbum.album_id)
+  return album_id_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void S_EditAlbum::set_allocated_album_id(std::string* album_id) {
+  if (album_id != nullptr) {
+    
+  } else {
+    
+  }
+  album_id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), album_id,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:Protocol.S_EditAlbum.album_id)
+}
+
+// string name = 3;
+inline void S_EditAlbum::clear_name() {
+  name_.ClearToEmpty();
+}
+inline const std::string& S_EditAlbum::name() const {
+  // @@protoc_insertion_point(field_get:Protocol.S_EditAlbum.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void S_EditAlbum::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Protocol.S_EditAlbum.name)
+}
+inline std::string* S_EditAlbum::mutable_name() {
+  // @@protoc_insertion_point(field_mutable:Protocol.S_EditAlbum.name)
+  return _internal_mutable_name();
+}
+inline const std::string& S_EditAlbum::_internal_name() const {
+  return name_.Get();
+}
+inline void S_EditAlbum::_internal_set_name(const std::string& value) {
+  
+  name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* S_EditAlbum::_internal_mutable_name() {
+  
+  return name_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* S_EditAlbum::release_name() {
+  // @@protoc_insertion_point(field_release:Protocol.S_EditAlbum.name)
+  return name_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void S_EditAlbum::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), name,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:Protocol.S_EditAlbum.name)
+}
+
+// string error = 4;
+inline void S_EditAlbum::clear_error() {
+  error_.ClearToEmpty();
+}
+inline const std::string& S_EditAlbum::error() const {
+  // @@protoc_insertion_point(field_get:Protocol.S_EditAlbum.error)
+  return _internal_error();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void S_EditAlbum::set_error(ArgT0&& arg0, ArgT... args) {
+ 
+ error_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Protocol.S_EditAlbum.error)
+}
+inline std::string* S_EditAlbum::mutable_error() {
+  // @@protoc_insertion_point(field_mutable:Protocol.S_EditAlbum.error)
+  return _internal_mutable_error();
+}
+inline const std::string& S_EditAlbum::_internal_error() const {
+  return error_.Get();
+}
+inline void S_EditAlbum::_internal_set_error(const std::string& value) {
+  
+  error_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* S_EditAlbum::_internal_mutable_error() {
+  
+  return error_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* S_EditAlbum::release_error() {
+  // @@protoc_insertion_point(field_release:Protocol.S_EditAlbum.error)
+  return error_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void S_EditAlbum::set_allocated_error(std::string* error) {
+  if (error != nullptr) {
+    
+  } else {
+    
+  }
+  error_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), error,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:Protocol.S_EditAlbum.error)
 }
 
 // -------------------------------------------------------------------
@@ -59891,6 +61002,51 @@ LocationPlaceInfo::visits() const {
   return visits_;
 }
 
+// string canonical_id = 14;
+inline void LocationPlaceInfo::clear_canonical_id() {
+  canonical_id_.ClearToEmpty();
+}
+inline const std::string& LocationPlaceInfo::canonical_id() const {
+  // @@protoc_insertion_point(field_get:Protocol.LocationPlaceInfo.canonical_id)
+  return _internal_canonical_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void LocationPlaceInfo::set_canonical_id(ArgT0&& arg0, ArgT... args) {
+ 
+ canonical_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Protocol.LocationPlaceInfo.canonical_id)
+}
+inline std::string* LocationPlaceInfo::mutable_canonical_id() {
+  // @@protoc_insertion_point(field_mutable:Protocol.LocationPlaceInfo.canonical_id)
+  return _internal_mutable_canonical_id();
+}
+inline const std::string& LocationPlaceInfo::_internal_canonical_id() const {
+  return canonical_id_.Get();
+}
+inline void LocationPlaceInfo::_internal_set_canonical_id(const std::string& value) {
+  
+  canonical_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* LocationPlaceInfo::_internal_mutable_canonical_id() {
+  
+  return canonical_id_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* LocationPlaceInfo::release_canonical_id() {
+  // @@protoc_insertion_point(field_release:Protocol.LocationPlaceInfo.canonical_id)
+  return canonical_id_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void LocationPlaceInfo::set_allocated_canonical_id(std::string* canonical_id) {
+  if (canonical_id != nullptr) {
+    
+  } else {
+    
+  }
+  canonical_id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), canonical_id,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:Protocol.LocationPlaceInfo.canonical_id)
+}
+
 // -------------------------------------------------------------------
 
 // C_SavePlace
@@ -62466,6 +63622,12 @@ inline void S_Error::set_allocated_message(std::string* message) {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

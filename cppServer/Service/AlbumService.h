@@ -16,6 +16,7 @@ public:
     bool HandleCreateAlbum      (sessionPtr& session, uint64 reqId, const Protocol::C_CreateAlbum&       pkt);
     bool HandleGetAlbums        (sessionPtr& session, uint64 reqId, const Protocol::C_GetAlbums&         pkt);
     bool HandleDeleteAlbum      (sessionPtr& session, uint64 reqId, const Protocol::C_DeleteAlbum&       pkt);
+    bool HandleEditAlbum        (sessionPtr& session, uint64 reqId, const Protocol::C_EditAlbum&         pkt);
 
     /* 사진 */
     bool HandleAddPhotoToAlbum  (sessionPtr& session, uint64 reqId, const Protocol::C_AddPhotoToAlbum&   pkt);

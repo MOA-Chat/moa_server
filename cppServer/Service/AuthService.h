@@ -31,7 +31,7 @@ public:
 
 	bool HandleEditMyInfo(sessionPtr& session, uint64 reqId, const Protocol::C_EditMyInfo& pkt);
 
-	// 이메일 인증 요청/확인
+	// 이메일 인증 요청/확인5
 	bool HandleReqEmailVerify(sessionPtr& session, uint64 reqId, const string& email);
 	bool HandleConfirmEmailVerify(sessionPtr& session, uint64 reqId, const string& email, const string& code);
 

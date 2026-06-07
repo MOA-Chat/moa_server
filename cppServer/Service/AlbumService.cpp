@@ -169,6 +169,51 @@ bool AlbumService::HandleDeleteAlbum(sessionPtr& session, uint64 reqId, const C_
     return true;
 }
 
+bool AlbumService::HandleEditAlbum(sessionPtr& session, uint64 reqId, const C_EditAlbum& pkt)
+{
+    const string userId   = static_pointer_cast<ServerSession>(session)->GetUserId();
+    const string& albumId = pkt.album_id();
+    const string& groupId = pkt.group_id();
+    const string& name    = pkt.name();
+
+    if (name.empty() || name.size() > 50) {
+        HandleErr(session, reqId, ERR_INVALID_PACKET, "앨범 이름이 유효하지 않습니다.");
+        return false;
+    }
+    if (!GroupRepository::IsMember(groupId, userId)) {
+        HandleErr(session, reqId, ERR_UNAUTHORIZED, "그룹 멤버가 아닙니다.");
+        return false;
+    }
+    AlbumInfo albumMeta = AlbumRepository::GetAlbum(albumId);
+    if (albumMeta.id.empty() || albumMeta.groupId != groupId) {
+        HandleErr(session, reqId, ERR_INVALID_PACKET, "앨범을 찾을 수 없습니다.");
+        return false;
+    }
+    // 방장 또는 앨범 생성자만 이름 수정 가능
+    string role = GroupRepository::GetMemberRole(groupId, userId);
+    if (role != "owner" && albumMeta.createdBy != userId) {
+        HandleErr(session, reqId, ERR_UNAUTHORIZED, "이름 수정 권한이 없습니다.");
+        return false;
+    }
+
+    bool ok = AlbumRepository::UpdateAlbumName(albumId, groupId, name);
+    if (!ok) {
+        HandleErr(session, reqId, ERR_SERVER_INTERNAL, "앨범 이름 수정 실패");
+        return false;
+    }
+
+    Envelope resp;
+    resp.set_request_id(static_cast<uint32>(reqId));
+    auto* s = resp.mutable_s_edit_album();
+    s->set_success(true);
+    s->set_album_id(albumId);
+    s->set_name(name);
+
+    BroadcastToGroup(groupId, resp, _userManager);
+    LOG_INFO("[AlbumService] 앨범 이름 수정: albumId={} name={} by={}", albumId, name, userId);
+    return true;
+}
+
 bool AlbumService::HandleAddPhotoToAlbum(sessionPtr& session, uint64 reqId, const C_AddPhotoToAlbum& pkt)
 {
     const string uploaderId = static_pointer_cast<ServerSession>(session)->GetUserId();

@@ -138,6 +138,8 @@ message Envelope {
     S_DeleteVisit           s_delete_visit            = 159;
     C_TransferOwnership     c_transfer_ownership      = 160;
     S_TransferOwnership     s_transfer_ownership      = 161;
+    C_EditAlbum             c_edit_album              = 162;
+    S_EditAlbum             s_edit_album              = 163;
 
     // GROUPS (80 ~ 99)
     C_CreateGroup           c_create_group            = 80;
@@ -672,6 +674,17 @@ message S_TransferOwnership {
     bool   success      = 1;
     string new_owner_id = 2;
 }
+message C_EditAlbum {
+    string album_id  = 1;
+    string group_id  = 2;
+    string name      = 3;
+}
+message S_EditAlbum {
+    bool   success   = 1;
+    string album_id  = 2;
+    string name      = 3;
+    string error     = 4;
+}
 
 /*-------------
     BLOCK / REPORT
@@ -924,6 +937,7 @@ message LocationPlaceInfo {
     float  avg_rating        = 11;
     string recent_photo_url  = 12;
     repeated LocationVisitInfo visits = 13;
+    string canonical_id      = 14;
 }
 
 message C_SavePlace {

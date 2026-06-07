@@ -10,12 +10,13 @@ std::unordered_map<std::string, std::shared_ptr<spdlog::logger>> Logger::s_convL
 
 void Logger::Init()
 {
-    std::filesystem::create_directories("logs");
+    std::filesystem::create_directories("logs/server");
+    std::filesystem::create_directories("logs/audit");
     std::filesystem::create_directories("logs/conversations");
 
     // Server logger: console + daily rotation (30 days)
     auto consoleSink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
-    auto serverFileSink = std::make_shared<spdlog::sinks::daily_file_sink_mt>("logs/server", 0, 0, false, 30);
+    auto serverFileSink = std::make_shared<spdlog::sinks::daily_file_sink_mt>("logs/server/server", 0, 0, false, 30);
 
     s_serverLogger = std::make_shared<spdlog::logger>("server",
         spdlog::sinks_init_list{ consoleSink, serverFileSink });
@@ -24,7 +25,7 @@ void Logger::Init()
     s_serverLogger->flush_on(spdlog::level::warn);
 
     // Audit logger: daily rotation only (90 days), no console
-    auto auditFileSink = std::make_shared<spdlog::sinks::daily_file_sink_mt>("logs/audit", 0, 0, false, 90);
+    auto auditFileSink = std::make_shared<spdlog::sinks::daily_file_sink_mt>("logs/audit/audit", 0, 0, false, 90);
 
     s_auditLogger = std::make_shared<spdlog::logger>("audit", auditFileSink);
     s_auditLogger->set_pattern("[%Y-%m-%d %H:%M:%S.%e] %v");

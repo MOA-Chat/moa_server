@@ -46,6 +46,7 @@ public:
     static AlbumInfo          GetAlbum(const string& albumId);
     static bool               DeleteAlbum(const string& albumId, const string& userId);  // created_by 체크
     static bool               UpdateCoverPhoto(const string& albumId);                   // 첫 사진으로 커버 자동 갱신
+    static bool               UpdateAlbumName(const string& albumId, const string& groupId, const string& name);
 
     /* 사진 */
     static string               AddPhoto(const string& albumId, const string& groupId,

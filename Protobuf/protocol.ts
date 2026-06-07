@@ -504,8 +504,10 @@ export interface Envelope {
   cDeleteVisit?: CDeleteVisit | undefined;
   sDeleteVisit?: SDeleteVisit | undefined;
   cTransferOwnership?: CTransferOwnership | undefined;
-  sTransferOwnership?:
-    | STransferOwnership
+  sTransferOwnership?: STransferOwnership | undefined;
+  cEditAlbum?: CEditAlbum | undefined;
+  sEditAlbum?:
+    | SEditAlbum
     | undefined;
   /** GROUPS (80 ~ 99) */
   cCreateGroup?: CCreateGroup | undefined;
@@ -780,10 +782,16 @@ export interface CReadReceipt {
   lastReadSeq: number;
 }
 
+export interface MessageUnreadUpdate {
+  msgSeq: number;
+  unreadCount: number;
+}
+
 export interface SReadReceipt {
   convId: string;
   readerId: string;
   lastReadSeq: number;
+  unreadUpdates: MessageUnreadUpdate[];
 }
 
 export interface CDeleteMessage {
@@ -1227,6 +1235,19 @@ export interface STransferOwnership {
   newOwnerId: string;
 }
 
+export interface CEditAlbum {
+  albumId: string;
+  groupId: string;
+  name: string;
+}
+
+export interface SEditAlbum {
+  success: boolean;
+  albumId: string;
+  name: string;
+  error: string;
+}
+
 export interface BlockedUserInfo {
   userId: string;
   name: string;
@@ -1576,6 +1597,7 @@ export interface LocationPlaceInfo {
   avgRating: number;
   recentPhotoUrl: string;
   visits: LocationVisitInfo[];
+  canonicalId: string;
 }
 
 export interface CSavePlace {
@@ -1802,6 +1824,8 @@ function createBaseEnvelope(): Envelope {
     sDeleteVisit: undefined,
     cTransferOwnership: undefined,
     sTransferOwnership: undefined,
+    cEditAlbum: undefined,
+    sEditAlbum: undefined,
     cCreateGroup: undefined,
     sCreateGroup: undefined,
     cGroupList: undefined,
@@ -2177,6 +2201,12 @@ export const Envelope = {
     }
     if (message.sTransferOwnership !== undefined) {
       STransferOwnership.encode(message.sTransferOwnership, writer.uint32(1290).fork()).ldelim();
+    }
+    if (message.cEditAlbum !== undefined) {
+      CEditAlbum.encode(message.cEditAlbum, writer.uint32(1298).fork()).ldelim();
+    }
+    if (message.sEditAlbum !== undefined) {
+      SEditAlbum.encode(message.sEditAlbum, writer.uint32(1306).fork()).ldelim();
     }
     if (message.cCreateGroup !== undefined) {
       CCreateGroup.encode(message.cCreateGroup, writer.uint32(642).fork()).ldelim();
@@ -3069,6 +3099,20 @@ export const Envelope = {
 
           message.sTransferOwnership = STransferOwnership.decode(reader, reader.uint32());
           continue;
+        case 162:
+          if (tag !== 1298) {
+            break;
+          }
+
+          message.cEditAlbum = CEditAlbum.decode(reader, reader.uint32());
+          continue;
+        case 163:
+          if (tag !== 1306) {
+            break;
+          }
+
+          message.sEditAlbum = SEditAlbum.decode(reader, reader.uint32());
+          continue;
         case 80:
           if (tag !== 642) {
             break;
@@ -3391,6 +3435,8 @@ export const Envelope = {
       sTransferOwnership: isSet(object.sTransferOwnership)
         ? STransferOwnership.fromJSON(object.sTransferOwnership)
         : undefined,
+      cEditAlbum: isSet(object.cEditAlbum) ? CEditAlbum.fromJSON(object.cEditAlbum) : undefined,
+      sEditAlbum: isSet(object.sEditAlbum) ? SEditAlbum.fromJSON(object.sEditAlbum) : undefined,
       cCreateGroup: isSet(object.cCreateGroup) ? CCreateGroup.fromJSON(object.cCreateGroup) : undefined,
       sCreateGroup: isSet(object.sCreateGroup) ? SCreateGroup.fromJSON(object.sCreateGroup) : undefined,
       cGroupList: isSet(object.cGroupList) ? CGroupList.fromJSON(object.cGroupList) : undefined,
@@ -3766,6 +3812,12 @@ export const Envelope = {
     }
     if (message.sTransferOwnership !== undefined) {
       obj.sTransferOwnership = STransferOwnership.toJSON(message.sTransferOwnership);
+    }
+    if (message.cEditAlbum !== undefined) {
+      obj.cEditAlbum = CEditAlbum.toJSON(message.cEditAlbum);
+    }
+    if (message.sEditAlbum !== undefined) {
+      obj.sEditAlbum = SEditAlbum.toJSON(message.sEditAlbum);
     }
     if (message.cCreateGroup !== undefined) {
       obj.cCreateGroup = CCreateGroup.toJSON(message.cCreateGroup);
@@ -4176,6 +4228,12 @@ export const Envelope = {
       : undefined;
     message.sTransferOwnership = (object.sTransferOwnership !== undefined && object.sTransferOwnership !== null)
       ? STransferOwnership.fromPartial(object.sTransferOwnership)
+      : undefined;
+    message.cEditAlbum = (object.cEditAlbum !== undefined && object.cEditAlbum !== null)
+      ? CEditAlbum.fromPartial(object.cEditAlbum)
+      : undefined;
+    message.sEditAlbum = (object.sEditAlbum !== undefined && object.sEditAlbum !== null)
+      ? SEditAlbum.fromPartial(object.sEditAlbum)
       : undefined;
     message.cCreateGroup = (object.cCreateGroup !== undefined && object.cCreateGroup !== null)
       ? CCreateGroup.fromPartial(object.cCreateGroup)
@@ -7897,8 +7955,82 @@ export const CReadReceipt = {
   },
 };
 
+function createBaseMessageUnreadUpdate(): MessageUnreadUpdate {
+  return { msgSeq: 0, unreadCount: 0 };
+}
+
+export const MessageUnreadUpdate = {
+  encode(message: MessageUnreadUpdate, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.msgSeq !== 0) {
+      writer.uint32(8).int64(message.msgSeq);
+    }
+    if (message.unreadCount !== 0) {
+      writer.uint32(16).int32(message.unreadCount);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MessageUnreadUpdate {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMessageUnreadUpdate();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+
+          message.msgSeq = longToNumber(reader.int64() as Long);
+          continue;
+        case 2:
+          if (tag !== 16) {
+            break;
+          }
+
+          message.unreadCount = reader.int32();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MessageUnreadUpdate {
+    return {
+      msgSeq: isSet(object.msgSeq) ? globalThis.Number(object.msgSeq) : 0,
+      unreadCount: isSet(object.unreadCount) ? globalThis.Number(object.unreadCount) : 0,
+    };
+  },
+
+  toJSON(message: MessageUnreadUpdate): unknown {
+    const obj: any = {};
+    if (message.msgSeq !== 0) {
+      obj.msgSeq = Math.round(message.msgSeq);
+    }
+    if (message.unreadCount !== 0) {
+      obj.unreadCount = Math.round(message.unreadCount);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MessageUnreadUpdate>, I>>(base?: I): MessageUnreadUpdate {
+    return MessageUnreadUpdate.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MessageUnreadUpdate>, I>>(object: I): MessageUnreadUpdate {
+    const message = createBaseMessageUnreadUpdate();
+    message.msgSeq = object.msgSeq ?? 0;
+    message.unreadCount = object.unreadCount ?? 0;
+    return message;
+  },
+};
+
 function createBaseSReadReceipt(): SReadReceipt {
-  return { convId: "", readerId: "", lastReadSeq: 0 };
+  return { convId: "", readerId: "", lastReadSeq: 0, unreadUpdates: [] };
 }
 
 export const SReadReceipt = {
@@ -7911,6 +8043,9 @@ export const SReadReceipt = {
     }
     if (message.lastReadSeq !== 0) {
       writer.uint32(24).int64(message.lastReadSeq);
+    }
+    for (const v of message.unreadUpdates) {
+      MessageUnreadUpdate.encode(v!, writer.uint32(34).fork()).ldelim();
     }
     return writer;
   },
@@ -7943,6 +8078,13 @@ export const SReadReceipt = {
 
           message.lastReadSeq = longToNumber(reader.int64() as Long);
           continue;
+        case 4:
+          if (tag !== 34) {
+            break;
+          }
+
+          message.unreadUpdates.push(MessageUnreadUpdate.decode(reader, reader.uint32()));
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -7957,6 +8099,9 @@ export const SReadReceipt = {
       convId: isSet(object.convId) ? globalThis.String(object.convId) : "",
       readerId: isSet(object.readerId) ? globalThis.String(object.readerId) : "",
       lastReadSeq: isSet(object.lastReadSeq) ? globalThis.Number(object.lastReadSeq) : 0,
+      unreadUpdates: globalThis.Array.isArray(object?.unreadUpdates)
+        ? object.unreadUpdates.map((e: any) => MessageUnreadUpdate.fromJSON(e))
+        : [],
     };
   },
 
@@ -7971,6 +8116,9 @@ export const SReadReceipt = {
     if (message.lastReadSeq !== 0) {
       obj.lastReadSeq = Math.round(message.lastReadSeq);
     }
+    if (message.unreadUpdates?.length) {
+      obj.unreadUpdates = message.unreadUpdates.map((e) => MessageUnreadUpdate.toJSON(e));
+    }
     return obj;
   },
 
@@ -7982,6 +8130,7 @@ export const SReadReceipt = {
     message.convId = object.convId ?? "";
     message.readerId = object.readerId ?? "";
     message.lastReadSeq = object.lastReadSeq ?? 0;
+    message.unreadUpdates = object.unreadUpdates?.map((e) => MessageUnreadUpdate.fromPartial(e)) || [];
     return message;
   },
 };
@@ -12471,6 +12620,199 @@ export const STransferOwnership = {
     const message = createBaseSTransferOwnership();
     message.success = object.success ?? false;
     message.newOwnerId = object.newOwnerId ?? "";
+    return message;
+  },
+};
+
+function createBaseCEditAlbum(): CEditAlbum {
+  return { albumId: "", groupId: "", name: "" };
+}
+
+export const CEditAlbum = {
+  encode(message: CEditAlbum, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.albumId !== "") {
+      writer.uint32(10).string(message.albumId);
+    }
+    if (message.groupId !== "") {
+      writer.uint32(18).string(message.groupId);
+    }
+    if (message.name !== "") {
+      writer.uint32(26).string(message.name);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): CEditAlbum {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseCEditAlbum();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.albumId = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.groupId = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.name = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): CEditAlbum {
+    return {
+      albumId: isSet(object.albumId) ? globalThis.String(object.albumId) : "",
+      groupId: isSet(object.groupId) ? globalThis.String(object.groupId) : "",
+      name: isSet(object.name) ? globalThis.String(object.name) : "",
+    };
+  },
+
+  toJSON(message: CEditAlbum): unknown {
+    const obj: any = {};
+    if (message.albumId !== "") {
+      obj.albumId = message.albumId;
+    }
+    if (message.groupId !== "") {
+      obj.groupId = message.groupId;
+    }
+    if (message.name !== "") {
+      obj.name = message.name;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<CEditAlbum>, I>>(base?: I): CEditAlbum {
+    return CEditAlbum.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<CEditAlbum>, I>>(object: I): CEditAlbum {
+    const message = createBaseCEditAlbum();
+    message.albumId = object.albumId ?? "";
+    message.groupId = object.groupId ?? "";
+    message.name = object.name ?? "";
+    return message;
+  },
+};
+
+function createBaseSEditAlbum(): SEditAlbum {
+  return { success: false, albumId: "", name: "", error: "" };
+}
+
+export const SEditAlbum = {
+  encode(message: SEditAlbum, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.success !== false) {
+      writer.uint32(8).bool(message.success);
+    }
+    if (message.albumId !== "") {
+      writer.uint32(18).string(message.albumId);
+    }
+    if (message.name !== "") {
+      writer.uint32(26).string(message.name);
+    }
+    if (message.error !== "") {
+      writer.uint32(34).string(message.error);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): SEditAlbum {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseSEditAlbum();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+
+          message.success = reader.bool();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.albumId = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.name = reader.string();
+          continue;
+        case 4:
+          if (tag !== 34) {
+            break;
+          }
+
+          message.error = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): SEditAlbum {
+    return {
+      success: isSet(object.success) ? globalThis.Boolean(object.success) : false,
+      albumId: isSet(object.albumId) ? globalThis.String(object.albumId) : "",
+      name: isSet(object.name) ? globalThis.String(object.name) : "",
+      error: isSet(object.error) ? globalThis.String(object.error) : "",
+    };
+  },
+
+  toJSON(message: SEditAlbum): unknown {
+    const obj: any = {};
+    if (message.success !== false) {
+      obj.success = message.success;
+    }
+    if (message.albumId !== "") {
+      obj.albumId = message.albumId;
+    }
+    if (message.name !== "") {
+      obj.name = message.name;
+    }
+    if (message.error !== "") {
+      obj.error = message.error;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<SEditAlbum>, I>>(base?: I): SEditAlbum {
+    return SEditAlbum.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<SEditAlbum>, I>>(object: I): SEditAlbum {
+    const message = createBaseSEditAlbum();
+    message.success = object.success ?? false;
+    message.albumId = object.albumId ?? "";
+    message.name = object.name ?? "";
+    message.error = object.error ?? "";
     return message;
   },
 };
@@ -17346,6 +17688,7 @@ function createBaseLocationPlaceInfo(): LocationPlaceInfo {
     avgRating: 0,
     recentPhotoUrl: "",
     visits: [],
+    canonicalId: "",
   };
 }
 
@@ -17389,6 +17732,9 @@ export const LocationPlaceInfo = {
     }
     for (const v of message.visits) {
       LocationVisitInfo.encode(v!, writer.uint32(106).fork()).ldelim();
+    }
+    if (message.canonicalId !== "") {
+      writer.uint32(114).string(message.canonicalId);
     }
     return writer;
   },
@@ -17491,6 +17837,13 @@ export const LocationPlaceInfo = {
 
           message.visits.push(LocationVisitInfo.decode(reader, reader.uint32()));
           continue;
+        case 14:
+          if (tag !== 114) {
+            break;
+          }
+
+          message.canonicalId = reader.string();
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -17517,6 +17870,7 @@ export const LocationPlaceInfo = {
       visits: globalThis.Array.isArray(object?.visits)
         ? object.visits.map((e: any) => LocationVisitInfo.fromJSON(e))
         : [],
+      canonicalId: isSet(object.canonicalId) ? globalThis.String(object.canonicalId) : "",
     };
   },
 
@@ -17561,6 +17915,9 @@ export const LocationPlaceInfo = {
     if (message.visits?.length) {
       obj.visits = message.visits.map((e) => LocationVisitInfo.toJSON(e));
     }
+    if (message.canonicalId !== "") {
+      obj.canonicalId = message.canonicalId;
+    }
     return obj;
   },
 
@@ -17582,6 +17939,7 @@ export const LocationPlaceInfo = {
     message.avgRating = object.avgRating ?? 0;
     message.recentPhotoUrl = object.recentPhotoUrl ?? "";
     message.visits = object.visits?.map((e) => LocationVisitInfo.fromPartial(e)) || [];
+    message.canonicalId = object.canonicalId ?? "";
     return message;
   },
 };

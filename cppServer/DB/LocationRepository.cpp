@@ -46,13 +46,15 @@ string LocationRepository::CreatePlace(const cLocationPlace& place)
         auto& session = DBManager::GetInstance().GetSession();
         string id  = GenerateUUID();
         int64  now = NowMs();
+        // canonical_id: 지정되면 사용, 없으면 id와 동일 (단독 등록)
+        string canonicalId = place.canonicalId.empty() ? id : place.canonicalId;
         session.sql(
             "INSERT INTO location_places "
-            "(id, group_id, name, address, category, lat, lng, created_by, created_at) "
-            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
+            "(id, group_id, name, address, category, lat, lng, created_by, created_at, canonical_id) "
+            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
         ).bind(id, place.groupId, place.name, place.address,
                place.category, place.lat, place.lng,
-               place.createdBy, now).execute();
+               place.createdBy, now, canonicalId).execute();
         return id;
     } catch (const mysqlx::Error& e) {
         LOG_ERROR("[LocationRepository] CreatePlace 실패: {}", e.what());
@@ -168,7 +170,8 @@ vector<cLocationPlace> LocationRepository::GetPlacesByGroup(const string& groupI
         auto rows = session.sql(
             "SELECT id, group_id, name, address, category, lat, lng, "
             "       created_by, created_at, visit_count, avg_rating, "
-            "       COALESCE(recent_photo_url, '') AS recent_photo_url "
+            "       COALESCE(recent_photo_url, '') AS recent_photo_url, "
+            "       COALESCE(canonical_id, id) AS canonical_id "
             "FROM location_places WHERE group_id = ? ORDER BY created_at DESC"
         ).bind(groupId).execute();
 
@@ -186,6 +189,7 @@ vector<cLocationPlace> LocationRepository::GetPlacesByGroup(const string& groupI
             p.visitCount     = row[9].get<int>();
             p.avgRating      = static_cast<float>(row[10].get<double>());
             p.recentPhotoUrl = row[11].get<string>();
+            p.canonicalId    = row[12].get<string>();
             result.push_back(move(p));
         }
     } catch (const mysqlx::Error& e) {

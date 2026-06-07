@@ -2,7 +2,7 @@
 #include "SubscriptionRepository.h"
 #include "../CoreGlobal.h"
 
-bool SubscriptionRepository::RecordTransaction(const string& groupId, int planId,
+bool SubscriptionRepository::RecordTransaction(const string& groupId, const string& userId, int planId,
                                                const string& platform, const string& productId,
                                                const string& transactionId, const string& purchaseToken)
 {
@@ -10,11 +10,10 @@ bool SubscriptionRepository::RecordTransaction(const string& groupId, int planId
         auto& db = DBManager::GetInstance();
         db.GetSession().sql(
             "INSERT INTO payment_transactions "
-            "(group_id, plan_id, platform, product_id, transaction_id, purchase_token, status, verified_at) "
-            "VALUES (?, ?, ?, ?, ?, ?, 'verified', ?) "
-            "ON DUPLICATE KEY UPDATE status='verified', verified_at=?"
-        ).bind(groupId, planId, platform, productId, transactionId, purchaseToken,
-               Nowts(), Nowts()).execute();
+            "(group_id, user_id, plan_id, platform, product_id, transaction_id, purchase_token, status, verified_at) "
+            "VALUES (?, ?, ?, ?, ?, ?, ?, 'verified', NOW()) "
+            "ON DUPLICATE KEY UPDATE status='verified', verified_at=NOW()"
+        ).bind(groupId, userId, planId, platform, productId, transactionId, purchaseToken).execute();
         return true;
     } catch (const mysqlx::Error& err) {
         LOG_ERROR("[SubscriptionRepository] RecordTransaction 실패: {}", err.what());
@@ -27,13 +26,14 @@ bool SubscriptionRepository::GetPlanInfo(int planId, SubscriptionPlanInfo& info)
     try {
         auto& db = DBManager::GetInstance();
         auto result = db.GetSession().sql(
-            "SELECT plan_id, grade, storage_bytes FROM subscription_plans WHERE plan_id = ? LIMIT 1"
+            "SELECT plan_id, grade, storage_bytes, name FROM subscription_plans WHERE plan_id = ? LIMIT 1"
         ).bind(planId).execute();
         auto row = result.fetchOne();
         if (!row) return false;
         info.planId       = row[0].get<int>();
         info.grade        = row[1].get<int>();
         info.storageBytes = row[2].isNull() ? 0LL : static_cast<int64>(row[2].get<double>());
+        info.name         = row[3].isNull() ? "" : row[3].get<string>();
         return true;
     } catch (const mysqlx::Error& err) {
         LOG_ERROR("[SubscriptionRepository] GetPlanInfo 실패: {}", err.what());
@@ -55,9 +55,10 @@ bool SubscriptionRepository::UpsertSubscription(const string& groupId, int planI
     try {
         auto& db = DBManager::GetInstance();
         db.GetSession().sql(
-            "INSERT INTO subscriptions (group_id, plan_id, expires_at, auto_renew, status) "
-            "VALUES (?, ?, ?, 1, 'active') "
-            "ON DUPLICATE KEY UPDATE plan_id=?, expires_at=?, auto_renew=1, status='active', grace_expires_at=NULL"
+            "INSERT INTO subscriptions (group_id, plan_id, expires_at, auto_renew, status, cancel_at_period_end, pending_plan_id) "
+            "VALUES (?, ?, ?, 1, 'active', 0, NULL) "
+            "ON DUPLICATE KEY UPDATE plan_id=?, expires_at=?, auto_renew=1, status='active', "
+            "grace_expires_at=NULL, cancel_at_period_end=0, pending_plan_id=NULL"
         ).bind(groupId, planId, expiresAtMs, planId, expiresAtMs).execute();
         return true;
     } catch (const mysqlx::Error& err) {
@@ -81,6 +82,22 @@ bool SubscriptionRepository::SetGrace(const string& groupId, int64 graceExpiresA
     }
 }
 
+bool SubscriptionRepository::SetGraceForCancel(const string& groupId, int64 graceExpiresAtMs)
+{
+    // cancel 만료 후 용량 초과 → plan_id=1(Free)로 변경 + grace 전환
+    try {
+        auto& db = DBManager::GetInstance();
+        db.GetSession().sql(
+            "UPDATE subscriptions SET status='grace', plan_id=1, grace_expires_at=?, "
+            "cancel_at_period_end=0 WHERE group_id=? AND status='active'"
+        ).bind(graceExpiresAtMs, groupId).execute();
+        return true;
+    } catch (const mysqlx::Error& err) {
+        LOG_ERROR("[SubscriptionRepository] SetGraceForCancel 실패: {}", err.what());
+        return false;
+    }
+}
+
 bool SubscriptionRepository::SetExpired(const string& groupId)
 {
     try {
@@ -91,6 +108,22 @@ bool SubscriptionRepository::SetExpired(const string& groupId)
         return true;
     } catch (const mysqlx::Error& err) {
         LOG_ERROR("[SubscriptionRepository] SetExpired 실패: {}", err.what());
+        return false;
+    }
+}
+
+bool SubscriptionRepository::SetExpiredFromActive(const string& groupId)
+{
+    // cancel_at_period_end + 용량 1GB 이하 → 바로 만료 (grace 불필요)
+    try {
+        auto& db = DBManager::GetInstance();
+        db.GetSession().sql(
+            "UPDATE subscriptions SET status='expired', plan_id=1, cancel_at_period_end=0 "
+            "WHERE group_id=? AND status='active'"
+        ).bind(groupId).execute();
+        return true;
+    } catch (const mysqlx::Error& err) {
+        LOG_ERROR("[SubscriptionRepository] SetExpiredFromActive 실패: {}", err.what());
         return false;
     }
 }
@@ -110,22 +143,71 @@ bool SubscriptionRepository::CancelSubscription(const string& groupId)
     }
 }
 
+bool SubscriptionRepository::SetCancelAtPeriodEnd(const string& groupId)
+{
+    try {
+        auto& db = DBManager::GetInstance();
+        db.GetSession().sql(
+            "UPDATE subscriptions SET cancel_at_period_end=1, auto_renew=0, pending_plan_id=NULL "
+            "WHERE group_id=? AND status='active'"
+        ).bind(groupId).execute();
+        return true;
+    } catch (const mysqlx::Error& err) {
+        LOG_ERROR("[SubscriptionRepository] SetCancelAtPeriodEnd 실패: {}", err.what());
+        return false;
+    }
+}
+
+bool SubscriptionRepository::SetPendingPlan(const string& groupId, int pendingPlanId)
+{
+    try {
+        auto& db = DBManager::GetInstance();
+        db.GetSession().sql(
+            "UPDATE subscriptions SET pending_plan_id=?, cancel_at_period_end=0 "
+            "WHERE group_id=? AND status='active'"
+        ).bind(pendingPlanId, groupId).execute();
+        return true;
+    } catch (const mysqlx::Error& err) {
+        LOG_ERROR("[SubscriptionRepository] SetPendingPlan 실패: {}", err.what());
+        return false;
+    }
+}
+
+bool SubscriptionRepository::ApplyPendingPlan(const string& groupId, int planId)
+{
+    try {
+        auto& db = DBManager::GetInstance();
+        db.GetSession().sql(
+            "UPDATE subscriptions SET plan_id=?, pending_plan_id=NULL "
+            "WHERE group_id=? AND status='active'"
+        ).bind(planId, groupId).execute();
+        return true;
+    } catch (const mysqlx::Error& err) {
+        LOG_ERROR("[SubscriptionRepository] ApplyPendingPlan 실패: {}", err.what());
+        return false;
+    }
+}
+
 bool SubscriptionRepository::GetActiveSubscription(const string& groupId, cSubscriptionInfo& info)
 {
     try {
         auto& db = DBManager::GetInstance();
         auto result = db.GetSession().sql(
-            "SELECT status, expires_at, grace_expires_at, auto_renew "
+            "SELECT status, plan_id, expires_at, grace_expires_at, auto_renew, "
+            "cancel_at_period_end, pending_plan_id "
             "FROM subscriptions "
             "WHERE group_id=? AND status IN ('active','grace') "
             "ORDER BY id DESC LIMIT 1"
         ).bind(groupId).execute();
         auto row = result.fetchOne();
         if (!row) return false;
-        info.status         = row[0].isNull() ? "" : row[0].get<string>();
-        info.expiresAt      = row[1].isNull() ? 0LL : static_cast<int64>(row[1].get<double>());
-        info.graceExpiresAt = row[2].isNull() ? 0LL : static_cast<int64>(row[2].get<double>());
-        info.autoRenew      = !row[3].isNull() && row[3].get<int>() != 0;
+        info.status            = row[0].isNull() ? "" : row[0].get<string>();
+        info.planId            = row[1].isNull() ? 0  : row[1].get<int>();
+        info.expiresAt         = row[2].isNull() ? 0LL : static_cast<int64>(row[2].get<double>());
+        info.graceExpiresAt    = row[3].isNull() ? 0LL : static_cast<int64>(row[3].get<double>());
+        info.autoRenew         = !row[4].isNull() && row[4].get<int>() != 0;
+        info.cancelAtPeriodEnd = !row[5].isNull() && row[5].get<int>() != 0;
+        info.pendingPlanId     = row[6].isNull() ? 0  : row[6].get<int>();
         return true;
     } catch (const mysqlx::Error& err) {
         LOG_ERROR("[SubscriptionRepository] GetActiveSubscription 실패: {}", err.what());

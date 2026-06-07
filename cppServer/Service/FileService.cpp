@@ -135,22 +135,22 @@ bool FileService::HandleUploadFileRequest(sessionPtr& session, uint64 reqId, con
             break;
 
         case Protocol::C_UploadFile_UploadType_PROFILE_IMG:
-            // 유저 프로필: profiles/user/{userId}_{timestamp}.ext
-            path = "profiles/user/" + userId + "_" + ts + extension;
+            // 유저 프로필: profiles/user/{userId}/{timestamp}.ext
+            path = "profiles/user/" + userId + "/" + ts + extension;
             if (pkt.is_image()) {
-                thumbPath = "profiles/user/" + userId + "_" + ts + "_thumb.jpg";
+                thumbPath = "profiles/user/" + userId + "/" + ts + "_thumb.jpg";
             }
             break;
 
         case Protocol::C_UploadFile_UploadType_GROUP_PROFILE_IMG:
-            // 그룹 프로필: profiles/group/{groupId}_{timestamp}.ext
+            // 그룹 프로필: profiles/group/{groupId}/{timestamp}.ext
             if (pkt.target_id().empty()) {
                 HandleErr(session, reqId, ERR_INVALID_ARGUMENT, "Group ID (target_id) is required for GROUP_PROFILE_Img.");
                 return false;
             }
-            path = "profiles/group/" + pkt.target_id() + "_" + ts + extension;
+            path = "profiles/group/" + pkt.target_id() + "/" + ts + extension;
             if (pkt.is_image()) {
-                thumbPath = "profiles/group/" + pkt.target_id() + "_" + ts + "_thumb.jpg";
+                thumbPath = "profiles/group/" + pkt.target_id() + "/" + ts + "_thumb.jpg";
             }
             break;
 

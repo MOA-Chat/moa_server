@@ -123,15 +123,13 @@ bool ChatService::SendGroupDM(sessionPtr& senderSession, uint64 reqId, const str
         if (auto target = _userManager.FindSession(receiverId)) {
             // 온라인 - 소켓으로 전송
             PushEnvelope(target, 0, pkt_s_chat);
-            // iOS: TCP와 별개로 FCM 병행 발송 (앱 서스펜드 시 알림 누락 방지)
+            // 전 플랫폼 FCM 병행 발송 (iOS: 앱 서스펜드, Android: 배터리최적화 JS동결 대응)
             if (GFcmClient) {
                 auto tokens = FcmTokenRepository::GetUserTokens(receiverId);
                 for (const auto& tokenInfo : tokens) {
-                    if (tokenInfo.platform == "ios") {
-                        bool invalid = false;
-                        GFcmClient->SendPush(tokenInfo.fcmToken, senderName, dmPreview, dmData, &invalid);
-                        if (invalid) FcmTokenRepository::DeleteToken(receiverId, tokenInfo.fcmToken);
-                    }
+                    bool invalid = false;
+                    GFcmClient->SendPush(tokenInfo.fcmToken, senderName, dmPreview, dmData, &invalid);
+                    if (invalid) FcmTokenRepository::DeleteToken(receiverId, tokenInfo.fcmToken);
                 }
             }
         }
@@ -259,15 +257,13 @@ bool ChatService::SendGroup(sessionPtr& senderSession, uint64 reqId, const strin
         if (auto target = _userManager.FindSession(member.userId)) {
             // 온라인 - 소켓으로 전송
             PushEnvelope(target, 0, pkt_s_chat);
-            // iOS: TCP와 별개로 FCM 병행 발송 (앱 서스펜드 시 TCP 무응답 → 알림 누락 방지)
+            // 전 플랫폼 FCM 병행 발송 (iOS: 앱 서스펜드, Android: 배터리최적화 JS동결 대응)
             if (GFcmClient) {
                 auto tokens = FcmTokenRepository::GetUserTokens(member.userId);
                 for (const auto& tokenInfo : tokens) {
-                    if (tokenInfo.platform == "ios") {
-                        bool invalid = false;
-                        GFcmClient->SendPush(tokenInfo.fcmToken, fcmTitle, msgPreview, fcmData, &invalid);
-                        if (invalid) FcmTokenRepository::DeleteToken(member.userId, tokenInfo.fcmToken);
-                    }
+                    bool invalid = false;
+                    GFcmClient->SendPush(tokenInfo.fcmToken, fcmTitle, msgPreview, fcmData, &invalid);
+                    if (invalid) FcmTokenRepository::DeleteToken(member.userId, tokenInfo.fcmToken);
                 }
             }
         }

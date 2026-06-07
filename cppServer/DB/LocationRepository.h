@@ -15,6 +15,7 @@ struct cLocationPlace {
     int32  visitCount = 0;
     float  avgRating  = 0.0f;
     string recentPhotoUrl;
+    string canonicalId;
 };
 
 struct cLocationVisit {

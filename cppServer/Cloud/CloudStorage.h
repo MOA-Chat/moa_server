@@ -34,5 +34,8 @@ public:
 
     // 버킷명 반환
     virtual string GetBucketName() const = 0;
+
+    // Public URL 접두사 반환 (gcs_path 역추출용)
+    virtual string GetPublicUrlPrefix() const = 0;
 };
 

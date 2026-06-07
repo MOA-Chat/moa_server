@@ -490,20 +490,6 @@ bool GroupService::TransferOwnership(sessionPtr& session, uint64 reqId, const Pr
 	if (!UserRepository::GetUserNameWithId(targetId, newOwnerName)) newOwnerName = targetId;
 	GChatService->SendSystemMessage(groupId, newOwnerName + " 님이 새 방장이 되었습니다.");
 
-	// 구독 상태 확인 후 새 방장에게 안내 메시지
-	{
-		cSubscriptionInfo subInfo;
-		if (SubscriptionRepository::GetActiveSubscription(groupId, subInfo)) {
-			string subMsg;
-			if (subInfo.status == "grace") {
-				subMsg = "[구독 알림] 구독이 유예 기간 중입니다. 새 방장이 기간 내 재구독하지 않으면 앨범 사진이 삭제됩니다.";
-			} else {
-				subMsg = "[구독 알림] 기존 구독은 만료일까지 유지됩니다. 이후 자동으로 무료 플랜으로 전환됩니다.";
-			}
-			GChatService->SendSystemMessage(groupId, subMsg);
-		}
-	}
-
 	LOG_INFO("[GroupService] 방장 이전: {} -> {} in group {}", userId, targetId, groupId);
 	return true;
 }

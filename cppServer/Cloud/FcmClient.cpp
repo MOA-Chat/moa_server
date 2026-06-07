@@ -60,6 +60,22 @@ bool FcmClient::Initialize()
 }
 
 
+// FCM notification.body 정규화 — raw JSON을 사람이 읽는 문자열로 변환
+static string NormalizeNotifBody(const string& body) {
+    if (body.find("\"type\":\"locationShare\"") != string::npos) return u8"위치가 공유되었습니다.";
+    if (body.find("\"type\":\"multiImage\"") != string::npos)    return u8"사진을 보냈습니다.";
+    if (body.find("\"pollId\"") != string::npos) {
+        if (body.find("\"status\":\"closed\"") != string::npos)  return u8"투표가 종료되었습니다.";
+        return u8"투표가 등록되었습니다.";
+    }
+    if (body.rfind("[", 0) == 0) {
+        if (body.find(u8"사진]") != string::npos)   return u8"사진을 보냈습니다.";
+        if (body.find(u8"동영상]") != string::npos) return u8"동영상을 보냈습니다.";
+        if (body.find(u8"파일]") != string::npos)   return u8"파일을 보냈습니다.";
+    }
+    return body;
+}
+
 bool FcmClient::SendPush(const string& fcmToken, const string& title, const string& body,
                          const map<string, string>& data, bool* outInvalidToken)
 {
@@ -72,14 +88,24 @@ bool FcmClient::SendPush(const string& fcmToken, const string& title, const stri
         // FCM HTTP v1 API 엔드포인트
         string url = "/v1/projects/" + _projectId + "/messages:send";
 
+        // notification.body는 정규화된 문자열 사용 (raw JSON 노출 방지)
+        string notifBody = NormalizeNotifBody(body);
+
         // 메시지 JSON 구성
-        // Android: notification 필드 없음(data-only) → 백그라운드 핸들러가 설정 적용 후 직접 표시
-        // iOS: apns.aps.alert → 시스템 자동 표시 (포그라운드는 onMessage 핸들러에서 처리)
+        // Android: notification 필드 추가 → Samsung killed 앱도 OS 레벨에서 수신 보장
+        //   setBackgroundMessageHandler에서 시스템 알림 취소 후 InboxStyle로 교체
+        // iOS: apns.aps에서 alert/sound 제거 → data-only (content-available:1)
+        //   index.js iOS 핸들러에서 notifee 직접 표시 → 진동 설정 반영 가능
         json message = {
             {"message", {
                 {"token", fcmToken},
                 {"android", {
-                    {"priority", "high"}
+                    {"priority", "high"},
+                    {"notification", {
+                        {"title", title},
+                        {"body", notifBody},
+                        {"tag", "moa_fcm_sys"}
+                    }}
                 }},
                 {"apns", {
                     {"headers", {
@@ -87,12 +113,6 @@ bool FcmClient::SendPush(const string& fcmToken, const string& title, const stri
                     }},
                     {"payload", {
                         {"aps", {
-                            {"alert", {
-                                {"title", title},
-                                {"body", body}
-                            }},
-                            {"sound", "default"},
-                            {"badge", 1},
                             {"content-available", 1}
                         }}
                     }}

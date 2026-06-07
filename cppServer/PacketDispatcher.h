@@ -138,6 +138,7 @@ protected:
     static bool Dispatch_C_CreateAlbum      (sessionPtr& session, uint64 reqId, const Protocol::C_CreateAlbum& pkt);
     static bool Dispatch_C_GetAlbums        (sessionPtr& session, uint64 reqId, const Protocol::C_GetAlbums& pkt);
     static bool Dispatch_C_DeleteAlbum      (sessionPtr& session, uint64 reqId, const Protocol::C_DeleteAlbum& pkt);
+    static bool Dispatch_C_EditAlbum        (sessionPtr& session, uint64 reqId, const Protocol::C_EditAlbum& pkt);
     static bool Dispatch_C_AddPhotoToAlbum  (sessionPtr& session, uint64 reqId, const Protocol::C_AddPhotoToAlbum& pkt);
     static bool Dispatch_C_GetAlbumPhotos   (sessionPtr& session, uint64 reqId, const Protocol::C_GetAlbumPhotos& pkt);
     static bool Dispatch_C_DeleteAlbumPhoto (sessionPtr& session, uint64 reqId, const Protocol::C_DeleteAlbumPhoto& pkt);

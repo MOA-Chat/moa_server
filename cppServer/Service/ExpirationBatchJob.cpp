@@ -106,7 +106,10 @@ void ExpirationBatchJob::ProcessExpiredFiles()
             _cloudStorage->RemoveFile(fi.thumbnailPath);
         }
 
-        FileRepository::UpdateUploadStatus(fi.fileId, "deleted");
+        // R2 삭제 성공 시에만 DB 마킹 (실패 시 다음 배치 주기에 재시도)
+        if (deleteOk) {
+            FileRepository::UpdateUploadStatus(fi.fileId, "deleted");
+        }
 
         if (!fi.filePath.empty()) {
             MessageRepository::UpdateFileStatusByFilePath(fi.filePath, "expired");
@@ -180,42 +183,101 @@ void ExpirationBatchJob::ProcessExpiredPolls()
 void ExpirationBatchJob::ProcessExpiredSubscriptions()
 {
     int64 now = Nowts();
-    const int64 GRACE_MS = 14LL * 24 * 3600 * 1000;
+    const int64 GRACE_MS = 7LL * 24 * 3600 * 1000;   // 7일 유예
+    const int64 FREE_PLAN_QUOTA = 1073741824LL;         // 1GB (무료 플랜)
 
-    // 1) active 상태인데 expires_at 지난 구독 → grace로 전환 + 그룹 알림
+    // ── 1) active + expires_at 만료 → 케이스별 처리 ──────────────────────────
     auto expiredGroups = SubscriptionRepository::GetExpiredActiveGroupIds(now);
+    int graceCount = 0, cancelCount = 0, downgradeCount = 0;
+
     for (const auto& groupId : expiredGroups) {
-        int64 graceExpiresAt = now + GRACE_MS;
-        SubscriptionRepository::SetGrace(groupId, graceExpiresAt);
-        if (GChatService) {
-            GChatService->SendSystemMessage(groupId,
-                "[구독 알림] 구독 기간이 만료되었습니다. 14일 내 재구독하지 않으면 앨범 사진이 삭제됩니다.");
+        cSubscriptionInfo subInfo;
+        if (!SubscriptionRepository::GetActiveSubscription(groupId, subInfo)) continue;
+
+        if (subInfo.cancelAtPeriodEnd) {
+            // ── 해지 예약 만료 ────────────────────────────────────────────────
+            cGroupInfo gInfo;
+            GroupRepository::GetGroupInfoById(groupId, gInfo);
+            if (gInfo.storageUsage <= FREE_PLAN_QUOTA) {
+                // 1GB 이하: 바로 만료 (grace 불필요)
+                SubscriptionRepository::SetExpiredFromActive(groupId);
+                GroupRepository::SetStorageCapacityOnly(groupId, FREE_PLAN_QUOTA);
+                LOG_INFO("[ExpirationBatchJob] 해지 만료 (용량 OK): group={}", groupId);
+            } else {
+                // 1GB 초과: 7일 grace 부여 (plan_id=1로 변경)
+                int64 graceExpiresAt = now + GRACE_MS;
+                SubscriptionRepository::SetGraceForCancel(groupId, graceExpiresAt);
+                LOG_INFO("[ExpirationBatchJob] 해지 만료→grace: group={} usage={} grace={}", groupId, gInfo.storageUsage, graceExpiresAt);
+            }
+            ++cancelCount;
+
+        } else if (subInfo.pendingPlanId > 0) {
+            // ── 다운그레이드 예약 만료 → 새 플랜 적용 ───────────────────────
+            SubscriptionPlanInfo pendingInfo;
+            if (!SubscriptionRepository::GetPlanInfo(subInfo.pendingPlanId, pendingInfo)) {
+                LOG_ERROR("[ExpirationBatchJob] 다운그레이드 플랜 정보 없음: group={} planId={}", groupId, subInfo.pendingPlanId);
+                continue;
+            }
+            // 새 플랜 적용
+            SubscriptionRepository::ApplyPendingPlan(groupId, subInfo.pendingPlanId);
+            GroupRepository::UpdateStorageCapacity(groupId, pendingInfo.storageBytes);
+
+            cGroupInfo gInfo;
+            GroupRepository::GetGroupInfoById(groupId, gInfo);
+            if (gInfo.storageUsage > pendingInfo.storageBytes) {
+                // 초과: 7일 grace
+                int64 graceExpiresAt = now + GRACE_MS;
+                SubscriptionRepository::SetGrace(groupId, graceExpiresAt);
+                LOG_INFO("[ExpirationBatchJob] 다운그레이드→grace: group={} plan={} usage={}", groupId, pendingInfo.name, gInfo.storageUsage);
+            } else {
+                LOG_INFO("[ExpirationBatchJob] 다운그레이드 완료: group={} plan={}", groupId, pendingInfo.name);
+            }
+            ++downgradeCount;
+
+        } else {
+            // ── 일반 만료 (갱신 실패 등) → grace ─────────────────────────────
+            int64 graceExpiresAt = now + GRACE_MS;
+            SubscriptionRepository::SetGrace(groupId, graceExpiresAt);
+            LOG_INFO("[ExpirationBatchJob] 구독 grace 전환: group={} graceExpires={}", groupId, graceExpiresAt);
+            ++graceCount;
         }
-        LOG_INFO("[ExpirationBatchJob] 구독 grace 전환: group={} graceExpires={}", groupId, graceExpiresAt);
     }
 
-    // 2) grace 상태인데 grace_expires_at 지난 구독 → 1GB 초과 오래된 사진 소프트딜리트 + 용량 초기화
-    // SetExpired는 두 작업이 모두 성공한 경우에만 호출 (원자성 보장)
-    const int64 FREE_PLAN_QUOTA = 1073741824LL; // 1GB
+    // ── 2) grace + grace_expires_at 만료 → 사진 정리 + 최종 만료 ───────────
     auto graceExpiredGroups = SubscriptionRepository::GetExpiredGraceGroupIds(now);
+    int expiredCount = 0;
+
     for (const auto& groupId : graceExpiredGroups) {
-        int64 deletedSize = AlbumRepository::SoftDeleteOverQuotaPhotosByGroup(groupId, FREE_PLAN_QUOTA, now);
+        // 현재 plan_id로 적용 쿼터 결정
+        // - 일반 만료/다운그레이드 grace: plan_id = 다운그레이드된 플랜
+        // - 해지 grace: plan_id = 1 (SetGraceForCancel이 1로 설정함)
+        cSubscriptionInfo gSub;
+        int64 quota = FREE_PLAN_QUOTA;
+        if (SubscriptionRepository::GetActiveSubscription(groupId, gSub) && gSub.planId > 0) {
+            SubscriptionPlanInfo planInfo;
+            if (SubscriptionRepository::GetPlanInfo(gSub.planId, planInfo) && planInfo.storageBytes > 0) {
+                quota = planInfo.storageBytes;
+            }
+        }
+
+        int64 deletedSize = AlbumRepository::SoftDeleteOverQuotaPhotosByGroup(groupId, quota, now);
         if (deletedSize < 0) {
-            LOG_ERROR("[ExpirationBatchJob] 구독 만료 처리 실패 (사진 소프트딜리트): group={}", groupId);
+            LOG_ERROR("[ExpirationBatchJob] grace 만료 처리 실패 (사진 정리): group={}", groupId);
             continue;
         }
-        bool capacityOk = GroupRepository::SetStorageCapacityOnly(groupId, FREE_PLAN_QUOTA);
+        bool capacityOk = GroupRepository::SetStorageCapacityOnly(groupId, quota);
         if (deletedSize > 0) GroupRepository::DeductGroupStorage(groupId, deletedSize);
         if (capacityOk) {
             SubscriptionRepository::SetExpired(groupId);
-            LOG_INFO("[ExpirationBatchJob] 구독 만료 처리 완료: group={} deletedBytes={}", groupId, deletedSize);
+            LOG_INFO("[ExpirationBatchJob] grace 만료: group={} quota={}B deleted={}B", groupId, quota, deletedSize);
+            ++expiredCount;
         } else {
-            LOG_ERROR("[ExpirationBatchJob] 구독 만료 처리 실패 (용량 초기화): group={}", groupId);
+            LOG_ERROR("[ExpirationBatchJob] grace 만료 처리 실패 (용량 초기화): group={}", groupId);
         }
     }
 
     if (!expiredGroups.empty() || !graceExpiredGroups.empty()) {
-        LOG_INFO("[ExpirationBatchJob] 구독 처리: grace전환={}건 만료={}건",
-                 expiredGroups.size(), graceExpiredGroups.size());
+        LOG_INFO("[ExpirationBatchJob] 구독 처리: grace={}건 cancel={}건 downgrade={}건 expired={}건",
+                 graceCount, cancelCount, downgradeCount, expiredCount);
     }
 }

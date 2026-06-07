@@ -199,6 +199,20 @@ bool AlbumRepository::DeleteAlbum(const string& albumId, const string& userId)
     }
 }
 
+bool AlbumRepository::UpdateAlbumName(const string& albumId, const string& groupId, const string& name)
+{
+    try {
+        auto& session = DBManager::GetInstance().GetSession();
+        session.sql("UPDATE albums SET name = ? WHERE id = ? AND group_id = ?")
+            .bind(name, albumId, groupId)
+            .execute();
+        return true;
+    } catch (const mysqlx::Error& e) {
+        LOG_ERROR("[AlbumRepository] UpdateAlbumName 실패: {}", e.what());
+        return false;
+    }
+}
+
 bool AlbumRepository::UpdateCoverPhoto(const string& albumId)
 {
     try {
