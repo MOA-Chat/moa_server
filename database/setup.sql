@@ -1,7 +1,10 @@
 -- ============================================================
 -- MOA Chat Server — DB 전체 초기화 스크립트
--- 새 서버에서 처음 실행할 때만 사용 (기존 DB 있으면 건드리지 않음)
+-- 새 서버(클라우드 이전 포함)에서 처음 실행할 때만 사용 (기존 DB 있으면 건드리지 않음)
 -- 실행: mysql -u root -p < setup.sql
+-- 2026-06-18 기준 — 01~34번 마이그레이션 전체 반영 완료 (32/33/34 포함)
+-- 주의: CREATE USER가 'localhost'로 제한됨 — DB가 앱 서버와 다른 호스트(클라우드 매니지드 DB 등)에 있다면
+--       호스트를 실제 앱 서버 IP 또는 '%'(보안 검토 후)로 변경 필요
 -- ============================================================
 
 -- ── 0. DB / 유저 생성 ──────────────────────────────────────
@@ -83,8 +86,13 @@ CREATE TABLE IF NOT EXISTS group_assets (
     CONSTRAINT fk_assets_group FOREIGN KEY (group_id) REFERENCES `groups`(group_id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- member_count 트리거 제거됨 (30_fix_member_count.sql)
--- AddMember/RemoveMember에서 명시적 UPDATE로 직접 처리
+-- 주의: member_count(group_members)와 storage_usage_bytes(group_assets) 모두
+-- DB 트리거로 자동 증감시키지 말 것 — GroupRepository.cpp(AddMember/RemoveMember/
+-- TryAddGroupStorageAtomic 등)가 명시적 UPDATE로 직접 처리함.
+-- 과거 trg_group_member_add/remove 트리거를 03_groups.sql에서 생성했다가 30_fix_member_count.sql로
+-- 제거했는데, 이 트리거가 다시 만들어지면(또는 운영 DB에 잔존하면) 코드의 명시적 UPDATE와 중복 발동되어
+-- 가입 1회당 member_count가 +2씩 증가하는 버그가 재발함 (2026-06-18 부천과학고 그룹에서 실제 재발 확인).
+-- 새 서버에서도 이 setup.sql 외에 group_members/group_assets용 트리거를 절대 추가하지 말 것.
 
 -- ── 3. conversations / messages / read_status ─────────────
 
@@ -166,7 +174,7 @@ CREATE TABLE IF NOT EXISTS file_uploads (
     mime_type                   VARCHAR(100),
     is_image                    TINYINT(1)    DEFAULT 0,
     thumbnail_gcs_path          VARCHAR(512)  NULL,
-    upload_status               ENUM('pending','uploading','completed','failed') DEFAULT 'pending',
+    upload_status               ENUM('pending','uploading','completed','failed','deleted') DEFAULT 'pending',
     file_retention_expires_at   BIGINT        NULL,
     created_at                  TIMESTAMP     DEFAULT CURRENT_TIMESTAMP,
     uploaded_at                 TIMESTAMP     NULL,
@@ -197,34 +205,38 @@ INSERT INTO subscription_plans (plan_type, name, grade, storage_bytes, max_file_
 ('group', 'Max',   3, 161061273600, 1073741824, 11000);
 
 CREATE TABLE IF NOT EXISTS subscriptions (
-    id               INT PRIMARY KEY AUTO_INCREMENT,
-    group_id         VARCHAR(64)   NOT NULL,
-    plan_id          INT           NOT NULL,
-    started_at       TIMESTAMP     DEFAULT CURRENT_TIMESTAMP,
-    expires_at       BIGINT        NULL,
-    grace_expires_at BIGINT        NULL,
-    auto_renew       TINYINT(1)    DEFAULT 1,
-    status           ENUM('active','cancelled','expired','grace') DEFAULT 'active',
+    id                   INT PRIMARY KEY AUTO_INCREMENT,
+    group_id             VARCHAR(64)   NOT NULL,
+    plan_id              INT           NOT NULL,
+    started_at           TIMESTAMP     DEFAULT CURRENT_TIMESTAMP,
+    expires_at           BIGINT        NULL,
+    grace_expires_at     BIGINT        NULL,
+    auto_renew           TINYINT(1)    DEFAULT 1,
+    cancel_at_period_end TINYINT(1)    NOT NULL DEFAULT 0,
+    pending_plan_id      INT           NULL,
+    status               ENUM('active','cancelled','expired','grace') DEFAULT 'active',
     FOREIGN KEY (plan_id) REFERENCES subscription_plans(plan_id),
     UNIQUE KEY uq_group (group_id),
     INDEX idx_sub_expires (expires_at)
 );
 
 CREATE TABLE IF NOT EXISTS payment_transactions (
-    id              INT PRIMARY KEY AUTO_INCREMENT,
-    user_id         VARCHAR(64)   NOT NULL,
-    group_id        VARCHAR(64)   NULL,
-    plan_id         INT           NOT NULL,
-    platform        ENUM('android','ios') NOT NULL,
-    product_id      VARCHAR(100)  NOT NULL,
-    transaction_id  VARCHAR(255)  NOT NULL,
-    purchase_token  TEXT,
-    status          ENUM('pending','verified','failed','refunded') DEFAULT 'pending',
-    verified_at     TIMESTAMP     NULL,
-    created_at      TIMESTAMP     DEFAULT CURRENT_TIMESTAMP,
-    INDEX idx_pt_user  (user_id),
-    INDEX idx_pt_group (group_id),
-    INDEX idx_pt_token (purchase_token(255)),
+    id                      INT PRIMARY KEY AUTO_INCREMENT,
+    user_id                 VARCHAR(64)   NOT NULL,
+    group_id                VARCHAR(64)   NULL,
+    plan_id                 INT           NOT NULL,
+    platform                ENUM('android','ios') NOT NULL,
+    product_id               VARCHAR(100)  NOT NULL,
+    transaction_id           VARCHAR(255)  NOT NULL,
+    original_transaction_id  VARCHAR(255)  NULL,
+    purchase_token           TEXT,
+    status                   ENUM('pending','verified','failed','refunded') DEFAULT 'pending',
+    verified_at              TIMESTAMP     NULL,
+    created_at               TIMESTAMP     DEFAULT CURRENT_TIMESTAMP,
+    INDEX idx_pt_user      (user_id),
+    INDEX idx_pt_group     (group_id),
+    INDEX idx_pt_token     (purchase_token(255)),
+    INDEX idx_pt_orig_txid (original_transaction_id),
     UNIQUE KEY uq_transaction (platform, transaction_id)
 );
 
