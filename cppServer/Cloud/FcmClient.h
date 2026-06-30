@@ -45,7 +45,8 @@ private:
 
     // OAuth
     string _accessToken;
-    int64 _tokenExpiresTime = 0;
+    std::atomic<int64> _tokenExpiresTime{ 0 };
+    mutable std::mutex _tokenMutex;
 
     // Service Account Info
     string _serviceAccountEmail;

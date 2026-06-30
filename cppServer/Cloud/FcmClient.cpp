@@ -92,27 +92,29 @@ bool FcmClient::SendPush(const string& fcmToken, const string& title, const stri
         string notifBody = NormalizeNotifBody(body);
 
         // 메시지 JSON 구성
-        // Android: notification 필드 추가 → Samsung killed 앱도 OS 레벨에서 수신 보장
-        //   setBackgroundMessageHandler에서 시스템 알림 취소 후 InboxStyle로 교체
+        // Android: notification 필드 제거 → data-only FCM
+        //   MoaFirebaseMessagingService.onMessageReceived에서 Java InboxStyle 표시
+        //   notification 필드 있으면 OS replace(tag=moa_fcm_sys)로 1개만 표시됨 + onMessageReceived 미호출
         // iOS: apns.aps에서 alert/sound 제거 → data-only (content-available:1)
         //   index.js iOS 핸들러에서 notifee 직접 표시 → 진동 설정 반영 가능
         json message = {
             {"message", {
                 {"token", fcmToken},
                 {"android", {
-                    {"priority", "high"},
-                    {"notification", {
-                        {"title", title},
-                        {"body", notifBody},
-                        {"tag", "moa_fcm_sys"}
-                    }}
+                    {"priority", "high"}
                 }},
                 {"apns", {
                     {"headers", {
-                        {"apns-priority", "10"}
+                        {"apns-priority", "10"},
+                        {"apns-push-type", "alert"}
                     }},
                     {"payload", {
                         {"aps", {
+                            {"alert", {
+                                {"title", title},
+                                {"body", notifBody}
+                            }},
+                            {"sound", "default"},
                             {"content-available", 1}
                         }}
                     }}
@@ -281,7 +283,7 @@ bool FcmClient::RefreshAccessToken()
             if (response.contains("expires_in")) {
                 expiresIn = response["expires_in"].get<int64>();
             }
-            _tokenExpiresTime = Nowts() + (expiresIn * 1000);
+            _tokenExpiresTime.store(Nowts() + (expiresIn * 1000));
 
             LOG_INFO("[FcmClient] Access token obtained, expires in {} seconds", expiresIn);
             return true;
@@ -300,10 +302,18 @@ bool FcmClient::RefreshAccessToken()
 
 bool FcmClient::CheckValidToken()
 {
-    if (_accessToken.empty() || Nowts() >= _tokenExpiresTime) {
-        return RefreshAccessToken();
+    // 1차 확인: 락 없이 (평상시 대부분의 경로)
+    if (!_accessToken.empty() && Nowts() < _tokenExpiresTime.load()) {
+        return true;
     }
-    return true;
+
+    // 2차 확인: 락 잡고 재검사 — 내가 기다리는 동안 다른 스레드가 이미 갱신했을 수 있음
+    std::lock_guard<std::mutex> lock(_tokenMutex);
+    if (!_accessToken.empty() && Nowts() < _tokenExpiresTime.load()) {
+        return true;
+    }
+
+    return RefreshAccessToken();
 }
 
 
